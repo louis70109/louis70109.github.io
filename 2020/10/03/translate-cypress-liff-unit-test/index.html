@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":20,"unescape":true,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文連結  前言大家好，本篇將帶大家使用 Cypress 為您的 LIFF（LINE Frontend Framework）Application 寫單元測試。並且可以從本文的範例幫助來閱讀這篇文章的開發者朋友。若之前沒有嘗試過開發 LIFF App，建議您先閱讀以下文章。因為在本文中可能會有很多相關技術用詞，因此在使用它們之前必需要有 LIFF App 開發的相關基礎知識。  Article">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【翻譯】讓我們使用 Cypress 開始為 LIFF app 撰寫單元測試">
+<meta property="og:url" content="https://nijialin.com/2020/10/03/translate-cypress-liff-unit-test/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="原文連結  前言大家好，本篇將帶大家使用 Cypress 為您的 LIFF（LINE Frontend Framework）Application 寫單元測試。並且可以從本文的範例幫助來閱讀這篇文章的開發者朋友。若之前沒有嘗試過開發 LIFF App，建議您先閱讀以下文章。因為在本文中可能會有很多相關技術用詞，因此在使用它們之前必需要有 LIFF App 開發的相關基礎知識。  Article">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/logo.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/2.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/3.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/4.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/5.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/6.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/7.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/8.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/9.png">
+<meta property="og:image" content="https://nijialin.com/images/2020/cypress-liff/10.png">
+<meta property="article:published_time" content="2020-10-03T15:04:58.000Z">
+<meta property="article:modified_time" content="2021-07-14T16:07:50.498Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="LIFF">
+<meta property="article:tag" content="Cypress">
+<meta property="article:tag" content="Testing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2020/cypress-liff/logo.png">
+
+<link rel="canonical" href="https://nijialin.com/2020/10/03/translate-cypress-liff-unit-test/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【翻譯】讓我們使用 Cypress 開始為 LIFF app 撰寫單元測試 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150180475-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-150180475-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/10/03/translate-cypress-liff-unit-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【翻譯】讓我們使用 Cypress 開始為 LIFF app 撰寫單元測試
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-10-03 15:04:58" itemprop="dateCreated datePublished" datetime="2020-10-03T15:04:58+00:00">2020-10-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-07-14 16:07:50" itemprop="dateModified" datetime="2021-07-14T16:07:50+00:00">2021-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Testing/" itemprop="url" rel="index"><span itemprop="name">Testing</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2020/cypress-liff/logo.png" alt=""></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%99-unit-tests-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%81%E0%B8%B1%E0%B8%9A-liff-app-%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-cypress-%E0%B8%81%E0%B8%B1%E0%B8%99-214f5b0c66b7">原文連結</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，本篇將帶大家使用 Cypress 為您的 LIFF（LINE Frontend Framework）Application 寫單元測試。並且可以從本文的範例幫助來閱讀這篇文章的開發者朋友。若之前沒有嘗試過開發 LIFF App，建議您先閱讀以下文章。因為在本文中可能會有很多相關技術用詞，因此在使用它們之前必需要有 LIFF App 開發的相關基礎知識。</p>
+<blockquote>
+<p>Article: <a target="_blank" rel="noopener" href="https://medium.com/linedevth/liff-v2-release-85fdfb678cc6">https://medium.com/linedevth/liff-v2-release-85fdfb678cc6</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="使用-LINE-平台進行-LIFF-應用測試的主要問題"><a href="#使用-LINE-平台進行-LIFF-應用測試的主要問題" class="headerlink" title="使用 LINE 平台進行 LIFF 應用測試的主要問題"></a>使用 LINE 平台進行 LIFF 應用測試的主要問題</h1><p>我相信每個開發人員都會以不同的方式測試 LIFF App。根據我在 LIFF App 進行自動化測試的經驗中，我遇到了很多問題。因此我想總結以下 3 個常見問題：<br><img src="https://nijialin.com/images/2020/cypress-liff/1.png" alt=""></p>
+<ol>
+<li>LIFF App 和 LINE Platform 具有很高的依賴性：例如，假設我們要使用 liff.getProfile() 這個 API，則需要先重新導向讓使用者進行 LINE Login，然後才能使用它。如此一來控制 LINE Login 就很困難。這樣情況下很容易變成 <code>Flaky Tests</code>（“Flaky Tests” 意指在測試中測試程式不改變的情況下，偶爾會有產生不同的測試結果，也就是不穩定的測試）。</li>
+<li>無法 Simulate Negative Test：假設我們要使用 <code>Promise</code> 的 <code>Reject</code> 測試 liff.init() 並且檢查我們的應用程式是否可以處理各種 Scenario，在一般的測試下很難達到預期效果。</li>
+<li>要在 LINE Native App 上模擬與 LIFF App 一樣的環境相當困難。因為有時我們的 LIFF App 對於每個平台可能會有不同的操作行為，例如在 LINE App 和外部瀏覽器上運行。兩種環境可能因為尺寸問題具有不同的 UI 設計和功能，它們的運作模式會有所不同。若此時我們想如何簡化模擬這些測試環境，我認為這會相當困難。</li>
+</ol>
+<blockquote>
+<p>從以上所有問題 可以使用 Cypress 作為工具對 LIFF App 進行單元測試來進行編輯和實現。</p>
+</blockquote>
+<p>對於那些以前從未聽說過 Cypress 的人，您可以閱讀我之前寫過的<a target="_blank" rel="noopener" href="https://medium.com/cypress-io-thailand/%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81-cypress-web-test-framework-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%B0%E0%B8%97%E0%B8%B3%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%A5%E0%B8%B7%E0%B8%A1-selenium-%E0%B9%84%E0%B8%9B%E0%B9%84%E0%B8%94%E0%B9%89%E0%B9%80%E0%B8%A5%E0%B8%A2-405a11d7341">介紹文章</a>。</p>
+<p>很多人可能會認為 Cypress 是否僅適用於 End-to-End Test？答案不是！Cypress 可以在 Unit Test、Integration Test 和 End-to-End Test 中進行各種級別的測試，所以今天我將帶大家來看看如何使用 Cypress 進行 Unit Test，並與使用其他框架相比有什麼優勢。</p>
+<h1 id="Let’s-Get-Started"><a href="#Let’s-Get-Started" class="headerlink" title="Let’s Get Started"></a>Let’s Get Started</h1><p>以下範例我選擇使用 Vue.js 來開發 LIFF App。</p>
+<p><img src="https://nijialin.com/images/2020/cypress-liff/2.png" alt=""><br>我透過使用 vue-cli 來手動 Config 一個新的專案，如下所示：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sh$ vue create liff-cypress-unit-tests</span><br><span class="line">Please pick a preset: Manually select features</span><br><span class="line">Check the features needed <span class="keyword">for</span> your project: Babel, Router, Linter</span><br><span class="line">Use <span class="built_in">history</span> mode <span class="keyword">for</span> router? (Requires proper server setup <span class="keyword">for</span> index fallback <span class="keyword">in</span> production) Yes</span><br><span class="line">Pick a linter / formatter config: Airbnb</span><br><span class="line">Pick additional lint features: Lint on save</span><br><span class="line">Where <span class="keyword">do</span> you prefer placing config <span class="keyword">for</span> Babel, ESLint, etc.? In dedicated config files</span><br><span class="line">Save this as a preset <span class="keyword">for</span> future projects? No</span><br></pre></td></tr></table></figure>
+
+<p>重要的是 Cypress 創建了一個名為 Cypress Vue unit test 的 plugin，以幫助我們輕鬆地在 Vue.js Application 上編寫單元測試。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bahmutov/cypress-vue-unit-test">cypress-vue-unit-test</a>是基於 Vue 官方單元測試函式庫 - <a target="_blank" rel="noopener" href="https://vue-test-utils.vuejs.org/">vue-test-utils</a> 所實作的套件。而它可以運行在真實的瀏覽器以及 Cypress 的所有功能上。</p>
+<p>我們也可以通過 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/guide/cli-service.html">vue-cli</a> 安裝此套件。為了能夠使用此套件，您需要使用 <strong>Cypress 4.5.0</strong> 和 <strong>Node.js 8</strong> 或更高版本。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh$ vue add cypress-experimental <span class="comment"># vue-cli &gt; 3</span></span><br></pre></td></tr></table></figure>
+
+<p>該方法會自動將 Cypress 添加到您的專案中，並創建一個 task: <code>test:components</code> 並包括 Cypress 的基本配置。因此，您也可以輕鬆地執行 Vue Components 的單元測試。</p>
+<h1 id="執行-Vue-js-App"><a href="#執行-Vue-js-App" class="headerlink" title="執行 Vue.js App"></a>執行 Vue.js App</h1><p>首先先執行 Vue.js App，確保專案建立是否可以正常運行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh$ yarn serve</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2020/cypress-liff/3.png" alt=""></p>
+<h1 id="加入-LIFF-SDK-於-Vue-Component-中"><a href="#加入-LIFF-SDK-於-Vue-Component-中" class="headerlink" title="加入 LIFF SDK 於 Vue Component 中"></a>加入 LIFF SDK 於 Vue Component 中</h1><p>我將通過像這樣通過 npm 包輕鬆安裝 LIFF SDK，開始將我的 Vue.js 應用轉換為 LIFF 應用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh$ yarn add @line&#x2F;liff &#x2F;&#x2F; LIFF SDK</span><br><span class="line">sh$ yarn add vue-sweetalert2 &#x2F;&#x2F; for modal dialog</span><br></pre></td></tr></table></figure>
+
+<h1 id="Test-Scenario-1-Initialize-LIFF-App"><a href="#Test-Scenario-1-Initialize-LIFF-App" class="headerlink" title="Test Scenario 1: Initialize LIFF App"></a>Test Scenario 1: Initialize LIFF App</h1><p>首先，在已經透過 vue-cli 建立的專案並在 Component 中初始化 LIFF app。並且已經在我的 <a target="_blank" rel="noopener" href="https://developers.line.biz/console/">LINE Developer Console</a> 中註冊 LIFF App。</p>
+<script src="https://gist.github.com/nottyo/ad63b1648ec9ee6c96be1a5626ddb31b.js"></script>
+
+<h1 id="使用-Cypress-來寫-Vue-Component-Test"><a href="#使用-Cypress-來寫-Vue-Component-Test" class="headerlink" title="使用 Cypress 來寫 Vue Component Test"></a>使用 Cypress 來寫 Vue Component Test</h1><p>透過 <code>cypress-vue-unit-test</code> 提供的 <code>mount</code> API 來使用 Cypress 測試 Vue Component 是相當容易的，如此一來我們就可以安裝該套件來對其 Component 進行測試。在這裡我將使用 Cypress 控制 LIFF 的 APIs，按照所需測試使用 <a target="_blank" rel="noopener" href="https://docs.cypress.io/guides/guides/stubs-spies-and-clocks.html">Cypress Stub Feature</a>，讓 liff.init() Stub 時 Promise 總是回傳 resolve。大致如下：</p>
+<script src="https://gist.github.com/nottyo/cc86b71c2b597e537ef2888ddd52db53.js"></script>
+
+<p>若 liff.init() 的 Parameters 正確傳送，我們能查看函數的變化嗎？<br>是的，接著我們可以使用此 Command 進行測試。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh$ yarn test:components</span><br></pre></td></tr></table></figure>
+
+<p>Cypress 將啟動 UI Test Runner。</p>
+<p><img src="https://nijialin.com/images/2020/cypress-liff/4.png" alt=""></p>
+<p>讓我們選擇 <code>App.spec.js</code> 並按 “執行”，我們會看到 <strong>Test Passed</strong>。</p>
+<p><img src="https://nijialin.com/images/2020/cypress-liff/5.png" alt=""></p>
+<p>您可以看到在介面上都沒有測試，因為這是一項檢查是否 liff.init() 成功的測試。如此一來很快，不是嗎？</p>
+<h1 id="Test-Scenario-2-Negative-Test-with-LIFF-SDK"><a href="#Test-Scenario-2-Negative-Test-with-LIFF-SDK" class="headerlink" title="Test Scenario 2: Negative Test with LIFF SDK"></a>Test Scenario 2: Negative Test with LIFF SDK</h1><p>在這次的範例中，我們打算做 LIFF SDK 的 Negative Test 。我會假設如果 liff.init() 的 Promise <code>Reject</code> 了 app，我們則須看在 App.vue 的程式碼中使否有 Handle Error。在這份程式碼中我已經使用 try/catch 包裝 liff.init()，在執行失敗時彈出 modal 向用戶顯示錯誤。</p>
+<p>通過模擬這種情況下的 Negative Test，我們將像之前一樣再次使用 Cypress Stub，將 liff.init() 設定返回 Promise Reject，可以這樣寫：</p>
+<script src="https://gist.github.com/nottyo/fac82631d895d759ad7ea0bcdea64808.js"></script>
+
+<p>使用 Cypress 進行測試時，將看到像這樣彈出 Error Modal。<br><img src="https://nijialin.com/images/2020/cypress-liff/6.png" alt=""></p>
+<h1 id="Test-Scenario-3-Authentication-with-LINE-Login-Get-User-Profile"><a href="#Test-Scenario-3-Authentication-with-LINE-Login-Get-User-Profile" class="headerlink" title="Test Scenario 3: Authentication with LINE Login + Get User Profile"></a>Test Scenario 3: Authentication with LINE Login + Get User Profile</h1><p>在此範例中，我將建立一個用於顯示 LINE User Profile 的 Component，將使用 <code>liff.getProfile()</code> 這個 API 來索取用戶訊息，而在使用 liff.getProfile() 之前須先 LINE Login，確認用戶是否已登錄。若此時用戶還沒登入則會在 <code>liff.login()</code> 階段被 Redirect 至 LINE Login。</p>
+<p>此外，我還使用 <code>liff.ready</code> 這個 API 來確認 APP 中的 Component 是否在 liff.init() 階段成功調用至 APP 中。</p>
+<script src="https://gist.github.com/nottyo/e4c34130a1fcdb1eb6e996fb7c3cb1fa.js"></script>
+
+<h1 id="動手做"><a href="#動手做" class="headerlink" title="動手做"></a>動手做</h1><p>為了測試 Profile Component，我必須先對 Property 進行 Stub 處理，假設 <code>liff.init()</code> 已經完成讓 <code>liff.ready</code> 順利通過，使 <code>liff.ready</code> 解析的結果等於 Promise Resolve，結果的部分可以寫成像 <code>Cypress.sinon.replace(liff, &#39;ready&#39;, Promise.resolve())</code> 這樣。</p>
+<p>此外，我們會 Stub <code>liff.isLoggedIn</code> 讓它總是 Return True，如此一來就不會因為走 LINE Login 而複雜化流程。接著就是 Stub <code>liff.getProfile</code> 之後的 <code>promise resolve</code> 階段要返回 User Profile。</p>
+<script src="https://gist.github.com/nottyo/fcfab3f6cd4d4c60c469eef406554a26.js"></script>
+
+<p>當開始執行後，我們會看到我們之前已經 Stub User Profile 並回傳 Profile 的 component，而我們可以使用 Cypress Commands 觀察在 DOM 元素的狀態。</p>
+<p>我們還可以使用 <code>Cypress.vue</code> 來訪問您的 Vue Instance，而且我們可以使用它來檢查 Vue Instance 中的各種 Property。例如在此範例中，我要檢查 User Profile 是否能跑 <code>Cypress.vue.$data.&lt;propertyName&gt;</code> 並正確儲存了 User Profile Object 的 <strong>Data Property</strong>。</p>
+<p><img src="https://nijialin.com/images/2020/cypress-liff/7.png" alt=""></p>
+<h1 id="Test-Scenario-4-Emulate-Opening-LIFF-App-from-LINE-Native-App"><a href="#Test-Scenario-4-Emulate-Opening-LIFF-App-from-LINE-Native-App" class="headerlink" title="Test Scenario 4: Emulate Opening LIFF App from LINE Native App"></a>Test Scenario 4: Emulate Opening LIFF App from LINE Native App</h1><p>在接下來的範例中，我們將模擬打開 LIFF App 的環境，像是從 Mobile app 中打開 LINE 的環境。我將使用 <code>liff.isInClient()</code> 這個 API 來檢查它是否已在 LINE App 中打開，並透過 <code>liff.getOS()</code> 查詢用戶是用何種平台開啟 LIFF。</p>
+<script src="https://gist.github.com/nottyo/363bbd27695312e5d8302b1cbc9d18c7.js"></script>
+
+<p>在寫測試時，我們對函數 <code>liff.isInClient()</code> 進行 Stub 讓回傳值為 true 並讓 <code>liff.getOS()</code> 回傳 ios。</p>
+<p>此外，我還使用它 <code>cy.viewport(&#39;iphone-xr&#39;)</code> 來模擬手機螢幕大小，就像是在 iPhone 上運行一樣，Cypress 還為此準備了 <a target="_blank" rel="noopener" href="https://docs.cypress.io/api/commands/viewport.html">Mobile Viewport</a> 供我們使用。您可以在此處查看更多相關資訊。</p>
+<script src="https://gist.github.com/nottyo/c53bf9410dfe4399db4a9482426c82e9.js"></script>
+
+<p><img src="https://nijialin.com/images/2020/cypress-liff/8.png" alt=""></p>
+<h1 id="Cypress-與另一個-Unit-Test-Framework-比較"><a href="#Cypress-與另一個-Unit-Test-Framework-比較" class="headerlink" title="Cypress 與另一個 Unit Test Framework 比較"></a>Cypress 與另一個 Unit Test Framework 比較</h1><p>可以看出 Cypress 的優勢在於它可以在真實的瀏覽器上運行，並擁有支持所有瀏覽器的 <strong>API</strong>，以及能使用 Cypress 進行相對應測試案例的其他功能，例如 <strong>Time Travel</strong>、<strong>Debuggability</strong>…。Cypress 也可以建立虛擬的 Unit Test，且能提供更快的速度運行速度。</p>
+<p>除了 Vue.js 之外，Cypress 也支援其他 Web 框架上的 Unit Test，如：<a target="_blank" rel="noopener" href="https://github.com/bahmutov/cypress-react-unit-test">React</a> 和 <a target="_blank" rel="noopener" href="https://github.com/bahmutov/cypress-angularjs-unit-test">Angularjs</a>。</p>
+<p><img src="https://nijialin.com/images/2020/cypress-liff/9.png" alt=""></p>
+<p>最後，可以在下面連結中查看查看本篇的所有 <a target="_blank" rel="noopener" href="https://github.com/nottyo/liff-cypress-unit-test">Source Code</a>。若對對使用 Cypress 有任何疑問，您可以加入 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/cypressiothailand">Cypress.io 泰國</a> 並詢問相關問題。</p>
+<p>希望透過本篇能為所有開發人員提供一個動力，開始為我們的 LIFF App 撰寫單元測試(Unit Test)，以便我們的 LIFF App 可以長期的經營以及維護，並且具有良好的 Code Quality。大家可以使用它 Happy Testing!</p>
+<blockquote>
+<p>您可以在這看到本篇的完整範例：<a target="_blank" rel="noopener" href="https://github.com/nottyo/liff-cypress-unit-test">liff-cypress-unit-tests</a></p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2020/cypress-liff/10.png" alt=""></p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/bahmutov/cypress-vue-unit-test">cypress-vue-unit-test</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jessicasachs/vue-cli-plugin-cypress-experimental">vue-cli-plugin-cypress-experimental</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/LIFF/" rel="tag"><i class="fa fa-tag"></i> LIFF</a>
+              <a href="/tags/Cypress/" rel="tag"><i class="fa fa-tag"></i> Cypress</a>
+              <a href="/tags/Testing/" rel="tag"><i class="fa fa-tag"></i> Testing</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/26/javascript-skills-1/" rel="prev" title="【JavaScript】Function 呈現方式、修改 Array 長度、型態轉換、Unique Array value">
+      <i class="fa fa-chevron-left"></i> 【JavaScript】Function 呈現方式、修改 Array 長度、型態轉換、Unique Array value
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/21/20201017-meichu-workshop/" rel="next" title="梅竹黑客松賽前企業工作坊 - LIFF shareTargetPicker">
+      梅竹黑客松賽前企業工作坊 - LIFF shareTargetPicker <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-LINE-%E5%B9%B3%E5%8F%B0%E9%80%B2%E8%A1%8C-LIFF-%E6%87%89%E7%94%A8%E6%B8%AC%E8%A9%A6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%95%8F%E9%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">使用 LINE 平台進行 LIFF 應用測試的主要問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Let%E2%80%99s-Get-Started"><span class="nav-number">3.</span> <span class="nav-text">Let’s Get Started</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%B7%E8%A1%8C-Vue-js-App"><span class="nav-number">4.</span> <span class="nav-text">執行 Vue.js App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5-LIFF-SDK-%E6%96%BC-Vue-Component-%E4%B8%AD"><span class="nav-number">5.</span> <span class="nav-text">加入 LIFF SDK 於 Vue Component 中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-Scenario-1-Initialize-LIFF-App"><span class="nav-number">6.</span> <span class="nav-text">Test Scenario 1: Initialize LIFF App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Cypress-%E4%BE%86%E5%AF%AB-Vue-Component-Test"><span class="nav-number">7.</span> <span class="nav-text">使用 Cypress 來寫 Vue Component Test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-Scenario-2-Negative-Test-with-LIFF-SDK"><span class="nav-number">8.</span> <span class="nav-text">Test Scenario 2: Negative Test with LIFF SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-Scenario-3-Authentication-with-LINE-Login-Get-User-Profile"><span class="nav-number">9.</span> <span class="nav-text">Test Scenario 3: Authentication with LINE Login + Get User Profile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8B%95%E6%89%8B%E5%81%9A"><span class="nav-number">10.</span> <span class="nav-text">動手做</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-Scenario-4-Emulate-Opening-LIFF-App-from-LINE-Native-App"><span class="nav-number">11.</span> <span class="nav-text">Test Scenario 4: Emulate Opening LIFF App from LINE Native App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cypress-%E8%88%87%E5%8F%A6%E4%B8%80%E5%80%8B-Unit-Test-Framework-%E6%AF%94%E8%BC%83"><span class="nav-number">12.</span> <span class="nav-text">Cypress 與另一個 Unit Test Framework 比較</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">13.</span> <span class="nav-text">參考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">166</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

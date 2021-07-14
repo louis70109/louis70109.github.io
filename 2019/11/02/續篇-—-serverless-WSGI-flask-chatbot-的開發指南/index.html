@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":20,"unescape":true,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言如果還不知道 Serverless (以下簡稱 sls )的朋友可以先看我上篇文章，裡頭有介紹 Python 以及 Ruby 的範例。還沒接觸 Serverless 之前，當開發完一包程式時就將它部署至 Heroku，實在是有夠方便又快速(還是免費的)。不過有個問題是當程式沒在運行時他會睡覺，身為一個免費仔做的小專案這樣是夠的，做為一個貪心的免費仔怎能容許睡覺睡這麼久 🤤！但若是照著我上篇分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="續篇 — serverless + WSGI + flask + chatbot 的開發指南">
+<meta property="og:url" content="https://nijialin.com/2019/11/02/%E7%BA%8C%E7%AF%87-%E2%80%94-serverless-WSGI-flask-chatbot-%E7%9A%84%E9%96%8B%E7%99%BC%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言如果還不知道 Serverless (以下簡稱 sls )的朋友可以先看我上篇文章，裡頭有介紹 Python 以及 Ruby 的範例。還沒接觸 Serverless 之前，當開發完一包程式時就將它部署至 Heroku，實在是有夠方便又快速(還是免費的)。不過有個問題是當程式沒在運行時他會睡覺，身為一個免費仔做的小專案這樣是夠的，做為一個貪心的免費仔怎能容許睡覺睡這麼久 🤤！但若是照著我上篇分">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/PVcuACel.png">
+<meta property="og:image" content="https://i.imgur.com/RmqPM0bl.png">
+<meta property="og:image" content="https://i.imgur.com/zVY6YYB.png">
+<meta property="og:image" content="https://i.imgur.com/K40h9e8.png">
+<meta property="og:image" content="https://i.imgur.com/0BzEsP1.png">
+<meta property="og:image" content="https://i.imgur.com/vAiRaZS.png">
+<meta property="og:image" content="https://i.imgur.com/OTxONmI.png">
+<meta property="og:image" content="https://i.imgur.com/ymZyKyN.png">
+<meta property="article:published_time" content="2019-11-02T13:04:28.000Z">
+<meta property="article:modified_time" content="2021-07-14T16:07:50.502Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="AWS">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Serverless">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/PVcuACel.png">
+
+<link rel="canonical" href="https://nijialin.com/2019/11/02/%E7%BA%8C%E7%AF%87-%E2%80%94-serverless-WSGI-flask-chatbot-%E7%9A%84%E9%96%8B%E7%99%BC%E6%8C%87%E5%8D%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>續篇 — serverless + WSGI + flask + chatbot 的開發指南 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150180475-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-150180475-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/02/%E7%BA%8C%E7%AF%87-%E2%80%94-serverless-WSGI-flask-chatbot-%E7%9A%84%E9%96%8B%E7%99%BC%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          續篇 — serverless + WSGI + flask + chatbot 的開發指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-02 13:04:28" itemprop="dateCreated datePublished" datetime="2019-11-02T13:04:28+00:00">2019-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-07-14 16:07:50" itemprop="dateModified" datetime="2021-07-14T16:07:50+00:00">2021-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如果還不知道 Serverless (以下簡稱 sls )的朋友可以先看我<a href="https://nijialin.com/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">上篇文章</a>，裡頭有介紹 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot">Python</a> 以及 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-ruby-line-echo-bot">Ruby</a> 的範例。<br>還沒接觸 Serverless 之前，當開發完一包程式時就將它部署至 Heroku，實在是有夠方便又快速(還是免費的)。不過有個問題是當程式沒在運行時他會睡覺，身為一個免費仔做的小專案這樣是夠的，做為一個貪心的免費仔怎能容許睡覺睡這麼久 🤤！但若是照著我上篇分享的文章做，佈署程式沒問題，但就開發機器人我都要佈署才能測試，這未免也太不人性了 😒。<a id="more"></a><br>既然上次都用 Python 來寫了，為了解決這個問題，本篇會介紹如何在 Serverless 上導入 WSGI &amp; Flask，讓我們再開發時不僅可以在本地端 auto-reload，也可以搭配 ngrok 讓 chatbot wehook 能夠打過來做測試。</p>
+<div class="tenor-gif-embed" data-postid="14472399" data-share-method="host" data-width="100%" data-aspect-ratio="2.2232142857142856"><a target="_blank" rel="noopener" href="https://tenor.com/view/minions-amazing-cheer-yes-excited-gif-14472399">Minions Amazing GIF</a> from <a target="_blank" rel="noopener" href="https://tenor.com/search/minions-gifs">Minions GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+<blockquote>
+<p>順便慶祝一下 python 以及 ruby 的兩個範例都過 Serverless 的 PR 了 ✌️</p>
+</blockquote>
+<p><img src="https://i.imgur.com/PVcuACel.png" alt=""><br><img src="https://i.imgur.com/RmqPM0bl.png" alt=""></p>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>這次的主題是延續上次的文章，過程中若有像是 AWS key 之類的問題可以回顧一下～</p>
+<ul>
+<li><a href="https://nijialin.com/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">使用 Serverless &amp; LINE Message API 在 AWS 上打造一個 Echo bot</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot?source=post_page-----f11de7dee7aa----------------------">aws-line-echo-bot</a></li>
+</ul>
+<p>首先先透過 sls 至 Github 將 Python 範例抓下來並建專案。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ serverless install --url https://github.com/louis70109/aws-line-echo-bot -n &lt;YOUR_FILE_NAME&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;YOUR_FILE_NAME&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接著參考 <a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-wsgi/">官方文件</a> 上的實例，引入 WSGI &amp; requirements Plugin。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sls plugin install -n serverless-wsgi</span><br><span class="line">$ sls plugin install -n serverless-python-requirements</span><br></pre></td></tr></table></figure>
+
+<p>接著加入 Flask 以及 line-bot-sdk 的相依套件版本(寫這篇時是使用 Flask 1.0.2 以及 line-bot-sdk 1.12.1)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> “Flask==1.0.2\nline-bot-sdk==1.12.1” &gt; requirements.txt</span><br><span class="line">$ pip install -r requirements.txt -—user</span><br></pre></td></tr></table></figure>
+
+<p>置換以下內容至 serverless.yml，讓 WSGI 去處理路由。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service:</span> <span class="string">&lt;YOUR_FILE_NAME&gt;</span></span><br><span class="line"><span class="attr">provider:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">aws</span></span><br><span class="line">  <span class="attr">runtime:</span> <span class="string">python3.7</span></span><br><span class="line"><span class="attr">functions:</span></span><br><span class="line">  <span class="attr">api:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">wsgi_handler.handler</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">http:</span> <span class="string">ANY</span> <span class="string">/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">http:</span> <span class="string">ANY</span> &#123;<span class="string">proxy+</span>&#125;</span><br><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">wsgi:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">api.app</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-python-requirements</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-wsgi</span></span><br></pre></td></tr></table></figure>
+
+<p>新增 api.py 並加入以下內容 (記得要換 chatbot token 哦！)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, abort</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> linebot <span class="keyword">import</span> (</span><br><span class="line">    LineBotApi, WebhookHandler</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.exceptions <span class="keyword">import</span> (</span><br><span class="line">    InvalidSignatureError</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> (</span><br><span class="line">    MessageEvent, TextMessage, TextSendMessage,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/webhook&quot;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">webhook</span>():</span></span><br><span class="line">    line_bot_api = LineBotApi(<span class="string">&#x27;YOUR_CHANNEL_TOKEN&#x27;</span>)</span><br><span class="line">    handler = WebhookHandler(<span class="string">&#x27;YOUR_CNANNEL_SECRET_KEY&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get X-Line-Signature header value</span></span><br><span class="line">    signature = request.headers[<span class="string">&#x27;X-Line-Signature&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    body = request.get_data(as_text=<span class="literal">True</span>)</span><br><span class="line">    event = json.loads(body)</span><br><span class="line">    print(event)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        handler.handle(body, signature)</span><br><span class="line">    <span class="keyword">except</span> InvalidSignatureError:</span><br><span class="line">        print(</span><br><span class="line">            <span class="string">&quot;Invalid signature. Please check your channel access token/channel secret.&quot;</span>)</span><br><span class="line">        abort(<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">    token = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;replyToken&#x27;</span>]</span><br><span class="line">    <span class="keyword">if</span> token == <span class="string">&quot;00000000000000000000000000000000&quot;</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        line_bot_api.reply_message(token, TextSendMessage(</span><br><span class="line">            text=event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;OK&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>接著就透過 WSGI 起一個 local server(預設 port 為 5000)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls wsgi serve</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/zVY6YYB.png" alt=""></p>
+<p>並加上 ngrok 並指定用 5000 port</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./ngrok http 5000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/K40h9e8.png" alt=""></p>
+<p>將 ngrok 產生的網址貼進 webhook 欄位並加上 /wehbook 。<br>(註: 透過 sls 起的 local server 並不會有 /dev 或是 /prod 開頭的網址哦！)<br><img src="https://i.imgur.com/0BzEsP1.png" alt=""></p>
+<p>若測試流程都順利的話，最後就是 Deploy 上 AWS 囉！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls deploy</span><br></pre></td></tr></table></figure>
+
+<p>佈署完應該會看到類似以下內容：<br><img src="https://i.imgur.com/vAiRaZS.png" alt=""></p>
+<p>這裡大家可能會有個疑慮，為什麼上篇文章的 endpoints 會幫忙顯示路由，但這邊沒有呢？因為上篇文章的佈屬方法是屬於一個 function 對應一個 API，所以若寫了很多路由的話，在 AWS Dashboard 裡就會看到一大堆的 function，雖然佈署時都幫你顯示他的路由，但在後續管理上就會很麻煩。<br>而這次的實作只建立出一個 Lambda，透過 WSGI 幫忙轉發到裡面的路由，使用時只要更改 {proxy} 改自己寫的路由，這邊就是改成 /webhook 就可以測試囉！</p>
+<blockquote>
+<p>若是玩完不想留著的話可以下以下指令來刪除這個專案有用到的 AWS 資源。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls remove</span><br></pre></td></tr></table></figure>
+
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>這次只是將上次的寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot">aws-line-echo-bot</a> 更新並加入 WSGI 以及 flask，在寫上篇文章當時在測試程式都要部署上去，或是用 serverless 的 invoke 來做本地端的模擬測試，但是要是接了像是 Line Message API 這類的第三方服務的話，根本沒辦法自己去模擬 replyToken 之類的參數，因此這次套用了 WSGI 以及 Flask 讓我可以在本地端搭配 ngrok 先測試完之後再將程式佈署上 AWS，如此以來既讓我的程式達到 Serverless，又不會為測試而影響到太多開發時間。<br>不過都只有 API 相關的路由好像有點難應用，接下來要研究一下怎麼讓前端框架可以一起上 AWS 並擁有 SSL (上次玩只到 http 沒有 SSL)，並加上 RDS 讓整體服務可以串起來，雖然這樣不像 Heroku 這麼人性化一鍵通包，不過至少也是讓服務可以個別管理擴充呢！<br>有興趣的朋友們可以參考我的 Github，若覺得不錯給個星星 ⭐️ 或是掌聲 👏 鼓勵我繼續研究下一個主題 😃！</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><blockquote>
+<p>免費方案，AWS <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/free/faqs/">常見問與答集</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/OTxONmI.png" alt=""><br><img src="https://i.imgur.com/ymZyKyN.png" alt=""></p>
+<p>如果在做機器人時有用到類似 numpy, psycopg2 … 的套件的話，請參考 這篇文章，簡單來說因為 AWS 不會幫你編譯套件，所以需要透過 docker 來幫忙打包編譯並上傳。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/AWS/" rel="tag"><i class="fa fa-tag"></i> AWS</a>
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Serverless/" rel="tag"><i class="fa fa-tag"></i> Serverless</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/" rel="prev" title="使用 Serverless & LINE Message API 在 AWS 上打造一個 Echo bot">
+      <i class="fa fa-chevron-left"></i> 使用 Serverless & LINE Message API 在 AWS 上打造一個 Echo bot
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/12/sentry-in-serverless/" rel="next" title="使用 Sentry 收集錯誤並將訊息送至 Slack">
+      使用 Sentry 收集錯誤並將訊息送至 Slack <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">實作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">166</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

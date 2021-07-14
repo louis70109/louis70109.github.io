@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":20,"unescape":true,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }     翻譯來自泰國的 Tan 的文章  大家好，我希望 2021 年對每個人來說都是美好的一年 😃，本次會分享一篇對於有在開發 LINE Chatbot 朋友相關的有趣">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot">
+<meta property="og:url" content="https://nijialin.com/2021/03/05/translate-sticker-driven/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }     翻譯來自泰國的 Tan 的文章  大家好，我希望 2021 年對每個人來說都是美好的一年 😃，本次會分享一篇對於有在開發 LINE Chatbot 朋友相關的有趣">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/2.jpeg">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/3.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/5.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/6.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/7.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/8.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/9.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/sticker-driven/10.gif">
+<meta property="article:published_time" content="2021-03-05T14:17:49.000Z">
+<meta property="article:modified_time" content="2021-07-14T16:07:50.498Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Chatbot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/translate/sticker-driven/1.png">
+
+<link rel="canonical" href="https://nijialin.com/2021/03/05/translate-sticker-driven/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150180475-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-150180475-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/03/05/translate-sticker-driven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-03-05 14:17:49" itemprop="dateCreated datePublished" datetime="2021-03-05T14:17:49+00:00">2021-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-07-14 16:07:50" itemprop="dateModified" datetime="2021-07-14T16:07:50+00:00">2021-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BF%BB%E8%AD%AF/" itemprop="url" rel="index"><span itemprop="name">翻譯</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/1.png" alt=""></p>
+<blockquote>
+<p>翻譯來自泰國的 Tan 的<a target="_blank" rel="noopener" href="https://medium.com/linedevth/line-chatbot-sticker-driven-conversation-920087b8fe44">文章</a></p>
+</blockquote>
+<p>大家好，我希望 2021 年對每個人來說都是美好的一年 😃，本次會分享一篇對於有在開發 LINE Chatbot 朋友相關的有趣文章。</p>
+<p>12 月時，LINE 更新了 Messaging API 的新功能(<a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2020/12/02/messaging-api-update-december-2020/">新聞連結</a>)，方法是當用戶將<strong>貼圖</strong>發送給 Chatbot 時，將會從 Webhook 的 <code>keywords</code> 中找到貼圖的<strong>關鍵字</strong>訊息。</p>
+<a id="more"></a>
+
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/2.jpeg" alt=""></p>
+<h1 id="關鍵字的效果如何？"><a href="#關鍵字的效果如何？" class="headerlink" title="關鍵字的效果如何？"></a>關鍵字的效果如何？</h1><p>以前，當用戶發送的貼圖給我們時，從中只能拿到 <code>stickerId</code> 與 <code>packageId</code>，很難使用它做其他的用途，也因此我們無法理解使用貼圖時的上下文為何。</p>
+<p>但如今增加了 <code>keywords</code> 這個欄位，它將幫助我們透過 <strong>貼圖</strong>(<strong>Sticker</strong>) 更好地去理解其中含意，了解用戶的意圖與感受(WoW!)</p>
+<blockquote>
+<p>注意：<code>keywords</code> 欄位最多將只能擁有 15 個關鍵字，並且排序為<strong>隨機</strong>。</p>
+</blockquote>
+<h1 id="透過-Sticker-與您的-BMI-Chatbot-Dialogflow-對話。"><a href="#透過-Sticker-與您的-BMI-Chatbot-Dialogflow-對話。" class="headerlink" title="透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。"></a>透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。</h1><p>我將在本文中做的是開發給 <a target="_blank" rel="noopener" href="https://medium.com/@jirawatee">Jirawatee</a> 使用的 BMI Chatbot，<a target="_blank" rel="noopener" href="https://medium.com/@jirawatee">Jirawatee</a>希望 Chatbot 透過 Sticker 了解他的需求(Intent)，讓他能更方便的使用。但眾所周知，Dialogflow 僅支援文字類型，因此我們必須先創建一個 Proxy 幫忙轉譯，然後再將訊息轉發給 Dialogflow。</p>
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/3.png" alt=""></p>
+<p>由於本篇是屬於半實驗性的開發，因此我將透過 ngrok，將其作為 Local Server，並使用 Node.js 進行開發。主要步驟如下:</p>
+<ol>
+<li>建立 LINE Official Account (Chatbot)</li>
+<li>使用 Dialogflow 建構 BMI Chatbot</li>
+<li>建立 Proxy Server</li>
+<li>啟用 ngrok</li>
+<li>將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</li>
+</ol>
+<h2 id="1-建立-LINE-Official-Account-Chatbot"><a href="#1-建立-LINE-Official-Account-Chatbot" class="headerlink" title="1. 建立 LINE Official Account (Chatbot)"></a>1. 建立 LINE Official Account (Chatbot)</h2><p>如果您以前沒有建立過 LINE Chatbot，則可以查看 Jirawatee 的<a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%81%E0%B8%B2%E0%B8%A3-integrate-line-bot-%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A-dialogflow-%E0%B9%81%E0%B8%A5%E0%B8%B0-firebase-%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-bmi-bot-5a30a672f6ae">這篇文章</a>(泰文)。若你已經有帳號了，直接跳到下一小節。</p>
+<blockquote>
+<p>中文版的建立流程可以參考 - <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/chatbot-taichung-08-line-workshop/#massaging-api">LINE 開發社群計畫: Chatbot 台中小聚 08 – LINE platform 工作坊紀錄</a></p>
+</blockquote>
+<h2 id="2-使用-Dialogflow-建構-BMI-Chatbot"><a href="#2-使用-Dialogflow-建構-BMI-Chatbot" class="headerlink" title="2. 使用 Dialogflow 建構 BMI Chatbot"></a>2. 使用 Dialogflow 建構 BMI Chatbot</h2><p>如前面 Jirawatee 建議的那樣，我們需要一隻 BMI Chatbot，想了解實作細節可以參考此篇(泰文)：<a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%81%E0%B8%B2%E0%B8%A3-integrate-line-bot-%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A-dialogflow-%E0%B9%81%E0%B8%A5%E0%B8%B0-firebase-%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-bmi-bot-5a30a672f6ae">如何透過 BMI Bot 將 LINE Bot、Dialogflow 和 Firebase 結合</a></p>
+<h2 id="3-建立-Proxy-Server"><a href="#3-建立-Proxy-Server" class="headerlink" title="3. 建立 Proxy Server"></a>3. 建立 Proxy Server</h2><p>此步驟是使用 Node.js 撰寫一個 Web app，用來接收用戶向我們的 Chatbot 發送訊息時 LINE 發送回來的 Webhook，然後我們將從 Webhook 中 找出 <code>keywords</code> 欄位並轉發到 Dialogflow</p>
+<script src="https://gist.github.com/tandevmode/a833ff7ca8b1e2bcd9fcc50770fa6667.js"></script>
+
+<p>創建新 Text 類型的原則是:</p>
+<ul>
+<li><strong>Body</strong>：我們必須將 Sticker 類型轉換為 Text 類型的文字，以便 Dialogflow 能夠理解它。而實際上，我們也可以將其所有關鍵字發送過去。但是，如果仔細看，關鍵字的含義非常廣泛(例如：cony、sally、line.. 等等)，可能會使 Dialogflow 難以解釋 Intent，因此我嘗試僅發送 3 個隨機關鍵字給 Dialogflow。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> keywords = event.message.keywords;</span><br><span class="line"><span class="keyword">let</span> stickerIntent = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span>; i++) &#123;</span><br><span class="line">    stickerIntent += randomItem(keywords) + <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomItem</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * items.length)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Headers：我們在轉發到 Dialogflow 之前，需將 “x-line-signature” 和 “hosts” 一起使用，而 ‘content-length’ 也是需要注意的部分，因此也需要將 Body 加入其中。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">req.headers[<span class="string">&#x27;x-line-signature&#x27;</span>] = crypto</span><br><span class="line">  .createHmac(<span class="string">&#x27;SHA256&#x27;</span>, LINE_CHANNEL_SECRET)</span><br><span class="line">  .update(body)</span><br><span class="line">  .digest(<span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line">  .toString();</span><br><span class="line">req.headers.host = <span class="string">&#x27;dialogflow.cloud.google.com&#x27;</span>;</span><br><span class="line">req.headers[<span class="string">&#x27;content-length&#x27;</span>] = Buffer.byteLength(body, <span class="string">&#x27;utf8&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接著開始嘗試轉發到 Dialogflow 上，但 Dialogflow 都沒有連接成功。一直在原地轉圈圈 🥺。之後，我來諮詢 Jirawatee，討論了許久時間，我們發現需要修復’content-length’ 即可…</p>
+<h3 id="index-js-的所有程式碼"><a href="#index-js-的所有程式碼" class="headerlink" title="index.js 的所有程式碼"></a>index.js 的所有程式碼</h3><script src="https://gist.github.com/tandevmode/e5045de4e811aa979f86fbf462e8c043.js"></script>
+
+<h1 id="4-啟用-ngrok"><a href="#4-啟用-ngrok" class="headerlink" title="4. 啟用 ngrok"></a>4. 啟用 ngrok</h1><p>對於以前從未使用過 ngrok 的朋友，我們建議您閱讀<a target="_blank" rel="noopener" href="https://medium.com/linedevth/linebot-ngrok-b319841a49d7">這篇文章</a>(泰文)，可以讓我們在 3000 port 下啟用 ngrok！</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok http 3000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/5.png" alt=""></p>
+<p>像過往一樣，從 ngrok 獲取 URL 後，在網址後面添加 <code>/webhook</code> 並放入我們的 Chatbot Channel 當中。</p>
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/6.png" alt=""></p>
+<h1 id="5-將-Chatbot-收集到的詞彙添加到-Dialogflow-做訓練"><a href="#5-將-Chatbot-收集到的詞彙添加到-Dialogflow-做訓練" class="headerlink" title="5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練"></a>5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</h1><p>Dialogflow 的其中一個功能是我們可以輸入每個 Intent 的句子，因為我們 BMI Chatbot 輸入都是泰文句子，但是 <code>keywords</code> 裡回應的數值都是英文，因此我們也必須提供更多訓練的詞彙。</p>
+<h3 id="5-1-Default-Welcome-Intent"><a href="#5-1-Default-Welcome-Intent" class="headerlink" title="5.1 Default Welcome Intent"></a>5.1 Default Welcome Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/7.png" alt=""></p>
+<h3 id="5-2-BMI-Intent"><a href="#5-2-BMI-Intent" class="headerlink" title="5.2 BMI Intent"></a>5.2 BMI Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/8.png" alt=""></p>
+<h3 id="5-3-BMI-—-custom-—-yes-Intent"><a href="#5-3-BMI-—-custom-—-yes-Intent" class="headerlink" title="5.3 BMI — custom — yes Intent"></a>5.3 BMI — custom — yes Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/9.png" alt=""></p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/10.gif" alt=""></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>本文提供了一些貼圖的小技巧，透過這些技巧增加了一些功能，讓 Chatbot 透過貼圖(Sticker)類型讓 Chatbot 理解用戶的意圖，歡迎各位參考本篇文章並嘗試各種不同的應用吧：)</p>
+<p><strong>Note</strong>: Keywords experimental phase - keywords 目前仍處於試驗階段，使用前須注意相關支援度喔！</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%97%E0%B8%B3%E0%B9%83%E0%B8%AB%E0%B9%89-line-bot-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-dialogflow-%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-events-%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%86%E0%B8%99%E0%B8%AD%E0%B8%81%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD%E0%B8%88%E0%B8%B2%E0%B8%81-text-2cae8214c647">揭示如何使 Dialogflow 開發的 LINE Bot 支持 Text 以外的各種事件</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Chatbot/" rel="tag"><i class="fa fa-tag"></i> Chatbot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/19/kubernetes-k3d-learning/" rel="prev" title="將 Chatbot 丟入一台筆電中的 Kubernetes 叢集海 | k3d | Docker">
+      <i class="fa fa-chevron-left"></i> 將 Chatbot 丟入一台筆電中的 Kubernetes 叢集海 | k3d | Docker
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/19/chatbot-meetup-28/" rel="next" title="LINE 開發社群計畫: 202103 LINE Platform API 更新與 Chatbot 社群心得分享">
+      LINE 開發社群計畫: 202103 LINE Platform API 更新與 Chatbot 社群心得分享 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E9%8D%B5%E5%AD%97%E7%9A%84%E6%95%88%E6%9E%9C%E5%A6%82%E4%BD%95%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">關鍵字的效果如何？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%8F%E9%81%8E-Sticker-%E8%88%87%E6%82%A8%E7%9A%84-BMI-Chatbot-Dialogflow-%E5%B0%8D%E8%A9%B1%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B-LINE-Official-Account-Chatbot"><span class="nav-number">2.1.</span> <span class="nav-text">1. 建立 LINE Official Account (Chatbot)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-Dialogflow-%E5%BB%BA%E6%A7%8B-BMI-Chatbot"><span class="nav-number">2.2.</span> <span class="nav-text">2. 使用 Dialogflow 建構 BMI Chatbot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B-Proxy-Server"><span class="nav-number">2.3.</span> <span class="nav-text">3. 建立 Proxy Server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-js-%E7%9A%84%E6%89%80%E6%9C%89%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">2.3.1.</span> <span class="nav-text">index.js 的所有程式碼</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%95%9F%E7%94%A8-ngrok"><span class="nav-number">3.</span> <span class="nav-text">4. 啟用 ngrok</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%B0%87-Chatbot-%E6%94%B6%E9%9B%86%E5%88%B0%E7%9A%84%E8%A9%9E%E5%BD%99%E6%B7%BB%E5%8A%A0%E5%88%B0-Dialogflow-%E5%81%9A%E8%A8%93%E7%B7%B4"><span class="nav-number">4.</span> <span class="nav-text">5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Default-Welcome-Intent"><span class="nav-number">4.0.1.</span> <span class="nav-text">5.1 Default Welcome Intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-BMI-Intent"><span class="nav-number">4.0.2.</span> <span class="nav-text">5.2 BMI Intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-BMI-%E2%80%94-custom-%E2%80%94-yes-Intent"><span class="nav-number">4.0.3.</span> <span class="nav-text">5.3 BMI — custom — yes Intent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Demo"><span class="nav-number">5.</span> <span class="nav-text">Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.1.</span> <span class="nav-text">結論</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">166</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

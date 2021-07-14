@@ -1,0 +1,13 @@
+@startuml
+User->Chatbot: 發送訊息
+Chatbot->Mac: Webhook 通知主機
+Mac->Docker: 進入容器服務
+Docker->k3d: 轉打到 k3d 叢集
+
+k3d->forward.yml: 將請求交給 proxy
+forward.yml->bot_service.yml: Proxy 轉交請求給 Bot
+bot_service.yml->API_Server: 進入 API 環節
+note over k3d, API #FFAAAA: 叢集(Cluster)
+
+API_Server-->User: 完成請求並逐步回應
+@enduml

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":20,"unescape":true,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言大家好，我是 LINE Taiwan 的 Tech Evangelist - NiJia Lin。這次很開心受到 chatbot 社群的邀請，參加了 “中部人的 Chatbots Meetup 聊天機器人小小聚 #8“ 的聚會活動，並且分享 LINE API 更新與個人開發的心得。在此也跟各位分享本次參與的心得，並且也希望透過社群分享的力量能夠讓聊天機器人的開發動能更加的盛大。  社群 Ch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINE 開發社群計畫: Chatbot 台中小聚 08 - LINE platform 工作坊紀錄">
+<meta property="og:url" content="https://nijialin.com/2020/08/27/chatbot-taichung-08/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言大家好，我是 LINE Taiwan 的 Tech Evangelist - NiJia Lin。這次很開心受到 chatbot 社群的邀請，參加了 “中部人的 Chatbots Meetup 聊天機器人小小聚 #8“ 的聚會活動，並且分享 LINE API 更新與個人開發的心得。在此也跟各位分享本次參與的心得，並且也希望透過社群分享的力量能夠讓聊天機器人的開發動能更加的盛大。  社群 Ch">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/chatbot.png">
+<meta property="og:image" content="https://nijialin.com/images/notify.png">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2020-08-27T20:23:04.000Z">
+<meta property="article:modified_time" content="2021-07-14T16:07:50.498Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="DevRel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/chatbot.png">
+
+<link rel="canonical" href="https://nijialin.com/2020/08/27/chatbot-taichung-08/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>LINE 開發社群計畫: Chatbot 台中小聚 08 - LINE platform 工作坊紀錄 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150180475-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-150180475-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/08/27/chatbot-taichung-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LINE 開發社群計畫: Chatbot 台中小聚 08 - LINE platform 工作坊紀錄
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-08-27 20:23:04" itemprop="dateCreated datePublished" datetime="2020-08-27T20:23:04+00:00">2020-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-07-14 16:07:50" itemprop="dateModified" datetime="2021-07-14T16:07:50+00:00">2021-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/chatbot.png" alt="all user"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的 Tech Evangelist - NiJia Lin。這次很開心受到 chatbot 社群的邀請，參加了 “<a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-008">中部人的 Chatbots Meetup 聊天機器人小小聚 #8</a>“ 的聚會活動，並且分享 LINE API 更新與個人開發的心得。在此也跟各位分享本次參與的心得，並且也希望透過社群分享的力量能夠讓聊天機器人的開發動能更加的盛大。</p>
+<ul>
+<li>社群 Chatbots Meetup： <a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/">https://chatbots.kktix.cc/</a></li>
+<li>本次活動網頁: <a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-008">活動網址</a></li>
+</ul>
+<p>由於 Chatbots Meetup 本身屬於社群自主性的活動，裡面也有許多社群朋友所贊助的閃電秀。裡面的所有內容也是相當的難得與有趣。也希望能夠透過本篇文章讓大家稍微了解 Chatbots Meetup 社群閃電秀的魅力。</p>
+<a id="more"></a>
+
+<h1 id="投影片"><a href="#投影片" class="headerlink" title="投影片"></a>投影片</h1><script async class="speakerdeck-embed" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這次主題主要圍繞著三個平台實作</p>
+<ul>
+<li>LINE: 提供 機器人(Bot)/網頁(LIFF)/通知(Notify) 的服務</li>
+<li>Heroku: 部署的主機，會含有 Domain/服務套件(SQL、排程)</li>
+<li>GitHub: 放置程式碼的倉庫</li>
+</ul>
+<p>搭配我已經寫好的專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/LINE-subscribe-open-data-bot">LINE-subscribe-open-data-bot</a></p>
+<blockquote>
+<p>整體使用 flask/Python 3.7、PostgreSQL 實作，若想在本地端起服務的話要有這兩個喔！</p>
+</blockquote>
+<h1 id="Deploy-to-Heroku"><a href="#Deploy-to-Heroku" class="headerlink" title="Deploy to Heroku"></a>Deploy to Heroku</h1><p>首先需要先到我的專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/LINE-subscribe-open-data-bot">LINE-subscribe-open-data-bot</a> 按下右上角的 <code>Fork</code> (並且按星星 ⭐️) 回自己的 GitHub page。</p>
+<script async class="speakerdeck-embed" data-slide="9" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>在 Fork 專案到自己的帳號下之後，沿著 README 往下會找到 <code>Deploy to Heroku</code> 按鈕，按下去之後會被引導至 Heroku 部署的頁面，並輸入一個你喜歡的名字。</p>
+<script async class="speakerdeck-embed" data-slide="10" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<script async class="speakerdeck-embed" data-slide="11" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>等待部署結束後按下最下面的 <code>Manage app</code> 的按鈕會到達你剛剛建立的主機頁面 ，這邊會需要按下 <code>Configure Add-ons</code> 並加入兩個 Heroku 套件來輔助這次的實作：</p>
+<ul>
+<li>Heroku Scheduler</li>
+<li>Heroku Postgres</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="12" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<script async class="speakerdeck-embed" data-slide="13" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>並且加入完套件之後再點一次 <code>Heroku Scheduler</code> 到達可以建立排程作業的地方，分別按下 Create Job 建立兩個 Job 並輸入：</p>
+<ul>
+<li><code>python scripts/sync_to_sql.py</code><ul>
+<li>定期將資料同步到資料庫中，而第一次觸發時會建立 DB Tables。</li>
+</ul>
+</li>
+<li><code>python scripts/notify_me.py</code><ul>
+<li>定期發送以訂閱通知的用戶。</li>
+</ul>
+</li>
+</ul>
+<p>接著到 <code>Settings</code> 的頁面按下按鈕，這部分是填入環境變數的地方，且往下滑會看到 Heroku 送的 <code>Domain Name</code>(參考 17 頁)，待會會大量的使用到它，這個頁面就先保留停在這邊。</p>
+<script async class="speakerdeck-embed" data-slide="16" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這邊先提前說明一下所有的環境變數用途：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; LINE bot 傳遞訊息時所需要的鑰匙</span><br><span class="line">LINE_CHANNEL_ACCESS_TOKEN&#x3D;</span><br><span class="line">LINE_CHANNEL_SECRET&#x3D;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; LINE Notify 的鑰匙以及 callback url</span><br><span class="line">LINE_NOTIFY_CLIENT_ID&#x3D;</span><br><span class="line">LINE_NOTIFY_CLIENT_SECRET&#x3D;</span><br><span class="line">LINE_NOTIFY_REDIRECT_URI&#x3D;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 處理 LINE Notify 所使用的 LIFF page</span><br><span class="line">LIFF_BIND_ID&#x3D;</span><br><span class="line">LIFF_CONFIRM_ID&#x3D;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 操作 Share Target Picker 需要使用的 LIFF page</span><br><span class="line">LIFF_SHARE_ID&#x3D;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在增加 Heroku Postgres Add-ons 時會自動加入的環境變數，若在本地端測試時則需要建立相關參數</span><br><span class="line">DATABASE_URL&#x3D;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Massaging-API"><a href="#Massaging-API" class="headerlink" title="Massaging API"></a>Massaging API</h1><p>接著就要開始建立 LINE Bot 連動相關資訊，首先先到這個<a target="_blank" rel="noopener" href="https://developers.line.biz/console/">LINE Developer Console</a>頁面，建立一個 Provider(<code>100 channels per provider</code>)，並且把該填的部分填完。</p>
+<script async class="speakerdeck-embed" data-slide="19" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接下來處理訂閱服務的 Messaging API(Bot)部分，在眾多服務選項中選擇第二個建立 Channel。</p>
+<script async class="speakerdeck-embed" data-slide="20" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>然後把該填的資訊填清楚 👍</p>
+<script async class="speakerdeck-embed" data-slide="21" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>在建立完後往下滑會看到 <code>Channel Secret</code>，將他複製起來放到 Heroku 環境變數的 <code>LINE_CHANNEL_SECRET</code> 欄位。</p>
+<script async class="speakerdeck-embed" data-slide="22" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著點選 <code>Massaging API</code> 的頁籤並至下方看到 LINE Official Account features 的地方並按下 <code>Edit</code> 到另一個設定頁面。</p>
+<script async class="speakerdeck-embed" data-slide="24" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>為了實作方便，由上到下依序為<code>停用</code>、<code>停用</code>、<code>啟用</code> 後將頁面關掉回到剛剛的 LINE Developer Console。</p>
+<script async class="speakerdeck-embed" data-slide="25" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>到最下面 Issue 一個 Channel Access Token 並一樣的複製到 Heroku 環境變數中新增一個 <code>LINE_CHANNEL_ACCESS_TOKEN</code> 的欄位並填入。</p>
+<script async class="speakerdeck-embed" data-slide="26" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這部分是整隻機器人最重要的一個部分，填入 webhook URL，將 Heroku settings 頁面下面 Heroku 給的 Domain Name 複製到這個地方，並在網址後面加上 <code>webhooks/line</code>，下面的 webhook 開關也記得打開。</p>
+<script async class="speakerdeck-embed" data-slide="27" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>確認你的環境變數有沒有輸入正確 ❗️</p>
+<script async class="speakerdeck-embed" data-slide="29" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h1 id="建立-LIFF-page"><a href="#建立-LIFF-page" class="headerlink" title="建立 LIFF page"></a>建立 LIFF page</h1><p>首先一樣先回到我們起初建立的 Provider 上並建立一個 LINE Login Channel，並且將必填欄位的資訊逐步打上，待會會需要在這 Channel 中建立三個 LIFF app。</p>
+<script async class="speakerdeck-embed" data-slide="31" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>在進入頁籤前，需點擊上面紅色框框的地方將這個 Channel 改成 <code>Published</code> 狀態，如此一來外部伺服器才會連結的到喔！</p>
+<script async class="speakerdeck-embed" data-slide="32" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Published 之後到 LIFF 頁籤新增三個 LIFF pages，參考第 33, 34 頁的資訊並輸入以下的 app name 以及 Endpoint url：</p>
+<ul>
+<li>notify index<ul>
+<li><a target="_blank" rel="noopener" href="https://HEROKU_RUL/notify">https://HEROKU_RUL/notify</a></li>
+</ul>
+</li>
+<li>notify callback<ul>
+<li><a target="_blank" rel="noopener" href="https://HEROKU_RUL/notify/callback">https://HEROKU_RUL/notify/callback</a></li>
+</ul>
+</li>
+<li>share message<ul>
+<li><a target="_blank" rel="noopener" href="https://HEROKU_RUL/liff/air">https://HEROKU_RUL/liff/air</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="建立完-LIFF-add-後記得打開-ShareTargetPicker-的選項喔！"><a href="#建立完-LIFF-add-後記得打開-ShareTargetPicker-的選項喔！" class="headerlink" title="建立完 LIFF add 後記得打開 ShareTargetPicker 的選項喔！"></a>建立完 LIFF add 後記得打開 <code>ShareTargetPicker</code> 的選項喔！</h4><blockquote>
+<p>後續的步驟則會使用 app name 來解說喔！</p>
+</blockquote>
+<p>接著需要將剛剛建立的三個 LIFF ID 放到 Heroku 的環境變數上，分別對應名稱是：</p>
+<ul>
+<li>LIFF_BIND_ID ↔️ notify index</li>
+<li>LIFF_CONFIRM_ID ↔️ notify callback</li>
+<li>LIFF_SHARE_ID ↔️ share message</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="36" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這邊建立後並確認名字是否打對後就接著進入 LINE Notify 的部分囉！</p>
+<h1 id="LINE-Notify"><a href="#LINE-Notify" class="headerlink" title="LINE Notify"></a><a target="_blank" rel="noopener" href="https://notify-bot.line.me/zh_TW/">LINE Notify</a></h1><p><img src="https://nijialin.com/images/notify.png" alt=""></p>
+<p>接著來到 <a target="_blank" rel="noopener" href="https://notify-bot.line.me/zh_TW/">Notify 的頁面</a>，並且確認 LINE Notify 是否已加入好友(或需解除封鎖)。</p>
+<blockquote>
+<p>這部分串接的套件為 - <a target="_blank" rel="noopener" href="https://github.com/louis70109/lotify">lotify</a> 來幫助快速串接 LINE Notify。</p>
+</blockquote>
+<script async class="speakerdeck-embed" data-slide="38" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>從右上角按下 <code>登入</code> 結束後 👉<code>管理登入頁面</code> 👉 最下面的 <code>登入服務</code> 開始建立基本資訊。</p>
+<ul>
+<li>電子信箱一定要能收到信，否則會沒辦法驗證。</li>
+<li>Callback URL 則輸入前面建立 LIFF app 時 <code>notify callback</code> 的網址。</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="40" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>不清楚 Callback URL 是哪個話就是這個 👇</p>
+<script async class="speakerdeck-embed" data-slide="41" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>建立完之後就到信箱收信按下驗證的網址囉！否則你的服務會無法使用。</p>
+<script async class="speakerdeck-embed" data-slide="42" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>按照慣例一樣填入環境變數到 Heroku 中：</p>
+<ul>
+<li>LINE_NOTIFY_CLIENT_ID</li>
+<li>LINE_NOTIFY_CLIENT_SECRET</li>
+<li>LINE_NOTIFY_REDIRECT_URI (這邊是 <code>URI</code> 喔！注意)：填入剛剛在設定 Callback URL 時的那個 LIFF app url。</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="43" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>到這部基本上對 chatbot 說 「所有縣市」 應該要有反應，若沒反應的話要確認哪個步驟有沒有做錯或打錯字喔！(現場很多這樣的問題)</p>
+<script async class="speakerdeck-embed" data-slide="46" data-id="5fe13412f6ac4959a2bc468a90aa5b10" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h1 id="閃電秀-我要奮發向上！聊天機器人有哪些書？"><a href="#閃電秀-我要奮發向上！聊天機器人有哪些書？" class="headerlink" title="閃電秀 - 我要奮發向上！聊天機器人有哪些書？"></a>閃電秀 - 我要奮發向上！聊天機器人有哪些書？</h1><iframe src="//www.slideshare.net/slideshow/embed_code/key/qc23PODCp5yDfj" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/jarsing/lightning-talk-chatbotbooks-20200822" title="我要奮發向上！聊天機器人有哪些書？" target="_blank">我要奮發向上！聊天機器人有哪些書？</a> </strong> from <strong><a href="https://www.slideshare.net/jarsing" target="_blank">佳新 陳</a></strong> </div>
+
+<p>身為主辦人 &amp; LINE API Expert 幫大家整理目前市面上有的書，雖然資訊迭代速度很快，想想有些時候我們都窩在網路上太久，若能好好地透過書籍溫習一下 Chatbot 知識也很讚喔！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>社群分享永遠是讓創意激盪的最佳方式，而 Chatbots Meetup 是一個很熱情與充滿創造力的社群組織。也希望有更多有創意的開發者願意加入 LINE Chatbot 的開發行列，更希望能熱情的參與社群的活動與一起來分享。</p>
+<p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a target="_blank" rel="noopener" href="https://lin.ee/s5RsZHo">@line_tw_dev</a></p>
+<p><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png" alt=""></p>
+<h1 id="關於-「LINE-開發社群計畫」"><a href="#關於-「LINE-開發社群計畫」" class="headerlink" title="關於 「LINE 開發社群計畫」"></a>關於 「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/DevRel/" rel="tag"><i class="fa fa-tag"></i> DevRel</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/20/vue-meetup-006/" rel="prev" title="Vue.js Taiwan 006 小聚花絮分享">
+      <i class="fa fa-chevron-left"></i> Vue.js Taiwan 006 小聚花絮分享
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/28/chatbot-meetup-22/" rel="next" title="LINE 開發社群計畫: Chatbot Taiwan 第 22 場社群活動紀錄分享">
+      LINE 開發社群計畫: Chatbot Taiwan 第 22 場社群活動紀錄分享 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text">投影片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deploy-to-Heroku"><span class="nav-number">3.</span> <span class="nav-text">Deploy to Heroku</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Massaging-API"><span class="nav-number">4.</span> <span class="nav-text">Massaging API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-LIFF-page"><span class="nav-number">5.</span> <span class="nav-text">建立 LIFF page</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%AE%8C-LIFF-add-%E5%BE%8C%E8%A8%98%E5%BE%97%E6%89%93%E9%96%8B-ShareTargetPicker-%E7%9A%84%E9%81%B8%E9%A0%85%E5%96%94%EF%BC%81"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">建立完 LIFF add 後記得打開 ShareTargetPicker 的選項喔！</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LINE-Notify"><span class="nav-number">6.</span> <span class="nav-text">LINE Notify</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%96%83%E9%9B%BB%E7%A7%80-%E6%88%91%E8%A6%81%E5%A5%AE%E7%99%BC%E5%90%91%E4%B8%8A%EF%BC%81%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9B%B8%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">閃電秀 - 我要奮發向上！聊天機器人有哪些書？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">8.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC-%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">9.</span> <span class="nav-text">關於 「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">166</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

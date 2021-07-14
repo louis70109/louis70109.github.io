@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":20,"unescape":true,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言過往在寫應用程式時總是為了趕上線  將程式寫完之後即部署，但往往總是上線後才發生了一些可預期的錯誤，導致工時增加，因此在撰寫程式時若有自動測試的程式碼，透過測試">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python】測試階段的類別、函式、全域變數、期望值設定 | Pytest | Mock | MonkeyPatch">
+<meta property="og:url" content="https://nijialin.com/2021/04/05/pytest-mock-skills/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言過往在寫應用程式時總是為了趕上線  將程式寫完之後即部署，但往往總是上線後才發生了一些可預期的錯誤，導致工時增加，因此在撰寫程式時若有自動測試的程式碼，透過測試">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/pytest.png">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U2NyaXB0VHlwZT0iYXBwbGljYXRpb24vZWNtYXNjcmlwdCIgY29udGVudFN0eWxlVHlwZT0idGV4dC9jc3MiIGhlaWdodD0iMjc4cHgiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHN0eWxlPSJ3aWR0aDo2MTBweDtoZWlnaHQ6Mjc4cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNjEwIDI3OCIgd2lkdGg9IjYxMHB4IiB6b29tQW5kUGFuPSJtYWduaWZ5Ij48ZGVmcz48ZmlsdGVyIGhlaWdodD0iMzAwJSIgaWQ9ImZzMHB6ZnMwaGxpNmIiIHdpZHRoPSIzMDAlIiB4PSItMSIgeT0iLTEiPjxmZUdhdXNzaWFuQmx1ciByZXN1bHQ9ImJsdXJPdXQiIHN0ZERldmlhdGlvbj0iMi4wIi8+PGZlQ29sb3JNYXRyaXggaW49ImJsdXJPdXQiIHJlc3VsdD0iYmx1ck91dDIiIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAuNCAwIi8+PGZlT2Zmc2V0IGR4PSI0LjAiIGR5PSI0LjAiIGluPSJibHVyT3V0MiIgcmVzdWx0PSJibHVyT3V0MyIvPjxmZUJsZW5kIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImJsdXJPdXQzIiBtb2RlPSJub3JtYWwiLz48L2ZpbHRlcj48L2RlZnM+PGc+PGxpbmUgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjA7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjI4IiB4Mj0iMjgiIHkxPSI0MC4yOTY5IiB5Mj0iMjM1LjA5MzgiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMTk1LjUiIHgyPSIxOTUuNSIgeTE9IjQwLjI5NjkiIHkyPSIyMzUuMDkzOCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wO3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIyNzIuNSIgeDI9IjI3Mi41IiB5MT0iNDAuMjk2OSIgeTI9IjIzNS4wOTM4Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjA7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjQ2MC41IiB4Mj0iNDYwLjUiIHkxPSI0MC4yOTY5IiB5Mj0iMjM1LjA5MzgiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iNTY1LjUiIHgyPSI1NjUuNSIgeTE9IjQwLjI5NjkiIHkyPSIyMzUuMDkzOCIvPjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI0MiIgeD0iNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI4IiB4PSIxMiIgeT0iMjQuOTk1MSI+5bCI5qGIPC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI0MiIgeD0iNSIgeT0iMjM0LjA5MzgiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOCIgeD0iMTIiIHk9IjI1NC4wODg5Ij7lsIjmoYg8L3RleHQ+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2ZzMHB6ZnMwaGxpNmIpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS41OyIgd2lkdGg9IjYxIiB4PSIxNjMuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQ3IiB4PSIxNzAuNSIgeT0iMjQuOTk1MSI+UHl0ZXN0PC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI2MSIgeD0iMTYzLjUiIHk9IjIzNC4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDciIHg9IjE3MC41IiB5PSIyNTQuMDg4OSI+UHl0ZXN0PC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI2NCIgeD0iMjM4LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1MCIgeD0iMjQ1LjUiIHk9IjI0Ljk5NTEiPkdpdEh1YjwvdGV4dD48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZnMwcHpmczBobGk2YikiIGhlaWdodD0iMzAuMjk2OSIgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjU7IiB3aWR0aD0iNjQiIHg9IjIzOC41IiB5PSIyMzQuMDkzOCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUwIiB4PSIyNDUuNSIgeT0iMjU0LjA4ODkiPkdpdEh1YjwvdGV4dD48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZnMwcHpmczBobGk2YikiIGhlaWdodD0iMzAuMjk2OSIgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjU7IiB3aWR0aD0iMTE4IiB4PSIzOTkuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEwNCIgeD0iNDA2LjUiIHk9IjI0Ljk5NTEiPkdpdEh1YkFjdGlvbnM8L3RleHQ+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2ZzMHB6ZnMwaGxpNmIpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS41OyIgd2lkdGg9IjExOCIgeD0iMzk5LjUiIHk9IjIzNC4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTA0IiB4PSI0MDYuNSIgeT0iMjU0LjA4ODkiPkdpdEh1YkFjdGlvbnM8L3RleHQ+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2ZzMHB6ZnMwaGxpNmIpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS41OyIgd2lkdGg9IjY1IiB4PSI1MzEuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUxIiB4PSI1MzguNSIgeT0iMjQuOTk1MSI+SGVyb2t1PC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI2NSIgeD0iNTMxLjUiIHk9IjIzNC4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNTEiIHg9IjUzOC41IiB5PSIyNTQuMDg4OSI+SGVyb2t1PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiNBODAwMzYiIHBvaW50cz0iMTg0LDY3LjQyOTcsMTk0LDcxLjQyOTcsMTg0LDc1LjQyOTcsMTg4LDcxLjQyOTciIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjI4IiB4Mj0iMTkwIiB5MT0iNzEuNDI5NyIgeTI9IjcxLjQyOTciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5MSIgeD0iMzUiIHk9IjY2LjM2MzgiPuacrOWcsOerr+Wft+ihjOa4rOippjwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjM5LDk2LjU2MjUsMjksMTAwLjU2MjUsMzksMTA0LjU2MjUsMzUsMTAwLjU2MjUiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMzIiB4Mj0iMTk1IiB5MT0iMTAwLjU2MjUiIHkyPSIxMDAuNTYyNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE0NCIgeD0iNDUiIHk9Ijk1LjQ5NjYiPuacrOWcsOa4rOippuWujOaIkCjmiJDlip8v5aSx5pWXKTwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjI2MC41LDEyNS42OTUzLDI3MC41LDEyOS42OTUzLDI2MC41LDEzMy42OTUzLDI2NC41LDEyOS42OTUzIiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyOCIgeDI9IjI2Ni41IiB5MT0iMTI5LjY5NTMiIHkyPSIxMjkuNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUyIiB4PSIzNSIgeT0iMTI0LjYyOTQiPumAgeS4iuWAieW6qzwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjQ0OC41LDE1NC44MjgxLDQ1OC41LDE1OC44MjgxLDQ0OC41LDE2Mi44MjgxLDQ1Mi41LDE1OC44MjgxIiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyNzIuNSIgeDI9IjQ1NC41IiB5MT0iMTU4LjgyODEiIHkyPSIxNTguODI4MSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQyIiB4PSIyNzkuNSIgeT0iMTUzLjc2MjIiPuinuOeZvCBDSTwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjI4My41LDE4My45NjA5LDI3My41LDE4Ny45NjA5LDI4My41LDE5MS45NjA5LDI3OS41LDE4Ny45NjA5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyNzcuNSIgeDI9IjQ1OS41IiB5MT0iMTg3Ljk2MDkiIHkyPSIxODcuOTYwOSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE2NCIgeD0iMjg5LjUiIHk9IjE4Mi44OTUiPue3muS4iiBDSSDmuKzoqablrozmiJAo5oiQ5YqfL+WkseaVlyk8L3RleHQ+PHBvbHlnb24gZmlsbD0iI0E4MDAzNiIgcG9pbnRzPSI1NTQsMjEzLjA5MzgsNTY0LDIxNy4wOTM4LDU1NCwyMjEuMDkzOCw1NTgsMjE3LjA5MzgiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjI3Mi41IiB4Mj0iNTYwIiB5MT0iMjE3LjA5MzgiIHkyPSIyMTcuMDkzOCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkxIiB4PSIyNzkuNSIgeT0iMjEyLjAyNzgiPua4rOippuaIkOWKn+WNs+mDqOe9sjwvdGV4dD48IS0tTUQ1PVs5OTAzYmIzZWNjOWI2ZWVhZTI1OTFmOTQ1ZTU2MzQ4Zl0KQHN0YXJ0dW1sDQrlsIjmoYgtPlB5dGVzdDog5pys5Zyw56uv5Z+36KGM5ris6KmmDQpQeXRlc3QtPuWwiOahiDog5pys5Zyw5ris6Kmm5a6M5oiQKOaIkOWKny/lpLHmlZcpDQrlsIjmoYgtPkdpdEh1Yjog6YCB5LiK5YCJ5bqrDQpHaXRIdWItPkdpdEh1YkFjdGlvbnM6IOinuOeZvCBDSQ0KR2l0SHViQWN0aW9ucy0+R2l0SHViOiDnt5rkuIogQ0kg5ris6Kmm5a6M5oiQKOaIkOWKny/lpLHmlZcpDQpHaXRIdWItPkhlcm9rdTog5ris6Kmm5oiQ5Yqf5Y2z6YOo572yDQpAZW5kdW1sDQoKUGxhbnRVTUwgdmVyc2lvbiAxLjIwMjEuOWJldGEyKFVua25vd24gY29tcGlsZSB0aW1lKQooR1BMIHNvdXJjZSBkaXN0cmlidXRpb24pCkphdmEgUnVudGltZTogSmF2YShUTSkgU0UgUnVudGltZSBFbnZpcm9ubWVudApKVk06IEphdmEgSG90U3BvdChUTSkgNjQtQml0IFNlcnZlciBWTQpEZWZhdWx0IEVuY29kaW5nOiBVVEYtOApMYW5ndWFnZTogZW4KQ291bnRyeTogVVMKLS0+PC9nPjwvc3ZnPg==">
+<meta property="article:published_time" content="2021-04-05T22:09:36.000Z">
+<meta property="article:modified_time" content="2021-07-14T16:07:50.498Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Pytest">
+<meta property="article:tag" content="Mock">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/pytest.png">
+
+<link rel="canonical" href="https://nijialin.com/2021/04/05/pytest-mock-skills/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【Python】測試階段的類別、函式、全域變數、期望值設定 | Pytest | Mock | MonkeyPatch | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150180475-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-150180475-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/04/05/pytest-mock-skills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Python】測試階段的類別、函式、全域變數、期望值設定 | Pytest | Mock | MonkeyPatch
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-05 22:09:36" itemprop="dateCreated datePublished" datetime="2021-04-05T22:09:36+00:00">2021-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-07-14 16:07:50" itemprop="dateModified" datetime="2021-07-14T16:07:50+00:00">2021-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://nijialin.com/images/2021/pytest.png" alt=""></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>過往在寫應用程式時總是為了趕上線  將程式寫完之後即部署，但往往總是上線後才發生了一些可預期的錯誤，導致工時增加，因此在撰寫程式時若有自動測試的程式碼，透過測試增加來程式碼的品質，為上線前做一個最後的把關。</p>
+<p>而近期在寫 Side Project - <a target="_blank" rel="noopener" href="https://github.com/louis70109/PLeagueBot">P+ League Bot</a> 時包裝了一些程式碼(FlexMessage、SQL Query…)，但再將資料庫函式改成 ORM - SQLAlchemy 時導致了一些上線錯誤，因此就開始補測試程式碼避免往後再有此類問題產生，本篇則紀錄使用 Pytest 時的一些小知識。</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U2NyaXB0VHlwZT0iYXBwbGljYXRpb24vZWNtYXNjcmlwdCIgY29udGVudFN0eWxlVHlwZT0idGV4dC9jc3MiIGhlaWdodD0iMjc4cHgiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHN0eWxlPSJ3aWR0aDo2MTBweDtoZWlnaHQ6Mjc4cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNjEwIDI3OCIgd2lkdGg9IjYxMHB4IiB6b29tQW5kUGFuPSJtYWduaWZ5Ij48ZGVmcz48ZmlsdGVyIGhlaWdodD0iMzAwJSIgaWQ9ImZzMHB6ZnMwaGxpNmIiIHdpZHRoPSIzMDAlIiB4PSItMSIgeT0iLTEiPjxmZUdhdXNzaWFuQmx1ciByZXN1bHQ9ImJsdXJPdXQiIHN0ZERldmlhdGlvbj0iMi4wIi8+PGZlQ29sb3JNYXRyaXggaW49ImJsdXJPdXQiIHJlc3VsdD0iYmx1ck91dDIiIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAuNCAwIi8+PGZlT2Zmc2V0IGR4PSI0LjAiIGR5PSI0LjAiIGluPSJibHVyT3V0MiIgcmVzdWx0PSJibHVyT3V0MyIvPjxmZUJsZW5kIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImJsdXJPdXQzIiBtb2RlPSJub3JtYWwiLz48L2ZpbHRlcj48L2RlZnM+PGc+PGxpbmUgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjA7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjI4IiB4Mj0iMjgiIHkxPSI0MC4yOTY5IiB5Mj0iMjM1LjA5MzgiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMTk1LjUiIHgyPSIxOTUuNSIgeTE9IjQwLjI5NjkiIHkyPSIyMzUuMDkzOCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wO3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIyNzIuNSIgeDI9IjI3Mi41IiB5MT0iNDAuMjk2OSIgeTI9IjIzNS4wOTM4Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjA7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjQ2MC41IiB4Mj0iNDYwLjUiIHkxPSI0MC4yOTY5IiB5Mj0iMjM1LjA5MzgiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iNTY1LjUiIHgyPSI1NjUuNSIgeTE9IjQwLjI5NjkiIHkyPSIyMzUuMDkzOCIvPjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI0MiIgeD0iNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI4IiB4PSIxMiIgeT0iMjQuOTk1MSI+5bCI5qGIPC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI0MiIgeD0iNSIgeT0iMjM0LjA5MzgiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOCIgeD0iMTIiIHk9IjI1NC4wODg5Ij7lsIjmoYg8L3RleHQ+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2ZzMHB6ZnMwaGxpNmIpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS41OyIgd2lkdGg9IjYxIiB4PSIxNjMuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQ3IiB4PSIxNzAuNSIgeT0iMjQuOTk1MSI+UHl0ZXN0PC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI2MSIgeD0iMTYzLjUiIHk9IjIzNC4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDciIHg9IjE3MC41IiB5PSIyNTQuMDg4OSI+UHl0ZXN0PC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI2NCIgeD0iMjM4LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1MCIgeD0iMjQ1LjUiIHk9IjI0Ljk5NTEiPkdpdEh1YjwvdGV4dD48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZnMwcHpmczBobGk2YikiIGhlaWdodD0iMzAuMjk2OSIgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjU7IiB3aWR0aD0iNjQiIHg9IjIzOC41IiB5PSIyMzQuMDkzOCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUwIiB4PSIyNDUuNSIgeT0iMjU0LjA4ODkiPkdpdEh1YjwvdGV4dD48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZnMwcHpmczBobGk2YikiIGhlaWdodD0iMzAuMjk2OSIgc3R5bGU9InN0cm9rZTojQTgwMDM2O3N0cm9rZS13aWR0aDoxLjU7IiB3aWR0aD0iMTE4IiB4PSIzOTkuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEwNCIgeD0iNDA2LjUiIHk9IjI0Ljk5NTEiPkdpdEh1YkFjdGlvbnM8L3RleHQ+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2ZzMHB6ZnMwaGxpNmIpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS41OyIgd2lkdGg9IjExOCIgeD0iMzk5LjUiIHk9IjIzNC4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTA0IiB4PSI0MDYuNSIgeT0iMjU0LjA4ODkiPkdpdEh1YkFjdGlvbnM8L3RleHQ+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2ZzMHB6ZnMwaGxpNmIpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS41OyIgd2lkdGg9IjY1IiB4PSI1MzEuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUxIiB4PSI1MzguNSIgeT0iMjQuOTk1MSI+SGVyb2t1PC90ZXh0PjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmczBwemZzMGhsaTZiKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuNTsiIHdpZHRoPSI2NSIgeD0iNTMxLjUiIHk9IjIzNC4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNTEiIHg9IjUzOC41IiB5PSIyNTQuMDg4OSI+SGVyb2t1PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiNBODAwMzYiIHBvaW50cz0iMTg0LDY3LjQyOTcsMTk0LDcxLjQyOTcsMTg0LDc1LjQyOTcsMTg4LDcxLjQyOTciIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjI4IiB4Mj0iMTkwIiB5MT0iNzEuNDI5NyIgeTI9IjcxLjQyOTciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5MSIgeD0iMzUiIHk9IjY2LjM2MzgiPuacrOWcsOerr+Wft+ihjOa4rOippjwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjM5LDk2LjU2MjUsMjksMTAwLjU2MjUsMzksMTA0LjU2MjUsMzUsMTAwLjU2MjUiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMzIiB4Mj0iMTk1IiB5MT0iMTAwLjU2MjUiIHkyPSIxMDAuNTYyNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE0NCIgeD0iNDUiIHk9Ijk1LjQ5NjYiPuacrOWcsOa4rOippuWujOaIkCjmiJDlip8v5aSx5pWXKTwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjI2MC41LDEyNS42OTUzLDI3MC41LDEyOS42OTUzLDI2MC41LDEzMy42OTUzLDI2NC41LDEyOS42OTUzIiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyOCIgeDI9IjI2Ni41IiB5MT0iMTI5LjY5NTMiIHkyPSIxMjkuNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUyIiB4PSIzNSIgeT0iMTI0LjYyOTQiPumAgeS4iuWAieW6qzwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjQ0OC41LDE1NC44MjgxLDQ1OC41LDE1OC44MjgxLDQ0OC41LDE2Mi44MjgxLDQ1Mi41LDE1OC44MjgxIiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyNzIuNSIgeDI9IjQ1NC41IiB5MT0iMTU4LjgyODEiIHkyPSIxNTguODI4MSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQyIiB4PSIyNzkuNSIgeT0iMTUzLjc2MjIiPuinuOeZvCBDSTwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjI4My41LDE4My45NjA5LDI3My41LDE4Ny45NjA5LDI4My41LDE5MS45NjA5LDI3OS41LDE4Ny45NjA5IiBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiNBODAwMzY7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyNzcuNSIgeDI9IjQ1OS41IiB5MT0iMTg3Ljk2MDkiIHkyPSIxODcuOTYwOSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE2NCIgeD0iMjg5LjUiIHk9IjE4Mi44OTUiPue3muS4iiBDSSDmuKzoqablrozmiJAo5oiQ5YqfL+WkseaVlyk8L3RleHQ+PHBvbHlnb24gZmlsbD0iI0E4MDAzNiIgcG9pbnRzPSI1NTQsMjEzLjA5MzgsNTY0LDIxNy4wOTM4LDU1NCwyMjEuMDkzOCw1NTgsMjE3LjA5MzgiIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6I0E4MDAzNjtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjI3Mi41IiB4Mj0iNTYwIiB5MT0iMjE3LjA5MzgiIHkyPSIyMTcuMDkzOCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkxIiB4PSIyNzkuNSIgeT0iMjEyLjAyNzgiPua4rOippuaIkOWKn+WNs+mDqOe9sjwvdGV4dD48IS0tTUQ1PVs5OTAzYmIzZWNjOWI2ZWVhZTI1OTFmOTQ1ZTU2MzQ4Zl0KQHN0YXJ0dW1sDQrlsIjmoYgtPlB5dGVzdDog5pys5Zyw56uv5Z+36KGM5ris6KmmDQpQeXRlc3QtPuWwiOahiDog5pys5Zyw5ris6Kmm5a6M5oiQKOaIkOWKny/lpLHmlZcpDQrlsIjmoYgtPkdpdEh1Yjog6YCB5LiK5YCJ5bqrDQpHaXRIdWItPkdpdEh1YkFjdGlvbnM6IOinuOeZvCBDSQ0KR2l0SHViQWN0aW9ucy0+R2l0SHViOiDnt5rkuIogQ0kg5ris6Kmm5a6M5oiQKOaIkOWKny/lpLHmlZcpDQpHaXRIdWItPkhlcm9rdTog5ris6Kmm5oiQ5Yqf5Y2z6YOo572yDQpAZW5kdW1sDQoKUGxhbnRVTUwgdmVyc2lvbiAxLjIwMjEuOWJldGEyKFVua25vd24gY29tcGlsZSB0aW1lKQooR1BMIHNvdXJjZSBkaXN0cmlidXRpb24pCkphdmEgUnVudGltZTogSmF2YShUTSkgU0UgUnVudGltZSBFbnZpcm9ubWVudApKVk06IEphdmEgSG90U3BvdChUTSkgNjQtQml0IFNlcnZlciBWTQpEZWZhdWx0IEVuY29kaW5nOiBVVEYtOApMYW5ndWFnZTogZW4KQ291bnRyeTogVVMKLS0+PC9nPjwvc3ZnPg=='>
+
+<a id="more"></a>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="Mock-是什麼？為什麼要用它？"><a href="#Mock-是什麼？為什麼要用它？" class="headerlink" title="Mock 是什麼？為什麼要用它？"></a>Mock 是什麼？為什麼要用它？</h2><p>Mock 按造字面上解釋就是 <strong>模擬</strong>，在許多的測試中(單元、整合、黑/白箱、回歸測試…)都可能因環境限制導致一些函式無法在測試中執行完成，因此這個時候就需要使用 Mock 來模擬回傳值，以下 <a target="_blank" rel="noopener" href="https://docs.pytest.org/en/stable/">pytest</a> 搭配 unittest 函式庫加上一些範例帶大家使用。</p>
+<blockquote>
+<p>小知識：Mock 時只會模擬引入的的物件(import xxx…)，因此設定 Mock 變數要調整在測試裡的使用方法。</p>
+</blockquote>
+<h2 id="Class-vs-Function"><a href="#Class-vs-Function" class="headerlink" title="Class vs Function"></a>Class vs Function</h2><h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a>TL; DR</h3><ul>
+<li>物件(Class)不會有回傳值，因此不用 return_value</li>
+<li>函式(Function)若有回傳值(return ooo)，則需要 return_value</li>
+</ul>
+<h3 id="Function-說明"><a href="#Function-說明" class="headerlink" title="Function 說明"></a>Function 說明</h3><p>許多時候在撰寫程式碼時為了區分邏輯，會很習慣將某個區塊包裝成函式來表示它的用途， 既然在測試中要使用 Mock 來模擬函式的<strong>回傳值</strong>，我們就需要在 pytest 中使用 <strong>return_value</strong> 來幫助我們在執行函式時模擬一個回傳值，範例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mock <span class="keyword">import</span> patch</span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClient</span>(<span class="params">unittest.TestCase</span>):</span></span><br><span class="line"><span class="meta">  @patch(<span class="params"><span class="string">&#x27;path.to.function&#x27;</span></span>)</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">test_campaign</span>(<span class="params">mock_function</span>):</span></span><br><span class="line">    mock_function.return_value = &#123;<span class="string">&#x27;foo&#x27;</span>: <span class="string">&#x27;bar&#x27;</span>&#125;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="步驟說明"><a href="#步驟說明" class="headerlink" title="步驟說明"></a>步驟說明</h3><ol>
+<li><code>@patch</code>: 從當前專案目錄出發，以 <code>&quot;.&quot;</code> 的方式代表路徑，最後一個值通常為要 Mock 的<strong>物件(class)</strong>/<strong>函式(function)</strong>。</li>
+<li><code>mock_function</code>: 代表你剛剛模擬的<strong>物件</strong>/<strong>函式</strong>。</li>
+<li><code>mock_function.return_value</code>: 如果為函式並且有回傳值，則接 <strong>return_value</strong>，若為<strong>物件(class)</strong>則無需接任何參數。</li>
+</ol>
+<h3 id="Class-Function-使用說明"><a href="#Class-Function-使用說明" class="headerlink" title="Class + Function 使用說明"></a>Class + Function 使用說明</h3><p>這邊以常見的 SQLAlchemy 為例，一般都會先定義一個 Model，這邊我使用我的 PleagueBot 的<a target="_blank" rel="noopener" href="https://github.com/louis70109/PLeagueBot/blob/master/models/stream.py#L8"> Stream 為例</a>，並使用他去查詢:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> Stream</span><br><span class="line">...</span><br><span class="line">rows: <span class="built_in">list</span>[Stream] = Stream.query.order_by(text(<span class="string">&quot;stream.id desc&quot;</span>)).limit(<span class="number">12</span>).<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>
+
+<p>因為是從 models 這個資料夾引入 Stream 這個 Class 物件，此時在測試時模擬這段時就要這樣寫：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@patch(<span class="params"><span class="string">&#x27;models.Stream&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_stream</span>(<span class="params">mock_stream</span>):</span></span><br><span class="line">    mock_stream.query.order_by.return_value.limit.return_value.<span class="built_in">all</span>.return_value = &#123;<span class="string">&#x27;foo&#x27;</span>: <span class="string">&#x27;bar&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>測試的函式不需接函式裡面的參數值</li>
+<li>為什麼要一直接 <strong>return_value</strong>？因為程式為一層一層接下去，每一層都會有個回傳值，因此就需要一直接著下去讓 <code>rows</code> 這個變數的值得到正確的回傳值。<ul>
+<li>用錯的話印出來會看到 MagicMock 的物件在裡面，此時就代表有地方沒處理好。</li>
+<li>若要更詳細每個函式的回傳值，則可以分開寫。</li>
+</ul>
+</li>
+<li>可以使用 <strong>assert_called_once()</strong> 來確保該 Mock 值在測試階段是否有被順利執行一次。</li>
+</ul>
+<h2 id="全域-Global-變數怎麼處理？使用-MonkeyPatch-來處理"><a href="#全域-Global-變數怎麼處理？使用-MonkeyPatch-來處理" class="headerlink" title="全域(Global)變數怎麼處理？使用 MonkeyPatch 來處理"></a>全域(Global)變數怎麼處理？使用 MonkeyPatch 來處理</h2><p>一個應用程式中多少都會有些全域變數，可能是<strong>環境變數</strong>或是某些<strong>設定值</strong>(<strong>預設值</strong>)，常見一般都是<strong>全大寫</strong>代表全域變數居多。但是在單元測試時通常都只針對某個函式去處理，在函式外層的全域變數要怎麼處理呢？這裡我使用 MonkeyPatch 來針對變數做處理，使用 <strong>setattr</strong>(更多用法參考<a target="_blank" rel="noopener" href="https://docs.pytest.org/en/stable/monkeypatch.html">官方文件</a>)，範例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> _pytest.monkeypatch <span class="keyword">import</span> MonkeyPatch</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClient</span>(<span class="params">unittest.TestCase</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span>(<span class="params">self</span>):</span></span><br><span class="line">        MonkeyPatch().<span class="built_in">setattr</span>(<span class="string">&#x27;utils.flex.SHARE_LINK&#x27;</span>, <span class="string">&quot;https://liff.line.me/TEST_ID&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>在 <strong>utils</strong> 資料夾下的 <strong>flex.py</strong> 有個 <strong>SHARE_LINK</strong> 的全域變數，將它設定為 <a target="_blank" rel="noopener" href="https://liff.line.me/TEST_ID。">https://liff.line.me/TEST_ID。</a></li>
+<li>pytest 內建有 MonkeyPatch，引入時要注意。</li>
+<li>用法與 Mock 雷同，路徑一樣是用 <code>&quot;.&quot;</code> 來代表，最後一個值則為<strong>目標物件</strong>(<strong>變數</strong>)。</li>
+<li>放在 setUp 代表在測試程式開始跑的初始階段，即設定相關模擬參數。</li>
+</ol>
+<h2 id="期望值過長？放成-JSON-檔吧！"><a href="#期望值過長？放成-JSON-檔吧！" class="headerlink" title="期望值過長？放成 JSON 檔吧！"></a>期望值過長？放成 JSON 檔吧！</h2><p>這邊是組合應用，以 LINE Bot 的 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#f-carousel">Flex Message 為例</a>，常常要輸出時 JSON 都可能是幾百行，放在測試函式中會造成讀取上的困擾(佔版面)，因此這裡我推薦使用一個檔案把期望值存下來，並用開檔案的方式讀取資料，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(os.path.abspath(os.path.dirname(__file__))+<span class="string">&#x27;/tests/rank_flex.json&#x27;</span>)</span><br><span class="line">expected = json.load(f)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="下-Pytest-指令都沒反應？"><a href="#下-Pytest-指令都沒反應？" class="headerlink" title="下 Pytest 指令都沒反應？"></a>下 Pytest 指令都沒反應？</h2><p>Python 在以前的版本有個規定就是需要在資料夾下加入 <strong>__init__.py</strong> 這個檔案，雖然在 3 版之後可以不需加入這檔案，但因為許多套件都需要向下相容支援 2 版的用戶，還是會需要在資料夾下 <strong>__init__.py</strong>，因此若在執行 pytest 時沒有看到類似以下的資訊，就代表在你的測試資料夾下需要加入 <strong>__init__.py</strong> 的空檔案喔！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">collected 10 items</span><br><span class="line"></span><br><span class="line">tests&#x2F;test_flex.py ..........             [100%]</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>藉由此篇記錄一些每次回來寫測試時容易遇到的問題，透過此篇整理也讓我對於使用上有更清楚了些，讓 Side Project 也可以有品質的加持 😊，之後若有學到相關做法也會再持續更新！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/Pytest/" rel="tag"><i class="fa fa-tag"></i> Pytest</a>
+              <a href="/tags/Mock/" rel="tag"><i class="fa fa-tag"></i> Mock</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/01/line-dev-meetup-14/" rel="prev" title="帶你了解 LINE Developers Meetup 第 14 場的精彩內容！">
+      <i class="fa fa-chevron-left"></i> 帶你了解 LINE Developers Meetup 第 14 場的精彩內容！
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/18/first-time-to-see-fastapi/" rel="next" title="初見 FastAPI (From Flask to FastAPI)">
+      初見 FastAPI (From Flask to FastAPI) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E7%94%A8%E5%AE%83%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">Mock 是什麼？為什麼要用它？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-vs-Function"><span class="nav-number">2.2.</span> <span class="nav-text">Class vs Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TL-DR"><span class="nav-number">2.2.1.</span> <span class="nav-text">TL; DR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-%E8%AA%AA%E6%98%8E"><span class="nav-number">2.2.2.</span> <span class="nav-text">Function 說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E"><span class="nav-number">2.2.3.</span> <span class="nav-text">步驟說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-Function-%E4%BD%BF%E7%94%A8%E8%AA%AA%E6%98%8E"><span class="nav-number">2.2.4.</span> <span class="nav-text">Class + Function 使用說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.2.5.</span> <span class="nav-text">小結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%9F%9F-Global-%E8%AE%8A%E6%95%B8%E6%80%8E%E9%BA%BC%E8%99%95%E7%90%86%EF%BC%9F%E4%BD%BF%E7%94%A8-MonkeyPatch-%E4%BE%86%E8%99%95%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">全域(Global)變數怎麼處理？使用 MonkeyPatch 來處理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E5%80%BC%E9%81%8E%E9%95%B7%EF%BC%9F%E6%94%BE%E6%88%90-JSON-%E6%AA%94%E5%90%A7%EF%BC%81"><span class="nav-number">2.4.</span> <span class="nav-text">期望值過長？放成 JSON 檔吧！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B-Pytest-%E6%8C%87%E4%BB%A4%E9%83%BD%E6%B2%92%E5%8F%8D%E6%87%89%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">下 Pytest 指令都沒反應？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">166</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

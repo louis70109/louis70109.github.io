@@ -1,0 +1,5 @@
+@startuml
+(LINE Platform)->(Data)
+(Data)->(Your Server)
+(Attacker)-down->(Data): catch and fake it
+@enduml

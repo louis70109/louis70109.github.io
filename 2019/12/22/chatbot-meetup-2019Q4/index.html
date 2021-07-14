@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":20,"unescape":true,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言大家好，我是 NiJia 下半年度辛苦來參加小聚的各位了，最後一季場地一直變更，因為每次小聚都有熱情的夥伴提供場地給小聚，也一起尋找最適合各位的一個場地，若造成困擾小弟深感抱歉 &lt;(_ _)&gt; 2019 年度活動資訊請參考 ➡️Chatbot Taiwan GitHub 小聚活動 &amp; 簡報連結meetups 14 參考共筆     Topic Speaker Link">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chatbot meetup #14 與 #15 小聚心得">
+<meta property="og:url" content="https://nijialin.com/2019/12/22/chatbot-meetup-2019Q4/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言大家好，我是 NiJia 下半年度辛苦來參加小聚的各位了，最後一季場地一直變更，因為每次小聚都有熱情的夥伴提供場地給小聚，也一起尋找最適合各位的一個場地，若造成困擾小弟深感抱歉 &lt;(_ _)&gt; 2019 年度活動資訊請參考 ➡️Chatbot Taiwan GitHub 小聚活動 &amp; 簡報連結meetups 14 參考共筆     Topic Speaker Link">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/9sLr17Z.png">
+<meta property="og:image" content="https://i.imgur.com/BtY1sLS.jpg">
+<meta property="og:image" content="https://i.imgur.com/xMpRkLM.png">
+<meta property="og:image" content="https://i.imgur.com/4boRPgr.png">
+<meta property="og:image" content="https://i.imgur.com/GqSiAmh.jpg">
+<meta property="og:image" content="https://i.imgur.com/z2WgJvD.jpg">
+<meta property="og:image" content="https://i.imgur.com/rdAzlEu.jpg">
+<meta property="og:image" content="https://qr-official.line.me/L/9AirZgJAgb.png">
+<meta property="article:published_time" content="2019-12-22T20:48:54.000Z">
+<meta property="article:modified_time" content="2021-07-14T16:07:50.494Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="chatbot">
+<meta property="article:tag" content="meetup">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/9sLr17Z.png">
+
+<link rel="canonical" href="https://nijialin.com/2019/12/22/chatbot-meetup-2019Q4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>Chatbot meetup #14 與 #15 小聚心得 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150180475-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-150180475-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/22/chatbot-meetup-2019Q4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Chatbot meetup #14 與 #15 小聚心得
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-22 20:48:54" itemprop="dateCreated datePublished" datetime="2019-12-22T20:48:54+00:00">2019-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-07-14 16:07:50" itemprop="dateModified" datetime="2021-07-14T16:07:50+00:00">2021-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://i.imgur.com/9sLr17Z.png" alt=""></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 NiJia</p>
+<p>下半年度辛苦來參加小聚的各位了，最後一季場地一直變更，因為每次小聚都有熱情的夥伴提供場地給小聚，也一起尋找最適合各位的一個場地，若造成困擾小弟深感抱歉 &lt;(_ _)&gt;</p>
+<p>2019 年度活動資訊請參考 ➡️<a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups/blob/master/taipei/2019.md">Chatbot Taiwan GitHub</a></p>
+<h1 id="小聚活動-amp-簡報連結"><a href="#小聚活動-amp-簡報連結" class="headerlink" title="小聚活動 &amp; 簡報連結"></a>小聚活動 &amp; 簡報連結</h1><h2 id="meetups-14"><a href="#meetups-14" class="headerlink" title="meetups 14"></a><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/meetup-014">meetups 14</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@chatbot-tw/meetups-014">參考共筆</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Speaker</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>What’s new in LIFF v2 and TECHPULSE 2019 preview</td>
+<td>Evan Lin</td>
+<td><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/whats-new-in-liff-v2-and-techpulse-2019-preview?slide=2&fbclid=IwAR1pS22ELVfWptEmvIwn7G35uGeefPO1g6ncMfPsD0ssr7IBB6T7Q_Hbc4Q">link</a></td>
+</tr>
+<tr>
+<td>Bottender 一路走來</td>
+<td>林承澤(C.T Lin)</td>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1yz38IWwolgv8AQPxIpuQBfNzSaKjGQVU/view?fbclid=IwAR2IHRd6ESvCnOCu-hleFvM-K1RTMT4l65ShoWB852XWhQ-wUj_ikegmnzw">link</a></td>
+</tr>
+<tr>
+<td>如何使用 kamigo 快速開發 LINE bot</td>
+<td>林家煜(NiJia Lin)</td>
+<td><a target="_blank" rel="noopener" href="https://www.slideshare.net/JiaYuLin6/kamigo-reviews-20191127-198374007?fbclid=IwAR1bkzmaOO5_tOBxNf9G5WVLboghJp6Mbl1G5wkOxPLk7RzOm707dNefd_M">link</a></td>
+</tr>
+</tbody></table>
+<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>當時 LIFF v1 只能透過 Deep link 的方式讓很多需要 Web view 的動線設計上增加了許多困擾，而在 v2 上線後改善了這方面的問題，且也對外公布支援 Query string 讓開發者可以帶參數進去(雖然之前就已經在偷用了 😆)，雖然很不幸的因為 iOS 的政策問題導致 Scan QR code 的功能在接下來的版本硬生生被拔除，但整體下來其實 LIFF v2 對於在 LINE 上開發功能的朋友可以更有彈性的去應用了。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/#third-party-software">iOS 政策問題參考</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/BtY1sLS.jpg" alt=""></p>
+<p>Bottender 是在某次小聚聊到時才知道原來有這麼酷的開源專案，我覺得最特別的除了可以支援多平台之外，就是 <code>console</code> 模式了，像我最近做的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Taiwan-ABL-games">ABL 台灣隊賽程機器人</a>就只使用到純文字的功能，在<code>console</code>模式下很快速的就把功能弄好，部署時只要把相關 <code>Key</code> 放進去功能就完成了，這部分是真的很驚艷 😆<br>上週去參加 GDG Hackthon 時介紹給其他寫前端的朋友使用，從來沒寫過後端的他們也覺得使用上真的很快就上手，所以有寫<code>Javascript</code>的朋友不妨參考試試囉！<br><img src="https://i.imgur.com/xMpRkLM.png" alt=""></p>
+<p>當初因為訓練時沒有一個可以幫我儲存記錄的地方，因此想到想做 LINE bot 來解決我的問題，但同時我又不喜歡處理一大堆 JSON 的問題，因此選用 <a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">Kamigo</a> 作為我開發 bot 的框架，除了框架幫忙轉打請求轉到對應的<code>controller</code>讓我不用寫一堆<code>if</code> <code>else</code>以外，最好用的功能就是 <code>Kamiflex</code> 了，當我們在 <a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx/">Flex Message Simulator</a> 弄了一堆 JSON 出來時，同時我們需要從資料庫拉資料出來組裝產生大量的 JSON，在組裝時程式碼會很髒亂，所以使用 Kamiflex 來幫忙轉譯讓我在寫 Flex message 時可以更像在寫 Ruby code，讓整個 JSON 可能幾千行瞬間被濃縮成 100 行時這段 Flex message 在維護時也能更好的維護。<br><img src="https://i.imgur.com/4boRPgr.png" alt=""></p>
+<h3 id="Kamigo-流程"><a href="#Kamigo-流程" class="headerlink" title="Kamigo 流程"></a>Kamigo 流程</h3><div id="sequence-0"></div>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/meetup-015">meetups 15</a><ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@chatbot-tw/meetups-015">參考共筆</a></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Speaker</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINE Push / Message 開發經驗談</td>
+<td>Caesar Chi</td>
+<td></td>
+</tr>
+<tr>
+<td>邊緣人救星！用 Laravel 打造私人定製的聊天機器人</td>
+<td>李小胖</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1ImrH_2IziPceVnfHrTYTf8g3AivxQ3s4sNHkSQf6aBY/edit#slide=id.p">link</a></td>
+</tr>
+<tr>
+<td>Chatbot builder</td>
+<td>Penny Sun</td>
+<td><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/automl-in-clova-chatbot-builder-framework?slide=56">link</a></td>
+</tr>
+</tbody></table>
+<h2 id="心得-1"><a href="#心得-1" class="headerlink" title="心得"></a>心得</h2><p>我平時就有在看一些社群行銷朋友分享他們是如何對行為下標籤<code>tag</code>以及發放對應內容給使用者進而提升購買力，在 Caesar 大大的快速了解到這些商業行為背後的開發經驗為何，從設計到大量推送所需注意的問題以及服務器之間的溝通問題…在這次的議程中讓我學到很多付費內容才會聽到的題材，讓我對於 Push message 這件事情的做法與思路又重新被教育了一次 😆<br><img src="https://i.imgur.com/GqSiAmh.jpg" alt=""></p>
+<p>這次要請到一個月有一半時間都在參加小聚的小聚王小胖來為各位分享如何用<code>Laravel</code>做一隻專為自己客製化的機器人，雖然 Live demo 過程中了魔咒，好險後來也解決的一些 live demo 才會遇到的問題 🤣，總之若有使用 php 的朋友歡迎參考簡報哦～<br><img src="https://i.imgur.com/z2WgJvD.jpg" alt=""></p>
+<p>最後由 LINE 的資料工程師-Penny 為我們帶來在 LINE techpulse 上的議程，從介紹中 NLU 部分看起來功能會像是 <code>Dialogflow</code> 一樣，而在其他的部分則是提供一個介面讓使用者可以更快速的在網頁上設定自己想要的機器人樣式，只是目前功能只提供給合作的商家，期待未來 release 時的效益 🚀<br><img src="https://i.imgur.com/rdAzlEu.jpg" alt=""></p>
+<blockquote>
+<p>官方帳號已經有套用囉！想收到啲一手資訊或是想玩玩的朋友可以掃描加入 👾</p>
+</blockquote>
+<p><img src="https://qr-official.line.me/L/9AirZgJAgb.png" alt=""></p>
+<blockquote>
+<p>所有小聚資訊接收藏在 -&gt; <a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups">Chatbot Taiwan GitHub</a> 上哦！</p>
+</blockquote>
+<h1 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h1><h2 id="14"><a href="#14" class="headerlink" title="14"></a>14</h2><table>
+<thead>
+<tr>
+<th>Speaker</th>
+<th>Topic</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陳佳新</td>
+<td>LINE Beacon，數位導覽的小幫手！</td>
+<td></td>
+</tr>
+<tr>
+<td>Eric</td>
+<td>Flex box, 一起收集分享 Flex message</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/eric0324/flex-box">link</a></td>
+</tr>
+<tr>
+<td>徐郁涵</td>
+<td>食農飽可夢</td>
+<td></td>
+</tr>
+<tr>
+<td>郭佳甯</td>
+<td>午餐隊長</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yoctol/leader-of-lunch">link</a></td>
+</tr>
+</tbody></table>
+<h2 id="15"><a href="#15" class="headerlink" title="15"></a>15</h2><table>
+<thead>
+<tr>
+<th>Speaker</th>
+<th>Topic</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Calvin</td>
+<td>LINE Beacon，數位導覽的小幫手！</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1a8Yaf_315mb4u8BcIvs6TqyNYkDiRR-T7mxNAnOuQCE/edit">link</a></td>
+</tr>
+<tr>
+<td>JT</td>
+<td>ChatOps &amp; Rasa</td>
+<td><a target="_blank" rel="noopener" href="https://slides.com/jimting/chatops_and_rasa#/">link</a></td>
+</tr>
+<tr>
+<td>NiJia</td>
+<td>ABL 台灣隊查詢機器人</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/louis70109/Taiwan-ABL-games">link</a></td>
+</tr>
+<tr>
+<td>郭佳甯</td>
+<td>Bottender &amp; Kamigo 介紹</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">link1</a>、<a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">link2</a></td>
+</tr>
+</tbody></table>
+<h2 id="短評"><a href="#短評" class="headerlink" title="短評"></a>短評</h2><p>除了內容豐富的主議程外，閃電秀就是在每個社群最特別的部分了，從每次的閃電秀中都讓我對於 side project 的想法又重新被定義了一番，常常會看到很多不同的應用情境以及特殊的用法，歡迎大家踴躍報名閃電秀來互相交流，多方交流或許有機會蹦出不一樣的想法並讓機器人的其他用途 😁</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在舉辦每次的小聚活動都希望可以給每個來的朋友最豐富的內容，以及提供 Lighting talk 的舞台讓有作品的朋友可以上來分享，而最近有與其他社群的朋友聊到，發現似乎把議程塞太緊，導致影響到會眾與講者交流以及回家休息的時間，所以之後的小聚改善這個狀況並調整時間，再麻煩大家多支持 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw">Chatbot Taiwan</a>🚀🚀🚀</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">User->LINE: message
+LINE->Route: webhook
+Route->Kamigo: event notify
+Kamigo->Controller: send params
+Controller->View: send DB data
+View->Kamigo: generator flex template
+Kamigo->Route: send template
+Route->LINE: response
+LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple"}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/chatbot/" rel="tag"><i class="fa fa-tag"></i> chatbot</a>
+              <a href="/tags/meetup/" rel="tag"><i class="fa fa-tag"></i> meetup</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/10/Bottender-x-Dialogflow-x-LINE/" rel="prev" title="Bottender x Dialogflow x LINE">
+      <i class="fa fa-chevron-left"></i> Bottender x Dialogflow x LINE
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/24/Twich-chatroom-IRC/" rel="next" title="透過 IRC 與 Twitch 聊天室連結互動">
+      透過 IRC 與 Twitch 聊天室連結互動 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E8%81%9A%E6%B4%BB%E5%8B%95-amp-%E7%B0%A1%E5%A0%B1%E9%80%A3%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小聚活動 &amp; 簡報連結</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#meetups-14"><span class="nav-number">2.1.</span> <span class="nav-text">meetups 14</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E5%BE%97"><span class="nav-number">2.2.</span> <span class="nav-text">心得</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kamigo-%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.1.</span> <span class="nav-text">Kamigo 流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E5%BE%97-1"><span class="nav-number">2.3.</span> <span class="nav-text">心得</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%96%83%E9%9B%BB%E7%A7%80"><span class="nav-number">3.</span> <span class="nav-text">閃電秀</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14"><span class="nav-number">3.1.</span> <span class="nav-text">14</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15"><span class="nav-number">3.2.</span> <span class="nav-text">15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E8%A9%95"><span class="nav-number">3.3.</span> <span class="nav-text">短評</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">166</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

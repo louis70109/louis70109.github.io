@@ -1,0 +1,6 @@
+@startuml
+Client -> Server: 我需要連線(SYN)，回答請用 M
+Server -> Client: 收到了，是 M+1 嗎？回答請用 N
+Client -> Server: 收到了，N+1 是我收到的訊號
+Client <--> Server: Server 確認完後開始連線
+@enduml
