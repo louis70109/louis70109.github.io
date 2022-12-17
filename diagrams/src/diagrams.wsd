@@ -1,0 +1,33 @@
+@startuml
+skinparam actorStyle awesome
+(Vote API)->admin: (Y) get admin id at env
+admin-->user
+
+note right of admin
+  Send AWARD FlexMessage 
+  to user
+  with 3 buttons
+end note 
+
+user-left->(award)
+note left of (award)
+  Send FlexMessage with 
+  two columns and 10 teams
+  by Postback event
+end note 
+
+(award)-down->(已投票): If had voted, reply.
+(award)-down->(Redis): If NO
+note left of (Redis)
+  Save to Redis 
+  with TEAM and AWARD columns 
+  by JSON.
+end note 
+
+
+管理者->(LINE Bot): 輸入想儲存的訊息
+(LINE Bot)->(忍者的後端): 送至 webhook Server
+(忍者的後端)-down->(GitHub): 打 Commit 進專案中
+(GitHub)-->(Ideas-tree專案): 建立檔案放入訊息 &LINE用戶資訊
+管理者-->(Ideas-tree專案): 查看今日整理內容
+@enduml
