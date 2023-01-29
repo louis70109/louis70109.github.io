@@ -1,14 +1,3 @@
 @startuml
-Admin->Chatbot: Input any keyword
-Chatbot->Flex_API: Request Flex template
-Flex_API->Chatbot: Response Flex JSON
-Chatbot->Admin: Flex Message template
-Admin->Chatbot: Select template
-Chatbot->Admin: Render to Editor page
-Admin->Editor: Input data
-Editor->Flex_API: Send metadata to generate JSON
-Flex_API->Editor: Response template JSON
-Editor->LINE: Send Flex by Share Target Picker
-LINE->Editor: Send callback message(Success/Fail)
-LINE->User: Push Flex to LINE User/Group/Chat
+
 @enduml
