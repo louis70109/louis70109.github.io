@@ -211,6 +211,109 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/23/Day9-SQS-%E4%B8%B2%E6%8E%A5-Notify-%E5%AF%A6%E4%BD%9C%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/23/Day9-SQS-%E4%B8%B2%E6%8E%A5-Notify-%E5%AF%A6%E4%BD%9C%EF%BC%81/" class="post-title-link" itemprop="url">Day9 - SQS 串接 Notify 實作！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-23 20:35:36" itemprop="dateCreated datePublished" datetime="2019-09-23T20:35:36+08:00">2019-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先先建立一個<code>consumer/</code>資料夾，新增<code>__init__.py</code>以及<code>notify_handler.py</code></p>
+<p>在<code>notify_handler.py</code>輸入以下程式碼</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">line_notify_handler</span>(<span class="params">event, context</span>):</span></span><br><span class="line">    print(event)</span><br><span class="line">    body = json.loads(event[<span class="string">&#x27;Records&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;body&#x27;</span>])</span><br><span class="line">    print(body)</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;body[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    r = requests.post(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>,</span><br><span class="line">                      headers=headers,</span><br><span class="line">                      data=&#123;<span class="string">&#x27;message&#x27;</span>: body[<span class="string">&#x27;message&#x27;</span>]&#125;)</span><br><span class="line">    print(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># AWS record sample</span></span><br><span class="line"><span class="comment"># &#123;&#x27;Records&#x27;: [&#123;&#x27;messageId&#x27;: &#x27;fddc42ba-a122-4581-965e-d0144ac8a5ad&#x27;, &#x27;receiptHandle&#x27;: &#x27;AQEBjO32gY5pXOfOrmDR0hD4k1av9KyjbHFpc+rIBPV2Brif7Lo+jqnGevSjfFwlICyGf+BhWwKaxFw8XdB3QTzRbw0vnLURjnQeDSBrJHa/S57SRs9TOLRBq38maycAVg69iZbetg9VhLMBCcLtOtPHTzKkmo+/Sosm51WA5CzXK7A0rteikx6nxS1CUIpq6MAujodupP0Hgr5RjK5nH/nmxA4Db0leWEmLokalZbtlx4W14tp7PZxPOrQOLDaGrH//p4h32tY8IN3MkCqi+gyNT7kCU4KwCGOIrybb07ZWyKBTKw+KOMNr/Ykj4z2N1qxIvTM55UY9d8V29YsH32OjrZTei5P7Nke/51E2tWkmkqoFAlqzxDjQPvpP+Pvvr8aazeeZ6opkr59UefAiiyM71Q==&#x27;, &#x27;body&#x27;: &#x27;hi&#x27;, &#x27;attributes&#x27;: &#123;&#x27;ApproximateReceiveCount&#x27;: &#x27;9&#x27;, &#x27;SentTimestamp&#x27;: &#x27;1566621263072&#x27;, &#x27;SenderId&#x27;: &#x27;901588721449&#x27;, &#x27;ApproximateFirstReceiveTimestamp&#x27;: &#x27;1566621263072&#x27;&#125;, &#x27;messageAttributes&#x27;: &#123;&#125;, &#x27;md5OfBody&#x27;: &#x27;49f68a5c8493ec2c0bf489821c21fc3b&#x27;, &#x27;eventSource&#x27;: &#x27;aws:sqs&#x27;, &#x27;eventSourceARN&#x27;: &#x27;arn:aws:sqs:us-east-1:901588721449:LINE_notify_consumer&#x27;, &#x27;awsRegion&#x27;: &#x27;us-east-1&#x27;&#125;]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>接著在<code>requirements.txt</code>加入<code>boto3</code>，他是一個使用 python 介接 AWS 的套件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">boto3</span>==<span class="number">1</span>.<span class="number">9</span>.<span class="number">189</span></span><br></pre></td></tr></table></figure>
+
+<p>加入<code>SQS_URL</code>以及<code>SQS_ARN</code>到<code>.env</code>裡面</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">SQS_URL</span>=sqs url</span><br><span class="line"><span class="attr">SQS_ARN</span>=your sqs arn</span><br></pre></td></tr></table></figure>
+
+<p>add controller&#x2F;notify_sqs_controller.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource, reqparse</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> lib.db <span class="keyword">import</span> Database</span><br><span class="line"><span class="keyword">import</span> psycopg2.extras</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> boto3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_message</span>(<span class="params">url, attr, body, delay=<span class="number">0</span></span>):</span></span><br><span class="line">    cli.send_message(</span><br><span class="line">        QueueUrl=url,</span><br><span class="line">        DelaySeconds=<span class="number">0</span>,</span><br><span class="line">        MessageAttributes=attr,</span><br><span class="line">        MessageBody=body,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SendNotifyBySQSController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    cli = boto3.client(<span class="string">&quot;sqs&quot;</span>, region_name=os.environ(<span class="string">&quot;region&quot;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>, required=<span class="literal">True</span>, <span class="built_in">help</span>=<span class="string">&#x27;message can not be blank!&#x27;</span>)</span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        msg = args[<span class="string">&#x27;message&#x27;</span>]</span><br><span class="line">        <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">            <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                cur.execute(</span><br><span class="line">                    <span class="string">f&quot;SELECT token FROM notify&quot;</span>)</span><br><span class="line">                fetch = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> f <span class="keyword">in</span> fetch:</span><br><span class="line">            body = &#123;</span><br><span class="line">                <span class="string">&#x27;token&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;f[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span>,</span><br><span class="line">                <span class="string">&#x27;message&#x27;</span>: <span class="string">f&quot;Hello everyone, <span class="subst">&#123;msg&#125;</span>&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">            cli.send_message(</span><br><span class="line">                QueueUrl=os.environ(<span class="string">&quot;SQS_URL&quot;</span>),</span><br><span class="line">                DelaySeconds=<span class="number">0</span>,</span><br><span class="line">                MessageAttributes=&#123;&#125;,</span><br><span class="line">                MessageBody=json.dumps(body),</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;ok&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>程式寫完了就是要加一條路由<code>/notify/sqs</code></p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> controller.notify_sqs_controller <span class="keyword">import</span> SendNotifyBySQSController</span><br><span class="line">api.add_resource(SendNotifyBySQSController, <span class="string">&#x27;/notify/sqs&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>接著透過<code>wsgi</code>在本地起一個 server</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sls wsgi serve</span></span><br></pre></td></tr></table></figure>
+
+<p>再搭配 postman 來做測試，測試內容如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;test Content&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接著透過<code>sls deploy</code>部署上會遇到一個問題，會有 Access Denied，所以要在<code>serverless.yml</code>加入 IAM role 的設定</p>
+<p>add iam in provider</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">iamRoleStatements:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">Effect:</span> <span class="string">Allow</span></span><br><span class="line">    <span class="attr">Action:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">sqs:SendMessage</span></span><br><span class="line">    <span class="attr">Resource:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;env:SQS_ARN&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p><img src="https://i.imgur.com/5FViVEk.png"><br><img src="https://i.imgur.com/Xg70nDp.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>使用 SQS 這類服務都會需要透過<code>boto3</code>來幫忙串接，最需要注意的就是 IAM role，因為在本地端的 key 通常權限都是最大的，但上到 AWS 上就會有權限的問題，所以要記得加入 IAM 哦！</p>
+<p>Code is <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/notify_sqs_controller.py">here</a></p>
+<p>專案也會持續更新，更多詳情可以 follow 我的專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api">aws-python-line-api</a>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/22/Day8-SQS-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-%E5%BB%BA%E7%AB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1248,7 +1351,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">189</span>
+          <span class="site-state-item-count">190</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1261,7 +1364,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">243</span>
+        <span class="site-state-item-count">245</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

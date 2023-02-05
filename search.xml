@@ -82,52 +82,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【觀察系列-01】我認知的社群生態</title>
-    <url>/2020/06/12/2020-community-status-by-myself/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自從參與舉辦社群活動也一年多了，過往大多都是參加看大神表演為主，而自從開始處理社群後也認識很多負責人，在最近的待業中其實也思考了很多這類型的事，以下我就稍微整理我對於他們的看法以及推坑的文字。 <del>(誤)</del></p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以我自身而立，常關注的就是 <strong>核心型社群</strong> 與 <strong>應用型社群</strong> 這兩種，基本上已經涵括大部分的社群，以下就稍微提一下我的看法。</p>
-<h2 id="核心型社群"><a href="#核心型社群" class="headerlink" title="核心型社群"></a>核心型社群</h2><p>我認為語言(Python、Ruby、Golang…)、Cloud Native、AI 演算法相關，至於為甚麼是這三個呢，稍微說明一下：</p>
-<h3 id="語言-Python、Ruby、Golang…"><a href="#語言-Python、Ruby、Golang…" class="headerlink" title="語言(Python、Ruby、Golang…)"></a>語言(Python、Ruby、Golang…)</h3><p>基本上在研討會上最容易出現也最容易變成 Conference，原因在於通常都在討論<strong>語言特性</strong>、<strong>底層實作</strong>、<strong>適用環境</strong>…，當然還是會有許多相關應用實作的討論在裡面，但我認為前者佔比較大。</p>
-<p>像是以前在寫 Ruby 時，其實就很想去參加 <strong>默默會</strong>，給我的印象是前輩們很願意犧牲業餘的時間帶後輩們，讓整個學習環境變很棒，只可惜我身在台中一直沒機會參加，也許之後北上可以去當地與大家交流交流，學習不一樣的社群管理方式。</p>
-<p>以 Golang 來說，隨著越來越多產業加入這個語言，風潮感覺有點像之前的 Ruby on Rails，只是這語言的好處就是他是靜態語言，且因為檔案會編譯成靜態檔，所以應用程式是可跨平台。雖然我還沒機會去參加社群就換語言了，但從在學 Golang 時其實就一直有在參考社群前輩們的文章，在這之後其實很多人持續分享相關應用、語言特性的文章，自己是認為社群風格是很開放的，只要你願意分享，這邊都會提供舞台給你。</p>
-<h2 id="Cloud-Native"><a href="#Cloud-Native" class="headerlink" title="Cloud Native"></a>Cloud Native</h2><p>我覺得 Cloud Native 就橫跨兩個這兩種類型，若是提到 kernel 相關實作(Linux、Kubernetes、Docker…)、防火牆如何實現等等那就屬於核心系列，而若是架構、Load balance、打造環境等等就會屬於應用類型。</p>
-<p>話說以前碩班時其實也都在研究相關技能，只是當時對於整個生態根本不熟，且台中也沒社群，想學或找人問時其實都沒相關資源，後來找工作就只好往 coding 這塊去了，也因為做 Backend 系列的工作接觸到 Cloud 才有一種回家的感覺 😆，只是有好多東西都需要再複習，甚至可以說是重學了 😭，期待去台北工作後可以參加社群～</p>
-<h2 id="AI-相關"><a href="#AI-相關" class="headerlink" title="AI 相關"></a>AI 相關</h2><p>老實說我只去過一場，因為以前有聽人家說過 NLP 相關，因此就選擇台中的社群參加，我自己認為提到 AI 相關就一定要看論文了解自己關注的項目背後演算法是如何操作，並且透過數學定理去優化它們，曾經也想過想要去研究，但這裡水太深了，還是留給高手們來好了 😆。</p>
-<h2 id="核心型小結"><a href="#核心型小結" class="headerlink" title="核心型小結"></a>核心型小結</h2><p>若今天想對相關技能要更深入研究時，勢必一定會碰到類似上述例子中的環境，我認為這部分時常沒有特定解答，大多都是當下的最佳解(概念很像解演算法)，當在這個環境裡面時勢必是很孤獨的(高手總是孤獨)，參加社群與大家交流也許你的問題別人已經解過，透過交流可以讓你趕快釐清<del>這淌混水(誤)</del>你當前遇到的問題！</p>
-<h1 id="應用型社群"><a href="#應用型社群" class="headerlink" title="應用型社群"></a>應用型社群</h1><p>我覺得這系列大致上的宗旨就是：「你用了這個技術去解決的什麼事情。」，以下就介紹兩個我關注的社群。</p>
-<h2 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h2><p>LINE 在台灣崛起之後陸續有很多開發者開發相關的 chatbot (如 卡米狗)，隨著時間的演進我也加入社群中。</p>
-<p>我認為像是 Chatbot 的入門門檻其實相較於核心型並不算高，你只要用過特定平台(FaceBook、LINE、Telegram)你應該就會用過人家自動回覆的服務，像在此社群中就會有多輪對話、抽獎、看直播、查天氣…超多的應用，在這裡其實大家就是激發想法並分享點子，也許會在某些時刻創造出商機，透過不同點子的分享也就會讓我們社群越來越活絡。</p>
-<p>若是游走在前端、後端不定的朋友，其實不妨可以來 Chatbot Developer Taiwan 走走，因為 Chatbot 並不是一個單純的後端服務…</p>
-<h2 id="GDG-Google-Developer-Group"><a href="#GDG-Google-Developer-Group" class="headerlink" title="GDG (Google Developer Group)"></a>GDG (Google Developer Group)</h2><blockquote>
-<p><del>其實大多時都去噌吃的</del></p>
-</blockquote>
-<p>第一次參加時(2018)其實是為了看保哥秀 Angular 的技能(簡單說看神表演)，在當時大會中就聽到各種不一樣雲端的應用與情境，實在是琳琅滿目！</p>
-<p>我覺得雲端對於剛踏入程式領域一兩年的人來說應該會有點錯愕，為什麼這個有、那個他們也有，我應該用什麼服務才對？ 之類的問題，若是接觸像是 AWS、Google、Azure 這類的雲服務時，應該先可以手動打造一個完整的線上服務(如 購物車)，當打造完時參加社群問其他人應該怎麼改進，也許會收到類似的答案：</p>
-<ul>
-<li>使用者登入你可以用 Firebase 去記錄步驟，分析使用者有沒有完成註冊。</li>
-<li>購物車內的內容放在 NoSQL 中，放在資料庫太浪費空間了。</li>
-<li>網址有用 CDN 嗎？不然載入會變很慢喔！</li>
-</ul>
-<p>當收到以上的問題時，開始 google 後其實就會找到相對應的資源，收集問題後一步一步找對應的服務，串接上你的購物車，當 issue 解決掉時不僅你的購物車完整度超高，且你也學到雲端相關的技能，此時再去 GDG 分享你的成果，同時也可以滿足你的成就感呢！</p>
-<h2 id="應用型小結"><a href="#應用型小結" class="headerlink" title="應用型小結"></a>應用型小結</h2><p>畢竟人在世就是來解決問題，也許當下工作你並不會用到這個技能，但若哪天你上司希望用這服務建出<strong>商業邏輯</strong>時，又這麼剛好你都會，這豈不就發達的時候了？在現在資訊爆炸時代當然我們都需要廣學，在學習路程中若有個社群幫忙，其實會讓你在這坑坑的路上走得更順。</p>
-<blockquote>
-<p>一個人走走得快，一群人走走得遠。</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>不管哪個社群，其實就是大家用了特定技術來解決某些大家都在意的問題，進而形成這個社群，也許你的工作上有點失意，沒關係來社群大家一起取暖(誤)，很多朋友都會覺得是要大神才可以去，錯了！其實透過分享技術學最多的就是分享本人，別以為你這個技能沒什麼而不分享，也許就剛好你對面的朋友他也遇到這個問題，那分享出來不就一起解決對方的問題了嗎？或許你現在還不知道參加什麼社群好，那就來參加 2020 的 COSCUP 吧，上面有很多精彩的議程讓你聽爆！🎉</p>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
-      <tags>
-        <tag>核心型</tag>
-        <tag>應用型</tag>
-        <tag>社群</tag>
-        <tag>學習</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020 一、二月的學習紀錄</title>
     <url>/2020/02/08/2020-Q1-learning/</url>
     <content><![CDATA[<p><img src="https://i.imgur.com/0uMmQBV.jpg" alt="learn records"></p>
@@ -181,6 +135,52 @@
         <tag>AWS</tag>
         <tag>LINT</tag>
         <tag>Netflix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【觀察系列-01】我認知的社群生態</title>
+    <url>/2020/06/12/2020-community-status-by-myself/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自從參與舉辦社群活動也一年多了，過往大多都是參加看大神表演為主，而自從開始處理社群後也認識很多負責人，在最近的待業中其實也思考了很多這類型的事，以下我就稍微整理我對於他們的看法以及推坑的文字。 <del>(誤)</del></p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以我自身而立，常關注的就是 <strong>核心型社群</strong> 與 <strong>應用型社群</strong> 這兩種，基本上已經涵括大部分的社群，以下就稍微提一下我的看法。</p>
+<h2 id="核心型社群"><a href="#核心型社群" class="headerlink" title="核心型社群"></a>核心型社群</h2><p>我認為語言(Python、Ruby、Golang…)、Cloud Native、AI 演算法相關，至於為甚麼是這三個呢，稍微說明一下：</p>
+<h3 id="語言-Python、Ruby、Golang…"><a href="#語言-Python、Ruby、Golang…" class="headerlink" title="語言(Python、Ruby、Golang…)"></a>語言(Python、Ruby、Golang…)</h3><p>基本上在研討會上最容易出現也最容易變成 Conference，原因在於通常都在討論<strong>語言特性</strong>、<strong>底層實作</strong>、<strong>適用環境</strong>…，當然還是會有許多相關應用實作的討論在裡面，但我認為前者佔比較大。</p>
+<p>像是以前在寫 Ruby 時，其實就很想去參加 <strong>默默會</strong>，給我的印象是前輩們很願意犧牲業餘的時間帶後輩們，讓整個學習環境變很棒，只可惜我身在台中一直沒機會參加，也許之後北上可以去當地與大家交流交流，學習不一樣的社群管理方式。</p>
+<p>以 Golang 來說，隨著越來越多產業加入這個語言，風潮感覺有點像之前的 Ruby on Rails，只是這語言的好處就是他是靜態語言，且因為檔案會編譯成靜態檔，所以應用程式是可跨平台。雖然我還沒機會去參加社群就換語言了，但從在學 Golang 時其實就一直有在參考社群前輩們的文章，在這之後其實很多人持續分享相關應用、語言特性的文章，自己是認為社群風格是很開放的，只要你願意分享，這邊都會提供舞台給你。</p>
+<h2 id="Cloud-Native"><a href="#Cloud-Native" class="headerlink" title="Cloud Native"></a>Cloud Native</h2><p>我覺得 Cloud Native 就橫跨兩個這兩種類型，若是提到 kernel 相關實作(Linux、Kubernetes、Docker…)、防火牆如何實現等等那就屬於核心系列，而若是架構、Load balance、打造環境等等就會屬於應用類型。</p>
+<p>話說以前碩班時其實也都在研究相關技能，只是當時對於整個生態根本不熟，且台中也沒社群，想學或找人問時其實都沒相關資源，後來找工作就只好往 coding 這塊去了，也因為做 Backend 系列的工作接觸到 Cloud 才有一種回家的感覺 😆，只是有好多東西都需要再複習，甚至可以說是重學了 😭，期待去台北工作後可以參加社群～</p>
+<h2 id="AI-相關"><a href="#AI-相關" class="headerlink" title="AI 相關"></a>AI 相關</h2><p>老實說我只去過一場，因為以前有聽人家說過 NLP 相關，因此就選擇台中的社群參加，我自己認為提到 AI 相關就一定要看論文了解自己關注的項目背後演算法是如何操作，並且透過數學定理去優化它們，曾經也想過想要去研究，但這裡水太深了，還是留給高手們來好了 😆。</p>
+<h2 id="核心型小結"><a href="#核心型小結" class="headerlink" title="核心型小結"></a>核心型小結</h2><p>若今天想對相關技能要更深入研究時，勢必一定會碰到類似上述例子中的環境，我認為這部分時常沒有特定解答，大多都是當下的最佳解(概念很像解演算法)，當在這個環境裡面時勢必是很孤獨的(高手總是孤獨)，參加社群與大家交流也許你的問題別人已經解過，透過交流可以讓你趕快釐清<del>這淌混水(誤)</del>你當前遇到的問題！</p>
+<h1 id="應用型社群"><a href="#應用型社群" class="headerlink" title="應用型社群"></a>應用型社群</h1><p>我覺得這系列大致上的宗旨就是：「你用了這個技術去解決的什麼事情。」，以下就介紹兩個我關注的社群。</p>
+<h2 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h2><p>LINE 在台灣崛起之後陸續有很多開發者開發相關的 chatbot (如 卡米狗)，隨著時間的演進我也加入社群中。</p>
+<p>我認為像是 Chatbot 的入門門檻其實相較於核心型並不算高，你只要用過特定平台(FaceBook、LINE、Telegram)你應該就會用過人家自動回覆的服務，像在此社群中就會有多輪對話、抽獎、看直播、查天氣…超多的應用，在這裡其實大家就是激發想法並分享點子，也許會在某些時刻創造出商機，透過不同點子的分享也就會讓我們社群越來越活絡。</p>
+<p>若是游走在前端、後端不定的朋友，其實不妨可以來 Chatbot Developer Taiwan 走走，因為 Chatbot 並不是一個單純的後端服務…</p>
+<h2 id="GDG-Google-Developer-Group"><a href="#GDG-Google-Developer-Group" class="headerlink" title="GDG (Google Developer Group)"></a>GDG (Google Developer Group)</h2><blockquote>
+<p><del>其實大多時都去噌吃的</del></p>
+</blockquote>
+<p>第一次參加時(2018)其實是為了看保哥秀 Angular 的技能(簡單說看神表演)，在當時大會中就聽到各種不一樣雲端的應用與情境，實在是琳琅滿目！</p>
+<p>我覺得雲端對於剛踏入程式領域一兩年的人來說應該會有點錯愕，為什麼這個有、那個他們也有，我應該用什麼服務才對？ 之類的問題，若是接觸像是 AWS、Google、Azure 這類的雲服務時，應該先可以手動打造一個完整的線上服務(如 購物車)，當打造完時參加社群問其他人應該怎麼改進，也許會收到類似的答案：</p>
+<ul>
+<li>使用者登入你可以用 Firebase 去記錄步驟，分析使用者有沒有完成註冊。</li>
+<li>購物車內的內容放在 NoSQL 中，放在資料庫太浪費空間了。</li>
+<li>網址有用 CDN 嗎？不然載入會變很慢喔！</li>
+</ul>
+<p>當收到以上的問題時，開始 google 後其實就會找到相對應的資源，收集問題後一步一步找對應的服務，串接上你的購物車，當 issue 解決掉時不僅你的購物車完整度超高，且你也學到雲端相關的技能，此時再去 GDG 分享你的成果，同時也可以滿足你的成就感呢！</p>
+<h2 id="應用型小結"><a href="#應用型小結" class="headerlink" title="應用型小結"></a>應用型小結</h2><p>畢竟人在世就是來解決問題，也許當下工作你並不會用到這個技能，但若哪天你上司希望用這服務建出<strong>商業邏輯</strong>時，又這麼剛好你都會，這豈不就發達的時候了？在現在資訊爆炸時代當然我們都需要廣學，在學習路程中若有個社群幫忙，其實會讓你在這坑坑的路上走得更順。</p>
+<blockquote>
+<p>一個人走走得快，一群人走走得遠。</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>不管哪個社群，其實就是大家用了特定技術來解決某些大家都在意的問題，進而形成這個社群，也許你的工作上有點失意，沒關係來社群大家一起取暖(誤)，很多朋友都會覺得是要大神才可以去，錯了！其實透過分享技術學最多的就是分享本人，別以為你這個技能沒什麼而不分享，也許就剛好你對面的朋友他也遇到這個問題，那分享出來不就一起解決對方的問題了嗎？或許你現在還不知道參加什麼社群好，那就來參加 2020 的 COSCUP 吧，上面有很多精彩的議程讓你聽爆！🎉</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+      <tags>
+        <tag>核心型</tag>
+        <tag>應用型</tag>
+        <tag>社群</tag>
+        <tag>學習</tag>
       </tags>
   </entry>
   <entry>
@@ -564,65 +564,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere</title>
-    <url>/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/</url>
-    <content><![CDATA[<h1 id="Armeria-A-Microservice-Framework-Well-suited-Everywhere"><a href="#Armeria-A-Microservice-Framework-Well-suited-Everywhere" class="headerlink" title="Armeria: A Microservice Framework Well-suited Everywhere"></a>Armeria: A Microservice Framework Well-suited Everywhere</h1><p><img src="https://i.imgur.com/MNnrFnm.jpg"></p>
-<ul>
-<li><a href="https://speakerdeck.com/line_devday2019/armeria-a-microservice-framework-well-suited-everywhere">簡報連結</a></li>
-<li><a href="https://github.com/line/armeria">Github</a></li>
-<li><a href="https://line.github.io/armeria/">官網</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
-<p>本次議程是由韓國的 open source manager - <a href="https://github.com/trustin">trustin</a> 為我們帶來議程。</p>
-<p>而在今年參加八月舉辦的 COSCUP，並且在第一天的 after party 參加 LINE BoF 上就已經看到 LINE 開發的 Open Source - <a href="https://github.com/line/armeria">Armeria</a>，它是基於 Java 所撰寫的一個非同步的專案，支援 Java8, Netty, HTTP&#x2F;2, Thrift 以及 gRPC，當時聽團隊簡單介紹就覺得這個專案一定是個很不得的專案，只不過當時因為他們快速介紹兒少聽了很多細節，這次就把我聽到的細節告訴各位吧！</p>
-<blockquote>
-<p>據之前的議程的以及講者的分享說這個服務已經被應用於很多 LINE 服務裡頭，因為覺得好用才推出來🤣</p>
-</blockquote>
-<h1 id="如何讓開發者快速使用-Armeria"><a href="#如何讓開發者快速使用-Armeria" class="headerlink" title="如何讓開發者快速使用 Armeria"></a>如何讓開發者快速使用 Armeria</h1><p>接下來就用 Java code 來簡單火力展示如何用一個串聯式寫法把服務互叫起來，不管是要用什麼服務只要用串接的方式加入即可，像是 gRPC、Thrift、annotation…等等如下面幾張圖所示。</p>
-<p><img src="https://i.imgur.com/KKU0eXG.png"></p>
-<hr>
-<p><img src="https://i.imgur.com/6rAex3K.png"></p>
-<hr>
-<p><img src="https://i.imgur.com/mAKhwh4.png"></p>
-<hr>
-<p><img src="https://i.imgur.com/Z9jfFkI.png"></p>
-<blockquote>
-<p>這邊看到可以這麼簡單就把一個服務叫起來，然後要讓他開發者可以很輕易地理解並上手，LINE 團隊的開發文化真的是令人佩服…</p>
-</blockquote>
-<h1 id="為什麼要做成-async-以及-reactive"><a href="#為什麼要做成-async-以及-reactive" class="headerlink" title="為什麼要做成 async 以及 reactive"></a>為什麼要做成 async 以及 reactive</h1><p>首先就先提到若 Queue 裡頭的東西若是都 sync 的話會有什麼問題，這邊就以一個 Call API 常遇到的問題 - Timeout，在大量的 Queue 在排隊時，以 sync 的方式存在時光遇到 Timeout 就會有服務器爆炸的問題，因為彼此不能影響彼此，且這件事會發生在真實世界的每個地方。<br><img src="https://i.imgur.com/Telr7lG.jpg"></p>
-<hr>
-<p><img src="https://i.imgur.com/hkltFFS.jpg"></p>
-<p>這邊講者提出的解決方案為：</p>
-<ul>
-<li>增加執行緒的標記(#)並且減少呼叫堆疊(stack)</li>
-<li>預準備 Tread pools 讓大家互相共享</li>
-<li>少調用 points</li>
-<li>使用非同步的好處就是能夠平行呼叫+較少的執行緒</li>
-</ul>
-<p>現在他們能用非同步的方式解決系統被鎖住的問題，但今天若遇到一個很肥～的 payload 呢？以範例來說若一個用戶送他 10 MB 的大小，一次送給 100K 個用戶就相當於 1 TB 大小的流量。</p>
-<p>這邊使用的方法是用不同的頻寬 &amp; 處理能力，並且只需要足夠的 buffer 來排除  Out of Memory 的錯誤。</p>
-<p><img src="https://i.imgur.com/10mGUaD.jpg"></p>
-<p>聽到這邊看起來是使用相關的工具來讓整個串接服務可以更有效的 Debug，最後透過 Kibana 來讓訊息可視化，讓 Debug 可以更加快速。</p>
-<blockquote>
-<p>若對相關 Debug 工具可以參考我之前寫的 <a href="https://nijialin.com/2019/11/12/sentry-in-serverless/">Sentry 文章</a></p>
-</blockquote>
-<blockquote>
-<p>Kibana 可參考： <a href="https://blog.toright.com/posts/5319/fulltext-search-elasticsearch-kibana-bigdata.html">安裝 ElasticSearch + Kibana 實現中文全文搜尋與數據分析</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過了講者一連串的火力展示後感受到 LINE 對於 open source 有多麽的重視，連 Slack 也都愛上 Armeria 這套 Java 函式庫，用於他們的軟體中並公開推薦，讓像我這種喜歡做 open source 的工程師可以燃起新希望繼續為開源做努力。<br><img src="https://i.imgur.com/eKYqMpo.png"></p>
-<p>其實還有很多技術細節的部分在簡報裡，這邊我就不再多家贅述，大家可以參考 <a href="https://github.com/line/armeria">GitHub</a>，裡面有更加詳細的用法提供給大家。</p>
-<p>這次來 LINE Developer Day 讓我感受到不同於其他大公司的文化，除了精彩的議程外也招待我們這群 LINE API Expert 前來共襄盛舉，若你也想成為 LINE API Expert，不妨拿著你的貢獻來申請看看<a href="https://www.line-community.me/contributors/request">連結</a>，或許明年我們就能一起去啦！</p>
-<p>或是你想面對面直接問問看，也可以來 <a href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Taiwan</a> 參加我們一個月一次的社群聚會喔！我們時常會邀請 LINE 的資深技術傳教士 - Evan 來為各位帶來第一手 LINE 的資訊，也許可以跟他詢問看看，或許會有意外的收穫喔！<br><img src="https://i.imgur.com/kIDIfPl.jpg"></p>
-]]></content>
-      <categories>
-        <category>研討會</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Dev Day 2019</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>原子習慣 - 閱讀心得</title>
     <url>/2021/01/01/An-Easy-Proven-Way-to-Build-Good-Habits-Break-Bad-Ones/</url>
     <content><![CDATA[<style>
@@ -706,6 +647,65 @@
         <tag>習慣</tag>
         <tag>提醒</tag>
         <tag>環境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere</title>
+    <url>/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/</url>
+    <content><![CDATA[<h1 id="Armeria-A-Microservice-Framework-Well-suited-Everywhere"><a href="#Armeria-A-Microservice-Framework-Well-suited-Everywhere" class="headerlink" title="Armeria: A Microservice Framework Well-suited Everywhere"></a>Armeria: A Microservice Framework Well-suited Everywhere</h1><p><img src="https://i.imgur.com/MNnrFnm.jpg"></p>
+<ul>
+<li><a href="https://speakerdeck.com/line_devday2019/armeria-a-microservice-framework-well-suited-everywhere">簡報連結</a></li>
+<li><a href="https://github.com/line/armeria">Github</a></li>
+<li><a href="https://line.github.io/armeria/">官網</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
+<p>本次議程是由韓國的 open source manager - <a href="https://github.com/trustin">trustin</a> 為我們帶來議程。</p>
+<p>而在今年參加八月舉辦的 COSCUP，並且在第一天的 after party 參加 LINE BoF 上就已經看到 LINE 開發的 Open Source - <a href="https://github.com/line/armeria">Armeria</a>，它是基於 Java 所撰寫的一個非同步的專案，支援 Java8, Netty, HTTP&#x2F;2, Thrift 以及 gRPC，當時聽團隊簡單介紹就覺得這個專案一定是個很不得的專案，只不過當時因為他們快速介紹兒少聽了很多細節，這次就把我聽到的細節告訴各位吧！</p>
+<blockquote>
+<p>據之前的議程的以及講者的分享說這個服務已經被應用於很多 LINE 服務裡頭，因為覺得好用才推出來🤣</p>
+</blockquote>
+<h1 id="如何讓開發者快速使用-Armeria"><a href="#如何讓開發者快速使用-Armeria" class="headerlink" title="如何讓開發者快速使用 Armeria"></a>如何讓開發者快速使用 Armeria</h1><p>接下來就用 Java code 來簡單火力展示如何用一個串聯式寫法把服務互叫起來，不管是要用什麼服務只要用串接的方式加入即可，像是 gRPC、Thrift、annotation…等等如下面幾張圖所示。</p>
+<p><img src="https://i.imgur.com/KKU0eXG.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/6rAex3K.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/mAKhwh4.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/Z9jfFkI.png"></p>
+<blockquote>
+<p>這邊看到可以這麼簡單就把一個服務叫起來，然後要讓他開發者可以很輕易地理解並上手，LINE 團隊的開發文化真的是令人佩服…</p>
+</blockquote>
+<h1 id="為什麼要做成-async-以及-reactive"><a href="#為什麼要做成-async-以及-reactive" class="headerlink" title="為什麼要做成 async 以及 reactive"></a>為什麼要做成 async 以及 reactive</h1><p>首先就先提到若 Queue 裡頭的東西若是都 sync 的話會有什麼問題，這邊就以一個 Call API 常遇到的問題 - Timeout，在大量的 Queue 在排隊時，以 sync 的方式存在時光遇到 Timeout 就會有服務器爆炸的問題，因為彼此不能影響彼此，且這件事會發生在真實世界的每個地方。<br><img src="https://i.imgur.com/Telr7lG.jpg"></p>
+<hr>
+<p><img src="https://i.imgur.com/hkltFFS.jpg"></p>
+<p>這邊講者提出的解決方案為：</p>
+<ul>
+<li>增加執行緒的標記(#)並且減少呼叫堆疊(stack)</li>
+<li>預準備 Tread pools 讓大家互相共享</li>
+<li>少調用 points</li>
+<li>使用非同步的好處就是能夠平行呼叫+較少的執行緒</li>
+</ul>
+<p>現在他們能用非同步的方式解決系統被鎖住的問題，但今天若遇到一個很肥～的 payload 呢？以範例來說若一個用戶送他 10 MB 的大小，一次送給 100K 個用戶就相當於 1 TB 大小的流量。</p>
+<p>這邊使用的方法是用不同的頻寬 &amp; 處理能力，並且只需要足夠的 buffer 來排除  Out of Memory 的錯誤。</p>
+<p><img src="https://i.imgur.com/10mGUaD.jpg"></p>
+<p>聽到這邊看起來是使用相關的工具來讓整個串接服務可以更有效的 Debug，最後透過 Kibana 來讓訊息可視化，讓 Debug 可以更加快速。</p>
+<blockquote>
+<p>若對相關 Debug 工具可以參考我之前寫的 <a href="https://nijialin.com/2019/11/12/sentry-in-serverless/">Sentry 文章</a></p>
+</blockquote>
+<blockquote>
+<p>Kibana 可參考： <a href="https://blog.toright.com/posts/5319/fulltext-search-elasticsearch-kibana-bigdata.html">安裝 ElasticSearch + Kibana 實現中文全文搜尋與數據分析</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過了講者一連串的火力展示後感受到 LINE 對於 open source 有多麽的重視，連 Slack 也都愛上 Armeria 這套 Java 函式庫，用於他們的軟體中並公開推薦，讓像我這種喜歡做 open source 的工程師可以燃起新希望繼續為開源做努力。<br><img src="https://i.imgur.com/eKYqMpo.png"></p>
+<p>其實還有很多技術細節的部分在簡報裡，這邊我就不再多家贅述，大家可以參考 <a href="https://github.com/line/armeria">GitHub</a>，裡面有更加詳細的用法提供給大家。</p>
+<p>這次來 LINE Developer Day 讓我感受到不同於其他大公司的文化，除了精彩的議程外也招待我們這群 LINE API Expert 前來共襄盛舉，若你也想成為 LINE API Expert，不妨拿著你的貢獻來申請看看<a href="https://www.line-community.me/contributors/request">連結</a>，或許明年我們就能一起去啦！</p>
+<p>或是你想面對面直接問問看，也可以來 <a href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Taiwan</a> 參加我們一個月一次的社群聚會喔！我們時常會邀請 LINE 的資深技術傳教士 - Evan 來為各位帶來第一手 LINE 的資訊，也許可以跟他詢問看看，或許會有意外的收穫喔！<br><img src="https://i.imgur.com/kIDIfPl.jpg"></p>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Dev Day 2019</tag>
       </tags>
   </entry>
   <entry>
@@ -835,75 +835,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day1 - serverless 介紹</title>
-    <url>/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/</url>
-    <content><![CDATA[<p><img src="https://i.imgur.com/abW5lFB.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)</p>
-<hr>
-<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。</p>
-<p>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login-Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～</p>
-<p>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！</p>
-<p>serverless.yaml 是該專案的設定檔，可以把它想像成是 CloudFormation 的 wrapper，事實上也的確是這樣，serverless 背後會把他轉成 CloudFormation 的 template 去發佈。這個設定檔是 serverless 的精髓所在，一切有關 API Gateway 和 Lambda 的設定都在這邊，而底層所需要的資源，他都幫你配置好了，不需要操心。 <a href="https://medium.com/kkstream/%E7%95%B6-aws-api-gateway-lambda-golang-%E9%81%87%E4%B8%8A-ci-cd-1a3b3334ebc">ref</a></p>
-<hr>
-<h1 id="Cold-start-問題"><a href="#Cold-start-問題" class="headerlink" title="Cold start 問題"></a>Cold start 問題</h1><p>依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。</p>
-<p>如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 ?，所以這部分就別擔新大力地給他用下去!</p>
-<p><img src="https://i.imgur.com/hC1Dgz4.png"></p>
-<h1 id="AWS-Lambda-限制"><a href="#AWS-Lambda-限制" class="headerlink" title="AWS Lambda 限制"></a>AWS Lambda 限制</h1><p><img src="https://i.imgur.com/mC7Y9XY.png"></p>
-<h1 id="安裝與使用"><a href="#安裝與使用" class="headerlink" title="安裝與使用"></a>安裝與使用</h1><p><a href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless.yaml 的設定參考</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/">serverless.yaml 的變數傳遞</a></p>
-<hr>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>接下來會是使用 Serverless 這個<strong>框架</strong>去實作的，使用的語言為 Python，至於為什麼會選它呢，最主要原因還是在官網上有很多 <a href="https://serverless.com/plugins/">plugin</a> 可以用 ( NodeJS &amp; Python )，開發時資源相對多，接著是 AWS Lambda 的 Code-start 最快的就屬於 NodeJS &amp; Python 了，而我原本就是寫 Ruby 來的，自然就選一個寫法相近的語言啦(好像有點牽強)，如果說你想了解 runtimes 相關的問題的話可以參考<a href="https://medium.com/the-theam-journey/benchmarking-aws-lambda-runtimes-in-2019-part-i-b1ee459a293d">這篇</a>。</p>
-<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><ul>
-<li>MacOS 10.14.6</li>
-<li><a href="https://nodejs.org/zh-tw/download/">npm</a> 6.9.0</li>
-<li><a href="https://www.python.org/downloads/">python</a> 3.7.3</li>
-<li><a href="https://github.com/serverless/serverless">Serverless 套件(框架)</a> 1.45.1</li>
-</ul>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
-<li><a href="https://zh.wikipedia.org/wiki/%E7%84%A1%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%88%E7%AE%97">Serverless wiki</a></li>
-<li><a href="https://denny.qollie.com/2016/05/22/serverless-simple-crud/">Serverless 優缺點</a></li>
-<li><a href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/limits.html">AWS Lambda 限制</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>AWS</tag>
-        <tag>Serverless</tag>
-        <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day11 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (2) - 申請一步步</title>
-    <url>/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天會帶大家如何一步一步的建立 Message api 以及需要注意設定的地方。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><ol>
-<li>首先先到 <a href="https://developers.line.biz/zh-hant/">https://developers.line.biz/zh-hant/</a> ，點選右上角的大頭貼並選擇 <code>Add new provider</code><br><img src="https://i.imgur.com/ZDumwCq.jpg"></li>
-<li>接著在 Provider name 填上自己的想要的名稱<br><img src="https://i.imgur.com/JrSgcQO.png"></li>
-<li>再次確認<br><img src="https://i.imgur.com/D86u1mQ.png"></li>
-<li>選擇想要使用那種服務，這邊我們就選擇<code>Message API</code>並按下<code>Create Channel</code><br><img src="https://i.imgur.com/8WA1uER.png"></li>
-<li>接著就開始填寫自己的機器人(channel)所需要的資訊嚕！<br><img src="https://i.imgur.com/VQWPJtn.png"></li>
-<li>這邊我們需要填寫的內容為<br>6.1. 大頭貼(option)<br>6.2. 名稱 App name (required)<br>6.3. 描述 app description (required)<br>6.4. 類別與子類別 Catagory (required)<br>6.5. 信箱 Email address (required)<br>6.6. 政策網址 Policy URL (option)<br>6.7. 服務條款網址 Term of use URL (option)</li>
-</ol>
-<p><img src="https://i.imgur.com/0Wj570j.png"><br><img src="https://i.imgur.com/7TW5dzU.png"></p>
-<hr>
-<ol start="7">
-<li>當填寫完之後的寫一步最後會需要勾兩個服務說明確認的選項並按下 Create<br><img src="https://i.imgur.com/VsLYgJK.png"></li>
-<li>如此一來就看到自己百般折騰建立出來的 Message api 啦<br><img src="https://i.imgur.com/6tBdbEa.png"></li>
-<li>滑到最下面，首先掃描 QR code 加入自己機器人的好友讓接下來好測試，接著按下圖篇右手邊的 Set message 進入調整頁面<br><img src="https://i.imgur.com/wTxU7FM.png"></li>
-<li>進入之後到下面，將<strong>歡迎訊息</strong> &amp; <strong>自動回應</strong> <code>停用</code>，並將 <strong>Webhook</strong> 打開，讓之後的串接可以透過 Webhook 打到 Serverless 上，若是前兩個回應的選項沒有關的話即使 Webhook 有啟動也會因為優先權問題被擋下來哦！<br><img src="https://i.imgur.com/gS2k9ZP.png"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>chatbot</tag>
-        <tag>Message api</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chatbot meetup #12 心得分享 - 2019/09/17</title>
     <url>/2019/09/12/Chatbot-meetup-12/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次小聚是 COSCUP 之後的第一場，趁著熱血玩兩個大型研討會的空檔舉辦了這次的小聚，先感謝各位的參與，別忘了定期關注社群，我們會在上面放出第一手 chatbot 小聚消息。<br><a href="https://www.facebook.com/groups/chatbot.tw/?ref=bookmarks">Chatbot Developers Taiwan</a></p>
@@ -964,6 +895,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Day1 - serverless 介紹</title>
+    <url>/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/</url>
+    <content><![CDATA[<p><img src="https://i.imgur.com/abW5lFB.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)</p>
+<hr>
+<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。</p>
+<p>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login-Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～</p>
+<p>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！</p>
+<p>serverless.yaml 是該專案的設定檔，可以把它想像成是 CloudFormation 的 wrapper，事實上也的確是這樣，serverless 背後會把他轉成 CloudFormation 的 template 去發佈。這個設定檔是 serverless 的精髓所在，一切有關 API Gateway 和 Lambda 的設定都在這邊，而底層所需要的資源，他都幫你配置好了，不需要操心。 <a href="https://medium.com/kkstream/%E7%95%B6-aws-api-gateway-lambda-golang-%E9%81%87%E4%B8%8A-ci-cd-1a3b3334ebc">ref</a></p>
+<hr>
+<h1 id="Cold-start-問題"><a href="#Cold-start-問題" class="headerlink" title="Cold start 問題"></a>Cold start 問題</h1><p>依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。</p>
+<p>如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 ?，所以這部分就別擔新大力地給他用下去!</p>
+<p><img src="https://i.imgur.com/hC1Dgz4.png"></p>
+<h1 id="AWS-Lambda-限制"><a href="#AWS-Lambda-限制" class="headerlink" title="AWS Lambda 限制"></a>AWS Lambda 限制</h1><p><img src="https://i.imgur.com/mC7Y9XY.png"></p>
+<h1 id="安裝與使用"><a href="#安裝與使用" class="headerlink" title="安裝與使用"></a>安裝與使用</h1><p><a href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless.yaml 的設定參考</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/">serverless.yaml 的變數傳遞</a></p>
+<hr>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>接下來會是使用 Serverless 這個<strong>框架</strong>去實作的，使用的語言為 Python，至於為什麼會選它呢，最主要原因還是在官網上有很多 <a href="https://serverless.com/plugins/">plugin</a> 可以用 ( NodeJS &amp; Python )，開發時資源相對多，接著是 AWS Lambda 的 Code-start 最快的就屬於 NodeJS &amp; Python 了，而我原本就是寫 Ruby 來的，自然就選一個寫法相近的語言啦(好像有點牽強)，如果說你想了解 runtimes 相關的問題的話可以參考<a href="https://medium.com/the-theam-journey/benchmarking-aws-lambda-runtimes-in-2019-part-i-b1ee459a293d">這篇</a>。</p>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><ul>
+<li>MacOS 10.14.6</li>
+<li><a href="https://nodejs.org/zh-tw/download/">npm</a> 6.9.0</li>
+<li><a href="https://www.python.org/downloads/">python</a> 3.7.3</li>
+<li><a href="https://github.com/serverless/serverless">Serverless 套件(框架)</a> 1.45.1</li>
+</ul>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E7%84%A1%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%88%E7%AE%97">Serverless wiki</a></li>
+<li><a href="https://denny.qollie.com/2016/05/22/serverless-simple-crud/">Serverless 優缺點</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/limits.html">AWS Lambda 限制</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Serverless</tag>
+        <tag>Lambda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day10 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (1) - 介紹</title>
     <url>/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/</url>
     <content><![CDATA[<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>LINE 在 2016 年 9 月底發表了 Messaging API 功能，用戶可以透過 Messaging API 將自家的服務內容串聯到 LINE@ 上。</p>
@@ -1013,46 +983,33 @@
       </tags>
   </entry>
   <entry>
-    <title>Day13 - 試玩 python SDK</title>
-    <url>/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前從花落落的文件中找到一個方法，像是使用 push message<br><img src="https://i.imgur.com/ZZVg7mI.png"><br>我都會笨笨的 call API 的方法去執行功能，殊不知 SDK 早就包好了，然後邊做邊罵自己為什麼要解這些 JSON (拍桌)<br>到了現在比較會看文件，才知道原來以前是自己雷自己 (捶心肝)…接下來就試玩幾個我覺得常會用到的 method 好了不廢話了，來簡單介紹一下一些常用的方法 😎</p>
-<h2 id="get-profile"><a href="#get-profile" class="headerlink" title="get_profile"></a>get_profile</h2><p>回傳使用者的個人狀態，可以透過每次的 reply 去拿到使用者的資訊，一般使用的話都話把它存下來，等之後有介接其他服務時方便使用 userId 去判斷使用者。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">profile = line_bot_api.get_profile(event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;source&#x27;</span>][<span class="string">&#x27;userId&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">        cur.execute(</span><br><span class="line">            <span class="string">f&quot;INSERT INTO users(id, name, picture) VALUES (&#x27;<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>&#x27;, &#x27;<span class="subst">&#123;name&#125;</span>&#x27;, &#x27;<span class="subst">&#123;picture&#125;</span>&#x27;)&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> <span class="comment"># 這邊簡單處理相同 id 的問題(id我有設 Private key 哦！)</span></span><br><span class="line">state = <span class="string">f&quot;Hello 👉 `<span class="subst">&#123;profile.display_name&#125;</span>` 👈&quot;</span></span><br><span class="line">line_bot_api.reply_message(token, [</span><br><span class="line">  TextSendMessage(text=state),</span><br><span class="line">  ImageSendMessage(original_content_url=profile.picture_url, preview_image_url=profile.picture_url)</span><br><span class="line">  ])</span><br></pre></td></tr></table></figure>
-
-<p>這邊搭配 <code>ImageSendMessage</code> 來幫忙發送圖片，他主要是透過 original_content_url 以及 preview_image_url 這兩個參數來幫忙轉成圖片</p>
-<ul>
-<li>original 就是讓使用者看到的圖片</li>
-<li>preview 在還沒載入時的樣子</li>
-</ul>
-<h2 id="push-message"><a href="#push-message" class="headerlink" title="push_message"></a>push_message</h2><p>既然都取到使用者的 id 了，下一步就是推訊息給使用者啦!</p>
-<p>建立一個 GET 的路由在 &#x2F;webhook 上，收到 query string 的 msg 的值並找到所有使用者的 id 並逐一推送訊息。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">line_bot_api = LineBotApi(os.getenv(<span class="string">&#x27;LINE_CHANNEL_TOKEN&#x27;</span>))</span><br><span class="line">handler = WebhookHandler(os.getenv(<span class="string">&#x27;LINE_CHANNEL_SECRET_KEY&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">    msg = request.args.get(<span class="string">&#x27;msg&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">        cur.execute(<span class="string">&quot;SELECT * FROM users&quot;</span>)</span><br><span class="line">        fetch = cur.fetchall()</span><br><span class="line">    <span class="keyword">for</span> user <span class="keyword">in</span> fetch:</span><br><span class="line">        self.line_bot_api.push_message(</span><br><span class="line">            user[<span class="string">&#x27;id&#x27;</span>], TextSendMessage(text=msg))</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;message&#x27;</span>: msg&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/MHfYmlZ.png"></p>
+    <title>Day11 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (2) - 申請一步步</title>
+    <url>/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天會帶大家如何一步一步的建立 Message api 以及需要注意設定的地方。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><ol>
+<li>首先先到 <a href="https://developers.line.biz/zh-hant/">https://developers.line.biz/zh-hant/</a> ，點選右上角的大頭貼並選擇 <code>Add new provider</code><br><img src="https://i.imgur.com/ZDumwCq.jpg"></li>
+<li>接著在 Provider name 填上自己的想要的名稱<br><img src="https://i.imgur.com/JrSgcQO.png"></li>
+<li>再次確認<br><img src="https://i.imgur.com/D86u1mQ.png"></li>
+<li>選擇想要使用那種服務，這邊我們就選擇<code>Message API</code>並按下<code>Create Channel</code><br><img src="https://i.imgur.com/8WA1uER.png"></li>
+<li>接著就開始填寫自己的機器人(channel)所需要的資訊嚕！<br><img src="https://i.imgur.com/VQWPJtn.png"></li>
+<li>這邊我們需要填寫的內容為<br>6.1. 大頭貼(option)<br>6.2. 名稱 App name (required)<br>6.3. 描述 app description (required)<br>6.4. 類別與子類別 Catagory (required)<br>6.5. 信箱 Email address (required)<br>6.6. 政策網址 Policy URL (option)<br>6.7. 服務條款網址 Term of use URL (option)</li>
+</ol>
+<p><img src="https://i.imgur.com/0Wj570j.png"><br><img src="https://i.imgur.com/7TW5dzU.png"></p>
 <hr>
-<p><img src="https://i.imgur.com/x7fgvhY.png"></p>
-<h2 id="Reply-Mode"><a href="#Reply-Mode" class="headerlink" title="Reply Mode"></a>Reply Mode</h2><h3 id="LocationSendMessage"><a href="#LocationSendMessage" class="headerlink" title="LocationSendMessage"></a>LocationSendMessage</h3><p>這邊直接拿 SDK 的範例來用，若是有在做商家功能的機器人可以使用這個方式讓使用者接收到商家訊息～</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.line_bot_api.reply_message(token, LocationSendMessage(</span><br><span class="line">    title=<span class="string">&#x27;my location&#x27;</span>,</span><br><span class="line">    address=<span class="string">&#x27;Tokyo&#x27;</span>,</span><br><span class="line">    latitude=<span class="number">35.65910807942215</span>,</span><br><span class="line">    longitude=<span class="number">139.70372892916203</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure>
-
-<h3 id="StickerSendMessage"><a href="#StickerSendMessage" class="headerlink" title="StickerSendMessage"></a>StickerSendMessage</h3><p>這個方法可以搭配使用，讓整個回應看起來跟真實吧！</p>
-<blockquote>
-<p>不知道清單能用什麼可以<a href="https://developers.line.biz/media/messaging-api/sticker_list.pdf">參考</a>，</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.line_bot_api.reply_message(token, StickerSendMessage(package_id=<span class="string">&#x27;1&#x27;</span>,sticker_id=<span class="string">&#x27;1&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<h3 id="Button-Template"><a href="#Button-Template" class="headerlink" title="Button Template"></a>Button Template</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">buttons_template_message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">&#x27;Buttons template&#x27;</span>,</span><br><span class="line">    template=ButtonsTemplate(</span><br><span class="line">        thumbnail_image_url=<span class="string">f&#x27;<span class="subst">&#123;picture&#125;</span>.jpg&#x27;</span>,</span><br><span class="line">        title=<span class="string">&#x27;Menu&#x27;</span>,</span><br><span class="line">        text=<span class="string">&#x27;Please select&#x27;</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackAction(</span><br><span class="line">                label=<span class="string">&#x27;postback&#x27;</span>,</span><br><span class="line">                display_text=<span class="string">&#x27;postback text&#x27;</span>,</span><br><span class="line">                data=<span class="string">&#x27;action=buy&amp;itemid=1&#x27;</span></span><br><span class="line">            ),</span><br><span class="line">            MessageAction(</span><br><span class="line">                label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                text=<span class="string">&#x27;message text&#x27;</span></span><br><span class="line">            ),</span><br><span class="line">            URIAction(</span><br><span class="line">                label=<span class="string">&#x27;uri&#x27;</span>,</span><br><span class="line">                uri=<span class="string">&#x27;http://example.com/&#x27;</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">self.line_bot_api.reply_message(token, buttons_template_message)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/T30NNHt.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>簡單玩了幾個 API，大概就這幾個比較常搭配著使用，用過之後才知道其實有好多 API 我都還不是很清楚用法 🤣<br>而 LINE 最近更新了他們文件的功能，多了一個<code>Try</code>的按鈕提供使用者可以線上直接測 API，只是像是 push messages 這個就剛好沒有 😓，但至少有很多 API 不用通靈去測試，直接拿著 Token 在網頁上測試嚕！<br><a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">Doc Sample</a><br><img src="https://i.imgur.com/xfk13a3.png"></p>
-<p>Code is <a href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/message_api_controller.py">here</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">LINE develop page</a></p>
+<ol start="7">
+<li>當填寫完之後的寫一步最後會需要勾兩個服務說明確認的選項並按下 Create<br><img src="https://i.imgur.com/VsLYgJK.png"></li>
+<li>如此一來就看到自己百般折騰建立出來的 Message api 啦<br><img src="https://i.imgur.com/6tBdbEa.png"></li>
+<li>滑到最下面，首先掃描 QR code 加入自己機器人的好友讓接下來好測試，接著按下圖篇右手邊的 Set message 進入調整頁面<br><img src="https://i.imgur.com/wTxU7FM.png"></li>
+<li>進入之後到下面，將<strong>歡迎訊息</strong> &amp; <strong>自動回應</strong> <code>停用</code>，並將 <strong>Webhook</strong> 打開，讓之後的串接可以透過 Webhook 打到 Serverless 上，若是前兩個回應的選項沒有關的話即使 Webhook 有啟動也會因為優先權問題被擋下來哦！<br><img src="https://i.imgur.com/gS2k9ZP.png"></li>
+</ol>
 ]]></content>
       <categories>
         <category>2019鐵人賽</category>
       </categories>
       <tags>
-        <tag>LINE SDK</tag>
-        <tag>python</tag>
+        <tag>LINE</tag>
+        <tag>chatbot</tag>
+        <tag>Message api</tag>
       </tags>
   </entry>
   <entry>
@@ -1097,6 +1054,49 @@
         <tag>LINE</tag>
         <tag>chatbot</tag>
         <tag>Message api</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day13 - 試玩 python SDK</title>
+    <url>/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前從花落落的文件中找到一個方法，像是使用 push message<br><img src="https://i.imgur.com/ZZVg7mI.png"><br>我都會笨笨的 call API 的方法去執行功能，殊不知 SDK 早就包好了，然後邊做邊罵自己為什麼要解這些 JSON (拍桌)<br>到了現在比較會看文件，才知道原來以前是自己雷自己 (捶心肝)…接下來就試玩幾個我覺得常會用到的 method 好了不廢話了，來簡單介紹一下一些常用的方法 😎</p>
+<h2 id="get-profile"><a href="#get-profile" class="headerlink" title="get_profile"></a>get_profile</h2><p>回傳使用者的個人狀態，可以透過每次的 reply 去拿到使用者的資訊，一般使用的話都話把它存下來，等之後有介接其他服務時方便使用 userId 去判斷使用者。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">profile = line_bot_api.get_profile(event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;source&#x27;</span>][<span class="string">&#x27;userId&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">        cur.execute(</span><br><span class="line">            <span class="string">f&quot;INSERT INTO users(id, name, picture) VALUES (&#x27;<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>&#x27;, &#x27;<span class="subst">&#123;name&#125;</span>&#x27;, &#x27;<span class="subst">&#123;picture&#125;</span>&#x27;)&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> <span class="comment"># 這邊簡單處理相同 id 的問題(id我有設 Private key 哦！)</span></span><br><span class="line">state = <span class="string">f&quot;Hello 👉 `<span class="subst">&#123;profile.display_name&#125;</span>` 👈&quot;</span></span><br><span class="line">line_bot_api.reply_message(token, [</span><br><span class="line">  TextSendMessage(text=state),</span><br><span class="line">  ImageSendMessage(original_content_url=profile.picture_url, preview_image_url=profile.picture_url)</span><br><span class="line">  ])</span><br></pre></td></tr></table></figure>
+
+<p>這邊搭配 <code>ImageSendMessage</code> 來幫忙發送圖片，他主要是透過 original_content_url 以及 preview_image_url 這兩個參數來幫忙轉成圖片</p>
+<ul>
+<li>original 就是讓使用者看到的圖片</li>
+<li>preview 在還沒載入時的樣子</li>
+</ul>
+<h2 id="push-message"><a href="#push-message" class="headerlink" title="push_message"></a>push_message</h2><p>既然都取到使用者的 id 了，下一步就是推訊息給使用者啦!</p>
+<p>建立一個 GET 的路由在 &#x2F;webhook 上，收到 query string 的 msg 的值並找到所有使用者的 id 並逐一推送訊息。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">line_bot_api = LineBotApi(os.getenv(<span class="string">&#x27;LINE_CHANNEL_TOKEN&#x27;</span>))</span><br><span class="line">handler = WebhookHandler(os.getenv(<span class="string">&#x27;LINE_CHANNEL_SECRET_KEY&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">    msg = request.args.get(<span class="string">&#x27;msg&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">        cur.execute(<span class="string">&quot;SELECT * FROM users&quot;</span>)</span><br><span class="line">        fetch = cur.fetchall()</span><br><span class="line">    <span class="keyword">for</span> user <span class="keyword">in</span> fetch:</span><br><span class="line">        self.line_bot_api.push_message(</span><br><span class="line">            user[<span class="string">&#x27;id&#x27;</span>], TextSendMessage(text=msg))</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;message&#x27;</span>: msg&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/MHfYmlZ.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/x7fgvhY.png"></p>
+<h2 id="Reply-Mode"><a href="#Reply-Mode" class="headerlink" title="Reply Mode"></a>Reply Mode</h2><h3 id="LocationSendMessage"><a href="#LocationSendMessage" class="headerlink" title="LocationSendMessage"></a>LocationSendMessage</h3><p>這邊直接拿 SDK 的範例來用，若是有在做商家功能的機器人可以使用這個方式讓使用者接收到商家訊息～</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.line_bot_api.reply_message(token, LocationSendMessage(</span><br><span class="line">    title=<span class="string">&#x27;my location&#x27;</span>,</span><br><span class="line">    address=<span class="string">&#x27;Tokyo&#x27;</span>,</span><br><span class="line">    latitude=<span class="number">35.65910807942215</span>,</span><br><span class="line">    longitude=<span class="number">139.70372892916203</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+
+<h3 id="StickerSendMessage"><a href="#StickerSendMessage" class="headerlink" title="StickerSendMessage"></a>StickerSendMessage</h3><p>這個方法可以搭配使用，讓整個回應看起來跟真實吧！</p>
+<blockquote>
+<p>不知道清單能用什麼可以<a href="https://developers.line.biz/media/messaging-api/sticker_list.pdf">參考</a>，</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.line_bot_api.reply_message(token, StickerSendMessage(package_id=<span class="string">&#x27;1&#x27;</span>,sticker_id=<span class="string">&#x27;1&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Button-Template"><a href="#Button-Template" class="headerlink" title="Button Template"></a>Button Template</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">buttons_template_message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">&#x27;Buttons template&#x27;</span>,</span><br><span class="line">    template=ButtonsTemplate(</span><br><span class="line">        thumbnail_image_url=<span class="string">f&#x27;<span class="subst">&#123;picture&#125;</span>.jpg&#x27;</span>,</span><br><span class="line">        title=<span class="string">&#x27;Menu&#x27;</span>,</span><br><span class="line">        text=<span class="string">&#x27;Please select&#x27;</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackAction(</span><br><span class="line">                label=<span class="string">&#x27;postback&#x27;</span>,</span><br><span class="line">                display_text=<span class="string">&#x27;postback text&#x27;</span>,</span><br><span class="line">                data=<span class="string">&#x27;action=buy&amp;itemid=1&#x27;</span></span><br><span class="line">            ),</span><br><span class="line">            MessageAction(</span><br><span class="line">                label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                text=<span class="string">&#x27;message text&#x27;</span></span><br><span class="line">            ),</span><br><span class="line">            URIAction(</span><br><span class="line">                label=<span class="string">&#x27;uri&#x27;</span>,</span><br><span class="line">                uri=<span class="string">&#x27;http://example.com/&#x27;</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">self.line_bot_api.reply_message(token, buttons_template_message)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/T30NNHt.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>簡單玩了幾個 API，大概就這幾個比較常搭配著使用，用過之後才知道其實有好多 API 我都還不是很清楚用法 🤣<br>而 LINE 最近更新了他們文件的功能，多了一個<code>Try</code>的按鈕提供使用者可以線上直接測 API，只是像是 push messages 這個就剛好沒有 😓，但至少有很多 API 不用通靈去測試，直接拿著 Token 在網頁上測試嚕！<br><a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">Doc Sample</a><br><img src="https://i.imgur.com/xfk13a3.png"></p>
+<p>Code is <a href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/message_api_controller.py">here</a></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">LINE develop page</a></p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>LINE SDK</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1184,6 +1184,35 @@
       </tags>
   </entry>
   <entry>
+    <title>Day16 - 實作一個上下頁的 richmenu</title>
+    <url>/2019/09/30/Day16-%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E4%B8%8A%E4%B8%8B%E9%A0%81%E7%9A%84-richmenu/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著很多人的機器人都有上下頁的功能就心癢癢，一直沒有實際去操作，雖然看起來好像不難，但身為一個肥宅就是只有懶，到了現在才把他實作出來(羞)，以下就帶大家來做嚕！</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>首先我做了兩個超級陽春的圖片，來展示一下上下一頁的樣子(超弱)<br>(1)<br><img src="https://i.imgur.com/Rs5jnJ8.png"></p>
+<hr>
+<p>(2)<br><img src="https://i.imgur.com/97XG3mv.png"></p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我把上一篇的 richmenu_api_controller.py 的 create 部分改編了一下，<br>增加了讀 <code>state</code> Query string 的一個參數，用<code>up</code>&amp;<code>down</code>來簡單判斷上傳的內容要傳什麼</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> usage == <span class="string">&#x27;create&#x27;</span>:</span><br><span class="line">            rich_menu_to_create = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">if</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;up&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第一頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;下一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">elif</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;down&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第二頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(</span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;上一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是測試使用&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=URIAction(label=<span class="string">&#x27;Go to line.me&#x27;</span>, uri=<span class="string">&#x27;https://line.me&#x27;</span>))]</span><br><span class="line">                )</span><br><span class="line">            rich_menu_id = self.line_bot_api.create_rich_menu(</span><br><span class="line">                rich_menu=rich_menu_to_create)</span><br><span class="line">            print(rich_menu_id)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;id&#x27;</span>: rich_menu_id&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>接著回到 <code>message_api_controller.py</code> 把前幾篇的 reply SDK code 先註解掉，並加入以下的 code</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> message == <span class="string">&quot;上一頁&quot;</span> <span class="keyword">or</span> message == <span class="string">&quot;下一頁&quot;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        rich_menu_id = self.line_bot_api.get_rich_menu_id_of_user(<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># link default rich menu</span></span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rich_menu_id == <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-e31be74ad7e577b4752ab70c9c2a3fba&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    self.line_bot_api.reply_message(token, TextSendMessage(text=message))</span><br></pre></td></tr></table></figure>
+
+<p>這邊簡單判斷讀取使用者回應來進入控制的程式碼，透過<code>get_rich_menu_id_of_user</code>來抓取當前使用者的 rich menu，但因為他是會返回 Error response，所以這邊就使用<code>try</code> <code>except</code>來包<br>except 部分就是透過<code>link_rich_menu_to_user</code>來設定當前使用者為第一張圖片的 <code>richmenu id</code>，下面的判斷式就是讓他互換成對應的 rich menu id 來換頁。</p>
+<blockquote>
+<p>Richmenu 那邊事實上是要用 <code>postback</code>，因為要 demo 的關係我就弄成一般的文字格式，因為這個上下頁字串的理論上是不該讓使用者看到的，只要用圖片來引導使用者就好。</p>
+</blockquote>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><img src="https://i.imgur.com/QL3m90U.png"><br><img src="https://i.imgur.com/DhBRsyT.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>透過這次練習大概把 LINE SDK 玩得差不多了(<code>message api</code> &amp; <code>richmenu api</code>)，寫到了今天真的是苦讀 LINE 的文件啊，都要以防萬一我這狗眼沒有看錯而寫出錯誤的程式碼 XD，到這打完收工，繼續期待下一篇～</p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>chatbot</tag>
+        <tag>Richmenu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day17 - 看一下自己寫的東西都去哪了</title>
     <url>/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用 Serverless 用得這麼爽，也是時候來看一下他的資源在哪，距離我上次自己手動上傳 python 檔已經是 N 個月之前的事了(遠望)，當時也沒用過什麼<code>Api Gateway</code>相關的服務，以下就帶大家來介紹一下嚕！</p>
@@ -1219,35 +1248,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day16 - 實作一個上下頁的 richmenu</title>
-    <url>/2019/09/30/Day16-%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E4%B8%8A%E4%B8%8B%E9%A0%81%E7%9A%84-richmenu/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著很多人的機器人都有上下頁的功能就心癢癢，一直沒有實際去操作，雖然看起來好像不難，但身為一個肥宅就是只有懶，到了現在才把他實作出來(羞)，以下就帶大家來做嚕！</p>
-<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>首先我做了兩個超級陽春的圖片，來展示一下上下一頁的樣子(超弱)<br>(1)<br><img src="https://i.imgur.com/Rs5jnJ8.png"></p>
-<hr>
-<p>(2)<br><img src="https://i.imgur.com/97XG3mv.png"></p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我把上一篇的 richmenu_api_controller.py 的 create 部分改編了一下，<br>增加了讀 <code>state</code> Query string 的一個參數，用<code>up</code>&amp;<code>down</code>來簡單判斷上傳的內容要傳什麼</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> usage == <span class="string">&#x27;create&#x27;</span>:</span><br><span class="line">            rich_menu_to_create = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">if</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;up&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第一頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;下一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">elif</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;down&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第二頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(</span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;上一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是測試使用&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=URIAction(label=<span class="string">&#x27;Go to line.me&#x27;</span>, uri=<span class="string">&#x27;https://line.me&#x27;</span>))]</span><br><span class="line">                )</span><br><span class="line">            rich_menu_id = self.line_bot_api.create_rich_menu(</span><br><span class="line">                rich_menu=rich_menu_to_create)</span><br><span class="line">            print(rich_menu_id)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;id&#x27;</span>: rich_menu_id&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<p>接著回到 <code>message_api_controller.py</code> 把前幾篇的 reply SDK code 先註解掉，並加入以下的 code</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> message == <span class="string">&quot;上一頁&quot;</span> <span class="keyword">or</span> message == <span class="string">&quot;下一頁&quot;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        rich_menu_id = self.line_bot_api.get_rich_menu_id_of_user(<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># link default rich menu</span></span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rich_menu_id == <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-e31be74ad7e577b4752ab70c9c2a3fba&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    self.line_bot_api.reply_message(token, TextSendMessage(text=message))</span><br></pre></td></tr></table></figure>
-
-<p>這邊簡單判斷讀取使用者回應來進入控制的程式碼，透過<code>get_rich_menu_id_of_user</code>來抓取當前使用者的 rich menu，但因為他是會返回 Error response，所以這邊就使用<code>try</code> <code>except</code>來包<br>except 部分就是透過<code>link_rich_menu_to_user</code>來設定當前使用者為第一張圖片的 <code>richmenu id</code>，下面的判斷式就是讓他互換成對應的 rich menu id 來換頁。</p>
-<blockquote>
-<p>Richmenu 那邊事實上是要用 <code>postback</code>，因為要 demo 的關係我就弄成一般的文字格式，因為這個上下頁字串的理論上是不該讓使用者看到的，只要用圖片來引導使用者就好。</p>
-</blockquote>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><img src="https://i.imgur.com/QL3m90U.png"><br><img src="https://i.imgur.com/DhBRsyT.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>透過這次練習大概把 LINE SDK 玩得差不多了(<code>message api</code> &amp; <code>richmenu api</code>)，寫到了今天真的是苦讀 LINE 的文件啊，都要以防萬一我這狗眼沒有看錯而寫出錯誤的程式碼 XD，到這打完收工，繼續期待下一篇～</p>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>chatbot</tag>
-        <tag>Richmenu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day18 - 在 Serverless 上設定個排程來發送空氣污染檢測吧</title>
     <url>/2019/10/02/Day18-%E5%9C%A8-Serverless-%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%80%8B%E6%8E%92%E7%A8%8B%E4%BE%86%E7%99%BC%E9%80%81%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93%E6%AA%A2%E6%B8%AC%E5%90%A7/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>過往寫了這麼多的 api，總是會有特定的功能會需要輪詢資料庫或是監聽某些事件，以前還要到弄個虛擬機寫腳本用 crontab，這時候 Lambda 的用處就來啦！不只可以處理 api 的事情，還可以設定排程做事，太舒服啦，以下就來介紹一下～</p>
@@ -1274,6 +1274,33 @@
         <tag>Serverless</tag>
         <tag>Lambda</tag>
         <tag>Schedule</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day19 - LINE LOGIN 介紹</title>
+    <url>/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>LINE 中文版也上線啦 <a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">URL</a><br>去某些網站登入你可能會有像下面這樣<br><img src="https://i.imgur.com/GNSYfYX.png"><br>或者是你有玩過 LINE Rangers (怎麼感覺我好老)，就會看到他們登入畫面有個登入鈕，按下去按確認後就登入，使用者不用輸入帳號密碼。<br><img src="https://i.imgur.com/tbOfUET.jpg"><br>這個機制被稱為 SSO (single sign-on)，它是透過 OAuth2 的機制來做認證，因為不儲存密碼除了可以降低儲存第三方網站的風險，以及使用者不需要記憶各種不同的密碼所帶來困擾，像是 Facebook、Google、LINE…都有相關的機制可以串連 SSO 的服務。</p>
+<p>以下會介紹 LINE Login 的流程。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這裡我使用 LINE Login<br><img src="https://i.imgur.com/jouHzB0.png"></p>
+<ol>
+<li>服務要引導使用者到 LINE 認證頁面並帶著必填的欄位。</li>
+<li>LINE 會在瀏覽器上打開認證頁面，使用者必須按下同意才會進行認證。</li>
+<li>LINE 會透過設定過的 <code>redirect_uri</code> 還給你一個 <code>authorization code</code> 以及 <code>state</code> 在 Query string 上。</li>
+<li>你的服務需要將 <code>authorization code</code> 打到<code>https://api.line.me/oauth2/v2.1/token</code></li>
+<li>LINE 確認完之後就會送你一個 <code>access token</code> 嚕！<blockquote>
+<p>可以拿透過 <a href="https://developers.line.biz/en/reference/social-api/">social API</a> 去拿到相關資訊</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>下一篇再帶著大家申請一個 LINE Login 的服務並建立一個簡單的註冊頁面～</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83">OAuth wiki</a><br><a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/">LINE overview</a><br><a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">LINE 中文文件</a></p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>LINE Login</tag>
       </tags>
   </entry>
   <entry>
@@ -1358,23 +1385,11 @@
       </tags>
   </entry>
   <entry>
-    <title>Day19 - LINE LOGIN 介紹</title>
-    <url>/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>LINE 中文版也上線啦 <a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">URL</a><br>去某些網站登入你可能會有像下面這樣<br><img src="https://i.imgur.com/GNSYfYX.png"><br>或者是你有玩過 LINE Rangers (怎麼感覺我好老)，就會看到他們登入畫面有個登入鈕，按下去按確認後就登入，使用者不用輸入帳號密碼。<br><img src="https://i.imgur.com/tbOfUET.jpg"><br>這個機制被稱為 SSO (single sign-on)，它是透過 OAuth2 的機制來做認證，因為不儲存密碼除了可以降低儲存第三方網站的風險，以及使用者不需要記憶各種不同的密碼所帶來困擾，像是 Facebook、Google、LINE…都有相關的機制可以串連 SSO 的服務。</p>
-<p>以下會介紹 LINE Login 的流程。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這裡我使用 LINE Login<br><img src="https://i.imgur.com/jouHzB0.png"></p>
-<ol>
-<li>服務要引導使用者到 LINE 認證頁面並帶著必填的欄位。</li>
-<li>LINE 會在瀏覽器上打開認證頁面，使用者必須按下同意才會進行認證。</li>
-<li>LINE 會透過設定過的 <code>redirect_uri</code> 還給你一個 <code>authorization code</code> 以及 <code>state</code> 在 Query string 上。</li>
-<li>你的服務需要將 <code>authorization code</code> 打到<code>https://api.line.me/oauth2/v2.1/token</code></li>
-<li>LINE 確認完之後就會送你一個 <code>access token</code> 嚕！<blockquote>
-<p>可以拿透過 <a href="https://developers.line.biz/en/reference/social-api/">social API</a> 去拿到相關資訊</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>下一篇再帶著大家申請一個 LINE Login 的服務並建立一個簡單的註冊頁面～</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83">OAuth wiki</a><br><a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/">LINE overview</a><br><a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">LINE 中文文件</a></p>
+    <title>Day20 - LINE Login 申請與基本頁面</title>
+    <url>/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇介紹了好多了，這邊就不廢話了，直接就帶大家申請一個 LINE Login 的服務。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>首先到自己的開發者頁面按<code>+</code>，並選擇最左邊的選項<br><img src="https://i.imgur.com/c9JI0vX.jpg"><br>接著輸入<code>App name</code>(服務名稱)、<code>App description</code>(服務簡介)，因為我們是實作 API ，所以選擇<code>Use WEB</code>的選項，接著再輸入<code>email</code><br><img src="https://i.imgur.com/AA8NiF8.png"><br>把該填的填完之後按下送出就會看到有一個新的服務嚕！<br><img src="https://i.imgur.com/RBM1HdJ.jpg"><br>點進去後往下滑，可以看到有個 <code>link to this channel</code> 的選項，這邊選擇一開始建立的那隻機器人，綁定之後就變它的形狀啦(?)<br><img src="https://i.imgur.com/ES4wcHn.png"><br>接著再往下會看到 Email 的狀態是 Unapplied，然後按下右邊的<code>Submit</code><br><img src="https://i.imgur.com/SHgQYsU.png"><br>會看到這樣子的一個框框，把兩個框框打勾並選擇一張圖片上傳，這部分就算是申請帳號下面的同意服務條款一樣，圖片就上傳自己希望當使用者到你頁面的時候想看到的圖片 🤣，送出之後就會看到狀態改成 <code>Applied</code> 了<br><img src="https://i.imgur.com/da7zYPg.jpg"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>很多時候實作對我們來說已經不是什麼問題了，重點是在找不到服務要怎麼去申請 😓，這篇也算是記錄一下申請的步驟細節，接下來會實作個簡單的認證頁面以及 API，打完收工嚕！</p>
 ]]></content>
       <categories>
         <category>2019鐵人賽</category>
@@ -1412,21 +1427,6 @@
       <tags>
         <tag>LINE</tag>
         <tag>S3</tag>
-        <tag>LINE Login</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day20 - LINE Login 申請與基本頁面</title>
-    <url>/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇介紹了好多了，這邊就不廢話了，直接就帶大家申請一個 LINE Login 的服務。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>首先到自己的開發者頁面按<code>+</code>，並選擇最左邊的選項<br><img src="https://i.imgur.com/c9JI0vX.jpg"><br>接著輸入<code>App name</code>(服務名稱)、<code>App description</code>(服務簡介)，因為我們是實作 API ，所以選擇<code>Use WEB</code>的選項，接著再輸入<code>email</code><br><img src="https://i.imgur.com/AA8NiF8.png"><br>把該填的填完之後按下送出就會看到有一個新的服務嚕！<br><img src="https://i.imgur.com/RBM1HdJ.jpg"><br>點進去後往下滑，可以看到有個 <code>link to this channel</code> 的選項，這邊選擇一開始建立的那隻機器人，綁定之後就變它的形狀啦(?)<br><img src="https://i.imgur.com/ES4wcHn.png"><br>接著再往下會看到 Email 的狀態是 Unapplied，然後按下右邊的<code>Submit</code><br><img src="https://i.imgur.com/SHgQYsU.png"><br>會看到這樣子的一個框框，把兩個框框打勾並選擇一張圖片上傳，這部分就算是申請帳號下面的同意服務條款一樣，圖片就上傳自己希望當使用者到你頁面的時候想看到的圖片 🤣，送出之後就會看到狀態改成 <code>Applied</code> 了<br><img src="https://i.imgur.com/da7zYPg.jpg"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>很多時候實作對我們來說已經不是什麼問題了，重點是在找不到服務要怎麼去申請 😓，這篇也算是記錄一下申請的步驟細節，接下來會實作個簡單的認證頁面以及 API，打完收工嚕！</p>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
         <tag>LINE Login</tag>
       </tags>
   </entry>
@@ -1489,6 +1489,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Day24 - 簡單使用 LINE LIFF API</title>
+    <url>/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下就為大家帶來簡單的實作以及如何去使用它。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>在<code>views/</code>下新增一個<code>liff_test.html</code>並加入以下內容</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    &lt;meta</span><br><span class="line">      name=&quot;viewport&quot;</span><br><span class="line">      content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://d.line-scdn.net/liff/1.0/sdk.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">initializeApp</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#userid&quot;</span>).val(data.context.userId);</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">      $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        liff.init(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">          initializeApp(data);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonGetProfile&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          liff.getProfile().then(<span class="function"><span class="params">profile</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">&quot;#UserInfo&quot;</span>).val(profile.displayName);</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonSendMsg&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">          liff</span><br><span class="line">            .sendMessages([</span><br><span class="line">              &#123;</span><br><span class="line"><span class="javascript">                type: <span class="string">&quot;text&quot;</span>,</span></span><br><span class="line"><span class="javascript">                text: $(<span class="string">&quot;#msg&quot;</span>).val()</span></span><br><span class="line">              &#125;</span><br><span class="line">            ])</span><br><span class="line"><span class="javascript">            .then(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">              alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line"><span class="javascript">              liff.closeWindow(); <span class="comment">// 關掉頁面</span></span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;liff_btn&quot;</span>&gt;</span>Get user profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>user id:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;userid&quot;</span> /&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonGetProfile&quot;</span>&gt;</span>Get Profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;UserInfo&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>要傳送的訊息:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">value</span>=<span class="string">&quot;測試&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonSendMsg&quot;</span>&gt;</span>要傳送的訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上參考來自<a href="http://studyhost.blogspot.com/2018/06/linebot23-line-liff-app.html">董老師的部落格</a></p>
+</blockquote>
+<blockquote>
+<p>詳細的 LIFF API 文件可以<a href="https://developers.line.biz/en/reference/liff/">參考</a></p>
+</blockquote>
+<p>接下來按著之前做過的一樣把這個檔案送到<code>S3</code>裡，接著它的網址複製起來<br><img src="https://i.imgur.com/wgVJ9js.png"></p>
+<p>接著來去之前建立機器人的開發者頁面裡按下最右邊的<code>LIFF</code><br><img src="https://i.imgur.com/B593Hdt.png"><br>按下去之後呢，再來按下<code>add</code><br><img src="https://i.imgur.com/5dNr9G7.png"><br>跑出這個頁面後，<code>Name</code>好辨認為主、<code>Size</code>選擇滿版(Full)、<code>Endpoint URL</code>就把剛剛複製起來的 S3 網址放進去後按<code>Confirm</code><br><img src="https://i.imgur.com/NQD9Mwv.png"><br>大概內容會長得像這樣<br><img src="https://i.imgur.com/WoTYxpv.png"><br>建立成功後往下滑會看到 LINE 給你一個屬於他們的網址，接著可以把它貼到你的機器人上(或者任何聊天室)<br><img src="https://i.imgur.com/wN69WDJ.png"><br>點下去之後就會看到來自 LIFF 的 Webview 囉！<br><img src="https://i.imgur.com/aYztzUi.jpg"><br>接下來就可以開始玩裡面的功能了 🤣</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LIFF 整合的功能讓開發者在 Bot 裡不好實現的功能透過 Webview 的方式讓使用者可以到頁面上做邏輯處理，透過兩種的結合讓整體的應用就有更多的變化，這邊若要給使用者個話就把 <code>line://xxxoxx</code> 製作成 flex message 或者乾脆傳給使用者，引導他點選，如此就能讓使用者到自己設計的頁面上了。</p>
+<p>這邊額外補充一點，有看到程式碼裡面可以拉到<code>Query string</code>嗎？事實上可以透過<code>Query string</code>讓使用者帶些參數來做更多的判斷，像是卡米哥做的<a href="https://github.com/etrex/kamiliff">Kamiliff</a>就是讓使用者在點選後判斷這個 LIFF 的 Size，在導去對應的路由去做處理，這樣子使用者在建立 LIFF 的時候就不用一個頁面弄一個，否則這樣在 dev 轉 prod 的時候應該會弄到很生氣 🤣。</p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>LIFF</tag>
+        <tag>webview</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day25 - Lambda 好像有時候一開始回應很久？用 warm-up 來熱機吧</title>
     <url>/2019/10/09/Day25-Lambda-%E5%A5%BD%E5%83%8F%E6%9C%89%E6%99%82%E5%80%99%E4%B8%80%E9%96%8B%E5%A7%8B%E5%9B%9E%E6%87%89%E5%BE%88%E4%B9%85%EF%BC%9F%E7%94%A8-warm-up-%E4%BE%86%E7%86%B1%E6%A9%9F%E5%90%A7/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇會介紹 npm 套件庫裡的 <a href="https://www.npmjs.com/package/serverless-plugin-warmup">Serverless-plugin-warmup</a>，裡面介紹了很多參數可以使用，以下會簡介如何引入它。</p>
@@ -1527,33 +1554,6 @@
         <tag>Serverless</tag>
         <tag>Lambda</tag>
         <tag>warm-up</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day24 - 簡單使用 LINE LIFF API</title>
-    <url>/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下就為大家帶來簡單的實作以及如何去使用它。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>在<code>views/</code>下新增一個<code>liff_test.html</code>並加入以下內容</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    &lt;meta</span><br><span class="line">      name=&quot;viewport&quot;</span><br><span class="line">      content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://d.line-scdn.net/liff/1.0/sdk.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">initializeApp</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#userid&quot;</span>).val(data.context.userId);</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">      $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        liff.init(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">          initializeApp(data);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonGetProfile&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          liff.getProfile().then(<span class="function"><span class="params">profile</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">&quot;#UserInfo&quot;</span>).val(profile.displayName);</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonSendMsg&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">          liff</span><br><span class="line">            .sendMessages([</span><br><span class="line">              &#123;</span><br><span class="line"><span class="javascript">                type: <span class="string">&quot;text&quot;</span>,</span></span><br><span class="line"><span class="javascript">                text: $(<span class="string">&quot;#msg&quot;</span>).val()</span></span><br><span class="line">              &#125;</span><br><span class="line">            ])</span><br><span class="line"><span class="javascript">            .then(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">              alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line"><span class="javascript">              liff.closeWindow(); <span class="comment">// 關掉頁面</span></span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;liff_btn&quot;</span>&gt;</span>Get user profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>user id:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;userid&quot;</span> /&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonGetProfile&quot;</span>&gt;</span>Get Profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;UserInfo&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>要傳送的訊息:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">value</span>=<span class="string">&quot;測試&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonSendMsg&quot;</span>&gt;</span>要傳送的訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>以上參考來自<a href="http://studyhost.blogspot.com/2018/06/linebot23-line-liff-app.html">董老師的部落格</a></p>
-</blockquote>
-<blockquote>
-<p>詳細的 LIFF API 文件可以<a href="https://developers.line.biz/en/reference/liff/">參考</a></p>
-</blockquote>
-<p>接下來按著之前做過的一樣把這個檔案送到<code>S3</code>裡，接著它的網址複製起來<br><img src="https://i.imgur.com/wgVJ9js.png"></p>
-<p>接著來去之前建立機器人的開發者頁面裡按下最右邊的<code>LIFF</code><br><img src="https://i.imgur.com/B593Hdt.png"><br>按下去之後呢，再來按下<code>add</code><br><img src="https://i.imgur.com/5dNr9G7.png"><br>跑出這個頁面後，<code>Name</code>好辨認為主、<code>Size</code>選擇滿版(Full)、<code>Endpoint URL</code>就把剛剛複製起來的 S3 網址放進去後按<code>Confirm</code><br><img src="https://i.imgur.com/NQD9Mwv.png"><br>大概內容會長得像這樣<br><img src="https://i.imgur.com/WoTYxpv.png"><br>建立成功後往下滑會看到 LINE 給你一個屬於他們的網址，接著可以把它貼到你的機器人上(或者任何聊天室)<br><img src="https://i.imgur.com/wN69WDJ.png"><br>點下去之後就會看到來自 LIFF 的 Webview 囉！<br><img src="https://i.imgur.com/aYztzUi.jpg"><br>接下來就可以開始玩裡面的功能了 🤣</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LIFF 整合的功能讓開發者在 Bot 裡不好實現的功能透過 Webview 的方式讓使用者可以到頁面上做邏輯處理，透過兩種的結合讓整體的應用就有更多的變化，這邊若要給使用者個話就把 <code>line://xxxoxx</code> 製作成 flex message 或者乾脆傳給使用者，引導他點選，如此就能讓使用者到自己設計的頁面上了。</p>
-<p>這邊額外補充一點，有看到程式碼裡面可以拉到<code>Query string</code>嗎？事實上可以透過<code>Query string</code>讓使用者帶些參數來做更多的判斷，像是卡米哥做的<a href="https://github.com/etrex/kamiliff">Kamiliff</a>就是讓使用者在點選後判斷這個 LIFF 的 Size，在導去對應的路由去做處理，這樣子使用者在建立 LIFF 的時候就不用一個頁面弄一個，否則這樣在 dev 轉 prod 的時候應該會弄到很生氣 🤣。</p>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>LIFF</tag>
-        <tag>webview</tag>
       </tags>
   </entry>
   <entry>
@@ -1974,49 +1974,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[Docker] Mysql &amp; PHPMyadmin 映射 &amp; 連接方法</title>
-    <url>/2019/10/16/Docker-Mysql-PHPMyadmin-%E6%98%A0%E5%B0%84-%E9%80%A3%E6%8E%A5%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>詳細文件<a href="https://hub.docker.com/_/mysql">參考</a></p>
-<p>docker 抓 mysql 最新的版本</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull mysql:tag</span><br></pre></td></tr></table></figure>
-
-<p>若只是要建立普通容器用以下指令:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_USER=<span class="string">&quot;myname&quot;</span> -e MYSQL_PASSWORD=<span class="string">&quot;mypasswd&quot;</span> -e MYSQL_ROOT_PASSWORD=<span class="string">&quot;root_pwd&quot;</span> --name mysqltest1 mysql:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
-
-<p>由於會有備份的問題，所以要先建立資料夾們</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir ~/docker</span><br><span class="line">mkdir ~/docker/mysql</span><br><span class="line">mkdir ~/docker/mysql/conf</span><br><span class="line">mkdir ~/docker/mysql/data</span><br></pre></td></tr></table></figure>
-
-<p>新增 my.cnf 配置文件</p>
-<p>vim ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf</p>
-<p><code>my.cnf</code> 加入如下内容：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">  user=mysql</span><br><span class="line">  character-set-server=utf8</span><br><span class="line">  default_authentication_plugin=mysql_native_password</span><br><span class="line">[client]</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">  default-character-set=utf8</span><br></pre></td></tr></table></figure>
-
-<p>將 &#x2F;docker 這個資料夾映射到容器內的 &#x2F;etcmysql&#x2F;my.cnf</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> -v ~/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf -v ~/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysqltest2 mysql:5.7</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>–privileged&#x3D;true：容器内的 root 永有真正 root 权限，否則容器内 root 只是外部普通用戶權限</li>
-<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf：映射 config 資料夾</li>
-<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql：映射 data 資料夾 (table 都在這)</li>
-</ul>
-<p>如此一來就可以儲存 &#x2F;docker 這個資料夾達到備份的功能</p>
-<h2 id="PHPMyadmin"><a href="#PHPMyadmin" class="headerlink" title="PHPMyadmin"></a>PHPMyadmin</h2><p>將 myadmin 連接 mysql 的容器指令:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name myadmin -d --link mysql_db_server:db -p 9100:80 phpmyadmin/phpmyadmin</span><br></pre></td></tr></table></figure>
-
-<p>mysql_db_server &#x3D; mysql container id</p>
-<p>在瀏覽器上輸入 localhost:9100 就可以看到 phpmyadmin 囉！</p>
-<h2 id="Docker-查詢容器-IP"><a href="#Docker-查詢容器-IP" class="headerlink" title="Docker 查詢容器 IP"></a>Docker 查詢容器 IP</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker inspect -f <span class="string">&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span> container_name_or_id</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-        <tag>Mysql</tag>
-        <tag>PHPMyadmin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day9 - SQS 串接 Notify 實作！</title>
     <url>/2019/09/23/Day9-SQS-%E4%B8%B2%E6%8E%A5-Notify-%E5%AF%A6%E4%BD%9C%EF%BC%81/</url>
     <content><![CDATA[<p>首先先建立一個<code>consumer/</code>資料夾，新增<code>__init__.py</code>以及<code>notify_handler.py</code></p>
@@ -2059,6 +2016,49 @@
         <tag>Notify</tag>
         <tag>SQS</tag>
         <tag>IAM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Docker] Mysql &amp; PHPMyadmin 映射 &amp; 連接方法</title>
+    <url>/2019/10/16/Docker-Mysql-PHPMyadmin-%E6%98%A0%E5%B0%84-%E9%80%A3%E6%8E%A5%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>詳細文件<a href="https://hub.docker.com/_/mysql">參考</a></p>
+<p>docker 抓 mysql 最新的版本</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull mysql:tag</span><br></pre></td></tr></table></figure>
+
+<p>若只是要建立普通容器用以下指令:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_USER=<span class="string">&quot;myname&quot;</span> -e MYSQL_PASSWORD=<span class="string">&quot;mypasswd&quot;</span> -e MYSQL_ROOT_PASSWORD=<span class="string">&quot;root_pwd&quot;</span> --name mysqltest1 mysql:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
+
+<p>由於會有備份的問題，所以要先建立資料夾們</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir ~/docker</span><br><span class="line">mkdir ~/docker/mysql</span><br><span class="line">mkdir ~/docker/mysql/conf</span><br><span class="line">mkdir ~/docker/mysql/data</span><br></pre></td></tr></table></figure>
+
+<p>新增 my.cnf 配置文件</p>
+<p>vim ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf</p>
+<p><code>my.cnf</code> 加入如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">  user=mysql</span><br><span class="line">  character-set-server=utf8</span><br><span class="line">  default_authentication_plugin=mysql_native_password</span><br><span class="line">[client]</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">  default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
+<p>將 &#x2F;docker 這個資料夾映射到容器內的 &#x2F;etcmysql&#x2F;my.cnf</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> -v ~/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf -v ~/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysqltest2 mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>–privileged&#x3D;true：容器内的 root 永有真正 root 权限，否則容器内 root 只是外部普通用戶權限</li>
+<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf：映射 config 資料夾</li>
+<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql：映射 data 資料夾 (table 都在這)</li>
+</ul>
+<p>如此一來就可以儲存 &#x2F;docker 這個資料夾達到備份的功能</p>
+<h2 id="PHPMyadmin"><a href="#PHPMyadmin" class="headerlink" title="PHPMyadmin"></a>PHPMyadmin</h2><p>將 myadmin 連接 mysql 的容器指令:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name myadmin -d --link mysql_db_server:db -p 9100:80 phpmyadmin/phpmyadmin</span><br></pre></td></tr></table></figure>
+
+<p>mysql_db_server &#x3D; mysql container id</p>
+<p>在瀏覽器上輸入 localhost:9100 就可以看到 phpmyadmin 囉！</p>
+<h2 id="Docker-查詢容器-IP"><a href="#Docker-查詢容器-IP" class="headerlink" title="Docker 查詢容器 IP"></a>Docker 查詢容器 IP</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker inspect -f <span class="string">&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span> container_name_or_id</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Mysql</tag>
+        <tag>PHPMyadmin</tag>
       </tags>
   </entry>
   <entry>
@@ -2131,7 +2131,7 @@
 <p>上述是照著網址由左而右寫，實際上則是從右往左判斷</p>
 </blockquote>
 <p>上面步驟已經說明清楚每個部分了，接下來就說明從瀏覽器輸入網址後的步驟吧！</p>
-<h2 id="向-DNS-要-IP"><a href="#向-DNS-要-IP" class="headerlink" title="向 DNS 要 IP"></a>向 DNS 要 IP</h2><img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzOTBweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjcxNnB4O2hlaWdodDozOTBweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA3MTYgMzkwIiB3aWR0aD0iNzE2cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tZW50aXR5IFVzZXItLT48ZyBpZD0iZWxlbV9Vc2VyIj48ZWxsaXBzZSBjeD0iMjEuNSIgY3k9IjE0IiBmaWxsPSIjRjFGMUYxIiByeD0iOCIgcnk9IjgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjxwYXRoIGQ9Ik0yMS41LDIyIEwyMS41LDQ5IE04LjUsMzAgTDM0LjUsMzAgTTIxLjUsNDkgTDguNSw2NCBNMjEuNSw0OSBMMzQuNSw2NCAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI2IiB5PSI3OC40OTUxIj5Vc2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9Ccm93c2VyIj48ZWxsaXBzZSBjeD0iMzAxLjM0NzIiIGN5PSI0My43MjE1IiBmaWxsPSIjRjFGMUYxIiByeD0iNTMuMzQ3MiIgcnk9IjE0LjcyMTUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU4IiB4PSIyNjkuMzQ3MiIgeT0iNDcuNDY5Ij5Ccm93c2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9ETlMiPjxlbGxpcHNlIGN4PSIyNzIuNjk4NSIgY3k9IjIwNC41MjM2IiBmaWxsPSIjRjFGMUYxIiByeD0iMzIuNjk4NSIgcnk9IjE0LjUyMzYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMwIiB4PSIyNTcuNjcwOSIgeT0iMjA3LjM4MSI+RE5TPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9OYW1lIFNlcnZlciI+PGVsbGlwc2UgY3g9IjI3Mi42OTUyIiBjeT0iMzQwLjMzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSIyMjMuNjk1MiIgeT0iMzQ0LjA4NjYiPk5hbWUgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV8xMjMuMjIzLjQ1LjYiPjxlbGxpcHNlIGN4PSI1ODMuNjk1MiIgY3k9IjQzLjMzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSI1MzQuNjk1MiIgeT0iNDcuMDg2NiI+MTIzLjIyMy40NS42PC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9XZWIgU2VydmVyIj48ZWxsaXBzZSBjeD0iNjExLjMxNDIiIGN5PSIyMDQuMjYyOCIgZmlsbD0iI0YxRjFGMSIgcng9IjY2LjgxNDIiIHJ5PSIxNS43NjI4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NCIgeD0iNTY2LjMxNDIiIHk9IjIwOC4wMTA0Ij5XZWIgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9HTU4xNyI+PHBhdGggZD0iTTYzLjUsMjk3LjUgTDYzLjUsMzgzLjE2NDEgQTAsMCAwIDAgMCA2My41LDM4My4xNjQxIEwxNjcuNSwzODMuMTY0MSBBMCwwIDAgMCAwIDE2Ny41LDM4My4xNjQxIEwxNjcuNSwzNDQuNSBMMjAyLjg1OSwzNDAuNSBMMTY3LjUsMzM2LjUgTDE2Ny41LDMwNy41IEwxNTcuNSwyOTcuNSBMNjMuNSwyOTcuNSBBMCwwIDAgMCAwIDYzLjUsMjk3LjUgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNMTU3LjUsMjk3LjUgTDE1Ny41LDMwNy41IEwxNjcuNSwzMDcuNSBMMTU3LjUsMjk3LjUgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4MyIgeD0iNjkuNSIgeT0iMzE0LjU2NjkiPuiZleeQhuWbm+WAi+mDqOWIhjo8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjY5LjUiIHk9IjMyOS42OTk3Ij5yb290PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMyIiB4PSI2OS41IiB5PSIzNDQuODMyNSI+LmNvbTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMyIgeD0iNjkuNSIgeT0iMzU5Ljk2NTMiPnd3dzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0NyIgeD0iNjkuNSIgeT0iMzc1LjA5ODEiPi5nb29nbGU8L3RleHQ+PC9nPjwhLS1saW5rIFVzZXIgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rX1VzZXJfQnJvd3NlciI+PHBhdGggZD0iTTM3LjM1NjMsNDMuNSBDNzYuMTk4OCw0My41IDE3Ny42ODgsNDMuNSAyNDIuOTU3LDQzLjUgIiBmaWxsPSJub25lIiBpZD0iVXNlci10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI0Ny45ODMsNDMuNSwyMzguOTgzLDM5LjUsMjQyLjk4Myw0My41LDIzOC45ODMsNDcuNSwyNDcuOTgzLDQzLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE3NCIgeD0iNTUuNSIgeT0iMzYuNTY2OSI+MS4gaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbTwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byBVc2VyLS0+PGcgaWQ9ImxpbmtfQnJvd3Nlcl9Vc2VyIj48cGF0aCBkPSJNMjYwLjU5NSw1Mi44NzkgQzIyMS4zMTMsNjAuNjY1IDE2MC4zMTIsNjkuNTYgMTA3LjUsNjMuNSBDODQuODY1OCw2MC45MDMgNTkuNTI2LDU0LjU4IDQyLjI1MTIsNDkuNzMzICIgZmlsbD0ibm9uZSIgaWQ9IkJyb3dzZXItdG8tVXNlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzNy4xNjA4LDQ4LjI4Miw0NC43MTkzLDU0LjU5NjIsNDEuOTY5Miw0OS42NTI4LDQ2LjkxMjYsNDYuOTAyNywzNy4xNjA4LDQ4LjI4MiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjgiIHg9IjEwOC41IiB5PSI1OS41NjY5Ij45LiDmuLLmn5PnlavpnaI8L3RleHQ+PC9nPjwhLS1saW5rIEJyb3dzZXIgdG8gRE5TLS0+PGcgaWQ9ImxpbmtfQnJvd3Nlcl9ETlMiPjxwYXRoIGQ9Ik0yNzUuMzA5LDU2LjE3NCBDMjU0LjMwMiw2Ny4xMjUgMjI2LjI4OCw4NS42OTIgMjEzLjUsMTExLjUgQzIwNC4yMjYsMTMwLjIxNyAyMDQuMjM0LDEzOS43NzkgMjEzLjUsMTU4LjUgQzIyMC40MjIsMTcyLjQ4NSAyMzQuMDAyLDE4My4zMSAyNDYuMzksMTkwLjgzNCAiIGZpbGw9Im5vbmUiIGlkPSJCcm93c2VyLXRvLUROUyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNTAuODg1LDE5My40NTcsMjQ1LjEyNzYsMTg1LjQ2NjIsMjQ2LjU2NjUsMTkwLjkzNywyNDEuMDk1NywxOTIuMzc1OSwyNTAuODg1LDE5My40NTciIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjcwIiB4PSIyMTQuNSIgeT0iMTM5LjU2NjkiPjIuIOiri+e1puaIkSBJUDwvdGV4dD48L2c+PCEtLWxpbmsgRE5TIHRvIEJyb3dzZXItLT48ZyBpZD0ibGlua19ETlNfQnJvd3NlciI+PHBhdGggZD0iTTI3OC42NDIsMTkwIEMyODIuMzc5LDE4MS4yMDcgMjg2LjkxNiwxNjkuMzg4IDI4OS41LDE1OC41IEMyOTcuMzI5LDEyNS41MTYgMzAwLjA1Miw4NS45NTIgMzAwLjk5OCw2My4xNyAiIGZpbGw9Im5vbmUiIGlkPSJETlMtdG8tQnJvd3NlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzMDEuMTkzLDU4LjAyNiwyOTYuODU2NCw2Ni44Njg3LDMwMS4wMDQ0LDYzLjAyMjQsMzA0Ljg1MDcsNjcuMTcwNSwzMDEuMTkzLDU4LjAyNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTMyIiB4PSIyOTguNSIgeT0iMTM5LjU2NjkiPjQuIElQIOeCuiAxMjMuMjIzLjQ1LjY8L3RleHQ+PC9nPjwhLS1saW5rIEROUyB0byBOYW1lIFNlcnZlci0tPjxnIGlkPSJsaW5rX0ROU19OYW1lIFNlcnZlciI+PHBhdGggZD0iTTI3Mi41LDIyNC4zNjMgQzI3Mi41LDI0OS4yMzMgMjcyLjUsMjkyLjg0ODEgMjcyLjUsMzE4LjY2NTEgIiBmaWxsPSJub25lIiBpZD0iRE5TLU5hbWUgU2VydmVyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI3Mi41LDIxOS4zMzYsMjY4LjUsMjI4LjMzNiwyNzIuNSwyMjQuMzM2LDI3Ni41LDIyOC4zMzYsMjcyLjUsMjE5LjMzNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNzIuNSwzMjMuODkwOSwyNzYuNSwzMTQuODkwOSwyNzIuNSwzMTguODkwOSwyNjguNSwzMTQuODkwOSwyNzIuNSwzMjMuODkwOSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTI4IiB4PSIyNzMuNSIgeT0iMjYzLjU2NjkiPjMuIOWwhyBEb21haW4g6L2J5oiQIElQPC90ZXh0PjwvZz48IS0tbGluayBCcm93c2VyIHRvIDEyMy4yMjMuNDUuNi0tPjxnIGlkPSJsaW5rX0Jyb3dzZXJfMTIzLjIyMy40NS42Ij48cGF0aCBkPSJNMzU1LjIwNiw0My41IEMzOTguNjg2LDQzLjUgNDYwLjQyNiw0My41IDUwOC43MzgsNDMuNSAiIGZpbGw9Im5vbmUiIGlkPSJCcm93c2VyLXRvLTEyMy4yMjMuNDUuNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1MTMuOTY1LDQzLjUsNTA0Ljk2NSwzOS41LDUwOC45NjUsNDMuNSw1MDQuOTY1LDQ3LjUsNTEzLjk2NSw0My41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMjIiIHg9IjM3My41IiB5PSIyMS41NjY5Ij41LuWPluW+lyBJUCDlvozoqKrllY/kuLvmqZ88L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjQwMiIgeT0iMzYuNjk5NyI+5Lim5LiL6LyJ6LOH5rqQPC90ZXh0PjwvZz48IS0tbGluayAxMjMuMjIzLjQ1LjYgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rXzEyMy4yMjMuNDUuNl9Ccm93c2VyIj48cGF0aCBkPSJNNTM0LjQ3MSw1NS4yMDkgQzUxOC4wNTEsNTguNTk0IDQ5OS41NzgsNjEuODI1IDQ4Mi41LDYzLjUgQzQ0MC4wMzcsNjcuNjY0IDQyOC44ODIsNjguNDE5IDM4Ni41LDYzLjUgQzM3Mi4yODQsNjEuODUgMzU2Ljk5Myw1OC42OTcgMzQzLjM1NCw1NS4zNzQgIiBmaWxsPSJub25lIiBpZD0iMTIzLjIyMy40NS42LXRvLUJyb3dzZXIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMzM4LjQwOCw1NC4xNDUsMzQ2LjE3NTksNjAuMTk5OCwzNDMuMjYwMSw1NS4zNTIzLDM0OC4xMDc1LDUyLjQzNjUsMzM4LjQwOCw1NC4xNDUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijk0IiB4PSIzODcuNSIgeT0iNTkuNTY2OSI+OC4g5Zue5YKz6Z2c5oWL6LOH5paZPC90ZXh0PjwvZz48IS0tbGluayAxMjMuMjIzLjQ1LjYgdG8gV2ViIFNlcnZlci0tPjxnIGlkPSJsaW5rXzEyMy4yMjMuNDUuNl9XZWIgU2VydmVyIj48cGF0aCBkPSJNNTcxLjgyNSw1OS45MTkgQzU1Ni4yODMsODIuNDc1IDUzMi42MTUsMTI1LjM4IDU0OS41LDE1OC41IEM1NTUuNjMzLDE3MC41MyA1NjYuNjUzLDE4MC4wOTUgNTc3LjcxOCwxODcuMjU5ICIgZmlsbD0ibm9uZSIgaWQ9IjEyMy4yMjMuNDUuNi10by1XZWIgU2VydmVyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjU4Mi4xMTYsMTg5Ljk4NSw1NzYuNTczNiwxODEuODQzNiw1NzcuODY2MiwxODcuMzUwOCw1NzIuMzU5LDE4OC42NDMzLDU4Mi4xMTYsMTg5Ljk4NSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjgiIHg9IjU1MC41IiB5PSIxMzkuNTY2OSI+Ni4g57Si5Y+W6LOH5rqQPC90ZXh0PjwvZz48IS0tbGluayBXZWIgU2VydmVyIHRvIDEyMy4yMjMuNDUuNi0tPjxnIGlkPSJsaW5rX1dlYiBTZXJ2ZXJfMTIzLjIyMy40NS42Ij48cGF0aCBkPSJNNjE4LjM3NywxODguMjY4IEM2MjUuNzQ5LDE2OS44MTEgNjM1LjM5NSwxMzcuOTA1IDYyNy41LDExMS41IEM2MjIuMTk5LDkzLjc3MiA2MTAuNTM0LDc2LjM4NCA2MDAuNTQ3LDYzLjc2NiAiIGZpbGw9Im5vbmUiIGlkPSJXZWIgU2VydmVyLXRvLTEyMy4yMjMuNDUuNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1OTcuMjM1LDU5LjY3Niw1OTkuNzkxMSw2OS4xODc0LDYwMC4zODE5LDYzLjU2MTUsNjA2LjAwNzksNjQuMTUyMyw1OTcuMjM1LDU5LjY3NiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDIiIHg9IjY0OC41IiB5PSIxMjQuNTY2OSI+Ny4g5Zue5YKzPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUyIiB4PSI2NDMuNSIgeT0iMTM5LjY5OTciPumdnOaFi+aqlOahiDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3OCIgeD0iNjMwLjUiIHk9IjE1NC44MzI1Ij5KU09OIOaIliBYTUw8L3RleHQ+PC9nPjwhLS1TUkM9W1RQOURJbTkxNkNWbC1vY1VPbnJzbkRUZ1lHeFhmSVdCSEVoV25OOXowVHM5VE1jbE9RR2g2c1lLWGZYOTdpSnE0YmNtTUZiZmREZHJNcEloYzJ4TE9QWVBQdnhWVl94RkYxRjlZSkJtTXgyb0JNRUxoTFM1UzJEOEFTZlBKZDJ2TDVMNUlPb0o2SDZUdVlwdGFtSHk3QWtJWkdMM09PUHU0NVh6dE5wbEtFcTZUV3d2UUhXc1VKaVo1Q2tBNDFSYnl3Y3U1bTV2QUs4R1BzRGYyUW9sNGpLZzJ1OXRFbDRYVFdIY1ZXWGtablR2c0YzdktNM1BYZm5FZlhHUk1hdldmMS1IU2VzQ3hjc1VaQXdqUmV6S29zRlpXcHd0ZWpCT3c4bUR0VmVpTU9DWTdMT3U5cG1wU0lJVUI0bTc0OVhsUlFPdTF2UEVfX1VtbmFmakY5Qnk4MmZEY1dfcUlnVXpFX2dhSFFOVHk0NDhnNVEzdV9zek52U3g3YzF6Qlo0SmlBLWxyVi1nRnlBczBjbVdlQ09oUlRzUXJWd2FzVU9haDhZRzRIQ0F1OElwNEhvMExRLVFiRzlmRENZNUZoZGk0Z3FXaUFZQ2lTQWNRUmkxTUZfanBVbUJTQThLMXJsbzZtMDBdLS0+PC9nPjwvc3ZnPg=='>
+<h2 id="向-DNS-要-IP"><a href="#向-DNS-要-IP" class="headerlink" title="向 DNS 要 IP"></a>向 DNS 要 IP</h2><img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI1MTRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjY3OHB4O2hlaWdodDo1MTRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NzggNTE0IiB3aWR0aD0iNjc4cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tY2x1c3RlciAxMjMtLT48ZyBpZD0iY2x1c3Rlcl8xMjMiPjxwYXRoIGQ9Ik00MzMsNiBMNDY0LDYgQTMuNzUsMy43NSAwIDAgMSA0NjYuNSw4LjUgTDQ3My41LDI4LjI5NjkgTDYzMCwyOC4yOTY5IEEyLjUsMi41IDAgMCAxIDYzMi41LDMwLjc5NjkgTDYzMi41LDIxNy41IEEyLjUsMi41IDAgMCAxIDYzMCwyMjAgTDQzMywyMjAgQTIuNSwyLjUgMCAwIDEgNDMwLjUsMjE3LjUgTDQzMC41LDguNSBBMi41LDIuNSAwIDAgMSA0MzMsNiAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS41OyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS41OyIgeDE9IjQzMC41IiB4Mj0iNDczLjUiIHkxPSIyOC4yOTY5IiB5Mj0iMjguMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMCIgeD0iNDM0LjUiIHk9IjIwLjk5NTEiPjEyMzwvdGV4dD48L2c+PCEtLWNsdXN0ZXIgMjIzLS0+PGcgaWQ9ImNsdXN0ZXJfMjIzIj48cGF0aCBkPSJNNDU3LDQ5IEw1MjMsNDkgQTMuNzUsMy43NSAwIDAgMSA1MjUuNSw1MS41IEw1MzIuNSw3MS4yOTY5IEw2MDYsNzEuMjk2OSBBMi41LDIuNSAwIDAgMSA2MDguNSw3My43OTY5IEw2MDguNSwxOTMuNSBBMi41LDIuNSAwIDAgMSA2MDYsMTk2IEw0NTcsMTk2IEEyLjUsMi41IDAgMCAxIDQ1NC41LDE5My41IEw0NTQuNSw1MS41IEEyLjUsMi41IDAgMCAxIDQ1Nyw0OSAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS41OyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS41OyIgeDE9IjQ1NC41IiB4Mj0iNTMyLjUiIHkxPSI3MS4yOTY5IiB5Mj0iNzEuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NSIgeD0iNDU4LjUiIHk9IjYzLjk5NTEiPjEyMy4yMjM8L3RleHQ+PC9nPjwhLS1jbHVzdGVyIDQ1LS0+PGcgaWQ9ImNsdXN0ZXJfNDUiPjxwYXRoIGQ9Ik00ODEsOTIgTDU3Miw5MiBBMy43NSwzLjc1IDAgMCAxIDU3NC41LDk0LjUgTDU4MS41LDExNC4yOTY5IEw1ODIsMTE0LjI5NjkgQTIuNSwyLjUgMCAwIDEgNTg0LjUsMTE2Ljc5NjkgTDU4NC41LDE2OS41IEEyLjUsMi41IDAgMCAxIDU4MiwxNzIgTDQ4MSwxNzIgQTIuNSwyLjUgMCAwIDEgNDc4LjUsMTY5LjUgTDQ3OC41LDk0LjUgQTIuNSwyLjUgMCAwIDEgNDgxLDkyICIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjU7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjU7IiB4MT0iNDc4LjUiIHgyPSI1ODEuNSIgeTE9IjExNC4yOTY5IiB5Mj0iMTE0LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTAiIHg9IjQ4Mi41IiB5PSIxMDYuOTk1MSI+MTIzLjIyMy40NTwvdGV4dD48L2c+PGcgaWQ9ImVsZW1fNiI+PGVsbGlwc2UgY3g9IjUzMS4zNDkyIiBjeT0iMTQxLjUyMzYiIGZpbGw9IiNGMUYxRjEiIHJ4PSIxNy44NDkyIiByeT0iMTQuNTIzNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOSIgeD0iNTI2Ljg0OTIiIHk9IjE0NC4zNzAzIj42PC90ZXh0PjwvZz48IS0tZW50aXR5IFVzZXItLT48ZyBpZD0iZWxlbV9Vc2VyIj48ZWxsaXBzZSBjeD0iMjEuNSIgY3k9IjExMiIgZmlsbD0iI0YxRjFGMSIgcng9IjgiIHJ5PSI4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNMjEuNSwxMjAgTDIxLjUsMTQ3IE04LjUsMTI4IEwzNC41LDEyOCBNMjEuNSwxNDcgTDguNSwxNjIgTTIxLjUsMTQ3IEwzNC41LDE2MiAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI2IiB5PSIxNzYuNDk1MSI+VXNlcjwvdGV4dD48L2c+PGcgaWQ9ImVsZW1fQnJvd3NlciI+PGVsbGlwc2UgY3g9IjMwMS4zNDcyIiBjeT0iMTQxLjcyMTUiIGZpbGw9IiNGMUYxRjEiIHJ4PSI1My4zNDcyIiByeT0iMTQuNzIxNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNTgiIHg9IjI2OS4zNDcyIiB5PSIxNDUuNDY5Ij5Ccm93c2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9ETlMiPjxlbGxpcHNlIGN4PSIyNTkuNjk4NSIgY3k9IjMyOS4wMjM2IiBmaWxsPSIjRjFGMUYxIiByeD0iMzIuNjk4NSIgcnk9IjE0LjUyMzYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMwIiB4PSIyNDQuNjcwOSIgeT0iMzMxLjg4MSI+RE5TPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9OYW1lIFNlcnZlciI+PGVsbGlwc2UgY3g9IjI1OS42OTUyIiBjeT0iNDY0LjgzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSIyMTAuNjk1MiIgeT0iNDY4LjU4NjYiPk5hbWUgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9XZWIgU2VydmVyIj48ZWxsaXBzZSBjeD0iNTcyLjMxNDIiIGN5PSIzMjguNzYyOCIgZmlsbD0iI0YxRjFGMSIgcng9IjY2LjgxNDIiIHJ5PSIxNS43NjI4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NCIgeD0iNTI3LjMxNDIiIHk9IjMzMi41MTA0Ij5XZWIgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9HTU4xNyI+PHBhdGggZD0iTTUwLjUsNDIyIEw1MC41LDUwNy42NjQxIEEwLDAgMCAwIDAgNTAuNSw1MDcuNjY0MSBMMTU0LjUsNTA3LjY2NDEgQTAsMCAwIDAgMCAxNTQuNSw1MDcuNjY0MSBMMTU0LjUsNDY5IEwxODkuODU5LDQ2NSBMMTU0LjUsNDYxIEwxNTQuNSw0MzIgTDE0NC41LDQyMiBMNTAuNSw0MjIgQTAsMCAwIDAgMCA1MC41LDQyMiAiIGZpbGw9IiNGRUZGREQiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjxwYXRoIGQ9Ik0xNDQuNSw0MjIgTDE0NC41LDQzMiBMMTU0LjUsNDMyIEwxNDQuNSw0MjIgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4MyIgeD0iNTYuNSIgeT0iNDM5LjA2NjkiPuiZleeQhuWbm+WAi+mDqOWIhjo8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjU2LjUiIHk9IjQ1NC4xOTk3Ij5yb290PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMyIiB4PSI1Ni41IiB5PSI0NjkuMzMyNSI+LmNvbTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMyIgeD0iNTYuNSIgeT0iNDg0LjQ2NTMiPnd3dzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0NyIgeD0iNTYuNSIgeT0iNDk5LjU5ODEiPi5nb29nbGU8L3RleHQ+PC9nPjwhLS1saW5rIFVzZXIgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rX1VzZXJfQnJvd3NlciI+PHBhdGggZD0iTTM3LjM1NjMsMTQxLjUgQzc2LjE5ODgsMTQxLjUgMTc3LjY4OCwxNDEuNSAyNDIuOTU3LDE0MS41ICIgZmlsbD0ibm9uZSIgaWQ9IlVzZXItdG8tQnJvd3NlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNDcuOTgzLDE0MS41LDIzOC45ODMsMTM3LjUsMjQyLjk4MywxNDEuNSwyMzguOTgzLDE0NS41LDI0Ny45ODMsMTQxLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE3NCIgeD0iNTUuNSIgeT0iMTM0LjU2NjkiPjEuIGh0dHBzOi8vd3d3Lmdvb2dsZS5jb208L3RleHQ+PC9nPjwhLS1saW5rIEJyb3dzZXIgdG8gVXNlci0tPjxnIGlkPSJsaW5rX0Jyb3dzZXJfVXNlciI+PHBhdGggZD0iTTI2MC41OTUsMTUwLjg3OSBDMjIxLjMxMywxNTguNjY1IDE2MC4zMTIsMTY3LjU2IDEwNy41LDE2MS41IEM4NC44NjU4LDE1OC45MDMgNTkuNTI2LDE1Mi41OCA0Mi4yNTEyLDE0Ny43MzMgIiBmaWxsPSJub25lIiBpZD0iQnJvd3Nlci10by1Vc2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjM3LjE2MDgsMTQ2LjI4Miw0NC43MTkzLDE1Mi41OTYyLDQxLjk2OTIsMTQ3LjY1MjgsNDYuOTEyNiwxNDQuOTAyNywzNy4xNjA4LDE0Ni4yODIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjY4IiB4PSIxMDguNSIgeT0iMTU3LjU2NjkiPjkuIOa4suafk+eVq+mdojwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byBETlMtLT48ZyBpZD0ibGlua19Ccm93c2VyX0ROUyI+PHBhdGggZD0iTTI3OS41OTksMTU1LjAwOSBDMjU1LjA0OCwxNzAuNDQzIDIxNi41NzQsMTk5LjIxNSAyMDAuNSwyMzYgQzE5Mi4xMzYsMjU1LjE0MSAxOTEuMjM0LDI2NC4yNzkgMjAwLjUsMjgzIEMyMDcuNDIyLDI5Ni45ODUgMjIxLjAwMiwzMDcuODEgMjMzLjM5LDMxNS4zMzQgIiBmaWxsPSJub25lIiBpZD0iQnJvd3Nlci10by1ETlMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjM3Ljg4NSwzMTcuOTU3LDIzMi4xMjc2LDMwOS45NjYyLDIzMy41NjY1LDMxNS40MzcsMjI4LjA5NTcsMzE2Ljg3NTksMjM3Ljg4NSwzMTcuOTU3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3MCIgeD0iMjAxLjUiIHk9IjI2NC4wNjY5Ij4yLiDoq4vntabmiJEgSVA8L3RleHQ+PC9nPjwhLS1saW5rIEROUyB0byBCcm93c2VyLS0+PGcgaWQ9ImxpbmtfRE5TX0Jyb3dzZXIiPjxwYXRoIGQ9Ik0yNjUuMzc5LDMxNC40MzIgQzI2OS4wMTEsMzA1LjYxMyAyNzMuNTMsMjkzLjc4OSAyNzYuNSwyODMgQzI4OC4yNzUsMjQwLjIyOCAyOTUuODA5LDE4OC41NTEgMjk5LjI3NCwxNjEuMzUzICIgZmlsbD0ibm9uZSIgaWQ9IkROUy10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI5OS45MTMsMTU2LjI1LDI5NC44MjU1LDE2NC42ODMxLDI5OS4yOTE2LDE2MS4yMTEyLDMwMi43NjM1LDE2NS42NzczLDI5OS45MTMsMTU2LjI1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMzIiIHg9IjI4Ny41IiB5PSIyNjQuMDY2OSI+NC4gSVAg54K6IDEyMy4yMjMuNDUuNjwvdGV4dD48L2c+PCEtLWxpbmsgRE5TIHRvIE5hbWUgU2VydmVyLS0+PGcgaWQ9ImxpbmtfRE5TX05hbWUgU2VydmVyIj48cGF0aCBkPSJNMjU5LjUsMzQ4Ljg2MyBDMjU5LjUsMzczLjczMyAyNTkuNSw0MTcuMzQ4MSAyNTkuNSw0NDMuMTY1MSAiIGZpbGw9Im5vbmUiIGlkPSJETlMtTmFtZSBTZXJ2ZXIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjU5LjUsMzQzLjgzNiwyNTUuNSwzNTIuODM2LDI1OS41LDM0OC44MzYsMjYzLjUsMzUyLjgzNiwyNTkuNSwzNDMuODM2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI1OS41LDQ0OC4zOTA5LDI2My41LDQzOS4zOTA5LDI1OS41LDQ0My4zOTA5LDI1NS41LDQzOS4zOTA5LDI1OS41LDQ0OC4zOTA5IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMjgiIHg9IjI2MC41IiB5PSIzODguMDY2OSI+My4g5bCHIERvbWFpbiDovYnmiJAgSVA8L3RleHQ+PC9nPjwhLS1saW5rIEJyb3dzZXIgdG8gNi0tPjxnIGlkPSJsaW5rX0Jyb3dzZXJfNiI+PHBhdGggZD0iTTM1NS4xMzUsMTQxLjUgQzQwMy41OTEsMTQxLjUgNDcyLjYwNSwxNDEuNSA1MDguMjI5LDE0MS41ICIgZmlsbD0ibm9uZSIgaWQ9IkJyb3dzZXItdG8tNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1MTMuMjM2LDE0MS41LDUwNC4yMzYsMTM3LjUsNTA4LjIzNiwxNDEuNSw1MDQuMjM2LDE0NS41LDUxMy4yMzYsMTQxLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEyMiIgeD0iMzczLjI1IiB5PSIxMTkuNTY2OSI+NS7lj5blvpcgSVAg5b6M6Kiq5ZWP5Li75qmfPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjY1IiB4PSI0MDEuNzUiIHk9IjEzNC42OTk3Ij7kuKbkuIvovInos4fmupA8L3RleHQ+PC9nPjwhLS1saW5rIDYgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rXzZfQnJvd3NlciI+PHBhdGggZD0iTTUxMy4yMzYsMTQxLjUgQzQ4MC41NjUsMTQxLjUgNDEwLjgwOSwxNDEuNSAzNjAuMjcxLDE0MS41ICIgZmlsbD0ibm9uZSIgaWQ9IjYtdG8tQnJvd3NlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzNTUuMTM1LDE0MS41LDM2NC4xMzUsMTQ1LjUsMzYwLjEzNSwxNDEuNSwzNjQuMTM1LDEzNy41LDM1NS4xMzUsMTQxLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijk0IiB4PSIzODcuMjUiIHk9IjEzNC41NjY5Ij44LiDlm57lgrPpnZzmhYvos4fmlpk8L3RleHQ+PC9nPjwhLS1saW5rIDYgdG8gV2ViIFNlcnZlci0tPjxnIGlkPSJsaW5rXzZfV2ViIFNlcnZlciI+PHBhdGggZD0iTTUyNC43NywxNTUuMzMyIEM1MTIuMjc0LDE4MS4wNjEgNDg4LjY1NiwyNDAuMTU0IDUxMC41LDI4MyBDNTE2LjYzMywyOTUuMDMgNTI3LjY1MywzMDQuNTk1IDUzOC43MTgsMzExLjc1OSAiIGZpbGw9Im5vbmUiIGlkPSI2LXRvLVdlYiBTZXJ2ZXIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTQzLjExNiwzMTQuNDg1LDUzNy41NzM2LDMwNi4zNDM2LDUzOC44NjYyLDMxMS44NTA4LDUzMy4zNTksMzEzLjE0MzMsNTQzLjExNiwzMTQuNDg1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2OCIgeD0iNTExLjUiIHk9IjI2NC4wNjY5Ij42LiDntKLlj5bos4fmupA8L3RleHQ+PC9nPjwhLS1saW5rIFdlYiBTZXJ2ZXIgdG8gNi0tPjxnIGlkPSJsaW5rX1dlYiBTZXJ2ZXJfNiI+PHBhdGggZD0iTTU3OS4zMTQsMzEyLjkzNyBDNTgyLjgyLDMwNC4zNTcgNTg2LjcyNCwyOTMuMjk1IDU4OC41LDI4MyBDNTkyLjA1MSwyNjIuNDE1IDU5NC4xNDcsMjU2LjExMSA1ODguNSwyMzYgQzU4MC4wMTksMjA1Ljc5NyA1NTguNzg4LDE3NS42ODIgNTQ0Ljc2OCwxNTguMDkxICIgZmlsbD0ibm9uZSIgaWQ9IldlYiBTZXJ2ZXItdG8tNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1NDEuMzcxLDE1My44OTYsNTQzLjkyNzEsMTYzLjQwNzQsNTQ0LjUxNzksMTU3Ljc4MTUsNTUwLjE0MzksMTU4LjM3MjMsNTQxLjM3MSwxNTMuODk2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0MiIgeD0iNjEwLjUiIHk9IjI0OS4wNjY5Ij43LiDlm57lgrM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNTIiIHg9IjYwNS41IiB5PSIyNjQuMTk5NyI+6Z2c5oWL5qqU5qGIPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijc4IiB4PSI1OTIuNSIgeT0iMjc5LjMzMjUiPkpTT04g5oiWIFhNTDwvdGV4dD48L2c+PCEtLVNSQz1bVFA5REltOTE2Q1ZsLW9jVU9ucnNuRFRnWUd4WGZJV0JIRWhXbk45ejBUczlUTWNsT1FHaDZzWUtYZlg5N2lKcTRiY21NRmJmZERkck1wSWhjMnhMT1BZUFB2eFZWX3hGRjFGOVlKQm1NeDJvQk1FTGhMUzVTMkQ4QVNmUEpkMnZMNUw1SU9vSjZINlR1WXB0YW1IeTdBa0laR0wzT09QdTQ1WHp0TnBsS0VxNlRXd3ZRSFdzVUppWjVDa0E0MVJieXdjdTVtNXZBSzhHUHNEZjJRb2w0aktnMnU5dEVsNFhUV0hjVldYa1puVHZzRjN2S00zUFhmbkVmWEdSTWF2V2YxLUhTZXNDeGNzVVpBd2pSZXpLb3NGWldwd3RlakJPdzhtRHRWZWlNT0NZN0xPdTlwbXBTSUlVQjRtNzQ5WGxSUU91MXZQRV9fVW1uYWZqRjlCeTgyZkRjV19xSWdVekVfZ2FIUU5UeTQ0OGc1UTN1X3N6TnZTeDdjMXpCWjRKaUEtbHJWLWdGeUFzMGNtV2VDT2hSVHNRclZ3YXNVT2FoOFlHNEhDQXU4SXA0SG8wTFEtUWJHOWZEQ1k1RmhkaTRncVdpQVlDaVNBY1FSaTFNRl9qcFVtQlNBOEsxcmxvNm0wMF0tLT48L2c+PC9zdmc+'>
 
 <p>DNS 全名為 Domain Name Server，主要職責是幫忙把 網域名稱(Domain Name) 轉成 IP，因為網域名稱是人才看得懂而機器只認得 IP，因此需要 DNS 來幫忙轉譯。</p>
 <h3 id="Name-Server"><a href="#Name-Server" class="headerlink" title="Name Server"></a>Name Server</h3><p>藉由上圖最終 DNS 會收到每個單獨的 Name Server 回傳後的值並組成 IP 回傳給瀏覽器。</p>
@@ -3043,6 +3043,56 @@
       </tags>
   </entry>
   <entry>
+    <title>透過 IRC 與 Twitch 聊天室連結互動</title>
+    <url>/2019/12/24/Twich-chatroom-IRC/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>為什麼會想玩這個呢，因為之前串了一隻介接 Twitch API 的聊天機器人，不過最近因為 API 似乎已經翻新了，所以那隻機器人暫時死亡了 😆，但是聊天機器人不限定只有在 facebook、LINE 通訊軟體上，因此就寫了這篇文章來紀錄一下使用過程。</p>
+<h1 id="文件-amp-申請密鑰"><a href="#文件-amp-申請密鑰" class="headerlink" title="文件 &amp; 申請密鑰"></a>文件 &amp; 申請密鑰</h1><p>Twitch Chatbot IRC <a href="https://dev.twitch.tv/docs/irc/">官方文件</a></p>
+<ul>
+<li>GitHub<ul>
+<li><a href="https://github.com/tmijs/tmi.js">連結</a></li>
+<li><a href="https://github.com/tmijs/docs">文件</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>要使用的朋友在 google 時可能會找到另一套，不過他也說請大家來用 <code>tmi.js</code> 了ＸＤ</p>
+</blockquote>
+<p>首先要先申請一個 <code>OAUTH</code> 的密鑰，網址<a href="https://twitchapps.com/tmi/">在這邊</a></p>
+<h1 id="套件安裝"><a href="#套件安裝" class="headerlink" title="套件安裝"></a>套件安裝</h1><p>透過<code>npm</code>安裝<code>tmi.js</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i tmi.js</span><br></pre></td></tr></table></figure>
+
+<h1 id="IRC-通訊"><a href="#IRC-通訊" class="headerlink" title="IRC 通訊"></a>IRC 通訊</h1><p>接著需要寫一個腳本透過<code>IRC</code>的方法來與 Twitch 的聊天室連結：</p>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/IRC">IRC</a>（Internet Relay Chat）是一個位於應用層的協定。其主要用於群體聊天，但同樣也可以用於個人對個人的聊天。</p>
+</blockquote>
+<h2 id="新增-bot-js"><a href="#新增-bot-js" class="headerlink" title="新增 bot.js"></a>新增 <code>bot.js</code></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> tmi = <span class="built_in">require</span>(<span class="string">&#x27;tmi.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> tmi.Client(&#123;</span><br><span class="line">  options: &#123; <span class="attr">debug</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  connection: &#123;</span><br><span class="line">    reconnect: <span class="literal">true</span>,</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  identity: &#123;</span><br><span class="line">    username: <span class="string">&#x27;YOUR_NAME&#x27;</span>,</span><br><span class="line">    password: <span class="string">&#x27;oauth:YOUR_KEY&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  channels: [<span class="string">&#x27;yuniko0720&#x27;</span>], <span class="comment">// 想加入的聊天室</span></span><br><span class="line">&#125;);</span><br><span class="line">client.connect();</span><br><span class="line">client.on(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">channel, tags, message, self</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (self) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (message.toLowerCase() === <span class="string">&#x27;87&#x27;</span>) &#123;</span><br><span class="line">    client.say(channel, <span class="string">`@<span class="subst">$&#123;tags.username&#125;</span>, 你是第 N 個說 87!`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="設定檔"><a href="#設定檔" class="headerlink" title="設定檔"></a>設定檔</h2><ul>
+<li><code>username</code>: 設定你的使用者名稱</li>
+<li><code>password</code>: 申請的 oauth 放在這邊，格式皆是<code>oauth:XXXXX</code></li>
+<li><code>channels</code>: 一般會進入自己的頻道，當然也可以去其他頻道</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">identity: &#123;</span><br><span class="line">    username: <span class="string">&#x27;YOUR_NAME&#x27;</span>,</span><br><span class="line">    password: <span class="string">&#x27;oauth:YOUR_KEY&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  channels: [<span class="string">&#x27;yuniko0720&#x27;</span>],</span><br></pre></td></tr></table></figure>
+
+<h2 id="連結聊天室"><a href="#連結聊天室" class="headerlink" title="連結聊天室"></a>連結聊天室</h2><p>這部分則是開始監聽聊天室的內容，所有的範例連結<a href="https://github.com/tmijs/docs/tree/gh-pages/_posts/v1.4.2">皆在此</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">client.on(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">channel, tags, message, self</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (self) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (message.toLowerCase() === <span class="string">&#x27;87&#x27;</span>) &#123;</span><br><span class="line">    client.say(channel, <span class="string">`@<span class="subst">$&#123;tags.username&#125;</span>, 你是第 N 個說 87!`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h1><p>執行<code>node bot.js</code>會看到以下的畫面</p>
+<p><img src="https://i.imgur.com/01aiJVw.png"></p>
+<p>其實這樣監聽看起來真的是讓我這個宅心噴發 🚀🚀，可以透過<code>IRC</code>收到聊天室訊息後看後續要怎麼處理，像有些實況主與觀眾的互動可能是輸入<code>+1</code>這樣的文字來獲得獎賞(抑或是互罵 🤣)，在很多情境下這樣用會讓觀眾除了跟實況主互動以外還有個對象能玩 👾。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>而在這樣監聽下若人數很高之後其實可以收集到更多的資訊去做利用，也許想是開啟<code>訂閱者模式</code>後讓訂閱者輸入特定文字後將資訊傳入<code>Google sheet</code>之類的資料表，在做抽獎等活動性質的內容，對整個遊戲實況內容行銷都會是滿好與觀眾互動的方式～</p>
+<p>大概就玩到這邊了，下次想到什麼應用再來說 😆</p>
+]]></content>
+      <categories>
+        <category>應用</category>
+      </categories>
+      <tags>
+        <tag>chatbot</tag>
+        <tag>Twitch</tag>
+        <tag>irc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【第一次直播就上手 (1)】使用 Streamlabs 在 Youtube 上直播</title>
     <url>/2020/03/21/Streamlabs-Youtube-streaming/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近一次的 Chatbot 小聚因為在疫情期間可預期現場來的會眾一定不多，所以在這場小聚中也加上線上直播的部分，但因為我首次導入還不是很熟悉，在谷歌大神的幫忙下找到本篇介紹的軟體 - Streamlabs，使用 XR 錄影起來的品質覺得還不錯，且連講者 Demo 時的 LINE token 都看得一清二楚 🤣，接下來就來介紹一下我使用的過程。</p>
@@ -3107,56 +3157,6 @@
         <tag>Youtube</tag>
         <tag>Stream</tag>
         <tag>meetups</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>透過 IRC 與 Twitch 聊天室連結互動</title>
-    <url>/2019/12/24/Twich-chatroom-IRC/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>為什麼會想玩這個呢，因為之前串了一隻介接 Twitch API 的聊天機器人，不過最近因為 API 似乎已經翻新了，所以那隻機器人暫時死亡了 😆，但是聊天機器人不限定只有在 facebook、LINE 通訊軟體上，因此就寫了這篇文章來紀錄一下使用過程。</p>
-<h1 id="文件-amp-申請密鑰"><a href="#文件-amp-申請密鑰" class="headerlink" title="文件 &amp; 申請密鑰"></a>文件 &amp; 申請密鑰</h1><p>Twitch Chatbot IRC <a href="https://dev.twitch.tv/docs/irc/">官方文件</a></p>
-<ul>
-<li>GitHub<ul>
-<li><a href="https://github.com/tmijs/tmi.js">連結</a></li>
-<li><a href="https://github.com/tmijs/docs">文件</a></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>要使用的朋友在 google 時可能會找到另一套，不過他也說請大家來用 <code>tmi.js</code> 了ＸＤ</p>
-</blockquote>
-<p>首先要先申請一個 <code>OAUTH</code> 的密鑰，網址<a href="https://twitchapps.com/tmi/">在這邊</a></p>
-<h1 id="套件安裝"><a href="#套件安裝" class="headerlink" title="套件安裝"></a>套件安裝</h1><p>透過<code>npm</code>安裝<code>tmi.js</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i tmi.js</span><br></pre></td></tr></table></figure>
-
-<h1 id="IRC-通訊"><a href="#IRC-通訊" class="headerlink" title="IRC 通訊"></a>IRC 通訊</h1><p>接著需要寫一個腳本透過<code>IRC</code>的方法來與 Twitch 的聊天室連結：</p>
-<blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/IRC">IRC</a>（Internet Relay Chat）是一個位於應用層的協定。其主要用於群體聊天，但同樣也可以用於個人對個人的聊天。</p>
-</blockquote>
-<h2 id="新增-bot-js"><a href="#新增-bot-js" class="headerlink" title="新增 bot.js"></a>新增 <code>bot.js</code></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> tmi = <span class="built_in">require</span>(<span class="string">&#x27;tmi.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> tmi.Client(&#123;</span><br><span class="line">  options: &#123; <span class="attr">debug</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  connection: &#123;</span><br><span class="line">    reconnect: <span class="literal">true</span>,</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  identity: &#123;</span><br><span class="line">    username: <span class="string">&#x27;YOUR_NAME&#x27;</span>,</span><br><span class="line">    password: <span class="string">&#x27;oauth:YOUR_KEY&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  channels: [<span class="string">&#x27;yuniko0720&#x27;</span>], <span class="comment">// 想加入的聊天室</span></span><br><span class="line">&#125;);</span><br><span class="line">client.connect();</span><br><span class="line">client.on(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">channel, tags, message, self</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (self) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (message.toLowerCase() === <span class="string">&#x27;87&#x27;</span>) &#123;</span><br><span class="line">    client.say(channel, <span class="string">`@<span class="subst">$&#123;tags.username&#125;</span>, 你是第 N 個說 87!`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="設定檔"><a href="#設定檔" class="headerlink" title="設定檔"></a>設定檔</h2><ul>
-<li><code>username</code>: 設定你的使用者名稱</li>
-<li><code>password</code>: 申請的 oauth 放在這邊，格式皆是<code>oauth:XXXXX</code></li>
-<li><code>channels</code>: 一般會進入自己的頻道，當然也可以去其他頻道</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">identity: &#123;</span><br><span class="line">    username: <span class="string">&#x27;YOUR_NAME&#x27;</span>,</span><br><span class="line">    password: <span class="string">&#x27;oauth:YOUR_KEY&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  channels: [<span class="string">&#x27;yuniko0720&#x27;</span>],</span><br></pre></td></tr></table></figure>
-
-<h2 id="連結聊天室"><a href="#連結聊天室" class="headerlink" title="連結聊天室"></a>連結聊天室</h2><p>這部分則是開始監聽聊天室的內容，所有的範例連結<a href="https://github.com/tmijs/docs/tree/gh-pages/_posts/v1.4.2">皆在此</a>。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">client.on(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">channel, tags, message, self</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (self) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (message.toLowerCase() === <span class="string">&#x27;87&#x27;</span>) &#123;</span><br><span class="line">    client.say(channel, <span class="string">`@<span class="subst">$&#123;tags.username&#125;</span>, 你是第 N 個說 87!`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h1><p>執行<code>node bot.js</code>會看到以下的畫面</p>
-<p><img src="https://i.imgur.com/01aiJVw.png"></p>
-<p>其實這樣監聽看起來真的是讓我這個宅心噴發 🚀🚀，可以透過<code>IRC</code>收到聊天室訊息後看後續要怎麼處理，像有些實況主與觀眾的互動可能是輸入<code>+1</code>這樣的文字來獲得獎賞(抑或是互罵 🤣)，在很多情境下這樣用會讓觀眾除了跟實況主互動以外還有個對象能玩 👾。</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>而在這樣監聽下若人數很高之後其實可以收集到更多的資訊去做利用，也許想是開啟<code>訂閱者模式</code>後讓訂閱者輸入特定文字後將資訊傳入<code>Google sheet</code>之類的資料表，在做抽獎等活動性質的內容，對整個遊戲實況內容行銷都會是滿好與觀眾互動的方式～</p>
-<p>大概就玩到這邊了，下次想到什麼應用再來說 😆</p>
-]]></content>
-      <categories>
-        <category>應用</category>
-      </categories>
-      <tags>
-        <tag>chatbot</tag>
-        <tag>Twitch</tag>
-        <tag>irc</tag>
       </tags>
   </entry>
   <entry>
@@ -4400,8 +4400,8 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><script async class="speakerdeck-embed" data-slide="17" data-id="b4de0b8800ae44b3bd652e3beadfb7c3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 <p>看了上述的內容是否想更了解 LINE 的工作呢？除了可以直接至 <a href="(https://careers.linecorp.com/jobs?co=Taiwan)">LINE Career</a> 上投履歷之外，LINE 也即將在 <strong>5&#x2F;22</strong> 的<a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-taiwan-developers-recruitment-day/">招募日</a>與大家見面，現場會有許多工程團隊的同仁來為大家介紹，歡迎大家來<a href="https://linegroup.kktix.cc/events/20210522-devel">報名頁面報名</a>參加本次盛會！</p>
-<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#x64;&#x6c;&#x5f;&#100;&#x65;&#118;&#x5f;&#109;&#101;&#x65;&#116;&#117;&#112;&#x40;&#x6c;&#105;&#110;&#101;&#99;&#x6f;&#x72;&#x70;&#46;&#99;&#111;&#x6d;">&#x64;&#x6c;&#x5f;&#100;&#x65;&#118;&#x5f;&#109;&#101;&#x65;&#116;&#117;&#112;&#x40;&#x6c;&#105;&#110;&#101;&#99;&#x6f;&#x72;&#x70;&#46;&#99;&#111;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
-<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#100;&#108;&#x5f;&#x64;&#x65;&#118;&#x5f;&#109;&#101;&#101;&#116;&#x75;&#x70;&#x40;&#x6c;&#x69;&#x6e;&#x65;&#99;&#x6f;&#114;&#112;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#108;&#x5f;&#x64;&#x65;&#118;&#x5f;&#109;&#101;&#101;&#116;&#x75;&#x70;&#x40;&#x6c;&#x69;&#x6e;&#x65;&#99;&#x6f;&#114;&#112;&#x2e;&#99;&#x6f;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#x64;&#108;&#x5f;&#100;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#99;&#x6f;&#x72;&#x70;&#46;&#x63;&#x6f;&#109;">&#x64;&#108;&#x5f;&#100;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#99;&#x6f;&#x72;&#x70;&#46;&#x63;&#x6f;&#109;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#x64;&#108;&#x5f;&#x64;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#x70;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#x72;&#112;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#108;&#x5f;&#x64;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#x70;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#x72;&#112;&#46;&#x63;&#x6f;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
 <h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
@@ -8645,104 +8645,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
-    <title>LINE Dev Meetup 16 現場活動分享</title>
-    <url>/2022/03/29/line-dev-meetup-16/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2022/ldm16/1.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我們是來自 LINE 台灣開發者關係與技術推廣部門 (Developer Relations)。從 2019 LINE 啟動了「開發社群計畫」之後，已經有三年的時間。期間舉辦了許多的校園招募，技術社群聚會活動與 LINE 平台開發分享活動。</p>
-<p>本次 LINE Developer Meetup 開發者小聚，邀請到 <code>CTO</code> 以及<code>六位實習生</code>講者來代表各自所屬團隊的介紹、開發經驗、實習經驗。話不多說，接著一起往下看</p>
-<blockquote>
-<p>KKTIX 活動網頁: <a href="https://linegroup.kktix.cc/events/20220324">活動網址</a></p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p><img src="https://nijialin.com/images/2022/ldm16/3.jpg"></p>
-<p>首先由 CTO - Marco 為此次活動開場，除了介紹工程部門的文化以及願景，讓現場的各位開場可以更熟知大型軟體公司的工作內容，並且介紹了屬於 LINE 的實習生計畫 - TECH FRESH，當然更細節的內容歡迎大家往下看：</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021/">Life in LINE – 你不知道的 LINE TECH FRESH 實習日常</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-2020/">LINE TECH FRESH – 技術新星人才計劃，實習經驗大公開</a></li>
-</ul>
-<h2 id="上半場-產品團隊"><a href="#上半場-產品團隊" class="headerlink" title="上半場 - 產品團隊"></a>上半場 - 產品團隊</h2><script async class="speakerdeck-embed" data-slide="14" data-id="2491297819514115aa098a87656cc05c" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>接著有 LINE TODAY 的 Ming 開頭介紹服務以及實習上的經驗，分享了近兩年的實習心得，並藉由期間學習到技術內容來帶到更多在實習期間的所學，並踴躍參加技術社群、研討會、以及內部的黑客松來增加自己的技術實力。</p>
-<script async class="speakerdeck-embed" data-slide="7" data-id="a0e43037724a462481ab0d3b0362b826" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>下一位來自 EC 的 Carolyn 透過不同的角度分享每位同學很好奇部分，從為什麼待了三年、學習到的內容、福利、以及如何分配上課以及實習的時間，由於 EC 所涵蓋的範圍非常大， Carolyn 把涵蓋的內容鉅細靡遺的解釋，並且分享自己加入 LINE 之後做的專案所帶來的成就感，畢竟在 LINE 上線的任何服務，都是隨時隨地要接受流量的考驗。</p>
-<script async class="speakerdeck-embed" data-slide="15" data-id="a0e43037724a462481ab0d3b0362b826" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<blockquote>
-<p>能在實習中做到像是鬼月貼圖這類的活動就相當值得呢！</p>
-</blockquote>
-<script async class="speakerdeck-embed" data-slide="4" data-id="2ca0ce07777a44368b36b49e3432caa5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>上半場最後一個介紹由 Frontend &amp; LINE SPOT 團隊的 Steve 介紹兩個部門，作為一個前端成員，任何都畫面都可能會是需要接觸的地方，當然團隊的分工上就會分配到不同的專案上面，協助服務把美美的畫面給上線。</p>
-<script async class="speakerdeck-embed" data-slide="17" data-id="2ca0ce07777a44368b36b49e3432caa5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>而在 LINE SPOT 團隊中有專職的 Scrum Master 帶領，讓團隊的同仁可以更有效的進行工作，讓功能可以更快速的迭代上去，這邊 Steve 也分享了以 TECH FRESH 在一個 Scrum team 裡面的經驗談，學習到許多在學校之外更難得可貴的業界經驗，相信還在觀望實習或是正職機會的你，來 LINE 工程團隊絕對會是個好選擇！</p>
-<h2 id="下半場工程團隊"><a href="#下半場工程團隊" class="headerlink" title="下半場工程團隊"></a>下半場工程團隊</h2><script async class="speakerdeck-embed" data-slide="9" data-id="692497baf9fb4377a09db3c267ac5457" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>下半場由 QA 的 Yi Han 打頭陣，帶大家認識在 LINE 裡面 QA 究竟做哪了哪些事，是不是只有產品開發出來才測試？還是跟著團隊從頭到尾計畫與規劃整個產品，最大化的確保品質呢？如這次演講中介紹了身為一個 QA 是如何在 Scrum team 中有效的執行關於測試時所需要關注的大小事，透過各種工具以及實踐方法來達到品質最大化。</p>
-<blockquote>
-<p>之後現場更有許多同學實際來了解 QA 更細節的日常工作有接觸到什麼，更多歡迎大家看看以下的文章嚕！</p>
-</blockquote>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/qa-interview-2021/">【訪談】QA 工作老實說</a></li>
-</ul>
-<script async class="speakerdeck-embed" data-slide="7" data-id="81321f7529744a6ba363373ffb379b9b" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>以通訊軟體聞名，當然不能少了 Client 端的工程師來分享啦！這次 Client team 的介紹由 TU 來分享，當中介紹的這些功能，每天在使用 LINE 的你用了幾個呢？上述的這些功能都是台灣團隊親手研發，讓大家不管在對話過程可以更直覺地使用功能(Mini Player、長訊息截圖、自動播放…)。</p>
-<script async class="speakerdeck-embed" data-slide="11" data-id="81321f7529744a6ba363373ffb379b9b" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>當然因應市場需求許多時候也需要更快速迭代產品，在 LINE SHOPPING APP 中套用 Flutter 來加速 iOS、Android 陣營的上限速度，讓使用者可以更快速想用新的功能！</p>
-<script async class="speakerdeck-embed" data-slide="3" data-id="9749afe002424683afd13256bc7d34c1" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>最後壓軸由 Data Dev team 的 Alice 為大家分享她在資料工程團隊中的實習心得，其中不免分享了許多在資料工程領域從學生到職場的一些看法，從中了解原來在大流量的平台上建構出有效的模型是多麽有挑戰的事情。</p>
-<script async class="speakerdeck-embed" data-slide="13" data-id="9749afe002424683afd13256bc7d34c1" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<blockquote>
-<p>上圖可能就是大家每天在思考的問題，當然更多 Data Dev 工程團隊的細節內容也可以參考以下</p>
-</blockquote>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/data-dev-interview-1/">【訪談】 – Data Dev 工作老實說分享</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/dac-sharing-2022/">台大資料分析與決策社 – 職涯分享</a></li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2022/ldm16/2.jpg"></p>
-<p>這次的活動是 LINE 首次以 CTO+全實習生分享的陣容出來與大家見面，講者們非常用心的準備這次的演講，希望讓現場的聽眾朋友可以更加感同身受，有參加到的開發者是否也覺得同學們分享的內容非常精彩呢？如果你這次沒參加到，趕快空出 4&#x2F;21 的時間，參加 LINE 的第十七場 Developers Meetup！</p>
-<blockquote>
-<p><a href="https://linegroup.kktix.cc/events/20220421">LINE Developers Meetup 開發者小聚系列活動 #17 LINE NEXT 台灣工程團隊招募會</a></p>
-</blockquote>
-<p>最後不免俗的，想加入 LINE 大家庭的同學，趕快送出你的履歷到以下<a href="https://careers.linecorp.com/jobs/83">連結</a>，下一個實習生可能就是你！</p>
-<blockquote>
-<p><a href="https://careers.linecorp.com/jobs/83">投遞通道</a></p>
-</blockquote>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表 (持續更新)</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>研討會</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>TECH FRESH</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>回顧 LINE Developers Meetup 第 15 場現場活動</title>
     <url>/2021/04/27/line-dev-meetup-15/</url>
     <content><![CDATA[<style>
@@ -8906,8 +8808,8 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 </ul>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2021/line-15/LRD.png"></p>
 <p>看了上述的內容是否想更了解 LINE 的工作呢？除了可以直接至 <a href="(https://careers.linecorp.com/jobs?co=Taiwan)">LINE Career</a> 上投履歷之外，LINE 也即將在 <strong>5&#x2F;22</strong> 的<a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-taiwan-developers-recruitment-day/">招募日</a>與大家見面，現場會有許多工程團隊的同仁來為大家介紹，歡迎大家來<a href="https://linegroup.kktix.cc/events/20210522-devel">報名頁面報名</a>參加本次盛會！</p>
-<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#100;&#108;&#95;&#100;&#x65;&#x76;&#x5f;&#109;&#101;&#x65;&#x74;&#117;&#112;&#64;&#x6c;&#x69;&#x6e;&#101;&#x63;&#x6f;&#x72;&#x70;&#x2e;&#99;&#111;&#x6d;">&#100;&#108;&#95;&#100;&#x65;&#x76;&#x5f;&#109;&#101;&#x65;&#x74;&#117;&#112;&#64;&#x6c;&#x69;&#x6e;&#101;&#x63;&#x6f;&#x72;&#x70;&#x2e;&#99;&#111;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
-<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#100;&#108;&#x5f;&#x64;&#x65;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#112;&#x40;&#x6c;&#105;&#x6e;&#x65;&#x63;&#x6f;&#x72;&#x70;&#46;&#99;&#111;&#x6d;">&#100;&#108;&#x5f;&#x64;&#x65;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#112;&#x40;&#x6c;&#105;&#x6e;&#x65;&#x63;&#x6f;&#x72;&#x70;&#46;&#99;&#111;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#100;&#108;&#95;&#x64;&#x65;&#118;&#x5f;&#x6d;&#101;&#101;&#x74;&#x75;&#112;&#64;&#x6c;&#105;&#x6e;&#101;&#99;&#111;&#x72;&#x70;&#x2e;&#99;&#111;&#109;">&#100;&#108;&#95;&#x64;&#x65;&#118;&#x5f;&#x6d;&#101;&#101;&#x74;&#x75;&#112;&#64;&#x6c;&#105;&#x6e;&#101;&#99;&#111;&#x72;&#x70;&#x2e;&#99;&#111;&#109;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#x64;&#108;&#95;&#x64;&#101;&#x76;&#x5f;&#109;&#x65;&#101;&#116;&#117;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#114;&#112;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#108;&#95;&#x64;&#101;&#x76;&#x5f;&#109;&#x65;&#101;&#116;&#117;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#114;&#112;&#x2e;&#x63;&#x6f;&#109;</a><br>資格符合後即可獲得邀請碼</p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
 <h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
@@ -8924,6 +8826,104 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <tags>
         <tag>LINE</tag>
         <tag>DevRel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINE Dev Meetup 16 現場活動分享</title>
+    <url>/2022/03/29/line-dev-meetup-16/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2022/ldm16/1.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我們是來自 LINE 台灣開發者關係與技術推廣部門 (Developer Relations)。從 2019 LINE 啟動了「開發社群計畫」之後，已經有三年的時間。期間舉辦了許多的校園招募，技術社群聚會活動與 LINE 平台開發分享活動。</p>
+<p>本次 LINE Developer Meetup 開發者小聚，邀請到 <code>CTO</code> 以及<code>六位實習生</code>講者來代表各自所屬團隊的介紹、開發經驗、實習經驗。話不多說，接著一起往下看</p>
+<blockquote>
+<p>KKTIX 活動網頁: <a href="https://linegroup.kktix.cc/events/20220324">活動網址</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p><img src="https://nijialin.com/images/2022/ldm16/3.jpg"></p>
+<p>首先由 CTO - Marco 為此次活動開場，除了介紹工程部門的文化以及願景，讓現場的各位開場可以更熟知大型軟體公司的工作內容，並且介紹了屬於 LINE 的實習生計畫 - TECH FRESH，當然更細節的內容歡迎大家往下看：</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021/">Life in LINE – 你不知道的 LINE TECH FRESH 實習日常</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-2020/">LINE TECH FRESH – 技術新星人才計劃，實習經驗大公開</a></li>
+</ul>
+<h2 id="上半場-產品團隊"><a href="#上半場-產品團隊" class="headerlink" title="上半場 - 產品團隊"></a>上半場 - 產品團隊</h2><script async class="speakerdeck-embed" data-slide="14" data-id="2491297819514115aa098a87656cc05c" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著有 LINE TODAY 的 Ming 開頭介紹服務以及實習上的經驗，分享了近兩年的實習心得，並藉由期間學習到技術內容來帶到更多在實習期間的所學，並踴躍參加技術社群、研討會、以及內部的黑客松來增加自己的技術實力。</p>
+<script async class="speakerdeck-embed" data-slide="7" data-id="a0e43037724a462481ab0d3b0362b826" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>下一位來自 EC 的 Carolyn 透過不同的角度分享每位同學很好奇部分，從為什麼待了三年、學習到的內容、福利、以及如何分配上課以及實習的時間，由於 EC 所涵蓋的範圍非常大， Carolyn 把涵蓋的內容鉅細靡遺的解釋，並且分享自己加入 LINE 之後做的專案所帶來的成就感，畢竟在 LINE 上線的任何服務，都是隨時隨地要接受流量的考驗。</p>
+<script async class="speakerdeck-embed" data-slide="15" data-id="a0e43037724a462481ab0d3b0362b826" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<blockquote>
+<p>能在實習中做到像是鬼月貼圖這類的活動就相當值得呢！</p>
+</blockquote>
+<script async class="speakerdeck-embed" data-slide="4" data-id="2ca0ce07777a44368b36b49e3432caa5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>上半場最後一個介紹由 Frontend &amp; LINE SPOT 團隊的 Steve 介紹兩個部門，作為一個前端成員，任何都畫面都可能會是需要接觸的地方，當然團隊的分工上就會分配到不同的專案上面，協助服務把美美的畫面給上線。</p>
+<script async class="speakerdeck-embed" data-slide="17" data-id="2ca0ce07777a44368b36b49e3432caa5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>而在 LINE SPOT 團隊中有專職的 Scrum Master 帶領，讓團隊的同仁可以更有效的進行工作，讓功能可以更快速的迭代上去，這邊 Steve 也分享了以 TECH FRESH 在一個 Scrum team 裡面的經驗談，學習到許多在學校之外更難得可貴的業界經驗，相信還在觀望實習或是正職機會的你，來 LINE 工程團隊絕對會是個好選擇！</p>
+<h2 id="下半場工程團隊"><a href="#下半場工程團隊" class="headerlink" title="下半場工程團隊"></a>下半場工程團隊</h2><script async class="speakerdeck-embed" data-slide="9" data-id="692497baf9fb4377a09db3c267ac5457" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>下半場由 QA 的 Yi Han 打頭陣，帶大家認識在 LINE 裡面 QA 究竟做哪了哪些事，是不是只有產品開發出來才測試？還是跟著團隊從頭到尾計畫與規劃整個產品，最大化的確保品質呢？如這次演講中介紹了身為一個 QA 是如何在 Scrum team 中有效的執行關於測試時所需要關注的大小事，透過各種工具以及實踐方法來達到品質最大化。</p>
+<blockquote>
+<p>之後現場更有許多同學實際來了解 QA 更細節的日常工作有接觸到什麼，更多歡迎大家看看以下的文章嚕！</p>
+</blockquote>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/qa-interview-2021/">【訪談】QA 工作老實說</a></li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="7" data-id="81321f7529744a6ba363373ffb379b9b" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>以通訊軟體聞名，當然不能少了 Client 端的工程師來分享啦！這次 Client team 的介紹由 TU 來分享，當中介紹的這些功能，每天在使用 LINE 的你用了幾個呢？上述的這些功能都是台灣團隊親手研發，讓大家不管在對話過程可以更直覺地使用功能(Mini Player、長訊息截圖、自動播放…)。</p>
+<script async class="speakerdeck-embed" data-slide="11" data-id="81321f7529744a6ba363373ffb379b9b" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>當然因應市場需求許多時候也需要更快速迭代產品，在 LINE SHOPPING APP 中套用 Flutter 來加速 iOS、Android 陣營的上限速度，讓使用者可以更快速想用新的功能！</p>
+<script async class="speakerdeck-embed" data-slide="3" data-id="9749afe002424683afd13256bc7d34c1" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>最後壓軸由 Data Dev team 的 Alice 為大家分享她在資料工程團隊中的實習心得，其中不免分享了許多在資料工程領域從學生到職場的一些看法，從中了解原來在大流量的平台上建構出有效的模型是多麽有挑戰的事情。</p>
+<script async class="speakerdeck-embed" data-slide="13" data-id="9749afe002424683afd13256bc7d34c1" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<blockquote>
+<p>上圖可能就是大家每天在思考的問題，當然更多 Data Dev 工程團隊的細節內容也可以參考以下</p>
+</blockquote>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/data-dev-interview-1/">【訪談】 – Data Dev 工作老實說分享</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/dac-sharing-2022/">台大資料分析與決策社 – 職涯分享</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2022/ldm16/2.jpg"></p>
+<p>這次的活動是 LINE 首次以 CTO+全實習生分享的陣容出來與大家見面，講者們非常用心的準備這次的演講，希望讓現場的聽眾朋友可以更加感同身受，有參加到的開發者是否也覺得同學們分享的內容非常精彩呢？如果你這次沒參加到，趕快空出 4&#x2F;21 的時間，參加 LINE 的第十七場 Developers Meetup！</p>
+<blockquote>
+<p><a href="https://linegroup.kktix.cc/events/20220421">LINE Developers Meetup 開發者小聚系列活動 #17 LINE NEXT 台灣工程團隊招募會</a></p>
+</blockquote>
+<p>最後不免俗的，想加入 LINE 大家庭的同學，趕快送出你的履歷到以下<a href="https://careers.linecorp.com/jobs/83">連結</a>，下一個實習生可能就是你！</p>
+<blockquote>
+<p><a href="https://careers.linecorp.com/jobs/83">投遞通道</a></p>
+</blockquote>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表 (持續更新)</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>TECH FRESH</tag>
       </tags>
   </entry>
   <entry>
@@ -9951,7 +9951,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <blockquote>
 <p>如果有學校&#x2F;系學會&#x2F;社團想與我們合作，以下的部落格提供給大家，更多校園資訊都在其中，歡迎大家與我們聯絡<br><a href="https://engineering.linecorp.com/zh-hant/blog/line-devrel-campus/">https://engineering.linecorp.com/zh-hant/blog/line-devrel-campus/</a></p>
 </blockquote>
-<h4 id="如何申請校園企業參訪"><a href="#如何申請校園企業參訪" class="headerlink" title="如何申請校園企業參訪"></a>如何申請校園企業參訪</h4><p>想知道如何申請校園企業參訪嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#x5f;&#x74;&#119;&#x6e;&#95;&#x64;&#101;&#x76;&#114;&#x65;&#108;&#64;&#108;&#105;&#110;&#x65;&#x63;&#x6f;&#x72;&#x70;&#46;&#x63;&#x6f;&#109;">&#x64;&#x6c;&#x5f;&#x74;&#119;&#x6e;&#95;&#x64;&#101;&#x76;&#114;&#x65;&#108;&#64;&#108;&#105;&#110;&#x65;&#x63;&#x6f;&#x72;&#x70;&#46;&#x63;&#x6f;&#109;</a></p>
+<h4 id="如何申請校園企業參訪"><a href="#如何申請校園企業參訪" class="headerlink" title="如何申請校園企業參訪"></a>如何申請校園企業參訪</h4><p>想知道如何申請校園企業參訪嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#95;&#x74;&#119;&#x6e;&#95;&#100;&#101;&#x76;&#x72;&#101;&#108;&#x40;&#108;&#x69;&#x6e;&#x65;&#99;&#x6f;&#x72;&#112;&#x2e;&#x63;&#111;&#109;">&#x64;&#x6c;&#95;&#x74;&#119;&#x6e;&#95;&#100;&#101;&#x76;&#x72;&#101;&#108;&#x40;&#108;&#x69;&#x6e;&#x65;&#99;&#x6f;&#x72;&#112;&#x2e;&#x63;&#111;&#109;</a></p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
 <h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
@@ -11072,7 +11072,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <p>如果想了解實習生活，歡迎查看這篇文章：<a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute/">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></p>
 </blockquote>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>透過贊助能夠實體與同學們面對面交流，感受現場同學的黑客松的熱情，LINER 也能將許多業界的知識分享給同學，讓未來大家在找工作時可以更加順遂。</p>
-<p>最後，想知道如何申請校園企業參訪或是贊助嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#108;&#x5f;&#x74;&#x77;&#110;&#95;&#x64;&#101;&#118;&#x72;&#101;&#x6c;&#64;&#x6c;&#x69;&#x6e;&#101;&#99;&#111;&#114;&#112;&#x2e;&#99;&#111;&#x6d;">&#x64;&#108;&#x5f;&#x74;&#x77;&#110;&#95;&#x64;&#101;&#118;&#x72;&#101;&#x6c;&#64;&#x6c;&#x69;&#x6e;&#101;&#99;&#111;&#114;&#112;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>最後，想知道如何申請校園企業參訪或是贊助嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#95;&#116;&#x77;&#x6e;&#95;&#100;&#101;&#118;&#114;&#101;&#108;&#x40;&#108;&#105;&#110;&#101;&#99;&#111;&#114;&#112;&#46;&#99;&#x6f;&#x6d;">&#x64;&#x6c;&#95;&#116;&#x77;&#x6e;&#95;&#100;&#101;&#118;&#114;&#101;&#108;&#x40;&#108;&#105;&#110;&#101;&#99;&#111;&#114;&#112;&#46;&#99;&#x6f;&#x6d;</a></p>
 <p>那我們就下次見囉！</p>
 <blockquote>
 <p>如果想到 LINE 實習，歡迎大家持續關注 -&gt; <a href="https://careers.linecorp.com/jobs/83">TECH FRESH program</a></p>
@@ -11489,6 +11489,64 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
         <tag>jest</tag>
         <tag>npm</tag>
         <tag>yarn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>幫 QR Code 加上背景圖，別只留下黑白！</title>
+    <url>/2023/02/05/nodejs-custom-qrcode-background/</url>
+    <content><![CDATA[<p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天在 FB 社群中意外的點到<a href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a> 中分享的內容(範例如下)，其中寫到：「<mark>讓你的 QR Code 更符合品牌形象，而不是停留在黑白</mark>」。</p>
+<p><img src="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A"></p>
+<blockquote>
+<p>引用至： <a href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a></p>
+</blockquote>
+<p>剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了<a href="https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md">Awesome-qr.js</a>，以下就快速分享個實作心得。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當時 Survey 了兩個版本：</p>
+<ul>
+<li>JS 版本：<a href="(https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md)">sumimakito&#x2F;Awesome-qr.js</a><ul>
+<li>最後更新時間：2021&#x2F;11&#x2F;17</li>
+<li>支援前&#x2F;後端，後端需先安裝 <a href="https://github.com/Automattic/node-canvas#installation">node-canvas</a> 的 Canvas 引擎來驅動。<ul>
+<li>每個 OS 都有整理相依套件</li>
+</ul>
+</li>
+<li>文件很完整，每功能都寫很詳細。</li>
+</ul>
+</li>
+<li>Python 版本：<a href="https://github.com/x-hw/amazing-qr">x-hw&#x2F;amazing-qr</a><ul>
+<li>最後更新： 2021&#x2F;05&#x2F;21</li>
+<li>有簡中文件、Command line 工具</li>
+</ul>
+</li>
+</ul>
+<p>雖然平常寫 Python 居多，但為考量支援度，未來可以放入我以前寫的 <a href="https://github.com/louis70109/Announcer">Announcer</a> 中，讓 LIFF 也可以分享(想像是美好的)，之後還是選擇 NodeJS 版本。</p>
+<p>在 AwesomeQR 中，現在版本可以使用 <code>dotScale</code>，但文件中建議可使用 <code>components</code> 去控制 QR code 中點點的參數。</p>
+<blockquote>
+<p>This option is yet to be removed. You can still use this option to control the scaling of the QR code parts in the legacy way.</p>
+</blockquote>
+<h2 id="透過-lt-img-gt-Base64-來顯示圖片"><a href="#透過-lt-img-gt-Base64-來顯示圖片" class="headerlink" title="透過 &lt;img&gt; + Base64 來顯示圖片"></a>透過 <code>&lt;img&gt;</code> + Base64 來顯示圖片</h2><p>大致上在 <a href="https://github.com/louis70109/qrcode-background-generator">qrcode-background-generator 專案</a>中都是網路上皆可找到的範例程式，而在本地開發時因為環境都很安裝許多套件，因此測試時好處理。</p>
+<p>但部署上去後若沒 encode，則在 Server-side render 時 <code>res.write()</code> 裡則會變成亂碼。因此這邊就 <code>base64</code> 並透過 <code>&lt;img&gt;</code> 放上去，這樣就不會有問題了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 把檔案的結構資料轉成 base64</span></span><br><span class="line"><span class="keyword">const</span> b64 = Buffer.from(buffer).toString(<span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line"><span class="comment">// 定義圖片格式</span></span><br><span class="line"><span class="keyword">const</span> mimeType = <span class="string">&#x27;image/png&#x27;</span>; <span class="comment">// e.g., image/png</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 &lt;img&gt; 展示 base64</span></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/html&#x27;</span> &#125;);</span><br><span class="line">res.write(<span class="string">`&lt;img src=&quot;data:<span class="subst">$&#123;mimeType&#125;</span>;base64,<span class="subst">$&#123;b64&#125;</span>&quot; /&gt;`</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="相依套件安裝"><a href="#相依套件安裝" class="headerlink" title="相依套件安裝"></a>相依套件安裝</h2><p>在 OS 中因為 canvas 需要相依套件，因此在 <a href="https://github.com/louis70109/qrcode-background-generator/blob/main/Dockerfile">Dockerfile</a> 上就放入相關套件的安裝。</p>
+<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">apk add --update --<span class="literal">no</span>-cache <span class="string">\</span></span><br><span class="line">    make <span class="string">\</span></span><br><span class="line">    g++ <span class="string">\</span></span><br><span class="line">    jpeg-dev <span class="string">\</span></span><br><span class="line">    cairo-dev <span class="string">\</span></span><br><span class="line">    giflib-dev <span class="string">\</span></span><br><span class="line">    pango-dev <span class="string">\</span></span><br><span class="line">    libtool <span class="string">\</span></span><br><span class="line">    autoconf <span class="string">\</span></span><br><span class="line">    automake</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><ul>
+<li>圖片建議 QR Code 建議用黑的，在 iPhone 13 掃描情況下<code>黑色</code>還是辨識度高，<code>autoColor</code> 建議設定成 <code>False</code>，避免接收到背景顏色改變。</li>
+</ul>
+<p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
+<ul>
+<li>畢竟處理畫面上用 Canvas 還是前端支援度比較高(瀏覽器)，因為 NodeJS 是使用 V8 引擎去實作的，因此支援度應該 &gt; Python (?)，最後就選擇 NodeJS 作為這次的開發。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Canvas</tag>
+        <tag>QR Code</tag>
       </tags>
   </entry>
   <entry>
