@@ -39,7 +39,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A">
 <meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
 <meta property="article:published_time" content="2023-02-05T10:43:57.000Z">
-<meta property="article:modified_time" content="2023-02-05T11:49:28.196Z">
+<meta property="article:modified_time" content="2023-02-05T11:59:16.299Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Canvas">
@@ -244,7 +244,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2023-02-05 18:43:57 / 修改時間：19:49:28" itemprop="dateCreated datePublished" datetime="2023-02-05T18:43:57+08:00">2023-02-05</time>
+              <time title="創建時間：2023-02-05 18:43:57 / 修改時間：19:59:16" itemprop="dateCreated datePublished" datetime="2023-02-05T18:43:57+08:00">2023-02-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,6 +276,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>引用至： <a target="_blank" rel="noopener" href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a></p>
 </blockquote>
 <p>剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了<a target="_blank" rel="noopener" href="https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md">Awesome-qr.js</a>，以下就快速分享個實作心得。</p>
+<blockquote>
+<p><mark><a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">qrcode-background-generator 專案</a></mark></p>
+</blockquote>
 <h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當時 Survey 了兩個版本：</p>
 <ul>
 <li>JS 版本：<a href="(https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md)">sumimakito&#x2F;Awesome-qr.js</a><ul>
@@ -298,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <p>This option is yet to be removed. You can still use this option to control the scaling of the QR code parts in the legacy way.</p>
 </blockquote>
-<h2 id="透過-lt-img-gt-Base64-來顯示圖片"><a href="#透過-lt-img-gt-Base64-來顯示圖片" class="headerlink" title="透過 &lt;img&gt; + Base64 來顯示圖片"></a>透過 <code>&lt;img&gt;</code> + Base64 來顯示圖片</h2><p>大致上在 <a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">qrcode-background-generator 專案</a>中都是網路上皆可找到的範例程式，而在本地開發時因為環境都很安裝許多套件，因此測試時好處理。</p>
+<h2 id="透過-lt-img-gt-Base64-來顯示圖片"><a href="#透過-lt-img-gt-Base64-來顯示圖片" class="headerlink" title="透過 &lt;img&gt; + Base64 來顯示圖片"></a>透過 <code>&lt;img&gt;</code> + Base64 來顯示圖片</h2><p>大致上在 <mark><a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">qrcode-background-generator 專案</a></mark>中都是網路上皆可找到的範例程式，而在本地開發時因為環境都很安裝許多套件，因此測試時好處理。</p>
 <p>但部署上去後若沒 encode，則在 Server-side render 時 <code>res.write()</code> 裡則會變成亂碼。因此這邊就 <code>base64</code> 並透過 <code>&lt;img&gt;</code> 放上去，這樣就不會有問題了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把檔案的結構資料轉成 base64</span></span><br><span class="line"><span class="keyword">const</span> b64 = Buffer.from(buffer).toString(<span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line"><span class="comment">// 定義圖片格式</span></span><br><span class="line"><span class="keyword">const</span> mimeType = <span class="string">&#x27;image/png&#x27;</span>; <span class="comment">// e.g., image/png</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 &lt;img&gt; 展示 base64</span></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/html&#x27;</span> &#125;);</span><br><span class="line">res.write(<span class="string">`&lt;img src=&quot;data:<span class="subst">$&#123;mimeType&#125;</span>;base64,<span class="subst">$&#123;b64&#125;</span>&quot; /&gt;`</span>);</span><br></pre></td></tr></table></figure>
 
