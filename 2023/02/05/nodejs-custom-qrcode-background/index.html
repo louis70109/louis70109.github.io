@@ -28,18 +28,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言前幾天在 FB 社群中意外的點到貝克菜 FB 中分享的內容(範例如下)，其中寫到：「讓你的 QR Code 更符合品牌形象，而不是停留在黑白」。   引用至： 貝克菜 FB  剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了Awesome-qr.js，以下就快速分享個實作心得。">
+  <meta name="description" content="前言前幾天在 FB 社群中意外的點到貝克菜 FB 中分享的內容(範例如下)，其中寫到：「讓你的 QR Code 更符合品牌形象，而不是停留在黑白」。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="幫 QR Code 加上背景圖，別只留下黑白！">
 <meta property="og:url" content="https://nijialin.com/2023/02/05/nodejs-custom-qrcode-background/index.html">
 <meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言前幾天在 FB 社群中意外的點到貝克菜 FB 中分享的內容(範例如下)，其中寫到：「讓你的 QR Code 更符合品牌形象，而不是停留在黑白」。   引用至： 貝克菜 FB  剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了Awesome-qr.js，以下就快速分享個實作心得。">
+<meta property="og:description" content="前言前幾天在 FB 社群中意外的點到貝克菜 FB 中分享的內容(範例如下)，其中寫到：「讓你的 QR Code 更符合品牌形象，而不是停留在黑白」。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
 <meta property="og:image" content="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A">
 <meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
 <meta property="article:published_time" content="2023-02-05T10:43:57.000Z">
-<meta property="article:modified_time" content="2023-02-05T10:43:57.093Z">
+<meta property="article:modified_time" content="2023-02-05T11:49:28.196Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Canvas">
@@ -242,8 +242,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2023-02-05 18:43:57" itemprop="dateCreated datePublished" datetime="2023-02-05T18:43:57+08:00">2023-02-05</time>
+              <time title="創建時間：2023-02-05 18:43:57 / 修改時間：19:49:28" itemprop="dateCreated datePublished" datetime="2023-02-05T18:43:57+08:00">2023-02-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,13 +269,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
         <p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天在 FB 社群中意外的點到<a target="_blank" rel="noopener" href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a> 中分享的內容(範例如下)，其中寫到：「<mark>讓你的 QR Code 更符合品牌形象，而不是停留在黑白</mark>」。</p>
+<span id="more"></span>
+
 <p><img src="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A"></p>
 <blockquote>
 <p>引用至： <a target="_blank" rel="noopener" href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a></p>
 </blockquote>
 <p>剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了<a target="_blank" rel="noopener" href="https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md">Awesome-qr.js</a>，以下就快速分享個實作心得。</p>
-<span id="more"></span>
-
 <h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當時 Survey 了兩個版本：</p>
 <ul>
 <li>JS 版本：<a href="(https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md)">sumimakito&#x2F;Awesome-qr.js</a><ul>

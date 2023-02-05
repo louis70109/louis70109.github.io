@@ -895,45 +895,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day1 - serverless 介紹</title>
-    <url>/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/</url>
-    <content><![CDATA[<p><img src="https://i.imgur.com/abW5lFB.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)</p>
-<hr>
-<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。</p>
-<p>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login-Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～</p>
-<p>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！</p>
-<p>serverless.yaml 是該專案的設定檔，可以把它想像成是 CloudFormation 的 wrapper，事實上也的確是這樣，serverless 背後會把他轉成 CloudFormation 的 template 去發佈。這個設定檔是 serverless 的精髓所在，一切有關 API Gateway 和 Lambda 的設定都在這邊，而底層所需要的資源，他都幫你配置好了，不需要操心。 <a href="https://medium.com/kkstream/%E7%95%B6-aws-api-gateway-lambda-golang-%E9%81%87%E4%B8%8A-ci-cd-1a3b3334ebc">ref</a></p>
-<hr>
-<h1 id="Cold-start-問題"><a href="#Cold-start-問題" class="headerlink" title="Cold start 問題"></a>Cold start 問題</h1><p>依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。</p>
-<p>如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 ?，所以這部分就別擔新大力地給他用下去!</p>
-<p><img src="https://i.imgur.com/hC1Dgz4.png"></p>
-<h1 id="AWS-Lambda-限制"><a href="#AWS-Lambda-限制" class="headerlink" title="AWS Lambda 限制"></a>AWS Lambda 限制</h1><p><img src="https://i.imgur.com/mC7Y9XY.png"></p>
-<h1 id="安裝與使用"><a href="#安裝與使用" class="headerlink" title="安裝與使用"></a>安裝與使用</h1><p><a href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless.yaml 的設定參考</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/">serverless.yaml 的變數傳遞</a></p>
-<hr>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>接下來會是使用 Serverless 這個<strong>框架</strong>去實作的，使用的語言為 Python，至於為什麼會選它呢，最主要原因還是在官網上有很多 <a href="https://serverless.com/plugins/">plugin</a> 可以用 ( NodeJS &amp; Python )，開發時資源相對多，接著是 AWS Lambda 的 Code-start 最快的就屬於 NodeJS &amp; Python 了，而我原本就是寫 Ruby 來的，自然就選一個寫法相近的語言啦(好像有點牽強)，如果說你想了解 runtimes 相關的問題的話可以參考<a href="https://medium.com/the-theam-journey/benchmarking-aws-lambda-runtimes-in-2019-part-i-b1ee459a293d">這篇</a>。</p>
-<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><ul>
-<li>MacOS 10.14.6</li>
-<li><a href="https://nodejs.org/zh-tw/download/">npm</a> 6.9.0</li>
-<li><a href="https://www.python.org/downloads/">python</a> 3.7.3</li>
-<li><a href="https://github.com/serverless/serverless">Serverless 套件(框架)</a> 1.45.1</li>
-</ul>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
-<li><a href="https://zh.wikipedia.org/wiki/%E7%84%A1%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%88%E7%AE%97">Serverless wiki</a></li>
-<li><a href="https://denny.qollie.com/2016/05/22/serverless-simple-crud/">Serverless 優缺點</a></li>
-<li><a href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/limits.html">AWS Lambda 限制</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>AWS</tag>
-        <tag>Serverless</tag>
-        <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day10 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (1) - 介紹</title>
     <url>/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/</url>
     <content><![CDATA[<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>LINE 在 2016 年 9 月底發表了 Messaging API 功能，用戶可以透過 Messaging API 將自家的服務內容串聯到 LINE@ 上。</p>
@@ -1054,6 +1015,45 @@
         <tag>LINE</tag>
         <tag>chatbot</tag>
         <tag>Message api</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day1 - serverless 介紹</title>
+    <url>/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/</url>
+    <content><![CDATA[<p><img src="https://i.imgur.com/abW5lFB.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)</p>
+<hr>
+<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。</p>
+<p>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login-Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～</p>
+<p>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！</p>
+<p>serverless.yaml 是該專案的設定檔，可以把它想像成是 CloudFormation 的 wrapper，事實上也的確是這樣，serverless 背後會把他轉成 CloudFormation 的 template 去發佈。這個設定檔是 serverless 的精髓所在，一切有關 API Gateway 和 Lambda 的設定都在這邊，而底層所需要的資源，他都幫你配置好了，不需要操心。 <a href="https://medium.com/kkstream/%E7%95%B6-aws-api-gateway-lambda-golang-%E9%81%87%E4%B8%8A-ci-cd-1a3b3334ebc">ref</a></p>
+<hr>
+<h1 id="Cold-start-問題"><a href="#Cold-start-問題" class="headerlink" title="Cold start 問題"></a>Cold start 問題</h1><p>依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。</p>
+<p>如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 ?，所以這部分就別擔新大力地給他用下去!</p>
+<p><img src="https://i.imgur.com/hC1Dgz4.png"></p>
+<h1 id="AWS-Lambda-限制"><a href="#AWS-Lambda-限制" class="headerlink" title="AWS Lambda 限制"></a>AWS Lambda 限制</h1><p><img src="https://i.imgur.com/mC7Y9XY.png"></p>
+<h1 id="安裝與使用"><a href="#安裝與使用" class="headerlink" title="安裝與使用"></a>安裝與使用</h1><p><a href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless.yaml 的設定參考</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/">serverless.yaml 的變數傳遞</a></p>
+<hr>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>接下來會是使用 Serverless 這個<strong>框架</strong>去實作的，使用的語言為 Python，至於為什麼會選它呢，最主要原因還是在官網上有很多 <a href="https://serverless.com/plugins/">plugin</a> 可以用 ( NodeJS &amp; Python )，開發時資源相對多，接著是 AWS Lambda 的 Code-start 最快的就屬於 NodeJS &amp; Python 了，而我原本就是寫 Ruby 來的，自然就選一個寫法相近的語言啦(好像有點牽強)，如果說你想了解 runtimes 相關的問題的話可以參考<a href="https://medium.com/the-theam-journey/benchmarking-aws-lambda-runtimes-in-2019-part-i-b1ee459a293d">這篇</a>。</p>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><ul>
+<li>MacOS 10.14.6</li>
+<li><a href="https://nodejs.org/zh-tw/download/">npm</a> 6.9.0</li>
+<li><a href="https://www.python.org/downloads/">python</a> 3.7.3</li>
+<li><a href="https://github.com/serverless/serverless">Serverless 套件(框架)</a> 1.45.1</li>
+</ul>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E7%84%A1%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%88%E7%AE%97">Serverless wiki</a></li>
+<li><a href="https://denny.qollie.com/2016/05/22/serverless-simple-crud/">Serverless 優缺點</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/limits.html">AWS Lambda 限制</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Serverless</tag>
+        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
@@ -1248,6 +1248,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Day19 - LINE LOGIN 介紹</title>
+    <url>/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>LINE 中文版也上線啦 <a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">URL</a><br>去某些網站登入你可能會有像下面這樣<br><img src="https://i.imgur.com/GNSYfYX.png"><br>或者是你有玩過 LINE Rangers (怎麼感覺我好老)，就會看到他們登入畫面有個登入鈕，按下去按確認後就登入，使用者不用輸入帳號密碼。<br><img src="https://i.imgur.com/tbOfUET.jpg"><br>這個機制被稱為 SSO (single sign-on)，它是透過 OAuth2 的機制來做認證，因為不儲存密碼除了可以降低儲存第三方網站的風險，以及使用者不需要記憶各種不同的密碼所帶來困擾，像是 Facebook、Google、LINE…都有相關的機制可以串連 SSO 的服務。</p>
+<p>以下會介紹 LINE Login 的流程。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這裡我使用 LINE Login<br><img src="https://i.imgur.com/jouHzB0.png"></p>
+<ol>
+<li>服務要引導使用者到 LINE 認證頁面並帶著必填的欄位。</li>
+<li>LINE 會在瀏覽器上打開認證頁面，使用者必須按下同意才會進行認證。</li>
+<li>LINE 會透過設定過的 <code>redirect_uri</code> 還給你一個 <code>authorization code</code> 以及 <code>state</code> 在 Query string 上。</li>
+<li>你的服務需要將 <code>authorization code</code> 打到<code>https://api.line.me/oauth2/v2.1/token</code></li>
+<li>LINE 確認完之後就會送你一個 <code>access token</code> 嚕！<blockquote>
+<p>可以拿透過 <a href="https://developers.line.biz/en/reference/social-api/">social API</a> 去拿到相關資訊</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>下一篇再帶著大家申請一個 LINE Login 的服務並建立一個簡單的註冊頁面～</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83">OAuth wiki</a><br><a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/">LINE overview</a><br><a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">LINE 中文文件</a></p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>LINE Login</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day18 - 在 Serverless 上設定個排程來發送空氣污染檢測吧</title>
     <url>/2019/10/02/Day18-%E5%9C%A8-Serverless-%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%80%8B%E6%8E%92%E7%A8%8B%E4%BE%86%E7%99%BC%E9%80%81%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93%E6%AA%A2%E6%B8%AC%E5%90%A7/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>過往寫了這麼多的 api，總是會有特定的功能會需要輪詢資料庫或是監聽某些事件，以前還要到弄個虛擬機寫腳本用 crontab，這時候 Lambda 的用處就來啦！不只可以處理 api 的事情，還可以設定排程做事，太舒服啦，以下就來介紹一下～</p>
@@ -1274,33 +1301,6 @@
         <tag>Serverless</tag>
         <tag>Lambda</tag>
         <tag>Schedule</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day19 - LINE LOGIN 介紹</title>
-    <url>/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>LINE 中文版也上線啦 <a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">URL</a><br>去某些網站登入你可能會有像下面這樣<br><img src="https://i.imgur.com/GNSYfYX.png"><br>或者是你有玩過 LINE Rangers (怎麼感覺我好老)，就會看到他們登入畫面有個登入鈕，按下去按確認後就登入，使用者不用輸入帳號密碼。<br><img src="https://i.imgur.com/tbOfUET.jpg"><br>這個機制被稱為 SSO (single sign-on)，它是透過 OAuth2 的機制來做認證，因為不儲存密碼除了可以降低儲存第三方網站的風險，以及使用者不需要記憶各種不同的密碼所帶來困擾，像是 Facebook、Google、LINE…都有相關的機制可以串連 SSO 的服務。</p>
-<p>以下會介紹 LINE Login 的流程。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這裡我使用 LINE Login<br><img src="https://i.imgur.com/jouHzB0.png"></p>
-<ol>
-<li>服務要引導使用者到 LINE 認證頁面並帶著必填的欄位。</li>
-<li>LINE 會在瀏覽器上打開認證頁面，使用者必須按下同意才會進行認證。</li>
-<li>LINE 會透過設定過的 <code>redirect_uri</code> 還給你一個 <code>authorization code</code> 以及 <code>state</code> 在 Query string 上。</li>
-<li>你的服務需要將 <code>authorization code</code> 打到<code>https://api.line.me/oauth2/v2.1/token</code></li>
-<li>LINE 確認完之後就會送你一個 <code>access token</code> 嚕！<blockquote>
-<p>可以拿透過 <a href="https://developers.line.biz/en/reference/social-api/">social API</a> 去拿到相關資訊</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>下一篇再帶著大家申請一個 LINE Login 的服務並建立一個簡單的註冊頁面～</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83">OAuth wiki</a><br><a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/">LINE overview</a><br><a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">LINE 中文文件</a></p>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>LINE Login</tag>
       </tags>
   </entry>
   <entry>
@@ -1431,39 +1431,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day22 - 最常用的搭配 - 使用 Login + Message API 讓使用者在掃描加入好友時就綁定帳號</title>
-    <url>/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在第 Day 13 Python SDK 試玩的時候使用過 get_profile，當時使用時就是在每次訊息來的時候才去 SQL 儲存使用者資訊，若只是單純想要使用者資訊的話這樣用好像有點多餘 😓，以下就帶各位簡單的實作。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我們要將上篇的前端頁面(line_login_auth.html)改造一下</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>LINE Login<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">      url: <span class="string">&quot;https://YOUR_SLS_DOMAIN.us-east-1.amazonaws.com/dev/line/auth&quot;</span>,</span></span><br><span class="line"><span class="javascript">      method: <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="javascript">      success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.location.replace(data.result);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>這邊我將 button 的 onclick 事件以及 button 本身移除掉，目的是要讓使用者一到這個頁面之後就直接透過 AJAX call api</p>
-<p>到了這裡應該有感應到什麼了吧！接著就是把這個 html 檔的 S3 路徑網址使用 QR code 包起來，讓他看起來像是 LINE bot 的 QR code</p>
-<p>到了這邊基本上已經快完成了，參考 LINE 的<a href="https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/?fbclid=IwAR25G73QmKIGm1l7kPNFzDIpMwBKQRQVxPP8ZpPzp3p-FSES2fnWcVCue_c">好友說明</a>或下圖<br><img src="https://i.imgur.com/fEEzOsy.png"></p>
-<p>接著到機器人的開發者頁面，並且往下滑會看到自己機器人的 QR code 以及 Bot 的 ID，把他複製下來並製作機器人的加好友網址<br><img src="https://i.imgur.com/Mn3RG26.png"></p>
-<p>像是這樣子</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>line.me<span class="regexp">/R/</span>@<span class="number">1234</span></span><br></pre></td></tr></table></figure>
-
-<p>接著到 <code>controller/line_login_controller.py</code>的<code>def get(self)</code>最後一行，原本我們這邊做的是回傳 JSON</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> dt:</span><br><span class="line">			<span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: dt&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<p>改用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> redirect</span><br><span class="line"><span class="keyword">if</span> dt:</span><br><span class="line"> 		<span class="keyword">return</span> redirect(<span class="string">&quot;https://line.me/R/ti/p//@127ojvgz&quot;</span>, code=<span class="number">302</span>)</span><br></pre></td></tr></table></figure>
-
-<p>如此一來在登入驗證完之後就會把使用者導向到加好友的頁面，在手機上若已經加過好友則會直接導到機器人對話窗上，如此一來就可以讓使用者在加入好友的同時也綁定完帳號，在未來使用的時候 api 這邊也比較好控管使用者的權限問題。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>像是我自己做的健身記錄機器人，就是以這個方法下去實作，有聽過一些朋友跟我反應這樣的方法多此一舉，但我認為若是有網頁的話也是套用 LINE SSO 來實作，就可以讓兩個入口去統一，在狀態流上就能比較好控制了。<br><img src="https://i.imgur.com/8fKlsAt.jpg"></p>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>chatbot</tag>
-        <tag>Message api</tag>
-        <tag>LINE Login</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day23 - LIFF(LINE Front-end Framework) 簡介</title>
     <url>/2019/10/07/Day23-LIFF-LINE-Front-end-Framework-%E7%B0%A1%E4%BB%8B/</url>
     <content><![CDATA[<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><p>LIFF (LINE Front-end Framework)顧名思義就是 LINE 開發在 LINE 這個通訊軟體裡面的 Web view(好饒舌)，他是一個很精簡的內建瀏覽器，主要是能夠讓開發者可以使用 HTML &amp; Javascript 可以去處理一些在 bot 不好實現的功能，也讓開發者可以透過使用 JS SDK 去拉使用者的資訊，藉此可以做出更多種的應用。</p>
@@ -1513,6 +1480,39 @@
         <tag>LINE</tag>
         <tag>LIFF</tag>
         <tag>webview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day22 - 最常用的搭配 - 使用 Login + Message API 讓使用者在掃描加入好友時就綁定帳號</title>
+    <url>/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在第 Day 13 Python SDK 試玩的時候使用過 get_profile，當時使用時就是在每次訊息來的時候才去 SQL 儲存使用者資訊，若只是單純想要使用者資訊的話這樣用好像有點多餘 😓，以下就帶各位簡單的實作。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我們要將上篇的前端頁面(line_login_auth.html)改造一下</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>LINE Login<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">      url: <span class="string">&quot;https://YOUR_SLS_DOMAIN.us-east-1.amazonaws.com/dev/line/auth&quot;</span>,</span></span><br><span class="line"><span class="javascript">      method: <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="javascript">      success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.location.replace(data.result);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊我將 button 的 onclick 事件以及 button 本身移除掉，目的是要讓使用者一到這個頁面之後就直接透過 AJAX call api</p>
+<p>到了這裡應該有感應到什麼了吧！接著就是把這個 html 檔的 S3 路徑網址使用 QR code 包起來，讓他看起來像是 LINE bot 的 QR code</p>
+<p>到了這邊基本上已經快完成了，參考 LINE 的<a href="https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/?fbclid=IwAR25G73QmKIGm1l7kPNFzDIpMwBKQRQVxPP8ZpPzp3p-FSES2fnWcVCue_c">好友說明</a>或下圖<br><img src="https://i.imgur.com/fEEzOsy.png"></p>
+<p>接著到機器人的開發者頁面，並且往下滑會看到自己機器人的 QR code 以及 Bot 的 ID，把他複製下來並製作機器人的加好友網址<br><img src="https://i.imgur.com/Mn3RG26.png"></p>
+<p>像是這樣子</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>line.me<span class="regexp">/R/</span>@<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+
+<p>接著到 <code>controller/line_login_controller.py</code>的<code>def get(self)</code>最後一行，原本我們這邊做的是回傳 JSON</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> dt:</span><br><span class="line">			<span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: dt&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>改用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> redirect</span><br><span class="line"><span class="keyword">if</span> dt:</span><br><span class="line"> 		<span class="keyword">return</span> redirect(<span class="string">&quot;https://line.me/R/ti/p//@127ojvgz&quot;</span>, code=<span class="number">302</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如此一來在登入驗證完之後就會把使用者導向到加好友的頁面，在手機上若已經加過好友則會直接導到機器人對話窗上，如此一來就可以讓使用者在加入好友的同時也綁定完帳號，在未來使用的時候 api 這邊也比較好控管使用者的權限問題。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>像是我自己做的健身記錄機器人，就是以這個方法下去實作，有聽過一些朋友跟我反應這樣的方法多此一舉，但我認為若是有網頁的話也是套用 LINE SSO 來實作，就可以讓兩個入口去統一，在狀態流上就能比較好控制了。<br><img src="https://i.imgur.com/8fKlsAt.jpg"></p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>chatbot</tag>
+        <tag>Message api</tag>
+        <tag>LINE Login</tag>
       </tags>
   </entry>
   <entry>
@@ -1896,43 +1896,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day7 - 在 serverless 裡使用環境變數讓這些 key 好管理</title>
-    <url>/2019/09/21/Day7-%E5%9C%A8-serverless-%E8%A3%A1%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E8%AE%93%E9%80%99%E4%BA%9B-key-%E5%A5%BD%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著前幾天的文章，像我們 notify 驗證的 API 有使用到 <code>REDIRECT_URI</code>、<code>CLIENT_ID</code> 以及 <code>CLIENT_SECRET</code>，或是像 PostgreSQL 的帳號密碼，<br>只是說若今天當程式碼變多的時候，抑或是這個參數有給其他 API 使用，那在尋找的時候不僅費工又浪費時間<br>那接下來就帶著大家在 serverless.yml 一步步加入變數值，並更改 code。</p>
-<h2 id="動手吧！"><a href="#動手吧！" class="headerlink" title="動手吧！"></a>動手吧！</h2><p>用 npm 安裝 serverless 的 <code>dotenv</code> 套件</p>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> i -D serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
-
-<p>接著加入新的套件到<code>serverless.yml</code></p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span></span><br><span class="line">  - serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
-
-<p>新增<code>dotenv</code>到 requirements.txt</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">python</span>-dotenv==<span class="number">0</span>.<span class="number">10</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<p>到 api.py 加入下面內容</p>
-<figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">from</span> <span class="variable">dotenv</span> <span class="variable">import</span> <span class="variable">load_dotenv</span></span><br><span class="line"><span class="variable">env_path</span> = <span class="function"><span class="title">Path</span>(<span class="string">&#x27;.&#x27;</span>) / <span class="string">&#x27;.env&#x27;</span></span></span><br><span class="line"><span class="function"><span class="title">load_dotenv</span>(<span class="variable">dotenv_path</span>=<span class="variable">env_path</span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>接著新增<code>.env</code>並輸入對應的內容</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">NOTIFY_REDIRECT_URI=</span><br><span class="line">NOTIFY_CLIENT_ID=</span><br><span class="line">NOTIFY_CLIENT_SECRET=</span><br><span class="line">REGION=us-east<span class="number">-2</span></span><br><span class="line">SQS_URL=</span><br><span class="line">SQS_ARN=</span><br><span class="line">PG_DB=</span><br><span class="line">PG_HOST=</span><br><span class="line">PG_NAME=</span><br><span class="line">PG_PWD=</span><br><span class="line">PG_PORT=</span><br></pre></td></tr></table></figure>
-
-<p>接著修改有使用到他們的地方，範例如下</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.<span class="built_in">getenv</span>(<span class="string">&quot;SQS_ARN&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>既然有安裝 serverless 的套件了，那 yml 檔也可以使用哦！</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">provider:</span></span><br><span class="line"><span class="symbol">  name:</span> aws</span><br><span class="line"><span class="symbol">  runtime:</span> python3<span class="number">.7</span></span><br><span class="line"><span class="symbol">  region:</span> $&#123;env:REGION&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>有時候把專案抓下來的時候要找到這些輸入的地方很容易找不到(我有點癡呆)，一般 open source 也都會有一個<code>.env</code>的，用<code>serverless-dotenv-plugin</code>來幫忙弄就方便許多了，後續有需要再繼續往裡面新增就好了～</p>
-<p>最後在搭配 python 的 <a href="https://serverless.com/plugins/serverless-dotenv-plugin/">dot env 套件</a>使用就讓整個好用多了 🤣，只是說 html 因為目前還不是透過 serverless 來幫忙部署，所以這邊的參數就沒辦法吃設定檔了 😓</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://stackoverflow.com/questions/4906977/how-to-access-environment-variable-values">os.environ</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/">env setting</a></p>
-]]></content>
-      <categories>
-        <category>2019鐵人賽</category>
-      </categories>
-      <tags>
-        <tag>Serverless</tag>
-        <tag>dotenv</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day8 - SQS 簡單介紹 &amp; 建立</title>
     <url>/2019/09/22/Day8-SQS-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-%E5%BB%BA%E7%AB%8B/</url>
     <content><![CDATA[<p><a href="https://ithelp.ithome.com.tw/articles/10194654">詳細介紹</a></p>
@@ -1971,6 +1934,43 @@
       <tags>
         <tag>AWS</tag>
         <tag>SQS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day7 - 在 serverless 裡使用環境變數讓這些 key 好管理</title>
+    <url>/2019/09/21/Day7-%E5%9C%A8-serverless-%E8%A3%A1%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E8%AE%93%E9%80%99%E4%BA%9B-key-%E5%A5%BD%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著前幾天的文章，像我們 notify 驗證的 API 有使用到 <code>REDIRECT_URI</code>、<code>CLIENT_ID</code> 以及 <code>CLIENT_SECRET</code>，或是像 PostgreSQL 的帳號密碼，<br>只是說若今天當程式碼變多的時候，抑或是這個參數有給其他 API 使用，那在尋找的時候不僅費工又浪費時間<br>那接下來就帶著大家在 serverless.yml 一步步加入變數值，並更改 code。</p>
+<h2 id="動手吧！"><a href="#動手吧！" class="headerlink" title="動手吧！"></a>動手吧！</h2><p>用 npm 安裝 serverless 的 <code>dotenv</code> 套件</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> i -D serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
+
+<p>接著加入新的套件到<code>serverless.yml</code></p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span></span><br><span class="line">  - serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
+
+<p>新增<code>dotenv</code>到 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">python</span>-dotenv==<span class="number">0</span>.<span class="number">10</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>到 api.py 加入下面內容</p>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">from</span> <span class="variable">dotenv</span> <span class="variable">import</span> <span class="variable">load_dotenv</span></span><br><span class="line"><span class="variable">env_path</span> = <span class="function"><span class="title">Path</span>(<span class="string">&#x27;.&#x27;</span>) / <span class="string">&#x27;.env&#x27;</span></span></span><br><span class="line"><span class="function"><span class="title">load_dotenv</span>(<span class="variable">dotenv_path</span>=<span class="variable">env_path</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>接著新增<code>.env</code>並輸入對應的內容</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">NOTIFY_REDIRECT_URI=</span><br><span class="line">NOTIFY_CLIENT_ID=</span><br><span class="line">NOTIFY_CLIENT_SECRET=</span><br><span class="line">REGION=us-east<span class="number">-2</span></span><br><span class="line">SQS_URL=</span><br><span class="line">SQS_ARN=</span><br><span class="line">PG_DB=</span><br><span class="line">PG_HOST=</span><br><span class="line">PG_NAME=</span><br><span class="line">PG_PWD=</span><br><span class="line">PG_PORT=</span><br></pre></td></tr></table></figure>
+
+<p>接著修改有使用到他們的地方，範例如下</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.<span class="built_in">getenv</span>(<span class="string">&quot;SQS_ARN&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>既然有安裝 serverless 的套件了，那 yml 檔也可以使用哦！</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">provider:</span></span><br><span class="line"><span class="symbol">  name:</span> aws</span><br><span class="line"><span class="symbol">  runtime:</span> python3<span class="number">.7</span></span><br><span class="line"><span class="symbol">  region:</span> $&#123;env:REGION&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>有時候把專案抓下來的時候要找到這些輸入的地方很容易找不到(我有點癡呆)，一般 open source 也都會有一個<code>.env</code>的，用<code>serverless-dotenv-plugin</code>來幫忙弄就方便許多了，後續有需要再繼續往裡面新增就好了～</p>
+<p>最後在搭配 python 的 <a href="https://serverless.com/plugins/serverless-dotenv-plugin/">dot env 套件</a>使用就讓整個好用多了 🤣，只是說 html 因為目前還不是透過 serverless 來幫忙部署，所以這邊的參數就沒辦法吃設定檔了 😓</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://stackoverflow.com/questions/4906977/how-to-access-environment-variable-values">os.environ</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/">env setting</a></p>
+]]></content>
+      <categories>
+        <category>2019鐵人賽</category>
+      </categories>
+      <tags>
+        <tag>Serverless</tag>
+        <tag>dotenv</tag>
       </tags>
   </entry>
   <entry>
@@ -2019,49 +2019,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[Docker] Mysql &amp; PHPMyadmin 映射 &amp; 連接方法</title>
-    <url>/2019/10/16/Docker-Mysql-PHPMyadmin-%E6%98%A0%E5%B0%84-%E9%80%A3%E6%8E%A5%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>詳細文件<a href="https://hub.docker.com/_/mysql">參考</a></p>
-<p>docker 抓 mysql 最新的版本</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull mysql:tag</span><br></pre></td></tr></table></figure>
-
-<p>若只是要建立普通容器用以下指令:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_USER=<span class="string">&quot;myname&quot;</span> -e MYSQL_PASSWORD=<span class="string">&quot;mypasswd&quot;</span> -e MYSQL_ROOT_PASSWORD=<span class="string">&quot;root_pwd&quot;</span> --name mysqltest1 mysql:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
-
-<p>由於會有備份的問題，所以要先建立資料夾們</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir ~/docker</span><br><span class="line">mkdir ~/docker/mysql</span><br><span class="line">mkdir ~/docker/mysql/conf</span><br><span class="line">mkdir ~/docker/mysql/data</span><br></pre></td></tr></table></figure>
-
-<p>新增 my.cnf 配置文件</p>
-<p>vim ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf</p>
-<p><code>my.cnf</code> 加入如下内容：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">  user=mysql</span><br><span class="line">  character-set-server=utf8</span><br><span class="line">  default_authentication_plugin=mysql_native_password</span><br><span class="line">[client]</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">  default-character-set=utf8</span><br></pre></td></tr></table></figure>
-
-<p>將 &#x2F;docker 這個資料夾映射到容器內的 &#x2F;etcmysql&#x2F;my.cnf</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> -v ~/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf -v ~/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysqltest2 mysql:5.7</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>–privileged&#x3D;true：容器内的 root 永有真正 root 权限，否則容器内 root 只是外部普通用戶權限</li>
-<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf：映射 config 資料夾</li>
-<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql：映射 data 資料夾 (table 都在這)</li>
-</ul>
-<p>如此一來就可以儲存 &#x2F;docker 這個資料夾達到備份的功能</p>
-<h2 id="PHPMyadmin"><a href="#PHPMyadmin" class="headerlink" title="PHPMyadmin"></a>PHPMyadmin</h2><p>將 myadmin 連接 mysql 的容器指令:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name myadmin -d --link mysql_db_server:db -p 9100:80 phpmyadmin/phpmyadmin</span><br></pre></td></tr></table></figure>
-
-<p>mysql_db_server &#x3D; mysql container id</p>
-<p>在瀏覽器上輸入 localhost:9100 就可以看到 phpmyadmin 囉！</p>
-<h2 id="Docker-查詢容器-IP"><a href="#Docker-查詢容器-IP" class="headerlink" title="Docker 查詢容器 IP"></a>Docker 查詢容器 IP</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker inspect -f <span class="string">&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span> container_name_or_id</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-        <tag>Mysql</tag>
-        <tag>PHPMyadmin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2019 LINE Dev Day - 議程心得(2) - How we continuously delivery LINE TODAY App with high agility and high quality</title>
     <url>/2019/11/22/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/</url>
     <content><![CDATA[<h1 id="How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality"><a href="#How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality" class="headerlink" title="How we continuously delivery LINE TODAY App with high agility and high quality"></a>How we continuously delivery LINE TODAY App with high agility and high quality</h1><p><img src="https://i.imgur.com/ZGXdq4F.png"></p>
@@ -2107,6 +2064,49 @@
       <tags>
         <tag>LINE</tag>
         <tag>Dev Day 2019</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Docker] Mysql &amp; PHPMyadmin 映射 &amp; 連接方法</title>
+    <url>/2019/10/16/Docker-Mysql-PHPMyadmin-%E6%98%A0%E5%B0%84-%E9%80%A3%E6%8E%A5%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>詳細文件<a href="https://hub.docker.com/_/mysql">參考</a></p>
+<p>docker 抓 mysql 最新的版本</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull mysql:tag</span><br></pre></td></tr></table></figure>
+
+<p>若只是要建立普通容器用以下指令:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_USER=<span class="string">&quot;myname&quot;</span> -e MYSQL_PASSWORD=<span class="string">&quot;mypasswd&quot;</span> -e MYSQL_ROOT_PASSWORD=<span class="string">&quot;root_pwd&quot;</span> --name mysqltest1 mysql:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
+
+<p>由於會有備份的問題，所以要先建立資料夾們</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir ~/docker</span><br><span class="line">mkdir ~/docker/mysql</span><br><span class="line">mkdir ~/docker/mysql/conf</span><br><span class="line">mkdir ~/docker/mysql/data</span><br></pre></td></tr></table></figure>
+
+<p>新增 my.cnf 配置文件</p>
+<p>vim ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf</p>
+<p><code>my.cnf</code> 加入如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">  user=mysql</span><br><span class="line">  character-set-server=utf8</span><br><span class="line">  default_authentication_plugin=mysql_native_password</span><br><span class="line">[client]</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">  default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
+<p>將 &#x2F;docker 這個資料夾映射到容器內的 &#x2F;etcmysql&#x2F;my.cnf</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> -v ~/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf -v ~/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysqltest2 mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>–privileged&#x3D;true：容器内的 root 永有真正 root 权限，否則容器内 root 只是外部普通用戶權限</li>
+<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf：映射 config 資料夾</li>
+<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql：映射 data 資料夾 (table 都在這)</li>
+</ul>
+<p>如此一來就可以儲存 &#x2F;docker 這個資料夾達到備份的功能</p>
+<h2 id="PHPMyadmin"><a href="#PHPMyadmin" class="headerlink" title="PHPMyadmin"></a>PHPMyadmin</h2><p>將 myadmin 連接 mysql 的容器指令:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name myadmin -d --link mysql_db_server:db -p 9100:80 phpmyadmin/phpmyadmin</span><br></pre></td></tr></table></figure>
+
+<p>mysql_db_server &#x3D; mysql container id</p>
+<p>在瀏覽器上輸入 localhost:9100 就可以看到 phpmyadmin 囉！</p>
+<h2 id="Docker-查詢容器-IP"><a href="#Docker-查詢容器-IP" class="headerlink" title="Docker 查詢容器 IP"></a>Docker 查詢容器 IP</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker inspect -f <span class="string">&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span> container_name_or_id</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Mysql</tag>
+        <tag>PHPMyadmin</tag>
       </tags>
   </entry>
   <entry>
@@ -2656,48 +2656,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【LINE API】- 使用 Icon Switch 讓你的機器人同時有多個角色！ feat. Python</title>
-    <url>/2020/03/28/LINE-new-API-Icon-Switch/</url>
-    <content><![CDATA[<p>最近 LINE 釋出了一個我很喜歡的功能 - <a href="https://developers.line.biz/zh-hant/reference/messaging-api/#icon-nickname-switch">Icon Switch</a>🎚，從字面上的意思就是可以切換機器人的 Icon (名稱以及大頭貼)，過往開發者在使用時都只能較死板的使用同一個頭像或暱稱來回應使用者，而現在只要使用這個這個功能就可以很輕易地切換你想要的大頭貼以及暱稱了 😇</p>
-<blockquote>
-<p>據可靠消息指出這以前是需要收費的功能，而現在則是免費推出來給大家使用，讓大家可以有更多的彈性去開發新功能～</p>
-</blockquote>
-<p><img src="https://i.imgur.com/TbtdNFjl.png"></p>
-<span id="more"></span>
-
-<h1 id="差在哪邊"><a href="#差在哪邊" class="headerlink" title="差在哪邊"></a>差在哪邊</h1><p>⭐️ 用 python 做了一個簡單範例程式歡迎大家試玩: <a href="https://github.com/louis70109/line-icon-switch-python">https://github.com/louis70109/line-icon-switch-python</a></p>
-<p>原本我們要讓機器人輸出文字時會送這樣的 json:</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;Hello, world&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而 Icon Switch 這個功能看起來似乎要設定很多東西，但他其實只要…</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;Hello, I am Cony!!&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;sender&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Cony&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;iconUrl&quot;</span>: <span class="string">&quot;https://line.me/conyprof&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>有發現哪邊不一樣嗎？就是指在這個 json 裡面加入 <code>sender.name</code> 以及 <code>sender.iconUrl</code> 就可以把 大頭貼以及名字換掉啦 🎉</p>
-<p>官方文件也說明的很清楚，有興趣的朋友可以<a href="https://developers.line.biz/zh-hant/reference/messaging-api/#icon-nickname-switch">參考官方網站</a><br><img src="https://i.imgur.com/0o5tiWJ.png"></p>
-<blockquote>
-<p>名稱最多只能 20 個字<br>網址必須要是 Https</p>
-</blockquote>
-<h1 id="Python-如何實現？"><a href="#Python-如何實現？" class="headerlink" title="Python 如何實現？"></a>Python 如何實現？</h1><p>一般機器人的回應我們都會使用<code>TextSendMessage</code>來幫我們產生出對應的輸出內容(JSON)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> TextSendMessage</span><br><span class="line"></span><br><span class="line">text = TextSendMessage(text=<span class="string">&quot;小編去哪兒了呢？&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>而照著先前的 JSON 範例我們就需要先 <code>import Sender</code>，並且在<code>TextSendMessage</code>第二個參數地方加上<code>sender</code>的參數，範例如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> (TextSendMessage, Sender)</span><br><span class="line"></span><br><span class="line">text = TextSendMessage(</span><br><span class="line">  text=<span class="string">&quot;叫你老闆出來啦&quot;</span>,</span><br><span class="line">  sender=Sender(</span><br><span class="line">    name=<span class="string">&quot;Boss&quot;</span>,</span><br><span class="line">    icon_url=<span class="string">&quot;https://&#123;YOUR_BOSS_AVATAR&#125;.jpg&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>如此一來就可以達到切換的功能囉！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在 Icon Switch 這個新功能上很適合做一些對話流程上<code>分類</code>以及<code>角色切換</code>的用途，若是再進階一點甚至貼 Google analytics 標籤來做分析，了解在這個角色下使用者的回應狀態為何，同一時間在分眾的同時還能讓使用者覺得很特別，達到一個雙贏的 communication！😁，諸多應用就留給大家開發發想囉！</p>
-]]></content>
-      <categories>
-        <category>Chatbot</category>
-      </categories>
-      <tags>
-        <tag>AWS</tag>
-        <tag>LINE</tag>
-        <tag>Serverless</tag>
-        <tag>Python</tag>
-        <tag>Icon Switch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【LINE】新進員工的內部訓練花絮</title>
     <url>/2020/08/17/LINE-rookie-OJT/</url>
     <content><![CDATA[<p><img src="https://i.imgur.com/WQWbTmll.jpg"></p>
@@ -2738,6 +2696,48 @@
       <tags>
         <tag>LINE</tag>
         <tag>研討會</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【LINE API】- 使用 Icon Switch 讓你的機器人同時有多個角色！ feat. Python</title>
+    <url>/2020/03/28/LINE-new-API-Icon-Switch/</url>
+    <content><![CDATA[<p>最近 LINE 釋出了一個我很喜歡的功能 - <a href="https://developers.line.biz/zh-hant/reference/messaging-api/#icon-nickname-switch">Icon Switch</a>🎚，從字面上的意思就是可以切換機器人的 Icon (名稱以及大頭貼)，過往開發者在使用時都只能較死板的使用同一個頭像或暱稱來回應使用者，而現在只要使用這個這個功能就可以很輕易地切換你想要的大頭貼以及暱稱了 😇</p>
+<blockquote>
+<p>據可靠消息指出這以前是需要收費的功能，而現在則是免費推出來給大家使用，讓大家可以有更多的彈性去開發新功能～</p>
+</blockquote>
+<p><img src="https://i.imgur.com/TbtdNFjl.png"></p>
+<span id="more"></span>
+
+<h1 id="差在哪邊"><a href="#差在哪邊" class="headerlink" title="差在哪邊"></a>差在哪邊</h1><p>⭐️ 用 python 做了一個簡單範例程式歡迎大家試玩: <a href="https://github.com/louis70109/line-icon-switch-python">https://github.com/louis70109/line-icon-switch-python</a></p>
+<p>原本我們要讓機器人輸出文字時會送這樣的 json:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;Hello, world&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而 Icon Switch 這個功能看起來似乎要設定很多東西，但他其實只要…</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;Hello, I am Cony!!&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;sender&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Cony&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;iconUrl&quot;</span>: <span class="string">&quot;https://line.me/conyprof&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有發現哪邊不一樣嗎？就是指在這個 json 裡面加入 <code>sender.name</code> 以及 <code>sender.iconUrl</code> 就可以把 大頭貼以及名字換掉啦 🎉</p>
+<p>官方文件也說明的很清楚，有興趣的朋友可以<a href="https://developers.line.biz/zh-hant/reference/messaging-api/#icon-nickname-switch">參考官方網站</a><br><img src="https://i.imgur.com/0o5tiWJ.png"></p>
+<blockquote>
+<p>名稱最多只能 20 個字<br>網址必須要是 Https</p>
+</blockquote>
+<h1 id="Python-如何實現？"><a href="#Python-如何實現？" class="headerlink" title="Python 如何實現？"></a>Python 如何實現？</h1><p>一般機器人的回應我們都會使用<code>TextSendMessage</code>來幫我們產生出對應的輸出內容(JSON)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> TextSendMessage</span><br><span class="line"></span><br><span class="line">text = TextSendMessage(text=<span class="string">&quot;小編去哪兒了呢？&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>而照著先前的 JSON 範例我們就需要先 <code>import Sender</code>，並且在<code>TextSendMessage</code>第二個參數地方加上<code>sender</code>的參數，範例如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> (TextSendMessage, Sender)</span><br><span class="line"></span><br><span class="line">text = TextSendMessage(</span><br><span class="line">  text=<span class="string">&quot;叫你老闆出來啦&quot;</span>,</span><br><span class="line">  sender=Sender(</span><br><span class="line">    name=<span class="string">&quot;Boss&quot;</span>,</span><br><span class="line">    icon_url=<span class="string">&quot;https://&#123;YOUR_BOSS_AVATAR&#125;.jpg&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以達到切換的功能囉！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在 Icon Switch 這個新功能上很適合做一些對話流程上<code>分類</code>以及<code>角色切換</code>的用途，若是再進階一點甚至貼 Google analytics 標籤來做分析，了解在這個角色下使用者的回應狀態為何，同一時間在分眾的同時還能讓使用者覺得很特別，達到一個雙贏的 communication！😁，諸多應用就留給大家開發發想囉！</p>
+]]></content>
+      <categories>
+        <category>Chatbot</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>LINE</tag>
+        <tag>Serverless</tag>
+        <tag>Python</tag>
+        <tag>Icon Switch</tag>
       </tags>
   </entry>
   <entry>
@@ -3404,67 +3404,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Chatbot meetup 北部 #13 at 台北商業大學 &amp; 中部 #3 at 夢森林</title>
-    <url>/2019/10/25/chatbot-13/</url>
-    <content><![CDATA[<p><img src="https://i.imgur.com/P3F7Xjp.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 NiJia，很榮幸被邀…是本來就負責 Chatbot meetup 的 Co-organizer，連續兩天參加了 meetup 真的是揮灑自己熱情兩邊跑(好 High)，希望藉由社群的分享讓大家可以吸收到不同的新知！</p>
-<ul>
-<li>北部小聚 #13 連結: <a href="https://chatbots.kktix.cc/events/chatb13ts">https://chatbots.kktix.cc/events/chatb13ts</a></li>
-<li>中部小聚 #3 連結: <a href="https://chatbots.kktix.cc/events/chatbots-taichung-003">https://chatbots.kktix.cc/events/chatbots-taichung-003</a></li>
-<li>共筆: <a href="https://beta.hackfoldr.org/chatbot/">https://beta.hackfoldr.org/chatbot/</a></li>
-</ul>
-<p>這次活動場地感謝 溫明輝 教授幫 chatbot 借了台北商業大學的場地，而台北商業大學最近有跟 LINE PROTOSTAR 聯合舉辦了 ”LINE Chatbot 對話機器人設計大賽”，覺得自己的機器人不錯嘛？歡迎大家踴躍報名參賽哦！</p>
-<h1 id="北部小聚-in-台北商業大學"><a href="#北部小聚-in-台北商業大學" class="headerlink" title="北部小聚 in 台北商業大學"></a>北部小聚 in 台北商業大學</h1><h2 id="LINE-Platform-Update-201910-Evan-Lin"><a href="#LINE-Platform-Update-201910-Evan-Lin" class="headerlink" title="LINE Platform Update 201910 - Evan Lin"></a>LINE Platform Update 201910 - Evan Lin</h2><script async class="speakerdeck-embed" data-slide="1" data-id="36b3e28d2a3f4e489250cbe7d84234a4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>長期支持 Chatbot 社群的 <a href="https://www.evanlin.com/chatbot13/">Evan 大大</a>為大家帶來陣子 LINE 的更新內容，像我這種開發者最期待的就是 LIFF v2 終於上線了 🎉，當中增加了很多種應用讓嗷嗷待哺的工程師們終於可以生出更多種不一樣的應用啦，</p>
-<ul>
-<li>外部瀏覽器上使用 LIFF 🎉</li>
-<li>兼容 Login v2.1，取得使用者基本資訊</li>
-<li>可掃描 QR code</li>
-<li>在 LIFF 的 webview 下可獲取使用者的 OS&#x2F;Language&#x2F;AccessToken 等等的內容</li>
-</ul>
-<p>詳細參考: <a href="https://engineering.linecorp.com/ja/blog/liff-v2/">https://engineering.linecorp.com/ja/blog/liff-v2/</a></p>
-<p>試玩新功能：<br><img src="https://i.imgur.com/zHx9RcBm.png"></p>
-<h2 id="LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯"><a href="#LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯" class="headerlink" title="LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯"></a>LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯</h2><h3 id="簡報連結"><a href="#簡報連結" class="headerlink" title="簡報連結"></a><a href="https://docs.google.com/presentation/d/1MNCbVIsMoLAWtPjg22e1-_3PLA2OpyHKSAIvw53Vdsk/edit#slide=id.g654c56bcd3_0_5">簡報連結</a></h3><p>身為卡米粉的我終於再度聽到卡米哥的議程啦，這次介紹的是從 COSCUP 之後一直更新的 <a href="https://github.com/etrex/kamigo">kamigo</a>，並完全使用這個套件做的寵物協尋機器人，此議程就已這隻機器人為主體介紹。</p>
-<p>在實作網頁的過程中最長需要弄的東西不外乎就是表單驗證、搜尋以及分頁，因為 kamigo 是讓使用者經由 LIFF 幫忙將表單回傳成一份 JSON 至使用者的的對話欄上，<br>再轉介給 controller 去解析並儲存進資料庫，但若使用者在操作的過程中少輸入會不會一樣送出？<br>此時 kamigo 透過 rails 原生既有的 <code>validates</code> 來驗證表單欄位內容，並藉由 Turbolinks ajax + js.erb 讓表單在送出時先透過 ajax 打到後端驗證，若驗證失敗後則回傳告知 LIFF 哪個欄位有問題，這個方法也讓我使用到這個套件的<a href="https://github.com/louis70109/muscle_man">肌肉仔</a>可以透過 rails 的鬼神方法幫我驗證表單，如此一來在表單的確認上就沒問題啦！🎉</p>
-<p>順手捐星星，救救卡米狗: <a href="https://github.com/etrex/kamigo">https://github.com/etrex/kamigo</a></p>
-<h2 id="不懂開發也能建立屬於自己的-Chatbot-白凱仁"><a href="#不懂開發也能建立屬於自己的-Chatbot-白凱仁" class="headerlink" title="不懂開發也能建立屬於自己的 Chatbot - 白凱仁"></a>不懂開發也能建立屬於自己的 Chatbot - 白凱仁</h2><script async class="speakerdeck-embed" data-slide="1" data-id="4386dd5577e74e528b353d1f56c8a201" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>接著由 Cloud Native Taiwan User Group Co-organizer - Kyle Bai 為大家帶來講題，藉由故事的敘述讓大家知道他是為甚麼啟動這個 idea 出來，並靈活運用圖片演示對話流程(筆記)，並因為打遊戲的困擾決定做一個機器人來解決朋友問題，運用 container 的技術來封裝 chatbot App，再用 k8s 透過 N 台機器來管理 container 讓它獲得不死之握能力，確保服務的可用性與延展性。</p>
-<p>最後再透過 live demo 的方式讓會眾們一飽眼福，若是對於 Cloud Native 相關技術有興趣的朋友別忘了<a href="https://www.facebook.com/groups/cloudnative.tw/">加入社群</a>，或是你已經有相關主題遲遲沒地方講？趕快搭上線讓你有舞台可以發揮 😎</p>
-<h2 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h2><p>這部分就參考 Evan 大大的<a href="https://www.evanlin.com/chatbot13/#%E9%96%83%E9%9B%BB%E7%A7%80">文章</a></p>
-<ul>
-<li>Afore: 如何用 Chatbot 說 921 故事</li>
-<li>謝化挺: 921 Chatbot 開發心得</li>
-<li>C.T Lin: 介紹即將發佈的 Bottender v1</li>
-<li>kevin: 宣傳 DevFest 活動</li>
-<li>Demo: FunWater - It’s time to rethink about the “single-use plastic” product.</li>
-</ul>
-<h1 id="中部小聚-in-夢森林"><a href="#中部小聚-in-夢森林" class="headerlink" title="中部小聚 in 夢森林"></a>中部小聚 in 夢森林</h1><h2 id="LINE-Pay-串接全紀錄-KoKo"><a href="#LINE-Pay-串接全紀錄-KoKo" class="headerlink" title="LINE Pay 串接全紀錄 - KoKo"></a>LINE Pay 串接全紀錄 - KoKo</h2><p>身為通勤學的作者也是自由工作者的 KoKo 每次都熱情參加 Chatbot 的活動 👏，本次邀請來帶大家認識 LINE Pay，透過詳細的介紹 LINE Pay 帶著大家一步一步做並提醒大家當中需要注意的部分，有部分的會眾是金融相關背景也特地來了解 LINE Pay 的各種機制，透過 KoKo 解釋後讓會眾更清楚裡頭眉眉角角，此時真的是感受到滿滿的熱情，講者跟會眾踴躍的討論也讓整個活動更活絡，想了解更多議題的歡迎來許願或是來當講者體驗一下中部人真正的活力啊！</p>
-<h2 id="serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy"><a href="#serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy" class="headerlink" title="serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy"></a>serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy</h2><p>COSCUP 就來擔任 Chatbot Taiwan 講者的 Jimmy，本次來分享他包起來的 servo 的容器服務，主要原因是因為在開發機器人時大家都習慣用 ngrok，只是每次都要重新執行重新貼到 LINE Bot 或 LIFF 上，如此繁雜的步驟現在只要透過 container 以及自定義的 DNS 每次只要 docker 啟動後 Domain 啟動後即可開始寫機器人，根本不需要再進後台重新填寫，只能說工程師沒有極限啊！</p>
-<p>透過 Jimmy 將 serveo 打包的 container 就不會有連線不穩定的問題(我有經歷過 🤣)，這邊需要注意的問題 serveo 有 ssh 連線數的問題，但一般來說在開發人數不會太多，這樣理論上已經很夠用了～</p>
-<p>若對這服務有興趣的話：<a href="https://github.com/taichunmin/docker-serveo">https://github.com/taichunmin/docker-serveo</a></p>
-<h2 id="閃電秀-1"><a href="#閃電秀-1" class="headerlink" title="閃電秀"></a>閃電秀</h2><h3 id="感謝-Flex-Simulator-拯救了我-陳佳新"><a href="#感謝-Flex-Simulator-拯救了我-陳佳新" class="headerlink" title="感謝 Flex Simulator 拯救了我 - 陳佳新"></a>感謝 Flex Simulator 拯救了我 - 陳佳新</h3><p>身為中部負責人的佳新，介紹 LINE 的工具 - <a href="https://developers.line.biz/console/fx/">Flex Message Simulator</a>，因為應用大量的 flex message 在自家產品「彰化旅行+」上，透過 LINE 的工具讓我們使用 flex message 上能夠叫得心應手。</p>
-<h3 id="ChatBot-製造-ChatBot-EJ-Lin"><a href="#ChatBot-製造-ChatBot-EJ-Lin" class="headerlink" title="ChatBot 製造 ChatBot - EJ Lin"></a>ChatBot 製造 ChatBot - EJ Lin</h3><p>近期加入 chatbot 志工的 EJ 製作了一個可以透過 chatbot 管理 chatbot 的服務，將使用者所註冊機器人的 secret 以及 token 放入後，就能訂閱 ptt 特定作者的文章，當作者只要發文就會透過 push message 通知訂閱的人，若這邊 500 則免費訊息用完的話就建議使用者在開新的 🤣</p>
-<h3 id="肌肉仔更新啦-NiJia-Lin"><a href="#肌肉仔更新啦-NiJia-Lin" class="headerlink" title="肌肉仔更新啦 - NiJia Lin"></a>肌肉仔更新啦 - NiJia Lin</h3><p>最後則是我前一陣子分享過的健身記錄機器人-<a href="https://github.com/louis70109/muscle_man">肌肉仔</a>，引入了最新更新的 flex message 站牌樣板，讓健身者在訓練的每筆紀錄變得更漂亮，讓健身者可以像是公車一樣一步一步的往下一站走！</p>
-<p>肌肉仔還是會持續更新，有興趣的朋友別忘了幫小弟按個星星 ⭐️ 鼓勵我繼續前進 😃</p>
-<ul>
-<li>連結：<a href="https://github.com/louis70109/muscle_man">https://github.com/louis70109/muscle_man</a></li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>臺北臺中連著兩天舉辦真的是很累，但是看到大家踴躍的互動讓我覺得不虛此行，接下來還需要大家的熱情支持，讓我們繼續辦下去 🚀</p>
-<hr>
-<p>Chatbot Taiwan 在台北、台中皆有一個月一次的定期聚會，致力於提供並討論聊天機器人的相關應用，每回小聚將安排講者主題分享、新知討論，環繞 Chatbot 與 AI，及大家共同關心的話題。歡迎大家踴躍分享、自由與會眾交流，同時也期望大家可以在分享中得到收獲。</p>
-<p>歡迎各位報名、推薦講者以及閃電秀，介紹自己開發的 chatbot 並分享 chatbot 相關的議題，若有相關需要合作歡迎與我聯繫 <a href="https://m.me/linnijia%E3%80%82">https://m.me/linnijia。</a></p>
-]]></content>
-      <categories>
-        <category>研討會</category>
-      </categories>
-      <tags>
-        <tag>chatbot</tag>
-        <tag>meetup</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LINE 開發者社群計畫: 中部人的 Chatbot Meetup #18 心得分享</title>
     <url>/2021/12/02/chatbot-central-meetup-18/</url>
     <content><![CDATA[<style>
@@ -3583,6 +3522,67 @@
       <categories>
         <category>研討會</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Chatbot meetup 北部 #13 at 台北商業大學 &amp; 中部 #3 at 夢森林</title>
+    <url>/2019/10/25/chatbot-13/</url>
+    <content><![CDATA[<p><img src="https://i.imgur.com/P3F7Xjp.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 NiJia，很榮幸被邀…是本來就負責 Chatbot meetup 的 Co-organizer，連續兩天參加了 meetup 真的是揮灑自己熱情兩邊跑(好 High)，希望藉由社群的分享讓大家可以吸收到不同的新知！</p>
+<ul>
+<li>北部小聚 #13 連結: <a href="https://chatbots.kktix.cc/events/chatb13ts">https://chatbots.kktix.cc/events/chatb13ts</a></li>
+<li>中部小聚 #3 連結: <a href="https://chatbots.kktix.cc/events/chatbots-taichung-003">https://chatbots.kktix.cc/events/chatbots-taichung-003</a></li>
+<li>共筆: <a href="https://beta.hackfoldr.org/chatbot/">https://beta.hackfoldr.org/chatbot/</a></li>
+</ul>
+<p>這次活動場地感謝 溫明輝 教授幫 chatbot 借了台北商業大學的場地，而台北商業大學最近有跟 LINE PROTOSTAR 聯合舉辦了 ”LINE Chatbot 對話機器人設計大賽”，覺得自己的機器人不錯嘛？歡迎大家踴躍報名參賽哦！</p>
+<h1 id="北部小聚-in-台北商業大學"><a href="#北部小聚-in-台北商業大學" class="headerlink" title="北部小聚 in 台北商業大學"></a>北部小聚 in 台北商業大學</h1><h2 id="LINE-Platform-Update-201910-Evan-Lin"><a href="#LINE-Platform-Update-201910-Evan-Lin" class="headerlink" title="LINE Platform Update 201910 - Evan Lin"></a>LINE Platform Update 201910 - Evan Lin</h2><script async class="speakerdeck-embed" data-slide="1" data-id="36b3e28d2a3f4e489250cbe7d84234a4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>長期支持 Chatbot 社群的 <a href="https://www.evanlin.com/chatbot13/">Evan 大大</a>為大家帶來陣子 LINE 的更新內容，像我這種開發者最期待的就是 LIFF v2 終於上線了 🎉，當中增加了很多種應用讓嗷嗷待哺的工程師們終於可以生出更多種不一樣的應用啦，</p>
+<ul>
+<li>外部瀏覽器上使用 LIFF 🎉</li>
+<li>兼容 Login v2.1，取得使用者基本資訊</li>
+<li>可掃描 QR code</li>
+<li>在 LIFF 的 webview 下可獲取使用者的 OS&#x2F;Language&#x2F;AccessToken 等等的內容</li>
+</ul>
+<p>詳細參考: <a href="https://engineering.linecorp.com/ja/blog/liff-v2/">https://engineering.linecorp.com/ja/blog/liff-v2/</a></p>
+<p>試玩新功能：<br><img src="https://i.imgur.com/zHx9RcBm.png"></p>
+<h2 id="LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯"><a href="#LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯" class="headerlink" title="LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯"></a>LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯</h2><h3 id="簡報連結"><a href="#簡報連結" class="headerlink" title="簡報連結"></a><a href="https://docs.google.com/presentation/d/1MNCbVIsMoLAWtPjg22e1-_3PLA2OpyHKSAIvw53Vdsk/edit#slide=id.g654c56bcd3_0_5">簡報連結</a></h3><p>身為卡米粉的我終於再度聽到卡米哥的議程啦，這次介紹的是從 COSCUP 之後一直更新的 <a href="https://github.com/etrex/kamigo">kamigo</a>，並完全使用這個套件做的寵物協尋機器人，此議程就已這隻機器人為主體介紹。</p>
+<p>在實作網頁的過程中最長需要弄的東西不外乎就是表單驗證、搜尋以及分頁，因為 kamigo 是讓使用者經由 LIFF 幫忙將表單回傳成一份 JSON 至使用者的的對話欄上，<br>再轉介給 controller 去解析並儲存進資料庫，但若使用者在操作的過程中少輸入會不會一樣送出？<br>此時 kamigo 透過 rails 原生既有的 <code>validates</code> 來驗證表單欄位內容，並藉由 Turbolinks ajax + js.erb 讓表單在送出時先透過 ajax 打到後端驗證，若驗證失敗後則回傳告知 LIFF 哪個欄位有問題，這個方法也讓我使用到這個套件的<a href="https://github.com/louis70109/muscle_man">肌肉仔</a>可以透過 rails 的鬼神方法幫我驗證表單，如此一來在表單的確認上就沒問題啦！🎉</p>
+<p>順手捐星星，救救卡米狗: <a href="https://github.com/etrex/kamigo">https://github.com/etrex/kamigo</a></p>
+<h2 id="不懂開發也能建立屬於自己的-Chatbot-白凱仁"><a href="#不懂開發也能建立屬於自己的-Chatbot-白凱仁" class="headerlink" title="不懂開發也能建立屬於自己的 Chatbot - 白凱仁"></a>不懂開發也能建立屬於自己的 Chatbot - 白凱仁</h2><script async class="speakerdeck-embed" data-slide="1" data-id="4386dd5577e74e528b353d1f56c8a201" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著由 Cloud Native Taiwan User Group Co-organizer - Kyle Bai 為大家帶來講題，藉由故事的敘述讓大家知道他是為甚麼啟動這個 idea 出來，並靈活運用圖片演示對話流程(筆記)，並因為打遊戲的困擾決定做一個機器人來解決朋友問題，運用 container 的技術來封裝 chatbot App，再用 k8s 透過 N 台機器來管理 container 讓它獲得不死之握能力，確保服務的可用性與延展性。</p>
+<p>最後再透過 live demo 的方式讓會眾們一飽眼福，若是對於 Cloud Native 相關技術有興趣的朋友別忘了<a href="https://www.facebook.com/groups/cloudnative.tw/">加入社群</a>，或是你已經有相關主題遲遲沒地方講？趕快搭上線讓你有舞台可以發揮 😎</p>
+<h2 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h2><p>這部分就參考 Evan 大大的<a href="https://www.evanlin.com/chatbot13/#%E9%96%83%E9%9B%BB%E7%A7%80">文章</a></p>
+<ul>
+<li>Afore: 如何用 Chatbot 說 921 故事</li>
+<li>謝化挺: 921 Chatbot 開發心得</li>
+<li>C.T Lin: 介紹即將發佈的 Bottender v1</li>
+<li>kevin: 宣傳 DevFest 活動</li>
+<li>Demo: FunWater - It’s time to rethink about the “single-use plastic” product.</li>
+</ul>
+<h1 id="中部小聚-in-夢森林"><a href="#中部小聚-in-夢森林" class="headerlink" title="中部小聚 in 夢森林"></a>中部小聚 in 夢森林</h1><h2 id="LINE-Pay-串接全紀錄-KoKo"><a href="#LINE-Pay-串接全紀錄-KoKo" class="headerlink" title="LINE Pay 串接全紀錄 - KoKo"></a>LINE Pay 串接全紀錄 - KoKo</h2><p>身為通勤學的作者也是自由工作者的 KoKo 每次都熱情參加 Chatbot 的活動 👏，本次邀請來帶大家認識 LINE Pay，透過詳細的介紹 LINE Pay 帶著大家一步一步做並提醒大家當中需要注意的部分，有部分的會眾是金融相關背景也特地來了解 LINE Pay 的各種機制，透過 KoKo 解釋後讓會眾更清楚裡頭眉眉角角，此時真的是感受到滿滿的熱情，講者跟會眾踴躍的討論也讓整個活動更活絡，想了解更多議題的歡迎來許願或是來當講者體驗一下中部人真正的活力啊！</p>
+<h2 id="serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy"><a href="#serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy" class="headerlink" title="serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy"></a>serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy</h2><p>COSCUP 就來擔任 Chatbot Taiwan 講者的 Jimmy，本次來分享他包起來的 servo 的容器服務，主要原因是因為在開發機器人時大家都習慣用 ngrok，只是每次都要重新執行重新貼到 LINE Bot 或 LIFF 上，如此繁雜的步驟現在只要透過 container 以及自定義的 DNS 每次只要 docker 啟動後 Domain 啟動後即可開始寫機器人，根本不需要再進後台重新填寫，只能說工程師沒有極限啊！</p>
+<p>透過 Jimmy 將 serveo 打包的 container 就不會有連線不穩定的問題(我有經歷過 🤣)，這邊需要注意的問題 serveo 有 ssh 連線數的問題，但一般來說在開發人數不會太多，這樣理論上已經很夠用了～</p>
+<p>若對這服務有興趣的話：<a href="https://github.com/taichunmin/docker-serveo">https://github.com/taichunmin/docker-serveo</a></p>
+<h2 id="閃電秀-1"><a href="#閃電秀-1" class="headerlink" title="閃電秀"></a>閃電秀</h2><h3 id="感謝-Flex-Simulator-拯救了我-陳佳新"><a href="#感謝-Flex-Simulator-拯救了我-陳佳新" class="headerlink" title="感謝 Flex Simulator 拯救了我 - 陳佳新"></a>感謝 Flex Simulator 拯救了我 - 陳佳新</h3><p>身為中部負責人的佳新，介紹 LINE 的工具 - <a href="https://developers.line.biz/console/fx/">Flex Message Simulator</a>，因為應用大量的 flex message 在自家產品「彰化旅行+」上，透過 LINE 的工具讓我們使用 flex message 上能夠叫得心應手。</p>
+<h3 id="ChatBot-製造-ChatBot-EJ-Lin"><a href="#ChatBot-製造-ChatBot-EJ-Lin" class="headerlink" title="ChatBot 製造 ChatBot - EJ Lin"></a>ChatBot 製造 ChatBot - EJ Lin</h3><p>近期加入 chatbot 志工的 EJ 製作了一個可以透過 chatbot 管理 chatbot 的服務，將使用者所註冊機器人的 secret 以及 token 放入後，就能訂閱 ptt 特定作者的文章，當作者只要發文就會透過 push message 通知訂閱的人，若這邊 500 則免費訊息用完的話就建議使用者在開新的 🤣</p>
+<h3 id="肌肉仔更新啦-NiJia-Lin"><a href="#肌肉仔更新啦-NiJia-Lin" class="headerlink" title="肌肉仔更新啦 - NiJia Lin"></a>肌肉仔更新啦 - NiJia Lin</h3><p>最後則是我前一陣子分享過的健身記錄機器人-<a href="https://github.com/louis70109/muscle_man">肌肉仔</a>，引入了最新更新的 flex message 站牌樣板，讓健身者在訓練的每筆紀錄變得更漂亮，讓健身者可以像是公車一樣一步一步的往下一站走！</p>
+<p>肌肉仔還是會持續更新，有興趣的朋友別忘了幫小弟按個星星 ⭐️ 鼓勵我繼續前進 😃</p>
+<ul>
+<li>連結：<a href="https://github.com/louis70109/muscle_man">https://github.com/louis70109/muscle_man</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>臺北臺中連著兩天舉辦真的是很累，但是看到大家踴躍的互動讓我覺得不虛此行，接下來還需要大家的熱情支持，讓我們繼續辦下去 🚀</p>
+<hr>
+<p>Chatbot Taiwan 在台北、台中皆有一個月一次的定期聚會，致力於提供並討論聊天機器人的相關應用，每回小聚將安排講者主題分享、新知討論，環繞 Chatbot 與 AI，及大家共同關心的話題。歡迎大家踴躍分享、自由與會眾交流，同時也期望大家可以在分享中得到收獲。</p>
+<p>歡迎各位報名、推薦講者以及閃電秀，介紹自己開發的 chatbot 並分享 chatbot 相關的議題，若有相關需要合作歡迎與我聯繫 <a href="https://m.me/linnijia%E3%80%82">https://m.me/linnijia。</a></p>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>chatbot</tag>
+        <tag>meetup</tag>
+      </tags>
   </entry>
   <entry>
     <title>Chatbot meetup #14 與 #15 小聚心得</title>
@@ -4400,8 +4400,8 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><script async class="speakerdeck-embed" data-slide="17" data-id="b4de0b8800ae44b3bd652e3beadfb7c3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 <p>看了上述的內容是否想更了解 LINE 的工作呢？除了可以直接至 <a href="(https://careers.linecorp.com/jobs?co=Taiwan)">LINE Career</a> 上投履歷之外，LINE 也即將在 <strong>5&#x2F;22</strong> 的<a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-taiwan-developers-recruitment-day/">招募日</a>與大家見面，現場會有許多工程團隊的同仁來為大家介紹，歡迎大家來<a href="https://linegroup.kktix.cc/events/20210522-devel">報名頁面報名</a>參加本次盛會！</p>
-<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#x64;&#108;&#x5f;&#100;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#99;&#x6f;&#x72;&#x70;&#46;&#x63;&#x6f;&#109;">&#x64;&#108;&#x5f;&#100;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#99;&#x6f;&#x72;&#x70;&#46;&#x63;&#x6f;&#109;</a><br>資格符合後即可獲得邀請碼</p>
-<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#x64;&#108;&#x5f;&#x64;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#x70;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#x72;&#112;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#108;&#x5f;&#x64;&#101;&#x76;&#95;&#x6d;&#x65;&#x65;&#116;&#x75;&#x70;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#x72;&#112;&#46;&#x63;&#x6f;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#x64;&#108;&#x5f;&#x64;&#101;&#x76;&#x5f;&#109;&#101;&#x65;&#x74;&#117;&#x70;&#64;&#x6c;&#x69;&#x6e;&#101;&#99;&#111;&#x72;&#x70;&#46;&#99;&#111;&#109;">&#x64;&#108;&#x5f;&#x64;&#101;&#x76;&#x5f;&#109;&#101;&#x65;&#x74;&#117;&#x70;&#64;&#x6c;&#x69;&#x6e;&#101;&#99;&#111;&#x72;&#x70;&#46;&#99;&#111;&#109;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#100;&#x6c;&#95;&#x64;&#x65;&#118;&#95;&#109;&#x65;&#101;&#x74;&#x75;&#112;&#64;&#108;&#x69;&#110;&#101;&#x63;&#111;&#114;&#x70;&#x2e;&#99;&#111;&#109;">&#100;&#x6c;&#95;&#x64;&#x65;&#118;&#95;&#109;&#x65;&#101;&#x74;&#x75;&#112;&#64;&#108;&#x69;&#110;&#101;&#x63;&#111;&#114;&#x70;&#x2e;&#99;&#111;&#109;</a><br>資格符合後即可獲得邀請碼</p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
 <h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
@@ -8808,8 +8808,8 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 </ul>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2021/line-15/LRD.png"></p>
 <p>看了上述的內容是否想更了解 LINE 的工作呢？除了可以直接至 <a href="(https://careers.linecorp.com/jobs?co=Taiwan)">LINE Career</a> 上投履歷之外，LINE 也即將在 <strong>5&#x2F;22</strong> 的<a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-taiwan-developers-recruitment-day/">招募日</a>與大家見面，現場會有許多工程團隊的同仁來為大家介紹，歡迎大家來<a href="https://linegroup.kktix.cc/events/20210522-devel">報名頁面報名</a>參加本次盛會！</p>
-<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#100;&#108;&#95;&#x64;&#x65;&#118;&#x5f;&#x6d;&#101;&#101;&#x74;&#x75;&#112;&#64;&#x6c;&#105;&#x6e;&#101;&#99;&#111;&#x72;&#x70;&#x2e;&#99;&#111;&#109;">&#100;&#108;&#95;&#x64;&#x65;&#118;&#x5f;&#x6d;&#101;&#101;&#x74;&#x75;&#112;&#64;&#x6c;&#105;&#x6e;&#101;&#99;&#111;&#x72;&#x70;&#x2e;&#99;&#111;&#109;</a><br>資格符合後即可獲得邀請碼</p>
-<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#x64;&#108;&#95;&#x64;&#101;&#x76;&#x5f;&#109;&#x65;&#101;&#116;&#117;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#114;&#112;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#108;&#95;&#x64;&#101;&#x76;&#x5f;&#109;&#x65;&#101;&#116;&#117;&#112;&#64;&#x6c;&#105;&#110;&#x65;&#x63;&#x6f;&#114;&#112;&#x2e;&#x63;&#x6f;&#109;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【學生票申請方法】"><a href="#【學生票申請方法】" class="headerlink" title="【學生票申請方法】"></a>【學生票申請方法】</h3><p>請先翻拍或掃描學生證<br>寄送至 <a href="mailto:&#100;&#108;&#x5f;&#100;&#x65;&#118;&#95;&#x6d;&#x65;&#101;&#x74;&#117;&#112;&#64;&#x6c;&#105;&#110;&#101;&#99;&#x6f;&#114;&#112;&#46;&#99;&#x6f;&#x6d;">&#100;&#108;&#x5f;&#100;&#x65;&#118;&#95;&#x6d;&#x65;&#101;&#x74;&#117;&#112;&#64;&#x6c;&#105;&#110;&#101;&#99;&#x6f;&#114;&#112;&#46;&#99;&#x6f;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
+<h3 id="【轉職邀請票申請方法】"><a href="#【轉職邀請票申請方法】" class="headerlink" title="【轉職邀請票申請方法】"></a>【轉職邀請票申請方法】</h3><p>寄送履歷至 <a href="mailto:&#x64;&#108;&#95;&#x64;&#101;&#x76;&#95;&#x6d;&#101;&#x65;&#116;&#117;&#x70;&#64;&#108;&#x69;&#110;&#101;&#99;&#111;&#x72;&#x70;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#108;&#95;&#x64;&#101;&#x76;&#95;&#x6d;&#101;&#x65;&#116;&#117;&#x70;&#64;&#108;&#x69;&#110;&#101;&#99;&#111;&#x72;&#x70;&#x2e;&#99;&#x6f;&#x6d;</a><br>資格符合後即可獲得邀請碼</p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
 <h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
@@ -9951,7 +9951,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <blockquote>
 <p>如果有學校&#x2F;系學會&#x2F;社團想與我們合作，以下的部落格提供給大家，更多校園資訊都在其中，歡迎大家與我們聯絡<br><a href="https://engineering.linecorp.com/zh-hant/blog/line-devrel-campus/">https://engineering.linecorp.com/zh-hant/blog/line-devrel-campus/</a></p>
 </blockquote>
-<h4 id="如何申請校園企業參訪"><a href="#如何申請校園企業參訪" class="headerlink" title="如何申請校園企業參訪"></a>如何申請校園企業參訪</h4><p>想知道如何申請校園企業參訪嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#95;&#x74;&#119;&#x6e;&#95;&#100;&#101;&#x76;&#x72;&#101;&#108;&#x40;&#108;&#x69;&#x6e;&#x65;&#99;&#x6f;&#x72;&#112;&#x2e;&#x63;&#111;&#109;">&#x64;&#x6c;&#95;&#x74;&#119;&#x6e;&#95;&#100;&#101;&#x76;&#x72;&#101;&#108;&#x40;&#108;&#x69;&#x6e;&#x65;&#99;&#x6f;&#x72;&#112;&#x2e;&#x63;&#111;&#109;</a></p>
+<h4 id="如何申請校園企業參訪"><a href="#如何申請校園企業參訪" class="headerlink" title="如何申請校園企業參訪"></a>如何申請校園企業參訪</h4><p>想知道如何申請校園企業參訪嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#x5f;&#x74;&#x77;&#110;&#95;&#100;&#101;&#x76;&#x72;&#x65;&#108;&#64;&#x6c;&#x69;&#110;&#x65;&#99;&#x6f;&#114;&#112;&#x2e;&#99;&#111;&#109;">&#x64;&#x6c;&#x5f;&#x74;&#x77;&#110;&#95;&#100;&#101;&#x76;&#x72;&#x65;&#108;&#64;&#x6c;&#x69;&#110;&#x65;&#99;&#x6f;&#114;&#112;&#x2e;&#99;&#111;&#109;</a></p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
 <h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
@@ -11072,7 +11072,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <p>如果想了解實習生活，歡迎查看這篇文章：<a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute/">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></p>
 </blockquote>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>透過贊助能夠實體與同學們面對面交流，感受現場同學的黑客松的熱情，LINER 也能將許多業界的知識分享給同學，讓未來大家在找工作時可以更加順遂。</p>
-<p>最後，想知道如何申請校園企業參訪或是贊助嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#95;&#116;&#x77;&#x6e;&#95;&#100;&#101;&#118;&#114;&#101;&#108;&#x40;&#108;&#105;&#110;&#101;&#99;&#111;&#114;&#112;&#46;&#99;&#x6f;&#x6d;">&#x64;&#x6c;&#95;&#116;&#x77;&#x6e;&#95;&#100;&#101;&#118;&#114;&#101;&#108;&#x40;&#108;&#105;&#110;&#101;&#99;&#111;&#114;&#112;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>最後，想知道如何申請校園企業參訪或是贊助嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#100;&#108;&#95;&#x74;&#119;&#110;&#95;&#100;&#101;&#118;&#x72;&#x65;&#108;&#x40;&#x6c;&#x69;&#110;&#101;&#x63;&#x6f;&#x72;&#x70;&#x2e;&#x63;&#x6f;&#109;">&#100;&#108;&#95;&#x74;&#119;&#110;&#95;&#100;&#101;&#118;&#x72;&#x65;&#108;&#x40;&#x6c;&#x69;&#110;&#101;&#x63;&#x6f;&#x72;&#x70;&#x2e;&#x63;&#x6f;&#109;</a></p>
 <p>那我們就下次見囉！</p>
 <blockquote>
 <p>如果想到 LINE 實習，歡迎大家持續關注 -&gt; <a href="https://careers.linecorp.com/jobs/83">TECH FRESH program</a></p>
@@ -11496,13 +11496,13 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
     <url>/2023/02/05/nodejs-custom-qrcode-background/</url>
     <content><![CDATA[<p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天在 FB 社群中意外的點到<a href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a> 中分享的內容(範例如下)，其中寫到：「<mark>讓你的 QR Code 更符合品牌形象，而不是停留在黑白</mark>」。</p>
+<span id="more"></span>
+
 <p><img src="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A"></p>
 <blockquote>
 <p>引用至： <a href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a></p>
 </blockquote>
 <p>剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了<a href="https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md">Awesome-qr.js</a>，以下就快速分享個實作心得。</p>
-<span id="more"></span>
-
 <h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當時 Survey 了兩個版本：</p>
 <ul>
 <li>JS 版本：<a href="(https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md)">sumimakito&#x2F;Awesome-qr.js</a><ul>
@@ -13735,90 +13735,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
-    <title>【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot</title>
-    <url>/2021/03/05/translate-sticker-driven/</url>
-    <content><![CDATA[<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/1.png"></p>
-<blockquote>
-<p>翻譯來自泰國的 Tan 的<a href="https://medium.com/linedevth/line-chatbot-sticker-driven-conversation-920087b8fe44">文章</a></p>
-</blockquote>
-<p>大家好，我希望 2021 年對每個人來說都是美好的一年 😃，本次會分享一篇對於有在開發 LINE Chatbot 朋友相關的有趣文章。</p>
-<p>12 月時，LINE 更新了 Messaging API 的新功能(<a href="https://developers.line.biz/en/news/2020/12/02/messaging-api-update-december-2020/">新聞連結</a>)，方法是當用戶將<strong>貼圖</strong>發送給 Chatbot 時，將會從 Webhook 的 <code>keywords</code> 中找到貼圖的<strong>關鍵字</strong>訊息。</p>
-<span id="more"></span>
-
-<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/2.jpeg"></p>
-<h1 id="關鍵字的效果如何？"><a href="#關鍵字的效果如何？" class="headerlink" title="關鍵字的效果如何？"></a>關鍵字的效果如何？</h1><p>以前，當用戶發送的貼圖給我們時，從中只能拿到 <code>stickerId</code> 與 <code>packageId</code>，很難使用它做其他的用途，也因此我們無法理解使用貼圖時的上下文為何。</p>
-<p>但如今增加了 <code>keywords</code> 這個欄位，它將幫助我們透過 <strong>貼圖</strong>(<strong>Sticker</strong>) 更好地去理解其中含意，了解用戶的意圖與感受(WoW!)</p>
-<blockquote>
-<p>注意：<code>keywords</code> 欄位最多將只能擁有 15 個關鍵字，並且排序為<strong>隨機</strong>。</p>
-</blockquote>
-<h1 id="透過-Sticker-與您的-BMI-Chatbot-Dialogflow-對話。"><a href="#透過-Sticker-與您的-BMI-Chatbot-Dialogflow-對話。" class="headerlink" title="透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。"></a>透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。</h1><p>我將在本文中做的是開發給 <a href="https://medium.com/@jirawatee">Jirawatee</a> 使用的 BMI Chatbot，<a href="https://medium.com/@jirawatee">Jirawatee</a>希望 Chatbot 透過 Sticker 了解他的需求(Intent)，讓他能更方便的使用。但眾所周知，Dialogflow 僅支援文字類型，因此我們必須先創建一個 Proxy 幫忙轉譯，然後再將訊息轉發給 Dialogflow。</p>
-<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/3.png"></p>
-<p>由於本篇是屬於半實驗性的開發，因此我將透過 ngrok，將其作為 Local Server，並使用 Node.js 進行開發。主要步驟如下:</p>
-<ol>
-<li>建立 LINE Official Account (Chatbot)</li>
-<li>使用 Dialogflow 建構 BMI Chatbot</li>
-<li>建立 Proxy Server</li>
-<li>啟用 ngrok</li>
-<li>將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</li>
-</ol>
-<h2 id="1-建立-LINE-Official-Account-Chatbot"><a href="#1-建立-LINE-Official-Account-Chatbot" class="headerlink" title="1. 建立 LINE Official Account (Chatbot)"></a>1. 建立 LINE Official Account (Chatbot)</h2><p>如果您以前沒有建立過 LINE Chatbot，則可以查看 Jirawatee 的<a href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%81%E0%B8%B2%E0%B8%A3-integrate-line-bot-%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A-dialogflow-%E0%B9%81%E0%B8%A5%E0%B8%B0-firebase-%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-bmi-bot-5a30a672f6ae">這篇文章</a>(泰文)。若你已經有帳號了，直接跳到下一小節。</p>
-<blockquote>
-<p>中文版的建立流程可以參考 - <a href="https://engineering.linecorp.com/zh-hant/blog/chatbot-taichung-08-line-workshop/#massaging-api">LINE 開發社群計畫: Chatbot 台中小聚 08 – LINE platform 工作坊紀錄</a></p>
-</blockquote>
-<h2 id="2-使用-Dialogflow-建構-BMI-Chatbot"><a href="#2-使用-Dialogflow-建構-BMI-Chatbot" class="headerlink" title="2. 使用 Dialogflow 建構 BMI Chatbot"></a>2. 使用 Dialogflow 建構 BMI Chatbot</h2><p>如前面 Jirawatee 建議的那樣，我們需要一隻 BMI Chatbot，想了解實作細節可以參考此篇(泰文)：<a href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%81%E0%B8%B2%E0%B8%A3-integrate-line-bot-%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A-dialogflow-%E0%B9%81%E0%B8%A5%E0%B8%B0-firebase-%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-bmi-bot-5a30a672f6ae">如何透過 BMI Bot 將 LINE Bot、Dialogflow 和 Firebase 結合</a></p>
-<h2 id="3-建立-Proxy-Server"><a href="#3-建立-Proxy-Server" class="headerlink" title="3. 建立 Proxy Server"></a>3. 建立 Proxy Server</h2><p>此步驟是使用 Node.js 撰寫一個 Web app，用來接收用戶向我們的 Chatbot 發送訊息時 LINE 發送回來的 Webhook，然後我們將從 Webhook 中 找出 <code>keywords</code> 欄位並轉發到 Dialogflow</p>
-<script src="https://gist.github.com/tandevmode/a833ff7ca8b1e2bcd9fcc50770fa6667.js"></script>
-
-<p>創建新 Text 類型的原則是:</p>
-<ul>
-<li><strong>Body</strong>：我們必須將 Sticker 類型轉換為 Text 類型的文字，以便 Dialogflow 能夠理解它。而實際上，我們也可以將其所有關鍵字發送過去。但是，如果仔細看，關鍵字的含義非常廣泛(例如：cony、sally、line.. 等等)，可能會使 Dialogflow 難以解釋 Intent，因此我嘗試僅發送 3 個隨機關鍵字給 Dialogflow。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> keywords = event.message.keywords;</span><br><span class="line"><span class="keyword">let</span> stickerIntent = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span>; i++) &#123;</span><br><span class="line">    stickerIntent += randomItem(keywords) + <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomItem</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * items.length)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Headers：我們在轉發到 Dialogflow 之前，需將 “x-line-signature” 和 “hosts” 一起使用，而 ‘content-length’ 也是需要注意的部分，因此也需要將 Body 加入其中。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">req.headers[<span class="string">&#x27;x-line-signature&#x27;</span>] = crypto</span><br><span class="line">  .createHmac(<span class="string">&#x27;SHA256&#x27;</span>, LINE_CHANNEL_SECRET)</span><br><span class="line">  .update(body)</span><br><span class="line">  .digest(<span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line">  .toString();</span><br><span class="line">req.headers.host = <span class="string">&#x27;dialogflow.cloud.google.com&#x27;</span>;</span><br><span class="line">req.headers[<span class="string">&#x27;content-length&#x27;</span>] = Buffer.byteLength(body, <span class="string">&#x27;utf8&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>接著開始嘗試轉發到 Dialogflow 上，但 Dialogflow 都沒有連接成功。一直在原地轉圈圈 🥺。之後，我來諮詢 Jirawatee，討論了許久時間，我們發現需要修復’content-length’ 即可…</p>
-<h3 id="index-js-的所有程式碼"><a href="#index-js-的所有程式碼" class="headerlink" title="index.js 的所有程式碼"></a>index.js 的所有程式碼</h3><script src="https://gist.github.com/tandevmode/e5045de4e811aa979f86fbf462e8c043.js"></script>
-
-<h1 id="4-啟用-ngrok"><a href="#4-啟用-ngrok" class="headerlink" title="4. 啟用 ngrok"></a>4. 啟用 ngrok</h1><p>對於以前從未使用過 ngrok 的朋友，我們建議您閱讀<a href="https://medium.com/linedevth/linebot-ngrok-b319841a49d7">這篇文章</a>(泰文)，可以讓我們在 3000 port 下啟用 ngrok！</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok http 3000</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/5.png"></p>
-<p>像過往一樣，從 ngrok 獲取 URL 後，在網址後面添加 <code>/webhook</code> 並放入我們的 Chatbot Channel 當中。</p>
-<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/6.png"></p>
-<h1 id="5-將-Chatbot-收集到的詞彙添加到-Dialogflow-做訓練"><a href="#5-將-Chatbot-收集到的詞彙添加到-Dialogflow-做訓練" class="headerlink" title="5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練"></a>5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</h1><p>Dialogflow 的其中一個功能是我們可以輸入每個 Intent 的句子，因為我們 BMI Chatbot 輸入都是泰文句子，但是 <code>keywords</code> 裡回應的數值都是英文，因此我們也必須提供更多訓練的詞彙。</p>
-<h3 id="5-1-Default-Welcome-Intent"><a href="#5-1-Default-Welcome-Intent" class="headerlink" title="5.1 Default Welcome Intent"></a>5.1 Default Welcome Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/7.png"></p>
-<h3 id="5-2-BMI-Intent"><a href="#5-2-BMI-Intent" class="headerlink" title="5.2 BMI Intent"></a>5.2 BMI Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/8.png"></p>
-<h3 id="5-3-BMI-—-custom-—-yes-Intent"><a href="#5-3-BMI-—-custom-—-yes-Intent" class="headerlink" title="5.3 BMI — custom — yes Intent"></a>5.3 BMI — custom — yes Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/9.png"></p>
-<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/10.gif"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>本文提供了一些貼圖的小技巧，透過這些技巧增加了一些功能，讓 Chatbot 透過貼圖(Sticker)類型讓 Chatbot 理解用戶的意圖，歡迎各位參考本篇文章並嘗試各種不同的應用吧：)</p>
-<p><strong>Note</strong>: Keywords experimental phase - keywords 目前仍處於試驗階段，使用前須注意相關支援度喔！</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a href="https://medium.com/linedevth/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%97%E0%B8%B3%E0%B9%83%E0%B8%AB%E0%B9%89-line-bot-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-dialogflow-%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-events-%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%86%E0%B8%99%E0%B8%AD%E0%B8%81%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD%E0%B8%88%E0%B8%B2%E0%B8%81-text-2cae8214c647">揭示如何使 Dialogflow 開發的 LINE Bot 支持 Text 以外的各種事件</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>翻譯</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Chatbot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 GCS || GitHub 上傳圖片並取得網址</title>
     <url>/2022/10/02/upload-image-get-url-ways/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -13907,53 +13823,9 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
-    <title>【WFH 戰記】讓舊的 iPhone 手機變成 Mac 的隨身視訊鏡頭 | feat. OBS</title>
-    <url>/2022/06/19/use-iphone-camera-mac-obs/</url>
-    <content><![CDATA[<h1 id="裝備準備-iPhone-傳輸線-TypeC"><a href="#裝備準備-iPhone-傳輸線-TypeC" class="headerlink" title="裝備準備 - iPhone + 傳輸線(TypeC)"></a>裝備準備 - iPhone + 傳輸線(TypeC)</h1><p><img src="https://nijialin.com/images/2022/use-iphone-cam/0-1.JPG"></p>
-<ul>
-<li>iPhone XR</li>
-<li>TypeC 傳輸線</li>
-<li>Macbook Pro 15”</li>
-</ul>
-<p>江湖再走 Mac 要有，且現代手機鏡頭一個比一個還猛，當然蘋果用戶也會有機會換下舊的手機，這邊只要這三個東西就可以往接下來的步驟前進囉!</p>
-<span id="more"></span>
-
-<h1 id="OBS"><a href="#OBS" class="headerlink" title="OBS"></a>OBS</h1><p>除了直播&#x2F;錄影之外，OBS有另一個好用的東西就是<strong>虛擬鏡頭</strong>，讓大家可以客製化任何的東西，全部讓OBS幫你套在視訊上，這種需求可能在某些分享畫面中偵數會很低，透過視訊就可以拉高(約 30FPS)，因此以下就用虛擬鯨頭來帶大家把舊的 iPhone 客製成你的視訊鏡頭!</p>
-<h2 id="加入場景"><a href="#加入場景" class="headerlink" title="加入場景"></a>加入場景</h2><p><img src="https://nijialin.com/images/2022/use-iphone-cam/1.png"></p>
-<p>OBS 彈性很高，可以設定許多組不同的設定，讓應用場景可以客製化，因此這邊就先加入一個 [<strong>視訊鏡頭</strong>] 場景</p>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/2.png"></p>
-<p>接著在場景內的 <strong>來源</strong>(Source) 中的<strong>視訊擷取裝置</strong>，在 Mac 上很方便直接把 iPhone 當成一個來源</p>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/3.png"></p>
-<p>再下拉選單中找到你的 iPhone 名字</p>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/4.png"></p>
-<p>會看到有一個長方形的框框被放入 OBS 當中，但手機可能會<strong>放橫的</strong>，因此我們就先來翻轉成我們要的方向</p>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/5.png"></p>
-<p>在畫面上點選<em>右鍵</em>找到<strong>變型</strong>，接著會有以下兩種使用</p>
-<ul>
-<li>翻轉到自己要的位置</li>
-<li>稍後會用到<strong>變型設定….</strong></li>
-</ul>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/8.png"></p>
-<p>一樣右鍵選擇 **變型設定….**，陸續把上下左右的剪裁逐步調整成適合的大小，這邊我 iPhone 相機使用 1:1 的大小，因此裁切起來就要切成正方形</p>
-<blockquote>
-<p>16:9 之類的會出現像是拍照鈕，畫面上不太適合出現，因此我就使用1:1。</p>
-</blockquote>
-<h2 id="客製化你的視訊鏡頭"><a href="#客製化你的視訊鏡頭" class="headerlink" title="客製化你的視訊鏡頭"></a>客製化你的視訊鏡頭</h2><p><img src="https://nijialin.com/images/2022/use-iphone-cam/9.png"></p>
-<p>調整完之後就可以在畫面上開始放上各種圖片，讓你整個視訊看起來很繽紛，且可以用到手機的人像功能，但缺點是下面會出現一個自然光的字，如果不想出現就還是用一般的拍照囉!</p>
-<h2 id="啟動鏡頭-開啟會議軟體"><a href="#啟動鏡頭-開啟會議軟體" class="headerlink" title="啟動鏡頭 + 開啟會議軟體"></a>啟動鏡頭 + 開啟會議軟體</h2><p><img src="https://nijialin.com/images/2022/use-iphone-cam/10.png"></p>
-<p>在 OBS 右下角開啟<strong>虛擬相機</strong>，這樣就可以在各大會議軟體中使用啦，接著我使用 Zoom 來當作這次的測試</p>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/12.png"></p>
-<p>在視訊旁邊就可以選擇 OBS Virtual Camera，這樣就可以看到你的 iPhone 變成你的視訊鏡頭，是不是覺得很方便呢?</p>
-<blockquote>
-<p>zoom 預設讓自己看到翻轉，這樣狀態是正常的，不用特別去調整。</p>
-</blockquote>
-<h1 id="主委加碼-iPhone-九宮格怎麼關"><a href="#主委加碼-iPhone-九宮格怎麼關" class="headerlink" title="主委加碼 iPhone 九宮格怎麼關"></a>主委加碼 iPhone 九宮格怎麼關</h1><p><img src="https://nijialin.com/images/2022/use-iphone-cam/1-3.PNG"></p>
-<p>開啟設定的地方，往下找到相機的選項。</p>
-<p><img src="https://nijialin.com/images/2022/use-iphone-cam/1-2.PNG"></p>
-<p>找到格線的地方把他關起來就可以囉。</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然使用 iPhone 當作視訊鏡頭有點殺雞用牛刀，但透過這種方式讓遠距或接案工作者在隨時隨地都可以讓你的視訊會議質感上升，在疫情的環境下能看到精緻的畫面大家眼睛也會為之一亮呢!!</p>
-<p>如果你也覺得這篇文章有用，歡迎分享給更多人知道喔！接下來嘗試看看 Windows 到底怎麼接上 iPhone 來當鏡頭。</p>
-<style>
+    <title>【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot</title>
+    <url>/2021/03/05/translate-sticker-driven/</url>
+    <content><![CDATA[<style>
   section.compact {
     font-size: 150%  
   }
@@ -13961,14 +13833,77 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
     display: block;
     margin: 0 auto;
   }
-</style>]]></content>
+</style>
+
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/1.png"></p>
+<blockquote>
+<p>翻譯來自泰國的 Tan 的<a href="https://medium.com/linedevth/line-chatbot-sticker-driven-conversation-920087b8fe44">文章</a></p>
+</blockquote>
+<p>大家好，我希望 2021 年對每個人來說都是美好的一年 😃，本次會分享一篇對於有在開發 LINE Chatbot 朋友相關的有趣文章。</p>
+<p>12 月時，LINE 更新了 Messaging API 的新功能(<a href="https://developers.line.biz/en/news/2020/12/02/messaging-api-update-december-2020/">新聞連結</a>)，方法是當用戶將<strong>貼圖</strong>發送給 Chatbot 時，將會從 Webhook 的 <code>keywords</code> 中找到貼圖的<strong>關鍵字</strong>訊息。</p>
+<span id="more"></span>
+
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/2.jpeg"></p>
+<h1 id="關鍵字的效果如何？"><a href="#關鍵字的效果如何？" class="headerlink" title="關鍵字的效果如何？"></a>關鍵字的效果如何？</h1><p>以前，當用戶發送的貼圖給我們時，從中只能拿到 <code>stickerId</code> 與 <code>packageId</code>，很難使用它做其他的用途，也因此我們無法理解使用貼圖時的上下文為何。</p>
+<p>但如今增加了 <code>keywords</code> 這個欄位，它將幫助我們透過 <strong>貼圖</strong>(<strong>Sticker</strong>) 更好地去理解其中含意，了解用戶的意圖與感受(WoW!)</p>
+<blockquote>
+<p>注意：<code>keywords</code> 欄位最多將只能擁有 15 個關鍵字，並且排序為<strong>隨機</strong>。</p>
+</blockquote>
+<h1 id="透過-Sticker-與您的-BMI-Chatbot-Dialogflow-對話。"><a href="#透過-Sticker-與您的-BMI-Chatbot-Dialogflow-對話。" class="headerlink" title="透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。"></a>透過 Sticker 與您的 BMI Chatbot(Dialogflow)對話。</h1><p>我將在本文中做的是開發給 <a href="https://medium.com/@jirawatee">Jirawatee</a> 使用的 BMI Chatbot，<a href="https://medium.com/@jirawatee">Jirawatee</a>希望 Chatbot 透過 Sticker 了解他的需求(Intent)，讓他能更方便的使用。但眾所周知，Dialogflow 僅支援文字類型，因此我們必須先創建一個 Proxy 幫忙轉譯，然後再將訊息轉發給 Dialogflow。</p>
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/3.png"></p>
+<p>由於本篇是屬於半實驗性的開發，因此我將透過 ngrok，將其作為 Local Server，並使用 Node.js 進行開發。主要步驟如下:</p>
+<ol>
+<li>建立 LINE Official Account (Chatbot)</li>
+<li>使用 Dialogflow 建構 BMI Chatbot</li>
+<li>建立 Proxy Server</li>
+<li>啟用 ngrok</li>
+<li>將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</li>
+</ol>
+<h2 id="1-建立-LINE-Official-Account-Chatbot"><a href="#1-建立-LINE-Official-Account-Chatbot" class="headerlink" title="1. 建立 LINE Official Account (Chatbot)"></a>1. 建立 LINE Official Account (Chatbot)</h2><p>如果您以前沒有建立過 LINE Chatbot，則可以查看 Jirawatee 的<a href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%81%E0%B8%B2%E0%B8%A3-integrate-line-bot-%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A-dialogflow-%E0%B9%81%E0%B8%A5%E0%B8%B0-firebase-%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-bmi-bot-5a30a672f6ae">這篇文章</a>(泰文)。若你已經有帳號了，直接跳到下一小節。</p>
+<blockquote>
+<p>中文版的建立流程可以參考 - <a href="https://engineering.linecorp.com/zh-hant/blog/chatbot-taichung-08-line-workshop/#massaging-api">LINE 開發社群計畫: Chatbot 台中小聚 08 – LINE platform 工作坊紀錄</a></p>
+</blockquote>
+<h2 id="2-使用-Dialogflow-建構-BMI-Chatbot"><a href="#2-使用-Dialogflow-建構-BMI-Chatbot" class="headerlink" title="2. 使用 Dialogflow 建構 BMI Chatbot"></a>2. 使用 Dialogflow 建構 BMI Chatbot</h2><p>如前面 Jirawatee 建議的那樣，我們需要一隻 BMI Chatbot，想了解實作細節可以參考此篇(泰文)：<a href="https://medium.com/linedevth/%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%81%E0%B8%B2%E0%B8%A3-integrate-line-bot-%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A-dialogflow-%E0%B9%81%E0%B8%A5%E0%B8%B0-firebase-%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-bmi-bot-5a30a672f6ae">如何透過 BMI Bot 將 LINE Bot、Dialogflow 和 Firebase 結合</a></p>
+<h2 id="3-建立-Proxy-Server"><a href="#3-建立-Proxy-Server" class="headerlink" title="3. 建立 Proxy Server"></a>3. 建立 Proxy Server</h2><p>此步驟是使用 Node.js 撰寫一個 Web app，用來接收用戶向我們的 Chatbot 發送訊息時 LINE 發送回來的 Webhook，然後我們將從 Webhook 中 找出 <code>keywords</code> 欄位並轉發到 Dialogflow</p>
+<script src="https://gist.github.com/tandevmode/a833ff7ca8b1e2bcd9fcc50770fa6667.js"></script>
+
+<p>創建新 Text 類型的原則是:</p>
+<ul>
+<li><strong>Body</strong>：我們必須將 Sticker 類型轉換為 Text 類型的文字，以便 Dialogflow 能夠理解它。而實際上，我們也可以將其所有關鍵字發送過去。但是，如果仔細看，關鍵字的含義非常廣泛(例如：cony、sally、line.. 等等)，可能會使 Dialogflow 難以解釋 Intent，因此我嘗試僅發送 3 個隨機關鍵字給 Dialogflow。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> keywords = event.message.keywords;</span><br><span class="line"><span class="keyword">let</span> stickerIntent = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span>; i++) &#123;</span><br><span class="line">    stickerIntent += randomItem(keywords) + <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomItem</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * items.length)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Headers：我們在轉發到 Dialogflow 之前，需將 “x-line-signature” 和 “hosts” 一起使用，而 ‘content-length’ 也是需要注意的部分，因此也需要將 Body 加入其中。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">req.headers[<span class="string">&#x27;x-line-signature&#x27;</span>] = crypto</span><br><span class="line">  .createHmac(<span class="string">&#x27;SHA256&#x27;</span>, LINE_CHANNEL_SECRET)</span><br><span class="line">  .update(body)</span><br><span class="line">  .digest(<span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line">  .toString();</span><br><span class="line">req.headers.host = <span class="string">&#x27;dialogflow.cloud.google.com&#x27;</span>;</span><br><span class="line">req.headers[<span class="string">&#x27;content-length&#x27;</span>] = Buffer.byteLength(body, <span class="string">&#x27;utf8&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接著開始嘗試轉發到 Dialogflow 上，但 Dialogflow 都沒有連接成功。一直在原地轉圈圈 🥺。之後，我來諮詢 Jirawatee，討論了許久時間，我們發現需要修復’content-length’ 即可…</p>
+<h3 id="index-js-的所有程式碼"><a href="#index-js-的所有程式碼" class="headerlink" title="index.js 的所有程式碼"></a>index.js 的所有程式碼</h3><script src="https://gist.github.com/tandevmode/e5045de4e811aa979f86fbf462e8c043.js"></script>
+
+<h1 id="4-啟用-ngrok"><a href="#4-啟用-ngrok" class="headerlink" title="4. 啟用 ngrok"></a>4. 啟用 ngrok</h1><p>對於以前從未使用過 ngrok 的朋友，我們建議您閱讀<a href="https://medium.com/linedevth/linebot-ngrok-b319841a49d7">這篇文章</a>(泰文)，可以讓我們在 3000 port 下啟用 ngrok！</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok http 3000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/5.png"></p>
+<p>像過往一樣，從 ngrok 獲取 URL 後，在網址後面添加 <code>/webhook</code> 並放入我們的 Chatbot Channel 當中。</p>
+<p><img src="https://nijialin.com/images/2021/translate/sticker-driven/6.png"></p>
+<h1 id="5-將-Chatbot-收集到的詞彙添加到-Dialogflow-做訓練"><a href="#5-將-Chatbot-收集到的詞彙添加到-Dialogflow-做訓練" class="headerlink" title="5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練"></a>5. 將 Chatbot 收集到的詞彙添加到 Dialogflow 做訓練</h1><p>Dialogflow 的其中一個功能是我們可以輸入每個 Intent 的句子，因為我們 BMI Chatbot 輸入都是泰文句子，但是 <code>keywords</code> 裡回應的數值都是英文，因此我們也必須提供更多訓練的詞彙。</p>
+<h3 id="5-1-Default-Welcome-Intent"><a href="#5-1-Default-Welcome-Intent" class="headerlink" title="5.1 Default Welcome Intent"></a>5.1 Default Welcome Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/7.png"></p>
+<h3 id="5-2-BMI-Intent"><a href="#5-2-BMI-Intent" class="headerlink" title="5.2 BMI Intent"></a>5.2 BMI Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/8.png"></p>
+<h3 id="5-3-BMI-—-custom-—-yes-Intent"><a href="#5-3-BMI-—-custom-—-yes-Intent" class="headerlink" title="5.3 BMI — custom — yes Intent"></a>5.3 BMI — custom — yes Intent</h3><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/9.png"></p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p><img src="https://nijialin.com/images/2021/translate/sticker-driven/10.gif"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>本文提供了一些貼圖的小技巧，透過這些技巧增加了一些功能，讓 Chatbot 透過貼圖(Sticker)類型讓 Chatbot 理解用戶的意圖，歡迎各位參考本篇文章並嘗試各種不同的應用吧：)</p>
+<p><strong>Note</strong>: Keywords experimental phase - keywords 目前仍處於試驗階段，使用前須注意相關支援度喔！</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://medium.com/linedevth/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%97%E0%B8%B3%E0%B9%83%E0%B8%AB%E0%B9%89-line-bot-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-dialogflow-%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-events-%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%86%E0%B8%99%E0%B8%AD%E0%B8%81%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD%E0%B8%88%E0%B8%B2%E0%B8%81-text-2cae8214c647">揭示如何使 Dialogflow 開發的 LINE Bot 支持 Text 以外的各種事件</a></li>
+</ul>
+]]></content>
       <categories>
-        <category>WFH 戰記</category>
+        <category>翻譯</category>
       </categories>
       <tags>
-        <tag>Mac</tag>
-        <tag>iPhone</tag>
-        <tag>視訊</tag>
+        <tag>LINE</tag>
+        <tag>Chatbot</tag>
       </tags>
   </entry>
   <entry>
@@ -14051,6 +13986,71 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
         <tag>Python</tag>
         <tag>SDK</tag>
         <tag>Open source</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【WFH 戰記】讓舊的 iPhone 手機變成 Mac 的隨身視訊鏡頭 | feat. OBS</title>
+    <url>/2022/06/19/use-iphone-camera-mac-obs/</url>
+    <content><![CDATA[<h1 id="裝備準備-iPhone-傳輸線-TypeC"><a href="#裝備準備-iPhone-傳輸線-TypeC" class="headerlink" title="裝備準備 - iPhone + 傳輸線(TypeC)"></a>裝備準備 - iPhone + 傳輸線(TypeC)</h1><p><img src="https://nijialin.com/images/2022/use-iphone-cam/0-1.JPG"></p>
+<ul>
+<li>iPhone XR</li>
+<li>TypeC 傳輸線</li>
+<li>Macbook Pro 15”</li>
+</ul>
+<p>江湖再走 Mac 要有，且現代手機鏡頭一個比一個還猛，當然蘋果用戶也會有機會換下舊的手機，這邊只要這三個東西就可以往接下來的步驟前進囉!</p>
+<span id="more"></span>
+
+<h1 id="OBS"><a href="#OBS" class="headerlink" title="OBS"></a>OBS</h1><p>除了直播&#x2F;錄影之外，OBS有另一個好用的東西就是<strong>虛擬鏡頭</strong>，讓大家可以客製化任何的東西，全部讓OBS幫你套在視訊上，這種需求可能在某些分享畫面中偵數會很低，透過視訊就可以拉高(約 30FPS)，因此以下就用虛擬鯨頭來帶大家把舊的 iPhone 客製成你的視訊鏡頭!</p>
+<h2 id="加入場景"><a href="#加入場景" class="headerlink" title="加入場景"></a>加入場景</h2><p><img src="https://nijialin.com/images/2022/use-iphone-cam/1.png"></p>
+<p>OBS 彈性很高，可以設定許多組不同的設定，讓應用場景可以客製化，因此這邊就先加入一個 [<strong>視訊鏡頭</strong>] 場景</p>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/2.png"></p>
+<p>接著在場景內的 <strong>來源</strong>(Source) 中的<strong>視訊擷取裝置</strong>，在 Mac 上很方便直接把 iPhone 當成一個來源</p>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/3.png"></p>
+<p>再下拉選單中找到你的 iPhone 名字</p>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/4.png"></p>
+<p>會看到有一個長方形的框框被放入 OBS 當中，但手機可能會<strong>放橫的</strong>，因此我們就先來翻轉成我們要的方向</p>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/5.png"></p>
+<p>在畫面上點選<em>右鍵</em>找到<strong>變型</strong>，接著會有以下兩種使用</p>
+<ul>
+<li>翻轉到自己要的位置</li>
+<li>稍後會用到<strong>變型設定….</strong></li>
+</ul>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/8.png"></p>
+<p>一樣右鍵選擇 **變型設定….**，陸續把上下左右的剪裁逐步調整成適合的大小，這邊我 iPhone 相機使用 1:1 的大小，因此裁切起來就要切成正方形</p>
+<blockquote>
+<p>16:9 之類的會出現像是拍照鈕，畫面上不太適合出現，因此我就使用1:1。</p>
+</blockquote>
+<h2 id="客製化你的視訊鏡頭"><a href="#客製化你的視訊鏡頭" class="headerlink" title="客製化你的視訊鏡頭"></a>客製化你的視訊鏡頭</h2><p><img src="https://nijialin.com/images/2022/use-iphone-cam/9.png"></p>
+<p>調整完之後就可以在畫面上開始放上各種圖片，讓你整個視訊看起來很繽紛，且可以用到手機的人像功能，但缺點是下面會出現一個自然光的字，如果不想出現就還是用一般的拍照囉!</p>
+<h2 id="啟動鏡頭-開啟會議軟體"><a href="#啟動鏡頭-開啟會議軟體" class="headerlink" title="啟動鏡頭 + 開啟會議軟體"></a>啟動鏡頭 + 開啟會議軟體</h2><p><img src="https://nijialin.com/images/2022/use-iphone-cam/10.png"></p>
+<p>在 OBS 右下角開啟<strong>虛擬相機</strong>，這樣就可以在各大會議軟體中使用啦，接著我使用 Zoom 來當作這次的測試</p>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/12.png"></p>
+<p>在視訊旁邊就可以選擇 OBS Virtual Camera，這樣就可以看到你的 iPhone 變成你的視訊鏡頭，是不是覺得很方便呢?</p>
+<blockquote>
+<p>zoom 預設讓自己看到翻轉，這樣狀態是正常的，不用特別去調整。</p>
+</blockquote>
+<h1 id="主委加碼-iPhone-九宮格怎麼關"><a href="#主委加碼-iPhone-九宮格怎麼關" class="headerlink" title="主委加碼 iPhone 九宮格怎麼關"></a>主委加碼 iPhone 九宮格怎麼關</h1><p><img src="https://nijialin.com/images/2022/use-iphone-cam/1-3.PNG"></p>
+<p>開啟設定的地方，往下找到相機的選項。</p>
+<p><img src="https://nijialin.com/images/2022/use-iphone-cam/1-2.PNG"></p>
+<p>找到格線的地方把他關起來就可以囉。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然使用 iPhone 當作視訊鏡頭有點殺雞用牛刀，但透過這種方式讓遠距或接案工作者在隨時隨地都可以讓你的視訊會議質感上升，在疫情的環境下能看到精緻的畫面大家眼睛也會為之一亮呢!!</p>
+<p>如果你也覺得這篇文章有用，歡迎分享給更多人知道喔！接下來嘗試看看 Windows 到底怎麼接上 iPhone 來當鏡頭。</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>]]></content>
+      <categories>
+        <category>WFH 戰記</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>iPhone</tag>
+        <tag>視訊</tag>
       </tags>
   </entry>
   <entry>
