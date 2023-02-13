@@ -211,6 +211,115 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day10 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (1) - 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-24 20:36:40" itemprop="dateCreated datePublished" datetime="2019-09-24T20:36:40+08:00">2019-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>LINE 在 2016 年 9 月底發表了 Messaging API 功能，用戶可以透過 Messaging API 將自家的服務內容串聯到 LINE@ 上。</p>
+<p>接著在 2019&#x2F;04&#x2F;18 之後 LINE@ 2.0 正式上線，在 5&#x2F;22 後有升級的選項並會陸續更新，升級完的官方帳號也可以申請專屬 ID、進行帳號認證。</p>
+<p>我認為比前一版本的最大的好處是在<strong>好友無上限</strong>的這部分，以前只能有 50 位好友，若一般開發者的機器人好不容易上線了並開放測試時被限制住，除了再開一隻機器人或是其他方法就超麻煩，現在好友無上限了，就不會有上述的問題了。</p>
+<blockquote>
+<p>若您以前有開發過的機器人到現在還沒升級的話，可以參考 -&gt; <a target="_blank" rel="noopener" href="http://at-blog.line.me/tw/archives/lineat_manual_upgrade_02.html">URL</a></p>
+</blockquote>
+<p>這邊需要注意 1 on 1 聊天與 Messaging API 是無法同時使用的，但可以在後台切換看要使用哪種模式與顧客互動。對話記錄也會保存在各自的模式下，若要查看完整的對話記錄的話會建議以固定模式與顧客進行互動哦！</p>
+<h3 id="主要的功能環繞在以下兩點"><a href="#主要的功能環繞在以下兩點" class="headerlink" title="主要的功能環繞在以下兩點"></a>主要的功能環繞在以下兩點</h3><p><img src="https://i.imgur.com/kqf5mo5.png"></p>
+<ol>
+<li><strong>Push mode:</strong> 主動推播訊息給用戶，2.0 每個機器人都有 500 則免費推播則數，超過則數的話可以參考以下的價目表：</li>
+</ol>
+<p><img src="https://i.imgur.com/7HJySLK.png"></p>
+<ol start="2">
+<li><strong>Reply mode:</strong> 這個模式是接受使用者的訊息並透過 webhook 打到伺服器上讓伺服器去做對應訊息的處理，重點是它是是免費、免費、免費的！所以若能引導使用者去輸入訊息的話用這個模式是不用錢的哦 🎉</li>
+</ol>
+<p>Message API 支援以下格式</p>
+<ul>
+<li>Text message</li>
+<li>Sticker message</li>
+<li>Image message</li>
+<li>Video message</li>
+<li>Audio message</li>
+<li>Location message</li>
+<li>Imagemap message</li>
+<li>Template message</li>
+<li>Flex message</li>
+</ul>
+<blockquote>
+<p>詳細內容可以參考 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/message-types/">LINE doc</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/PLWylFy.png" alt="line sample 1"><br><img src="https://i.imgur.com/lInGVV0.png" alt="line sample 2"></p>
+<h2 id="回傳格式"><a href="#回傳格式" class="headerlink" title="回傳格式"></a>回傳格式</h2><p>Message API 回傳格式都是一個陣列的格式，一開始在接的時候都沒注意到一直瘋狂出錯，事實上這樣陣列對 Server 有個好處就是當一次需要送較多訊息時格式會比較統一，只是對於有潔癖的開發者來說每次都要多打<code>[0]</code>會覺得有點髒 🤣</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x27;events&#x27;: [&#123;</span><br><span class="line">    &#x27;replyToken&#x27;: &#x27;<span class="number">00000000000000</span><span class="number">00000000000000</span><span class="number">0000</span>&#x27;,</span><br><span class="line">    &#x27;type&#x27;: &#x27;message&#x27;,</span><br><span class="line">    &#x27;timestamp&#x27;: <span class="number">1568983962754</span>,</span><br><span class="line">    &#x27;source&#x27;: &#123;</span><br><span class="line">      &#x27;type&#x27;: &#x27;user&#x27;,</span><br><span class="line">      &#x27;userId&#x27;: &#x27;Udeadbeefdaaaaefdeadbeefdeadbeef&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;message&#x27;: &#123;</span><br><span class="line">      &#x27;id&#x27;: &#x27;<span class="number">100001</span>&#x27;,</span><br><span class="line">      &#x27;type&#x27;: &#x27;text&#x27;,</span><br><span class="line">      &#x27;text&#x27;: &#x27;Hello, world&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    &#x27;replyToken&#x27;: &#x27;ffffffffffffffffffffffffffffffff&#x27;,</span><br><span class="line">    &#x27;type&#x27;: &#x27;message&#x27;,</span><br><span class="line">    &#x27;timestamp&#x27;: <span class="number">1568983962754</span>,</span><br><span class="line">    &#x27;source&#x27;: &#123;</span><br><span class="line">      &#x27;type&#x27;: &#x27;user&#x27;,</span><br><span class="line">      &#x27;userId&#x27;: &#x27;Udeadbeeaaaaefdeadbeefdeadbeef&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;message&#x27;: &#123;</span><br><span class="line">      &#x27;id&#x27;: &#x27;<span class="number">100002</span>&#x27;,</span><br><span class="line">      &#x27;type&#x27;: &#x27;sticker&#x27;,</span><br><span class="line">      &#x27;packageId&#x27;: &#x27;1&#x27;,</span><br><span class="line">      &#x27;stickerId&#x27;: &#x27;1&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>以前剛開始接 LINE Message API 的時候都覺得他的文件不太人性，更新到現在文件內容也越來完整，讓開發者在開發的過程中不用再為了找不到文件而放棄了(我以前就是 🤣)，下一篇將會帶來如何申請一隻機器人到如何建立一個 webhook API 到 AWS 上</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="http://at-blog.line.me/tw/messaging_api_intro">功能介紹】Messaging API</a><br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/message-types/">LINE message template</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/23/Day9-SQS-%E4%B8%B2%E6%8E%A5-Notify-%E5%AF%A6%E4%BD%9C%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1158,132 +1267,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/12/Chatbot-meetup-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/12/Chatbot-meetup-12/" class="post-title-link" itemprop="url">Chatbot meetup #12 心得分享 - 2019/09/17</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-12 14:52:43" itemprop="dateCreated datePublished" datetime="2019-09-12T14:52:43+08:00">2019-09-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次小聚是 COSCUP 之後的第一場，趁著熱血玩兩個大型研討會的空檔舉辦了這次的小聚，先感謝各位的參與，別忘了定期關注社群，我們會在上面放出第一手 chatbot 小聚消息。<br><a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/?ref=bookmarks">Chatbot Developers Taiwan</a></p>
-<h1 id="小聚開始"><a href="#小聚開始" class="headerlink" title="小聚開始"></a>小聚開始</h1><p>開場由 Evan Lin 為大家帶來 LINE 的第一手消息，首先是 LINE 不在信義區啦(抓錯重點)，是 Flex message 更新啦 ，如下圖所示，他可以做出更多種不同的應用了，也有些實例可以供大家參考 🎉</p>
-<p><img src="https://i.imgur.com/sxEd0Fd.png"></p>
-<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-flex-messages/?source=post_page-----65999085f029----------------------">Flex Messages</a><br>另外出了一個模擬器，如果再使用 Flex message 不是太熟悉整個主體的話可以參考 ⬇️，目前還在 beta 階段，若有問題直接寫信去 “問候“ 一下 🤣<br><a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx/">Flex Message Simulator</a></p>
-<blockquote>
-<p>中文版的文件也上線了，可以到官網去搜尋哦！</p>
-</blockquote>
-<h1 id="議程"><a href="#議程" class="headerlink" title="議程"></a>議程</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1QS1Esc-kvPK2x-Ys1oS4ucWVQOOggcEUxbnj3V1vi_I/edit#slide=id.p">簡報連結</a></p>
-</blockquote>
-<p>第一位由 LAE — 郭冠宏 (ggm)為我們介紹 Confacts 訊息查證系統，在裡頭把使用者分為兩類</p>
-<ul>
-<li>收消息的人 🙋‍♂️</li>
-<li>編輯訊息的人 👨‍💻</li>
-</ul>
-<p>在上面看得到的資料都是透過 「工人智慧」誕生的，所以看到每一個真假消息都要歸功於這些編輯們 🎉<br>而 Confacts 也秉持的 g0v 開放原始碼的精神把東西都 open，供大家去使用，像是 美玉姨 以及 趨勢科技防詐達人 都是使用他們的資料庫建立出來的，如果有需要請去找 GGM 大大～<br>上次參加 g0v 小聚有稍微了解 Confacts 是做什麼的，聽到這次的講題就讓我更深入了解整個運作流程了，光想到要控制狀態就覺得苦惱，也因 Confacts 讓我瞭解到更多詳細流程～以下是他們的網站，討厭看到人家亂轉發消息嗎？直接加入消息並一起打造工人智慧的平台～<br>了解更多: <a target="_blank" rel="noopener" href="https://cofacts.g0v.tw/">https://cofacts.g0v.tw</a></p>
-<hr>
-<p>接著由 酮好的創辦人 撒景賢 為我們帶來 聊天機器人與社群經營，主要是透過機器人來幫忙定時推播訊息給讓使用者下單後會收到提醒訊息而不會跑單，也建議大家把機器人就定義他為機器人，別讓使用者誤會他是一個活生生的人，要定義好自己的機器人取向，最後提到了一個問題就是他認為工程師的毛病就是想要產品做完才去找市場，可能的意思是且戰且走(?)，或許直接吸收市場的經驗也是個不錯的方法(筆記)。</p>
-<hr>
-<p>再來就是台北商業大學的 溫明輝 教授為我們帶來 商用聊天機器人 UX 的十三種設計原則</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://medium.com/uxerlab/13-heuristics-for-commercial-chatbot-ux-design-58c1aa191c77">商用聊天機器人 UX 的 13 個設計原則 (heuristics)</a></p>
-</blockquote>
-<p>首先介紹了微股力與記帳雞上面應用中的實例以及一些與使用者互動的案例分享，兩隻機器人都被 LINE 收為官方帳號囉！有興趣的朋友可以去搜尋一下～ 🔍</p>
-<ol>
-<li>確認目標族群的關鍵需求：要找到用戶滾動增長的點</li>
-<li>APP 的成功是無法直接複製的：找到 app 上的缺點去卡市場定位點。</li>
-<li>人們可能並不想「聊天」：這邊分享的案例是讓 記帳雞 出來湊人鬧目的是讓使用者記得他並去引導記帳 。</li>
-<li>擬人化 vs 機器主張定位：若在一開始實作時是以特定主題去做開發的話就該讓他是對應功能機器人，別想著機器人可以做原本的事又要去回應使用者的任何話。</li>
-<li>對話是互動並不限於對話(dialog)：有時候適時地在圖片上加入一些訊息也能讓使用者去自然觸擊。</li>
-<li>讓使用者隨時握有主導權：因為人們可以隨時關掉它，就也意味著使用者的抗拒心不會那麼大，主要還是別讓使用者封鎖他～</li>
-<li>不一眛追求介面的簡潔性：根本的需求滿足之後使用者還是會去用，把互動愉悅感弄出來，這邊例子是放在群組使用久了，有些使用者會自然地去記憶這他的指令。</li>
-<li>考量對話訊息的時間堆疊：使用者因為訊息過多而演變成去點訊息已成敷衍的行為了。</li>
-<li>避免一視同仁的廣播訊息：這邊分享的做法是透過工具去紀錄使用者的互動軌跡，且每個每個感應區塊都會有相對應的 tag，當後台在準備做推薦時可以針對分眾去做對應內容的推播。</li>
-<li>用數據驅動的同理心：將機器人加入群組並紀錄使用者打過的指令，當今天已經封鎖的使用者在特定情況下看到群組裡面有其他使用者在打相關指令時或許會勾引出以前的興趣藉此解除封鎖並回歸。</li>
-<li>用 UI 來補償 AI 的能力極限：藉由專家寫的文章以及當使用者點選到特定的內容時會直接把文章透過 LINE 嵌在訊息下方，讓使用者透過 UI 去看到相關內容，讓他看起來有點類似 AI。</li>
-<li>個人化是 chatbot UX 極致：或許是因為客製化的關係所以當然個人化是最好的 🤣</li>
-<li>chatbot 是無所不在的意識：隨著運算越來越快，人可以隨心所欲去取用環境資訊，需要有個個人化服務，就能透過 chatbot 來搜集並歸納出對應的訊息內容。</li>
-</ol>
-<h1 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h1><p>最期待的其中一個部分就是閃電秀啦，因為每次閃電秀不僅可以展謝自己的練習成果，也可以發現到其他使用者對於同樣開發內容所想出不一樣的應用！<br>第一個由 斑斑 為大家帶來市容幫手，主要是因為現在各種公家機關幾乎都用 LINE 在做聯繫，但一個里長擁有上百個群組會造成很多收集訊息上的困擾，那這邊講者就希望透過提案的方式來尋求參與者一起參與這個提案，有興趣的可以參考一下他的簡報哦！</p>
-<p>接著就是由小弟我帶來的閃電秀，這次主題是使用 kamigo 打造的一個紀錄健身記錄的機器人，透過 Restful 格式的內容以及對應網址的樣式做出一個類似網頁版的機器人來記錄成績，以下是我的簡報以及 Github，有興趣可以參考一下 😃</p>
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/jmxmRbp1QcYgHB" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/JiaYuLin6/muscle-man-light-talk-20190917-in-chatbottw" title="Muscle man light talk 20190917 in chatbotTW" target="_blank">Muscle man light talk 20190917 in chatbotTW</a> </strong> from <strong><a href="https://www.slideshare.net/JiaYuLin6" target="_blank">Jia Yu Lin</a></strong> </div>
-> [louis70109/muscle_man](https://github.com/louis70109/muscle_man)
-
-<p>這是一個基於 kamigo 實作 LINE bot 來紀錄重訓數據的 肌肉仔 聊天機器人 在健身的過程中飲食固然重要，但往往訓練的人都是透過通靈的方法來選取適合自己的訓練重量，而透過數據的記載則是突破不可或缺的因素，因此產生了這個…</p>
-<p>再來由 Fly Chang 帶來的在宅醫療服務，主要是幫助各地需要居家醫療的人讓他們有資源可以透過地圖的方式去找到，並想整合機器人提供在宅醫療診所情報、長期照護、藥物使用、衛教資訊…等等的資訊，有興趣的朋友可以點選以下網址去觀看哦！<br>台灣在宅支援診所聯盟<br><a target="_blank" rel="noopener" href="https://i.hsca.me/?source=post_page-----65999085f029----------------------">HSCA 在宅支援診所聯盟</a>是秉持開放、共享、共學精神的網路平台社群。 資源地圖邀請在宅醫療團隊提供服務資訊，讓診所服務可以變得更透明、更公開，產生正面的循環。</p>
-<p>最後由 kevin 介紹一下有關於 dialogflow 串接 LINE bot 的簡單介紹，並順便推廣了 voice hackthon，有興趣的朋友可以參考一下哦</p>
-<p>若是 dialogflow+LINE bot 可以參考我之前寫的文章<br><a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/chatbot-taichung-2-%E5%B7%A5%E4%BD%9C%E5%9D%8A%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB-bc964fdc07c3">Chatbot Taichung #2 工作坊心得分享</a></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然每次下班都從台中直接殺上台北辦小聚很累，但往往在小聚結束時總是收穫滿滿，因為大家的熱情交流讓我學到了不少東西，謝謝各位的支持與參與，小弟拜託大家有報名要來啊～看在火山孝子的份上(咦？)就來參加吧 🙏<br>Chatbot TW 很樂意接收到不同的意見，若有好的建立不好意思公開可以私訊我哦！很樂意為大家解答 😁</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1351,7 +1338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-count">191</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
