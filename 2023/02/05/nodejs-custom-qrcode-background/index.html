@@ -28,18 +28,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言前幾天在 FB 社群中意外的點到貝克菜 FB 中分享的內容(範例如下)，其中寫到：「讓你的 QR Code 更符合品牌形象，而不是停留在黑白」。">
+  <meta name="description" content="來自 chatGPT 的說明：它可以生成一個帶有背景圖片的 QR code。這個 QR code 產生器可以通過 GitHub 上的項目連結 https:&#x2F;&#x2F;github.com&#x2F;louis70109&#x2F;qrcode-background-generator 來使用。特點是，它可以讓使用者自行選擇背景圖片，並在其上生成一個具有特殊圖案的 QR code，使 QR code 看起來更具吸引力和美感">
 <meta property="og:type" content="article">
 <meta property="og:title" content="幫 QR Code 加上背景圖，別只留下黑白！">
 <meta property="og:url" content="https://nijialin.com/2023/02/05/nodejs-custom-qrcode-background/index.html">
 <meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言前幾天在 FB 社群中意外的點到貝克菜 FB 中分享的內容(範例如下)，其中寫到：「讓你的 QR Code 更符合品牌形象，而不是停留在黑白」。">
+<meta property="og:description" content="來自 chatGPT 的說明：它可以生成一個帶有背景圖片的 QR code。這個 QR code 產生器可以通過 GitHub 上的項目連結 https:&#x2F;&#x2F;github.com&#x2F;louis70109&#x2F;qrcode-background-generator 來使用。特點是，它可以讓使用者自行選擇背景圖片，並在其上生成一個具有特殊圖案的 QR code，使 QR code 看起來更具吸引力和美感">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
 <meta property="og:image" content="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A">
 <meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
 <meta property="article:published_time" content="2023-02-05T10:43:57.000Z">
-<meta property="article:modified_time" content="2023-02-05T11:59:16.299Z">
+<meta property="article:modified_time" content="2023-02-13T16:17:06.114Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Canvas">
@@ -242,10 +242,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2023-02-05 18:43:57 / 修改時間：19:59:16" itemprop="dateCreated datePublished" datetime="2023-02-05T18:43:57+08:00">2023-02-05</time>
+              <time title="創建時間：2023-02-05 18:43:57" itemprop="dateCreated datePublished" datetime="2023-02-05T18:43:57+08:00">2023-02-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-02-14 00:17:06" itemprop="dateModified" datetime="2023-02-14T00:17:06+08:00">2023-02-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -268,7 +274,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       
         <p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
+<blockquote>
+<p>來自 chatGPT 的說明：它可以生成一個帶有背景圖片的 QR code。這個 QR code 產生器可以通過 GitHub 上的項目連結 <a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">https://github.com/louis70109/qrcode-background-generator</a> 來使用。特點是，它可以讓使用者自行選擇背景圖片，並在其上生成一個具有特殊圖案的 QR code，使 QR code 看起來更具吸引力和美感。這個 QR code 產生器可以給您的商業或個人項目帶來更多的創意和更佳的用戶體驗。</p>
+</blockquote>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天在 FB 社群中意外的點到<a target="_blank" rel="noopener" href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a> 中分享的內容(範例如下)，其中寫到：「<mark>讓你的 QR Code 更符合品牌形象，而不是停留在黑白</mark>」。</p>
+<p>它可以讓你自行選擇背景圖片，使 QR code 看起來更有設計感和美觀。這對於您的商業或個人項目來說，可以提高曝光率和吸引力，並提高用戶體驗。</p>
 <span id="more"></span>
 
 <p><img src="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A"></p>
@@ -315,6 +325,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li>畢竟處理畫面上用 Canvas 還是前端支援度比較高(瀏覽器)，因為 NodeJS 是使用 V8 引擎去實作的，因此支援度應該 &gt; Python (?)，最後就選擇 NodeJS 作為這次的開發。</li>
 </ul>
+<p>最後，這個 QR code generator 是開源的，您可以透過 Pull Request 來修改這程式碼，以滿足您的特定需求。這對於開發者來說是一個很好的選擇，滿足您的商業或個人需求，並提高您的創意和體驗。</p>
 
     </div>
 
