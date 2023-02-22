@@ -211,6 +211,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/04/02/python-env-import-json-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/02/python-env-import-json-string/" class="post-title-link" itemprop="url">把 JSON 字串寫入記憶體中的暫時檔案並放路徑至環境變數中 | Python, FastAPI</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-04-02 21:54:44" itemprop="dateCreated datePublished" datetime="2022-04-02T21:54:44+08:00">2022-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="為什麼寫這篇"><a href="#為什麼寫這篇" class="headerlink" title="為什麼寫這篇"></a>為什麼寫這篇</h1><ul>
+<li>失誤把 private key 推到 GitHub 上<ul>
+<li>明明有加到 .gitignore 中</li>
+<li>但在剛建立 .git 時就一起 add 進去導致 key 都上去了</li>
+</ul>
+</li>
+<li>想要同一份 git 推到不同的 git 倉庫上(ex. GitHub + Heroku)<ul>
+<li>GitHub 不放 key</li>
+<li>Heroku 需要 key 去訪問服務</li>
+<li>存檔案在 Heroku 中休眠後會移除，因此要動態寫在記憶體中</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>本次範例專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/Python-import-env-json-string">https://github.com/louis70109/Python-import-env-json-string</a></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/02/python-env-import-json-string/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/03/29/line-dev-meetup-16/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -957,99 +1054,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/01/22/wfh-war-2-custom-video/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/22/wfh-war-2-custom-video/" class="post-title-link" itemprop="url">【WFH 戰記】弄出屬於你的視訊背景 | OBS, XSplit VCam | 線上會議</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2022-01-22 18:42:20" itemprop="dateCreated datePublished" datetime="2022-01-22T18:42:20+08:00">2022-01-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WFH-%E6%88%B0%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">WFH 戰記</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這一兩年各大公司以及現在工作都開始了 Work From Home(以下簡稱 WFH)，各種會議、社群、研討會都紛紛轉向線上方式執行，雖然不能實體跟大家相見，線上也是要開鏡頭跟大家互動認識一下，才不會久了就開始生疏與人見面的狀態 🤝。</p>
-<p>，不過大家在使用類似以下的軟體應該都會遇到個問題，就是視訊背景都被看光光啦 😭</p>
-<ul>
-<li>StreamYard</li>
-<li>Gather Town</li>
-<li>之前的 google meet (現在可以去背了)</li>
-<li>…各種透過網頁來播的視訊軟體</li>
-</ul>
-<p>當然找個安全的地點(牆角、床邊)背景都沒問題，但可能就位置不好坐、燈源不好、角度怪怪(雙下巴爬出)等等的狀態。</p>
-<p>因此本篇就來分享一下 WFH 之後使用各種軟體之後，可以透過什麼軟體的幫忙讓你的視訊背景可以很酷！</p>
-<blockquote>
-<p>以下環境都適用 MacOS 來展示</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/22/wfh-war-2-custom-video/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1121,7 +1125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">191</span>
+          <span class="site-state-item-count">192</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1134,7 +1138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">246</span>
+        <span class="site-state-item-count">248</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
