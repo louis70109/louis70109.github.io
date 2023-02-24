@@ -1,33 +1,13 @@
 @startuml
-skinparam actorStyle awesome
-(Vote API)->admin: (Y) get admin id at env
-admin-->user
+User ->LINE_Bot: 傳送文字
+LINE_Bot -> Server: Webhook 傳送資訊
+Server -> LINE_Bot: 把文字存入記憶體(Sqlite)
+LINE_Bot -> User: 回傳文字供用戶確認
 
-note right of admin
-  Send AWARD FlexMessage 
-  to user
-  with 3 buttons
-end note 
-
-user-left->(award)
-note left of (award)
-  Send FlexMessage with 
-  two columns and 10 teams
-  by Postback event
-end note 
-
-(award)-down->(已投票): If had voted, reply.
-(award)-down->(Redis): If NO
-note left of (Redis)
-  Save to Redis 
-  with TEAM and AWARD columns 
-  by JSON.
-end note 
-
-
-管理者->(LINE Bot): 輸入想儲存的訊息
-(LINE Bot)->(忍者的後端): 送至 webhook Server
-(忍者的後端)-down->(GitHub): 打 Commit 進專案中
-(GitHub)-->(Ideas-tree專案): 建立檔案放入訊息 &LINE用戶資訊
-管理者-->(Ideas-tree專案): 查看今日整理內容
+User->LINE_Bot: 傳送正方形圖片
+LINE_Bot->Server:傳送 Message Id
+Server->GitHub: 下載 Buffer 並上傳 QR Code 圖片
+GitHub->Server: 回傳網址
+Server->LINE_Bot: 回傳網址文字
+LINE_Bot->User: 提供用戶下載原圖
 @enduml
