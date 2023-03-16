@@ -211,6 +211,128 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/25/chatbot-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/25/chatbot-13/" class="post-title-link" itemprop="url">Chatbot meetup 北部 #13 at 台北商業大學 & 中部 #3 at 夢森林</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-25 16:59:43" itemprop="dateCreated datePublished" datetime="2019-10-25T16:59:43+08:00">2019-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/P3F7Xjp.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 NiJia，很榮幸被邀…是本來就負責 Chatbot meetup 的 Co-organizer，連續兩天參加了 meetup 真的是揮灑自己熱情兩邊跑(好 High)，希望藉由社群的分享讓大家可以吸收到不同的新知！</p>
+<ul>
+<li>北部小聚 #13 連結: <a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatb13ts">https://chatbots.kktix.cc/events/chatb13ts</a></li>
+<li>中部小聚 #3 連結: <a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-taichung-003">https://chatbots.kktix.cc/events/chatbots-taichung-003</a></li>
+<li>共筆: <a target="_blank" rel="noopener" href="https://beta.hackfoldr.org/chatbot/">https://beta.hackfoldr.org/chatbot/</a></li>
+</ul>
+<p>這次活動場地感謝 溫明輝 教授幫 chatbot 借了台北商業大學的場地，而台北商業大學最近有跟 LINE PROTOSTAR 聯合舉辦了 ”LINE Chatbot 對話機器人設計大賽”，覺得自己的機器人不錯嘛？歡迎大家踴躍報名參賽哦！</p>
+<h1 id="北部小聚-in-台北商業大學"><a href="#北部小聚-in-台北商業大學" class="headerlink" title="北部小聚 in 台北商業大學"></a>北部小聚 in 台北商業大學</h1><h2 id="LINE-Platform-Update-201910-Evan-Lin"><a href="#LINE-Platform-Update-201910-Evan-Lin" class="headerlink" title="LINE Platform Update 201910 - Evan Lin"></a>LINE Platform Update 201910 - Evan Lin</h2><script async class="speakerdeck-embed" data-slide="1" data-id="36b3e28d2a3f4e489250cbe7d84234a4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>長期支持 Chatbot 社群的 <a target="_blank" rel="noopener" href="https://www.evanlin.com/chatbot13/">Evan 大大</a>為大家帶來陣子 LINE 的更新內容，像我這種開發者最期待的就是 LIFF v2 終於上線了 🎉，當中增加了很多種應用讓嗷嗷待哺的工程師們終於可以生出更多種不一樣的應用啦，</p>
+<ul>
+<li>外部瀏覽器上使用 LIFF 🎉</li>
+<li>兼容 Login v2.1，取得使用者基本資訊</li>
+<li>可掃描 QR code</li>
+<li>在 LIFF 的 webview 下可獲取使用者的 OS&#x2F;Language&#x2F;AccessToken 等等的內容</li>
+</ul>
+<p>詳細參考: <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/ja/blog/liff-v2/">https://engineering.linecorp.com/ja/blog/liff-v2/</a></p>
+<p>試玩新功能：<br><img src="https://i.imgur.com/zHx9RcBm.png"></p>
+<h2 id="LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯"><a href="#LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯" class="headerlink" title="LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯"></a>LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯</h2><h3 id="簡報連結"><a href="#簡報連結" class="headerlink" title="簡報連結"></a><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1MNCbVIsMoLAWtPjg22e1-_3PLA2OpyHKSAIvw53Vdsk/edit#slide=id.g654c56bcd3_0_5">簡報連結</a></h3><p>身為卡米粉的我終於再度聽到卡米哥的議程啦，這次介紹的是從 COSCUP 之後一直更新的 <a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">kamigo</a>，並完全使用這個套件做的寵物協尋機器人，此議程就已這隻機器人為主體介紹。</p>
+<p>在實作網頁的過程中最長需要弄的東西不外乎就是表單驗證、搜尋以及分頁，因為 kamigo 是讓使用者經由 LIFF 幫忙將表單回傳成一份 JSON 至使用者的的對話欄上，<br>再轉介給 controller 去解析並儲存進資料庫，但若使用者在操作的過程中少輸入會不會一樣送出？<br>此時 kamigo 透過 rails 原生既有的 <code>validates</code> 來驗證表單欄位內容，並藉由 Turbolinks ajax + js.erb 讓表單在送出時先透過 ajax 打到後端驗證，若驗證失敗後則回傳告知 LIFF 哪個欄位有問題，這個方法也讓我使用到這個套件的<a target="_blank" rel="noopener" href="https://github.com/louis70109/muscle_man">肌肉仔</a>可以透過 rails 的鬼神方法幫我驗證表單，如此一來在表單的確認上就沒問題啦！🎉</p>
+<p>順手捐星星，救救卡米狗: <a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">https://github.com/etrex/kamigo</a></p>
+<h2 id="不懂開發也能建立屬於自己的-Chatbot-白凱仁"><a href="#不懂開發也能建立屬於自己的-Chatbot-白凱仁" class="headerlink" title="不懂開發也能建立屬於自己的 Chatbot - 白凱仁"></a>不懂開發也能建立屬於自己的 Chatbot - 白凱仁</h2><script async class="speakerdeck-embed" data-slide="1" data-id="4386dd5577e74e528b353d1f56c8a201" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著由 Cloud Native Taiwan User Group Co-organizer - Kyle Bai 為大家帶來講題，藉由故事的敘述讓大家知道他是為甚麼啟動這個 idea 出來，並靈活運用圖片演示對話流程(筆記)，並因為打遊戲的困擾決定做一個機器人來解決朋友問題，運用 container 的技術來封裝 chatbot App，再用 k8s 透過 N 台機器來管理 container 讓它獲得不死之握能力，確保服務的可用性與延展性。</p>
+<p>最後再透過 live demo 的方式讓會眾們一飽眼福，若是對於 Cloud Native 相關技術有興趣的朋友別忘了<a target="_blank" rel="noopener" href="https://www.facebook.com/groups/cloudnative.tw/">加入社群</a>，或是你已經有相關主題遲遲沒地方講？趕快搭上線讓你有舞台可以發揮 😎</p>
+<h2 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h2><p>這部分就參考 Evan 大大的<a target="_blank" rel="noopener" href="https://www.evanlin.com/chatbot13/#%E9%96%83%E9%9B%BB%E7%A7%80">文章</a></p>
+<ul>
+<li>Afore: 如何用 Chatbot 說 921 故事</li>
+<li>謝化挺: 921 Chatbot 開發心得</li>
+<li>C.T Lin: 介紹即將發佈的 Bottender v1</li>
+<li>kevin: 宣傳 DevFest 活動</li>
+<li>Demo: FunWater - It’s time to rethink about the “single-use plastic” product.</li>
+</ul>
+<h1 id="中部小聚-in-夢森林"><a href="#中部小聚-in-夢森林" class="headerlink" title="中部小聚 in 夢森林"></a>中部小聚 in 夢森林</h1><h2 id="LINE-Pay-串接全紀錄-KoKo"><a href="#LINE-Pay-串接全紀錄-KoKo" class="headerlink" title="LINE Pay 串接全紀錄 - KoKo"></a>LINE Pay 串接全紀錄 - KoKo</h2><p>身為通勤學的作者也是自由工作者的 KoKo 每次都熱情參加 Chatbot 的活動 👏，本次邀請來帶大家認識 LINE Pay，透過詳細的介紹 LINE Pay 帶著大家一步一步做並提醒大家當中需要注意的部分，有部分的會眾是金融相關背景也特地來了解 LINE Pay 的各種機制，透過 KoKo 解釋後讓會眾更清楚裡頭眉眉角角，此時真的是感受到滿滿的熱情，講者跟會眾踴躍的討論也讓整個活動更活絡，想了解更多議題的歡迎來許願或是來當講者體驗一下中部人真正的活力啊！</p>
+<h2 id="serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy"><a href="#serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy" class="headerlink" title="serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy"></a>serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy</h2><p>COSCUP 就來擔任 Chatbot Taiwan 講者的 Jimmy，本次來分享他包起來的 servo 的容器服務，主要原因是因為在開發機器人時大家都習慣用 ngrok，只是每次都要重新執行重新貼到 LINE Bot 或 LIFF 上，如此繁雜的步驟現在只要透過 container 以及自定義的 DNS 每次只要 docker 啟動後 Domain 啟動後即可開始寫機器人，根本不需要再進後台重新填寫，只能說工程師沒有極限啊！</p>
+<p>透過 Jimmy 將 serveo 打包的 container 就不會有連線不穩定的問題(我有經歷過 🤣)，這邊需要注意的問題 serveo 有 ssh 連線數的問題，但一般來說在開發人數不會太多，這樣理論上已經很夠用了～</p>
+<p>若對這服務有興趣的話：<a target="_blank" rel="noopener" href="https://github.com/taichunmin/docker-serveo">https://github.com/taichunmin/docker-serveo</a></p>
+<h2 id="閃電秀-1"><a href="#閃電秀-1" class="headerlink" title="閃電秀"></a>閃電秀</h2><h3 id="感謝-Flex-Simulator-拯救了我-陳佳新"><a href="#感謝-Flex-Simulator-拯救了我-陳佳新" class="headerlink" title="感謝 Flex Simulator 拯救了我 - 陳佳新"></a>感謝 Flex Simulator 拯救了我 - 陳佳新</h3><p>身為中部負責人的佳新，介紹 LINE 的工具 - <a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx/">Flex Message Simulator</a>，因為應用大量的 flex message 在自家產品「彰化旅行+」上，透過 LINE 的工具讓我們使用 flex message 上能夠叫得心應手。</p>
+<h3 id="ChatBot-製造-ChatBot-EJ-Lin"><a href="#ChatBot-製造-ChatBot-EJ-Lin" class="headerlink" title="ChatBot 製造 ChatBot - EJ Lin"></a>ChatBot 製造 ChatBot - EJ Lin</h3><p>近期加入 chatbot 志工的 EJ 製作了一個可以透過 chatbot 管理 chatbot 的服務，將使用者所註冊機器人的 secret 以及 token 放入後，就能訂閱 ptt 特定作者的文章，當作者只要發文就會透過 push message 通知訂閱的人，若這邊 500 則免費訊息用完的話就建議使用者在開新的 🤣</p>
+<h3 id="肌肉仔更新啦-NiJia-Lin"><a href="#肌肉仔更新啦-NiJia-Lin" class="headerlink" title="肌肉仔更新啦 - NiJia Lin"></a>肌肉仔更新啦 - NiJia Lin</h3><p>最後則是我前一陣子分享過的健身記錄機器人-<a target="_blank" rel="noopener" href="https://github.com/louis70109/muscle_man">肌肉仔</a>，引入了最新更新的 flex message 站牌樣板，讓健身者在訓練的每筆紀錄變得更漂亮，讓健身者可以像是公車一樣一步一步的往下一站走！</p>
+<p>肌肉仔還是會持續更新，有興趣的朋友別忘了幫小弟按個星星 ⭐️ 鼓勵我繼續前進 😃</p>
+<ul>
+<li>連結：<a target="_blank" rel="noopener" href="https://github.com/louis70109/muscle_man">https://github.com/louis70109/muscle_man</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>臺北臺中連著兩天舉辦真的是很累，但是看到大家踴躍的互動讓我覺得不虛此行，接下來還需要大家的熱情支持，讓我們繼續辦下去 🚀</p>
+<hr>
+<p>Chatbot Taiwan 在台北、台中皆有一個月一次的定期聚會，致力於提供並討論聊天機器人的相關應用，每回小聚將安排講者主題分享、新知討論，環繞 Chatbot 與 AI，及大家共同關心的話題。歡迎大家踴躍分享、自由與會眾交流，同時也期望大家可以在分享中得到收獲。</p>
+<p>歡迎各位報名、推薦講者以及閃電秀，介紹自己開發的 chatbot 並分享 chatbot 相關的議題，若有相關需要合作歡迎與我聯繫 <a target="_blank" rel="noopener" href="https://m.me/linnijia%E3%80%82">https://m.me/linnijia。</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/20/%E9%90%B5%E4%BA%BA%E8%B3%BD-%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1066,93 +1188,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/" class="post-title-link" itemprop="url">Day24 - 簡單使用 LINE LIFF API</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-08 21:02:58" itemprop="dateCreated datePublished" datetime="2019-10-08T21:02:58+08:00">2019-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下就為大家帶來簡單的實作以及如何去使用它。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>在<code>views/</code>下新增一個<code>liff_test.html</code>並加入以下內容</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    &lt;meta</span><br><span class="line">      name=&quot;viewport&quot;</span><br><span class="line">      content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://d.line-scdn.net/liff/1.0/sdk.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">initializeApp</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#userid&quot;</span>).val(data.context.userId);</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">      $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        liff.init(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">          initializeApp(data);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonGetProfile&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          liff.getProfile().then(<span class="function"><span class="params">profile</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">&quot;#UserInfo&quot;</span>).val(profile.displayName);</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonSendMsg&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">          liff</span><br><span class="line">            .sendMessages([</span><br><span class="line">              &#123;</span><br><span class="line"><span class="javascript">                type: <span class="string">&quot;text&quot;</span>,</span></span><br><span class="line"><span class="javascript">                text: $(<span class="string">&quot;#msg&quot;</span>).val()</span></span><br><span class="line">              &#125;</span><br><span class="line">            ])</span><br><span class="line"><span class="javascript">            .then(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">              alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line"><span class="javascript">              liff.closeWindow(); <span class="comment">// 關掉頁面</span></span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;liff_btn&quot;</span>&gt;</span>Get user profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>user id:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;userid&quot;</span> /&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonGetProfile&quot;</span>&gt;</span>Get Profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;UserInfo&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>要傳送的訊息:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">value</span>=<span class="string">&quot;測試&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonSendMsg&quot;</span>&gt;</span>要傳送的訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>以上參考來自<a target="_blank" rel="noopener" href="http://studyhost.blogspot.com/2018/06/linebot23-line-liff-app.html">董老師的部落格</a></p>
-</blockquote>
-<blockquote>
-<p>詳細的 LIFF API 文件可以<a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/liff/">參考</a></p>
-</blockquote>
-<p>接下來按著之前做過的一樣把這個檔案送到<code>S3</code>裡，接著它的網址複製起來<br><img src="https://i.imgur.com/wgVJ9js.png"></p>
-<p>接著來去之前建立機器人的開發者頁面裡按下最右邊的<code>LIFF</code><br><img src="https://i.imgur.com/B593Hdt.png"><br>按下去之後呢，再來按下<code>add</code><br><img src="https://i.imgur.com/5dNr9G7.png"><br>跑出這個頁面後，<code>Name</code>好辨認為主、<code>Size</code>選擇滿版(Full)、<code>Endpoint URL</code>就把剛剛複製起來的 S3 網址放進去後按<code>Confirm</code><br><img src="https://i.imgur.com/NQD9Mwv.png"><br>大概內容會長得像這樣<br><img src="https://i.imgur.com/WoTYxpv.png"><br>建立成功後往下滑會看到 LINE 給你一個屬於他們的網址，接著可以把它貼到你的機器人上(或者任何聊天室)<br><img src="https://i.imgur.com/wN69WDJ.png"><br>點下去之後就會看到來自 LIFF 的 Webview 囉！<br><img src="https://i.imgur.com/aYztzUi.jpg"><br>接下來就可以開始玩裡面的功能了 🤣</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LIFF 整合的功能讓開發者在 Bot 裡不好實現的功能透過 Webview 的方式讓使用者可以到頁面上做邏輯處理，透過兩種的結合讓整體的應用就有更多的變化，這邊若要給使用者個話就把 <code>line://xxxoxx</code> 製作成 flex message 或者乾脆傳給使用者，引導他點選，如此就能讓使用者到自己設計的頁面上了。</p>
-<p>這邊額外補充一點，有看到程式碼裡面可以拉到<code>Query string</code>嗎？事實上可以透過<code>Query string</code>讓使用者帶些參數來做更多的判斷，像是卡米哥做的<a target="_blank" rel="noopener" href="https://github.com/etrex/kamiliff">Kamiliff</a>就是讓使用者在點選後判斷這個 LIFF 的 Size，在導去對應的路由去做處理，這樣子使用者在建立 LIFF 的時候就不用一個頁面弄一個，否則這樣在 dev 轉 prod 的時候應該會弄到很生氣 🤣。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1224,7 +1259,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">194</span>
+          <span class="site-state-item-count">195</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1237,7 +1272,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">249</span>
+        <span class="site-state-item-count">255</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

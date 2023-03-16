@@ -211,6 +211,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/28/Day14-LINE-Richmenu-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/28/Day14-LINE-Richmenu-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day14 - LINE Richmenu 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-28 20:42:52" itemprop="dateCreated datePublished" datetime="2019-09-28T20:42:52+08:00">2019-09-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Rich menu 是一個 LINE 提供給 chatbot 的圖文選單，可以再上面設定很多各式各樣的功能，下圖為一個範例<br><img src="https://i.imgur.com/AkZnaWs.png"></p>
+<h2 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h2><ul>
+<li>擁有長板 &amp; 短板的圖片支援，讓一張圖片不再是一張圖片，機器人看起來可以更有品牌風格，根據 User 喜好、訂閱功能或是下一頁 Menu(即時切換)等等不同創意巧思，且可以客製化圖片讓機器人看起來有更不一樣的特色，也讓對話是互動並不限於對話，而圖片來讓使用者可以更直觀地去使用機器人。</li>
+<li>一個 Chatbot 可以設定 1000 組的功能選單</li>
+<li>針對不同 user ID 顯示不同功能選單<br>Rich menu 可以自己設計圖片並上傳，再透過 JSON 的樣式去設定圖片區間要進行各種用途，這邊使用 Youbike 小幫手為範例，設定很多相關的設計，並設計上下頁的選單提供像是 APP 的操作。<br><img src="https://i.imgur.com/kp3aYTWl.jpg"></li>
+</ul>
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><ul>
+<li>圖片格式: JPEG、PNG</li>
+<li>圖片尺寸: 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270</li>
+<li>圖片大小: 1 MB</li>
+</ul>
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li>先準備一個圖片</li>
+<li>對這個 API 下圖片每個位置要做什麼事 <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/richmenu">https://api.line.me/v2/bot/richmenu</a></li>
+<li>接著上傳圖片給 LINE <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/richmenu/richmenu-%7Bid%7D/content">https://api.line.me/v2/bot/richmenu/richmenu-{id}/content</a></li>
+<li>設定預設 <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/user/all/richmenu/richmenu-%7Bid%7D">https://api.line.me/v2/bot/user/all/richmenu/richmenu-{id}</a></li>
+</ol>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>有很多的文章都有介紹過類似的功能，這邊簡介一下限制以及下篇要做的步驟～</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/%E6%89%BE%E5%88%B0%E4%BC%AF%E7%89%B9-find-your-bot/line-bot%E7%B3%BB%E5%88%97-%E8%A8%AD%E8%A8%88%E4%B8%80%E5%80%8B%E5%8A%9F%E8%83%BD%E9%81%B8%E5%96%AE-ea5f1d7cde94">設計一個功能選單</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-rich-menus/">LINE 官方文件</a></li>
+</ul>
+<hr>
+<p><img src="https://i.imgur.com/JlsLphHl.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1140,90 +1237,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/19/Day4-%E8%AA%8D%E8%AD%98%E8%88%87%E4%BD%BF%E7%94%A8-S3-%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/19/Day4-%E8%AA%8D%E8%AD%98%E8%88%87%E4%BD%BF%E7%94%A8-S3-%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Day4 - 認識與使用 S3 容器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-19 15:44:36" itemprop="dateCreated datePublished" datetime="2019-09-19T15:44:36+08:00">2019-09-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-11-15 10:52:34" itemprop="dateModified" datetime="2022-11-15T10:52:34+08:00">2022-11-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Amazon Simple Storage Service(簡稱 AWS S3)是 AWS 的一個線上儲存服務，用戶能夠輕易把檔案儲存到網路伺服器上，可能有些朋友會把它當成雲端硬碟看待，但其實還能像是傳靜態檔案上去，若有寫前端框架的朋友通常都會需要把程式碼打包成靜態檔案再部署，然而這邊把他打包送上去後，S3 會給一個名為 Object Url 的網址，可以透過這個網址去執行網頁裡面的內容(如 AJAX、Axios…)，並可以透過 cloudfont 去弄成 CDN(扯遠了)，簡單說他還有很多不一樣的功能應用等著大家去用～</p>
-<p>因為 serverless 只能放關於 API 的程式碼，因此我們需要把 html 靜態檔案放在 S3 裡，</p>
-<p>接下來就來建立一個公開的 S3 容器，這邊就不會提到權限如何控管哦！</p>
-<h2 id="建立一個公開的-S3-容器"><a href="#建立一個公開的-S3-容器" class="headerlink" title="建立一個公開的 S3 容器"></a>建立一個公開的 S3 容器</h2><p>建立一個名為<code>2019-it-30-bucket</code>的容器，地區就選與 Lambda 同樣的地區，直接按下左下角的<code>create</code>來建立。<br><img src="https://i.imgur.com/lfRsTDn.png"></p>
-<p>建立完會像這樣<br><img src="https://i.imgur.com/SgPTxsQ.png"><br>接著點進去後在點到第三個選項會看到 Block of public access 是啟動的狀態，因為我們接下來需要讓我們的頁面可以外部使用<br><img src="https://i.imgur.com/M065zbI.png"><br>就把 check box 的按掉，在按下 <code>Save</code><br><img src="https://i.imgur.com/SjT0qY7.png"><br>要輸入<code>confirm</code>就修改完成嚕<br><img src="https://i.imgur.com/qxquZI1.png"><br>接著一樣點到第三個個選項，選到<code>Access Control List</code>，看到<code>Access for bucket owner</code>這個選項的<code>Canonical ID</code>，選項都全部打勾之後再來調整，這樣之後的 HTML 檔案外面就看得到了。<br><img src="https://i.imgur.com/uZfyrAQ.png"></p>
-<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>接著上傳一個<code>index.html</code>的檔案來測試</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;html&gt;</span></span><br><span class="line"><span class="section">&lt;h1&gt;</span><span class="attribute">Hello</span> world&lt;/h<span class="number">1</span>&gt;</span><br><span class="line"><span class="section">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上傳後下拉式選單選擇<code>public read</code>的選項，因為一個檔案在 S3 就算是一個 Object，所以一定要讓它能對外，然後按下左下的 Upload<br><img src="https://i.imgur.com/iO2R9aW.png"></p>
-<p>成功後點進這個檔案，並按下方的<code>Object URL</code>，看到 Hello World 的話就代表成功囉，這時可以開個無痕測一次，確認一下沒有錯誤 😃<br><img src="https://i.imgur.com/m1jC1E2.png"></p>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Amazon_S3">AWS S3 wiki</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1295,7 +1308,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">194</span>
+          <span class="site-state-item-count">195</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1308,7 +1321,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">249</span>
+        <span class="site-state-item-count">255</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
