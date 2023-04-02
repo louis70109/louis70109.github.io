@@ -12,7 +12,7 @@ case (輸入寶可夢名字「快龍」)
 case (輸入「屬性」)
   :回傳官方屬性表圖片;
 case (輸入「VGC」)
-  :回傳 Google Sheet 大表;
+  :回傳 Google Sheet 大表\n;
 case (輸入「TOP」)
   :抓取 Pokelytic 對戰資訊;
   :回傳最多人使用的列表;
