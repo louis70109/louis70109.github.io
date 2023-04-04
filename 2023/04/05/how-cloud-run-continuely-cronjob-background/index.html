@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="冷啟動(Cold start) &amp; Cloud Run 如何處理？Serverless 架構的冷啟動（cold start）是指當一個沒有被使用的函式需要被調用時，需要先啟動一個新的容器或虛擬機器來執行該函式，這個啟動的期間被稱為冷啟動時間。 但我們在寫應用的時候通常都會帶有一些 cronjob 在背景跑(備份、爬蟲…)，但在 Serverless 上都會遇到 Cold Start 的問">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【GCP 基本操作】如何讓 Cloud Run 持續執行背景程式">
+<meta property="og:title" content="【GCP】如何讓 Cloud Run 持續執行背景程式">
 <meta property="og:url" content="https://nijialin.com/2023/04/05/how-cloud-run-continuely-cronjob-background/index.html">
 <meta property="og:site_name" content="忍者工坊">
 <meta property="og:description" content="冷啟動(Cold start) &amp; Cloud Run 如何處理？Serverless 架構的冷啟動（cold start）是指當一個沒有被使用的函式需要被調用時，需要先啟動一個新的容器或虛擬機器來執行該函式，這個啟動的期間被稱為冷啟動時間。 但我們在寫應用的時候通常都會帶有一些 cronjob 在背景跑(備份、爬蟲…)，但在 Serverless 上都會遇到 Cold Start 的問">
@@ -38,12 +38,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://nijialin.com/images/common.jpeg">
 <meta property="og:image" content="https://nijialin.com/images/2023/gcp/cpu_allocated.png">
 <meta property="article:published_time" content="2023-04-04T16:57:02.000Z">
-<meta property="article:modified_time" content="2023-04-04T16:57:02.842Z">
+<meta property="article:modified_time" content="2023-04-04T16:58:38.889Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="Serverless">
 <meta property="article:tag" content="GCP">
-<meta property="article:tag" content="Cold Start">
 <meta property="article:tag" content="Cloud Run">
+<meta property="article:tag" content="Cold Start">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://nijialin.com/images/common.jpeg">
 
@@ -60,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   };
 </script>
 
-  <title>【GCP 基本操作】如何讓 Cloud Run 持續執行背景程式 | 忍者工坊</title>
+  <title>【GCP】如何讓 Cloud Run 持續執行背景程式 | 忍者工坊</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
     <script>
@@ -233,7 +233,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【GCP 基本操作】如何讓 Cloud Run 持續執行背景程式
+          【GCP】如何讓 Cloud Run 持續執行背景程式
         </h1>
 
         <div class="post-meta">
@@ -242,8 +242,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2023-04-05 00:57:02" itemprop="dateCreated datePublished" datetime="2023-04-05T00:57:02+08:00">2023-04-05</time>
+              <time title="創建時間：2023-04-05 00:57:02 / 修改時間：00:58:38" itemprop="dateCreated datePublished" datetime="2023-04-05T00:57:02+08:00">2023-04-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -314,8 +315,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="post-tags">
               <a href="/tags/Serverless/" rel="tag"><i class="fa fa-tag"></i> Serverless</a>
               <a href="/tags/GCP/" rel="tag"><i class="fa fa-tag"></i> GCP</a>
-              <a href="/tags/Cold-Start/" rel="tag"><i class="fa fa-tag"></i> Cold Start</a>
               <a href="/tags/Cloud-Run/" rel="tag"><i class="fa fa-tag"></i> Cloud Run</a>
+              <a href="/tags/Cold-Start/" rel="tag"><i class="fa fa-tag"></i> Cold Start</a>
           </div>
 
         
