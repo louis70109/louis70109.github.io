@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="前言經歷過疫情期間，梅竹黑客松在 2022 回歸清大體育館舉辦，透過兩天一夜的活動集合一群志同道合的朋友，以過人的毅力和耐力，在有限的時間內，將腦海中的構想或專案實現。  參考過去文章 - LINE 開發社群計畫: 2020&#x2F;10&#x2F;24 新竹 x 梅竹黑客松決賽 - LINE 競賽組別活動紀錄   時間：10&#x2F;22 ~ 10&#x2F;23 地點：清華大學新體育管">
@@ -177,21 +177,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜尋..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -296,7 +293,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>如果想了解實習生活，歡迎查看這篇文章：<a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute/">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></p>
 </blockquote>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>透過贊助能夠實體與同學們面對面交流，感受現場同學的黑客松的熱情，LINER 也能將許多業界的知識分享給同學，讓未來大家在找工作時可以更加順遂。</p>
-<p>最後，想知道如何申請校園企業參訪或是贊助嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#x6c;&#x5f;&#x74;&#119;&#x6e;&#x5f;&#100;&#x65;&#118;&#114;&#x65;&#108;&#64;&#x6c;&#105;&#110;&#101;&#x63;&#111;&#x72;&#112;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x6c;&#x5f;&#x74;&#119;&#x6e;&#x5f;&#100;&#x65;&#118;&#114;&#x65;&#108;&#64;&#x6c;&#105;&#110;&#101;&#x63;&#111;&#x72;&#112;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p>最後，想知道如何申請校園企業參訪或是贊助嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#100;&#x6c;&#95;&#116;&#119;&#x6e;&#95;&#100;&#x65;&#118;&#114;&#101;&#x6c;&#x40;&#x6c;&#x69;&#x6e;&#x65;&#x63;&#111;&#114;&#112;&#x2e;&#99;&#x6f;&#109;">&#100;&#x6c;&#95;&#116;&#119;&#x6e;&#95;&#100;&#x65;&#118;&#114;&#101;&#x6c;&#x40;&#x6c;&#x69;&#x6e;&#x65;&#x63;&#111;&#114;&#112;&#x2e;&#99;&#x6f;&#109;</a></p>
 <p>那我們就下次見囉！</p>
 <blockquote>
 <p>如果想到 LINE 實習，歡迎大家持續關注 -&gt; <a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/83">TECH FRESH program</a></p>
@@ -550,7 +547,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
 
 
 
