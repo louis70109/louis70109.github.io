@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言忍編每天的樂趣就是看許多電競選手直播打遊戲分享他們遊戲上的樂趣以及不同的見解，隨著暗黑破壞神上市後我就想說玩的時候可以開個直播，雖然現在沒什麼人看(開好玩的)，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【OBS】透過 Streamlabs 打造與觀眾互動的聊天室與訂閱資訊 | Youtube">
+<meta property="og:url" content="https://nijialin.com/2021/10/03/obs-streamlab-youtube-chat/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言忍編每天的樂趣就是看許多電競選手直播打遊戲分享他們遊戲上的樂趣以及不同的見解，隨著暗黑破壞神上市後我就想說玩的時候可以開個直播，雖然現在沒什麼人看(開好玩的)，但">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/11.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/1.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/2.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/0.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/3.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/4.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/5.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/6.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/7.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/8.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/9.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/10.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2021/obs-chat/11.png">
+<meta property="article:published_time" content="2021-10-03T15:27:01.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:51.008Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Streamlabs">
+<meta property="article:tag" content="OBS">
+<meta property="article:tag" content="直播">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/obs-chat/11.png">
+
+<link rel="canonical" href="https://nijialin.com/2021/10/03/obs-streamlab-youtube-chat/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【OBS】透過 Streamlabs 打造與觀眾互動的聊天室與訂閱資訊 | Youtube | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/10/03/obs-streamlab-youtube-chat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【OBS】透過 Streamlabs 打造與觀眾互動的聊天室與訂閱資訊 | Youtube
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-03 15:27:01" itemprop="dateCreated datePublished" datetime="2021-10-03T15:27:01+00:00">2021-10-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://nijialin.com/images/2021/obs-chat/11.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>忍編每天的樂趣就是看許多電競選手直播打遊戲分享他們遊戲上的樂趣以及不同的見解，隨著暗黑破壞神上市後我就想說玩的時候可以開個直播，雖然現在沒什麼人看(開好玩的)，但研究一些直播技巧與設定也覺得不錯，在網路上有看到許多前輩們有拍影片介紹以下的功能，但看完之後找不到當初那部影片，就先透過本篇來記錄一下如何收取<strong>訂閱資訊</strong>與<strong>聊天室</strong>內容(基於 Youtube)。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p><img src="https://nijialin.com/images/2021/obs-chat/1.PNG"></p>
+<p>首先先前往 <a target="_blank" rel="noopener" href="https://streamlabs.com/">Streamlabs</a> 的網站，進去之後按下上方的 Dashboard 的按鈕進去控制面板，但因為直播平台上需要存取權限才能拿到聊天室等等的資訊，這邊我就先用 Youtube 登入。</p>
+<blockquote>
+<p>Steamlabs 是什麼? 他是一個直播軟體，可以讓大家快速運用各個平台快速起直播，不管手機或是電腦皆可，可以很無痛的就上手開始直播，而後台 Dashboard 也提供了許多很棒的功能讓想客製化的玩家可以使用，當然也有訂閱服務，用喜歡的朋友可以用看看喔!</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/obs-chat/2.PNG"></p>
+<p>進到 Dashboard 就會看到左側有許多東西加上內容，以下我們就來新增聊天室跟訂閱資訊到 OBS 當中</p>
+<h2 id="Chat-Box-觀眾也想看到實況主畫面上有自己打的文字"><a href="#Chat-Box-觀眾也想看到實況主畫面上有自己打的文字" class="headerlink" title="Chat Box - 觀眾也想看到實況主畫面上有自己打的文字"></a>Chat Box - 觀眾也想看到實況主畫面上有自己打的文字</h2><p><img src="https://nijialin.com/images/2021/obs-chat/0.PNG"></p>
+<p>接著找到左邊紅色框框的內容(<mark>Alert Box</mark>, <mark>All Widgets</mark>)，這邊先選<mark>All Widgets</mark>，選擇右邊的 Chat Box</p>
+<p><img src="https://nijialin.com/images/2021/obs-chat/3.PNG"></p>
+<p>接下來看到這邊，線上有許多的 plugin 可以讓大家自由去選擇，接著看到這裡有個 Widget URL 就是稍後要放在 OBS 裡面的網址(他是對應設定唯一的網址)，這邊我選擇往下選一般的形式來用(等有人看再來調整即可)</p>
+<p><img src="https://nijialin.com/images/2021/obs-chat/4.PNG"></p>
+<p>往下之後有許多選項，不論是樣式、文字顏色、字體大小…等等都可以調整，調整完後複製剛剛說的 Widget URL 起來，切回到 OBS 畫面中</p>
+<p><img src="https://nijialin.com/images/2021/obs-chat/5.png"></p>
+<p>來到 OBS 裡面，按下下方的 <code>＋</code> 來找到瀏覽器選項，給他大力的點下去</p>
+<p><img src="https://nijialin.com/images/2021/obs-chat/6.png"></p>
+<p>進來之後把剛剛 Streamlabs 的 Widget URL 複製進網址欄位，確定儲存完之後可以選擇你想擺放的位置，接著我們就回到直播聊天室裡面去測試</p>
+<blockquote>
+<p>這邊我已經先把 OBS 的訊號都打出去了，讓整個測試可以順利，其實即便有觀眾他們也應該很樂意看實況主現場測試</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/obs-chat/7.PNG"></p>
+<p>找到當前直播的聊天室之後開始打字來真實測試一次</p>
+<p><img src="https://nijialin.com/images/2021/obs-chat/8.png"></p>
+<p>回到 OBS 畫面中(觀眾看到的樣子)，就會看到剛剛打的文字</p>
+<blockquote>
+<p>是不是覺得這樣越來越專業了呢?</p>
+</blockquote>
+<h2 id="Alert-Box-訂閱時要有音效阿"><a href="#Alert-Box-訂閱時要有音效阿" class="headerlink" title="Alert Box - 訂閱時要有音效阿!"></a>Alert Box - 訂閱時要有音效阿!</h2><p><img src="https://nijialin.com/images/2021/obs-chat/9.PNG"></p>
+<p>既然有了聊天室，那訂閱訊息也不能漏(感謝OOO的訂閱 之類的文字)，選擇左邊的 <strong>Alert Box</strong>，一樣看到中間的 Widget URL，這是等等也要複製進去的網址</p>
+<blockquote>
+<p>一般這些服務都會使用網址的方式讓用戶比較好操作，但在複製上也要注意是否有一些奇怪的資訊喔(ex: 電話號碼)</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/obs-chat/10.PNG"></p>
+<p>往下可以調整你想要顯示的 gif、出現訂閱時間等等的設定，並且可以把上面的文字改移下，**{name}** 就是 Streamlabs 預設會把不同直播平台所接收到的使用者 ID 放入</p>
+<p><img src="https://nijialin.com/images/2021/obs-chat/11.png"></p>
+<p>最後依照剛剛放聊天室的方式把連結貼近新增<strong>瀏覽器</strong>的網址中，回到 Streamlabs 中有個 <strong>Test Subscribers</strong> 的按鈕，按下去之後就會跑出如上圖所示的內容喔!</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>弄成功之後自己覺得專業度提升許多(還是缺觀眾)，有了這些資訊之後觀眾在看台的時候也可以知道自己的資訊是否有出現在實況主的畫面當中(有被大家注意到)，如果你也有更多豐富的直播設定想法，歡迎在下面留言給我喔!</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Streamlabs/" rel="tag"><i class="fa fa-tag"></i> Streamlabs</a>
+              <a href="/tags/OBS/" rel="tag"><i class="fa fa-tag"></i> OBS</a>
+              <a href="/tags/%E7%9B%B4%E6%92%AD/" rel="tag"><i class="fa fa-tag"></i> 直播</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/21/line-login-vue-fastapi/" rel="prev" title="透過 Vue + FastAPI 完成 LINE Login 一鍵式登入">
+      <i class="fa fa-chevron-left"></i> 透過 Vue + FastAPI 完成 LINE Login 一鍵式登入
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/17/kubernetes-k3d-nodeport-not-create/" rel="next" title="【k3d】處理無法開 NodePort 與建立 Cluster 的問題">
+      【k3d】處理無法開 NodePort 與建立 Cluster 的問題 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chat-Box-%E8%A7%80%E7%9C%BE%E4%B9%9F%E6%83%B3%E7%9C%8B%E5%88%B0%E5%AF%A6%E6%B3%81%E4%B8%BB%E7%95%AB%E9%9D%A2%E4%B8%8A%E6%9C%89%E8%87%AA%E5%B7%B1%E6%89%93%E7%9A%84%E6%96%87%E5%AD%97"><span class="nav-number">2.1.</span> <span class="nav-text">Chat Box - 觀眾也想看到實況主畫面上有自己打的文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alert-Box-%E8%A8%82%E9%96%B1%E6%99%82%E8%A6%81%E6%9C%89%E9%9F%B3%E6%95%88%E9%98%BF"><span class="nav-number">2.2.</span> <span class="nav-text">Alert Box - 訂閱時要有音效阿!</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

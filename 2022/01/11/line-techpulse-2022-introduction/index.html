@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言相信大家從 12 月時應該會跟小編有同樣的狀態，「總覺得有個活動沒參加到」、「好像少報名了什麼？」，沒錯，就是這次要介紹的 TECHPULSE 2022！經過了 LINE DevDay 2021 精彩議程之後，應該想聽台灣這邊本地的發展到底是如何，以下就詳細為各位介紹一下！ LINE TAIWAN TECHPULSE 2022－活動資訊簡介 活動日期：2022 年 1 月 19 日（三）至">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【TECHPULSE 2022】活動資訊一把抓">
+<meta property="og:url" content="https://nijialin.com/2022/01/11/line-techpulse-2022-introduction/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言相信大家從 12 月時應該會跟小編有同樣的狀態，「總覺得有個活動沒參加到」、「好像少報名了什麼？」，沒錯，就是這次要介紹的 TECHPULSE 2022！經過了 LINE DevDay 2021 精彩議程之後，應該想聽台灣這邊本地的發展到底是如何，以下就詳細為各位介紹一下！ LINE TAIWAN TECHPULSE 2022－活動資訊簡介 活動日期：2022 年 1 月 19 日（三）至">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2022/techpulse/0.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/techpulse/1.gif">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/techpulse/3.PNG">
+<meta property="og:image" content="https://nijialin.com/images/2022/techpulse/2.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/techpulse/4.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/techpulse/5.png">
+<meta property="article:published_time" content="2022-01-11T04:33:29.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:51.000Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="TECHPULSE 2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2022/techpulse/0.png">
+
+<link rel="canonical" href="https://nijialin.com/2022/01/11/line-techpulse-2022-introduction/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【TECHPULSE 2022】活動資訊一把抓 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/01/11/line-techpulse-2022-introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【TECHPULSE 2022】活動資訊一把抓
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-01-11 04:33:29" itemprop="dateCreated datePublished" datetime="2022-01-11T04:33:29+00:00">2022-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2022/techpulse/0.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相信大家從 12 月時應該會跟小編有同樣的狀態，「總覺得有個活動沒參加到」、「好像少報名了什麼？」，沒錯，就是這次要介紹的 TECHPULSE 2022！經過了 <a target="_blank" rel="noopener" href="https://linecorp.com/zh-hant/pr/news/zh-hant/2021/3943">LINE DevDay 2021</a> 精彩議程之後，應該想聽台灣這邊本地的發展到底是如何，以下就詳細為各位介紹一下！</p>
+<h2 id="LINE-TAIWAN-TECHPULSE-2022－活動資訊簡介"><a href="#LINE-TAIWAN-TECHPULSE-2022－活動資訊簡介" class="headerlink" title="LINE TAIWAN TECHPULSE 2022－活動資訊簡介"></a>LINE TAIWAN TECHPULSE 2022－活動資訊簡介</h2><ul>
+<li>活動日期：2022 年 1 月 19 日（三）至 1 月 20 日（四）</li>
+<li>活動時間：兩天早上 10 點活動開始</li>
+<li>活動形式：線上議程</li>
+<li>活動費用：免費於 LINE MUSIC LIVE 取票觀看。</li>
+</ul>
+<blockquote>
+<p>官方新聞稿：<a target="_blank" rel="noopener" href="https://linecorp.com/zh-hant/pr/news/zh-hant/2022/4074">https://linecorp.com/zh-hant/pr/news/zh-hant/2022/4074</a></p>
+</blockquote>
+<span id="more"></span>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-techpulse-2020-review/">LINE TAIWAN TECHPULSE 2020 議程內容分享</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-techpulse-2020/">您不能錯過的 LINE TAIWAN TECHPULSE 2020 年度盛會</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-techpulse-2018/">LINE Taiwan TECHPULSE 2018</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-techpulse-2019-arrangement/">LINE TAIWAN TECHPULSE 2019 活動安排幕後秘辛</a></li>
+</ul>
+<h1 id="大會特色"><a href="#大會特色" class="headerlink" title="大會特色"></a>大會特色</h1><p>本次活動分為兩天的議程內容，第一天讓關注 LINE 台灣技術發展與趨勢的各位可以第一手了解新資訊，相關議程資訊就跟著小編一起往下看吧！</p>
+<h1 id="DAY-1-LINE-技術分享日"><a href="#DAY-1-LINE-技術分享日" class="headerlink" title="DAY 1 : LINE 技術分享日"></a>DAY 1 : LINE 技術分享日</h1><p>由 LINE 台灣、LINE Bank 與 LINE TAXI 的重量級講者除了分享 2021 年度發展重點，並將揭露未來技術發展的策略與目標，而其他服務團隊也將介紹最新的開發經驗，包含近年最夯的 MarTech、Kubernetes、Data-Driven Testing、共用平台開發、O2O 平台開發…諸多精彩內容以及由現役實習生所分享的實習生活，讓大家可以一探究竟 LINE 所應用的新技術。</p>
+<h2 id="議程"><a href="#議程" class="headerlink" title="議程"></a>議程</h2><p>第一天的議程都是 LINE 內部經過層層關卡選拔、精心挑選的題目，想了解 LINE 都是如何應用新技術在平台服務上，議定要把時間留下來喔！</p>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>講者</th>
+<th>題目</th>
+<th>簡述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10:00 ~ 10:10</td>
+<td>Roger</td>
+<td><strong>Opening</strong></td>
+<td>「 LINE TAIWAN TECHPULSE 2022 」是 LINE 台灣年度最大科技盛會，將為台灣開發者整理 LINE 總部的第一手技術資訊。今年首次在 LINE MUSIC LIVE 平台上直播，兩天滿滿的線上議程，充分展現「 開發工程 ( Engineering ) 」、「 產品開發 ( Production ) 」的願景</td>
+</tr>
+<tr>
+<td>10:10 ~ 10:50</td>
+<td>LTL CTO - Marco Chen</td>
+<td><strong>Keynote</strong></td>
+<td>為了面對新型態的挑戰(New Normal)，LINE 強化了許多服務，並從全球與在地兩種角度，讓大家了解 LINE 的技術策略佈局；理解 LINE 台灣 的工程團隊如何與總部及其他國家的團隊分工合作，培養自我職能，貢獻價值。</td>
+</tr>
+<tr>
+<td>10:50 ~ 11:30</td>
+<td>LINE Bank CTO - Leo Weng</td>
+<td><strong>LINE Bank, the Future and Beyond</strong></td>
+<td>乘著數位浪潮而至，LINE Bank 將與大家分享開業以來的重要里程碑，接著以四大重點說明 LINE Bank 獨有的差異化特質，讓大家瞭解 LINE Bank 挾其全數位化的服務獨特性，成為創新金融的最前鋒，打造更貼近用戶日常生活的新金融服務。</td>
+</tr>
+<tr>
+<td>11:30 ~ 12:00</td>
+<td>LINE TAXI CTO - Huang Hayden</td>
+<td><strong>Pandemic Pivot: transformation from ride-hailing to vegetable box and food delivery</strong></td>
+<td>疫情升溫時，計程車搭車量銳減。不到一週，LINE TAXI 在原本的叫車平台迅速推出「安心快送」服務，讓乘客在疫情中即使不搭車，也能點購蔬菜箱甚至星級餐點，再由駕駛送到乘客手中。本次分享將首度公開當時面臨哪些挑戰，以及如何在極短的時間，以技術支援緊急應變計畫。</td>
+</tr>
+<tr>
+<td>13:00 ~ 13:30</td>
+<td>Tsai Luther</td>
+<td>How We Build Up O2O Platform to Our Partner Corporation Service</td>
+<td>身處數位時代的我們，在食衣住行育樂方面，LINE Pay 是大家的好幫手，更是合作夥伴的最佳拍檔。我們提供夥伴線上與線下間的雙向機制平台，進行數位支付生態的整合。我們將介紹 LINE Pay 是如何打造 O2O 平台與其系統架構來幫助合作夥伴與使用者創造雙贏的機會！</td>
+</tr>
+<tr>
+<td>13:30 ~ 14:00</td>
+<td>Charlie, Johnson, Nina</td>
+<td>AI solutions of MarTech in LINE</td>
+<td>LINE 台灣的行銷科技目標是應用機器學習技術來幫助解決行銷難題。我們碰到來自許多服務的難題：如何尋找新用戶？如何判斷客戶價值？如何透過差異化行銷來衡量廣告增益？我們將介紹如何透過機器學習技術、建構可重複使用的解決方案來快速處理各種行銷問題。</td>
+</tr>
+<tr>
+<td>14:00 ~ 14:30</td>
+<td>John Lin, Wan Wei</td>
+<td>Implementing Observability Practices on Kubernetes</td>
+<td>LINE 台灣 SRE 團隊致力於提供測量應用程序可靠性的工具和平台， 我們將從台灣應用團隊各種監控實踐的背景開始，簡要地概述我們的可觀察性平台，並介紹我們在 Kubernetes 上監控應用程式的組件，以及我們如何引入新的實踐來增強可觀察性。</td>
+</tr>
+<tr>
+<td>14:30 ~ 15:00</td>
+<td>Winter</td>
+<td>Data-Driven Testing for LINE SHOPPING</td>
+<td>在元宇宙時代，數據就是一切，大數據和機器學習當然不能否認這事實，測試當然也一樣，我們將介紹 LINE 購物團隊如何涵蓋測試中更多的場景，並選擇真實數據，在測試過程中如何進行處理，才能將潛在缺陷風險降至最低。</td>
+</tr>
+<tr>
+<td>15:00 ~ 15:30</td>
+<td>Li QC</td>
+<td>Reduce iOS app binary size by analyzing source code with SourceKit</td>
+<td>最佳化 App 大小的過程就如同幫 App 增肌減脂一般，除了增肌之外減脂也相當重要，我們將介紹如何使用工具如 SourceKit，幫助我們分析程式原始碼，找到冗余的程式碼片段並去蕪存菁已達到減少 App 大小的目的。</td>
+</tr>
+<tr>
+<td>15:30 ~ 16:00</td>
+<td>Edward</td>
+<td>How Do We Assess Our Tests to Measure and Monitor Their Reliability?</td>
+<td>想要準確判斷測試結果是否存在錯誤，而不是 flaky 的情況，LINE TODAY QA 團隊開發了一個框架 - Test Analysis Dashboard，該工具在每次自動化測試後會即時監控測試結果，並立刻計算和識別是否找到真正的錯誤。</td>
+</tr>
+<tr>
+<td>16:00 ~ 16:30</td>
+<td>Li Willy</td>
+<td>Utility Platform - how we use Safeframe to display content from 3rd party</td>
+<td>想知道 LINE TODAY 是如何面對排山倒海的跨國需求，以及多樣化的服務串接？讓我為你介紹 Utility Platform，一個輕量化以及快速的上架串接測試的開發模式，幫助你的產品擴充開發量能，以及分享集團內部的資源。</td>
+</tr>
+<tr>
+<td>16:30 ~ 16:40</td>
+<td>TU Lin</td>
+<td>LINE TECH FRESH Program</td>
+<td>1. 同樣對資訊技術抱有研究熱情的你，還在學校裡埋沒自己的未來嗎？透過這場短講，我將與你分享關於我大三就加入 LINE 台灣成為 TECHFRESH 的那檔事，從最基本的心態層面出發，藉由在 LINE 台灣實習的過程，探討「選擇」跟「環境」對於自我發展的重要性跟影響力，除此之外，也會一併探討在學校的高壓統治以及公司的階段性任務之下，還可以怎樣精進自己的實力，讓每天過得更加充實、更有希望。</td>
+</tr>
+<tr>
+<td>16:40 ~ 16:50</td>
+<td>Hsiao Yi Han</td>
+<td>LINE TECH FRESH Program</td>
+<td>「_科技始終來自於人性_」，資訊科技的出現就是為了要幫人們解決問題，我在大學的最後一年來到 LINE 台灣實習，希望能夠將所學之技術運用在實務之中。在這次的演講，將會圍繞在學校與實習生活的平衡、如何學以致用，將學校所學運用在實習中，以及實習帶給我的豐富經驗。</td>
+</tr>
+<tr>
+<td>16:50 ~ 17:00</td>
+<td>Chen Kevin</td>
+<td>LINE TECH FRESH Program</td>
+<td>作為一週上班三天的 TECHFRESH，在 LINE 台灣的開發團隊中扮演什麼角色？原本的專長跟實習工作關聯不高，究竟是如何在不同領域的環境存活下來、並好好成長的呢？「夠用」～「厲害」的距離還有多遠？看似沒有盡頭的彼岸，我能抵達嗎？關於實習的種種疑惑，LINE TECHFRESH 的神秘面紗將一一揭開…</td>
+</tr>
+<tr>
+<td>17:00</td>
+<td></td>
+<td>Closing</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate/">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021/">Life in LINE – 你不知道的 LINE TECH FRESH 實習日常</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-2020/">LINE TECH FRESH – 技術新星人才計劃，實習經驗大公開</a></li>
+</ul>
+<blockquote>
+<p>看完是否也很心動呢？趕快加入 <a target="_blank" rel="noopener" href="https://line.me/R/ti/p/@908lugfe?from=page">LINE 開發者官方帳號</a>吧！</p>
+</blockquote>
+<h1 id="DAY-2-LINE-平台推廣日"><a href="#DAY-2-LINE-平台推廣日" class="headerlink" title="DAY 2 : LINE 平台推廣日"></a>DAY 2 : LINE 平台推廣日</h1><p>除了早上年度平台更新(Platform Opening)作為開場之外，將第一手公布 LINE 在人工智慧領域開發的大型語言模型 HyperCLOVA 最新產品，並且邀請 LINE API Expert(LINE 官方認證專家) 與 LINE PROTOSTAR 新星計劃的傑出新創團隊分享，為各位分享平台上各種特別且想不到的應用場景，若想看各種有趣的實作經驗分享，相信一定能讓您滿載而歸！</p>
+<h2 id="議程-1"><a href="#議程-1" class="headerlink" title="議程"></a>議程</h2><table>
+<thead>
+<tr>
+<th>時間</th>
+<th>講者</th>
+<th>題目</th>
+<th>簡述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10:00 ~ 10:30</td>
+<td>Evan Lin &#x2F; Nijia Lin</td>
+<td>Platform Opening</td>
+<td>LINE 致力於提供與開放更多 API 功能，幫助開發者更有效的連結使用者，與開發更多元的互動方式。此段分享將介紹最新的平台功能及實際應用，幫助你的服務與使用者連結更深且互動體驗更佳。</td>
+</tr>
+<tr>
+<td>10:30 ~ 11:10</td>
+<td>Aaron Wu</td>
+<td>CLOVA Keynote</td>
+<td>自從三年前 LINE 宣布要成為一家 AI 公司，到推出 LINE BRAIN，之後整合成 LINE CLOVA 的單一產品線，LINE 持續在 AI 的產品以及技術上努力著，希望帶給使用者更好的生活，更人性化的體驗。LINE CLOVA 的未來展望，以及在台灣的持續發展以及落地的計畫，將在今天的議程與大家分享。</td>
+</tr>
+<tr>
+<td>11:10 ~ 11:30</td>
+<td>Chen James &#x2F; Chan Yedda</td>
+<td>Marketplace Review and Chat-Plugin</td>
+<td>Marketplace 網羅了由 Module Channel 架構開發的模組，於今年正式上線，我們將分享目前的營運狀況，並介紹最新的擴充功能 Chat Plugin，能更方便地在官方帳號一對一聊天功能中，連動模組的後台資訊，快速回應客戶的詢問或需求。</td>
+</tr>
+<tr>
+<td>11:30 ~ 12:00</td>
+<td>Cid Chang</td>
+<td>How we build TECHPULSE Bot</td>
+<td>使用 LINE Bot 自由的串接多種其他服務，依據所需的場景，輕鬆打造機器人</td>
+</tr>
+<tr>
+<td>13:00 ~ 13:45</td>
+<td>Chia-Ning, Kuo</td>
+<td>Rapid development using LINE Bot framework Kamigo</td>
+<td>使用基於 Rails 的 MVC LINE Bot 框架 Kamigo 快速開發整合 LINE 登入的網站後台以及具高維護性的 Flex Message 和 LIFF 表單 的 LINE Bot。</td>
+</tr>
+<tr>
+<td>13:45 ~ 14:30</td>
+<td>Jia-Sin, Chen</td>
+<td>Playing real escape games in LINE, a RPG metaverse</td>
+<td>LINE 作為通訊軟體，在聊天視窗裡除了聊天之外，還能夠做些什麼呢？事實上，LINE 聊天視窗可以打造一個角色扮演的虛擬遊戲世界，化身成為實境解謎的故事場景，在訊息對話來回之間，讓多位玩家一起破關、一起獲得樂趣。</td>
+</tr>
+<tr>
+<td>14:30 ~ 16:40 (130 mins)</td>
+<td>Kevin Chen</td>
+<td>LINE Protostar Program Introduction &amp; Startup Demo</td>
+<td>LINE 新星計劃歡迎開發者及新創公司一同加入，藉由提供免費 LINE 官方帳號、平台資源、技術支援，戰略夥伴諮詢輔導、提高您在 LINE 平台上開發的速度，並確保推出服務的成功。</td>
+</tr>
+<tr>
+<td>16:40 ~ 16:45</td>
+<td>Marco Chen</td>
+<td>Closing</td>
+<td></td>
+</tr>
+<tr>
+<td>16:45 ~ 17:10</td>
+<td>歌手演場</td>
+<td>Special Event</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>第二天的應用內容小編光看到簡述就覺得內容一定滿滿！除了看看大神們日常 LINE Bot 開發相關的點子發想與尋找以外，在開發上也可以關注 Marketplace Review and Chat-Plugin，有效地使用有可以讓大家產品開發效率倍增喔！</p>
+</blockquote>
+<h2 id="LINE-Avatar"><a href="#LINE-Avatar" class="headerlink" title="LINE Avatar"></a>LINE Avatar</h2><p><img src="https://nijialin.com/images/2022/techpulse/1.gif"></p>
+<p>本次結合了 LINE 的虛擬人像(Avatar)，在許多空間以及地方上皆有使用到，你是否也有建立屬於個人化的虛擬人像呢？歡迎大家參考<a target="_blank" rel="noopener" href="https://official-blog-tw.line.me/archives/84018904.html">部落格的步驟</a>來建立獨一無二的 Avatar 喔！</p>
+<h2 id="全球限定版「黑貓蟲」-NFT-amp-amp-Special-Event"><a href="#全球限定版「黑貓蟲」-NFT-amp-amp-Special-Event" class="headerlink" title="全球限定版「黑貓蟲」 NFT &amp;&amp; Special Event"></a>全球限定版「黑貓蟲」 NFT &amp;&amp; Special Event</h2><p>本屆 TECHPULSE 與知名貼圖創作者亞拉共創<strong>全球限定版 NFT</strong>，讓大家在聽完議程之後有機會跟上新潮流獲取限定款 NFT，並且在領完的同時也可以獲得期間限定的「<strong>黑貓蟲</strong>」貼圖！人家說發文要附圖，不過容小編在這邊賣個關子。</p>
+<p>而最重要的當然就是在 MUSIC LIVE 頁面推出後，大家一定要進去<strong>購票</strong>、<strong>購票</strong>、<strong>購票</strong>！並在活動 1&#x2F;19、1&#x2F;20 當天準時收看內容，就有機會獲得喔！</p>
+<p>相關的內容請大家持續追蹤我們的官方帳號，讓各位第一手接收到最新資訊(絕不漏接)，參考以下資訊：</p>
+<h1 id="掌握官方帳號資訊"><a href="#掌握官方帳號資訊" class="headerlink" title="掌握官方帳號資訊"></a>掌握官方帳號資訊</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<p>加入之後可透過手機版上的 Rich menu 快速點選進入各種 TECHPULSE 活動與相關資訊。</p>
+<ul>
+<li>進入官方網站查看相關資訊</li>
+<li>收看即時直播(1&#x2F;19, 1&#x2F;20 播出)</li>
+<li>活動辦法，保障自身權益</li>
+<li>NFT 集點活動(1&#x2F;19, 1&#x2F;20 請記得收看直播)</li>
+</ul>
+<p><img src="https://nijialin.com/images/2022/techpulse/3.PNG"></p>
+<ul>
+<li>議程資訊，可一次看到兩天的精彩議程內容，在每個議程中皆會放上當天 MUSIC LIVE 播出連結，播出當天敬請期待！</li>
+</ul>
+<p><img src="https://nijialin.com/images/2022/techpulse/2.png"></p>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><blockquote>
+<p>Q: 議程要如何才能看到？</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2022/techpulse/4.png"></p>
+<p>點選 <strong>免費取票</strong> 後，會在 <strong>LINE MUSIC 通知</strong> 的官方帳號中收到以下的推播資訊，在活動要開始前一個小時也會推播通知。</p>
+<p><img src="https://nijialin.com/images/2022/techpulse/5.png"></p>
+<blockquote>
+<p>Q: 要怎麼樣才能取票呢？</p>
+</blockquote>
+<p>只要您有 LINE 的帳號並登入 LINE MUSIC，即可於活動頁面中免費取得票卷。</p>
+<blockquote>
+<p>Q: 我來不及聽議程，請問之後還有機會回看嗎？</p>
+</blockquote>
+<p>活動期間～ 4&#x2F;20 前都可以回放觀看影片，後續也會上傳至 <a target="_blank" rel="noopener" href="https://www.youtube.com/c/LINEDevelopersTaiwan">Youtube</a> 上供大家觀看。因有集點活動，大家把握時間聆聽喔！</p>
+<blockquote>
+<p>Avatar 要怎麼設定呢？</p>
+</blockquote>
+<p>手機進入 LINE 主頁 -&gt; 點選大頭貼 -&gt; 虛擬人像，即可開始建立屬於自己的虛擬人像喔！</p>
+<blockquote>
+<p>貼圖何時之前要使用與領取呢？</p>
+</blockquote>
+<p>且必須於 2022 年 04 月 20 日（星期三）23:59 前領取與使用。期間過後，將無法領取與使用專屬活動任務貼圖。</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/TECHPULSE-2022/" rel="tag"><i class="fa fa-tag"></i> TECHPULSE 2022</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/12/github-actions-locally/" rel="prev" title="在本地端執行 GitHub Actions 跑 CI | Run your GitHub Actions locally">
+      <i class="fa fa-chevron-left"></i> 在本地端執行 GitHub Actions 跑 CI | Run your GitHub Actions locally
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/22/wfh-war-2-custom-video/" rel="next" title="【WFH 戰記】弄出屬於你的視訊背景 | OBS, XSplit VCam | 線上會議">
+      【WFH 戰記】弄出屬於你的視訊背景 | OBS, XSplit VCam | 線上會議 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-TAIWAN-TECHPULSE-2022%EF%BC%8D%E6%B4%BB%E5%8B%95%E8%B3%87%E8%A8%8A%E7%B0%A1%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">LINE TAIWAN TECHPULSE 2022－活動資訊簡介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E6%9C%83%E7%89%B9%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">大會特色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY-1-LINE-%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB%E6%97%A5"><span class="nav-number">3.</span> <span class="nav-text">DAY 1 : LINE 技術分享日</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AD%B0%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">議程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY-2-LINE-%E5%B9%B3%E5%8F%B0%E6%8E%A8%E5%BB%A3%E6%97%A5"><span class="nav-number">4.</span> <span class="nav-text">DAY 2 : LINE 平台推廣日</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AD%B0%E7%A8%8B-1"><span class="nav-number">4.1.</span> <span class="nav-text">議程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-Avatar"><span class="nav-number">4.2.</span> <span class="nav-text">LINE Avatar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E7%90%83%E9%99%90%E5%AE%9A%E7%89%88%E3%80%8C%E9%BB%91%E8%B2%93%E8%9F%B2%E3%80%8D-NFT-amp-amp-Special-Event"><span class="nav-number">4.3.</span> <span class="nav-text">全球限定版「黑貓蟲」 NFT &amp;&amp; Special Event</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%8C%E6%8F%A1%E5%AE%98%E6%96%B9%E5%B8%B3%E8%99%9F%E8%B3%87%E8%A8%8A"><span class="nav-number">5.</span> <span class="nav-text">掌握官方帳號資訊</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FAQ"><span class="nav-number">6.</span> <span class="nav-text">FAQ</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

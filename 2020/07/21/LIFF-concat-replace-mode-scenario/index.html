@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言大家好，我是 LINE Taiwan 的 Tech Evangelist – NiJia Lin。 在尚未更新前時常會遇到問題就是網址後面會接上 liff.state&#x3D; 抑或是會在原始 target url 上加上 斜線(&#x2F;) 這類相關的問題，開發者(包括我)都需要使用相關的 workaround 去解套，這邊提供之前我寫的 Twitch-Bot 的 Javascript workaround">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LIFF v2.3 更新內容 - Concatenate &amp; Replace 模式">
+<meta property="og:url" content="https://nijialin.com/2020/07/21/LIFF-concat-replace-mode-scenario/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言大家好，我是 LINE Taiwan 的 Tech Evangelist – NiJia Lin。 在尚未更新前時常會遇到問題就是網址後面會接上 liff.state&#x3D; 抑或是會在原始 target url 上加上 斜線(&#x2F;) 這類相關的問題，開發者(包括我)都需要使用相關的 workaround 去解套，這邊提供之前我寫的 Twitch-Bot 的 Javascript workaround">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/SkUlT3P.png">
+<meta property="article:published_time" content="2020-07-21T03:32:08.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.961Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="LIFF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/SkUlT3P.png">
+
+<link rel="canonical" href="https://nijialin.com/2020/07/21/LIFF-concat-replace-mode-scenario/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>LIFF v2.3 更新內容 - Concatenate & Replace 模式 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/07/21/LIFF-concat-replace-mode-scenario/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LIFF v2.3 更新內容 - Concatenate & Replace 模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-07-21 03:32:08" itemprop="dateCreated datePublished" datetime="2020-07-21T03:32:08+00:00">2020-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的 Tech Evangelist – NiJia Lin。</p>
+<p>在尚未更新前時常會遇到問題就是網址後面會接上 <code>liff.state=</code> 抑或是會在原始 target url 上加上 斜線(<code>/</code>) 這類相關的問題，開發者(包括我)都需要使用相關的 workaround 去解套，這邊提供之前我寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/controller/notifiesController.ts#L6">Twitch-Bot</a> 的 Javascript workaround 來處理 <code>liff.state</code> 的問題：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> query = req.query[&#x27;liff.<span class="keyword">state</span>&#x27;].split(&#x27;?&#x27;)[<span class="number">1</span>].split(&#x27;&amp;&#x27;);</span><br><span class="line"><span class="keyword">const</span> notifyPayload = &#123; code: null, <span class="keyword">state</span>: null &#125;;</span><br><span class="line">query.<span class="keyword">for</span>Each(el =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> queryObj = el.split(&#x27;=&#x27;);</span><br><span class="line">  if (queryObj[<span class="number">0</span>] <span class="keyword">in</span> notifyPayload)</span><br><span class="line">    notifyPayload[queryObj[<span class="number">0</span>]] = queryObj[<span class="number">1</span>];</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> code = notifyPayload.code;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">user</span>Id = notifyPayload.<span class="keyword">state</span>;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的解法可以解決我的問題但會讓開發有點綁手綁腳的，但隨著 LIFF v2.3 改版上線後出現了兩個模式提供選擇，分別是 <code>Concatenate</code> 與 <code>Replace</code> 兩個選項，如下圖所示：</p>
+<p><img src="https://i.imgur.com/SkUlT3P.png"></p>
+<p>在 v2.3 的更新中將之前所會遇到問題以及已有對應 workaround 的版本變成 <code>Replace mode</code>，而新推出的 <code>Concatenate mode</code> 則已解決相關的議題。也許在使用上還是會有點困惑，以下就使用一些 Scenario 為各位介紹一下這兩個功能之間的差異以及解決了什麼問題 🙂。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>這是在 2.3 後出現的 mode，以下是一些範例供大家參考，主要以 slash(<code>/</code>)、Query String、LIFF 網址接<code>子路徑</code>(<code>sub path</code>) 三個測向讓大家快速了解兩個 mode 的差異。</p>
+<h2 id="Concatenate-mode"><a href="#Concatenate-mode" class="headerlink" title="Concatenate mode"></a>Concatenate mode</h2><p>在這個模式中處理掉先前 LIFF 版本有的一些問題，下面列幾點簡單敘述一下：</p>
+<ul>
+<li>斜線（<code>/</code>): 之前出現個問題是當開發者將 LIFF url 加上一個 斜線(<code>/</code>) 時會造成<code>原始 Domain+斜線</code> 的問題(<a target="_blank" rel="noopener" href="https://your_domain/)%EF%BC%8C%E5%9C%A8%E6%9F%90%E4%BA%9B%E7%A8%8B%E5%BC%8F%E4%B8%AD%E6%9C%83%E5%B0%87%E9%80%99%E5%85%A9%E5%80%8B%E7%B5%90%E6%9E%9C%E5%88%86%E9%96%8B(%E6%9C%89%E7%84%A1%E6%96%9C%E7%B7%9A%E7%9A%84%E7%B6%B2%E5%9D%80)%EF%BC%8C%E8%80%8C%E5%9C%A8">https://YOUR_DOMAIN/)，在某些程式中會將這兩個結果分開(有無斜線的網址)，而在</a> <code>case 1</code> 中目前皆會指向至最初設定的 Target Domain，避免相同問題重複產生。</li>
+<li><code>liff.state=</code>: Replace 的 <code>case 3</code> 的案例中中回傳的網址中會出現 <code>liff.state=</code>，而在 Concatenate 中已經將這部分排除。</li>
+<li>子路徑(sub path)消失問題: 過往 <code>case 6</code> 中當使用者進入網址後，應當結果是 <code>/friend/brown</code>，但 <code>/friend</code> 這個路徑被忽略的問題。在 <code>v2.3</code> 的版本中已經修正了之前會忽略原始 <code>/friend</code> 這個 sub path 的問題。</li>
+</ul>
+<p>大家可以參考以下的 scenario 去測試一下實際情況：</p>
+<table>
+<thead>
+<tr>
+<th>編號</th>
+<th>原始網址</th>
+<th>使用者進入網址</th>
+<th>結果顯示網址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/">https://YOUR_DOMAIN</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/">https://liff.line.me/LIFF_ID/</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/">https://YOUR_DOMAIN</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/">https://YOUR_DOMAIN</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/brown/?q=2#hash">https://liff.line.me/LIFF_ID/brown/?q=2#hash</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/brown/?q=2#hash">https://YOUR_DOMAIN/brown/?q=2#hash</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID">https://liff.line.me/LIFF_ID</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/">https://liff.line.me/LIFF_ID/</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/brown">https://liff.line.me/LIFF_ID/brown</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend/brown">https://YOUR_DOMAIN/friend/brown</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/brown/?q=2#hash">https://liff.line.me/LIFF_ID/brown/?q=2#hash</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend/brown/?q=2#hash">https://YOUR_DOMAIN/friend/brown/?q=2#hash</a></td>
+</tr>
+</tbody></table>
+<h2 id="Replace-mode"><a href="#Replace-mode" class="headerlink" title="Replace mode"></a>Replace mode</h2><p>若是在改版之前已存在的 LIFF pages 並且有相對應 workaround 的朋友但目前 LIFF migrate 優先權相對低的話可以繼續沿用這個模式，讓原本的存在的程式可以繼續處理對應邏輯，不過建議各位開發者朋友儘早將轉移至 <code>Concatenate</code> 已避免日後其他問題產生。而以下則是原本 Replace mode 相關的一些參數測試：</p>
+<table>
+<thead>
+<tr>
+<th>編號</th>
+<th>原始網址</th>
+<th>使用者進入網址</th>
+<th>結果顯示網址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/">https://YOUR_DOMAIN</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/">https://liff.line.me/LIFF_ID/</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/">https://YOUR_DOMAIN/</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/">https://YOUR_DOMAIN</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/brown/?q=2#hash">https://liff.line.me/LIFF_ID/brown/?q=2#hash</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/brown/?q=2">https://YOUR_DOMAIN/brown/?q=2</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID">https://liff.line.me/LIFF_ID</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend?liff.state=">https://YOUR_DOMAIN/friend?liff.state=</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/">https://liff.line.me/LIFF_ID/</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/brown">https://liff.line.me/LIFF_ID/brown</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/brown">https://YOUR_DOMAIN/brown</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/friend">https://YOUR_DOMAIN/friend</a></td>
+<td><a target="_blank" rel="noopener" href="https://liff.line.me/LIFF_ID/brown/?q=2#hash">https://liff.line.me/LIFF_ID/brown/?q=2#hash</a></td>
+<td><a target="_blank" rel="noopener" href="https://your_domain/brown/?q=2">https://YOUR_DOMAIN/brown/?q=2</a></td>
+</tr>
+</tbody></table>
+<p>在這個模式中會遇到幾個問題：</p>
+<ul>
+<li>Hash tag 的值消失</li>
+<li>出現 liff.state&#x3D;</li>
+<li>斜線判斷問題</li>
+</ul>
+<p>所以還是建議大家若有新開 LIFF page 請選擇 Concatenate 模式，再往後的支援度上比較不會遇到此類的問題且不需要 migrate 兩個模式的 workaround。</p>
+<h1 id="註記"><a href="#註記" class="headerlink" title="註記"></a>註記</h1><p>當時寫 workaround 環境約落於：</p>
+<ul>
+<li>LINE ➡️ v10.11</li>
+</ul>
+<p>在上述的表格中皆用測試結果:</p>
+<ul>
+<li>LIFF JS SDK ➡️ 2.3.1</li>
+<li>LINE APP ➡️ v10.12</li>
+<li>iOS ➡️ 13.3.1</li>
+</ul>
+<blockquote>
+<p>提醒：在 v2.3 之前建立的 LIFF 模式皆為 <code>Replace</code>，v2.3 後新增的 LIFF page 模式皆<strong>預設</strong>為 <code>Concatenate</code>，要麻煩各位多注意一下模式上的選擇。</p>
+</blockquote>
+<p>習慣使用套件可朋友可以參考我們官方出的套件 - <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@line/liff">@line&#x2F;liff</a>。</p>
+<h2 id="CDN-路徑注意"><a href="#CDN-路徑注意" class="headerlink" title="CDN 路徑注意"></a>CDN 路徑注意</h2><p>測試時若未使用 npm package 時需要注意 CDN 版本，一般來說使用 <a target="_blank" rel="noopener" href="https://static.line-scdn.net/liff/edge/2/sdk.js">https://static.line-scdn.net/liff/edge/2/sdk.js</a> 它會抓最新版本，<br>但若是<strong>指定版本</strong>的話  則需像範例網址 ➡️ <a target="_blank" rel="noopener" href="https://static.line-scdn.net/liff/edge/">https://static.line-scdn.net/liff/edge/</a> <strong>versions&#x2F;2.1.13</strong> &#x2F;sdk.js 去指定。</p>
+<p>兩個路徑<strong>最大差異</strong>就在於網址中會多一個 <code>versions</code> 的 path，使用上需多注意！</p>
+<blockquote>
+<p>欲了解更多相關內容請參考 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/liff/developing-liff-apps/#specify-cdn-path">LINE document</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>之前在 Replace mode 中會因為不同的作業系統(<code>iOS/Android</code>)導致輸出結果不同，在引入 Concatenate mode 之後排除了這個問題，讓兩個系統的使用者在點選 LIFF page 後會引導至對應的頁面。</p>
+<p>這次透過上述範例快速帶大家了解這次 v2.3 更新的 <code>Replace</code> &amp; <code>Concatenate</code> 以外，我之前寫的 <code>liff.state=</code> 的 workaround 也可以刪除了 🎉。</p>
+<p>此外使用相關功能時必須依循著下面兩點：</p>
+<ul>
+<li>LINE APP 版本必須在 v10.12 (含)以上才能測試此功能喔！若低於 v10.12 以下可能造成不同輸出結果。</li>
+<li>JS SDK 請使用 v2.3.1。</li>
+</ul>
+<p>而目前開發團隊正逐步的修正每個議題，接下來隨著 LIFF 的新功能上線時我們會將第一手將資訊釋出讓大家知道 🙂。</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li>JS SDK release: <a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2020/07/16/release-liff-2.3.1/">LIFF v2.3.1 released</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2020/06/29/release-liff-2.3/">LIFF v2.3.0 released</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/LIFF/" rel="tag"><i class="fa fa-tag"></i> LIFF</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/15/restore-my-mac-environment/" rel="prev" title="快速轉移我的 Mac 開發環境">
+      <i class="fa fa-chevron-left"></i> 快速轉移我的 Mac 開發環境
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/22/chatbot-meetup-21-sharing/" rel="next" title="LINE 開發社群計畫: 2020 六月與七月 LINE 平台更新總整理">
+      LINE 開發社群計畫: 2020 六月與七月 LINE 平台更新總整理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Concatenate-mode"><span class="nav-number">2.1.</span> <span class="nav-text">Concatenate mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replace-mode"><span class="nav-number">2.2.</span> <span class="nav-text">Replace mode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A8%BB%E8%A8%98"><span class="nav-number">3.</span> <span class="nav-text">註記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN-%E8%B7%AF%E5%BE%91%E6%B3%A8%E6%84%8F"><span class="nav-number">3.1.</span> <span class="nav-text">CDN 路徑注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">參考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

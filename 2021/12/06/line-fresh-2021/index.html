@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言今年，台灣本土疫情加劇，各行各業面臨了更嚴峻的衝擊與挑戰，迫切需要進行數位轉型，才能在消費市場中逆勢突圍。從疫情三級警戒以來，民眾減少外出、實體消費大幅降低。在全球疫情持續發展的情況下，許多台灣在地的中小型店家同時面臨防疫規範與人流流失的困境，卻也因此意識到轉型的急迫性，積極導入數位平台資源和多元行銷工具。 為了讓數位轉型的推動更規模化、系統化，本屆以台灣北、中、南、東的地區四大各具特色在地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINE FRESH 2021 校園競賽 - 活動總結">
+<meta property="og:url" content="https://nijialin.com/2021/12/06/line-fresh-2021/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言今年，台灣本土疫情加劇，各行各業面臨了更嚴峻的衝擊與挑戰，迫切需要進行數位轉型，才能在消費市場中逆勢突圍。從疫情三級警戒以來，民眾減少外出、實體消費大幅降低。在全球疫情持續發展的情況下，許多台灣在地的中小型店家同時面臨防疫規範與人流流失的困境，卻也因此意識到轉型的急迫性，積極導入數位平台資源和多元行銷工具。 為了讓數位轉型的推動更規模化、系統化，本屆以台灣北、中、南、東的地區四大各具特色在地">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/11.jpeg">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/10.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/1.JPG">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/3.JPG">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/first.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/second.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fresh-2021/third.png">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2021-12-06T08:01:27.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.995Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Hackathon">
+<meta property="article:tag" content="LINE FRESH">
+<meta property="article:tag" content="黑客松">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/fresh-2021/11.jpeg">
+
+<link rel="canonical" href="https://nijialin.com/2021/12/06/line-fresh-2021/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>LINE FRESH 2021 校園競賽 - 活動總結 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/12/06/line-fresh-2021/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LINE FRESH 2021 校園競賽 - 活動總結
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-12-06 08:01:27" itemprop="dateCreated datePublished" datetime="2021-12-06T08:01:27+00:00">2021-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2021/fresh-2021/11.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年，台灣本土疫情加劇，各行各業面臨了更嚴峻的衝擊與挑戰，迫切需要進行數位轉型，才能在消費市場中逆勢突圍。從疫情三級警戒以來，民眾減少外出、實體消費大幅降低。在全球疫情持續發展的情況下，許多台灣在地的中小型店家同時面臨防疫規範與人流流失的困境，卻也因此意識到轉型的急迫性，積極導入數位平台資源和多元行銷工具。</p>
+<p>為了讓數位轉型的推動更規模化、系統化，本屆以台灣北、中、南、東的地區四大各具特色在地商圈為主題，包含台北<strong>師大龍泉商圈</strong>、雲林<strong>虎尾魅力商圈</strong>、高雄<strong>六龜商圈</strong>與台東<strong>鐵花商圈</strong>。讓同學們針對所選擇的商圈主題之發展現況、同時結合 LINE 的數位生活服務與開放平台技術，了解商圈所需要的內容以及應用相關的技術來解決面臨到的問題，協助商圈朝數位化全速前進，創造疫情後的數位商機。</p>
+<p>除了四大商圈外，也讓同學們可以透過 LINE SPOT 、LINE 社群以及更多的 LINE 平台技術來展示，依照各商圈的面臨問題，制定屬於你們的最佳商業解決方案。</p>
+<blockquote>
+<p>活動新聞稿：<a target="_blank" rel="noopener" href="https://linecorp.com/zh-hant/pr/news/zh-hant/2021/4031">https://linecorp.com/zh-hant/pr/news/zh-hant/2021/4031</a></p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/fresh-2021/10.png"></p>
+<p>本次大會提供同學許多管道可以了解第一手競賽資訊，相關連結:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://tw-fresh.line.me/">本次活動連結</a><span id="more"></span></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vBJ50m14dw0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h1 id="初選"><a href="#初選" class="headerlink" title="初選"></a>初選</h1><p>在大家報名結束之後，大家正如火如荼的準備企劃書，在這邊大會還準備了各種工作坊讓同學們有途徑可以更清楚的了解 LINE 的平台上的服務究竟要如何使用，如「LINE Bot 基礎實作課程」中，藉由完整的說明建立起大家對於 LINE 平台技術有初階了解，對於後續的企劃應用更得心應手</p>
+<script async class="speakerdeck-embed" data-slide="24" data-id="0ec99040fbed4ad592fcf1c40dfa1f4e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>LINE Bot 的運作流程</li>
+<li>各種訊息格式的彈性組合應用</li>
+<li>Provider 的重要性</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="6" data-id="0ec99040fbed4ad592fcf1c40dfa1f4e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>其中工作坊也提到了許多業界常用的 API，讓初賽的每組除了可以應用創意以及所學之外，還能夠讓作品的呈現可以更加專業。</p>
+<script async class="speakerdeck-embed" data-slide="41" data-id="0ec99040fbed4ad592fcf1c40dfa1f4e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>當然可能在實作的過程中才會遇到問題，大會這邊還有提供相關的社群讓同學們可以在上面發問啦：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://line.me/ti/g2/5HE7p2ZJqSWVmRhK0yf-yvulbn-ruJRM3cYVcw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">LINE FRESH 官方社群</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.facebook.com/LINEFRESHTW">粉絲團</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.facebook.com/groups/1088588318552834">媒合社團</a></li>
+</ul>
+<blockquote>
+<p>以上的地方提供給各位能夠快速了解與詢問大會的相關問題，其中許多小幫手一直在裡面替大家解大一些大會上的問題</p>
+</blockquote>
+<h1 id="導師面談-amp-面試"><a href="#導師面談-amp-面試" class="headerlink" title="導師面談 &amp; 面試"></a>導師面談 &amp; 面試</h1><p>本次安排了兩場<strong>導師面談</strong>，為了讓同學們的提案可以接觸到不同的面相，進入到複賽的隊伍可以藉由提問讓各領域的導師們，其中包含到： </p>
+<ul>
+<li>Engineering</li>
+<li>Service Planning</li>
+<li>Marketing</li>
+<li>Commerce Business</li>
+<li>Sticker</li>
+<li>Customer Care</li>
+<li>News</li>
+<li>Corporate Strategy</li>
+<li>Game</li>
+</ul>
+<p>…各種團隊來給予各組的提案有不同面向的建議。而透過同學的不同階段提案內容，給予不同的建議及執導，針對現有的技術環境架構及產業知識協助優化提案，並透過練習與對答，將同學們的表達及作品都準備到最好的狀態，除了成為同學完成作品的強大後盾，也讓大家加足馬力力拼最後進入總決賽的資格！</p>
+<h1 id="總決賽"><a href="#總決賽" class="headerlink" title="總決賽"></a>總決賽</h1><p><img src="https://nijialin.com/images/2021/fresh-2021/1.JPG"></p>
+<p>看到同學們為了解決每個商圈所遇到的問題，渾身解數的透過各種分析、統計方法，並結合開發技術應用來解決每個區域所遇到的問題，讓小編在聽完每組同學的報告，都很想去立即起身直接去這四大商圈去看看，這麼有吸引力的地方小編居然過去都不知道 :P</p>
+<p><img src="https://nijialin.com/images/2021/fresh-2021/3.JPG"></p>
+<p>在聽每一組的報告之後，我們當然有準備美味的點心讓同學的可以放下緊張的心情，在享受美味的點心之餘可以認識不同組別的同學，即便在競賽的當下也可以廣結善緣，說不定大家未來都會是好同事呢！</p>
+<p>因為是競賽，一定會分出前三名，每組成績真的都非常相近，或許這次沒有得名，但每位同學可以從茫茫人海中入選到總決賽的十組已經是非常棒了！且每組的內容都相當有吸引力，每位評審與現場同仁也都聽得津津有味，希望每位同學可以藉由這次競賽的動力幫助社會解決更多需要被關注的議題，把活力注入到社會中，讓大家的未來能夠更加美好！</p>
+<blockquote>
+<p>以下前三名資訊皆引用至新聞稿：<a target="_blank" rel="noopener" href="https://linecorp.com/zh-hant/pr/news/zh-hant/2021/4031">https://linecorp.com/zh-hant/pr/news/zh-hant/2021/4031</a></p>
+</blockquote>
+<h2 id="冠軍隊伍「雙管齊下」"><a href="#冠軍隊伍「雙管齊下」" class="headerlink" title="冠軍隊伍「雙管齊下」"></a>冠軍隊伍「雙管齊下」</h2><p>為了有效提升台東鐵花商圈的曝光度，「雙管齊下」特別整合 LINE 多項數位服務，並以串流音樂 LINE MUSIC 為核心，把獨具特色的在地音樂帶進年輕世代生活中，並嘗試將流量變現，轉化為人流以及商機，同時更藉由 LINE 官方帳號整併商圈商家資訊與表演節目，善用 LINE 熱點設立活動專區與街頭藝人熱點地圖，以 LINE 社群集結、串聯擁有相同興趣的用戶，提升鐵花商圈的討論熱度。</p>
+<p><img src="https://nijialin.com/images/2021/fresh-2021/first.png"></p>
+<h2 id="亞軍隊伍「頑伴」"><a href="#亞軍隊伍「頑伴」" class="headerlink" title="亞軍隊伍「頑伴」"></a>亞軍隊伍「頑伴」</h2><p>「頑伴」團隊觀察雲林虎尾魅力商圈的遊客量因疫情而驟減，且行程規劃對許多遊客而言相當困擾，為降低台灣民眾出遊的門檻，特別運用 LINE 平台技術開發兼具社群與評價兩大功能的智慧嚮導服務。以 LINE Bot 聊天機器人為基礎，透過問答方式進一步掌握用戶旅遊偏好，同時再搭配 LINE 社群創造更多關於在地商家的討論，也能透過旅客於 LINE 熱點自主撰寫旅遊心得文章，打造更具效益的行銷模式。</p>
+<p><img src="https://nijialin.com/images/2021/fresh-2021/second.png"></p>
+<h2 id="季軍隊伍「Eureka」"><a href="#季軍隊伍「Eureka」" class="headerlink" title="季軍隊伍「Eureka」"></a>季軍隊伍「Eureka」</h2><p>根據同學們所執行的調查指出，台北師大龍泉商圈因疫情等因素減少遊客造訪，而熱門店家需排隊久候等痛點，「Eureka」團隊以「師大龍泉數位轉型活水計畫」為核心，由師大龍泉商圈的 LINE 官方帳號出發，透過「行程推薦小幫手」串聯 LINE 熱點，有效提升民眾實際走訪的店家數並意願深入探訪巷弄裡的商家。此外，亦運用「數位號碼牌」解決排隊時間較長的問題以及創新功能「卡路里飯後散步」延長消費者在商圈的停留時間，盼能獲得更多商機。</p>
+<p><img src="https://nijialin.com/images/2021/fresh-2021/third.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>LINE FRESH 這兩屆轉型成競賽讓同學們在競賽中發想出許多非常棒的主題內容，除了尋找出優秀的人才外，也讓同學們在競賽中真實累積相關的實戰經驗，透過整合既有的工具發想出更特別的解決方案，藉此來解決社會中所面臨到的問題，協助不同產業朝數位化前進，創造出屬於下一個世代的最佳解決方案。</p>
+<script async class="speakerdeck-embed" data-slide="52" data-id="0ec99040fbed4ad592fcf1c40dfa1f4e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>如果你也身懷絕技，想透過技術解決大家生活中所會遇到的事情，歡迎持續關注我們的 TECH FRESH 的實習計畫，過去有許多學長姐分享各種經驗，歡迎大家參考以下的文章，相信對你未來加入 LINE 大家庭都會有幫助喔！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/from-line-tech-fresh-to-liner/">LINE TECH FRESH: 從實習到成為正職的經歷</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/what-is-tech-fresh-interview/">【訪談】TECH FRESH 工作老實說 – 後續花絮與相關資訊整理</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate/">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021/">Life in LINE – 你不知道的 LINE TECH FRESH 實習日常</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-2020/">LINE TECH FRESH – 技術新星人才計劃，實習經驗大公開</a></li>
+</ul>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表 (持續更新)</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Hackathon/" rel="tag"><i class="fa fa-tag"></i> Hackathon</a>
+              <a href="/tags/LINE-FRESH/" rel="tag"><i class="fa fa-tag"></i> LINE FRESH</a>
+              <a href="/tags/%E9%BB%91%E5%AE%A2%E6%9D%BE/" rel="tag"><i class="fa fa-tag"></i> 黑客松</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/02/chatbot-central-meetup-18/" rel="prev" title="LINE 開發者社群計畫: 中部人的 Chatbot Meetup #18 心得分享">
+      <i class="fa fa-chevron-left"></i> LINE 開發者社群計畫: 中部人的 Chatbot Meetup #18 心得分享
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/08/clear-image-background-mac/" rel="next" title="【MAC】透過內建的預覽程式來去背吧！">
+      【MAC】透過內建的預覽程式來去背吧！ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E9%81%B8"><span class="nav-number">2.</span> <span class="nav-text">初選</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8E%E5%B8%AB%E9%9D%A2%E8%AB%87-amp-%E9%9D%A2%E8%A9%A6"><span class="nav-number">3.</span> <span class="nav-text">導師面談 &amp; 面試</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E6%B1%BA%E8%B3%BD"><span class="nav-number">4.</span> <span class="nav-text">總決賽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%A0%E8%BB%8D%E9%9A%8A%E4%BC%8D%E3%80%8C%E9%9B%99%E7%AE%A1%E9%BD%8A%E4%B8%8B%E3%80%8D"><span class="nav-number">4.1.</span> <span class="nav-text">冠軍隊伍「雙管齊下」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%9E%E8%BB%8D%E9%9A%8A%E4%BC%8D%E3%80%8C%E9%A0%91%E4%BC%B4%E3%80%8D"><span class="nav-number">4.2.</span> <span class="nav-text">亞軍隊伍「頑伴」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A3%E8%BB%8D%E9%9A%8A%E4%BC%8D%E3%80%8CEureka%E3%80%8D"><span class="nav-number">4.3.</span> <span class="nav-text">季軍隊伍「Eureka」</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">7.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

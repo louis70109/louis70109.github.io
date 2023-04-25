@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="You are what you do.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忍者工坊">
+<meta property="og:url" content="https://nijialin.com/page/16/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="You are what you do.">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nijialin.com/page/16/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/27/learn-docker-with-twitch-bot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/27/learn-docker-with-twitch-bot/" class="post-title-link" itemprop="url">Docker 學習筆記 - 將 Twitch Bot 容器化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-27 10:36:05" itemprop="dateCreated datePublished" datetime="2020-01-27T10:36:05+00:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近剛好看到許多<code>EKS</code>、<code>GKE</code>相關的文章，趁著過年時刻先來補足一下 Docker 這個既熟悉又陌生的技能 😆，之後再接著研究如何串接至 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/Kubernetes">kubernetes</a> 並同時到雲平台上，接下來一起來看我從建立到建置的過程紀錄 🙂。</p>
+<p>以下就使用我的 side project - <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a> 做範例囉！</p>
+<blockquote>
+<p>主要使用的功能為 <code>node</code> 以及 <code>mongo</code></p>
+</blockquote>
+<h1 id="新增檔案"><a href="#新增檔案" class="headerlink" title="新增檔案"></a>新增檔案</h1><p>這邊我使用 vscode 的 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Docker extension</a> 來幫助我快速建立 docker 相關的檔案:</p>
+<ul>
+<li>Dockerfile</li>
+<li>docer-compose.yml</li>
+<li>.dockerignore</li>
+</ul>
+<blockquote>
+<p>透過以下的 gif 可以快速建立以上三個檔案</p>
+</blockquote>
+<p><img src="https://github.com/microsoft/vscode-docker/raw/master/resources/readme/generateFiles.gif"></p>
+<p>操作方式為 <code>Cmd+Shift+P</code> &gt;<code>docker: add</code> &gt; <code>選擇語言(Node)</code> &gt; <code>設定輸出 Port</code></p>
+<h2 id="處理-dockerfile"><a href="#處理-dockerfile" class="headerlink" title="處理 dockerfile"></a>處理 dockerfile</h2><p>藉由 extension 來幫我們產生檔案第一步就完成了，接著對 Dockerfile 稍做修改:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">10.13</span>-alpine</span><br><span class="line"><span class="keyword">MAINTAINER</span> NiJia &lt;louis70109@gmail.com&gt;</span><br><span class="line"><span class="keyword">ENV</span> NODE_ENV production</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> [<span class="string">&quot;package.json&quot;</span>, <span class="string">&quot;package-lock.json*&quot;</span>, <span class="string">&quot;/app/&quot;</span>]</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /app/</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5000</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;npm&quot;</span>, <span class="string">&quot;start&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>FROM: 來自什麼映像檔，這裡使用預設給的 node 版。</li>
+<li>MAINTAINER: 寫描述的位置，這邊我標註我的名稱與 EMail。</li>
+<li>ENV: 環境變數寫在這，不過這個專案是放在 Github 上，所以我就沒把 chatbot 平台的密鑰放在這了。</li>
+<li>WORKDIR: 當前在一個乾淨的環境下，而你預想的工作路目錄要叫什麼就在這設定，同時也會一起幫你建立好 (我用<code>/app</code>這個工作資料夾當作範例)。</li>
+<li>COPY: 把檔案複製到想要放的地方，這裡為了先讓容器安裝完相依套件，因此先把 <code>package.json</code> 以及 <code>package-lock.json</code> 先複製進 <code>/app/</code> 這個資料夾內。</li>
+<li>RUN: 執行終端機指令，在上面檔案複製過來之後，這裡我就來安裝相依套件庫。</li>
+<li>COPY: 安裝完產生 node_modules 之後把原本的有的東西都複製過來。<ul>
+<li><code>.</code> &#x3D; 當前目錄</li>
+<li>&#x2F;app&#x2F; &#x3D; 欲複製前往的地方</li>
+</ul>
+</li>
+<li>EXPOSE: 容器要打出去的 Port 出口，在前面呼叫 extension 時就已經輸入完這欄了。</li>
+<li>CMD: 幫我執行指令 (參考: <a target="_blank" rel="noopener" href="http://jenkins.readbook.tw/docker/basic/104-dockerfile/entrypoint/">CMD 與 ENTRYPOINT 的差別</a>)</li>
+</ul>
+<h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><p>這邊我將預設的修改為:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">twitch-bot:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">twitch-bot</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">NODE_ENV:</span> <span class="string">production</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5000</span><span class="string">:5000</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chatbot-network</span></span><br><span class="line">  <span class="attr">mongo:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/db:/data/db</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chatbot-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">chatbot-network:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+
+<p>首先將<code>version</code>改成 <code>3</code>，有向下相容的話當然就是要使用新的囉！</p>
+<p>接著會建立兩個 container (services):</p>
+<ol>
+<li>twitch-bot<br><code>build</code> 後面接著 <code>.</code> 是指說建立在當前位置，<code>depends_on</code> 則是依賴哪個 container，最後則透過 networks (<code>chatbot-network</code>) 來讓服務互相溝通。</li>
+<li>mongo<br>這邊則就直接去 dockerhub 裡面抓，<code>restart</code>鐵定是必要設定，不然會沒有資料庫 🤣，<code>volumes</code>則是設定說你想映射的檔案位置在哪，這邊我設定<strong>當前目錄的&#x2F;data&#x2F;db</strong> (.&#x2F;data&#x2F;db)裡面，對應到映像檔裡面的 <strong>&#x2F;data&#x2F;db</strong> 的位置，然後一樣透過 networks (<code>chatbot-network</code>) 來讓服務溝通。</li>
+</ol>
+<p>networks 這邊就有點像主機設定網卡一樣，我設定一個 <code>chatbot-network</code> 的網卡它是使用橋接(<code>bridge</code>)模式來驅動(<code>driver</code>)</p>
+<blockquote>
+<p>這部分是參考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69536325">知乎</a>，對照改出來的</p>
+</blockquote>
+<blockquote>
+<p>補給站: 一般看到 <code>5000:5000</code> 或是 <code>./data/db:/data/db</code> 的寫法，它意思是 本地端位置 對應「<code>:</code>」到 容器的位置，像上述檔案就有 port 以及 資料庫位置，這邊就會因應服務而對應到不同的功能。</p>
+</blockquote>
+<h2 id="修改-dockerignore"><a href="#修改-dockerignore" class="headerlink" title="修改 .dockerignore"></a>修改 .dockerignore</h2><p>這邊因為我很偷懶不想把<code>.env</code>裡的環境變數寫進<code>dockerfile</code>😆，因此在這就把檔案中的<code>**/.env</code>拔掉方便做事 🤣</p>
+<h1 id="測試容器"><a href="#測試容器" class="headerlink" title="測試容器"></a>測試容器</h1><h3 id="啟動"><a href="#啟動" class="headerlink" title="啟動"></a>啟動</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-d</code> 表示讓容器跑在背景，如果沒加的話就會在終端機上看到容器們的行為。</li>
+<li>會建立本地端的 container image。</li>
+</ul>
+<h3 id="關閉"><a href="#關閉" class="headerlink" title="關閉"></a>關閉</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若是使用 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-bot</a> 來試玩的話，則需要多開一個視窗執行 <code>npx ngrok http 5000</code> 來建立一個暫時含有 SSL 的 URL。</li>
+</ul>
+<h1 id="建置-build"><a href="#建置-build" class="headerlink" title="建置(build)"></a>建置(build)</h1><p>如果是按照原本 docker-compose.yml 的打法：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">twitch-bot:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">twitch-bot</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣的話 docker 預設會幫忙下一個 <code>latest</code> 版號的 tag。</p>
+<p>如果是按造以下做法的話在 build 就會幫忙建立 <code>帳號/容器名</code>，並下一個 <code>0.1</code> 的 tag</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">twitch-bot:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">louis70109/twitch-bot:0.1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/7Ftfpeh.png"></p>
+<p>接下來就執行 <code>docker-compose build</code> 幫忙建立一個有版本號(tag)的容器映像檔(container image)。</p>
+<p><img src="https://i.imgur.com/JiifOjy.png"></p>
+<blockquote>
+<p>補給站:</p>
+<ul>
+<li>記得要 <code>docker login</code> 哦！</li>
+<li>到 dockerhub 或其他私有倉庫建立 container repository</li>
+</ul>
+</blockquote>
+<h1 id="結碖"><a href="#結碖" class="headerlink" title="結碖"></a>結碖</h1><p>趁著春節的零碎時間來跟這個熟悉陌生技能打個招呼 😆，同時也體會到大家說到 docker 好用的地方以及給予的彈性，之前都是有需要測試某些功能才會用到，對於 <code>dockerfile</code> 以及 <code>docker-compose.yml</code> 就甚少了解，藉著年假空檔練習，之後只要在熟悉一下整體的使用方法應該就能好好的～用它來幫忙做事了 🚀。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a target="_blank" rel="noopener" href="https://github.com/lmjben/cdfang-spider/blob/master/src/nodeuii/config/index.ts#L3">連線 mongo container</a><br><a target="_blank" rel="noopener" href="http://jenkins.readbook.tw/docker/basic/104-dockerfile/entrypoint/">docker CMD 使用</a><br><a target="_blank" rel="noopener" href="https://docs.docker.com/compose/">Overview of Docker Compose</a><br><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/11/corss-platform-twitch-bot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/11/corss-platform-twitch-bot/" class="post-title-link" itemprop="url">如何建立一個跨平台的 Twitch 機器人</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-11 16:53:22" itemprop="dateCreated datePublished" datetime="2020-01-11T16:53:22+00:00">2020-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在去年大約五月的時候寫了一隻 Twitch 的 LINE bot，不過後來似乎 Twitch API 有改版讓機器人壞掉了，最近又有需要一隻機器人幫我查詢，就開始去翻一下 Twitch 官方文件，碰巧逛到這個 <a target="_blank" rel="noopener" href="https://dev.twitch.tv/code/">Community Resources page</a>，看到了好多資料在裡面，就索性來重寫囉！</p>
+<blockquote>
+<p>因為 Twitch package 都是 Typescript，因此本篇的範例都會是 Typescript 哦！</p>
+</blockquote>
+<p>⭐️ 本專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a></p>
+<h1 id="加好友"><a href="#加好友" class="headerlink" title="加好友"></a>加好友</h1><ul>
+<li><p>LINE</p>
+<img height="200" border="0" alt="QRcode" src="https://i.imgur.com/kRcEhBN.png">
+</li>
+<li><p>Messenger</p>
+<img height="200" border="0" alt="QRcode" src="https://i.imgur.com/93yxeiy.png"></li>
+</ul>
+<h1 id="準備"><a href="#準備" class="headerlink" title="準備"></a>準備</h1><ul>
+<li>套件<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">bottender</a> 為這次實作跨平台所使用的框架</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/d-fischer/twitch">Twitch js</a> 中找到了 <a target="_blank" rel="noopener" href="https://d-fischer.github.io/twitch/docs/basic-usage/getting-started.html">npm 的套件</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add twitch</span><br><span class="line"><span class="comment">// or...</span></span><br><span class="line">npm install --save twitch</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>金鑰<ul>
+<li><del>申請 <a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/v5#getting-a-client-id">Client ID</a></del></li>
+<li>建立 <a target="_blank" rel="noopener" href="https://twitchapps.com/tmi/">Access Token</a></li>
+</ul>
+</li>
+</ul>
+<p>[2020&#x2F;06&#x2F;08 修正] 申請完後將 <code>oauth:</code> 後的 key 透過官方文件的 <a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/authentication/#validating-requests">Validating requests</a> 指令放入 access token 中取得 Client_id，如下:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Authorization: OAuth &lt;access token&gt;&quot;</span> https:<span class="regexp">//i</span>d.twitch.tv<span class="regexp">/oauth2/</span>validate</span><br></pre></td></tr></table></figure>
+
+<p>本專案的 <code>TWITCH_CLIENT_ID</code> 的環境變數就是這個回傳值中的 <code>client_id</code>。</p>
+<blockquote>
+<p>這部分可能會需要去 twitch <code>設定 -&gt; 連結</code> 去綁定 Oauth 的樣子，再麻煩各位注意一下。</p>
+</blockquote>
+<ul>
+<li><p>平台</p>
+<ul>
+<li>需要有個 Facebook 粉絲頁</li>
+<li>LINE bot</li>
+</ul>
+</li>
+<li><p>資料庫</p>
+<ul>
+<li>MongoDB: Heroku 上為 <code>mLab</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>Clone 專案下來看 ➡️ <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot.git">https://github.com/louis70109/Twitch-Bot.git</a><br>首先把<code>.env.sample</code>改成 <code>.env</code>，並將對應的<code>Messenger</code>、<code>LINE</code>以及<code>Twtich</code> key 放置對應的位置</p>
+<ul>
+<li>Messenger 申請我是參考 C.T. Lin 的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218682">鐵人文章</a></li>
+<li>LINE bot 申請參考<a href="https://nijialin.com/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/">我的文章</a></li>
+</ul>
+<h2 id="跨平台"><a href="#跨平台" class="headerlink" title="跨平台"></a>跨平台</h2><p>跨平台含本地總共會有三個:</p>
+<ul>
+<li>Console (本地端)</li>
+<li>Messenger (線上)</li>
+<li>LINE (線上)</li>
+</ul>
+<p>Console 是 bottender 的特色之一，可以在終端機上直接測試 Bot 的行為，會先用此模式先測試路由的回覆是否正常。</p>
+<p>接著要讓同樣的 Action 可以導到 Messenger 以及 LINE，bottender 提供了可以設計針對特定平台處理 Action，如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; platform &#125; <span class="keyword">from</span> <span class="string">&#x27;bottender/router&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>): <span class="title">Promise</span>&lt;<span class="title">void</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> router([</span><br><span class="line">    platform(<span class="string">&#x27;line&#x27;</span>, LineAction),</span><br><span class="line">    platform(<span class="string">&#x27;messenger&#x27;</span>, MessengerAction),</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>透過<code>platform</code>來把特定平台的訊息到打對應的 Action (如 <code>LineAction</code>、<code>MessengerAction</code>)，在傳遞 Action 過程中會有一個 <code>context</code> 的變數，裡頭會有底層幫忙整理好的參數:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ConsoleContext &#123;</span><br><span class="line">  ...</span><br><span class="line">  _session: &#123;</span><br><span class="line">    _id: 5e08a45c719a1335aeae39bc,</span><br><span class="line">    id: <span class="string">&#x27;console:1&#x27;</span>,</span><br><span class="line">    _state: &#123;&#125;,</span><br><span class="line">    lastActivity: 1578743328620,</span><br><span class="line">    platform: <span class="string">&#x27;console&#x27;</span>,</span><br><span class="line">    user: &#123; id: <span class="string">&#x27;1&#x27;</span>, name: <span class="string">&#x27;you&#x27;</span>, _updatedAt: <span class="string">&#x27;2019-12-29T13:04:25.633Z&#x27;</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>_session</code> 裡有個 <code>platform</code> 的參數，只要判斷這參數就能知道訊息是來自哪個平台，而<code>user</code>則是被正規化完後的使用者資訊 (這兩個參數為目前為止我最常用的參數)</p>
+<h2 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h2><p>由於長期使用 LINE flex message 的 button template (<a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/view/line/games.ts#L56">參考</a>)，這按鈕事件可以設定按鈕上的文字並設定按下去回覆的字串。</p>
+<p>而 Messenger 的按鈕就跟人家不一樣了(<a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/view/messenger/games.ts#L22">參考</a>)！他沒有 LINE 的這個事件，差不多的事件只有 <code>postback</code>，在路由上就得特別處理這個事件，為了讓跨平台所使用的內容要統一，在訊息進 router 時就要處理掉:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; messenger &#125; <span class="keyword">from</span> <span class="string">&#x27;bottender/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; withProps &#125; <span class="keyword">from</span> <span class="string">&#x27;bottender&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">LineAction</span>(<span class="params">context</span>): <span class="title">Promise</span>&lt;<span class="title">void</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> router([</span><br><span class="line">    ...</span><br><span class="line">    text(<span class="regexp">/^[f|F]ind\s*(?&lt;topic&gt;.*)$/</span>, searchGame)</span><br><span class="line">    ...</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">MessengerAction</span>(<span class="params">context</span>): <span class="title">Promise</span>&lt;<span class="title">void</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> payload = context.event?.postback?.payload;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> router([</span><br><span class="line">    ...</span><br><span class="line">    messenger.postback(</span><br><span class="line">      withProps(searchGame, &#123; <span class="attr">match</span>: &#123; <span class="attr">groups</span>: &#123; <span class="attr">topic</span>: payload &#125; &#125; &#125;)</span><br><span class="line">    )</span><br><span class="line">    ...</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊找到 <a target="_blank" rel="noopener" href="https://bottender.js.org/docs/channel-messenger-routing">bottender 官方文件</a>中函式專門在處理 Messenger 的 postback 事件，並搭配<code>withProps</code>來幫忙把參數 postback 收到的參數傳進對應 Action。</p>
+<p>為什麼會要把傳入的參數設定成巢狀 object -&gt; <code>&#123; match: &#123; groups: &#123; topic: payload &#125;&#125;&#125;</code>，因為在設計初期本是希望進來的內容都是從<code>text</code>傳進來，意指都是透過使用者打字進來，那 bottender 都會透過傳 match 參數進來(<a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/controller/twitches/searchGame.ts#L7">參考</a>)，而解析完 Messenger 的 postback 時也得需要符合這樣的格式，因此就這樣設計，當然如果有更好的設計歡迎送 PR 🎉。</p>
+<h1 id="Chatbot-MVC"><a href="#Chatbot-MVC" class="headerlink" title="Chatbot MVC"></a>Chatbot MVC</h1><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/model">Model</a></h2><ul>
+<li><code>Twitch</code>: 這裡我設定 userId 為 unique，針對每個平台有自己的 id，每個平台都可以綁定 twitch 帳號，進而去做相關操作。</li>
+<li><code>Game</code>: 因為 Twitch 套件這部分是<code>read only</code>，因此我就在建立一個一樣的 model 來處理。</li>
+</ul>
+<blockquote>
+<p>Twich id 是全開放的，只要知道其他使用者的 id 就可以查詢某些功能(<a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/v5">參考</a>)，這邊我就使用查詢<code>追隨</code>的功能。</p>
+</blockquote>
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/tree/master/src/view">View</a></h2><p>這裡設計上只要屬於送出訊息相關的樣板(<code>Flex</code>、<code>Genetic</code>、<code>Text</code>)接放在此。</p>
+<ul>
+<li>common: <code>作者資訊(author)</code> 以及 <code>幫助我(help)</code> 的相關</li>
+<li>LINE: Flex message 相關樣板</li>
+<li>messenger: Genetic template 相關樣板</li>
+</ul>
+<h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/tree/master/src/controller">Controller</a></h2><p>在呼叫 twitch api 出來的資料有時候會大於 LINE 以及 Messenger 的樣板限制，因此所有計算服務都會放在這邊，剛好就搭上 Controller 的對應功能。</p>
+<ul>
+<li>common: 負責將 controller 處理完的內容送至 <code>View</code></li>
+<li>twitch: 處理<code>最多人看得遊戲</code>以及<code>搜尋指定遊戲</code></li>
+<li>user: 處理<code>綁定</code>以及<code>查詢追隨</code></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>基本上做到這如果之後要擴增<code>Telegram</code>或是<code>Slack</code>都可以很快速擴充，只要把相對只要把相對的 Action 加在 <code>App.ts</code> 就行了。</p>
+<p>藉由這次也學到跨平台的機器人真的不好做，每家廠牌的行為都不一樣，所幸 bottender 已經處理大部分平台間的問題，接著我們只需要將欲輸出的內容處理好對應框架所提供的功能去回傳給使用者，讓整體的開發可以更專注在開發功能上並更有彈性。</p>
+<p>歡迎各位幫我按個星星 ⭐️➡️ <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">https://github.com/louis70109/Twitch-Bot</a><br>也一起支持開源專案 <code>bottender</code>⭐️➡️ <a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">https://github.com/Yoctol/bottender</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/10/2020-01-10-%E7%9A%84mur-mur/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/10/2020-01-10-%E7%9A%84mur-mur/" class="post-title-link" itemprop="url">2020/01/10 的mur mur</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-10 13:19:08" itemprop="dateCreated datePublished" datetime="2020-01-10T13:19:08+00:00">2020-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">日記</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h1><p>其實本來也沒打算在我的部落格發這種 mur mur 文，但總覺得在前往更高層級時總是需要思考一下自己在做的事情是不是對的，接下來就在描述一下好了 😆</p>
+<h1 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h1><p>就在今天跟著大家一起看<code>GitHub</code> 全球最大軟體工程師交友平台的排名網站(可惜我貢獻還不夠多沒排進去 😭)<br><a target="_blank" rel="noopener" href="https://commits.top/taiwan.html">https://commits.top/taiwan.html</a></p>
+<p>看著各位為大神的排行榜中點來點去就碰巧點到了這篇文章<br><a target="_blank" rel="noopener" href="https://jaceju.net/be-a-senior-engineer/">https://jaceju.net/be-a-senior-engineer/</a></p>
+<p>而最近也是一直在想這問題</p>
+<blockquote>
+<p>「如何才有資格稱為資深工程師」</p>
+</blockquote>
+<p>以前總想著只要工作一陣子之後我就可以號稱我是 senior<br>但工作後又跑社群發現認識的一個比一個還強都覺得離他們好遠啊 👀</p>
+<p>但看完這篇之後也很慶幸自己身邊有那麼多貴人在幫助我往資深工程師的方向在走<br>但不管職稱是什麼我認為「自我反省」是一件很重要的事<br>小到文件錯字、大到系統 runtime 爆炸 🐛<br>都得從中去找到錯誤去找出讓自己成長的契機</p>
+<p>這是最近做了一個類似 AWS IoT Job 的 mur mur 🤣<br>讓自己成為更好的軟體工程師～</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/07/Python-operator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/07/Python-operator/" class="post-title-link" itemprop="url">Python - operator</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-07 15:12:22" itemprop="dateCreated datePublished" datetime="2020-01-07T15:12:22+00:00">2020-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在實作需要處理字串並且把它改成真實的<code>判斷式</code>，找 google 的過程中找到了<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1740726/turn-string-into-operator">一篇解答</a>，當中剛好看到 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/operator.html">Operator</a> 這個套件，以下就用一些範例來示範～</p>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>處理的範例: <code>1=1AND2&lt;5OR8&gt;9</code></p>
+<p>可以使用<code>re</code>把字串處理成陣列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">re.split(<span class="string">&quot;AND|OR&quot;</span>, payload)</span><br><span class="line"><span class="comment"># -&gt; [1=1, 2&lt;5, 8&gt;9]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接著再使用<code>迴圈</code>+同樣的方法去處理掉<code>=</code>、<code>&gt;</code>、<code>&lt;</code></p>
+</blockquote>
+<p>在處理完之後就可以找到所有的 <code>key</code> 以及 <code>value</code> 的陣列</p>
+<p>接著就是要把 <code>AND</code>、<code>OR</code> 找出來存下來，這邊我會會使用<code>split(&#39;AND&#39;, 1)</code>只切第一個找到的<code>AND</code>字串，因為像是 SQL Where 子句的功能要一個一個處理才行，否則最後判斷會出問題。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> re.search(<span class="string">&#x27;(AND)|(OR)&#x27;</span>, payload) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    result = payload.split(<span class="string">&#x27;AND&#x27;</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> result[<span class="number">0</span>] <span class="keyword">and</span> ... <span class="comment"># 判斷 AND 字串</span></span><br><span class="line">    result = payload.split(<span class="string">&#x27;OR&#x27;</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> result[<span class="number">0</span>] <span class="keyword">and</span> ... <span class="comment"># 判斷 OR 字串</span></span><br></pre></td></tr></table></figure>
+
+<p>接著再切完之後會拿到<code>operator_list</code>知道裡面有哪些運算子的陣列，以原本的資料來說可以用迴圈去處理，這邊我就用簡單的範例來表示<code>operator</code>可以處理的東西。</p>
+<p>像是<code>operator</code>除了可以判斷純數字以及純字串以外，也可判斷<code>英文</code>+<code>數字</code>的組合。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">operator_list = [<span class="string">&#x27;&gt;&#x27;</span>, <span class="string">&#x27;&lt;&#x27;</span>, <span class="string">&#x27;=&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> operator_list[<span class="number">0</span>] == <span class="string">&#x27;&gt;&#x27;</span>:</span><br><span class="line">    result = operator.gt(<span class="number">2</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> operator_list[<span class="number">1</span>] == <span class="string">&#x27;&lt;&#x27;</span>:</span><br><span class="line">    result = operator.lt(<span class="string">&#x27;z01&#x27;</span>, <span class="string">&#x27;z99&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> operator_list[<span class="number">2</span>] == <span class="string">&#x27;=&#x27;</span>:</span><br><span class="line">    result = operator.eq(<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;A&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用以上方法可以比對運算子，而使用以下方法則可以比對<code>AND</code>以及<code>OR</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ex = [<span class="string">&#x27;AND&#x27;</span>, <span class="string">&#x27;OR&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> ex[<span class="number">0</span>] == <span class="string">&#x27;AND&#x27;</span>:</span><br><span class="line">    result = operator.and_(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> ex[<span class="number">1</span>] == <span class="string">&#x27;OR&#x27;</span>:</span><br><span class="line">    result = operator.or_(<span class="number">1</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>透過 <code>operator</code> 這個函示庫讓我處理<code>運算子們</code>可以少很多事，藉此紀錄一下工作上使遇到的一些方法以及問題，最驚訝的就是可以比對<code>英文</code>+<code>中文</code>的判斷式，以一些韌體的本版資訊來說他們會擁有這樣的組合，在上傳之後要比對時用這樣的方法就很方便，若有什麼問題歡迎留言給我 😊</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1740726/turn-string-into-operator">stackoverflow</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/3/library/operator.html">operator</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/24/Twich-chatroom-IRC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/24/Twich-chatroom-IRC/" class="post-title-link" itemprop="url">透過 IRC 與 Twitch 聊天室連結互動</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-24 14:09:27" itemprop="dateCreated datePublished" datetime="2019-12-24T14:09:27+00:00">2019-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>為什麼會想玩這個呢，因為之前串了一隻介接 Twitch API 的聊天機器人，不過最近因為 API 似乎已經翻新了，所以那隻機器人暫時死亡了 😆，但是聊天機器人不限定只有在 facebook、LINE 通訊軟體上，因此就寫了這篇文章來紀錄一下使用過程。</p>
+<h1 id="文件-amp-申請密鑰"><a href="#文件-amp-申請密鑰" class="headerlink" title="文件 &amp; 申請密鑰"></a>文件 &amp; 申請密鑰</h1><p>Twitch Chatbot IRC <a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/irc/">官方文件</a></p>
+<ul>
+<li>GitHub<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/tmijs/tmi.js">連結</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tmijs/docs">文件</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>要使用的朋友在 google 時可能會找到另一套，不過他也說請大家來用 <code>tmi.js</code> 了ＸＤ</p>
+</blockquote>
+<p>首先要先申請一個 <code>OAUTH</code> 的密鑰，網址<a target="_blank" rel="noopener" href="https://twitchapps.com/tmi/">在這邊</a></p>
+<h1 id="套件安裝"><a href="#套件安裝" class="headerlink" title="套件安裝"></a>套件安裝</h1><p>透過<code>npm</code>安裝<code>tmi.js</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i tmi.js</span><br></pre></td></tr></table></figure>
+
+<h1 id="IRC-通訊"><a href="#IRC-通訊" class="headerlink" title="IRC 通訊"></a>IRC 通訊</h1><p>接著需要寫一個腳本透過<code>IRC</code>的方法來與 Twitch 的聊天室連結：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/IRC">IRC</a>（Internet Relay Chat）是一個位於應用層的協定。其主要用於群體聊天，但同樣也可以用於個人對個人的聊天。</p>
+</blockquote>
+<h2 id="新增-bot-js"><a href="#新增-bot-js" class="headerlink" title="新增 bot.js"></a>新增 <code>bot.js</code></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tmi = <span class="built_in">require</span>(<span class="string">&#x27;tmi.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> tmi.Client(&#123;</span><br><span class="line">  options: &#123; <span class="attr">debug</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  connection: &#123;</span><br><span class="line">    reconnect: <span class="literal">true</span>,</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  identity: &#123;</span><br><span class="line">    username: <span class="string">&#x27;YOUR_NAME&#x27;</span>,</span><br><span class="line">    password: <span class="string">&#x27;oauth:YOUR_KEY&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  channels: [<span class="string">&#x27;yuniko0720&#x27;</span>], <span class="comment">// 想加入的聊天室</span></span><br><span class="line">&#125;);</span><br><span class="line">client.connect();</span><br><span class="line">client.on(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">channel, tags, message, self</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (self) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (message.toLowerCase() === <span class="string">&#x27;87&#x27;</span>) &#123;</span><br><span class="line">    client.say(channel, <span class="string">`@<span class="subst">$&#123;tags.username&#125;</span>, 你是第 N 個說 87!`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="設定檔"><a href="#設定檔" class="headerlink" title="設定檔"></a>設定檔</h2><ul>
+<li><code>username</code>: 設定你的使用者名稱</li>
+<li><code>password</code>: 申請的 oauth 放在這邊，格式皆是<code>oauth:XXXXX</code></li>
+<li><code>channels</code>: 一般會進入自己的頻道，當然也可以去其他頻道</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">identity: &#123;</span><br><span class="line">    username: <span class="string">&#x27;YOUR_NAME&#x27;</span>,</span><br><span class="line">    password: <span class="string">&#x27;oauth:YOUR_KEY&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  channels: [<span class="string">&#x27;yuniko0720&#x27;</span>],</span><br></pre></td></tr></table></figure>
+
+<h2 id="連結聊天室"><a href="#連結聊天室" class="headerlink" title="連結聊天室"></a>連結聊天室</h2><p>這部分則是開始監聽聊天室的內容，所有的範例連結<a target="_blank" rel="noopener" href="https://github.com/tmijs/docs/tree/gh-pages/_posts/v1.4.2">皆在此</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">client.on(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">channel, tags, message, self</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (self) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (message.toLowerCase() === <span class="string">&#x27;87&#x27;</span>) &#123;</span><br><span class="line">    client.say(channel, <span class="string">`@<span class="subst">$&#123;tags.username&#125;</span>, 你是第 N 個說 87!`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h1><p>執行<code>node bot.js</code>會看到以下的畫面</p>
+<p><img src="https://i.imgur.com/01aiJVw.png"></p>
+<p>其實這樣監聽看起來真的是讓我這個宅心噴發 🚀🚀，可以透過<code>IRC</code>收到聊天室訊息後看後續要怎麼處理，像有些實況主與觀眾的互動可能是輸入<code>+1</code>這樣的文字來獲得獎賞(抑或是互罵 🤣)，在很多情境下這樣用會讓觀眾除了跟實況主互動以外還有個對象能玩 👾。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>而在這樣監聽下若人數很高之後其實可以收集到更多的資訊去做利用，也許想是開啟<code>訂閱者模式</code>後讓訂閱者輸入特定文字後將資訊傳入<code>Google sheet</code>之類的資料表，在做抽獎等活動性質的內容，對整個遊戲實況內容行銷都會是滿好與觀眾互動的方式～</p>
+<p>大概就玩到這邊了，下次想到什麼應用再來說 😆</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/22/chatbot-meetup-2019Q4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/22/chatbot-meetup-2019Q4/" class="post-title-link" itemprop="url">Chatbot meetup #14 與 #15 小聚心得</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-22 12:48:54" itemprop="dateCreated datePublished" datetime="2019-12-22T12:48:54+00:00">2019-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/9sLr17Z.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 NiJia</p>
+<p>下半年度辛苦來參加小聚的各位了，最後一季場地一直變更，因為每次小聚都有熱情的夥伴提供場地給小聚，也一起尋找最適合各位的一個場地，若造成困擾小弟深感抱歉 &lt;(_ _)&gt;</p>
+<p>2019 年度活動資訊請參考 ➡️<a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups/blob/master/taipei/2019.md">Chatbot Taiwan GitHub</a></p>
+<h1 id="小聚活動-amp-簡報連結"><a href="#小聚活動-amp-簡報連結" class="headerlink" title="小聚活動 &amp; 簡報連結"></a>小聚活動 &amp; 簡報連結</h1><h2 id="meetups-14"><a href="#meetups-14" class="headerlink" title="meetups 14"></a><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/meetup-014">meetups 14</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@chatbot-tw/meetups-014">參考共筆</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Speaker</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>What’s new in LIFF v2 and TECHPULSE 2019 preview</td>
+<td>Evan Lin</td>
+<td><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/whats-new-in-liff-v2-and-techpulse-2019-preview?slide=2&fbclid=IwAR1pS22ELVfWptEmvIwn7G35uGeefPO1g6ncMfPsD0ssr7IBB6T7Q_Hbc4Q">link</a></td>
+</tr>
+<tr>
+<td>Bottender 一路走來</td>
+<td>林承澤(C.T Lin)</td>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1yz38IWwolgv8AQPxIpuQBfNzSaKjGQVU/view?fbclid=IwAR2IHRd6ESvCnOCu-hleFvM-K1RTMT4l65ShoWB852XWhQ-wUj_ikegmnzw">link</a></td>
+</tr>
+<tr>
+<td>如何使用 kamigo 快速開發 LINE bot</td>
+<td>林家煜(NiJia Lin)</td>
+<td><a target="_blank" rel="noopener" href="https://www.slideshare.net/JiaYuLin6/kamigo-reviews-20191127-198374007?fbclid=IwAR1bkzmaOO5_tOBxNf9G5WVLboghJp6Mbl1G5wkOxPLk7RzOm707dNefd_M">link</a></td>
+</tr>
+</tbody></table>
+<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>當時 LIFF v1 只能透過 Deep link 的方式讓很多需要 Web view 的動線設計上增加了許多困擾，而在 v2 上線後改善了這方面的問題，且也對外公布支援 Query string 讓開發者可以帶參數進去(雖然之前就已經在偷用了 😆)，雖然很不幸的因為 iOS 的政策問題導致 Scan QR code 的功能在接下來的版本硬生生被拔除，但整體下來其實 LIFF v2 對於在 LINE 上開發功能的朋友可以更有彈性的去應用了。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/#third-party-software">iOS 政策問題參考</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/BtY1sLS.jpg"></p>
+<p>Bottender 是在某次小聚聊到時才知道原來有這麼酷的開源專案，我覺得最特別的除了可以支援多平台之外，就是 <code>console</code> 模式了，像我最近做的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Taiwan-ABL-games">ABL 台灣隊賽程機器人</a>就只使用到純文字的功能，在<code>console</code>模式下很快速的就把功能弄好，部署時只要把相關 <code>Key</code> 放進去功能就完成了，這部分是真的很驚艷 😆<br>上週去參加 GDG Hackthon 時介紹給其他寫前端的朋友使用，從來沒寫過後端的他們也覺得使用上真的很快就上手，所以有寫<code>Javascript</code>的朋友不妨參考試試囉！<br><img src="https://i.imgur.com/xMpRkLM.png"></p>
+<p>當初因為訓練時沒有一個可以幫我儲存記錄的地方，因此想到想做 LINE bot 來解決我的問題，但同時我又不喜歡處理一大堆 JSON 的問題，因此選用 <a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">Kamigo</a> 作為我開發 bot 的框架，除了框架幫忙轉打請求轉到對應的<code>controller</code>讓我不用寫一堆<code>if</code> <code>else</code>以外，最好用的功能就是 <code>Kamiflex</code> 了，當我們在 <a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx/">Flex Message Simulator</a> 弄了一堆 JSON 出來時，同時我們需要從資料庫拉資料出來組裝產生大量的 JSON，在組裝時程式碼會很髒亂，所以使用 Kamiflex 來幫忙轉譯讓我在寫 Flex message 時可以更像在寫 Ruby code，讓整個 JSON 可能幾千行瞬間被濃縮成 100 行時這段 Flex message 在維護時也能更好的維護。<br><img src="https://i.imgur.com/4boRPgr.png"></p>
+<h3 id="Kamigo-流程"><a href="#Kamigo-流程" class="headerlink" title="Kamigo 流程"></a>Kamigo 流程</h3><div id="sequence-0"></div>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/meetup-015">meetups 15</a><ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@chatbot-tw/meetups-015">參考共筆</a></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Speaker</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINE Push &#x2F; Message 開發經驗談</td>
+<td>Caesar Chi</td>
+<td></td>
+</tr>
+<tr>
+<td>邊緣人救星！用 Laravel 打造私人定製的聊天機器人</td>
+<td>李小胖</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1ImrH_2IziPceVnfHrTYTf8g3AivxQ3s4sNHkSQf6aBY/edit#slide=id.p">link</a></td>
+</tr>
+<tr>
+<td>Chatbot builder</td>
+<td>Penny Sun</td>
+<td><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/automl-in-clova-chatbot-builder-framework?slide=56">link</a></td>
+</tr>
+</tbody></table>
+<h2 id="心得-1"><a href="#心得-1" class="headerlink" title="心得"></a>心得</h2><p>我平時就有在看一些社群行銷朋友分享他們是如何對行為下標籤<code>tag</code>以及發放對應內容給使用者進而提升購買力，在 Caesar 大大的快速了解到這些商業行為背後的開發經驗為何，從設計到大量推送所需注意的問題以及服務器之間的溝通問題…在這次的議程中讓我學到很多付費內容才會聽到的題材，讓我對於 Push message 這件事情的做法與思路又重新被教育了一次 😆<br><img src="https://i.imgur.com/GqSiAmh.jpg"></p>
+<p>這次要請到一個月有一半時間都在參加小聚的小聚王小胖來為各位分享如何用<code>Laravel</code>做一隻專為自己客製化的機器人，雖然 Live demo 過程中了魔咒，好險後來也解決的一些 live demo 才會遇到的問題 🤣，總之若有使用 php 的朋友歡迎參考簡報哦～<br><img src="https://i.imgur.com/z2WgJvD.jpg"></p>
+<p>最後由 LINE 的資料工程師-Penny 為我們帶來在 LINE techpulse 上的議程，從介紹中 NLU 部分看起來功能會像是 <code>Dialogflow</code> 一樣，而在其他的部分則是提供一個介面讓使用者可以更快速的在網頁上設定自己想要的機器人樣式，只是目前功能只提供給合作的商家，期待未來 release 時的效益 🚀<br><img src="https://i.imgur.com/rdAzlEu.jpg"></p>
+<blockquote>
+<p>官方帳號已經有套用囉！想收到啲一手資訊或是想玩玩的朋友可以掃描加入 👾</p>
+</blockquote>
+<p><img src="https://qr-official.line.me/L/9AirZgJAgb.png"></p>
+<blockquote>
+<p>所有小聚資訊接收藏在 -&gt; <a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups">Chatbot Taiwan GitHub</a> 上哦！</p>
+</blockquote>
+<h1 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h1><h2 id="14"><a href="#14" class="headerlink" title="14"></a>14</h2><table>
+<thead>
+<tr>
+<th>Speaker</th>
+<th>Topic</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陳佳新</td>
+<td>LINE Beacon，數位導覽的小幫手！</td>
+<td></td>
+</tr>
+<tr>
+<td>Eric</td>
+<td>Flex box, 一起收集分享 Flex message</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/eric0324/flex-box">link</a></td>
+</tr>
+<tr>
+<td>徐郁涵</td>
+<td>食農飽可夢</td>
+<td></td>
+</tr>
+<tr>
+<td>郭佳甯</td>
+<td>午餐隊長</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yoctol/leader-of-lunch">link</a></td>
+</tr>
+</tbody></table>
+<h2 id="15"><a href="#15" class="headerlink" title="15"></a>15</h2><table>
+<thead>
+<tr>
+<th>Speaker</th>
+<th>Topic</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Calvin</td>
+<td>LINE Beacon，數位導覽的小幫手！</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1a8Yaf_315mb4u8BcIvs6TqyNYkDiRR-T7mxNAnOuQCE/edit">link</a></td>
+</tr>
+<tr>
+<td>JT</td>
+<td>ChatOps &amp; Rasa</td>
+<td><a target="_blank" rel="noopener" href="https://slides.com/jimting/chatops_and_rasa#/">link</a></td>
+</tr>
+<tr>
+<td>NiJia</td>
+<td>ABL 台灣隊查詢機器人</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/louis70109/Taiwan-ABL-games">link</a></td>
+</tr>
+<tr>
+<td>郭佳甯</td>
+<td>Bottender &amp; Kamigo 介紹</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">link1</a>、<a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">link2</a></td>
+</tr>
+</tbody></table>
+<h2 id="短評"><a href="#短評" class="headerlink" title="短評"></a>短評</h2><p>除了內容豐富的主議程外，閃電秀就是在每個社群最特別的部分了，從每次的閃電秀中都讓我對於 side project 的想法又重新被定義了一番，常常會看到很多不同的應用情境以及特殊的用法，歡迎大家踴躍報名閃電秀來互相交流，多方交流或許有機會蹦出不一樣的想法並讓機器人的其他用途 😁</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在舉辦每次的小聚活動都希望可以給每個來的朋友最豐富的內容，以及提供 Lighting talk 的舞台讓有作品的朋友可以上來分享，而最近有與其他社群的朋友聊到，發現似乎把議程塞太緊，導致影響到會眾與講者交流以及回家休息的時間，所以之後的小聚改善這個狀況並調整時間，再麻煩大家多支持 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw">Chatbot Taiwan</a>🚀🚀🚀</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">User->LINE: message
+LINE->Route: webhook
+Route->Kamigo: event notify
+Kamigo->Controller: send params
+Controller->View: send DB data
+View->Kamigo: generator flex template
+Kamigo->Route: send template
+Route->LINE: response
+LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple"}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/10/Bottender-x-Dialogflow-x-LINE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/10/Bottender-x-Dialogflow-x-LINE/" class="post-title-link" itemprop="url">Bottender x Dialogflow x LINE</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-10 15:18:31" itemprop="dateCreated datePublished" datetime="2019-12-10T15:18:31+00:00">2019-12-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chatbot/" itemprop="url" rel="index"><span itemprop="name">Chatbot</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>大家好，我是 Chatbot Taiwan 的 NiJia，最近我們 Github 開張囉，想找之前演講的紀錄都會在此哦！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups">Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Facebook</a></li>
+<li><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/">KKTIX</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣的，本週末 12&#x2F;13-12&#x2F;15 我要去 <a target="_blank" rel="noopener" href="https://www.meetup.com/GDGTaichung/events/266686542/">GDG Taichung Hackthon Party</a> 上當導師，礙於我實在想不出有個題目可以分享給其他同好，碰巧之前跟過 Wolke 大大的 Dialogflow + LINE bot 工作坊，憶起當時的明媚風景，接著前陣子寫鐵人賽也有跟到 C.T Lin 大大寫的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">使用 Modern Web 技術來打造 Chat App</a>，如此一來我就乾脆把這兩個東西合在一起弄個東西！</p>
+<p>又這麼剛好的我最近瘋狂看 ABL 球賽(支持本土球隊！)，剛好週末也沒事，就順手把它做出來啦~有在看球賽的朋友別錯過這隻機器人囉！他可以告訴你下一場比賽是哪時候～<br><img src="https://i.imgur.com/RTmyJPr.png"></p>
+<p>以下記錄著我踩雷的過程 🤣，詳細 bottender 使用手冊還是參考 -&gt; <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">使用 Modern Web 技術來打造 Chat App</a></p>
+<p>本篇文章的程式碼已經開源囉 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Taiwan-ABL-games">Taiwan-ABL-Games</a></p>
+<h1 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a>建立專案</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-bottender-app taiwan-abl-games</span><br></pre></td></tr></table></figure>
+
+<p>接著會看到以下的畫面，bottender 很貼心的列出一些大家平常比較會使用的平台，這邊我們先選擇 LINE，後續會再告訴大家如何增加其他平台選項。<br><img src="https://i.imgur.com/k12ig2m.png"></p>
+<h1 id="Dialogflow-注意事項與串接"><a href="#Dialogflow-注意事項與串接" class="headerlink" title="Dialogflow 注意事項與串接"></a>Dialogflow 注意事項與串接</h1><p>這邊一定是要參考主要開發者所寫的文章啊 -&gt; <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10226833">Day25</a><br>大致上創建服務的過程差不多，這個部分就簡單帶過比較重要的部分。</p>
+<blockquote>
+<p>在處理意圖部分有個小撇步，若鼠標從左邊到右邊，到第二個時會把第一個意圖覆蓋掉，這邊我都是從右邊到左邊一個一個選，才不會遇到覆蓋的問題。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/HtZ1OWd.png"></p>
+<p>接下來再處理 Dialogflow API 的問題，Day 25 文章中所提到的地方 Google UI 似乎有換位置，我找到的位置在此 -&gt; <a target="_blank" rel="noopener" href="https://cloud.google.com/docs/authentication/production#obtaining_and_providing_service_account_credentials_manually">URL</a><br><img src="https://i.imgur.com/5HJ3uL7.png"></p>
+<p>從頁面的藍色按鈕(建立服務金鑰)後會遇到下圖畫面，第一個紅色框框需要注意是不是剛剛建立的 Dialogflow 的 agent。<br>而第二個下拉式選單選擇 <code>Dialogflow Integrations</code>，下面則選擇 <code>JSON</code> 格式。<br><img src="https://i.imgur.com/vBRfIgp.png"></p>
+<blockquote>
+<p>在一開始建立完之後若是要回來管理的話，直接到 GCP 的<a target="_blank" rel="noopener" href="https://console.cloud.google.com/home/dashboard">主控台</a>左側的<code>API &amp; Services</code>的<code>Cedemtials</code>來管理金鑰。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/IEGyogB.png"></p>
+<p>把下載的檔案放在主目錄下，接著要在<code>.env</code>下新增以下兩個 key，<code>GOOGLE_APPLICATION_CREDENTIALS</code>則需要打上<code>絕對路徑</code>，後面再部署會再解釋這段。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GOOGLE_APPLICATION_CREDENTIALS=<span class="regexp">/Users/</span>...<span class="regexp">/taiwan-abl-games/</span>YOUR_KEY.json</span><br><span class="line">GOOGLE_APPLICATION_PROJECT_ID=taiwan-abl-games-mpmomf</span><br></pre></td></tr></table></figure>
+
+<p><code>PROJECT_ID</code>要去 <a target="_blank" rel="noopener" href="https://console.cloud.google.com/home/dashboard">GCP 主控台</a>查詢。<br><img src="https://i.imgur.com/GSHaMTK.png"></p>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>這邊就先複製原作者的 code 並稍做修改至 &#x2F;src&#x2F;index.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dialogflow = <span class="built_in">require</span>(<span class="string">&#x27;dialogflow&#x27;</span>); <span class="comment">// 記得安裝</span></span><br><span class="line"><span class="keyword">const</span> &#123; format &#125; = <span class="built_in">require</span>(<span class="string">&#x27;date-fns&#x27;</span>); <span class="comment">// 記得安裝</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PROJECT_ID = process.env.GOOGLE_APPLICATION_PROJECT_ID;</span><br><span class="line"><span class="keyword">const</span> sessionClient = <span class="keyword">new</span> dialogflow.SessionsClient();</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (context.event.isText) &#123;</span><br><span class="line">    <span class="keyword">const</span> sessionPath = sessionClient.sessionPath(</span><br><span class="line">      PROJECT_ID,</span><br><span class="line">      context.session.id</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> request = &#123;</span><br><span class="line">      session: sessionPath,</span><br><span class="line">      queryInput: &#123;</span><br><span class="line">        text: &#123;</span><br><span class="line">          text: context.event.text,</span><br><span class="line">          languageCode: <span class="string">&#x27;zh-tw&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      queryParams: &#123;</span><br><span class="line">        timeZone: <span class="string">&#x27;Asia/Taipei&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 透過 dialogflow 偵測意圖</span></span><br><span class="line">    <span class="keyword">const</span> responses = <span class="keyword">await</span> sessionClient.detectIntent(request);</span><br><span class="line">    <span class="keyword">const</span> &#123; intent, parameters &#125; = responses[<span class="number">0</span>].queryResult;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (intent.displayName === <span class="string">&#x27;dreamer-next-game&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">//...YOUR CONTEXT</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> context.sendText(<span class="string">&#x27;您輸入的內容我不懂哦~🏀&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>藉由上述程式碼會發現藉由 Dialogflow 判斷出來的 intent 到底是要填入什麼？intent 顯示的字串就如下圖所示，我們在 Dialogflow 裡建立的 Intent 的名字就是最後 API 會回傳給我們的判斷字串，這邊就正規化一下自己所要提供的意圖吧！<br><img src="https://i.imgur.com/sEsEep8.png"></p>
+<h2 id="bottender-config-js"><a href="#bottender-config-js" class="headerlink" title="bottender.config.js"></a>bottender.config.js</h2><p>最後這邊提一下如何設定給多平台使用，一開始藉由<code>npx create-bottender-app xxx</code>幫我們建立 app 時這個檔案就會自動生成，bottender 很好心的把所有明台所會用到的 key 全部都會放在這裡面。<br><img src="https://i.imgur.com/Ba6I5HR.png"><br>以我為例我就有使用到 Messager 來試玩，這邊就需要把<code>enabled</code>啟動(false -&gt; true)，實際建立粉絲頁相關可以<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218682">參考</a></p>
+<blockquote>
+<p>題外話: 最後再使用<code>npx bottender messenger webhook set</code>就會幫我們把 localhost 串接到 Message 上，實在是太讚了！！！</p>
+</blockquote>
+<h1 id="部署注意事項"><a href="#部署注意事項" class="headerlink" title="部署注意事項"></a>部署注意事項</h1><p>我是使用 Heroku 當作我部署的環境，請服用這篇<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10228055">Heroku 部署</a></p>
+<p>在本地端測試時會用到很多的環境變數，而 Dialogflow API json 的路徑我是透過環境變數去取得，在 Heroku 上會把專案的內容放在<code>/app</code>底下(不管你專案叫什麼名字)，因此環境變數<code>GOOGLE_APPLICATION_CREDENTIALS</code>需要輸入<code>/app/xx-ooo.json</code>這樣就會取到當前目錄下的檔案囉！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經由這次試玩這個 project 讓我覺得 <a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">bottender</a> 這個 chatbot 框架整合真的是厲害，幫開發者處理掉很多跨平台上的問題，我認為最酷的就是 console mode，在測試程式邏輯上可以不用每次都一直用手機開 LINE 或是 FB 來測試機器人狀態，而是在終端機就解決這件事，這是我開發機器人到目前為止覺得最酷的模式 👍！</p>
+<p>而在這個專案上我使用到 Dialogflow，除了參考的原文畫面 (GCP 頁面) 已有些許更動外，其實介接的速度是非常快的，此外我很認同原文作者的觀點，把 Dialogflow 接在程式後面才去處理這件事會增加很多彈性，畢竟當一個<strong>回應</strong>來的時候可能會想做其他不同的應用，此時若是模型就在前面先把訊息回覆掉，會增加很多開發上的問題(當然若簡單的功能單人沒問題 🤣)。</p>
+<p>總而言之～誠心推薦大家去玩玩 bottender，也許你會跟我一樣發現了新大陸 😎。</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://dialogflow.com/">Dialogflow</a><br><a target="_blank" rel="noopener" href="https://console.cloud.google.com/?hl=zh-TW">GCP</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10216040">Bottneder 建立專案</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10228055">Heroku 部署</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-01 02:44:45" itemprop="dateCreated datePublished" datetime="2019-12-01T02:44:45+00:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Armeria-A-Microservice-Framework-Well-suited-Everywhere"><a href="#Armeria-A-Microservice-Framework-Well-suited-Everywhere" class="headerlink" title="Armeria: A Microservice Framework Well-suited Everywhere"></a>Armeria: A Microservice Framework Well-suited Everywhere</h1><p><img src="https://i.imgur.com/MNnrFnm.jpg"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/armeria-a-microservice-framework-well-suited-everywhere">簡報連結</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/line/armeria">Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://line.github.io/armeria/">官網</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
+<p>本次議程是由韓國的 open source manager - <a target="_blank" rel="noopener" href="https://github.com/trustin">trustin</a> 為我們帶來議程。</p>
+<p>而在今年參加八月舉辦的 COSCUP，並且在第一天的 after party 參加 LINE BoF 上就已經看到 LINE 開發的 Open Source - <a target="_blank" rel="noopener" href="https://github.com/line/armeria">Armeria</a>，它是基於 Java 所撰寫的一個非同步的專案，支援 Java8, Netty, HTTP&#x2F;2, Thrift 以及 gRPC，當時聽團隊簡單介紹就覺得這個專案一定是個很不得的專案，只不過當時因為他們快速介紹兒少聽了很多細節，這次就把我聽到的細節告訴各位吧！</p>
+<blockquote>
+<p>據之前的議程的以及講者的分享說這個服務已經被應用於很多 LINE 服務裡頭，因為覺得好用才推出來🤣</p>
+</blockquote>
+<h1 id="如何讓開發者快速使用-Armeria"><a href="#如何讓開發者快速使用-Armeria" class="headerlink" title="如何讓開發者快速使用 Armeria"></a>如何讓開發者快速使用 Armeria</h1><p>接下來就用 Java code 來簡單火力展示如何用一個串聯式寫法把服務互叫起來，不管是要用什麼服務只要用串接的方式加入即可，像是 gRPC、Thrift、annotation…等等如下面幾張圖所示。</p>
+<p><img src="https://i.imgur.com/KKU0eXG.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/6rAex3K.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/mAKhwh4.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/Z9jfFkI.png"></p>
+<blockquote>
+<p>這邊看到可以這麼簡單就把一個服務叫起來，然後要讓他開發者可以很輕易地理解並上手，LINE 團隊的開發文化真的是令人佩服…</p>
+</blockquote>
+<h1 id="為什麼要做成-async-以及-reactive"><a href="#為什麼要做成-async-以及-reactive" class="headerlink" title="為什麼要做成 async 以及 reactive"></a>為什麼要做成 async 以及 reactive</h1><p>首先就先提到若 Queue 裡頭的東西若是都 sync 的話會有什麼問題，這邊就以一個 Call API 常遇到的問題 - Timeout，在大量的 Queue 在排隊時，以 sync 的方式存在時光遇到 Timeout 就會有服務器爆炸的問題，因為彼此不能影響彼此，且這件事會發生在真實世界的每個地方。<br><img src="https://i.imgur.com/Telr7lG.jpg"></p>
+<hr>
+<p><img src="https://i.imgur.com/hkltFFS.jpg"></p>
+<p>這邊講者提出的解決方案為：</p>
+<ul>
+<li>增加執行緒的標記(#)並且減少呼叫堆疊(stack)</li>
+<li>預準備 Tread pools 讓大家互相共享</li>
+<li>少調用 points</li>
+<li>使用非同步的好處就是能夠平行呼叫+較少的執行緒</li>
+</ul>
+<p>現在他們能用非同步的方式解決系統被鎖住的問題，但今天若遇到一個很肥～的 payload 呢？以範例來說若一個用戶送他 10 MB 的大小，一次送給 100K 個用戶就相當於 1 TB 大小的流量。</p>
+<p>這邊使用的方法是用不同的頻寬 &amp; 處理能力，並且只需要足夠的 buffer 來排除  Out of Memory 的錯誤。</p>
+<p><img src="https://i.imgur.com/10mGUaD.jpg"></p>
+<p>聽到這邊看起來是使用相關的工具來讓整個串接服務可以更有效的 Debug，最後透過 Kibana 來讓訊息可視化，讓 Debug 可以更加快速。</p>
+<blockquote>
+<p>若對相關 Debug 工具可以參考我之前寫的 <a href="https://nijialin.com/2019/11/12/sentry-in-serverless/">Sentry 文章</a></p>
+</blockquote>
+<blockquote>
+<p>Kibana 可參考： <a target="_blank" rel="noopener" href="https://blog.toright.com/posts/5319/fulltext-search-elasticsearch-kibana-bigdata.html">安裝 ElasticSearch + Kibana 實現中文全文搜尋與數據分析</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過了講者一連串的火力展示後感受到 LINE 對於 open source 有多麽的重視，連 Slack 也都愛上 Armeria 這套 Java 函式庫，用於他們的軟體中並公開推薦，讓像我這種喜歡做 open source 的工程師可以燃起新希望繼續為開源做努力。<br><img src="https://i.imgur.com/eKYqMpo.png"></p>
+<p>其實還有很多技術細節的部分在簡報裡，這邊我就不再多家贅述，大家可以參考 <a target="_blank" rel="noopener" href="https://github.com/line/armeria">GitHub</a>，裡面有更加詳細的用法提供給大家。</p>
+<p>這次來 LINE Developer Day 讓我感受到不同於其他大公司的文化，除了精彩的議程外也招待我們這群 LINE API Expert 前來共襄盛舉，若你也想成為 LINE API Expert，不妨拿著你的貢獻來申請看看<a target="_blank" rel="noopener" href="https://www.line-community.me/contributors/request">連結</a>，或許明年我們就能一起去啦！</p>
+<p>或是你想面對面直接問問看，也可以來 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Taiwan</a> 參加我們一個月一次的社群聚會喔！我們時常會邀請 LINE 的資深技術傳教士 - Evan 來為各位帶來第一手 LINE 的資訊，也許可以跟他詢問看看，或許會有意外的收穫喔！<br><img src="https://i.imgur.com/kIDIfPl.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(2) - How we continuously delivery LINE TODAY App with high agility and high quality</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-21 16:55:53" itemprop="dateCreated datePublished" datetime="2019-11-21T16:55:53+00:00">2019-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality"><a href="#How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality" class="headerlink" title="How we continuously delivery LINE TODAY App with high agility and high quality"></a>How we continuously delivery LINE TODAY App with high agility and high quality</h1><p><img src="https://i.imgur.com/ZGXdq4F.png"></p>
+<p>簡報連結: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/how-we-continuously-delivery-line-today-app-with-high-agility-and-high-quality">URL</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
+<p>這個議程是難得出現的台灣人，一開始只是想說聽看看 LINE TODAY 是如何透過維持高度敏捷以及保持高品質，其實也就是瞎子摸象，結果聽到自我介紹後發現是台灣人來講，感覺就是在異地聽到一個台灣味的口音覺得很親切🤣</p>
+<p>接下來就看一下我聽完這場的心得吧!</p>
+<h1 id="負責專案"><a href="#負責專案" class="headerlink" title="負責專案"></a>負責專案</h1><ul>
+<li>LINE</li>
+<li>LINE TODAY</li>
+<li>LINE SDK</li>
+<li>LINE MUSIC(Taiwan)<br><img src="https://i.imgur.com/nVgupO1m.jpg"><br>最近常常出現在左上角的那個 LINE MUSIC</li>
+</ul>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p><img src="https://i.imgur.com/WTUuqWX.png"></p>
+<p>從 Pull Request - Code review - Build pipeline - unit test - UI test - deploy</p>
+<p>當中提到兩個主要部分：</p>
+<ul>
+<li>Unit test: 覆蓋率最好要多少？</li>
+<li>UI test: 自動化測試的可信度？</li>
+</ul>
+<p><img src="https://i.imgur.com/kNu9cv9.jpg"><br>且在測試當中會有一種測試叫做 flaky test，有時候測試有過、有時候有沒過，完全讓人摸不著頭緒的測試，這會傷害到軟體品質以及覆蓋率，因此若這種狀況出現時趕快號招團隊的人來討論這個狀態是否處理。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.castman.net/%E7%A0%94%E7%A9%B6/2016/06/06/flaky-tests.html">flaky test</a></p>
+</blockquote>
+<h2 id="UI-自動化測試"><a href="#UI-自動化測試" class="headerlink" title="UI 自動化測試"></a>UI 自動化測試</h2><p>在這部分提到說 UI test code 好寫但是難去維護，主要在於 UI 的東西可能會因為裝置、作業系統…等等的問題去影響到，且會很容易出現 flaky test，這邊我詢問講者得到的答案是測試只要確認在當前 UI 上最重要的元件若有出來的話這部分的測試就給過，若太精細的測試時常會影響到整體的開發敏捷度與流暢度。</p>
+<blockquote>
+<p>想想也是有道理，平常聽到人家說測試測試的，只是當今天測試時的究竟是要到多詳細還是要取決於團隊的決定。</p>
+</blockquote>
+<p>這段講者有提到要注意 UI Automation test 是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Smoke_testing_(software)">Smoke test</a>，因此要注意<strong>維護成本</strong>以及<strong>flaky test</strong>的問題！</p>
+<h2 id="驗收標準-Acceptance-Criteria"><a href="#驗收標準-Acceptance-Criteria" class="headerlink" title="驗收標準 - Acceptance Criteria"></a>驗收標準 - <a target="_blank" rel="noopener" href="https://www.altexsoft.com/blog/business/acceptance-criteria-purposes-formats-and-best-practices/">Acceptance Criteria</a></h2><p><img src="https://i.imgur.com/N5ovDf7.jpg"></p>
+<p>接著就提到團隊需要準備各種情境所需要的東西：</p>
+<ul>
+<li>不一樣的測試資料來讓產品有<strong>彈性</strong>且是<strong>可信賴</strong></li>
+<li>若有針對類似 Database 這類的測試團隊則更需要去注意測試細節避免導致特異情況<br>總之就是 Product Owner(PO) 是需要訂定團隊規則並讓大家去遵守，確保品質！</li>
+</ul>
+<p><img src="https://i.imgur.com/Vq13ngl.png"><br>這裡有提到他們經由上述制定好的驗收標準之後，隨著 Release 版本之後的手動測試比率逐漸減少，到後來都是偏向自動化測試去處理，且是有團隊可信度。</p>
+<h2 id="Code-Coverage"><a href="#Code-Coverage" class="headerlink" title="Code Coverage"></a>Code Coverage</h2><p>這邊以 iOS 開發為例，首先就是 MVC 框架上所遇到的問題，官網都是以 MVC 下去做範例，但實際上開發起來則是還得以 MVVM 的框架去執行在測試的部分才不會採太多不必要的坑。<br><img src="https://i.imgur.com/WOIgOQe.png"><br>接下來提到的部分我覺得是這個議程最重要的一部分，就是如何去取捨覆蓋範圍，像是上圖顯示，可能會有一些 Callback 或是其他的是不可預期的範圍，團隊需要將這些問題一一列出來討論，並且去制定一個最低標準以及 Must have 的標準，促使團隊可以更有規則的去進行開發，如下圖所示。<br><img src="https://i.imgur.com/jidpVl3.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>其實一家公司很願意花成本去讓開發者可以去寫各種測試確認服務品質，若是以普遍環境來說這真的是很難人可貴的地方，此外從中也了解到一個好的流程應該是如何，從談需求到開發中間所要經歷過多少事才能讓一個服務起來，測試這部分真的是很大的一門學問，千萬別寫一堆測試但這個測試只是自己測開心的，而是要讓測試的內容可以讓團隊很放心的將 code 交給測試去驗證，達到這樣子目的的程式我相信在市場上一定是很能接受考驗的！<br><img src="https://i.imgur.com/HnFB307.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(1) - Seamless device migration using LINE secure backup</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-21 06:58:09" itemprop="dateCreated datePublished" datetime="2019-11-21T06:58:09+00:00">2019-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Seamless-device-migration-using-LINE-secure-backup"><a href="#Seamless-device-migration-using-LINE-secure-backup" class="headerlink" title="Seamless device migration using LINE secure backup"></a>Seamless device migration using LINE secure backup</h1><p><img src="https://i.imgur.com/IWGmnvQ.jpg"></p>
+<p>簡報連結: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/seamless-device-migration-using-line-secure-backups">LINE Dev Day 2019</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，這次被 LINE 邀請來參加 LINE Developer Day 2019。<br>經由 每位負責人的 Keynote 開場完後就是會眾們開始聽議程的時候了，我選擇跟資安相關的主題來開始我今日的第一場議程，想想在接觸資安時還是大學時期呢(遠望)。</p>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>開場不免俗的一定是要自我介紹並說主要大綱，講者本身為一個駭客並是 <a target="_blank" rel="noopener" href="https://github.com/SideChannelMarvels">Side-Channel Marvels</a> 成員之一，在 GitHub 上坐了一個逆向工程的工具 - <a target="_blank" rel="noopener" href="https://github.com/QBDI/QBDI">QBDI</a>。而作為一個 Hacker 破壞當然對他們來說是相對簡單，但換個方向來看，就是透過滲透測試來建立更完整的服務內容，的確在真實世界上要摧毀一個服務是相對容易的！</p>
+<p>但講者是在 LINE 這種規模較大的公司裡做滲透測試，在滲透後做完測試報告時需要顧慮到其他開發團隊的工作時程問題，也許這個漏洞在實際服務運轉上的容錯率是相對高的話，就可以讓開發團隊安排時程去修補漏洞而避免延遲產品上線時間。</p>
+<p> <img src="https://i.imgur.com/r60FVBM.jpg"></p>
+<p>這邊主要提到一些 <strong>加密協定原則</strong> 以及傳統訊息傳送都是怎麼做。<br><img src="https://i.imgur.com/wJHnXMz.jpg"><br>接著說到帳號轉移裝置時的問題，今天要從舊的裝置備份到新裝置時，若透過 Server 的話他只有加密過後的資料，如此一來根本無法備份過去，而 end-to-end 的備份的話會遇到以下問題：</p>
+<ul>
+<li>會受到各種通訊協定的問題(wifi, Bluetooth, NFC…)</li>
+<li>ios - andriod 不同裝置相容性問題</li>
+<li>需要重新建構訊息模型</li>
+<li>要怎麼處理來自 parameter 的攻擊<ul>
+<li>Hacker 透過中間人攻擊</li>
+<li>會透過各種狀態來找尋漏洞 (BGP, DNS, Certificate PKI…)</li>
+</ul>
+</li>
+</ul>
+<h2 id="UX-x-Security"><a href="#UX-x-Security" class="headerlink" title="UX x Security"></a>UX x Security</h2><p>前面簡單介紹一些備份上的問題以裝置間的問題，接下來就進入如何在最好的使用者體驗上並擁有資訊安全：</p>
+<h3 id="若要最好的使用者體驗-Best-UX"><a href="#若要最好的使用者體驗-Best-UX" class="headerlink" title="若要最好的使用者體驗 - Best UX"></a>若要最好的使用者體驗 - Best UX</h3><p><img src="https://i.imgur.com/E3N0d5l.jpg" alt="流程"></p>
+<ul>
+<li>✅不需要在意裝置間的問題</li>
+<li>❌會被駭客透過中間人攻擊去塞有問題的資料</li>
+<li>❌安全層級等於零</li>
+</ul>
+<blockquote>
+<p>這樣公司就不用運作啦 (笑)</p>
+</blockquote>
+<h3 id="最安全的等級但最差的-UX"><a href="#最安全的等級但最差的-UX" class="headerlink" title="最安全的等級但最差的 UX"></a>最安全的等級但最差的 UX</h3><p><img src="https://i.imgur.com/RFkmVAE.jpg" alt="Best security"></p>
+<ul>
+<li>✅Private key 加密過並且擁有最難破解的密碼</li>
+<li>❌使用者根本記不得這密碼</li>
+<li>❌密碼過於複雜</li>
+</ul>
+<blockquote>
+<p>這邊講者有補充若是只有六位數的密碼他大概有 <strong>一百萬</strong> 種可能性，可以透過暴力破解的方式就解決，且有大約 <strong>10%</strong> 的密碼是重覆性很高的，因此還是建議擁有大小寫以及特殊符號是相對好！</p>
+</blockquote>
+<p>每天都會有弱密碼出現於生活中</p>
+<ul>
+<li>combination padlock<ul>
+<li>硬體設備都用很弱的加密協定</li>
+</ul>
+</li>
+<li>Banking card PIN<ul>
+<li>很容易出現像是 <strong>生日</strong> 這類的密碼</li>
+</ul>
+</li>
+<li>smart phone lock screen<ul>
+<li>使用者求快 </li>
+<li>ARM trustZone &#x2F; apple secure</li>
+</ul>
+</li>
+</ul>
+<h2 id="Server-Side-相關相關加密元件"><a href="#Server-Side-相關相關加密元件" class="headerlink" title="Server Side 相關相關加密元件"></a>Server Side 相關相關加密元件</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trusted_execution_environment">Trusted execution environment(TEE)</a>: 保護 process 相關</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trusted_Platform_Module">Trusted Platform Module(TPM)</a>: 微控制器相關加密元件</li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97">Hardware security module(HSM)</a>: 一種用於保障和管理強認證系統所使用的數字金鑰，並同時提供相關密碼學操作的電腦硬體裝置。</li>
+</ul>
+<h2 id="HSM-in-backups"><a href="#HSM-in-backups" class="headerlink" title="HSM in backups"></a>HSM in backups</h2><p>接著就介紹是如何透過 HSM 的硬體元件來處理備份資料資安的問題<br><img src="https://i.imgur.com/CSkYEHD.jpg"><br>透過硬體(HSM)來幫忙加密確保每一段上傳下載都是安全且可加解密，使用者在這過程中也不需要輸入一大串的密碼就只顧及資訊安全而放棄 UX，而在 HSM 當中會將私鑰安全的存下來，不用擔心會有被攔取之類的問題。</p>
+<p>由於 HSM 經過雙重加密認證達到資訊安全且是安全的儲存下來，因此不會因為被抓到之後就馬上被解開，確保整個資料傳遞上的安全性。</p>
+<p><img src="https://i.imgur.com/A6Mo2mw.jpg"><br>上圖則為 HSM 簽證公鑰的註冊流程，經由一連串的加密把它存成二進制 source code，且裝置還是能使用 public key 來解開這個二進制檔案，如此一來在備份到新裝置上就不用擔心整包資料的安全性了！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我們在實作的網站在沒什麼流量時都不太需要注意資安相關，但當系統請求越來越大或是有金流時在每段的加解密終究都相對重要很多，且在建立 UX 以及 Security 之間要如何平衡也是個重要的議題，如同講者說的，在做這些技術的同時且站在巨人的肩膀上(LINE)對於白帽駭客的成就感是源源不絕的，能夠透過滲透來讓我們每天在用的東西更加完整也是很棒的一個作法😊。</p>
+<p>而過往在聽駭客朋友們在聊都是在講 <a target="_blank" rel="noopener" href="https://www.techbang.com/posts/1826-waf-web-host-bridge-is-falling-down">WAF</a> 較多是在講 Web application 相關的，這次聽到的 HSM 功能看起來雖然很相似，但看來是叫專注在資料的加解密當中，或許當中應該還有更深入的功能還未提到，透過這個議程認識到新的東西也是一大收穫😁。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

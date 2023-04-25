@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言大家好，我是 LINE 台灣技術傳教士 - NiJia Lin，此次的內容於「中部人的聊天機器人小小聚 #22」分享，分享這陣子以來自己做的一個小專案，拋磚引玉希望能讓更多點子於社群上發酵，想了解更多分享的內容請繼續往下看吧！  活動頁 簡報連結">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Life Hacker 初章: 用 LINE Bot 看你平常做的事">
+<meta property="og:url" content="https://nijialin.com/2022/08/17/line-bot-with-github-api/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言大家好，我是 LINE 台灣技術傳教士 - NiJia Lin，此次的內容於「中部人的聊天機器人小小聚 #22」分享，分享這陣子以來自己做的一個小專案，拋磚引玉希望能讓更多點子於社群上發酵，想了解更多分享的內容請繼續往下看吧！  活動頁 簡報連結">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2022/chatbot-mid-birth.png">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzMDRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjYyNHB4O2hlaWdodDozMDRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2MjQgMzA0IiB3aWR0aD0iNjI0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tZW50aXR5ID8/Py0tPjxnIGlkPSJlbGVtXyYjMzE2NDk7JiMyOTcwMjsmIzMyNzczOyI+PGVsbGlwc2UgY3g9IjI3IiBjeT0iMTQiIGZpbGw9IiNGMUYxRjEiIHJ4PSI4IiByeT0iOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHBhdGggZD0iTTI3LDIyIEwyNyw0OSBNMTQsMzAgTDQwLDMwIE0yNyw0OSBMMTQsNjQgTTI3LDQ5IEw0MCw2NCAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQyIiB4PSI2IiB5PSI3OC40OTUxIj4mIzMxNjQ5OyYjMjk3MDI7JiMzMjc3Mzs8L3RleHQ+PC9nPjxnIGlkPSJlbGVtX0xJTkUgQm90Ij48ZWxsaXBzZSBjeD0iMjQ0LjA4NjgiIGN5PSI0My43Mzk3IiBmaWxsPSIjRjFGMUYxIiByeD0iNTUuNTg2OCIgcnk9IjE0LjczOTciIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjYxIiB4PSIyMTAuNTg2OCIgeT0iNDcuNDg3MyI+TElORSBCb3Q8L3RleHQ+PC9nPjxnIGlkPSJlbGVtXyYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTsiPjxlbGxpcHNlIGN4PSI1MzIuMDg2OCIgY3k9IjQzLjMxNzQiIGZpbGw9IiNGMUYxRjEiIHJ4PSI2Mi4wODY4IiByeT0iMTQuODE3NCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzAiIHg9IjQ5NC4wODY4IiB5PSI0Ny4wNjQ5Ij4mIzI0NTI1OyYjMzI3NzM7JiMzMDM0MDsmIzI0NDYwOyYjMzE0NzE7PC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9HaXRIdWIiPjxlbGxpcHNlIGN4PSI0NTIuODc2MSIgY3k9IjE3My4xNjQ0IiBmaWxsPSIjRjFGMUYxIiByeD0iNDcuMzc2MSIgcnk9IjE0LjY2NDQiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUwIiB4PSI0MjQuODc2MSIgeT0iMTc2LjkxMTkiPkdpdEh1YjwvdGV4dD48L2c+PGcgaWQ9ImVsZW1fSWRlYXMtdHJlZSYjMjM1NjA7JiMyNjY5NjsiPjxlbGxpcHNlIGN4PSIyNjUuOTUwNCIgY3k9IjI4MS41OTAxIiBmaWxsPSIjRjFGMUYxIiByeD0iNzMuNDUwNCIgcnk9IjE3LjA5MDEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEwMiIgeD0iMjExLjk1MDQiIHk9IjI4NS4zMzc2Ij5JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OzwvdGV4dD48L2c+PCEtLWxpbmsgPz8/IHRvIExJTkUgQm90LS0+PGcgaWQ9ImxpbmtfJiMzMTY0OTsmIzI5NzAyOyYjMzI3NzM7X0xJTkUgQm90Ij48cGF0aCBkPSJNNDguMjAyLDQzLjUgQzc5LjIxMzksNDMuNSAxMzguMTU4LDQzLjUgMTgzLjMwMyw0My41ICIgZmlsbD0ibm9uZSIgaWQ9IiYjMzE2NDk7JiMyOTcwMjsmIzMyNzczOy10by1MSU5FIEJvdCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIxODguNDU4LDQzLjUsMTc5LjQ1OCwzOS41LDE4My40NTgsNDMuNSwxNzkuNDU4LDQ3LjUsMTg4LjQ1OCw0My41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDQiIHg9IjY2LjI1IiB5PSIzNi41NjY5Ij4mIzM2NjY0OyYjMjA4Mzc7JiMyNDgxOTsmIzIwNzg2OyYjMjMzODQ7JiMzMDM0MDsmIzM1MzM4OyYjMjQ2ODc7PC90ZXh0PjwvZz48IS0tbGluayBMSU5FIEJvdCB0byA/Pz8/Py0tPjxnIGlkPSJsaW5rX0xJTkUgQm90XyYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTsiPjxwYXRoIGQ9Ik0yOTkuNTI5LDQzLjUgQzM0Ni43MDEsNDMuNSA0MTQuNTUyLDQzLjUgNDY0Ljc4NSw0My41ICIgZmlsbD0ibm9uZSIgaWQ9IkxJTkUgQm90LXRvLSYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTsiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNDY5Ljg5Niw0My41LDQ2MC44OTYsMzkuNSw0NjQuODk2LDQzLjUsNDYwLjg5Niw0Ny41LDQ2OS44OTYsNDMuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTM0IiB4PSIzMTcuNzUiIHk9IjM2LjU2NjkiPiYjMzY4NjU7JiMzMzI2Nzsgd2ViaG9vayBTZXJ2ZXI8L3RleHQ+PC9nPjwhLS1saW5rID8/Pz8/IHRvIEdpdEh1Yi0tPjxnIGlkPSJsaW5rXyYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTtfR2l0SHViIj48cGF0aCBkPSJNNTIzLjI0NCw1OC42MzIgQzUwOC43OTcsODEuOTQ4IDQ3OS45OTEsMTI4LjQzOSA0NjQuMTI0LDE1NC4wNDcgIiBmaWxsPSJub25lIiBpZD0iJiMyNDUyNTsmIzMyNzczOyYjMzAzNDA7JiMyNDQ2MDsmIzMxNDcxOy10by1HaXRIdWIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNDYxLjMxOCwxNTguNTc2LDQ2OS40NTgsMTUzLjAzMTcsNDYzLjk1MTIsMTU0LjMyNTUsNDYyLjY1NzMsMTQ4LjgxODYsNDYxLjMxOCwxNTguNTc2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMjQiIHg9IjQ5MiIgeT0iMTI0LjU2NjkiPiYjMjUxNzE7IENvbW1pdCAmIzM2OTE0OyYjMjM1NjA7JiMyNjY5NjsmIzIwMDEzOzwvdGV4dD48L2c+PCEtLWxpbmsgR2l0SHViIHRvIElkZWFzLXRyZWU/Py0tPjxnIGlkPSJsaW5rX0dpdEh1Yl9JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OyI+PHBhdGggZD0iTTQzMS45MTIsMTg2LjAxIEMzOTguOTYxLDIwNC43NzY0IDMzNS4wOTIsMjQxLjE1MDcgMjk2LjkyOSwyNjIuODg1NSAiIGZpbGw9Im5vbmUiIGlkPSJHaXRIdWItdG8tSWRlYXMtdHJlZSYjMjM1NjA7JiMyNjY5NjsiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjkyLjQwNiwyNjUuNDYxMywzMDIuMjA2MiwyNjQuNDgzNSwyOTYuNzUwOSwyNjIuOTg3LDI5OC4yNDczLDI1Ny41MzE3LDI5Mi40MDYsMjY1LjQ2MTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE5NyIgeD0iMzc4IiB5PSIyMzAuNTY2OSI+JiMyNDMxNDsmIzMxNDM1OyYjMjcyODQ7JiMyNjY5NjsmIzI1OTE4OyYjMjA4Mzc7JiMzNTMzODsmIzI0Njg3OyAmYW1wO0xJTkUmIzI5OTkyOyYjMjUxNDI7JiMzNjAzOTsmIzM1MzM4OzwvdGV4dD48L2c+PCEtLWxpbmsgPz8/IHRvIElkZWFzLXRyZWU/Py0tPjxnIGlkPSJsaW5rXyYjMzE2NDk7JiMyOTcwMjsmIzMyNzczO19JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OyI+PHBhdGggZD0iTTQ4LjIwOTcsNjUuNDQzIEM5NC4xMDE4LDExMC43NTkgMjAyLjA0NywyMTcuMzQ5OSAyNDYuNDI0LDI2MS4xNjk1ICIgZmlsbD0ibm9uZSIgaWQ9IiYjMzE2NDk7JiMyOTcwMjsmIzMyNzczOy10by1JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNTAuMDEzLDI2NC43MTM2LDI0Ni40MTksMjU1LjU0MzksMjQ2LjQ1NSwyNjEuMjAwNiwyNDAuNzk4MywyNjEuMjM2NiwyNTAuMDEzLDI2NC43MTM2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDQiIHg9IjE3MiIgeT0iMTc3LjU2NjkiPiYjMjY1OTc7JiMzMDQ3NTsmIzIwMTcwOyYjMjYwODU7JiMyNTk3MjsmIzI5NzAyOyYjMjA4Mzk7JiMyMzQ4MTs8L3RleHQ+PC9nPjwhLS1TUkM9W1V4dmt1VkM5Ukl5UU1kTmpEN215X0xtTGRGOUJEQXFLTmtwUHlSSHJ3UkZjcEt6UkRaclRFLUZ2aDlPTkF4Z1VEUXhkR1lXMlFkWXdsblVlNG9adlQ1X0Z5ek5oV1ZmVURaSS1RRC1pSzl3UWI5NlZkd3FHZDVmS2JiaDRYUTVHRG9NX0YwemVXN2pjWUtUZjRiM1ZpeXg5Mml4dmtSY1A5SzBaRFp0VHFGNWlPU1VKN01rdk8yZnFXT2V6S3I4Sll0TEJZYjlKOFY5MFJLenR4dGcta2xsUGdZYjB4aENmLXUxRVhaWEpHR3RhcEVUSkxacGhzRlBZU3BqR2FFaXZ0QUZPWk5lc1YtZHBFVHJGVGRTemN4eHFzVEdqR0JMRk12U19OUlNKMDAwMF0tLT48L2c+PC9zdmc+">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2022-08-17T06:35:50.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.992Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="CI">
+<meta property="article:tag" content="GitHub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2022/chatbot-mid-birth.png">
+
+<link rel="canonical" href="https://nijialin.com/2022/08/17/line-bot-with-github-api/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>Life Hacker 初章: 用 LINE Bot 看你平常做的事 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/08/17/line-bot-with-github-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Life Hacker 初章: 用 LINE Bot 看你平常做的事
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-17 06:35:50" itemprop="dateCreated datePublished" datetime="2022-08-17T06:35:50+00:00">2022-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CI-CD/" itemprop="url" rel="index"><span itemprop="name">CI/CD</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2022/chatbot-mid-birth.png"></p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=1" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE 台灣技術傳教士 - NiJia Lin，此次的內容於「中部人的聊天機器人小小聚 #22」分享，分享這陣子以來自己做的一個小專案，拋磚引玉希望能讓更多點子於社群上發酵，想了解更多分享的內容請繼續往下看吧！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-022">活動頁</a></li>
+<li><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/life-hacker-with-line-bot-and-github-api">簡報連結</a></li>
+</ul>
+<span id="more"></span>
+
+<h1 id="為什麼誕生這篇文章-分享"><a href="#為什麼誕生這篇文章-分享" class="headerlink" title="為什麼誕生這篇文章(分享)?"></a>為什麼誕生這篇文章(分享)?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=3" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<ul>
+<li>訊息散落在個人群組、各種聊天室</li>
+<li>「那個 OOO 網址借我放一下」，應該很常看到這句話?</li>
+<li>平常喜歡看 GitHub</li>
+<li>許多工作訊息、聊天內容都在 LINE 上面</li>
+</ul>
+<blockquote>
+<p>因為上述原因誕生了這次的想法</p>
+</blockquote>
+<h1 id="Part-1-整合-GitHub-API-LINE-Bot"><a href="#Part-1-整合-GitHub-API-LINE-Bot" class="headerlink" title="Part 1. 整合 GitHub API + LINE Bot"></a>Part 1. 整合 GitHub API + LINE Bot</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=5" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>首先我建立了一個專案叫做 <a target="_blank" rel="noopener" href="https://github.com/louis70109/ideas-tree">ideas-tree</a> 準備來放我日常收集的小點子，接著另外建立一個 <a target="_blank" rel="noopener" href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">LINE Bot 專案</a>，專門來處理管理者(我)與 LINE Bot 放上的任何點子訊息。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=6" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>把服務叫起來之後於聊天室內打上訊息，即可把輸入的內容打到 <a target="_blank" rel="noopener" href="https://github.com/louis70109/ideas-tree">ideas-tree</a> 上面做紀錄，在這些過程中的流程請參考以下流程圖。</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzMDRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjYyNHB4O2hlaWdodDozMDRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2MjQgMzA0IiB3aWR0aD0iNjI0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tZW50aXR5ID8/Py0tPjxnIGlkPSJlbGVtXyYjMzE2NDk7JiMyOTcwMjsmIzMyNzczOyI+PGVsbGlwc2UgY3g9IjI3IiBjeT0iMTQiIGZpbGw9IiNGMUYxRjEiIHJ4PSI4IiByeT0iOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHBhdGggZD0iTTI3LDIyIEwyNyw0OSBNMTQsMzAgTDQwLDMwIE0yNyw0OSBMMTQsNjQgTTI3LDQ5IEw0MCw2NCAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQyIiB4PSI2IiB5PSI3OC40OTUxIj4mIzMxNjQ5OyYjMjk3MDI7JiMzMjc3Mzs8L3RleHQ+PC9nPjxnIGlkPSJlbGVtX0xJTkUgQm90Ij48ZWxsaXBzZSBjeD0iMjQ0LjA4NjgiIGN5PSI0My43Mzk3IiBmaWxsPSIjRjFGMUYxIiByeD0iNTUuNTg2OCIgcnk9IjE0LjczOTciIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjYxIiB4PSIyMTAuNTg2OCIgeT0iNDcuNDg3MyI+TElORSBCb3Q8L3RleHQ+PC9nPjxnIGlkPSJlbGVtXyYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTsiPjxlbGxpcHNlIGN4PSI1MzIuMDg2OCIgY3k9IjQzLjMxNzQiIGZpbGw9IiNGMUYxRjEiIHJ4PSI2Mi4wODY4IiByeT0iMTQuODE3NCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzAiIHg9IjQ5NC4wODY4IiB5PSI0Ny4wNjQ5Ij4mIzI0NTI1OyYjMzI3NzM7JiMzMDM0MDsmIzI0NDYwOyYjMzE0NzE7PC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9HaXRIdWIiPjxlbGxpcHNlIGN4PSI0NTIuODc2MSIgY3k9IjE3My4xNjQ0IiBmaWxsPSIjRjFGMUYxIiByeD0iNDcuMzc2MSIgcnk9IjE0LjY2NDQiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjUwIiB4PSI0MjQuODc2MSIgeT0iMTc2LjkxMTkiPkdpdEh1YjwvdGV4dD48L2c+PGcgaWQ9ImVsZW1fSWRlYXMtdHJlZSYjMjM1NjA7JiMyNjY5NjsiPjxlbGxpcHNlIGN4PSIyNjUuOTUwNCIgY3k9IjI4MS41OTAxIiBmaWxsPSIjRjFGMUYxIiByeD0iNzMuNDUwNCIgcnk9IjE3LjA5MDEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEwMiIgeD0iMjExLjk1MDQiIHk9IjI4NS4zMzc2Ij5JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OzwvdGV4dD48L2c+PCEtLWxpbmsgPz8/IHRvIExJTkUgQm90LS0+PGcgaWQ9ImxpbmtfJiMzMTY0OTsmIzI5NzAyOyYjMzI3NzM7X0xJTkUgQm90Ij48cGF0aCBkPSJNNDguMjAyLDQzLjUgQzc5LjIxMzksNDMuNSAxMzguMTU4LDQzLjUgMTgzLjMwMyw0My41ICIgZmlsbD0ibm9uZSIgaWQ9IiYjMzE2NDk7JiMyOTcwMjsmIzMyNzczOy10by1MSU5FIEJvdCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIxODguNDU4LDQzLjUsMTc5LjQ1OCwzOS41LDE4My40NTgsNDMuNSwxNzkuNDU4LDQ3LjUsMTg4LjQ1OCw0My41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDQiIHg9IjY2LjI1IiB5PSIzNi41NjY5Ij4mIzM2NjY0OyYjMjA4Mzc7JiMyNDgxOTsmIzIwNzg2OyYjMjMzODQ7JiMzMDM0MDsmIzM1MzM4OyYjMjQ2ODc7PC90ZXh0PjwvZz48IS0tbGluayBMSU5FIEJvdCB0byA/Pz8/Py0tPjxnIGlkPSJsaW5rX0xJTkUgQm90XyYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTsiPjxwYXRoIGQ9Ik0yOTkuNTI5LDQzLjUgQzM0Ni43MDEsNDMuNSA0MTQuNTUyLDQzLjUgNDY0Ljc4NSw0My41ICIgZmlsbD0ibm9uZSIgaWQ9IkxJTkUgQm90LXRvLSYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTsiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNDY5Ljg5Niw0My41LDQ2MC44OTYsMzkuNSw0NjQuODk2LDQzLjUsNDYwLjg5Niw0Ny41LDQ2OS44OTYsNDMuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTM0IiB4PSIzMTcuNzUiIHk9IjM2LjU2NjkiPiYjMzY4NjU7JiMzMzI2Nzsgd2ViaG9vayBTZXJ2ZXI8L3RleHQ+PC9nPjwhLS1saW5rID8/Pz8/IHRvIEdpdEh1Yi0tPjxnIGlkPSJsaW5rXyYjMjQ1MjU7JiMzMjc3MzsmIzMwMzQwOyYjMjQ0NjA7JiMzMTQ3MTtfR2l0SHViIj48cGF0aCBkPSJNNTIzLjI0NCw1OC42MzIgQzUwOC43OTcsODEuOTQ4IDQ3OS45OTEsMTI4LjQzOSA0NjQuMTI0LDE1NC4wNDcgIiBmaWxsPSJub25lIiBpZD0iJiMyNDUyNTsmIzMyNzczOyYjMzAzNDA7JiMyNDQ2MDsmIzMxNDcxOy10by1HaXRIdWIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNDYxLjMxOCwxNTguNTc2LDQ2OS40NTgsMTUzLjAzMTcsNDYzLjk1MTIsMTU0LjMyNTUsNDYyLjY1NzMsMTQ4LjgxODYsNDYxLjMxOCwxNTguNTc2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMjQiIHg9IjQ5MiIgeT0iMTI0LjU2NjkiPiYjMjUxNzE7IENvbW1pdCAmIzM2OTE0OyYjMjM1NjA7JiMyNjY5NjsmIzIwMDEzOzwvdGV4dD48L2c+PCEtLWxpbmsgR2l0SHViIHRvIElkZWFzLXRyZWU/Py0tPjxnIGlkPSJsaW5rX0dpdEh1Yl9JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OyI+PHBhdGggZD0iTTQzMS45MTIsMTg2LjAxIEMzOTguOTYxLDIwNC43NzY0IDMzNS4wOTIsMjQxLjE1MDcgMjk2LjkyOSwyNjIuODg1NSAiIGZpbGw9Im5vbmUiIGlkPSJHaXRIdWItdG8tSWRlYXMtdHJlZSYjMjM1NjA7JiMyNjY5NjsiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjkyLjQwNiwyNjUuNDYxMywzMDIuMjA2MiwyNjQuNDgzNSwyOTYuNzUwOSwyNjIuOTg3LDI5OC4yNDczLDI1Ny41MzE3LDI5Mi40MDYsMjY1LjQ2MTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE5NyIgeD0iMzc4IiB5PSIyMzAuNTY2OSI+JiMyNDMxNDsmIzMxNDM1OyYjMjcyODQ7JiMyNjY5NjsmIzI1OTE4OyYjMjA4Mzc7JiMzNTMzODsmIzI0Njg3OyAmYW1wO0xJTkUmIzI5OTkyOyYjMjUxNDI7JiMzNjAzOTsmIzM1MzM4OzwvdGV4dD48L2c+PCEtLWxpbmsgPz8/IHRvIElkZWFzLXRyZWU/Py0tPjxnIGlkPSJsaW5rXyYjMzE2NDk7JiMyOTcwMjsmIzMyNzczO19JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OyI+PHBhdGggZD0iTTQ4LjIwOTcsNjUuNDQzIEM5NC4xMDE4LDExMC43NTkgMjAyLjA0NywyMTcuMzQ5OSAyNDYuNDI0LDI2MS4xNjk1ICIgZmlsbD0ibm9uZSIgaWQ9IiYjMzE2NDk7JiMyOTcwMjsmIzMyNzczOy10by1JZGVhcy10cmVlJiMyMzU2MDsmIzI2Njk2OyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNTAuMDEzLDI2NC43MTM2LDI0Ni40MTksMjU1LjU0MzksMjQ2LjQ1NSwyNjEuMjAwNiwyNDAuNzk4MywyNjEuMjM2NiwyNTAuMDEzLDI2NC43MTM2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDQiIHg9IjE3MiIgeT0iMTc3LjU2NjkiPiYjMjY1OTc7JiMzMDQ3NTsmIzIwMTcwOyYjMjYwODU7JiMyNTk3MjsmIzI5NzAyOyYjMjA4Mzk7JiMyMzQ4MTs8L3RleHQ+PC9nPjwhLS1TUkM9W1V4dmt1VkM5Ukl5UU1kTmpEN215X0xtTGRGOUJEQXFLTmtwUHlSSHJ3UkZjcEt6UkRaclRFLUZ2aDlPTkF4Z1VEUXhkR1lXMlFkWXdsblVlNG9adlQ1X0Z5ek5oV1ZmVURaSS1RRC1pSzl3UWI5NlZkd3FHZDVmS2JiaDRYUTVHRG9NX0YwemVXN2pjWUtUZjRiM1ZpeXg5Mml4dmtSY1A5SzBaRFp0VHFGNWlPU1VKN01rdk8yZnFXT2V6S3I4Sll0TEJZYjlKOFY5MFJLenR4dGcta2xsUGdZYjB4aENmLXUxRVhaWEpHR3RhcEVUSkxacGhzRlBZU3BqR2FFaXZ0QUZPWk5lc1YtZHBFVHJGVGRTemN4eHFzVEdqR0JMRk12U19OUlNKMDAwMF0tLT48L2c+PC9zdmc+'>
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=7" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>結果大概像這樣，可以把輸入的大頭貼+人名放上，並且在以下放入在 LINE Bot 上輸入的內容。</p>
+<h2 id="使用-Markdown-轉-HTML-的-GitHub-API"><a href="#使用-Markdown-轉-HTML-的-GitHub-API" class="headerlink" title="使用 Markdown 轉 HTML 的 GitHub API"></a>使用 Markdown 轉 HTML 的 GitHub API</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=8" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>雖然在手機上打 Markdown 格式不太方便，但因為有時候也會用到電腦紀錄資訊，因此還是當內容建立時格式化成 html 格式，如此以來即便是換行也可以被放進去，才不會輸入的訊息都變成同一行。</p>
+<blockquote>
+<p>剛看到上面的檔案會寫 .md 檔案是為什麼呢? 原本是預計放入內容是 Markdown，但因為在使用之後覺得還是格式化成 html 是比較統一，因此在檔案的名稱上改成 .html 是比較正確的喔！</p>
+</blockquote>
+<p>以下附一段 python code 給大家參考</p>
+<script src="https://gist.github.com/louis70109/bfc722790051807dac10458f234b0cf3.js"></script>
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=9" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>輸入完之後如上圖所示。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=11" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>因為透過 GitHub API 自動幫忙判斷使用的樣式，因此所有的內容擺放位置都已經幫忙調整好了，就不用自己想著到底要怎麼寫 html 了！說不定之後也可以使用 Markdown 格式寫一些東西，然後產生像是 Hackmd 那樣的輸出格式～也甚至有機會把它弄成 GitHub page 給大家看！</p>
+<h1 id="Part-2-每日透過-GitHub-Actions-佈署上-GitHub-Page"><a href="#Part-2-每日透過-GitHub-Actions-佈署上-GitHub-Page" class="headerlink" title="Part 2. 每日透過 GitHub Actions 佈署上 GitHub Page"></a>Part 2. 每日透過 GitHub Actions 佈署上 GitHub Page</h1><p>以下將會大家介紹一下我日常撰寫部落格時後續執行的自動部署與相關問題，以及為什麼要選擇 LINE Bot 作為我操作的介面👀</p>
+<h2 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h2><ul>
+<li>Hexo 部署跑編譯時偶爾會出現 timeout</li>
+<li>一次部署大約在三分鐘左右，手動部署會很耗時</li>
+<li>因為是透過 js 編譯，因此會有 node_module (比較肥)</li>
+</ul>
+<h2 id="為什麼用-LINE-Bot-而不是-LINE-Notify-呢？"><a href="#為什麼用-LINE-Bot-而不是-LINE-Notify-呢？" class="headerlink" title="為什麼用 LINE Bot 而不是 LINE Notify 呢？"></a>為什麼用 LINE Bot 而不是 LINE Notify 呢？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=15" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<ul>
+<li>可以發送 flex message，除了比較漂亮外，可以做的事情也比較多</li>
+<li>LINE Bot 中可以獲取 user id ，可以間接做用戶辨識，避免機器人被發現亂打 commit</li>
+<li>承上，做部署之類的事情可以更清楚是誰按的，不會死無對證</li>
+</ul>
+<h2 id="為什麼選擇-GitHub-Actions？"><a href="#為什麼選擇-GitHub-Actions？" class="headerlink" title="為什麼選擇 GitHub Actions？"></a>為什麼選擇 GitHub Actions？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=16" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>主要也是因為我的專案基本上都在 GitHub 上執行，因此透過 GitHub Actions 也是相對方便許多，不用再額外設定其他內容。</p>
+<p>另一部分也因為無需架設，在GitHub上就可以無痛免費使用，且社群也相較於兩年前我使用時更加完整，有許多東西都可以參考使用，讓我們在實現點子時可以更加快速～</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/9f9e836869da46879b027b8750fe43d1?slide=18" title="Life Hacker with LINE Bot and GitHub API" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>這次做的專案主要也是為了收集我日常尚未發酵的點子，接著安排每個週末把這週的內容好好整理，就可以更加收斂自己點子的發想了！</p>
+<p>另外本來想介接 json2video 的服務，但因為測試的數量較少，想說未來如果真的需要想串接其他平台時可以再來使用～</p>
+<p>最後也很鼓勵大家使用 LINE Bot 去做更多的應用，500 封免費的訊息相信對於日常使用應該是綽綽有餘，且也可以同步做身份認證，簡直就是一兼二顧：），後續有更多串接的應用我也會在持續分享給大家！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/CI/" rel="tag"><i class="fa fa-tag"></i> CI</a>
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/15/flagr-debug-fcntl64-error/" rel="prev" title="【Flagr】處理部署遇到 fcntl64 not found 的過程">
+      <i class="fa fa-chevron-left"></i> 【Flagr】處理部署遇到 fcntl64 not found 的過程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/20/why-you-need-hhkb/" rel="next" title="【HHKB】為什麼要它？怎麼在二手市集挑？">
+      【HHKB】為什麼要它？怎麼在二手市集挑？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%AA%95%E7%94%9F%E9%80%99%E7%AF%87%E6%96%87%E7%AB%A0-%E5%88%86%E4%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">為什麼誕生這篇文章(分享)?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-1-%E6%95%B4%E5%90%88-GitHub-API-LINE-Bot"><span class="nav-number">3.</span> <span class="nav-text">Part 1. 整合 GitHub API + LINE Bot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Markdown-%E8%BD%89-HTML-%E7%9A%84-GitHub-API"><span class="nav-number">3.1.</span> <span class="nav-text">使用 Markdown 轉 HTML 的 GitHub API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-2-%E6%AF%8F%E6%97%A5%E9%80%8F%E9%81%8E-GitHub-Actions-%E4%BD%88%E7%BD%B2%E4%B8%8A-GitHub-Page"><span class="nav-number">4.</span> <span class="nav-text">Part 2. 每日透過 GitHub Actions 佈署上 GitHub Page</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-number">4.1.</span> <span class="nav-text">遇到的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E7%94%A8-LINE-Bot-%E8%80%8C%E4%B8%8D%E6%98%AF-LINE-Notify-%E5%91%A2%EF%BC%9F"><span class="nav-number">4.2.</span> <span class="nav-text">為什麼用 LINE Bot 而不是 LINE Notify 呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8%E6%93%87-GitHub-Actions%EF%BC%9F"><span class="nav-number">4.3.</span> <span class="nav-text">為什麼選擇 GitHub Actions？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">7.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

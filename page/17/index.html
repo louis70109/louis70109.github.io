@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="You are what you do.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忍者工坊">
+<meta property="og:url" content="https://nijialin.com/page/17/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="You are what you do.">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nijialin.com/page/17/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/12/sentry-in-serverless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/12/sentry-in-serverless/" class="post-title-link" itemprop="url">使用 Sentry 收集錯誤並將訊息送至 Slack</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-12 09:50:13" itemprop="dateCreated datePublished" datetime="2019-11-12T09:50:13+00:00">2019-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot TW</a> 的 NiJia</p>
+<p>當產品開發完上線後難免會遇到可能是邏輯上的 Bug、例外錯誤或是想記錄使用上的錯誤，當沒有工具時都只能等錯誤出來時乖乖的去翻 Log 找問題，對於每次出錯要 Debug 的我就覺得很困擾 😭。</p>
+<p>公司強者寫 APP 的同事他們都很開心的在使用 Crashlytics 幫他們將 APP 出問題時將錯誤訊息丟上去，看了實在時羨慕，但那們寫 Web 的朋友要怎麼辦！</p>
+<p>最近就發現了<code>Sentry</code>這個玩意兒(<strong>應該是有段時間的產品了</strong>)，支援了幾乎支持現在市場上主流的各種框架以及語言，且串接上也都很簡單就能實現，文件也都清楚解釋每個 API 的功能如何使用，以下就來介紹如何使用它吧 😎<br><img src="https://i.imgur.com/xVHa6qg.png"></p>
+<blockquote>
+<p>這邊顯示較常用的語言，還有支援很多其他種類的框架及語言</p>
+</blockquote>
+<h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><ul>
+<li>文章的範例專案在此 -&gt; <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-sentry-flask-example">https://github.com/louis70109/aws-sentry-flask-example</a></li>
+<li>本篇是使用 flask 將 Sentry 透過 serverless 部署至 AWS 上 🗿</li>
+</ul>
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><p>首先先到 <a target="_blank" rel="noopener" href="https://sentry.io/welcome/">https://sentry.io/welcome/</a> <code>Get start</code></p>
+<p><img src="https://i.imgur.com/LRIVYDH.jpg"></p>
+<hr>
+<p>這邊可以整合了<code>GitHub</code>或者<code>Azure DevOps</code>兩種 OAuth 的登入方式<br><img src="https://i.imgur.com/eIYugOF.png"></p>
+<hr>
+<p>接著就照著步驟來囉！<br><img src="https://i.imgur.com/5EDwA0N.png"></p>
+<hr>
+<p>選擇自己所使用的語言，這邊我使用 Flask(python) 框架來實作<br><img src="https://i.imgur.com/piHNxXB.png"></p>
+<hr>
+<p>接著官方會有個簡單的文件告訴你要如何實作這塊，這邊就先使用<code>pip</code>在本地安裝套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade <span class="string">&quot;sentry-sdk[flask]==0.13.2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若是使用雲端服務的話需要將<code>sentry-sdk[flask]==0.13.2</code>放入 requirements.txt 中</p>
+</blockquote>
+<p>將以下 init code 放入 api.py 裡，在 <code>app = Flask(__name__)</code> 之前</p>
+<blockquote>
+<p>這邊我將 Sentry 的 DSN 放入 .env 裡，若有參考這部分的朋友需要注意環境變數的地方喔！</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sentry_sdk</span><br><span class="line"><span class="keyword">from</span> sentry_sdk.integrations.flask <span class="keyword">import</span> FlaskIntegration</span><br><span class="line"></span><br><span class="line">sentry_sdk.init(</span><br><span class="line">    dsn=os.environ.get(<span class="string">&#x27;SENTRY_DSN&#x27;</span>),</span><br><span class="line">    integrations=[FlaskIntegration()]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/u9WJkZL.png"></p>
+<hr>
+<p>接著就開始丟錯誤上去看看狀態，我的專案上是串著 LINE Bot，功能只是當個應聲蟲，<strong>在這情況下只需要丟個貼圖給它就會出錯</strong>。</p>
+<p>當錯誤丟出來之後原本監聽的紅色燈號就會打勾囉 ✅</p>
+<blockquote>
+<p>Sentry 預設都會寄信通知，所以若有錯誤記得看信箱哦！</p>
+</blockquote>
+<p><img src="https://i.imgur.com/JXfV97e.png"></p>
+<hr>
+<p>點進去後就可以很清楚的看到程式是錯在第幾行，寫到這有種莫名的感動，平常都是在 LOG 海裡找看看到底報錯在哪邊，終於有個地方能幫我接下來了 🎉<br><img src="https://i.imgur.com/JvVeSdd.png"></p>
+<p>到這邊基本串接已經完成了，但身為免費導向的工程師怎麼能讓 5000&#x2F;月 限制我！接下來就要去過濾一下來的錯誤內容，若不是系統造成的錯誤就不上傳。</p>
+<p>我選擇判斷 Log 達到<code>Waring</code>或是<code>Internal</code>就回報，並照著官方的指示新增以下內容:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/python/#filter-events--custom-logic">before_send</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/python/logging/">logging</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sentry_sdk</span><br><span class="line"><span class="keyword">from</span> sentry_sdk.integrations.flask <span class="keyword">import</span> FlaskIntegration</span><br><span class="line">+ <span class="keyword">import</span> logging</span><br><span class="line">+ <span class="keyword">from</span> http.client <span class="keyword">import</span> HTTPException</span><br><span class="line">+ <span class="keyword">from</span> sentry_sdk.integrations.logging <span class="keyword">import</span> LoggingIntegration</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ <span class="function"><span class="keyword">def</span> <span class="title">strip_sensitive_data</span>(<span class="params">event, hint</span>):</span></span><br><span class="line">+     <span class="keyword">if</span> <span class="string">&quot;exc_info&quot;</span> <span class="keyword">in</span> hint:</span><br><span class="line">+         instance = hint[<span class="string">&#x27;exc_info&#x27;</span>][<span class="number">1</span>]</span><br><span class="line">+         <span class="keyword">if</span> <span class="built_in">isinstance</span>(instance, HTTPException) <span class="keyword">and</span> instance.code &lt; <span class="number">500</span>:</span><br><span class="line">+             <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">+     <span class="keyword">return</span> event</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ sentry_logging = LoggingIntegration(</span><br><span class="line">+     level=logging.INFO,</span><br><span class="line">+     event_level=logging.WARNING</span><br><span class="line">+ )</span><br><span class="line"></span><br><span class="line">sentry_sdk.init(</span><br><span class="line">    dsn=os.environ.get(<span class="string">&#x27;SENTRY_DSN&#x27;</span>),</span><br><span class="line">+    before_send=strip_sensitive_data,</span><br><span class="line">+    integrations=[FlaskIntegration(), sentry_logging]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>strip_sensitive_data</code>: 過濾來自 Http 的 Exception 錯誤碼是否大於<code>500</code>，否則不回傳。</li>
+<li><code>sentry_logging</code>: 使用 SDK 的 <code>LoggingIntegration</code> 來定義 log 回傳事件時的層級到哪層才上傳錯誤訊息，這邊我設定<code>Waring</code>等級，並加入到 init 的 <code>integrations</code> 裡。</li>
+</ul>
+<p>此時不管你打上都會將訊息送上 Sentry：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logging.waring(<span class="string">&quot;i am waring&quot;</span>)</span><br><span class="line">logging.error(<span class="string">&quot;i am error&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>或者是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">raise</span> InternalServerError(<span class="string">&quot;Hi Error&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>或者！！自己手殘讓程式崩潰也會送通知</p>
+</blockquote>
+<p>到這基本上已經完成串接完成並能過濾錯誤訊息，接下來則為將服務串至 Slack 上。</p>
+<h1 id="Slack-bot-串接"><a href="#Slack-bot-串接" class="headerlink" title="Slack bot 串接"></a>Slack bot 串接</h1><p>首先來到<code>Settings</code>按下<code>Integrations</code>會看到以下畫面，並安裝一下<code>Slack</code><br><img src="https://i.imgur.com/Sbib4sv.png"></p>
+<hr>
+<p>接著就要跟 Slack 連動囉<br><img src="https://i.imgur.com/6wHC4Ci.png"></p>
+<hr>
+<p>連動完成後再按下<code>configure</code>來設定以下內容<br><img src="https://i.imgur.com/dSOV9KP.png"></p>
+<hr>
+<p>到了<code>Alerts</code>頁面後就開始設定以下內容囉，這部分參考<a target="_blank" rel="noopener" href="https://docs.sentry.io/workflow/integrations/global-integrations/#slack">官方文件</a><br><img src="https://i.imgur.com/qd05OJO.png"></p>
+<hr>
+<p>可以指定透過哪個<code>group</code>去傳送至哪個<code>tag</code>，我就直接送到預設的<code>#general</code><br><img src="https://i.imgur.com/22Z3pV9.png"></p>
+<hr>
+<p>測試就直接送出貼圖來讓 bot 報錯，結果就收到<code>key</code>的錯誤啦～<br><img src="https://i.imgur.com/FAvjMwy.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就能透過<code>sls deploy</code>將專案部署到 AWS 上，透過這次的紀錄對 Sentry SDK 運作在框架上的問題更加了解，同時也找到了一個不僅可以紀錄錯誤還能通知我錯誤訊息的地方，可以在第一時間直接進去分析 log，若完成了可以直接在 slack 上按<code>Reslove</code>來完成這個 issue。</p>
+<p>本來有在考慮要串接<code>LINE Notify</code>，不過看著 Sentry 對 Slack 的整合比較好，也就放棄了這個念頭了 🤣，但串接哪個平台其實就看公司的需求，Sentry 一樣可以透過 webhook 將錯誤訊息傳至 Server。</p>
+<p>此外它一樣可以整合<code>Github</code>、<code>GitLab</code>、<code>Azure DevOps</code>…等等，若錯誤處理好的話可以讓 Sentry 幫你送 Issue 上去，不僅整個超炫砲 😎，若是 open source 的專案也可以大家一起去修這個問題，真的是一舉兩得啊！！！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/" class="post-title-link" itemprop="url">續篇 — serverless + WSGI + flask + chatbot 的開發指南</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-02 05:04:28" itemprop="dateCreated datePublished" datetime="2019-11-02T05:04:28+00:00">2019-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如果還不知道 Serverless (以下簡稱 sls )的朋友可以先看我<a href="https://nijialin.com/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">上篇文章</a>，裡頭有介紹 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot">Python</a> 以及 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-ruby-line-echo-bot">Ruby</a> 的範例。<br>還沒接觸 Serverless 之前，當開發完一包程式時就將它部署至 Heroku，實在是有夠方便又快速(還是免費的)。不過有個問題是當程式沒在運行時他會睡覺，身為一個免費仔做的小專案這樣是夠的，做為一個貪心的免費仔怎能容許睡覺睡這麼久 🤤！但若是照著我上篇分享的文章做，佈署程式沒問題，但就開發機器人我都要佈署才能測試，這未免也太不人性了 😒。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/" class="post-title-link" itemprop="url">使用 Serverless & LINE Message API 在 AWS 上打造一個 Echo bot</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-31 08:20:12" itemprop="dateCreated datePublished" datetime="2019-10-31T08:20:12+00:00">2019-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。<br>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)<br>[2019&#x2F;07&#x2F;04 更新]<br>若已經暸解的朋友可以參考我的 python 版本:<br><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot">louis70109&#x2F;aws-line-echo-bot</a><br>Ruby 的範例版本:<br><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-ruby-line-echo-bot">louis70109&#x2F;aws-ruby-line-echo-bot</a></p>
+<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>[2019&#x2F;06&#x2F;29 更新]<br>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login — Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～<br>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！<br>Cold start time 問題，依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 😆，所以這部分就別擔新大力地給他用下去～ (感謝 petertc 幫忙找這方面的問題 💪)</p>
+<p>AWS Lambda 免費方案<br>接下來就讓我介紹如何使用 sls + LINE Message API 建立一個 Echo bot 吧！<br><img src="https://i.imgur.com/pNCDY4e.png"></p>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><p>npm 6.9.0<br>python 3.7.3<br>serverless 1.45.1</p>
+<h1 id="建立-AWS-存取金鑰"><a href="#建立-AWS-存取金鑰" class="headerlink" title="建立 AWS 存取金鑰"></a>建立 AWS 存取金鑰</h1><p>首先要先有個 AWS 帳號(廢話) ，如果沒有綁定信用卡記得去綁定才能繼續，接下來就可以去就可以去建立鑰匙囉！<br><img src="https://i.imgur.com/XHuvbyX.png"><br>如上圖，按下紅色框框的部分，接著按箭頭指的按鈕，就會建立一個我們要的金鑰囉！<br><img src="https://i.imgur.com/FzRCna0.png" alt="AWS secret &amp; ID key"></p>
+<p>如上圖所示，可以下載 key，AWS 不會幫忙保存 Secret key，若這視窗關掉的話 key 就不見了，所以使用者可以自行下載檔案保存，以免哪天要部署的時候找不到 key。<br>接著就將這兩個參數加入環境變數中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> AWS_ACCESS_KEY_ID=&lt;your-key-here&gt;</span><br><span class="line"><span class="built_in">export</span> AWS_SECRET_ACCESS_KEY=&lt;your-secret-key-here&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Serverless-建立與部署"><a href="#Serverless-建立與部署" class="headerlink" title="Serverless 建立與部署"></a>Serverless 建立與部署</h1><p>首先先透過以下指令讓 npm 幫忙安裝 sls 的指令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install serverless -g</span><br></pre></td></tr></table></figure>
+
+<p>安裝完之後就透過 sls 指令來建立專案嚕！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless create — template aws-python — path aws-line-echo-bot</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>severless 指令可以縮寫成 sls<br>template &#x3D; 想用什麼平台以及語言就在此模板了 (參考)<br>path &#x3D; 檔案名稱</p>
+</blockquote>
+<p><img src="https://i.imgur.com/2KNweWB.png"><br><img src="https://i.imgur.com/HDonmjF.png"></p>
+<p>透過 severless 建立專案指令<br>依照不同的 template 可能會建立 N 個檔案，但主要還是以下三個檔案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.gitignore</span><br><span class="line">handler.py = 主程式的地方</span><br><span class="line">serverless.yml = 所有設定都在這裡，funtion 參數會對應到指定的路由</span><br></pre></td></tr></table></figure>
+
+<p>在部署前須至 serverless.yml 裡，把 runtime 的 python2.7 改至 3.7，否則會因版本問題導致錯誤。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless deploy <span class="comment"># sls deploy</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/18Fnran.png" alt="Serverless 部署畫面"></p>
+<p>接著到 AWS Lambda 以及 S3 就可以看到第一次部署完的程式以及檔案囉！</p>
+<h1 id="加入-LINE-Message-API"><a href="#加入-LINE-Message-API" class="headerlink" title="加入 LINE Message API"></a>加入 LINE Message API</h1><p>既然是寫 python，那一定是要用 line-python-sdk<br>照著官方用法應該是要執行以下指令安裝套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install line-bot-sdk</span><br></pre></td></tr></table></figure>
+
+<p>不過我們是要部署到 AWS 的 Lambda 上，且因為他是無伺服器運算的服務，所以他沒辦法跑 pip 去幫我安裝套件。<br>此時就要出動 requirements.txt 來管理相依套件 ，但只有加入它 sls 根本不認識，因此我們需要安裝 pulgin 來讓 sls 認得(requirements.txt)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls plugin install -n serverless-python-requirements</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/0NFfVi6.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/pS7s8ls.png"></p>
+<p>安裝指令 &amp; package.json<br>如圖，安裝過程中會自動建立 package.json，且會幫忙在 serverless.yml 裡面加入 pulgin，這樣 sls 在部署時就認得 requirements.txt 囉！<br>接著將 LINE SDK 加入 requirements.txt， AWS 就會幫忙安裝套件了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;line-bot-sdk==1.12.1&quot;</span> &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>然後新增一個 setup.cfg 並加入以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[install]</span><br><span class="line">prefix=</span><br></pre></td></tr></table></figure>
+
+<p>由於 AWS Lambda 上都會將套件安裝在本地端(Lambda 上)，因此在執行 pip install -t . -r requirements.txt 時會需要 setup.cfg。<br>至於詳細原因嘛～還有請各位大大幫小弟解答 🙏<br>最後就處理 handler.py 以及 serverless.yml 囉！<br>將上述兩個 gist 分別貼到自己的 handler.py &amp; serverless.yml，在 hanlder.py 裡的 CHANNEL KEY &amp; TOKEN 記得換成自己的機器人 👾 哦！<br><img src="https://i.imgur.com/WVBHxL3.png" alt="佈屬完狀態"><br>接著在執行一次 sls deploy，將程式部署上去，如上圖所示，在 endpoints 那行會有一個網址，將那網址放到 LINE Webhook URL 上並 Verify 看看有沒有成功，如下圖所示。<br><img src="https://i.imgur.com/CQMwc8V.png"><br>最後對著自己的機器人發個話，看他有沒有回應你一模一樣的文字，若成功了就能往下一步應用層繼續開發囉！若失敗了就要檢查一下是不是有哪個步驟做錯了～</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>因為公司的緣故讓我能夠接觸到這神奇的 Serverless，經過這次的分享加深我對於 FaaS 的架構更加了熟悉，由於我也是初碰，我認為使用上可以把它當作是一個 Docker 的容器或許概念上會比較好理解，後續還有很多的設定檔都還沒詳細研究，最近讓我先研究研究一下再上來分享。</p>
+<blockquote>
+<p>文章中有任何勘誤歡迎指正</p>
+</blockquote>
+<p>如果覺得這篇文章有幫助的話請給我個掌聲鼓勵我一下 👋<br>下列是我的這次實作的專案，如果有幫助也來顆星星吧！<br><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot?source=post_page-----1e3e785a2a01----------------------">louis70109&#x2F;aws-line-echo-bot</a></p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/lambda/pricing/">AWS Lambda 費率問題</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/serverless/serverless">Serverless GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-python-requirements/">Serverless Python Requirements</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python">LINE Python SDK</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/blogs/china/iaas-faas-serverless/">FaaS 概念</a></li>
+<li><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/">AWS, GCP, Azure cold start time</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/25/chatbot-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/25/chatbot-13/" class="post-title-link" itemprop="url">Chatbot meetup 北部 #13 at 台北商業大學 & 中部 #3 at 夢森林</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-25 08:59:43" itemprop="dateCreated datePublished" datetime="2019-10-25T08:59:43+00:00">2019-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/P3F7Xjp.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 NiJia，很榮幸被邀…是本來就負責 Chatbot meetup 的 Co-organizer，連續兩天參加了 meetup 真的是揮灑自己熱情兩邊跑(好 High)，希望藉由社群的分享讓大家可以吸收到不同的新知！</p>
+<ul>
+<li>北部小聚 #13 連結: <a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatb13ts">https://chatbots.kktix.cc/events/chatb13ts</a></li>
+<li>中部小聚 #3 連結: <a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-taichung-003">https://chatbots.kktix.cc/events/chatbots-taichung-003</a></li>
+<li>共筆: <a target="_blank" rel="noopener" href="https://beta.hackfoldr.org/chatbot/">https://beta.hackfoldr.org/chatbot/</a></li>
+</ul>
+<p>這次活動場地感謝 溫明輝 教授幫 chatbot 借了台北商業大學的場地，而台北商業大學最近有跟 LINE PROTOSTAR 聯合舉辦了 ”LINE Chatbot 對話機器人設計大賽”，覺得自己的機器人不錯嘛？歡迎大家踴躍報名參賽哦！</p>
+<h1 id="北部小聚-in-台北商業大學"><a href="#北部小聚-in-台北商業大學" class="headerlink" title="北部小聚 in 台北商業大學"></a>北部小聚 in 台北商業大學</h1><h2 id="LINE-Platform-Update-201910-Evan-Lin"><a href="#LINE-Platform-Update-201910-Evan-Lin" class="headerlink" title="LINE Platform Update 201910 - Evan Lin"></a>LINE Platform Update 201910 - Evan Lin</h2><script async class="speakerdeck-embed" data-slide="1" data-id="36b3e28d2a3f4e489250cbe7d84234a4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>長期支持 Chatbot 社群的 <a target="_blank" rel="noopener" href="https://www.evanlin.com/chatbot13/">Evan 大大</a>為大家帶來陣子 LINE 的更新內容，像我這種開發者最期待的就是 LIFF v2 終於上線了 🎉，當中增加了很多種應用讓嗷嗷待哺的工程師們終於可以生出更多種不一樣的應用啦，</p>
+<ul>
+<li>外部瀏覽器上使用 LIFF 🎉</li>
+<li>兼容 Login v2.1，取得使用者基本資訊</li>
+<li>可掃描 QR code</li>
+<li>在 LIFF 的 webview 下可獲取使用者的 OS&#x2F;Language&#x2F;AccessToken 等等的內容</li>
+</ul>
+<p>詳細參考: <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/ja/blog/liff-v2/">https://engineering.linecorp.com/ja/blog/liff-v2/</a></p>
+<p>試玩新功能：<br><img src="https://i.imgur.com/zHx9RcBm.png"></p>
+<h2 id="LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯"><a href="#LINE-Bot-上的表單驗證、搜尋以及分頁-郭佳甯" class="headerlink" title="LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯"></a>LINE Bot 上的表單驗證、搜尋以及分頁 - 郭佳甯</h2><h3 id="簡報連結"><a href="#簡報連結" class="headerlink" title="簡報連結"></a><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1MNCbVIsMoLAWtPjg22e1-_3PLA2OpyHKSAIvw53Vdsk/edit#slide=id.g654c56bcd3_0_5">簡報連結</a></h3><p>身為卡米粉的我終於再度聽到卡米哥的議程啦，這次介紹的是從 COSCUP 之後一直更新的 <a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">kamigo</a>，並完全使用這個套件做的寵物協尋機器人，此議程就已這隻機器人為主體介紹。</p>
+<p>在實作網頁的過程中最長需要弄的東西不外乎就是表單驗證、搜尋以及分頁，因為 kamigo 是讓使用者經由 LIFF 幫忙將表單回傳成一份 JSON 至使用者的的對話欄上，<br>再轉介給 controller 去解析並儲存進資料庫，但若使用者在操作的過程中少輸入會不會一樣送出？<br>此時 kamigo 透過 rails 原生既有的 <code>validates</code> 來驗證表單欄位內容，並藉由 Turbolinks ajax + js.erb 讓表單在送出時先透過 ajax 打到後端驗證，若驗證失敗後則回傳告知 LIFF 哪個欄位有問題，這個方法也讓我使用到這個套件的<a target="_blank" rel="noopener" href="https://github.com/louis70109/muscle_man">肌肉仔</a>可以透過 rails 的鬼神方法幫我驗證表單，如此一來在表單的確認上就沒問題啦！🎉</p>
+<p>順手捐星星，救救卡米狗: <a target="_blank" rel="noopener" href="https://github.com/etrex/kamigo">https://github.com/etrex/kamigo</a></p>
+<h2 id="不懂開發也能建立屬於自己的-Chatbot-白凱仁"><a href="#不懂開發也能建立屬於自己的-Chatbot-白凱仁" class="headerlink" title="不懂開發也能建立屬於自己的 Chatbot - 白凱仁"></a>不懂開發也能建立屬於自己的 Chatbot - 白凱仁</h2><script async class="speakerdeck-embed" data-slide="1" data-id="4386dd5577e74e528b353d1f56c8a201" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著由 Cloud Native Taiwan User Group Co-organizer - Kyle Bai 為大家帶來講題，藉由故事的敘述讓大家知道他是為甚麼啟動這個 idea 出來，並靈活運用圖片演示對話流程(筆記)，並因為打遊戲的困擾決定做一個機器人來解決朋友問題，運用 container 的技術來封裝 chatbot App，再用 k8s 透過 N 台機器來管理 container 讓它獲得不死之握能力，確保服務的可用性與延展性。</p>
+<p>最後再透過 live demo 的方式讓會眾們一飽眼福，若是對於 Cloud Native 相關技術有興趣的朋友別忘了<a target="_blank" rel="noopener" href="https://www.facebook.com/groups/cloudnative.tw/">加入社群</a>，或是你已經有相關主題遲遲沒地方講？趕快搭上線讓你有舞台可以發揮 😎</p>
+<h2 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h2><p>這部分就參考 Evan 大大的<a target="_blank" rel="noopener" href="https://www.evanlin.com/chatbot13/#%E9%96%83%E9%9B%BB%E7%A7%80">文章</a></p>
+<ul>
+<li>Afore: 如何用 Chatbot 說 921 故事</li>
+<li>謝化挺: 921 Chatbot 開發心得</li>
+<li>C.T Lin: 介紹即將發佈的 Bottender v1</li>
+<li>kevin: 宣傳 DevFest 活動</li>
+<li>Demo: FunWater - It’s time to rethink about the “single-use plastic” product.</li>
+</ul>
+<h1 id="中部小聚-in-夢森林"><a href="#中部小聚-in-夢森林" class="headerlink" title="中部小聚 in 夢森林"></a>中部小聚 in 夢森林</h1><h2 id="LINE-Pay-串接全紀錄-KoKo"><a href="#LINE-Pay-串接全紀錄-KoKo" class="headerlink" title="LINE Pay 串接全紀錄 - KoKo"></a>LINE Pay 串接全紀錄 - KoKo</h2><p>身為通勤學的作者也是自由工作者的 KoKo 每次都熱情參加 Chatbot 的活動 👏，本次邀請來帶大家認識 LINE Pay，透過詳細的介紹 LINE Pay 帶著大家一步一步做並提醒大家當中需要注意的部分，有部分的會眾是金融相關背景也特地來了解 LINE Pay 的各種機制，透過 KoKo 解釋後讓會眾更清楚裡頭眉眉角角，此時真的是感受到滿滿的熱情，講者跟會眾踴躍的討論也讓整個活動更活絡，想了解更多議題的歡迎來許願或是來當講者體驗一下中部人真正的活力啊！</p>
+<h2 id="serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy"><a href="#serveo-讓你用-Docker-開發-chatbot-也能過的去-Jimmy" class="headerlink" title="serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy"></a>serveo 讓你用 Docker 開發 chatbot 也能過的去 - Jimmy</h2><p>COSCUP 就來擔任 Chatbot Taiwan 講者的 Jimmy，本次來分享他包起來的 servo 的容器服務，主要原因是因為在開發機器人時大家都習慣用 ngrok，只是每次都要重新執行重新貼到 LINE Bot 或 LIFF 上，如此繁雜的步驟現在只要透過 container 以及自定義的 DNS 每次只要 docker 啟動後 Domain 啟動後即可開始寫機器人，根本不需要再進後台重新填寫，只能說工程師沒有極限啊！</p>
+<p>透過 Jimmy 將 serveo 打包的 container 就不會有連線不穩定的問題(我有經歷過 🤣)，這邊需要注意的問題 serveo 有 ssh 連線數的問題，但一般來說在開發人數不會太多，這樣理論上已經很夠用了～</p>
+<p>若對這服務有興趣的話：<a target="_blank" rel="noopener" href="https://github.com/taichunmin/docker-serveo">https://github.com/taichunmin/docker-serveo</a></p>
+<h2 id="閃電秀-1"><a href="#閃電秀-1" class="headerlink" title="閃電秀"></a>閃電秀</h2><h3 id="感謝-Flex-Simulator-拯救了我-陳佳新"><a href="#感謝-Flex-Simulator-拯救了我-陳佳新" class="headerlink" title="感謝 Flex Simulator 拯救了我 - 陳佳新"></a>感謝 Flex Simulator 拯救了我 - 陳佳新</h3><p>身為中部負責人的佳新，介紹 LINE 的工具 - <a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx/">Flex Message Simulator</a>，因為應用大量的 flex message 在自家產品「彰化旅行+」上，透過 LINE 的工具讓我們使用 flex message 上能夠叫得心應手。</p>
+<h3 id="ChatBot-製造-ChatBot-EJ-Lin"><a href="#ChatBot-製造-ChatBot-EJ-Lin" class="headerlink" title="ChatBot 製造 ChatBot - EJ Lin"></a>ChatBot 製造 ChatBot - EJ Lin</h3><p>近期加入 chatbot 志工的 EJ 製作了一個可以透過 chatbot 管理 chatbot 的服務，將使用者所註冊機器人的 secret 以及 token 放入後，就能訂閱 ptt 特定作者的文章，當作者只要發文就會透過 push message 通知訂閱的人，若這邊 500 則免費訊息用完的話就建議使用者在開新的 🤣</p>
+<h3 id="肌肉仔更新啦-NiJia-Lin"><a href="#肌肉仔更新啦-NiJia-Lin" class="headerlink" title="肌肉仔更新啦 - NiJia Lin"></a>肌肉仔更新啦 - NiJia Lin</h3><p>最後則是我前一陣子分享過的健身記錄機器人-<a target="_blank" rel="noopener" href="https://github.com/louis70109/muscle_man">肌肉仔</a>，引入了最新更新的 flex message 站牌樣板，讓健身者在訓練的每筆紀錄變得更漂亮，讓健身者可以像是公車一樣一步一步的往下一站走！</p>
+<p>肌肉仔還是會持續更新，有興趣的朋友別忘了幫小弟按個星星 ⭐️ 鼓勵我繼續前進 😃</p>
+<ul>
+<li>連結：<a target="_blank" rel="noopener" href="https://github.com/louis70109/muscle_man">https://github.com/louis70109/muscle_man</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>臺北臺中連著兩天舉辦真的是很累，但是看到大家踴躍的互動讓我覺得不虛此行，接下來還需要大家的熱情支持，讓我們繼續辦下去 🚀</p>
+<hr>
+<p>Chatbot Taiwan 在台北、台中皆有一個月一次的定期聚會，致力於提供並討論聊天機器人的相關應用，每回小聚將安排講者主題分享、新知討論，環繞 Chatbot 與 AI，及大家共同關心的話題。歡迎大家踴躍分享、自由與會眾交流，同時也期望大家可以在分享中得到收獲。</p>
+<p>歡迎各位報名、推薦講者以及閃電秀，介紹自己開發的 chatbot 並分享 chatbot 相關的議題，若有相關需要合作歡迎與我聯繫 <a target="_blank" rel="noopener" href="https://m.me/linnijia%E3%80%82">https://m.me/linnijia。</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/20/%E9%90%B5%E4%BA%BA%E8%B3%BD-%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/20/%E9%90%B5%E4%BA%BA%E8%B3%BD-%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8/" class="post-title-link" itemprop="url">鐵人賽-文章列表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-20 14:09:44" itemprop="dateCreated datePublished" datetime="2019-10-20T14:09:44+00:00">2019-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/abW5lFB.jpg"></p>
+<p>大家好，我是 NiJia</p>
+<p>以下是我最近參加 IT 邦幫忙 30 天鐵人賽的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20111481/ironman/2475">文章列表</a>，主要是紀錄從我進入新公司後學到的<code>Serverless</code>，並透過結合 <code>LINE API</code> 實現在 <code>AWS</code> 上，歡迎大家參考取用 😃</p>
+<hr>
+<ul>
+<li><a href="https://nijialin.com/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/">Day1 - serverless 介紹</a></li>
+<li><a href="https://nijialin.com/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20&%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/">Day2 - 安裝並使用 wsgi &amp; flask 建立第一個 Serverless 的專案</a></li>
+<li><a href="https://nijialin.com/2019/09/18/Day3-LINE-Notify-%E4%BB%8B%E7%B4%B9/">Day3 - LINE Notify 介紹</a></li>
+<li><a href="https://nijialin.com/2019/09/19/Day4-%E8%AA%8D%E8%AD%98%E8%88%87%E4%BD%BF%E7%94%A8-S3-%E5%AE%B9%E5%99%A8/">Day4 - 認識與使用 S3 容器</a>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/20/%E9%90%B5%E4%BA%BA%E8%B3%BD-%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/16/Docker-Mysql-PHPMyadmin-%E6%98%A0%E5%B0%84-%E9%80%A3%E6%8E%A5%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/16/Docker-Mysql-PHPMyadmin-%E6%98%A0%E5%B0%84-%E9%80%A3%E6%8E%A5%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">[Docker] Mysql & PHPMyadmin 映射 & 連接方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-16 14:06:49" itemprop="dateCreated datePublished" datetime="2019-10-16T14:06:49+00:00">2019-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>詳細文件<a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql">參考</a></p>
+<p>docker 抓 mysql 最新的版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:tag</span><br></pre></td></tr></table></figure>
+
+<p>若只是要建立普通容器用以下指令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_USER=<span class="string">&quot;myname&quot;</span> -e MYSQL_PASSWORD=<span class="string">&quot;mypasswd&quot;</span> -e MYSQL_ROOT_PASSWORD=<span class="string">&quot;root_pwd&quot;</span> --name mysqltest1 mysql:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
+
+<p>由於會有備份的問題，所以要先建立資料夾們</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/docker</span><br><span class="line">mkdir ~/docker/mysql</span><br><span class="line">mkdir ~/docker/mysql/conf</span><br><span class="line">mkdir ~/docker/mysql/data</span><br></pre></td></tr></table></figure>
+
+<p>新增 my.cnf 配置文件</p>
+<p>vim ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf</p>
+<p><code>my.cnf</code> 加入如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">  user=mysql</span><br><span class="line">  character-set-server=utf8</span><br><span class="line">  default_authentication_plugin=mysql_native_password</span><br><span class="line">[client]</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">  default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
+<p>將 &#x2F;docker 這個資料夾映射到容器內的 &#x2F;etcmysql&#x2F;my.cnf</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> -v ~/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf -v ~/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysqltest2 mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>–privileged&#x3D;true：容器内的 root 永有真正 root 权限，否則容器内 root 只是外部普通用戶權限</li>
+<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf：映射 config 資料夾</li>
+<li>-v ~&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql：映射 data 資料夾 (table 都在這)</li>
+</ul>
+<p>如此一來就可以儲存 &#x2F;docker 這個資料夾達到備份的功能</p>
+<h2 id="PHPMyadmin"><a href="#PHPMyadmin" class="headerlink" title="PHPMyadmin"></a>PHPMyadmin</h2><p>將 myadmin 連接 mysql 的容器指令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name myadmin -d --link mysql_db_server:db -p 9100:80 phpmyadmin/phpmyadmin</span><br></pre></td></tr></table></figure>
+
+<p>mysql_db_server &#x3D; mysql container id</p>
+<p>在瀏覽器上輸入 localhost:9100 就可以看到 phpmyadmin 囉！</p>
+<h2 id="Docker-查詢容器-IP"><a href="#Docker-查詢容器-IP" class="headerlink" title="Docker 查詢容器 IP"></a>Docker 查詢容器 IP</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect -f <span class="string">&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span> container_name_or_id</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/" class="post-title-link" itemprop="url">Day30 - 老是在吹 Serverless，他真的有那麼好？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-14 13:09:01" itemprop="dateCreated datePublished" datetime="2019-10-14T13:09:01+00:00">2019-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Cold-start"><a href="#Cold-start" class="headerlink" title="Cold start"></a>Cold start</h2><p>其實個家園端平台多少都會有這問題，畢竟大家都是靠流量賺錢，自然會需要個方法限制使用者，不然免費爽爽用他們也不是做慈善的 🤣，像我最常用的 <code>Heroku</code>，只要 30 分鐘沒有使用他就會進入睡眠時間(<a target="_blank" rel="noopener" href="https://devcenter.heroku.com/articles/free-dyno-hours">參考</a>)，叫醒的時間需要 10~15 秒，不過對於我這個免費宅來說測試夠用了 🤣</p>
+<p><code>AWS</code>以我實際測試起來大概 2 秒左右，回應時間看起來不會太差，其實<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10213431">第一天</a>就有提到這部分，需要的話可以參考。</p>
+<p>若是需要它隨時都在都活著的話就要搭配 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10226742">warm-up</a>，抑或是搭配 crontab 去設定特定時間執行 warm-up。</p>
+<h2 id="Function-as-a-Service"><a href="#Function-as-a-Service" class="headerlink" title="Function as a Service"></a>Function as a Service</h2><p>在快速成長的前、中期是很適合這個服務的， 畢竟開發者只要將 <code>serverless.yml</code> 基本設定完之後就可以先好好開發，等到中期之後把設定檔稍微整理一下又是一尾活龍了，且平台大多都擁有 <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/autoscaling/">auto-scaling</a> 的功能，在服務快扛不住流量的時候只要錢拿出來平台就幫你解決。</p>
+<p>只是說當流量越來越大之後相對錢也會越付越多，或許當流量 &gt; 10K 之後代表你的服務應該也有不少人使用了，自己架主機應該不會是什麼難事(?)</p>
+<blockquote>
+<p>幫忙推廣一下 Backend 大大的 <a target="_blank" rel="noopener" href="https://github.com/TritonHo/slides/blob/master/Taipei%202019-10%20talk/concurrency.pdf?fbclid=IwAR3R67wIt5fXPjG3hZNHaVw3tuCVrpNJtIdecTTIiQz0dgT-bZwymIYLYiA">高流量心得雜談</a></p>
+</blockquote>
+<p>在 FaaS 架構下其實很適合 Chatbot 的服務，以概念來說實作時只需要一個路由**(Function)**即個完成，不需要額外太多的資源去處理 web server 的問題，像是這個系列的只要透過 <code>serverless</code> + <code>WSGI</code> 就可以馬上就可以進行本地測試，部署只要下 <code>sls deploy</code>，實在是超級快又輕鬆，不用像以前一樣還要去處理 Nginx 等等相關的問題 😁。</p>
+<p>且 AWS、Google 在使用 python 跟 nodejs 上支援度很高，也不用怕找不到資源使用。</p>
+<blockquote>
+<p>使用 Node JS 的朋友可以參考 C.T Lin 大大的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">文章</a>，他們家的 bottender 超猛的！</p>
+</blockquote>
+<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><p>在 Log 這部分我覺得 AWS 有點不太好的地方就是他們的 Cloud Watch 應該是獨立服務，當我的 Lambda 輸出紀錄時大概要過 10 秒才會印出來，不像以前自己架主機時只要進 server 就可以馬上切到目錄看紀錄抓蟲，在使用這雲端服務可能在抓蟲有一半的時間都在等 log 出來，有時候急的時候還真的會被氣死 😭。</p>
+<h2 id="SNS"><a href="#SNS" class="headerlink" title="SNS"></a>SNS</h2><p>像是我前一陣子發的<a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/use-serverless-corn-to-execute-sns-getendpointattributes-returns-old-data-after-e7df7c09b45b">一篇文章</a>，SNS 被觸發事件之後回來的東西是舊的，那時候看到錯誤訊息真的是心很涼，就得用一個 Lambda 排程一直去抓 DB 的 updated_at 欄位有沒有變更時間而去更新狀態，這樣情況就會多浪費一個 Function 去處理這樣的事件，不得不說專門來支援 AWS 服務的 boto3 套件(python)在某些時候做的事不是那麼完善，得使用旁門做到的方法去完成這件事，讓整個開發體驗不是那麼好，若他們可以把一些 error handle 弄更好那就完美了。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><blockquote>
+<p><del>其實還有好多服務沒有玩到</del></p>
+</blockquote>
+<p>但其實使用 AWS 來實作 Serverless 的服務也是這一陣子加入新公司所學到的新技能，過程中總是會用舊的開發思維去想，但常常都因為這樣落坑 😓，但也因此讓我更了解像 AWS 這類的雲服務他們是如何開發每個服務並如何串接，同時也研究了 Serverless 相關的 plugins，看他們是如何支援雲平台讓開發者在開發時可以更像平常時在開發 web，也因為這樣我去貢獻了 example 到了 Serverless 的範例專案上面(<a target="_blank" rel="noopener" href="https://github.com/serverless/examples/pulls?q=is:pr+author:louis70109+is:closed">參考</a>)，慶祝完成人生第一場鐵三十，跟自己的競賽也告一段落，發現趕著寫文章品質真的會差很多，看來是時候該整理一下，謝謝您的收看 &lt;(_ _)&gt;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">Day29 - LINE API 的使用心得</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-13 13:08:19" itemprop="dateCreated datePublished" datetime="2019-10-13T13:08:19+00:00">2019-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>Imagemap</p>
+<ul>
+<li>這邊以微股力為範例，這隻機器人會再回應的時候輸出一張圖片讓使用者看到股票的曲線圖，然後圖片下方做三個類似按鈕的圖片在上面，再藉由設定觸發訊息在座標上，當使用者按到的時候就很像再按按鈕，更多使用方法或是 UX 上的問題可以參考 <a target="_blank" rel="noopener" href="https://www.facebook.com/uxerlab/">UX 三刀流</a>。<br><img src="https://i.imgur.com/A0yDTJm.png"></li>
+</ul>
+</li>
+<li><p>Richmenu</p>
+<ul>
+<li>Richmenu 等於把 imagemap 活生生的塞在下面，讓使用者再進聊天室時就能馬上看到圖片並按下對應的區塊而不用再輸入指令把 Imagemap 叫出來，如此就少了個步驟了，並讓開發者可以有更多的發揮空間呢！</li>
+</ul>
+</li>
+<li><p>設計工具</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/services/bot-designer/">Bot designer</a><br>這個工具是桌面版，可以直接抓下來在本地端直接設計，<br><img src="https://i.imgur.com/dDMSCXu.png"><br><img src="https://i.imgur.com/c2pYpFx.png"></li>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx-beta/">FLEX MESSAGE SIMULATOR [β]</a><br>它有提供<a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx-beta/">線上工具</a>讓大家可以在線上直接測試樣板或是直接刻自己想要的樣板。<ul>
+<li>使用心得：因為寫 Rails 基本上就是在寫全端了，難免會碰到 CSS，身為一個後端工程師排版，一定要用 flex 這個超級毒品(\吸起來&#x2F;)，接著過了一段時間後接觸到 LINE bot，且 flex message 也是基於 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1/">Flexbox</a> 的規格去實作的，所以很多排版上觀念都很像，也就不太會有障礙了 😁。<br>且在排版上還有表格告知你什麼 component 要在什麼區塊內才能用，多佛心啊～<br><img src="https://i.imgur.com/Fowpoyb.png"><br><img src="https://i.imgur.com/zELPSA0.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>API 文件</p>
+<ul>
+<li>在最近幾個月的時候 LINE 的文件有改版，讓某些 API 可以在線上就能測了，看起來是滿讚的，若在逛文件時碰巧想測試這些功能的話可以直接把相關參數放進去，在某些時候也是滿方便的。<br><img src="https://i.imgur.com/CuFdmcH.png"></li>
+</ul>
+</li>
+<li><p>LIFF (LINE Front-end Framework)</p>
+<ul>
+<li>個人覺得他讓 Bot 的發揮功力又更上一層樓了，以前很多開發者都會覺得在與機器人對談中會有很多東西是不好做的，像是購物車的流程，若使用者在流程中按了上面的按鈕的話可能會發生無法預期的錯誤，且得用其他的服務去儲存操作狀態，在開發上就很麻煩，那 LIFF 就讓這個流程可以簡單許多，且能透過 SDK 在網頁上取得使用者的資訊，讓網站再被使用的同時還可以確認身份。</li>
+</ul>
+</li>
+<li><p>推播 500 則</p>
+<ul>
+<li>在今年 OAuth 2.0 釋出當中推播則數也跟改動了，改成 500 則後其實看到不少的使用者在跳腳怎麼改成這樣，或是另類的變貴收費，只能說 LINE 也是要找方法收點費用呀，不然很多功能爽爽用他們也沒有地方去收費，這部分因為我也是少用，推播功能就都交給 <code>LINE Notify</code> 嚕！</li>
+</ul>
+</li>
+<li><p>客服與機器人的切換</p>
+<ul>
+<li>參考 C.T Lin 大大的文章 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10220717">Day10</a>，簡單來說 Messager 可以在機器人處理不來的時候將訊息轉丟給設定的那位管理員，讓他來回覆訊息，但 LINE 在機器人上只能透過網頁去切換機器人狀態，抑或是自己設計流程讓機器人在無法處理才通知管理員，這樣的話管理員很容易錯過黃金的第一時間，可能也會因此造成使用者的不便。</li>
+</ul>
+</li>
+<li><p>個人的 mur mur 🤣</p>
+<ul>
+<li>文件實在是太瀑布式了，雖然現在都懂的如何搜尋到相對應的功能，但若一般想開發的使用者在看到這個文件時瘋狂往下滑，結果發現還沒有滑到或是滑過頭，倒是找資料時氣得要死 😓，所以若是文件能夠分個頁籤什麼就更好了～</li>
+</ul>
+</li>
+</ul>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>當然整體來說還是很喜歡使用 LINE 這個平台(絕對不是因為熊大 🐻)，東西也不會像一開始在開發時什麼都找不太到，並且功能一直 release，讓服務可以透過不同的整合方法去達成目標，接下來 LINE 應該還會再繼續釋出不同的東西，就請大家拭目以待，或者…來參加<a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw"> chatbot 小聚</a>直接問問 LINE 的傳教士如何呢 😁</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/12/Day28-%E7%94%A8-S3-%E5%B9%AB%E5%BF%99%E8%BD%89%E5%9D%80%E5%88%B0%E5%8E%9F%E6%9C%89%E7%9A%84%E6%9C%8D%E5%8B%99%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/12/Day28-%E7%94%A8-S3-%E5%B9%AB%E5%BF%99%E8%BD%89%E5%9D%80%E5%88%B0%E5%8E%9F%E6%9C%89%E7%9A%84%E6%9C%8D%E5%8B%99%E4%B8%8A/" class="post-title-link" itemprop="url">Day28 - 用 S3 幫忙轉址到原有的服務上</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-12 13:07:18" itemprop="dateCreated datePublished" datetime="2019-10-12T13:07:18+00:00">2019-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在之前的文章都有將 <code>Notify</code>、<code>LINE Login</code>所需要的靜態頁面放在 S3 上面，讓其他使用者去點，雖然把前端放在程式裡面用 render template 比較好，可是在求快的情況下我把靜態頁面寫完就扔上去了(被拖走)，其實也可以透過這個方法去幫忙轉址，不過接下來我會用我的臉書做個範例提供參考～</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>照著之前的範例來建立一個名為 <code>facebook.nijialin.com</code> 來做 S3 轉址的範例<br><img src="https://i.imgur.com/BJyONqF.png"><br>建立完之後因為我們需要把網址公開給其他使用者點選，在第三個分頁中先把第一個選項的 <code>Block all public access</code> 更換成 off 狀態<br><img src="https://i.imgur.com/FAoiCbt.png"><br>到第二個按鈕選項選擇 <code>Public access</code>，暴力一點把所有選項都打開 🤣<br><img src="https://i.imgur.com/WhCoHl4.png"><br>前面都已經把權限開完，選擇<code>Static Website hosting</code>這個選項，這個是 S3 提供來讓他有另一種功能，不過我是覺得這功能在這邊有點奇怪 XD<br><img src="https://i.imgur.com/yPv6nET.png"></p>
+<hr>
+<p>接著就來到 <code>Route 53</code>，點選左欄的 <code>Hosted Zone</code><br><img src="https://i.imgur.com/k1T8wIT.png"><br>點選上面藍色的按鈕，右邊會出現輸入的地方讓你填<br><img src="https://i.imgur.com/szIVARy.png"><br>這邊我會輸入跟 S3 bucket 的名字一樣，然後 <code>Alias</code> 選擇 Yes，下面輸入框點下去會看到自己剛剛輸入的 S3 website endpoints<br><img src="https://i.imgur.com/PVlFHJZ.png"><br>建立完之後就可以在瀏覽器上輸入網址，他就會導去你預設的網站囉！向我這邊就是拿我的 facebook 來做示範。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>我透過這個方法幫我把 medium 的部落格網址重新導向，因為我想之後若是有獨立建立部落格的話網址會是一樣的，當有點粉絲的話至少他們認得的網址會是一樣的 😁。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://www.kilait.com/2015/09/08/route-53-%E9%9D%9C%E6%85%8B%E8%BD%89%E5%9D%80/">Route 53+靜態網址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/11/Day27-Use-CDN-2-CloudFront/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/11/Day27-Use-CDN-2-CloudFront/" class="post-title-link" itemprop="url">Day27 - Use CDN (2) - CloudFront</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-11 13:06:26" itemprop="dateCreated datePublished" datetime="2019-10-11T13:06:26+00:00">2019-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不管是建立虛擬機(EC2)，又或是像我們建立 Serverless 的服務(Lambda)，總會挑選離自己家近的節點(東京)，又或者可能因為價錢的關係選擇相對便宜的地點，但不管機器在哪，對於在台灣的我們來說都是一樣跨海啊！但好險台灣擁有 CloudFront 的節點，透過快取讓使用者可以更快的取得服務器上的資源，可能第一次都會比較慢，但只要讓 CloudFront 看過一次就會幫忙快取起來，下次使用者在用的時候就不會那麼慢囉！</p>
+<h2 id="建立-CDN"><a href="#建立-CDN" class="headerlink" title="建立 CDN"></a>建立 CDN</h2><p>首先我們先進去 CloudFront 的頁面，按下左欄的<code>Distribution</code>後並 <code>Create</code>的藍色按鈕<br><img src="https://i.imgur.com/WQ5o8rl.png"><br>因為我們是做 Web API 相關的，這邊當然就是選 Web 囉！<br><img src="https://i.imgur.com/htzGaGA.png"><br>到了這邊，AWS 很有心的在這些輸入框大多都有下拉式選單，這邊就選建立完的那個專案名稱<br><img src="https://i.imgur.com/ntJu1Cm.jpg"><br>選完之後下面三個就照著這樣點選，Comment 會幫你自動填入<br><img src="https://i.imgur.com/XkbNkfz.png"><br>CNAMEs 的部分這邊我填入我在 <code>serverless.yml</code>裡 create_domain 所設定的 <code>line.nijia.lin</code> 字串，SSL 就選擇上一篇所建立的 Certificate<br><img src="https://i.imgur.com/SdnaZhe.png"><br>建立完成之後就會看到他 <code>In progress</code>，CloudFront 就開始撒點告訴其他節點有建立這個名為 <code>line.nijia.lin</code>，有看到他的時候記得幫他做個 Cache<br><img src="https://i.imgur.com/RibhSWw.png"><br>等個大概 15 分鐘後他就部署完成啦～<br><img src="https://i.imgur.com/kHYSETU.png"><br>點進來可以確認自己剛剛設定的資訊對不對，若有設定錯誤在按 Edit 來修正<br><img src="https://i.imgur.com/HdCn9ue.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>現在每個服務都很流行 CDN，若有在寫前端的朋友常常就會用到 jQuery、Bootstrap、Vue 等等可以再標頭檔就引入的 CDN 路徑，CDN 不僅加速我們平常在抓伺服器資料的速度，也便利了我們有時候需要寫一些簡單的靜態頁面時可以透過抓取 CDN 路徑來快速取得需要的資源，但是像是 AWS 他們都是收取流量費，用得很爽時別忘了看一下自己的帳單是不是在哀嚎 🤣</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

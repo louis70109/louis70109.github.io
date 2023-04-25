@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="How we continuously delivery LINE TODAY App with high agility and high quality 簡報連結: URL 前言大家好我是 Chatbot Developer Taiwan - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。 這個議程是難得出現的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019 LINE Dev Day - 議程心得(2) - How we continuously delivery LINE TODAY App with high agility and high quality">
+<meta property="og:url" content="https://nijialin.com/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="How we continuously delivery LINE TODAY App with high agility and high quality 簡報連結: URL 前言大家好我是 Chatbot Developer Taiwan - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。 這個議程是難得出現的">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/ZGXdq4F.png">
+<meta property="og:image" content="https://i.imgur.com/nVgupO1m.jpg">
+<meta property="og:image" content="https://i.imgur.com/WTUuqWX.png">
+<meta property="og:image" content="https://i.imgur.com/kNu9cv9.jpg">
+<meta property="og:image" content="https://i.imgur.com/N5ovDf7.jpg">
+<meta property="og:image" content="https://i.imgur.com/Vq13ngl.png">
+<meta property="og:image" content="https://i.imgur.com/WOIgOQe.png">
+<meta property="og:image" content="https://i.imgur.com/jidpVl3.png">
+<meta property="og:image" content="https://i.imgur.com/HnFB307.png">
+<meta property="article:published_time" content="2019-11-21T16:55:53.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.960Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Dev Day 2019">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/ZGXdq4F.png">
+
+<link rel="canonical" href="https://nijialin.com/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>2019 LINE Dev Day - 議程心得(2) - How we continuously delivery LINE TODAY App with high agility and high quality | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2019 LINE Dev Day - 議程心得(2) - How we continuously delivery LINE TODAY App with high agility and high quality
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-21 16:55:53" itemprop="dateCreated datePublished" datetime="2019-11-21T16:55:53+00:00">2019-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality"><a href="#How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality" class="headerlink" title="How we continuously delivery LINE TODAY App with high agility and high quality"></a>How we continuously delivery LINE TODAY App with high agility and high quality</h1><p><img src="https://i.imgur.com/ZGXdq4F.png"></p>
+<p>簡報連結: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/how-we-continuously-delivery-line-today-app-with-high-agility-and-high-quality">URL</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
+<p>這個議程是難得出現的台灣人，一開始只是想說聽看看 LINE TODAY 是如何透過維持高度敏捷以及保持高品質，其實也就是瞎子摸象，結果聽到自我介紹後發現是台灣人來講，感覺就是在異地聽到一個台灣味的口音覺得很親切🤣</p>
+<p>接下來就看一下我聽完這場的心得吧!</p>
+<h1 id="負責專案"><a href="#負責專案" class="headerlink" title="負責專案"></a>負責專案</h1><ul>
+<li>LINE</li>
+<li>LINE TODAY</li>
+<li>LINE SDK</li>
+<li>LINE MUSIC(Taiwan)<br><img src="https://i.imgur.com/nVgupO1m.jpg"><br>最近常常出現在左上角的那個 LINE MUSIC</li>
+</ul>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p><img src="https://i.imgur.com/WTUuqWX.png"></p>
+<p>從 Pull Request - Code review - Build pipeline - unit test - UI test - deploy</p>
+<p>當中提到兩個主要部分：</p>
+<ul>
+<li>Unit test: 覆蓋率最好要多少？</li>
+<li>UI test: 自動化測試的可信度？</li>
+</ul>
+<p><img src="https://i.imgur.com/kNu9cv9.jpg"><br>且在測試當中會有一種測試叫做 flaky test，有時候測試有過、有時候有沒過，完全讓人摸不著頭緒的測試，這會傷害到軟體品質以及覆蓋率，因此若這種狀況出現時趕快號招團隊的人來討論這個狀態是否處理。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.castman.net/%E7%A0%94%E7%A9%B6/2016/06/06/flaky-tests.html">flaky test</a></p>
+</blockquote>
+<h2 id="UI-自動化測試"><a href="#UI-自動化測試" class="headerlink" title="UI 自動化測試"></a>UI 自動化測試</h2><p>在這部分提到說 UI test code 好寫但是難去維護，主要在於 UI 的東西可能會因為裝置、作業系統…等等的問題去影響到，且會很容易出現 flaky test，這邊我詢問講者得到的答案是測試只要確認在當前 UI 上最重要的元件若有出來的話這部分的測試就給過，若太精細的測試時常會影響到整體的開發敏捷度與流暢度。</p>
+<blockquote>
+<p>想想也是有道理，平常聽到人家說測試測試的，只是當今天測試時的究竟是要到多詳細還是要取決於團隊的決定。</p>
+</blockquote>
+<p>這段講者有提到要注意 UI Automation test 是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Smoke_testing_(software)">Smoke test</a>，因此要注意<strong>維護成本</strong>以及<strong>flaky test</strong>的問題！</p>
+<h2 id="驗收標準-Acceptance-Criteria"><a href="#驗收標準-Acceptance-Criteria" class="headerlink" title="驗收標準 - Acceptance Criteria"></a>驗收標準 - <a target="_blank" rel="noopener" href="https://www.altexsoft.com/blog/business/acceptance-criteria-purposes-formats-and-best-practices/">Acceptance Criteria</a></h2><p><img src="https://i.imgur.com/N5ovDf7.jpg"></p>
+<p>接著就提到團隊需要準備各種情境所需要的東西：</p>
+<ul>
+<li>不一樣的測試資料來讓產品有<strong>彈性</strong>且是<strong>可信賴</strong></li>
+<li>若有針對類似 Database 這類的測試團隊則更需要去注意測試細節避免導致特異情況<br>總之就是 Product Owner(PO) 是需要訂定團隊規則並讓大家去遵守，確保品質！</li>
+</ul>
+<p><img src="https://i.imgur.com/Vq13ngl.png"><br>這裡有提到他們經由上述制定好的驗收標準之後，隨著 Release 版本之後的手動測試比率逐漸減少，到後來都是偏向自動化測試去處理，且是有團隊可信度。</p>
+<h2 id="Code-Coverage"><a href="#Code-Coverage" class="headerlink" title="Code Coverage"></a>Code Coverage</h2><p>這邊以 iOS 開發為例，首先就是 MVC 框架上所遇到的問題，官網都是以 MVC 下去做範例，但實際上開發起來則是還得以 MVVM 的框架去執行在測試的部分才不會採太多不必要的坑。<br><img src="https://i.imgur.com/WOIgOQe.png"><br>接下來提到的部分我覺得是這個議程最重要的一部分，就是如何去取捨覆蓋範圍，像是上圖顯示，可能會有一些 Callback 或是其他的是不可預期的範圍，團隊需要將這些問題一一列出來討論，並且去制定一個最低標準以及 Must have 的標準，促使團隊可以更有規則的去進行開發，如下圖所示。<br><img src="https://i.imgur.com/jidpVl3.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>其實一家公司很願意花成本去讓開發者可以去寫各種測試確認服務品質，若是以普遍環境來說這真的是很難人可貴的地方，此外從中也了解到一個好的流程應該是如何，從談需求到開發中間所要經歷過多少事才能讓一個服務起來，測試這部分真的是很大的一門學問，千萬別寫一堆測試但這個測試只是自己測開心的，而是要讓測試的內容可以讓團隊很放心的將 code 交給測試去驗證，達到這樣子目的的程式我相信在市場上一定是很能接受考驗的！<br><img src="https://i.imgur.com/HnFB307.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Dev-Day-2019/" rel="tag"><i class="fa fa-tag"></i> Dev Day 2019</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/" rel="prev" title="2019 LINE Dev Day - 議程心得(1) - Seamless device migration using LINE secure backup">
+      <i class="fa fa-chevron-left"></i> 2019 LINE Dev Day - 議程心得(1) - Seamless device migration using LINE secure backup
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/" rel="next" title="2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere">
+      2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality"><span class="nav-number">1.</span> <span class="nav-text">How we continuously delivery LINE TODAY App with high agility and high quality</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B2%A0%E8%B2%AC%E5%B0%88%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">負責專案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.2.</span> <span class="nav-text">UI 自動化測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%97%E6%94%B6%E6%A8%99%E6%BA%96-Acceptance-Criteria"><span class="nav-number">3.3.</span> <span class="nav-text">驗收標準 - Acceptance Criteria</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Coverage"><span class="nav-number">3.4.</span> <span class="nav-text">Code Coverage</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

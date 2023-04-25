@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="來自 chatGPT 的說明：它可以生成一個帶有背景圖片的 QR code。這個 QR code 產生器可以通過 GitHub 上的項目連結 https:&#x2F;&#x2F;github.com&#x2F;louis70109&#x2F;qrcode-background-generator 來使用。特點是，它可以讓使用者自行選擇背景圖片，並在其上生成一個具有特殊圖案的 QR code，使 QR code 看起來更具吸引力和美感">
+<meta property="og:type" content="article">
+<meta property="og:title" content="幫 QR Code 加上背景圖，別只留下黑白！">
+<meta property="og:url" content="https://nijialin.com/2023/02/05/nodejs-custom-qrcode-background/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="來自 chatGPT 的說明：它可以生成一個帶有背景圖片的 QR code。這個 QR code 產生器可以通過 GitHub 上的項目連結 https:&#x2F;&#x2F;github.com&#x2F;louis70109&#x2F;qrcode-background-generator 來使用。特點是，它可以讓使用者自行選擇背景圖片，並在其上生成一個具有特殊圖案的 QR code，使 QR code 看起來更具吸引力和美感">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
+<meta property="og:image" content="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A">
+<meta property="og:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
+<meta property="article:published_time" content="2023-02-05T10:43:57.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:51.008Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Canvas">
+<meta property="article:tag" content="QR Code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true">
+
+<link rel="canonical" href="https://nijialin.com/2023/02/05/nodejs-custom-qrcode-background/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>幫 QR Code 加上背景圖，別只留下黑白！ | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2023/02/05/nodejs-custom-qrcode-background/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          幫 QR Code 加上背景圖，別只留下黑白！
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-02-05 10:43:57" itemprop="dateCreated datePublished" datetime="2023-02-05T10:43:57+00:00">2023-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
+<blockquote>
+<p>來自 chatGPT 的說明：它可以生成一個帶有背景圖片的 QR code。這個 QR code 產生器可以通過 GitHub 上的項目連結 <a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">https://github.com/louis70109/qrcode-background-generator</a> 來使用。特點是，它可以讓使用者自行選擇背景圖片，並在其上生成一個具有特殊圖案的 QR code，使 QR code 看起來更具吸引力和美感。這個 QR code 產生器可以給您的商業或個人項目帶來更多的創意和更佳的用戶體驗。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天在 FB 社群中意外的點到<a target="_blank" rel="noopener" href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a> 中分享的內容(範例如下)，其中寫到：「<mark>讓你的 QR Code 更符合品牌形象，而不是停留在黑白</mark>」。</p>
+<p>它可以讓你自行選擇背景圖片，使 QR code 看起來更有設計感和美觀。這對於您的商業或個人項目來說，可以提高曝光率和吸引力，並提高用戶體驗。</p>
+<span id="more"></span>
+
+<p><img src="https://scontent.frmq2-1.fna.fbcdn.net/v/t39.30808-6/328689276_1224285545106496_5760418307112715847_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=eFqj_2RKTwkAX99JEtM&_nc_ht=scontent.frmq2-1.fna&oh=00_AfBbEk1FeFkUNjxA2JlYyLLl-_G9TcCBSLixwAy9SFuWHw&oe=63E4F33A"></p>
+<blockquote>
+<p>引用至： <a target="_blank" rel="noopener" href="https://www.facebook.com/tony.tsai/posts/pfbid063T7uwSme1k8dqqoDC2Q5RsJT9JVBBHB2n3bQiVo6LFZjPg39f8G3YSA1S7mBQQml?comment_id=1414642782639170&notif_id=1675426505084880&notif_t=feedback_reaction_generic&ref=notif">貝克菜 FB</a></p>
+</blockquote>
+<p>剛好最近也正在準備研討會，更是被這句話深深的打中，好奇心之下找到了<a target="_blank" rel="noopener" href="https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md">Awesome-qr.js</a>，以下就快速分享個實作心得。</p>
+<blockquote>
+<p><mark><a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">qrcode-background-generator 專案</a></mark></p>
+</blockquote>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當時 Survey 了兩個版本：</p>
+<ul>
+<li>JS 版本：<a href="(https://github.com/SumiMakito/Awesome-qr.js/blob/master/README.md)">sumimakito&#x2F;Awesome-qr.js</a><ul>
+<li>最後更新時間：2021&#x2F;11&#x2F;17</li>
+<li>支援前&#x2F;後端，後端需先安裝 <a target="_blank" rel="noopener" href="https://github.com/Automattic/node-canvas#installation">node-canvas</a> 的 Canvas 引擎來驅動。<ul>
+<li>每個 OS 都有整理相依套件</li>
+</ul>
+</li>
+<li>文件很完整，每功能都寫很詳細。</li>
+</ul>
+</li>
+<li>Python 版本：<a target="_blank" rel="noopener" href="https://github.com/x-hw/amazing-qr">x-hw&#x2F;amazing-qr</a><ul>
+<li>最後更新： 2021&#x2F;05&#x2F;21</li>
+<li>有簡中文件、Command line 工具</li>
+</ul>
+</li>
+</ul>
+<p>雖然平常寫 Python 居多，但為考量支援度，未來可以放入我以前寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Announcer">Announcer</a> 中，讓 LIFF 也可以分享(想像是美好的)，之後還是選擇 NodeJS 版本。</p>
+<p>在 AwesomeQR 中，現在版本可以使用 <code>dotScale</code>，但文件中建議可使用 <code>components</code> 去控制 QR code 中點點的參數。</p>
+<blockquote>
+<p>This option is yet to be removed. You can still use this option to control the scaling of the QR code parts in the legacy way.</p>
+</blockquote>
+<h2 id="透過-lt-img-gt-Base64-來顯示圖片"><a href="#透過-lt-img-gt-Base64-來顯示圖片" class="headerlink" title="透過 &lt;img&gt; + Base64 來顯示圖片"></a>透過 <code>&lt;img&gt;</code> + Base64 來顯示圖片</h2><p>大致上在 <mark><a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator">qrcode-background-generator 專案</a></mark>中都是網路上皆可找到的範例程式，而在本地開發時因為環境都很安裝許多套件，因此測試時好處理。</p>
+<p>但部署上去後若沒 encode，則在 Server-side render 時 <code>res.write()</code> 裡則會變成亂碼。因此這邊就 <code>base64</code> 並透過 <code>&lt;img&gt;</code> 放上去，這樣就不會有問題了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把檔案的結構資料轉成 base64</span></span><br><span class="line"><span class="keyword">const</span> b64 = Buffer.from(buffer).toString(<span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line"><span class="comment">// 定義圖片格式</span></span><br><span class="line"><span class="keyword">const</span> mimeType = <span class="string">&#x27;image/png&#x27;</span>; <span class="comment">// e.g., image/png</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 &lt;img&gt; 展示 base64</span></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/html&#x27;</span> &#125;);</span><br><span class="line">res.write(<span class="string">`&lt;img src=&quot;data:<span class="subst">$&#123;mimeType&#125;</span>;base64,<span class="subst">$&#123;b64&#125;</span>&quot; /&gt;`</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="相依套件安裝"><a href="#相依套件安裝" class="headerlink" title="相依套件安裝"></a>相依套件安裝</h2><p>在 OS 中因為 canvas 需要相依套件，因此在 <a target="_blank" rel="noopener" href="https://github.com/louis70109/qrcode-background-generator/blob/main/Dockerfile">Dockerfile</a> 上就放入相關套件的安裝。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apk add --update --<span class="literal">no</span>-cache <span class="string">\</span></span><br><span class="line">    make <span class="string">\</span></span><br><span class="line">    g++ <span class="string">\</span></span><br><span class="line">    jpeg-dev <span class="string">\</span></span><br><span class="line">    cairo-dev <span class="string">\</span></span><br><span class="line">    giflib-dev <span class="string">\</span></span><br><span class="line">    pango-dev <span class="string">\</span></span><br><span class="line">    libtool <span class="string">\</span></span><br><span class="line">    autoconf <span class="string">\</span></span><br><span class="line">    automake</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><ul>
+<li>圖片建議 QR Code 建議用黑的，在 iPhone 13 掃描情況下<code>黑色</code>還是辨識度高，<code>autoColor</code> 建議設定成 <code>False</code>，避免接收到背景顏色改變。</li>
+</ul>
+<p><img src="https://github.com/louis70109/qrcode-background-generator/raw/main/qrcode.png?raw=true"></p>
+<ul>
+<li>畢竟處理畫面上用 Canvas 還是前端支援度比較高(瀏覽器)，因為 NodeJS 是使用 V8 引擎去實作的，因此支援度應該 &gt; Python (?)，最後就選擇 NodeJS 作為這次的開發。</li>
+</ul>
+<p>最後，這個 QR code generator 是開源的，您可以透過 Pull Request 來修改這程式碼，以滿足您的特定需求。這對於開發者來說是一個很好的選擇，滿足您的商業或個人需求，並提高您的創意和體驗。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+              <a href="/tags/Canvas/" rel="tag"><i class="fa fa-tag"></i> Canvas</a>
+              <a href="/tags/QR-Code/" rel="tag"><i class="fa fa-tag"></i> QR Code</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/30/alphacamp-open-source-sharing-by-nijia/" rel="prev" title="忍者開源圖鑑 - 藉由開源充實職涯與驅動開發">
+      <i class="fa fa-chevron-left"></i> 忍者開源圖鑑 - 藉由開源充實職涯與驅動開發
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/13/line-techpulse2023-introduction/" rel="next" title="【LINE TECHPULSE 2023】久違實體活動消息一把抓">
+      【LINE TECHPULSE 2023】久違實體活動消息一把抓 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%8F%E9%81%8E-lt-img-gt-Base64-%E4%BE%86%E9%A1%AF%E7%A4%BA%E5%9C%96%E7%89%87"><span class="nav-number">2.1.</span> <span class="nav-text">透過 &lt;img&gt; + Base64 來顯示圖片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E4%BE%9D%E5%A5%97%E4%BB%B6%E5%AE%89%E8%A3%9D"><span class="nav-number">2.2.</span> <span class="nav-text">相依套件安裝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

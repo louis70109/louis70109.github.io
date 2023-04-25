@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="他怎麼出現的？當時因為公司、社群、工作坊以及各種朋友群組都會需要分享各種活動資訊，包括活動告知、訂位消息、個人資訊卡、新聞…而每個需求中都剛好包含著其他功能 🔧，有時用 JavaScript、有時 Python，而每次寫的 Flex Message 就會散落在各地，東西、時間一多都會忘了當時做的東西在哪 💦，也就浪費當時花費的精力，而且在微服務這麼盛行的現今怎能不切出來呢 🤔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Flex Message】部署與共用屬於你的 Flex Message API">
+<meta property="og:url" content="https://nijialin.com/2022/02/02/why-you-need-flex-message-api/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="他怎麼出現的？當時因為公司、社群、工作坊以及各種朋友群組都會需要分享各種活動資訊，包括活動告知、訂位消息、個人資訊卡、新聞…而每個需求中都剛好包含著其他功能 🔧，有時用 JavaScript、有時 Python，而每次寫的 Flex Message 就會散落在各地，東西、時間一多都會忘了當時做的東西在哪 💦，也就浪費當時花費的精力，而且在微服務這麼盛行的現今怎能不切出來呢 🤔">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2022/announcer/0.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/announcer/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/announcer/3.png">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI0OTlweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjgxNnB4O2hlaWdodDo0OTlweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA4MTYgNDk5IiB3aWR0aD0iODE2cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMjciIHgyPSIyNyIgeTE9IjM2LjI5NjkiIHkyPSI0NjQuMTU2MyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIxNDIuNSIgeDI9IjE0Mi41IiB5MT0iMzYuMjk2OSIgeTI9IjQ2NC4xNTYzIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjMxNS41IiB4Mj0iMzE1LjUiIHkxPSIzNi4yOTY5IiB5Mj0iNDY0LjE1NjMiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iNTY0IiB4Mj0iNTY0IiB5MT0iMzYuMjk2OSIgeTI9IjQ2NC4xNTYzIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9Ijc4NyIgeDI9Ijc4NyIgeTE9IjM2LjI5NjkiIHkyPSI0NjQuMTU2MyIvPjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDUiIHg9IjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMSIgeD0iMTIiIHk9IjI0Ljk5NTEiPlVzZXI8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0NSIgeD0iNSIgeT0iNDYzLjE1NjMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMSIgeD0iMTIiIHk9IjQ4My4xNTE0Ij5Vc2VyPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDAiIHg9IjEyMi41IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjEyOS41IiB5PSIyNC45OTUxIj5Cb3Q8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MCIgeD0iMTIyLjUiIHk9IjQ2My4xNTYzIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjEyOS41IiB5PSI0ODMuMTUxNCI+Qm90PC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjI5NC41IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjgiIHg9IjMwMS41IiB5PSIyNC45OTUxIj5MSUZGPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjI5NC41IiB5PSI0NjMuMTU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI4IiB4PSIzMDEuNSIgeT0iNDgzLjE1MTQiPkxJRkY8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MSIgeD0iNTQ0IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjciIHg9IjU1MSIgeT0iMjQuOTk1MSI+VnVlPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDEiIHg9IjU0NCIgeT0iNDYzLjE1NjMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyNyIgeD0iNTUxIiB5PSI0ODMuMTUxNCI+VnVlPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDUiIHg9Ijc2NSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI3NzIiIHk9IjI0Ljk5NTEiPkxJTkU8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0NSIgeD0iNzY1IiB5PSI0NjMuMTU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI3NzIiIHk9IjQ4My4xNTE0Ij5MSU5FPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMTMwLjUsNjMuNDI5NywxNDAuNSw2Ny40Mjk3LDEzMC41LDcxLjQyOTcsMTM0LjUsNjcuNDI5NyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9IjEzNi41IiB5MT0iNjcuNDI5NyIgeTI9IjY3LjQyOTciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3OCIgeD0iMzQuNSIgeT0iNjIuMzYzOCI+JiMzNjY2NDsmIzIwODM3OyYjMjAyMTk7JiMyNDg0NzsmIzI1OTkxOyYjMjMzODM7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMzguNSw5Mi41NjI1LDI4LjUsOTYuNTYyNSwzOC41LDEwMC41NjI1LDM0LjUsOTYuNTYyNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzIuNSIgeDI9IjE0MS41IiB5MT0iOTYuNTYyNSIgeTI9Ijk2LjU2MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1MiIgeD0iNDQuNSIgeT0iOTEuNDk2NiI+JiMyMjIzODsmIzI1MDMzOyYjMjcxNzE7JiMyNjQ5NTs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIxMzAuNSwxMjEuNjk1MywxNDAuNSwxMjUuNjk1MywxMzAuNSwxMjkuNjk1MywxMzQuNSwxMjUuNjk1MyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9IjEzNi41IiB5MT0iMTI1LjY5NTMiIHkyPSIxMjUuNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkxIiB4PSIzNC41IiB5PSIxMjAuNjI5NCI+JiM0MDY3MDsmIzM2OTg0OyYjMjQ4MTk7JiMzNTIwMTsmIzMwMzQwOyYjMjcxNzE7JiMyNjQ5NTs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzMDMuNSwxNTAuODI4MSwzMTMuNSwxNTQuODI4MSwzMDMuNSwxNTguODI4MSwzMDcuNSwxNTQuODI4MSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTQyLjUiIHgyPSIzMDkuNSIgeTE9IjE1NC44MjgxIiB5Mj0iMTU0LjgyODEiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNDkiIHg9IjE0OS41IiB5PSIxNDkuNzYyMiI+JiMyMjMxMjsmIzI4Njg3OyYjMzUyNjE7JiMyMjEyMDsmIzE5OTc4OyYjMjUxNzE7JiMzODI4MzsgTElGRiAmIzM4OTEzOyYjMzg3NTQ7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTUyLjUsMTc5Ljk2MDksNTYyLjUsMTgzLjk2MDksNTUyLjUsMTg3Ljk2MDksNTU2LjUsMTgzLjk2MDkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMxNS41IiB4Mj0iNTU4LjUiIHkxPSIxODMuOTYwOSIgeTI9IjE4My45NjA5Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjI1IiB4PSIzMjIuNSIgeT0iMTc4Ljg5NSI+JiMzNjY4MTsmIzIzNTY2OyYjMjEwNDA7JiMyMTA2OTsmIzMxNDcxOyBFbmRwb2ludCAmIzIwMDA2OyYjMjQxMTg7JiMxOTk3ODsgbGlmZi5zdGF0ZTwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMyNi41LDIwOS4wOTM4LDMxNi41LDIxMy4wOTM4LDMyNi41LDIxNy4wOTM4LDMyMi41LDIxMy4wOTM4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMjAuNSIgeDI9IjU2My41IiB5MT0iMjEzLjA5MzgiIHkyPSIyMTMuMDkzOCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjY3IiB4PSIzMzIuNSIgeT0iMjA4LjAyNzgiPkxJRkYgJiMyMTAyMTsmIzIyOTg3OyYjMjEyNzA7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNzc1LjUsMjM4LjIyNjYsNzg1LjUsMjQyLjIyNjYsNzc1LjUsMjQ2LjIyNjYsNzc5LjUsMjQyLjIyNjYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMxNS41IiB4Mj0iNzgxLjUiIHkxPSIyNDIuMjI2NiIgeTI9IjI0Mi4yMjY2Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzgiIHg9IjMyMi41IiB5PSIyMzcuMTYwNiI+JiMzMDMzMTsmIzIwODM3OyYjMzU0Njk7JiMzNTY1NzsmIzI5OTkyOyYjMjUxNDI7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTc1LjUsMjY3LjM1OTQsNTY1LjUsMjcxLjM1OTQsNTc1LjUsMjc1LjM1OTQsNTcxLjUsMjcxLjM1OTQiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjU2OS41IiB4Mj0iNzg2LjUiIHkxPSIyNzEuMzU5NCIgeTI9IjI3MS4zNTk0Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTk5IiB4PSI1ODEuNSIgeT0iMjY2LjI5MzUiPiYjMjIyMzg7JiMyMDY1OTsmIzI0NDYwOyYjMjMzODQ7JiMyOTk5MjsmIzI1MTQyOyYjMzYwMzk7JiMzNTMzODsmIzIxMDQwOyBsb2NhbHN0b3JhZ2U8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1NTIuNSwyOTYuNDkyMiw1NjIuNSwzMDAuNDkyMiw1NTIuNSwzMDQuNDkyMiw1NTYuNSwzMDAuNDkyMiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9IjU1OC41IiB5MT0iMzAwLjQ5MjIiIHkyPSIzMDAuNDkyMiIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE0MyIgeD0iMzQuNSIgeT0iMjk1LjQyNjMiPiYjMjI2MzU7JiMyMDgzNzsmIzM4NjU2OyYjMzUyMDE7JiMzNjY2NDsmIzIwODM3OyYjMzAzNDA7JiMyNzE3MTsmIzI2NDk1OyYjMzYwMzk7JiMzNTMzODs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzMjYuNSwzMjUuNjI1LDMxNi41LDMyOS42MjUsMzI2LjUsMzMzLjYyNSwzMjIuNSwzMjkuNjI1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMjAuNSIgeDI9IjU2My41IiB5MT0iMzI5LjYyNSIgeTI9IjMyOS42MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyMDgiIHg9IjMzMi41IiB5PSIzMjQuNTU5MSI+JiMyMDM1MTsmIzI5OTkyOyBMSUZGIEFQSSAtIFNoYXJlVGFyZ2V0UGlja2VyPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNzc1LjUsMzU0Ljc1NzgsNzg1LjUsMzU4Ljc1NzgsNzc1LjUsMzYyLjc1NzgsNzc5LjUsMzU4Ljc1NzgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMxNS41IiB4Mj0iNzgxLjUiIHkxPSIzNTguNzU3OCIgeTI9IjM1OC43NTc4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTE3IiB4PSIzMjIuNSIgeT0iMzUzLjY5MTkiPiYjMzUyMDE7JiMyNzcxNDsmIzI5OTkyOyYjMjUxNDI7JiMzMDM0MDsmIzIyOTA5OyYjMjE0NTE7JiMyODE2NTsmIzIxOTM0OzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjM4LjUsMzgzLjg5MDYsMjguNSwzODcuODkwNiwzOC41LDM5MS44OTA2LDM0LjUsMzg3Ljg5MDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMyLjUiIHgyPSI3ODYuNSIgeTE9IjM4Ny44OTA2IiB5Mj0iMzg3Ljg5MDYiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMTciIHg9IjQ0LjUiIHk9IjM4Mi44MjQ3Ij4mIzIyMjM4OyYjMjA2NTk7JiMyODE2NTsmIzIxOTM0OyYjMjAxNzE7JiMzODc1NDsmIzMyMTAyOyYjMjk5OTI7JiMyNTE0Mjs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI3NzUuNSw0MTMuMDIzNCw3ODUuNSw0MTcuMDIzNCw3NzUuNSw0MjEuMDIzNCw3NzkuNSw0MTcuMDIzNCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9Ijc4MS41IiB5MT0iNDE3LjAyMzQiIHkyPSI0MTcuMDIzNCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIwNiIgeD0iMzQuNSIgeT0iNDExLjk1NzUiPiYjMzY5ODQ7JiMyNTc5OTsmIzM1MjAxOyYjMzAzMzI7JiMzNjg2NTsmIzMyMTAyOyBGcmllbmQvR3JvdXAvUm9vbTwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9Ijc3NS41LDQ0Mi4xNTYzLDc4NS41LDQ0Ni4xNTYzLDc3NS41LDQ1MC4xNTYzLDc3OS41LDQ0Ni4xNTYzIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMTUuNSIgeDI9Ijc4MS41IiB5MT0iNDQ2LjE1NjMiIHkyPSI0NDYuMTU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyOSIgeD0iMzIyLjUiIHk9IjQ0MS4wOTAzIj4mIzM0MjQ5OyYjMzAwMDE7IFNoYXJlVGFyZ2V0UGlja2VyICYjMjM0MzY7JiMyNTEwNDsmIzMwMzMyOyYjMzY4NjU7JiMzNTMzODsmIzI0Njg3OzwvdGV4dD48IS0tU1JDPVtQUDVWSXk5VzVDUmx6b2RVQnMzVVVuNEtRMFdJS2pkemk1Y0lFUGRwdGZNWUl5c1dxMm9MX2swUVlRTDhDYlpjYnpidmp0c0JaaHdzb2t4NmRsQ3l4LXl2OXZPTDlFOVI5dmtZNzIzRVhtNzVkY01RajUyZFpIOENjWHAtZHlpbjcwaUdrRWxJYWFocjl6Z1BTUjdWSmpWaWtlZjFweVFFZmpZdFhVTjhxWG05WHE5ZVJranNsa3ZlS3NaZmJkNUVySWt0S0xiZW5Cck50Q3Vaal9aNi1Wc1NXMm5KNU9PTksxdzJNaEZ4Um9JT0ZpWThvUkhDQjRDM091ODk5OUxDOURRb0NZeUI3NWYtTmJoYUdCYTNwbk1lRGhwT0k3V3g2MjFzb3lJRXBhbEQ2UVpzakt4QjRzdWtVRXpZSHBXVG1zU0wxWlRDVHlPYkhwejc0ZjhJdXRtZ0F1aUlWb1h1X1BkaGVPLWZSWmtGX1RhTWxJcW0tcnoyUXBoM1IwUXc0R3FKN3phenVZTFhadlNFMUpjUVoxeUJxV2VzdmpCSEFHRjJRRVhEZUx3WEhYNFFobndfVG9HaW0ySkJoRTFZeE5UanNWSVJjTU5FQnRQTGNiLWl6VTdjNUhtWjhJYWZmMF95TXZBT29fWHRIRjVhNVFFOUlubHpmb05tTWdOYkluUTRUUWRveldLMF0tLT48L2c+PC9zdmc+">
+<meta property="og:image" content="https://nijialin.com/images/2022/announcer/template1.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/announcer/template2.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/announcer/template3.png">
+<meta property="article:published_time" content="2022-02-02T16:57:15.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:51.020Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="LINE Bot">
+<meta property="article:tag" content="Flex Message">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2022/announcer/0.png">
+
+<link rel="canonical" href="https://nijialin.com/2022/02/02/why-you-need-flex-message-api/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【Flex Message】部署與共用屬於你的 Flex Message API | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/02/02/why-you-need-flex-message-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Flex Message】部署與共用屬於你的 Flex Message API
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-02-02 16:57:15" itemprop="dateCreated datePublished" datetime="2022-02-02T16:57:15+00:00">2022-02-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="他怎麼出現的？"><a href="#他怎麼出現的？" class="headerlink" title="他怎麼出現的？"></a>他怎麼出現的？</h1><p>當時因為<strong>公司</strong>、<strong>社群</strong>、<strong>工作坊</strong>以及<strong>各種朋友群組</strong>都會需要分享各種活動資訊，包括活動告知、訂位消息、個人資訊卡、新聞…而每個需求中都剛好包含著其他功能 🔧，有時用 JavaScript、有時 Python，而每次寫的 Flex Message 就會散落在各地，東西、時間一多都會忘了當時做的東西在哪 💦，也就浪費當時花費的精力，而且在微服務這麼盛行的現今怎能不切出來呢 🤔</p>
+<p><img src="https://nijialin.com/images/2022/announcer/0.png"></p>
+<span id="more"></span>
+
+<h1 id="為什麼需要特別獨立-API？"><a href="#為什麼需要特別獨立-API？" class="headerlink" title="為什麼需要特別獨立 API？"></a>為什麼需要特別獨立 API？</h1><p>如果你也是喜歡做 LINE Bot，或是經常拿來做許多的 Demo(簡易使用者介面展示、各種 API 溝通技巧…)，那你會很需要架設獨立一個 API。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/liff/#share-target-picker">Share Target Picker</a><ul>
+<li>分享給各種群組</li>
+</ul>
+</li>
+<li>提供給其他性質 Side Project 使用 Flex Message</li>
+<li>LINE 來說在回應時(Reply)只收 Flex Message 的樣板，而發送時會依照內容需求置換成 Carousel 或 Bubble，因此在 <a target="_blank" rel="noopener" href="https://developers.line.biz/flex-simulator/">Simulator</a> 上取得的 JSON 外面還是要再包一層 Flex，透過共用的 API 來說就可以省去<strong>每次重新開發都忘記包 Flex 的這件事了</strong>。（切身之痛！）</li>
+</ul>
+<blockquote>
+<p>專案位置 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Announcer">louis70109&#x2F;Announcer</a></p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2022/announcer/1.png"></p>
+<h1 id="專案介紹"><a href="#專案介紹" class="headerlink" title="專案介紹"></a>專案介紹</h1><h2 id="環境變數"><a href="#環境變數" class="headerlink" title="環境變數"></a>環境變數</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">NODE_ENV</span>=develop</span><br><span class="line">CONCAT_ID=</span><br><span class="line">CHANNEL_ACCESS_TOKEN=</span><br><span class="line">CHANNEL_SECRET=</span><br><span class="line">GA=</span><br><span class="line"><span class="attr">LOGGING</span>=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>NODE_ENV</code>: 開發環境會引入 <code>.env</code> 檔案，預設為 <strong>develop</strong><ul>
+<li><code>if (process.env.NODE_ENV === &#39;develop&#39;) require(&#39;dotenv&#39;).config()</code></li>
+</ul>
+</li>
+<li><code>CONCAT_ID</code>: 如果有使用 LIFF 的 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/liff/#share-target-picker">ShareTargetPicker</a> 分享，會把 LIFF 參數都放在此專案中</li>
+<li><code>CHANNEL_ACCESS_TOKEN</code>: 如稍早看到的 LINE Bot 顯示畫面，讓管理者(我)可以透過 LINE Bot 來分享訊息</li>
+<li><code>CHANNEL_SECRET</code>: 如上</li>
+<li><code>GA</code>: 發 Flex Message 都有偷塞一個很小 pixel 的地方，只要有點到都會被計算。(做法來自 LAE 均民的<a target="_blank" rel="noopener" href="https://taichunmin.idv.tw/blog/">部落格文章</a>)</li>
+<li><code>LOGGING</code>: Debug 需要用的參數</li>
+</ul>
+<h1 id="如何快速部署"><a href="#如何快速部署" class="headerlink" title="如何快速部署"></a>如何快速部署</h1><p>參考專案中的<a target="_blank" rel="noopener" href="https://github.com/louis70109/Announcer/blob/master/README.md">文件 README</a> 下方的 Heroku 部署按鈕即可快速部署到正式環境上，並把剛剛最主要的 LINE Bot 的兩個 Key、LIFF 的 <strong>CONCAT_ID</strong> 填入值，以及 <strong>NODE_ENV</strong> 改成 <strong>production</strong>，即可第一步快速上線並使用它。</p>
+<p><img src="https://nijialin.com/images/2022/announcer/3.png"></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>如果還不確定要不要使用，歡迎大家加入<a target="_blank" rel="noopener" href="https://line.me/R/ti/p/%40608zklsi">此篇介紹的 LINE Bot 好友</a>，加入後任意打字即會出現樣板</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://line.me/R/ti/p/%40608zklsi">連結</a></li>
+</ul>
+<h3 id="API-路由"><a href="#API-路由" class="headerlink" title="API 路由"></a>API 路由</h3><ul>
+<li><code>/</code>: 健康確認</li>
+<li><code>/liff</code>: 取得 LIFF ID</li>
+<li><code>/liff/share</code>: 取得 Flex Message Template</li>
+<li><code>/webhooks/line</code>: 設定 LINE Bot 時 webhook 所需要的路由</li>
+</ul>
+<h2 id="搭配前端-LIFF-頁面做使用"><a href="#搭配前端-LIFF-頁面做使用" class="headerlink" title="搭配前端 LIFF 頁面做使用"></a>搭配前端 LIFF 頁面做使用</h2><p>除了讓其他服務呼叫取得 Flex Message 以外，稍早也有說到會使用 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/liff/#share-target-picker">Share Target Picker</a> 功能來分享漂亮訊息給好友，因此這邊若你也有自己打造前端的話，歡迎參考<a target="_blank" rel="noopener" href="https://github.com/louis70109/announcer-vue">另一個前端專案 - Announcer</a> 及以下流程:</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI0OTlweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjgxNnB4O2hlaWdodDo0OTlweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA4MTYgNDk5IiB3aWR0aD0iODE2cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMjciIHgyPSIyNyIgeTE9IjM2LjI5NjkiIHkyPSI0NjQuMTU2MyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIxNDIuNSIgeDI9IjE0Mi41IiB5MT0iMzYuMjk2OSIgeTI9IjQ2NC4xNTYzIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjMxNS41IiB4Mj0iMzE1LjUiIHkxPSIzNi4yOTY5IiB5Mj0iNDY0LjE1NjMiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iNTY0IiB4Mj0iNTY0IiB5MT0iMzYuMjk2OSIgeTI9IjQ2NC4xNTYzIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9Ijc4NyIgeDI9Ijc4NyIgeTE9IjM2LjI5NjkiIHkyPSI0NjQuMTU2MyIvPjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDUiIHg9IjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMSIgeD0iMTIiIHk9IjI0Ljk5NTEiPlVzZXI8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0NSIgeD0iNSIgeT0iNDYzLjE1NjMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMSIgeD0iMTIiIHk9IjQ4My4xNTE0Ij5Vc2VyPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDAiIHg9IjEyMi41IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjEyOS41IiB5PSIyNC45OTUxIj5Cb3Q8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MCIgeD0iMTIyLjUiIHk9IjQ2My4xNTYzIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjEyOS41IiB5PSI0ODMuMTUxNCI+Qm90PC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjI5NC41IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjgiIHg9IjMwMS41IiB5PSIyNC45OTUxIj5MSUZGPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjI5NC41IiB5PSI0NjMuMTU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI4IiB4PSIzMDEuNSIgeT0iNDgzLjE1MTQiPkxJRkY8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MSIgeD0iNTQ0IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjciIHg9IjU1MSIgeT0iMjQuOTk1MSI+VnVlPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDEiIHg9IjU0NCIgeT0iNDYzLjE1NjMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyNyIgeD0iNTUxIiB5PSI0ODMuMTUxNCI+VnVlPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDUiIHg9Ijc2NSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI3NzIiIHk9IjI0Ljk5NTEiPkxJTkU8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0NSIgeD0iNzY1IiB5PSI0NjMuMTU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI3NzIiIHk9IjQ4My4xNTE0Ij5MSU5FPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMTMwLjUsNjMuNDI5NywxNDAuNSw2Ny40Mjk3LDEzMC41LDcxLjQyOTcsMTM0LjUsNjcuNDI5NyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9IjEzNi41IiB5MT0iNjcuNDI5NyIgeTI9IjY3LjQyOTciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3OCIgeD0iMzQuNSIgeT0iNjIuMzYzOCI+JiMzNjY2NDsmIzIwODM3OyYjMjAyMTk7JiMyNDg0NzsmIzI1OTkxOyYjMjMzODM7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMzguNSw5Mi41NjI1LDI4LjUsOTYuNTYyNSwzOC41LDEwMC41NjI1LDM0LjUsOTYuNTYyNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzIuNSIgeDI9IjE0MS41IiB5MT0iOTYuNTYyNSIgeTI9Ijk2LjU2MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1MiIgeD0iNDQuNSIgeT0iOTEuNDk2NiI+JiMyMjIzODsmIzI1MDMzOyYjMjcxNzE7JiMyNjQ5NTs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIxMzAuNSwxMjEuNjk1MywxNDAuNSwxMjUuNjk1MywxMzAuNSwxMjkuNjk1MywxMzQuNSwxMjUuNjk1MyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9IjEzNi41IiB5MT0iMTI1LjY5NTMiIHkyPSIxMjUuNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkxIiB4PSIzNC41IiB5PSIxMjAuNjI5NCI+JiM0MDY3MDsmIzM2OTg0OyYjMjQ4MTk7JiMzNTIwMTsmIzMwMzQwOyYjMjcxNzE7JiMyNjQ5NTs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzMDMuNSwxNTAuODI4MSwzMTMuNSwxNTQuODI4MSwzMDMuNSwxNTguODI4MSwzMDcuNSwxNTQuODI4MSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTQyLjUiIHgyPSIzMDkuNSIgeTE9IjE1NC44MjgxIiB5Mj0iMTU0LjgyODEiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNDkiIHg9IjE0OS41IiB5PSIxNDkuNzYyMiI+JiMyMjMxMjsmIzI4Njg3OyYjMzUyNjE7JiMyMjEyMDsmIzE5OTc4OyYjMjUxNzE7JiMzODI4MzsgTElGRiAmIzM4OTEzOyYjMzg3NTQ7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTUyLjUsMTc5Ljk2MDksNTYyLjUsMTgzLjk2MDksNTUyLjUsMTg3Ljk2MDksNTU2LjUsMTgzLjk2MDkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMxNS41IiB4Mj0iNTU4LjUiIHkxPSIxODMuOTYwOSIgeTI9IjE4My45NjA5Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjI1IiB4PSIzMjIuNSIgeT0iMTc4Ljg5NSI+JiMzNjY4MTsmIzIzNTY2OyYjMjEwNDA7JiMyMTA2OTsmIzMxNDcxOyBFbmRwb2ludCAmIzIwMDA2OyYjMjQxMTg7JiMxOTk3ODsgbGlmZi5zdGF0ZTwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMyNi41LDIwOS4wOTM4LDMxNi41LDIxMy4wOTM4LDMyNi41LDIxNy4wOTM4LDMyMi41LDIxMy4wOTM4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMjAuNSIgeDI9IjU2My41IiB5MT0iMjEzLjA5MzgiIHkyPSIyMTMuMDkzOCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjY3IiB4PSIzMzIuNSIgeT0iMjA4LjAyNzgiPkxJRkYgJiMyMTAyMTsmIzIyOTg3OyYjMjEyNzA7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNzc1LjUsMjM4LjIyNjYsNzg1LjUsMjQyLjIyNjYsNzc1LjUsMjQ2LjIyNjYsNzc5LjUsMjQyLjIyNjYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMxNS41IiB4Mj0iNzgxLjUiIHkxPSIyNDIuMjI2NiIgeTI9IjI0Mi4yMjY2Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzgiIHg9IjMyMi41IiB5PSIyMzcuMTYwNiI+JiMzMDMzMTsmIzIwODM3OyYjMzU0Njk7JiMzNTY1NzsmIzI5OTkyOyYjMjUxNDI7PC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTc1LjUsMjY3LjM1OTQsNTY1LjUsMjcxLjM1OTQsNTc1LjUsMjc1LjM1OTQsNTcxLjUsMjcxLjM1OTQiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjU2OS41IiB4Mj0iNzg2LjUiIHkxPSIyNzEuMzU5NCIgeTI9IjI3MS4zNTk0Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTk5IiB4PSI1ODEuNSIgeT0iMjY2LjI5MzUiPiYjMjIyMzg7JiMyMDY1OTsmIzI0NDYwOyYjMjMzODQ7JiMyOTk5MjsmIzI1MTQyOyYjMzYwMzk7JiMzNTMzODsmIzIxMDQwOyBsb2NhbHN0b3JhZ2U8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1NTIuNSwyOTYuNDkyMiw1NjIuNSwzMDAuNDkyMiw1NTIuNSwzMDQuNDkyMiw1NTYuNSwzMDAuNDkyMiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9IjU1OC41IiB5MT0iMzAwLjQ5MjIiIHkyPSIzMDAuNDkyMiIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE0MyIgeD0iMzQuNSIgeT0iMjk1LjQyNjMiPiYjMjI2MzU7JiMyMDgzNzsmIzM4NjU2OyYjMzUyMDE7JiMzNjY2NDsmIzIwODM3OyYjMzAzNDA7JiMyNzE3MTsmIzI2NDk1OyYjMzYwMzk7JiMzNTMzODs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzMjYuNSwzMjUuNjI1LDMxNi41LDMyOS42MjUsMzI2LjUsMzMzLjYyNSwzMjIuNSwzMjkuNjI1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMjAuNSIgeDI9IjU2My41IiB5MT0iMzI5LjYyNSIgeTI9IjMyOS42MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyMDgiIHg9IjMzMi41IiB5PSIzMjQuNTU5MSI+JiMyMDM1MTsmIzI5OTkyOyBMSUZGIEFQSSAtIFNoYXJlVGFyZ2V0UGlja2VyPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNzc1LjUsMzU0Ljc1NzgsNzg1LjUsMzU4Ljc1NzgsNzc1LjUsMzYyLjc1NzgsNzc5LjUsMzU4Ljc1NzgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMxNS41IiB4Mj0iNzgxLjUiIHkxPSIzNTguNzU3OCIgeTI9IjM1OC43NTc4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTE3IiB4PSIzMjIuNSIgeT0iMzUzLjY5MTkiPiYjMzUyMDE7JiMyNzcxNDsmIzI5OTkyOyYjMjUxNDI7JiMzMDM0MDsmIzIyOTA5OyYjMjE0NTE7JiMyODE2NTsmIzIxOTM0OzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjM4LjUsMzgzLjg5MDYsMjguNSwzODcuODkwNiwzOC41LDM5MS44OTA2LDM0LjUsMzg3Ljg5MDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMyLjUiIHgyPSI3ODYuNSIgeTE9IjM4Ny44OTA2IiB5Mj0iMzg3Ljg5MDYiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMTciIHg9IjQ0LjUiIHk9IjM4Mi44MjQ3Ij4mIzIyMjM4OyYjMjA2NTk7JiMyODE2NTsmIzIxOTM0OyYjMjAxNzE7JiMzODc1NDsmIzMyMTAyOyYjMjk5OTI7JiMyNTE0Mjs8L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI3NzUuNSw0MTMuMDIzNCw3ODUuNSw0MTcuMDIzNCw3NzUuNSw0MjEuMDIzNCw3NzkuNSw0MTcuMDIzNCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjcuNSIgeDI9Ijc4MS41IiB5MT0iNDE3LjAyMzQiIHkyPSI0MTcuMDIzNCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIwNiIgeD0iMzQuNSIgeT0iNDExLjk1NzUiPiYjMzY5ODQ7JiMyNTc5OTsmIzM1MjAxOyYjMzAzMzI7JiMzNjg2NTsmIzMyMTAyOyBGcmllbmQvR3JvdXAvUm9vbTwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9Ijc3NS41LDQ0Mi4xNTYzLDc4NS41LDQ0Ni4xNTYzLDc3NS41LDQ1MC4xNTYzLDc3OS41LDQ0Ni4xNTYzIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMTUuNSIgeDI9Ijc4MS41IiB5MT0iNDQ2LjE1NjMiIHkyPSI0NDYuMTU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyOSIgeD0iMzIyLjUiIHk9IjQ0MS4wOTAzIj4mIzM0MjQ5OyYjMzAwMDE7IFNoYXJlVGFyZ2V0UGlja2VyICYjMjM0MzY7JiMyNTEwNDsmIzMwMzMyOyYjMzY4NjU7JiMzNTMzODsmIzI0Njg3OzwvdGV4dD48IS0tU1JDPVtQUDVWSXk5VzVDUmx6b2RVQnMzVVVuNEtRMFdJS2pkemk1Y0lFUGRwdGZNWUl5c1dxMm9MX2swUVlRTDhDYlpjYnpidmp0c0JaaHdzb2t4NmRsQ3l4LXl2OXZPTDlFOVI5dmtZNzIzRVhtNzVkY01RajUyZFpIOENjWHAtZHlpbjcwaUdrRWxJYWFocjl6Z1BTUjdWSmpWaWtlZjFweVFFZmpZdFhVTjhxWG05WHE5ZVJranNsa3ZlS3NaZmJkNUVySWt0S0xiZW5Cck50Q3Vaal9aNi1Wc1NXMm5KNU9PTksxdzJNaEZ4Um9JT0ZpWThvUkhDQjRDM091ODk5OUxDOURRb0NZeUI3NWYtTmJoYUdCYTNwbk1lRGhwT0k3V3g2MjFzb3lJRXBhbEQ2UVpzakt4QjRzdWtVRXpZSHBXVG1zU0wxWlRDVHlPYkhwejc0ZjhJdXRtZ0F1aUlWb1h1X1BkaGVPLWZSWmtGX1RhTWxJcW0tcnoyUXBoM1IwUXc0R3FKN3phenVZTFhadlNFMUpjUVoxeUJxV2VzdmpCSEFHRjJRRVhEZUx3WEhYNFFobndfVG9HaW0ySkJoRTFZeE5UanNWSVJjTU5FQnRQTGNiLWl6VTdjNUhtWjhJYWZmMF95TXZBT29fWHRIRjVhNVFFOUlubHpmb05tTWdOYkluUTRUUWRveldLMF0tLT48L2c+PC9zdmc+'>
+
+<blockquote>
+<p>當然以上是一個簡易的請求流程，會依照大家的需求去決定流程要怎麼變通。</p>
+</blockquote>
+<h2 id="樣板們-更多請看這"><a href="#樣板們-更多請看這" class="headerlink" title="樣板們 - 更多請看這"></a>樣板們 - <a target="_blank" rel="noopener" href="https://github.com/louis70109/Announcer">更多請看這</a></h2><h3 id="Template-1"><a href="#Template-1" class="headerlink" title="Template 1"></a>Template 1</h3><p><img src="https://nijialin.com/images/2022/announcer/template1.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    template: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">    title: <span class="string">&#x27;Title&#x27;</span>,</span><br><span class="line">    place: <span class="string">&#x27;location&#x27;</span>,</span><br><span class="line">    time: <span class="string">&#x27;12/26 15:00&#x27;</span>,</span><br><span class="line">    url: <span class="string">&#x27;HTTP string&#x27;</span>,</span><br><span class="line">    imageUrl: <span class="string">&#x27;HTTP string&#x27;</span>,</span><br><span class="line">    description: <span class="string">&#x27;aaa\nbbb\nccc&#x27;</span>,</span><br><span class="line">    activity: <span class="string">&#x27;some tag&#x27;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Template-2"><a href="#Template-2" class="headerlink" title="Template 2"></a>Template 2</h3><p><img src="https://nijialin.com/images/2022/announcer/template2.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">staffList = &#123;</span><br><span class="line">  template: <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">  title: <span class="string">&#x27;title&#x27;</span>,</span><br><span class="line">  place: <span class="string">&#x27;here&#x27;</span>,</span><br><span class="line">  url: <span class="string">&#x27;HTTP link&#x27;</span>,</span><br><span class="line">  activity: <span class="string">&#x27;tag&#x27;</span>,</span><br><span class="line">  map: <span class="string">&#x27;Google Map link&#x27;</span>,</span><br><span class="line">  people: [&#123;<span class="attr">name</span>: <span class="string">&#x27;NiJia&#x27;</span>, <span class="attr">time</span>: <span class="string">&#x27;10:00~12:00&#x27;</span>&#125;],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Template-3"><a href="#Template-3" class="headerlink" title="Template 3"></a>Template 3</h3><p><img src="https://nijialin.com/images/2022/announcer/template3.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Card = &#123;</span><br><span class="line">  template: <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">  title: <span class="string">&#x27;title&#x27;</span>,</span><br><span class="line">  description: <span class="string">&#x27;aaa\nbbb&#x27;</span>,</span><br><span class="line">  avatar: <span class="string">&#x27;HTTP link&#x27;</span>,</span><br><span class="line">  back: <span class="string">&#x27;HTTP image background link&#x27;</span>,</span><br><span class="line">  followUrl: <span class="string">&#x27;HTTP link&#x27;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>隨著開發的東西越來越多，性質相同且能共用的東西都盡可能的拉成一包，讓未來不管再帶工作坊、社群或是任何地方需要使用到 Flex Message 時可以很快速地取得到想要的樣板(curl, Postmen…)，當然可能因為專案屬性還是需要自己刻 Flex，但有了原本官方提供的 <a target="_blank" rel="noopener" href="https://developers.line.biz/flex-simulator/">Simulator</a> 以及這個工具，制哨讓我往後作業時間可以再縮短一些，如果大家對於這次專案有興趣或是任何建議，歡迎以下留訊息給我喔！</p>
+<blockquote>
+<p>專案位置歡迎支持星星 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Announcer">louis70109&#x2F;Announcer</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/LINE-Bot/" rel="tag"><i class="fa fa-tag"></i> LINE Bot</a>
+              <a href="/tags/Flex-Message/" rel="tag"><i class="fa fa-tag"></i> Flex Message</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/26/line-techpulse-2022-session/" rel="prev" title="【LINE TECHPLUSE 2022】議程回顧">
+      <i class="fa fa-chevron-left"></i> 【LINE TECHPLUSE 2022】議程回顧
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/13/talk-quality-sharing/" rel="next" title="【質感說話課】讀書心得">
+      【質感說話課】讀書心得 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%96%E6%80%8E%E9%BA%BC%E5%87%BA%E7%8F%BE%E7%9A%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">他怎麼出現的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E7%89%B9%E5%88%A5%E7%8D%A8%E7%AB%8B-API%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">為什麼需要特別獨立 API？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%88%E6%A1%88%E4%BB%8B%E7%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">專案介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="nav-number">3.1.</span> <span class="nav-text">環境變數</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2"><span class="nav-number">4.</span> <span class="nav-text">如何快速部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E8%B7%AF%E7%94%B1"><span class="nav-number">4.1.1.</span> <span class="nav-text">API 路由</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D%E5%89%8D%E7%AB%AF-LIFF-%E9%A0%81%E9%9D%A2%E5%81%9A%E4%BD%BF%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">搭配前端 LIFF 頁面做使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A3%E6%9D%BF%E5%80%91-%E6%9B%B4%E5%A4%9A%E8%AB%8B%E7%9C%8B%E9%80%99"><span class="nav-number">4.3.</span> <span class="nav-text">樣板們 - 更多請看這</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Template-1"><span class="nav-number">4.3.1.</span> <span class="nav-text">Template 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">Template 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template-3"><span class="nav-number">4.3.3.</span> <span class="nav-text">Template 3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

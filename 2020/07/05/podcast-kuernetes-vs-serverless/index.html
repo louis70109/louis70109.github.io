@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="📸 by WFranz  前言Kubernetes 在分散式系統中已經成為一個高可用性平台，並且有許多人都會將程式部署在上面，雖然部署在 Kubernetes 上很好，但本身的管理以及學習都不那麼簡單，因此也有許多人會使用 Serverless 來解決需求。 而今天介紹這個集節目就邀請到 Mux 的 Matt Ward，他們家的產品主要是在做 video streaming APIs，現今他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Podcast】Kubernetes vs Serverless with Matt Ward - Software Engineering Daily">
+<meta property="og:url" content="https://nijialin.com/2020/07/05/podcast-kuernetes-vs-serverless/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="📸 by WFranz  前言Kubernetes 在分散式系統中已經成為一個高可用性平台，並且有許多人都會將程式部署在上面，雖然部署在 Kubernetes 上很好，但本身的管理以及學習都不那麼簡單，因此也有許多人會使用 Serverless 來解決需求。 而今天介紹這個集節目就邀請到 Mux 的 Matt Ward，他們家的產品主要是在做 video streaming APIs，現今他">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2020/06/28/22/09/falcon-5350832_1280.jpg">
+<meta property="article:published_time" content="2020-07-05T11:43:28.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:04:15.069Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Serverless">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Podcast">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2020/06/28/22/09/falcon-5350832_1280.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2020/07/05/podcast-kuernetes-vs-serverless/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【Podcast】Kubernetes vs Serverless with Matt Ward - Software Engineering Daily | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/07/05/podcast-kuernetes-vs-serverless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Podcast】Kubernetes vs Serverless with Matt Ward - Software Engineering Daily
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-07-05 11:43:28" itemprop="dateCreated datePublished" datetime="2020-07-05T11:43:28+00:00">2020-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2020/06/28/22/09/falcon-5350832_1280.jpg"></p>
+<blockquote>
+<p>📸 by WFranz</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Kubernetes 在分散式系統中已經成為一個高可用性平台，並且有許多人都會將程式部署在上面，雖然部署在 Kubernetes 上很好，但本身的管理以及學習都不那麼簡單，因此也有許多人會使用 Serverless 來解決需求。</p>
+<p>而今天介紹這個集節目就邀請到 Mux 的 Matt Ward，他們家的產品主要是在做 video streaming APIs，現今他們有自己的 Kubernetes 也曾經在 Serverless 中使用過，以下就分享我從這集 podcast 學到的東西以及心得囉！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://overcast.fm/+E6UBUIDF0">Podcast 連結</a></li>
+<li><a target="_blank" rel="noopener" href="https://softwareengineeringdaily.com/wp-content/uploads/2020/05/SED1079-Kube-vs-Serverless.pdf">Transcript 連結</a></li>
+</ul>
+<span id="more"></span>
+
+<h1 id="Serverless"><a href="#Serverless" class="headerlink" title="Serverless"></a>Serverless</h1><p>來賓一開始提到，再做任何事情前都需要容量規劃(capacity planning)以及整體的計算資源(compute resources)，而像是 AWS Lambda 這類的平台讓開發者不需要擔心 CPU、RAM 以及提供 Auto Scaling 的功能，讓產品在前期可以更專注在開發上。</p>
+<p>由於 AWS Lambda 也是都基於 EC2 去實作的一個功能(工具)，因此像是 GRPC、socket 之類的功能也都可以使用。</p>
+<blockquote>
+<p>當然用 Serverless 還是輕鬆許多，平台幫你處理好許多事 😆</p>
+</blockquote>
+<h2 id="好處"><a href="#好處" class="headerlink" title="好處"></a>好處</h2><p>Serverless 適合的情境在於當今天產品 Business Model 還不成熟，且很多功能的情境都還不確定下很適合，以 AWS 為例，若今天需要開發 API 就使用 API Gateway、需要 Queue 幫忙緩衝就用 SQS、需要關連式資料庫 RDS，像是拼圖一樣讓大家可以去拼出自己的產品服務，並且不用擔心<code>計算資源</code>以及<code>水平擴展</code>(Auto Scaling)的問題，一切都交給雲端提供商去處理即可。</p>
+<h2 id="Cold-Start-問題"><a href="#Cold-Start-問題" class="headerlink" title="Cold Start 問題"></a>Cold Start 問題</h2><p>這部分以前我有寫過一篇文章 - <a href="https://nijialin.com/2020/02/16/serverless-cold-start/">Serverless cold start 問題</a>，簡單來說每個 Lambda Function 都是一個 Container，當過了一段時間後平台會將這 Container 關掉，而當 Function 被觸發後平台會重新啟動 Container，這期間的時間就屬於 Cold Start。</p>
+<p>當然這邊可使用 Warm-up 相關工具，只是因為 FaaS 這類的服務都是以流量計價，如此一來就會增加無形中的費用。</p>
+<h2 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h2><p>不過當產品成長到一定程度時就會開始擔心費用、綁架…相關的問題，因此就會考慮到自架 Kubernetes 也可以達到類似的功能，因為 Serverless 有的功能基本上也能透過 Kubernetes API 去做相關的處理(Auto Scaling)。</p>
+<h2 id="平台綁定"><a href="#平台綁定" class="headerlink" title="平台綁定"></a>平台綁定</h2><p>這集較多再分享兩邊的使用經驗，這邊順便分享我自己的觀點，若當前產品都是建置在 AWS 上，而市場都在<code>歐洲</code>、<code>美洲</code>之類的地方，在傳輸速度上就很快沒問題，但若市場在<code>台灣</code>，但因為 AWS 離台灣最近的節點只有在<code>日本</code>，在傳輸上還是跨了一座海，反應速度還是會有一定的影響，此時要搬到 GCP 上又會有成本，因此在使用平台時還是要關注一下類似市場這樣的問題喔！</p>
+<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><p>在我的印象中它就是可以將 Container 平行擴展的一個工具，不管 Container 裡是裝什麼都可以幫忙 Cluster，若是需要 Load Balance 官方也都有文件可以參考(<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a>)，如此一來才能讓彈性以及靈活性變高，且不會有 Cold Start 問題並能 real-time feedback。</p>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API documents</a></p>
+<p>而 Kubernetes 情況則有點相反，業務與市場都確定，且產品已經有大量流量在進出下很適合，使用 Cluster 的方式分散吞吐量，服務要架設都可以自己來，使用彈性高也不會被服務提供商綁架，每個服務都是一個 Container，當平台功能不敷使用時只要在另一個平台上將 Container 起起來即可。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>如果現在需要一個擁有<code>三個節點</code>的 Redis Cluster 時，開發者不需要知道太多<code>主從式</code>裡的細節，只要交給 Kubernetes operators 會幫忙部署並且給出適當的 object 讓你能去客製化資源。</p>
+<blockquote>
+<p>we don’t have to think about every environment variable, every volume, or every kind of networking interface …</p>
+</blockquote>
+<p>我覺得上述這段話就是對於 Kubernetes 的讚嘆吧(?)，並且指出當今天只要跟 Kubernetes 說出你想要什麼服務，在內部的 operator 就會自動計算出適當的資源。</p>
+<h1 id="部署在多個平台重要性-AWS-amp-GCP"><a href="#部署在多個平台重要性-AWS-amp-GCP" class="headerlink" title="部署在多個平台重要性 (AWS &amp; GCP)"></a>部署在多個平台重要性 (AWS &amp; GCP)</h1><p>來賓的產品主要是在 AWS 以及 GCP 上，因此他這邊也說推薦大家可以部署在 EKS、GKE 上面，除了服務支援度以外(region 之類)，就是避免因為平台問題(倒站)讓自家服務所停擺，因此部署到兩個平台以上可以較有效的避免服務停擺的問題，雖然可能會有費用上的疑慮，但這就跟買保險的概念一樣，買來保障遇到問題時的一個解決方案 😁。</p>
+<blockquote>
+<p>這部分可以參考 17 的文章 - <a target="_blank" rel="noopener" href="https://medium.com/17media-tech/%E5%BE%9E-gcp-%E6%95%85%E9%9A%9C%E7%9C%8B-17-media-%E5%B7%A5%E7%A8%8B%E5%9C%98%E9%9A%8A%E7%9A%84%E7%81%BD%E9%9B%A3%E6%87%89%E8%AE%8A-51aa5701ba77">從 GCP 故障看 17 Media 工程團隊的災難應變</a></p>
+</blockquote>
+<h1 id="Knative"><a href="#Knative" class="headerlink" title="Knative"></a>Knative</h1><p>它是一個允許部署 Serverless 風格的應用程式在 Kubernetes 上，聽到這邊我想會有這個工具或許也是讓習慣開發 Serverless 的開發者可以叫無痛的轉到 Knative 上，而之後再逐步地轉到 GKE 上面吧 🤔</p>
+<h1 id="監測工具-Metric"><a href="#監測工具-Metric" class="headerlink" title="監測工具(Metric)"></a>監測工具(Metric)</h1><p>不管使用什麼服務一定都需要監控狀態，在這集中我有聽到以下三個工具:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://grafana.com/">Grafana</a>: 監控儀表板的功能，自由度很高可以透過套件來建立交互式的數據觀測平台。</li>
+<li><a target="_blank" rel="noopener" href="https://prometheus.io/">Prometheus</a>: 看起來儀表板性質與 Grafana 差不多，大家可以依照自己喜愛去試試看喔！</li>
+<li><a target="_blank" rel="noopener" href="https://www.elastic.co/kibana">Kibana</a>: Elasticsearch 的開源數據可視化儀表板。</li>
+</ul>
+<h1 id="透過-CDN-的方式讓產品可以交付到每個地方"><a href="#透過-CDN-的方式讓產品可以交付到每個地方" class="headerlink" title="透過 CDN 的方式讓產品可以交付到每個地方"></a>透過 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E5%85%A7%E5%AE%B9%E5%82%B3%E9%81%9E%E7%B6%B2%E8%B7%AF">CDN</a> 的方式讓產品可以交付到每個地方</h1><p>主持人與來賓聊到跟 Youtube 差異時有提到 CDN 的部分，簡單來說就是 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E6%9C%8D%E5%8A%A1%E4%BE%9B%E5%BA%94%E5%95%86">網際網路服務供應商</a>(ISP)會先告知它擁有的節點(node)，在 Client 端來請求支援時這些節點會去 cache Server 資料，當下次再重複請求時就可以從節點上直接取資料，加快請求速度也讓體驗更好。</p>
+<blockquote>
+<p>若有寫前端的朋友就會對在 Head 裡引入的 jQuery 或 Bootstrap 之類的&lt;script&gt; 的標籤應該不陌生</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>來賓公司的服務有一部份將 kubernetes 建構在 kops，以下是 kops 的連結：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kops">kops Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://kops.sigs.k8s.io/">kops 官網</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這集 Podcast 講解 Serverless 的部分許多都跟我開發以來使用的體驗與經驗差不多，而雖然 Kubernetes 我只有聽過並未有實際使用經驗，但靠著來賓分享的經驗也讓我對於 Kubernetes 使用的情境與狀態能夠更加的瞭解。</p>
+<p>然而開發上的議題總是需要顧慮到<code>時間</code>與<code>環境</code>，並不會有特定的工具就一定能吃下所有市場，因此在選擇工具時一定要考慮到產品所處的狀態才能讓工具發揮到最大的效果喔！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Serverless/" rel="tag"><i class="fa fa-tag"></i> Serverless</a>
+              <a href="/tags/Kubernetes/" rel="tag"><i class="fa fa-tag"></i> Kubernetes</a>
+              <a href="/tags/Podcast/" rel="tag"><i class="fa fa-tag"></i> Podcast</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/01/flask-atexit-question/" rel="prev" title="在 Flask 中測試 atexit 官方文件的註解(Note)">
+      <i class="fa fa-chevron-left"></i> 在 Flask 中測試 atexit 官方文件的註解(Note)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/08/podcast-grafana-sharing/" rel="next" title="【Podcast】Grafana with Torkel Ödegaard">
+      【Podcast】Grafana with Torkel Ödegaard <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Serverless"><span class="nav-number">2.</span> <span class="nav-text">Serverless</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E8%99%95"><span class="nav-number">2.1.</span> <span class="nav-text">好處</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cold-Start-%E5%95%8F%E9%A1%8C"><span class="nav-number">2.2.</span> <span class="nav-text">Cold Start 問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C"><span class="nav-number">2.3.</span> <span class="nav-text">問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E7%B6%81%E5%AE%9A"><span class="nav-number">2.4.</span> <span class="nav-text">平台綁定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kubernetes"><span class="nav-number">3.</span> <span class="nav-text">Kubernetes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">3.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%9C%A8%E5%A4%9A%E5%80%8B%E5%B9%B3%E5%8F%B0%E9%87%8D%E8%A6%81%E6%80%A7-AWS-amp-GCP"><span class="nav-number">4.</span> <span class="nav-text">部署在多個平台重要性 (AWS &amp; GCP)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Knative"><span class="nav-number">5.</span> <span class="nav-text">Knative</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%A3%E6%B8%AC%E5%B7%A5%E5%85%B7-Metric"><span class="nav-number">6.</span> <span class="nav-text">監測工具(Metric)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%8F%E9%81%8E-CDN-%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%93%E7%94%A2%E5%93%81%E5%8F%AF%E4%BB%A5%E4%BA%A4%E4%BB%98%E5%88%B0%E6%AF%8F%E5%80%8B%E5%9C%B0%E6%96%B9"><span class="nav-number">7.</span> <span class="nav-text">透過 CDN 的方式讓產品可以交付到每個地方</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">9.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

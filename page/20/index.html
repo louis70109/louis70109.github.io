@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="You are what you do.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忍者工坊">
+<meta property="og:url" content="https://nijialin.com/page/20/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="You are what you do.">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nijialin.com/page/20/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/21/Day7-%E5%9C%A8-serverless-%E8%A3%A1%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E8%AE%93%E9%80%99%E4%BA%9B-key-%E5%A5%BD%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/21/Day7-%E5%9C%A8-serverless-%E8%A3%A1%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E8%AE%93%E9%80%99%E4%BA%9B-key-%E5%A5%BD%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Day7 - 在 serverless 裡使用環境變數讓這些 key 好管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-21 12:33:28" itemprop="dateCreated datePublished" datetime="2019-09-21T12:33:28+00:00">2019-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著前幾天的文章，像我們 notify 驗證的 API 有使用到 <code>REDIRECT_URI</code>、<code>CLIENT_ID</code> 以及 <code>CLIENT_SECRET</code>，或是像 PostgreSQL 的帳號密碼，<br>只是說若今天當程式碼變多的時候，抑或是這個參數有給其他 API 使用，那在尋找的時候不僅費工又浪費時間<br>那接下來就帶著大家在 serverless.yml 一步步加入變數值，並更改 code。</p>
+<h2 id="動手吧！"><a href="#動手吧！" class="headerlink" title="動手吧！"></a>動手吧！</h2><p>用 npm 安裝 serverless 的 <code>dotenv</code> 套件</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i -D serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
+
+<p>接著加入新的套件到<code>serverless.yml</code></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">plugins:</span></span><br><span class="line">  - serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
+
+<p>新增<code>dotenv</code>到 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">python</span>-dotenv==<span class="number">0</span>.<span class="number">10</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>到 api.py 加入下面內容</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">from</span> <span class="variable">dotenv</span> <span class="variable">import</span> <span class="variable">load_dotenv</span></span><br><span class="line"><span class="variable">env_path</span> = <span class="function"><span class="title">Path</span>(<span class="string">&#x27;.&#x27;</span>) / <span class="string">&#x27;.env&#x27;</span></span></span><br><span class="line"><span class="function"><span class="title">load_dotenv</span>(<span class="variable">dotenv_path</span>=<span class="variable">env_path</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>接著新增<code>.env</code>並輸入對應的內容</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NOTIFY_REDIRECT_URI=</span><br><span class="line">NOTIFY_CLIENT_ID=</span><br><span class="line">NOTIFY_CLIENT_SECRET=</span><br><span class="line">REGION=us-east<span class="number">-2</span></span><br><span class="line">SQS_URL=</span><br><span class="line">SQS_ARN=</span><br><span class="line">PG_DB=</span><br><span class="line">PG_HOST=</span><br><span class="line">PG_NAME=</span><br><span class="line">PG_PWD=</span><br><span class="line">PG_PORT=</span><br></pre></td></tr></table></figure>
+
+<p>接著修改有使用到他們的地方，範例如下</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.<span class="built_in">getenv</span>(<span class="string">&quot;SQS_ARN&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>既然有安裝 serverless 的套件了，那 yml 檔也可以使用哦！</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">provider:</span></span><br><span class="line"><span class="symbol">  name:</span> aws</span><br><span class="line"><span class="symbol">  runtime:</span> python3<span class="number">.7</span></span><br><span class="line"><span class="symbol">  region:</span> $&#123;env:REGION&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>有時候把專案抓下來的時候要找到這些輸入的地方很容易找不到(我有點癡呆)，一般 open source 也都會有一個<code>.env</code>的，用<code>serverless-dotenv-plugin</code>來幫忙弄就方便許多了，後續有需要再繼續往裡面新增就好了～</p>
+<p>最後在搭配 python 的 <a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-dotenv-plugin/">dot env 套件</a>使用就讓整個好用多了 🤣，只是說 html 因為目前還不是透過 serverless 來幫忙部署，所以這邊的參數就沒辦法吃設定檔了 😓</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4906977/how-to-access-environment-variable-values">os.environ</a><br><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/guide/variables/">env setting</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/" class="post-title-link" itemprop="url">Day6 - 建立一個使用 Query string 來幫忙發送的 LINE Notify</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-21 12:30:27" itemprop="dateCreated datePublished" datetime="2019-09-21T12:30:27+00:00">2019-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>繼上一篇我們已經可以讓使用者註冊 Notify 並將 token 放入資料庫，接著就帶各位使用 query string 的方式讓你的 Notify 可以送訊息給所有註冊過的 Notify。</p>
+<p>首先我們進入我們已經建立過的 controller&#x2F;notify_controller.py，會看到 class 下有我們之前建立的 post method，這時我們就在前面加入 get method，並加入以下的 code，讓這個 class 看起來比較有順序(<del>潔癖</del>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotifyController</span>(<span class="params">Resource</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">            msg = request.args.get(<span class="string">&#x27;msg&#x27;</span>)</span><br><span class="line">            <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">                <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                    cur.execute(</span><br><span class="line">                        <span class="string">f&quot;SELECT token FROM notify&quot;</span>)</span><br><span class="line">                    fetch = cur.fetchall()</span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> fetch:</span><br><span class="line">                headers = &#123;</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;f[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">                payload = &#123;<span class="string">&#x27;message&#x27;</span>: msg&#125;</span><br><span class="line"></span><br><span class="line">                r = requests.post(</span><br><span class="line">                    <span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, data=payload, headers=headers)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;ok&#x27;</span>&#125;, <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<p>這次使用的套件比上次多 import 一個 flask 底下的 request (注意沒有 s 哦)，這個主要是讓我們可以抓到網址問號後面接的參數，這邊我設定打 API 的人會打一個 msg 的參數。</p>
+<p>接著就是使用進 DB 撈我們的 token 們，並用一個迴圈來跑</p>
+<p>再來是設定 headers 以及 payload</p>
+<p>headers 的部分參考 Notify 的文件，如下圖<br><img src="https://i.imgur.com/B4bjvja.png"><br>我們需要設定 Content-Type 以及 Authorization，需要注意的是 Authorization 是使用 Bearer 格式(<a target="_blank" rel="noopener" href="https://blog.yorkxin.org/2013/09/30/oauth2-6-bearer-token.html">參考</a>)，他中間是有加<code>空白鍵</code>的，這邊很多朋友都會錯在這裡，千萬要記得檢查這邊！</p>
+<p>接著是要送出去的東西是要用什麼送出，本篇只用 message 做範例，若需要使用到其他的功能，像是圖片、貼圖等等的可參考以下的圖片<br><img src="https://i.imgur.com/I6617R6.png"></p>
+<p>接著我們就可以使用<code>sls deploy</code>來部署我們的程式啦</p>
+<p>等等！<br>這邊有個需要注意的地方是，照著這次的範例使用的話會需要用 docker 來幫忙跑編譯，因為 psycopg2-binary 這個套件如果不是在 Linux 的環境下會需要透過 docker 幫忙編譯完再丟過去<br>這部分需要在<code>serverless.yml</code>下填入參數</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">pythonRequirements:</span></span><br><span class="line">    <span class="attr">dockerizePip:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>如此一來當前環境若不是 Linux 的話他就會使用 docker 來幫忙，記得 docker 要開哦 🙏</p>
+<blockquote>
+<p>當然最簡單的方法就是把它直接抓下來放在專案中，只是這樣就會比較髒一點，可以從這邊抓 -&gt; <a target="_blank" rel="noopener" href="https://github.com/jkehler/awslambda-psycopg2">參考</a></p>
+</blockquote>
+<blockquote>
+<p>這邊可以先在環境變數上加上<code>SLS_DEBUG=*</code> 接著在加上 sls deploy 後面加上<code>--verbose</code>可以看到 serverless 到底都在背地裡做了什麼事情 🤣</p>
+</blockquote>
+<p>接著我們就使用 Postman 來幫我們送字串出去，參考下圖，當回傳 ok 就成功了 🎉<br><img src="https://i.imgur.com/oXlBNeC.png"><br>你的 Notify 應該要回你了～<br><img src="https://i.imgur.com/nihyJxX.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這邊帶大家做一個簡單的應用，一般來說我覺得放在 query string 讓其他 API 來呼叫的時候帶參數來就可以直接用是很方便的，不用再特地自己寫方法去呼叫 LINE Notify 來幫我們送，反正 AWS Lambda 有一百萬次的請求不怕 🤣</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/" class="post-title-link" itemprop="url">Day5 - 做一個與 LINE Notify 連動的服務</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-20 07:46:15" itemprop="dateCreated datePublished" datetime="2019-09-20T07:46:15+00:00">2019-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="建立-LINE-Notify-服務"><a href="#建立-LINE-Notify-服務" class="headerlink" title="建立 LINE Notify 服務"></a>建立 LINE Notify 服務</h2><p>第一步先到 <a target="_blank" rel="noopener" href="https://notify-bot.line.me/zh_TW/">LINE Notify</a> 管力登入服務去建立一個服務<br><img src="https://i.imgur.com/he0csJI.png"><br>接著按下<code>登入服務</code><br><img src="https://i.imgur.com/iZmktaA.png"><br>把該填的填一填，要注意的是 Callback Url 這邊先暫時先打 localhost:5500，等頁面上傳後再回來改 domain<br><img src="https://i.imgur.com/5zzxTcj.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/VfaWKEs.png"></p>
+<p>建立完成之後就到剛剛填的信箱去收信點下網址並啟動服務<br><img src="https://i.imgur.com/jmZSycQ.png"><br>這樣第一步就建立完成嚕！</p>
+<h2 id="動工"><a href="#動工" class="headerlink" title="動工"></a>動工</h2><p>接著上次的透過上次的專案並使用 flask_restful 來改造成 Restful 格式的專案(後面開發會比較輕鬆)<br>因為我們會讓前端呼叫，CORS 設定成＊比較輕鬆，若是有要設定跨域問題的在這邊設定哦 👏<br>加入套件到 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flask</span>==<span class="number">1</span>.<span class="number">0</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Flask</span>-RESTful==<span class="number">0</span>.<span class="number">3</span>.<span class="number">6</span></span><br><span class="line"><span class="attribute">Flask</span>-Cors==<span class="number">3</span>.<span class="number">0</span>.<span class="number">6</span></span><br><span class="line"><span class="attribute">requests</span>==<span class="number">2</span>.<span class="number">22</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>透過使用 flask_restful 幫忙轉發並管理路由<br>將 api.py 改為以下的 code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Api</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> controller.notify_controller <span class="keyword">import</span> NotifyController</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, resources=&#123;<span class="string">r&quot;*&quot;</span>: &#123;<span class="string">&quot;origins&quot;</span>: <span class="string">&quot;*&quot;</span>, <span class="string">&quot;supports_credentials&quot;</span>: <span class="literal">True</span>&#125;&#125;)</span><br><span class="line">api = Api(app)</span><br><span class="line"></span><br><span class="line">api.add_resource(NotifyController, <span class="string">&#x27;/notify&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>這邊我使用 Postgresql，並在專案底下建立一個 lib&#x2F; 的資料夾，裡頭放著名為 db.py (這裡還是要記得建立 <strong>init</strong>.py 哦！)<br>這邊只簡單建立<a target="_blank" rel="noopener" href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/"> Context Manager </a>讓連線可以被我呼叫。<br>db.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> psycopg2</span><br><span class="line"><span class="keyword">import</span> psycopg2.extras</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Database</span>():</span></span><br><span class="line">    conns = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span>(<span class="params">self</span>):</span></span><br><span class="line">        conn = psycopg2.connect(</span><br><span class="line">            database=PG_DB,</span><br><span class="line">            user=PG_USER,</span><br><span class="line">            password=PG_PWD,</span><br><span class="line">            host=PG_HOST,</span><br><span class="line">            port=PG_PORT</span><br><span class="line">        )</span><br><span class="line">        self.conns.append(conn)</span><br><span class="line">        <span class="keyword">return</span> conn</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span>(<span class="params">self, <span class="built_in">type</span>, value, traceback</span>):</span></span><br><span class="line">        <span class="keyword">for</span> conn <span class="keyword">in</span> self.conns:</span><br><span class="line">            conn.close()</span><br><span class="line">        self.conns.clear()</span><br></pre></td></tr></table></figure>
+
+<p>新增一下資料夾名為 controller，建立 <strong>init</strong>.py &amp; notify_controller.py，這邊搭配 with 做資源管理器，<br>DB 部分則見黎一個 notify 表，然後一個 token 的欄位。</p>
+<blockquote>
+<p>在這個 class 類別下方法只要輸入 <code>def get/post/put/patch/delete</code> 的函式就可以對應 CRUD 的功能了！</p>
+</blockquote>
+<p>notify_controller.py code is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource, reqparse</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> lib.db <span class="keyword">import</span> Database</span><br><span class="line"><span class="keyword">import</span> psycopg2.extras</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotifyController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(<span class="string">&#x27;code&#x27;</span>, required=<span class="literal">True</span>, <span class="built_in">help</span>=<span class="string">&#x27;code can not be blank!&#x27;</span>)</span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        code = args[<span class="string">&#x27;code&#x27;</span>]</span><br><span class="line">        client = &#123;<span class="string">&#x27;grant_type&#x27;</span>: <span class="string">&#x27;authorization_code&#x27;</span>, <span class="string">&#x27;code&#x27;</span>: code, <span class="string">&#x27;redirect_uri&#x27;</span>: <span class="string">&#x27;YOUR_REDIRECT_URI&#x27;</span>,</span><br><span class="line">                  <span class="string">&#x27;client_id&#x27;</span>: <span class="string">&#x27;YOUR_CLIENT_ID&#x27;</span>, <span class="string">&#x27;client_secret&#x27;</span>: <span class="string">&#x27;YOUR_CLIENT_SECRET&#x27;</span>&#125;</span><br><span class="line">        r = requests.post(</span><br><span class="line">            <span class="string">&#x27;https://notify-bot.line.me/oauth/token&#x27;</span>, data=client)</span><br><span class="line">        req = json.loads(r.text)</span><br><span class="line">        <span class="keyword">if</span> req[<span class="string">&#x27;status&#x27;</span>] == <span class="number">200</span>:</span><br><span class="line">            token = req[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line">            <span class="comment"># Here is use PostgreSQL, you can change your love db</span></span><br><span class="line">            <span class="keyword">with</span> Database() <span class="keyword">as</span> db:</span><br><span class="line">                <span class="keyword">with</span> db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">                    <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                        cur.execute(</span><br><span class="line">                            <span class="string">f&quot;INSERT INTO notify(token) VALUES (&#x27;<span class="subst">&#123;token&#125;</span>&#x27;)&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;access_token&#x27;</span>: req[<span class="string">&#x27;access_token&#x27;</span>]&#125;, <span class="number">200</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;message&#x27;</span>: r.text&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>以下這三個要設定成你的當時輸入的字串</p>
+<ul>
+<li>YOUR_REDIRECT_URI</li>
+<li>YOUR_CLIENT_ID</li>
+<li>YOUR_CLIENT_SECRET</li>
+</ul>
+<blockquote>
+<p>若不清楚 Client_id &amp; Client_secret 的話就回到 Notify 頁面並點選剛剛建立的服務就能看到 token 了</p>
+</blockquote>
+<p><img src="https://i.imgur.com/T0nJaGE.png"></p>
+<p>建立一個 views&#x2F; 的資料夾，並建立兩個檔案</p>
+<ul>
+<li>notify_index.html<blockquote>
+<p>這邊需要修改 <code>client_id</code> 以及 <code>redirect_uri</code><br>這個檔案主要功能是讓使用者有個可以按按鈕觸發的地方，當然這只是個範例，實際上線可能就會直接 call API 導向 LINE Notify 頁面等等</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Link Notify&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;button onclick&#x3D;&quot;Auth();&quot;&gt;點選這裡連結到LineNotify&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      function Auth() &#123;</span><br><span class="line">        var URL &#x3D; &quot;https:&#x2F;&#x2F;notify-bot.line.me&#x2F;oauth&#x2F;authorize?&quot;;</span><br><span class="line">        URL +&#x3D; &quot;response_type&#x3D;code&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;client_id&#x3D;YOUR_CLIENT_ID&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;redirect_uri&#x3D;YOUR_REDIRECT_URI&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;scope&#x3D;notify&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;state&#x3D;nostate&quot;;</span><br><span class="line">        window.location.href &#x3D; URL;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>notify_confirm.html<blockquote>
+<p>修改 ajax 裡的 url，將網址換成之前部署的網址，若忘了可以在部署一次 <code>sls deploy</code><br>當導回來的時候透過 ajax 來呼叫 serverless api 讓後端發 requests 給<code>https://notify-bot.line.me/oauth/token</code>來獲取<code>access_token</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><em>因為這個路由有 CORS 的問題，若透過瀏覽器來的話會出錯，這邊則是讓後端去處理</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;message check&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    verify messate:</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;jquery&#x2F;3.4.1&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var urlParams &#x3D; new URLSearchParams(window.location.search);</span><br><span class="line">    var notify_code &#x3D; urlParams.get(&quot;code&quot;);</span><br><span class="line">    var state &#x3D; urlParams.get(&quot;state&quot;);</span><br><span class="line">    $(function() &#123;</span><br><span class="line">      $.ajax(&#123;</span><br><span class="line">        url: &quot;https:&#x2F;&#x2F;SLS_URI.execute-api.us-east-2.amazonaws.com&#x2F;dev&#x2F;notify&quot;,</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">        dataType: &quot;json&quot;,</span><br><span class="line">        data: &#123; code: notify_code &#125;,</span><br><span class="line">        success: function(response) &#123;</span><br><span class="line">          console.log(response);</span><br><span class="line">          $(&quot;.message&quot;).text(response[&quot;access_token&quot;]);</span><br><span class="line">        &#125;,</span><br><span class="line">        error: function(xhr) &#123;</span><br><span class="line">          console.log(xhr);</span><br><span class="line">          alert(&quot;Ajax request 發生錯誤&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接著就是測試程式碼是不是正常的，把這兩個檔案丟到 S3 上面<br><img src="https://i.imgur.com/SYRxzA1.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/N3olwJd.png"></p>
+<p>把 object url 複製到 LINE Notify 上的 callback url 欄位，這樣就可以實機測試了 🤣<br><img src="https://i.imgur.com/i6Y7dK2.png"></p>
+<p>接著按下 index page 的按鈕應該就會看到連動成功(進資料庫應該也會被 insert 一筆)<br><img src="https://i.imgur.com/lEP0AmZ.png"></p>
+<p>到了這邊如果沒問題真的是恭喜你，我踩了好多坑 Orz</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/">資源管理器</a><br><a target="_blank" rel="noopener" href="https://github.com/corydolphin/flask-cors">flask CORS</a><br><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#enabling-cors">CORS</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/19/Day4-%E8%AA%8D%E8%AD%98%E8%88%87%E4%BD%BF%E7%94%A8-S3-%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/19/Day4-%E8%AA%8D%E8%AD%98%E8%88%87%E4%BD%BF%E7%94%A8-S3-%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Day4 - 認識與使用 S3 容器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-19 07:44:36" itemprop="dateCreated datePublished" datetime="2019-09-19T07:44:36+00:00">2019-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Amazon Simple Storage Service(簡稱 AWS S3)是 AWS 的一個線上儲存服務，用戶能夠輕易把檔案儲存到網路伺服器上，可能有些朋友會把它當成雲端硬碟看待，但其實還能像是傳靜態檔案上去，若有寫前端框架的朋友通常都會需要把程式碼打包成靜態檔案再部署，然而這邊把他打包送上去後，S3 會給一個名為 Object Url 的網址，可以透過這個網址去執行網頁裡面的內容(如 AJAX、Axios…)，並可以透過 cloudfont 去弄成 CDN(扯遠了)，簡單說他還有很多不一樣的功能應用等著大家去用～</p>
+<p>因為 serverless 只能放關於 API 的程式碼，因此我們需要把 html 靜態檔案放在 S3 裡，</p>
+<p>接下來就來建立一個公開的 S3 容器，這邊就不會提到權限如何控管哦！</p>
+<h2 id="建立一個公開的-S3-容器"><a href="#建立一個公開的-S3-容器" class="headerlink" title="建立一個公開的 S3 容器"></a>建立一個公開的 S3 容器</h2><p>建立一個名為<code>2019-it-30-bucket</code>的容器，地區就選與 Lambda 同樣的地區，直接按下左下角的<code>create</code>來建立。<br><img src="https://i.imgur.com/lfRsTDn.png"></p>
+<p>建立完會像這樣<br><img src="https://i.imgur.com/SgPTxsQ.png"><br>接著點進去後在點到第三個選項會看到 Block of public access 是啟動的狀態，因為我們接下來需要讓我們的頁面可以外部使用<br><img src="https://i.imgur.com/M065zbI.png"><br>就把 check box 的按掉，在按下 <code>Save</code><br><img src="https://i.imgur.com/SjT0qY7.png"><br>要輸入<code>confirm</code>就修改完成嚕<br><img src="https://i.imgur.com/qxquZI1.png"><br>接著一樣點到第三個個選項，選到<code>Access Control List</code>，看到<code>Access for bucket owner</code>這個選項的<code>Canonical ID</code>，選項都全部打勾之後再來調整，這樣之後的 HTML 檔案外面就看得到了。<br><img src="https://i.imgur.com/uZfyrAQ.png"></p>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>接著上傳一個<code>index.html</code>的檔案來測試</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;html&gt;</span></span><br><span class="line"><span class="section">&lt;h1&gt;</span><span class="attribute">Hello</span> world&lt;/h<span class="number">1</span>&gt;</span><br><span class="line"><span class="section">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上傳後下拉式選單選擇<code>public read</code>的選項，因為一個檔案在 S3 就算是一個 Object，所以一定要讓它能對外，然後按下左下的 Upload<br><img src="https://i.imgur.com/iO2R9aW.png"></p>
+<p>成功後點進這個檔案，並按下方的<code>Object URL</code>，看到 Hello World 的話就代表成功囉，這時可以開個無痕測一次，確認一下沒有錯誤 😃<br><img src="https://i.imgur.com/m1jC1E2.png"></p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Amazon_S3">AWS S3 wiki</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/18/Day3-LINE-Notify-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/18/Day3-LINE-Notify-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day3 - LINE Notify 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-18 06:21:37" itemprop="dateCreated datePublished" datetime="2019-09-18T06:21:37+00:00">2019-09-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>LINE Notify 顧名思義就是通知屬性的服務，這個服務不是 LINE 的 Message API，千外別把這兩個搞在一起哦！</p>
+<p>在實作前要先認識一下在接的 api 服務原理<br>首先先參考<a target="_blank" rel="noopener" href="https://notify-bot.line.me/doc/en/">LINE Notify 官網</a><br>開頭的介紹：</p>
+<blockquote>
+<p>Overview: Becomes a provider based on OAuth2 (<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a>). The authentication method is authorization_code. The access token acquired here can only be used for notification services</p>
+</blockquote>
+<p>不負責任翻譯: 這個服務是基於 OAuth2 實作的，授權模式(grant_type)是 authorization_code <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html">參考</a><br>access_token 則是只能讓通知服務所使用的一個鑰匙</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">更詳細的流程可以參考 https:<span class="regexp">//</span>blog.yorkxin.org<span class="regexp">/2013/</span><span class="number">09</span><span class="regexp">/30/</span>oauth2-<span class="number">4</span>-<span class="number">1</span>-auth-code-grant-flow.html</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The host name for authentication API endpoint is notify-bot.line.me.</p>
+</blockquote>
+<p>然後 API 的網址是 <code>notify-bot.line.me</code></p>
+<p>接著我們來看看流程圖<br><img src="https://i.imgur.com/kmt0zrV.png" alt="https://notify-bot.line.me/doc/en/"></p>
+<ul>
+<li>當使用者拜訪你的網站時，會導向 LINE 請求認證</li>
+<li>認證過了之後會回傳一個名為 code 的參數</li>
+<li>接著網站需要持這個 code 在去找 LINE 討東西</li>
+<li>討成功後就會拿到一個 access_token</li>
+<li>網站就會知道這個 access_token &#x3D; 來註冊的使用者</li>
+<li>然後就可以透過 access_token 發送通知給使用者了?</li>
+</ul>
+<h1 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h1><p>首先就是要先加入他好友，如果之前有不小心<strong>封鎖</strong>的話要記得解除封鎖哦，不然後續會收不到消息。<br><img src="https://ithelp.ithome.com.tw/upload/images/20190903/20111481Zno98NSHwL.png" alt="https://ithelp.ithome.com.tw/upload/images/20190903/20111481Zno98NSHwL.png"></p>
+<p>下一篇會帶著時做出簡單的 index.html + 使用 Serverless 蓋我們第一個 API 來做認證。<br>會使用到 LINE Notify 的 API 為以下三個，不清楚裡面實際上功能的朋友可以嗑一下<a target="_blank" rel="noopener" href="https://notify-bot.line.me/doc/en/">官網文件</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET https: <span class="comment">//notify-bot.line.me/oauth/authorize -&gt; 前往認證拿到 code 參數</span></span><br><span class="line">POST https:<span class="comment">//notify-bot.line.me/oauth/token -&gt; 拿 code 參數換 access_token</span></span><br><span class="line">POST https:<span class="comment">//notify-api.line.me/api/notify -&gt; 發送訊息</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>今年中有帶著朝陽的學弟妹手把手實作 LINE Notify，如果只想自己用的話可以參考我之前<a target="_blank" rel="noopener" href="https://www.slideshare.net/JiaYuLin6/step-by-step-to-use-line-notify-20190527">簡報</a></p>
+<p><a target="_blank" rel="noopener" href="https://notify-bot.line.me/zh_TW/">LINE Notify</a><br><a target="_blank" rel="noopener" href="https://www.evanlin.com/go-line-notify/">如何快速建置一個 LINE Notify 的服務</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20&%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20&%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/" class="post-title-link" itemprop="url">Day2 - 安裝並使用 wsgi & flask 建立第一個 Serverless 的專案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-17 06:17:01" itemprop="dateCreated datePublished" datetime="2019-09-17T06:17:01+00:00">2019-09-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>透過 npm 全域安裝 serverless 指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install serverless -g</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因為我是用 python3 在 AWS 上實作</p>
+</blockquote>
+<ul>
+<li><code>--template</code>可以選擇你想要的模板 (<a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/cli-reference/create/">參考</a>)</li>
+<li><code>name</code> service 的名稱</li>
+<li><code>--path</code> 專案路徑，若找不到資料夾時會自動新增</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless create --template aws-python3 --name aws-wsgi-flask --path aws-wsgi-flask</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/6GZVQNo.png"></p>
+<h1 id="加入套件"><a href="#加入套件" class="headerlink" title="加入套件"></a>加入套件</h1><p>接著後面會需要使用套件，而 python 這邊會認得 requirements.txt 這個檔案，因此我們需要用 serverless 的 plugin 幫我們處理，讓專案在 deploy 上去之後會透過 requirements.txt 去安裝套件。</p>
+<p>而接下來我們會需要一個介面幫我們處理一些麻煩事，這邊就選用 wsgi 來處理。<a target="_blank" rel="noopener" href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/362704/">詳細參考</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sls plugin install -n serverless-python-requirements</span><br><span class="line">sls plugin install -n serverless-wsgi</span><br></pre></td></tr></table></figure>
+
+<p>接著去看 serverless.yml 檔案最後出現下面這樣就成功安裝了。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-python-requirements</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-wsgi</span></span><br></pre></td></tr></table></figure>
+
+<p>然後新增一個 setup.cfg 並加入以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[install]</span><br><span class="line">prefix=</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由於 AWS Lambda 上都會將套件安裝在本地端(Lambda 上)，因此在執行 <code>pip install -t . -r requirements.txt</code> 時會需要 setup.cfg。</p>
+</blockquote>
+<p>接著選用 Flask 框架作我們開發的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Flask==1.0.2&quot;</span> &gt; requirements.txt</span><br><span class="line">pip install -r requirements.txt -—user</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>serverless-python-requirements 同樣也支持 pipenv 哦，如果想完全擋掉的話可以<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-python-requirements#pipenv-support-sparklescakesparkles">參考</a></p>
+</blockquote>
+<h1 id="更改設定檔"><a href="#更改設定檔" class="headerlink" title="更改設定檔"></a>更改設定檔</h1><p>置換以下內容至 serverless.yml，讓 WSGI 去處理路由。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service:</span> <span class="string">aws-wsgi-flask</span></span><br><span class="line"><span class="attr">provider:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">aws</span></span><br><span class="line">  <span class="attr">runtime:</span> <span class="string">python3.7</span></span><br><span class="line"><span class="attr">functions:</span></span><br><span class="line">  <span class="attr">api:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">wsgi_handler.handler</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">http:</span> <span class="string">ANY</span> <span class="string">/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">http:</span> <span class="string">ANY</span> &#123;<span class="string">proxy+</span>&#125;</span><br><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">wsgi:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">api.app</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-python-requirements</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-wsgi</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="測試-wsgi"><a href="#測試-wsgi" class="headerlink" title="測試 wsgi"></a>測試 wsgi</h1><p>因為我們不是單純只用 python 架設，所以要將 handler.py 替換成 api.py，並加入以下內容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>到這邊基礎設施都弄好了，但總不能部署才測試吧，所以這時候我們就出動</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless wsgi serve</span><br></pre></td></tr></table></figure>
+
+<p>透過 wsgi 去幫忙起一個 local server 供使用者可以測試，而且每次儲存都重新整理一次哦！詳細用法請<a target="_blank" rel="noopener" href="https://github.com/logandk/serverless-wsgi">參考</a><br><img src="https://i.imgur.com/S4CQJxI.png"></p>
+<p>接著用 postman 來測試一下<br><img src="https://i.imgur.com/ci26g4O.png"></p>
+<p>燈燈，hello world 出來了～</p>
+<p>最後也是最重要的一個步驟『部署』<br>只是說部署前需要有 AWS 的 secret key &amp; token</p>
+<h1 id="建立-AWS-存取金鑰"><a href="#建立-AWS-存取金鑰" class="headerlink" title="建立 AWS 存取金鑰"></a>建立 AWS 存取金鑰</h1><p>首先要先有個 AWS 帳號(廢話) ，如果沒有綁定信用卡記得去綁定才能繼續，接下來就可以去就可以去建立鑰匙囉！<br><img src="https://i.imgur.com/JOgIjXQ.png"><br>如上圖，按下紅色框框的部分，接著按箭頭指的按鈕，就會建立一個我們要的金鑰囉！<br><img src="https://i.imgur.com/A34OlY5.png"><br>如上圖所示，可以下載 key，AWS 不會幫忙保存 Secret key，若這視窗關掉的話 key 就不見了，所以使用者可以自行下載檔案保存，以免哪天要部署的時候找不到 key。<br>接著就將這兩個參數加入環境變數中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> AWS_ACCESS_KEY_ID=&lt;your-key-here&gt;</span><br><span class="line"><span class="built_in">export</span> AWS_SECRET_ACCESS_KEY=&lt;your-secret-key-here&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或是藉由 serverless 指令來幫忙加入參數：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless <span class="built_in">config</span> credentials <span class="comment">--provider aws --key &lt;your-key-here&gt; --secret &lt;your-secret-key-here&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>這步驟很重要哦，不然 AWS 不認識你就不給你上傳了 ?</p>
+</blockquote>
+<p>最後就是下 <code>serverlesss deploy</code>進行部署<br><img src="https://i.imgur.com/MK8Yks7.png"></p>
+<p>這邊 AWS 幫忙建立一個含有 SSL 的 domain，可以直接對這個網址下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">endpoints:</span> <span class="string">ANY</span> <span class="bullet">-</span> <span class="string">https://4omvn4z7re.execute-api.us-east-1.amazonaws.com/dev</span></span><br><span class="line">  <span class="string">ANY</span> <span class="bullet">-</span> <span class="string">https://4omvn4z7re.execute-api.us-east-1.amazonaws.com/dev/&#123;proxy+&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>接著把網址丟到瀏覽器上來試試看<br><img src="https://i.imgur.com/tptNSd4.png"><br>出現 <code>hello world</code>就成功囉！</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/%E4%BD%BF%E7%94%A8-serverless-line-message-api-%E5%9C%A8-aws-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-echo-bot-1e3e785a2a01">使用 Serverless &amp; LINE Message API 在 AWS 上打造一個 Echo bot</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/cli-reference/">sls cli 相關參數</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/">Serverless</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/serverless/serverless">Serverless Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/guide/quick-start/">serverless install</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-wsgi/">serverless wsgi</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-python-requirements/">requirements.txt</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/16/Day1-serverless-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day1 - serverless 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-16 06:09:23" itemprop="dateCreated datePublished" datetime="2019-09-16T06:09:23+00:00">2019-09-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/abW5lFB.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)</p>
+<hr>
+<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。</p>
+<p>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login-Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～</p>
+<p>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！</p>
+<p>serverless.yaml 是該專案的設定檔，可以把它想像成是 CloudFormation 的 wrapper，事實上也的確是這樣，serverless 背後會把他轉成 CloudFormation 的 template 去發佈。這個設定檔是 serverless 的精髓所在，一切有關 API Gateway 和 Lambda 的設定都在這邊，而底層所需要的資源，他都幫你配置好了，不需要操心。 <a target="_blank" rel="noopener" href="https://medium.com/kkstream/%E7%95%B6-aws-api-gateway-lambda-golang-%E9%81%87%E4%B8%8A-ci-cd-1a3b3334ebc">ref</a></p>
+<hr>
+<h1 id="Cold-start-問題"><a href="#Cold-start-問題" class="headerlink" title="Cold start 問題"></a>Cold start 問題</h1><p>依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。</p>
+<p>如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 ?，所以這部分就別擔新大力地給他用下去!</p>
+<p><img src="https://i.imgur.com/hC1Dgz4.png"></p>
+<h1 id="AWS-Lambda-限制"><a href="#AWS-Lambda-限制" class="headerlink" title="AWS Lambda 限制"></a>AWS Lambda 限制</h1><p><img src="https://i.imgur.com/mC7Y9XY.png"></p>
+<h1 id="安裝與使用"><a href="#安裝與使用" class="headerlink" title="安裝與使用"></a>安裝與使用</h1><p><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless.yaml 的設定參考</a><br><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/guide/variables/">serverless.yaml 的變數傳遞</a></p>
+<hr>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>接下來會是使用 Serverless 這個<strong>框架</strong>去實作的，使用的語言為 Python，至於為什麼會選它呢，最主要原因還是在官網上有很多 <a target="_blank" rel="noopener" href="https://serverless.com/plugins/">plugin</a> 可以用 ( NodeJS &amp; Python )，開發時資源相對多，接著是 AWS Lambda 的 Code-start 最快的就屬於 NodeJS &amp; Python 了，而我原本就是寫 Ruby 來的，自然就選一個寫法相近的語言啦(好像有點牽強)，如果說你想了解 runtimes 相關的問題的話可以參考<a target="_blank" rel="noopener" href="https://medium.com/the-theam-journey/benchmarking-aws-lambda-runtimes-in-2019-part-i-b1ee459a293d">這篇</a>。</p>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><ul>
+<li>MacOS 10.14.6</li>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/zh-tw/download/">npm</a> 6.9.0</li>
+<li><a target="_blank" rel="noopener" href="https://www.python.org/downloads/">python</a> 3.7.3</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/serverless/serverless">Serverless 套件(框架)</a> 1.45.1</li>
+</ul>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%84%A1%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%88%E7%AE%97">Serverless wiki</a></li>
+<li><a target="_blank" rel="noopener" href="https://denny.qollie.com/2016/05/22/serverless-simple-crud/">Serverless 優缺點</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/limits.html">AWS Lambda 限制</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/12/Chatbot-meetup-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/12/Chatbot-meetup-12/" class="post-title-link" itemprop="url">Chatbot meetup #12 心得分享 - 2019/09/17</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-12 06:52:43" itemprop="dateCreated datePublished" datetime="2019-09-12T06:52:43+00:00">2019-09-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次小聚是 COSCUP 之後的第一場，趁著熱血玩兩個大型研討會的空檔舉辦了這次的小聚，先感謝各位的參與，別忘了定期關注社群，我們會在上面放出第一手 chatbot 小聚消息。<br><a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/?ref=bookmarks">Chatbot Developers Taiwan</a></p>
+<h1 id="小聚開始"><a href="#小聚開始" class="headerlink" title="小聚開始"></a>小聚開始</h1><p>開場由 Evan Lin 為大家帶來 LINE 的第一手消息，首先是 LINE 不在信義區啦(抓錯重點)，是 Flex message 更新啦 ，如下圖所示，他可以做出更多種不同的應用了，也有些實例可以供大家參考 🎉</p>
+<p><img src="https://i.imgur.com/sxEd0Fd.png"></p>
+<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-flex-messages/?source=post_page-----65999085f029----------------------">Flex Messages</a><br>另外出了一個模擬器，如果再使用 Flex message 不是太熟悉整個主體的話可以參考 ⬇️，目前還在 beta 階段，若有問題直接寫信去 “問候“ 一下 🤣<br><a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx/">Flex Message Simulator</a></p>
+<blockquote>
+<p>中文版的文件也上線了，可以到官網去搜尋哦！</p>
+</blockquote>
+<h1 id="議程"><a href="#議程" class="headerlink" title="議程"></a>議程</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1QS1Esc-kvPK2x-Ys1oS4ucWVQOOggcEUxbnj3V1vi_I/edit#slide=id.p">簡報連結</a></p>
+</blockquote>
+<p>第一位由 LAE — 郭冠宏 (ggm)為我們介紹 Confacts 訊息查證系統，在裡頭把使用者分為兩類</p>
+<ul>
+<li>收消息的人 🙋‍♂️</li>
+<li>編輯訊息的人 👨‍💻</li>
+</ul>
+<p>在上面看得到的資料都是透過 「工人智慧」誕生的，所以看到每一個真假消息都要歸功於這些編輯們 🎉<br>而 Confacts 也秉持的 g0v 開放原始碼的精神把東西都 open，供大家去使用，像是 美玉姨 以及 趨勢科技防詐達人 都是使用他們的資料庫建立出來的，如果有需要請去找 GGM 大大～<br>上次參加 g0v 小聚有稍微了解 Confacts 是做什麼的，聽到這次的講題就讓我更深入了解整個運作流程了，光想到要控制狀態就覺得苦惱，也因 Confacts 讓我瞭解到更多詳細流程～以下是他們的網站，討厭看到人家亂轉發消息嗎？直接加入消息並一起打造工人智慧的平台～<br>了解更多: <a target="_blank" rel="noopener" href="https://cofacts.g0v.tw/">https://cofacts.g0v.tw</a></p>
+<hr>
+<p>接著由 酮好的創辦人 撒景賢 為我們帶來 聊天機器人與社群經營，主要是透過機器人來幫忙定時推播訊息給讓使用者下單後會收到提醒訊息而不會跑單，也建議大家把機器人就定義他為機器人，別讓使用者誤會他是一個活生生的人，要定義好自己的機器人取向，最後提到了一個問題就是他認為工程師的毛病就是想要產品做完才去找市場，可能的意思是且戰且走(?)，或許直接吸收市場的經驗也是個不錯的方法(筆記)。</p>
+<hr>
+<p>再來就是台北商業大學的 溫明輝 教授為我們帶來 商用聊天機器人 UX 的十三種設計原則</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/uxerlab/13-heuristics-for-commercial-chatbot-ux-design-58c1aa191c77">商用聊天機器人 UX 的 13 個設計原則 (heuristics)</a></p>
+</blockquote>
+<p>首先介紹了微股力與記帳雞上面應用中的實例以及一些與使用者互動的案例分享，兩隻機器人都被 LINE 收為官方帳號囉！有興趣的朋友可以去搜尋一下～ 🔍</p>
+<ol>
+<li>確認目標族群的關鍵需求：要找到用戶滾動增長的點</li>
+<li>APP 的成功是無法直接複製的：找到 app 上的缺點去卡市場定位點。</li>
+<li>人們可能並不想「聊天」：這邊分享的案例是讓 記帳雞 出來湊人鬧目的是讓使用者記得他並去引導記帳 。</li>
+<li>擬人化 vs 機器主張定位：若在一開始實作時是以特定主題去做開發的話就該讓他是對應功能機器人，別想著機器人可以做原本的事又要去回應使用者的任何話。</li>
+<li>對話是互動並不限於對話(dialog)：有時候適時地在圖片上加入一些訊息也能讓使用者去自然觸擊。</li>
+<li>讓使用者隨時握有主導權：因為人們可以隨時關掉它，就也意味著使用者的抗拒心不會那麼大，主要還是別讓使用者封鎖他～</li>
+<li>不一眛追求介面的簡潔性：根本的需求滿足之後使用者還是會去用，把互動愉悅感弄出來，這邊例子是放在群組使用久了，有些使用者會自然地去記憶這他的指令。</li>
+<li>考量對話訊息的時間堆疊：使用者因為訊息過多而演變成去點訊息已成敷衍的行為了。</li>
+<li>避免一視同仁的廣播訊息：這邊分享的做法是透過工具去紀錄使用者的互動軌跡，且每個每個感應區塊都會有相對應的 tag，當後台在準備做推薦時可以針對分眾去做對應內容的推播。</li>
+<li>用數據驅動的同理心：將機器人加入群組並紀錄使用者打過的指令，當今天已經封鎖的使用者在特定情況下看到群組裡面有其他使用者在打相關指令時或許會勾引出以前的興趣藉此解除封鎖並回歸。</li>
+<li>用 UI 來補償 AI 的能力極限：藉由專家寫的文章以及當使用者點選到特定的內容時會直接把文章透過 LINE 嵌在訊息下方，讓使用者透過 UI 去看到相關內容，讓他看起來有點類似 AI。</li>
+<li>個人化是 chatbot UX 極致：或許是因為客製化的關係所以當然個人化是最好的 🤣</li>
+<li>chatbot 是無所不在的意識：隨著運算越來越快，人可以隨心所欲去取用環境資訊，需要有個個人化服務，就能透過 chatbot 來搜集並歸納出對應的訊息內容。</li>
+</ol>
+<h1 id="閃電秀"><a href="#閃電秀" class="headerlink" title="閃電秀"></a>閃電秀</h1><p>最期待的其中一個部分就是閃電秀啦，因為每次閃電秀不僅可以展謝自己的練習成果，也可以發現到其他使用者對於同樣開發內容所想出不一樣的應用！<br>第一個由 斑斑 為大家帶來市容幫手，主要是因為現在各種公家機關幾乎都用 LINE 在做聯繫，但一個里長擁有上百個群組會造成很多收集訊息上的困擾，那這邊講者就希望透過提案的方式來尋求參與者一起參與這個提案，有興趣的可以參考一下他的簡報哦！</p>
+<p>接著就是由小弟我帶來的閃電秀，這次主題是使用 kamigo 打造的一個紀錄健身記錄的機器人，透過 Restful 格式的內容以及對應網址的樣式做出一個類似網頁版的機器人來記錄成績，以下是我的簡報以及 Github，有興趣可以參考一下 😃</p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/jmxmRbp1QcYgHB" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/JiaYuLin6/muscle-man-light-talk-20190917-in-chatbottw" title="Muscle man light talk 20190917 in chatbotTW" target="_blank">Muscle man light talk 20190917 in chatbotTW</a> </strong> from <strong><a href="https://www.slideshare.net/JiaYuLin6" target="_blank">Jia Yu Lin</a></strong> </div>
+> [louis70109/muscle_man](https://github.com/louis70109/muscle_man)
+
+<p>這是一個基於 kamigo 實作 LINE bot 來紀錄重訓數據的 肌肉仔 聊天機器人 在健身的過程中飲食固然重要，但往往訓練的人都是透過通靈的方法來選取適合自己的訓練重量，而透過數據的記載則是突破不可或缺的因素，因此產生了這個…</p>
+<p>再來由 Fly Chang 帶來的在宅醫療服務，主要是幫助各地需要居家醫療的人讓他們有資源可以透過地圖的方式去找到，並想整合機器人提供在宅醫療診所情報、長期照護、藥物使用、衛教資訊…等等的資訊，有興趣的朋友可以點選以下網址去觀看哦！<br>台灣在宅支援診所聯盟<br><a target="_blank" rel="noopener" href="https://i.hsca.me/?source=post_page-----65999085f029----------------------">HSCA 在宅支援診所聯盟</a>是秉持開放、共享、共學精神的網路平台社群。 資源地圖邀請在宅醫療團隊提供服務資訊，讓診所服務可以變得更透明、更公開，產生正面的循環。</p>
+<p>最後由 kevin 介紹一下有關於 dialogflow 串接 LINE bot 的簡單介紹，並順便推廣了 voice hackthon，有興趣的朋友可以參考一下哦</p>
+<p>若是 dialogflow+LINE bot 可以參考我之前寫的文章<br><a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/chatbot-taichung-2-%E5%B7%A5%E4%BD%9C%E5%9D%8A%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB-bc964fdc07c3">Chatbot Taichung #2 工作坊心得分享</a></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然每次下班都從台中直接殺上台北辦小聚很累，但往往在小聚結束時總是收穫滿滿，因為大家的熱情交流讓我學到了不少東西，謝謝各位的支持與參與，小弟拜託大家有報名要來啊～看在火山孝子的份上(咦？)就來參加吧 🙏<br>Chatbot TW 很樂意接收到不同的意見，若有好的建立不好意思公開可以私訊我哦！很樂意為大家解答 😁</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

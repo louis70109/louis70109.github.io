@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言很開心能參加到梅竹黑客松的賽前企業工作坊，為了能夠讓各位學生朋友更快速上手 LIFF(LINE Front-end Framework)，並使用來打造更 WoW 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梅竹黑客松賽前企業工作坊 - LIFF shareTargetPicker">
+<meta property="og:url" content="https://nijialin.com/2020/10/21/20201017-meichu-workshop/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言很開心能參加到梅竹黑客松的賽前企業工作坊，為了能夠讓各位學生朋友更快速上手 LIFF(LINE Front-end Framework)，並使用來打造更 WoW 的">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2020/target-picker-sample.PNG">
+<meta property="article:published_time" content="2020-10-21T06:19:23.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:04:15.008Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="LIFF">
+<meta property="article:tag" content="shareTargetPicker">
+<meta property="article:tag" content="梅竹黑客松">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2020/target-picker-sample.PNG">
+
+<link rel="canonical" href="https://nijialin.com/2020/10/21/20201017-meichu-workshop/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>梅竹黑客松賽前企業工作坊 - LIFF shareTargetPicker | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/10/21/20201017-meichu-workshop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          梅竹黑客松賽前企業工作坊 - LIFF shareTargetPicker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-10-21 06:19:23" itemprop="dateCreated datePublished" datetime="2020-10-21T06:19:23+00:00">2020-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>很開心能參加到梅竹黑客松的賽前企業工作坊，為了能夠讓各位學生朋友更快速上手 LIFF(LINE Front-end Framework)，並使用來打造更 WoW 的應用服務，因此在這天我們則找到 UIT(a.k.a 前端)部門專業的同仁 - Coke 帶領學生們來做實作相關內容，讓大家更了解 LIFF 以及 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/liff/#share-target-picker">shareTargetPicker</a> 個別是什麼、如何實作並且能應用在什麼地方，以下就來一步一步來介紹。</p>
+<span id="more"></span>
+
+<h1 id="LINE-Front-end-Framework"><a href="#LINE-Front-end-Framework" class="headerlink" title="LINE Front-end Framework"></a><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/liff/overview/">LINE Front-end Framework</a></h1><script async class="speakerdeck-embed" data-slide="4" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>LIFF 是 LINE 提供的一個前端框架，主要是為了讓大家可以更快速的整合前端服務並創造更多更特別應用於 LINE App 上。</p>
+<script async class="speakerdeck-embed" data-slide="6" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>LIFF 良好的整合讓大家可以快速應用以下的內容：</p>
+<ul>
+<li>LINE Login</li>
+<li>JavaScript SDK</li>
+<li>User Profile</li>
+<li>Message API</li>
+</ul>
+<h2 id="Part-1-LIFF-starter"><a href="#Part-1-LIFF-starter" class="headerlink" title="Part 1 - LIFF starter"></a>Part 1 - LIFF starter</h2><script async class="speakerdeck-embed" data-slide="8" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>首先從 LINE 官方的 repo - <a target="_blank" rel="noopener" href="https://github.com/line/line-liff-starter">line-liff-starter</a> Fork 至自己的 GitHub 帳號上，接著在 README 下方的 Heroku 部署按鈕會進入到 Heroku 的部署頁面</p>
+<blockquote>
+<p>在按下這<strong>部署按鈕</strong>之前必須先註冊 <a target="_blank" rel="noopener" href="https://www.heroku.com/">Heroku</a> 的帳號，否則會在註冊完成後回來時已經遺失原先專案幫忙設定的 Config，因為註冊跳轉回來時 Config 已經被清除了。(當天許多同學有類似的問題)</p>
+</blockquote>
+<script async class="speakerdeck-embed" data-slide="12" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>待建立完成後按下 <code>View</code> 進去後會看到錯誤訊息，代表這一步驟成功了。接著就是到 <a target="_blank" rel="noopener" href="https://developers.line.biz/console">LINE Developer Console</a> 註冊 LIFF 相關的 Channel。</p>
+<script async class="speakerdeck-embed" data-slide="15" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>首先需要先建立 <code>Provider</code>，白話來說就是服務提供商的名稱，這邊就是讓同學們可以以自己的黑客松隊伍名稱取名。</p>
+<script async class="speakerdeck-embed" data-slide="17" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>建立完 Provider 之後就要接著建立 LINE Login channel，因為 LIFF 是基於 LINE Login 所實作的一個整合服務應用的前端框架，讓大家可以在上面更有效的整合服務於 LINE 上。</p>
+<p>這部分則是將<code>名稱</code>以及<code>描述</code>填寫清楚後即可建立 channel。(上面也會有敘述 <code>Provider</code> 是誰)</p>
+<script async class="speakerdeck-embed" data-slide="18" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這邊 Coke 也詳細解釋剛剛所填寫的內容全都會在接下來使用者第一次使用時認證所需頁面會跳出來的資訊。</p>
+<script async class="speakerdeck-embed" data-slide="19" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著來到 Login channel 裡面的 LIFF 頁籤中選擇 <code>Add</code> 建立第一個 LIFF 頁面(page)。</p>
+<script async class="speakerdeck-embed" data-slide="20" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這一頁當中的需要打勾的 checkbox 一定要按照上面打勾，現場就有許多同學沒有打勾到 <code>chat_message.write</code> 導致訊息無法送出而找不出問題，這邊要詳細確認才行！</p>
+<p>LIFF size 有分為以下三種：</p>
+<ul>
+<li>Full</li>
+<li>Tall</li>
+<li>Compact</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="23" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>建立到下方之後會發現有個 <code>Bot link</code> 的選項，若你選擇 <code>normal</code> 時則會在下方看到有一個 <strong>Add friend</strong> 的按鈕，反之選擇 <code>aggressive</code> 實則會在 Allow 之後跳出一個加好友的選項讓使用者選擇。這邊就看各位開發者應用的場景去選擇囉！</p>
+<script async class="speakerdeck-embed" data-slide="25" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>畢竟這次 LINE 工作坊以 <code>shareTargetPicker</code> 這個強大且可以發送 Flex Message 的 API 作為主軸，因此這邊就提醒大家若要使用這個獨家功能的話，一定要<code>打開按鈕</code>才可以使用！</p>
+<script async class="speakerdeck-embed" data-slide="27" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這部分 Coke 提醒大家剛剛建立的 LIFF 是會幫忙轉址到對應的 Endpoint URL 上，值得注意的是若你在 LIFF URL 後面加上不同的路徑以及參數時，會如投影片所敘述的方式去產生最終的 Endpoint URL，若對這部分還是不甚了解的話可以參考 - <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/new-liff-url-infomation/">您需要了解有關新 LIFF URL 的所有資訊</a> 文章敘述。</p>
+<script async class="speakerdeck-embed" data-slide="28" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>待各位建立完後接著就複製 LIFF id 並回到 Heroku 的頁面上。</p>
+<script async class="speakerdeck-embed" data-slide="30" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>從你剛剛建立的機器名稱(ex: example-1)點進去後按到 <code>settings</code> ➡️ <code>Reveal Config Vars</code> 並對應欄位輸入：</p>
+<ul>
+<li>Key: <code>MY_LIFF_ID</code></li>
+<li>Value: 剛剛複製的 LIFF ID</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="32" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>加入後按下 <code>Open app</code> 的按鈕就會看到以上畫面，若在這部還是沒出現的話請往前檢查是否有哪一個步驟遺漏了。</p>
+<script async class="speakerdeck-embed" data-slide="35" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>因為我們的服務接下來就是開給其他人使用，因此你的 LINE Login channel 就必須要 <code>publish</code> 才行喔！</p>
+<script async class="speakerdeck-embed" data-slide="36" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>接著就可以把剛剛建立的 LIFF 頁面的網址貼到任意聊天室上，並用手機點下來試玩看看 starter 是否有成功。</p>
+<h3 id="Flex-Message"><a href="#Flex-Message" class="headerlink" title="Flex Message"></a>Flex Message</h3><script async class="speakerdeck-embed" data-slide="38" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Flex Message 是一個可以把訊息內容當作網頁排版的一個特殊(神奇)格式，在 shareTargetPicker 尚未問世之前，開發者皆只能使用 Chatbot 使用來回應相關內容，在問世後大幅提升使用的可行性，讓大家可以應用更多點子在 Chatbot 以及 LIFF 身上。</p>
+<p>想客製化 Flex Message 的樣板可使用 LINE 官方工具 - <a target="_blank" rel="noopener" href="https://developers.line.biz/flex-simulator/">Simulator</a></p>
+<blockquote>
+<p>需要注意 shareTargetPicker 功能只支援 LINE 10.13.0 以上的版本</p>
+</blockquote>
+<h2 id="Part-2-梗圖範例"><a href="#Part-2-梗圖範例" class="headerlink" title="Part 2 - 梗圖範例"></a>Part 2 - 梗圖範例</h2><p>相信經過前面的說明應該對三個平台操作方法有一定程度的熟悉，接下來這部分 Coke 做了一個 <a target="_blank" rel="noopener" href="https://github.com/cichien/liff-workshop-demo">Demo 專案</a>帶大家來操作，與前面的步驟一下先 Fork 至自己的 GitHub ➡️ 按下 README 裡的 Heroku Deploy 按鈕 ➡️ 建立一個新的 LIFF 頁面</p>
+<script async class="speakerdeck-embed" data-slide="45" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>使用 <code>git clone</code> 的方式把剛剛 Fork 的專案下載到本機上</li>
+<li>進入資料夾後 <code>npm install</code> 安裝相依套件</li>
+<li>將 <code>.env.example</code> 改成 <code>.env</code> 並且設定裡面的 <code>MY_LIFF_ID</code> 為你剛剛新建立的 LIFF 頁面</li>
+<li>步驟完成後就使用 <code>npm run dev</code> 啟動你的專案</li>
+<li>訪問 <a target="_blank" rel="noopener" href="https://localhost:8000/">https://localhost:8000</a><ul>
+<li>因為本地端有提供憑證給大家使用，請勿 ❌ 使用這個憑證於 production 環境</li>
+</ul>
+</li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="48" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>按造前面的步驟進入後會發現頁面只有簡單的內容，接著就 <code>git checkout liff-meme-fin</code> 切換到完成版的分支(沒有<code>fin</code>的分支是讓大家可以發揮)，重新使用 <code>npm run dev</code> 啟動專案則可以看到上面的畫面，將文字更改後按 Share 即可分享給 LINE 好友。</p>
+<p><img src="https://nijialin.com/images/2020/target-picker-sample.PNG"></p>
+<h3 id="liff-isApiAvailable"><a href="#liff-isApiAvailable" class="headerlink" title="liff.isApiAvailable"></a>liff.isApiAvailable</h3><script async class="speakerdeck-embed" data-slide="49" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這部分 Coke 也提醒大家在使用相關 API 時需要確認相關的判斷式來確保 API 有被正確使用。</p>
+<h3 id="liff-state-使用小技巧"><a href="#liff-state-使用小技巧" class="headerlink" title="liff.state 使用小技巧"></a>liff.state 使用小技巧</h3><script async class="speakerdeck-embed" data-slide="54" data-id="29f68cae8f9d4a80adde4ebf5a5fca5e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>在做前端時時常最怕內容還沒載入完成時使用者就開始操作上面元素，進而導致非預期錯誤(Exception)，這邊提供一個使用 JavaScript 的方式操作 CSS body 元素，若在 Query parameter 上有找到 <code>liff.state</code> 時則先不顯示頁面上的內容(display: none)，如此一來就不會有上述的問題產生了。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>相信經過這次梅竹黑客松的賽前企業工作坊可以讓學生朋友們除了深入了解 LIFF 這個整合度極高的框架以外，也了解如何使用 shareTargetPicker 做出許多有特色的應用，增添作品的可觀性，期待於 10&#x2F;24、25 可以發掘出學生朋友們更多更 WoW 的應用與作品。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/LIFF/" rel="tag"><i class="fa fa-tag"></i> LIFF</a>
+              <a href="/tags/shareTargetPicker/" rel="tag"><i class="fa fa-tag"></i> shareTargetPicker</a>
+              <a href="/tags/%E6%A2%85%E7%AB%B9%E9%BB%91%E5%AE%A2%E6%9D%BE/" rel="tag"><i class="fa fa-tag"></i> 梅竹黑客松</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/03/translate-cypress-liff-unit-test/" rel="prev" title="【翻譯】讓我們使用 Cypress 開始為 LIFF app 撰寫單元測試">
+      <i class="fa fa-chevron-left"></i> 【翻譯】讓我們使用 Cypress 開始為 LIFF app 撰寫單元測試
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/29/chatbot-meetup-24/" rel="next" title="LINE 開發社群計畫: 202010 Chatbot 社群心得分享">
+      LINE 開發社群計畫: 202010 Chatbot 社群心得分享 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LINE-Front-end-Framework"><span class="nav-number">2.</span> <span class="nav-text">LINE Front-end Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-1-LIFF-starter"><span class="nav-number">2.1.</span> <span class="nav-text">Part 1 - LIFF starter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Flex-Message"><span class="nav-number">2.1.1.</span> <span class="nav-text">Flex Message</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-2-%E6%A2%97%E5%9C%96%E7%AF%84%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">Part 2 - 梗圖範例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#liff-isApiAvailable"><span class="nav-number">2.2.1.</span> <span class="nav-text">liff.isApiAvailable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#liff-state-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">2.2.2.</span> <span class="nav-text">liff.state 使用小技巧</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

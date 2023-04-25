@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言常常在寫程式時沒搞清楚作用域時很容易留坑或邏輯混亂，因此花時間理解每個語言的作用域也很重要。 之前因為專案有踩過一些坑，而大家在看套件時很能很常看到類似以下的 code：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python】類別(Class)中的變數層級位置有差嗎？">
+<meta property="og:url" content="https://nijialin.com/2020/06/16/python-class-instance-level-diff/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言常常在寫程式時沒搞清楚作用域時很容易留坑或邏輯混亂，因此花時間理解每個語言的作用域也很重要。 之前因為專案有踩過一些坑，而大家在看套件時很能很常看到類似以下的 code：">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://media.istockphoto.com/photos/taiwan-on-map-picture-id153498409">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI4MXB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6MjE3cHg7aGVpZ2h0OjgxcHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjE3IDgxIiB3aWR0aD0iMjE3cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9FeGFtcGxlIj48cmVjdCBmaWxsPSIjRjFGMUYxIiBoZWlnaHQ9IjYwLjg5MDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjE5NiIgeD0iNyIgeT0iNyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjYyIiB4PSI3NCIgeT0iMjEuOTk1MSI+RXhhbXBsZTwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHgxPSI4IiB4Mj0iMjAyIiB5MT0iMjcuMjk2OSIgeTI9IjI3LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNTciIHg9IjEzIiB5PSI0NC4yOTIiPmNsYXNzX3ZhcmlhYmxlID0gIjEyMyI8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTg0IiB4PSIxMyIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiMTIzIjwvdGV4dD48L2c+PCEtLVNSQz1bb3FfQUlhcWtLTjJqSUNtam80ZGJXajhBTFdoOUVPZDVuVjViWUtNUFlLYjAwTGk1OUtDWk9vS2ExUGJ2bklNOVVTY2Y2NmUwXS0tPjwvZz48L3N2Zz4=">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI3NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6NDQxcHg7aGVpZ2h0Ojc0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNDQxIDc0IiB3aWR0aD0iNDQxcHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9zMSI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxOTYiIHg9IjciIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNiIgeD0iOTciIHk9IjIxLjk5NTEiPnMxPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIyMDIiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE1NyIgeD0iMTMiIHk9IjQ0LjI5MiI+Y2xhc3NfdmFyaWFibGUgPSAiMTIzIjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxODQiIHg9IjEzIiB5PSI2MC41ODg5Ij5pbnN0YW5jZV92YXJpYWJsZSA9ICIxMjMiPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9zMiI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxOTYiIHg9IjIzOCIgeT0iNyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE1IiB4PSIzMjguNSIgeT0iMjEuOTk1MSI+czI8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iMjM5IiB4Mj0iNDMzIiB5MT0iMjcuMjk2OSIgeTI9IjI3LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNTciIHg9IjI0NCIgeT0iNDQuMjkyIj5jbGFzc192YXJpYWJsZSA9ICIxMjMiPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE4NCIgeD0iMjQ0IiB5PSI2MC41ODg5Ij5pbnN0YW5jZV92YXJpYWJsZSA9ICI0NTYiPC90ZXh0PjwvZz48IS0tU1JDPVtvcV9BSWFxa0tJV3N2MmVzTEIxSUlDdjlCMndFQnFpaW9hbkNvYWJMaTVMR0NaR29MZUI4UFVPTGJvSmM5UVRZSWRGYkdxcW51WWVzbWNFQTRJdkpKNHBEYjAwMF0tLT48L2c+PC9zdmc+">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI3NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6NTIzcHg7aGVpZ2h0Ojc0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTIzIDc0IiB3aWR0aD0iNTIzcHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9zMSI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIyMzciIHg9IjciIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNiIgeD0iMTE3LjUiIHk9IjIxLjk5NTEiPnMxPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIyNDMiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyNSIgeD0iMTMiIHk9IjQ0LjI5MiI+Y2xhc3NfdmFyaWFibGUgPSAiSSBhbSBDTEFTUyAhISI8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTg0IiB4PSIxMyIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiMTIzIjwvdGV4dD48L2c+PGcgaWQ9ImVsZW1fczIiPjxyZWN0IGZpbGw9IiNGMUYxRjEiIGhlaWdodD0iNjAuODkwNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iMjM3IiB4PSIyNzkiIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNSIgeD0iMzkwIiB5PSIyMS45OTUxIj5zMjwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHgxPSIyODAiIHgyPSI1MTUiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyNSIgeD0iMjg1IiB5PSI0NC4yOTIiPmNsYXNzX3ZhcmlhYmxlID0gIkkgYW0gQ0xBU1MgISEiPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE4NCIgeD0iMjg1IiB5PSI2MC41ODg5Ij5pbnN0YW5jZV92YXJpYWJsZSA9ICI0NTYiPC90ZXh0PjwvZz48IS0tU1JDPVtvcV9BSWFxa0tJV3N2MmVzTEIxSUlDdjlCMndFQnFpaW9hbkNvYWJMaTVMR3liSDhwNUxtemQ0QzNiUEdMNUkyZ0NoQ0FvdjlwNGpFSEw1ZVE2SWluQ01MM3BORllBbE9ZMlpwWjcyUFBzOWdmV0cwXS0tPjwvZz48L3N2Zz4=">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI3NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6NTY5cHg7aGVpZ2h0Ojc0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTY5IDc0IiB3aWR0aD0iNTY5cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9zMSI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIyODMiIHg9IjciIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNiIgeD0iMTQwLjUiIHk9IjIxLjk5NTEiPnMxPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIyODkiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyNSIgeD0iMTMiIHk9IjQ0LjI5MiI+Y2xhc3NfdmFyaWFibGUgPSAiSSBhbSBDTEFTUyAhISI8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjcxIiB4PSIxMyIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiSSBhbSBTMSB2YXJpYWJsZSI8L3RleHQ+PC9nPjxnIGlkPSJlbGVtX3MyIj48cmVjdCBmaWxsPSIjRjFGMUYxIiBoZWlnaHQ9IjYwLjg5MDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjIzNyIgeD0iMzI1IiB5PSI3Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTUiIHg9IjQzNiIgeT0iMjEuOTk1MSI+czI8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iMzI2IiB4Mj0iNTYxIiB5MT0iMjcuMjk2OSIgeTI9IjI3LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyMjUiIHg9IjMzMSIgeT0iNDQuMjkyIj5jbGFzc192YXJpYWJsZSA9ICJJIGFtIENMQVNTICEhIjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxODQiIHg9IjMzMSIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiNDU2IjwvdGV4dD48L2c+PCEtLVNSQz1bb3FfQUlhcWtLSVdzdjJlc0xCMUlJQ3Y5QjJ3RUJxaWlvYW5Db2FiTGk1TEd5Ykg4cDVMbXpkNEMzYlBHTDVJMmdDaENBb3Y5cDRqRW5MR09SQVcwNHJGWXVpZzc2Y3g0TE1uNGJFNTZrMG10Q0pMSjBXMDBdLS0+PC9nPjwvc3ZnPg==">
+<meta property="article:published_time" content="2020-06-16T16:52:22.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:51.011Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Class level">
+<meta property="article:tag" content="Instance level">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://media.istockphoto.com/photos/taiwan-on-map-picture-id153498409">
+
+<link rel="canonical" href="https://nijialin.com/2020/06/16/python-class-instance-level-diff/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【Python】類別(Class)中的變數層級位置有差嗎？ | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/06/16/python-class-instance-level-diff/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Python】類別(Class)中的變數層級位置有差嗎？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-06-16 16:52:22" itemprop="dateCreated datePublished" datetime="2020-06-16T16:52:22+00:00">2020-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://media.istockphoto.com/photos/taiwan-on-map-picture-id153498409"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>常常在寫程式時沒搞清楚作用域時很容易留坑或邏輯混亂，因此花時間理解每個語言的作用域也很重要。</p>
+<p>之前因為專案有踩過一些坑，而大家在看套件時很能很常看到類似以下的 code：</p>
+<span id="more"></span>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span>:</span></span><br><span class="line">    CLIENT_ID = os.environ.get(<span class="string">&#x27;LINE_NOTIFY_CLIENT_ID&#x27;</span>)</span><br><span class="line">    CLIENT_SECRET = os.environ.get(<span class="string">&#x27;LINE_NOTIFY_CLIENT_SECRET&#x27;</span>)</span><br><span class="line">    REDIRECT_URI = os.environ.get(<span class="string">&#x27;LINE_NOTIFY_REDIRECT_URI&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,</span></span></span><br><span class="line"><span class="function"><span class="params">                 client_id=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 client_secret=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 redirect_uri=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.client_id = client_id <span class="keyword">or</span> self.CLIENT_ID</span><br><span class="line">        self.client_secret = client_secret <span class="keyword">or</span> self.CLIENT_SECRET</span><br><span class="line">        self.redirect_uri = redirect_uri <span class="keyword">or</span> self.REDIRECT_URI</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/louis70109/lotify/blob/master/lotify/client.py#L9">Lotify</a> 當中的片段</p>
+</blockquote>
+<p>因時常會搞不清楚為什麼參數會到處定義，接下來就介紹一下 Class 與 Instance 層級變數的差異。</p>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以上述例子而言，在 Class 宣告完後會看到 CLIENT_ID、CLIENT_SECRET、REDIRECT_URI 這三個參數，在這層的變數就是 <code>&quot;Class Level&quot;</code>，而在 __init__ 下面三個變數 self.client_id、self.client_secret、self.redirect_url 就是待會會提到的 <code>&quot;Instance Level&quot;</code>。</p>
+<h2 id="Class-Level"><a href="#Class-Level" class="headerlink" title="Class Level"></a>Class Level</h2><p>CLIENT_ID、CLIENT_SECRET、REDIRECT_URI 這三個參數是被所有有初始化 Client 的 Instances 使用，也就是說當數值改變時其他的 Instance 裡的 Class Level 參數也會跟著改變，在這層操作參數時要特別小心，因為只要改動到值是大家一起改，所以說若有一個地方給錯就其他的 Instance 都會一起錯。</p>
+<h2 id="Instance-Level"><a href="#Instance-Level" class="headerlink" title="Instance Level"></a>Instance Level</h2><p>Instance 作用域只會在初始化後的那個物件身上，每個物件的<code>參數</code>間都是獨立的，而 Python 裡面定義的參數位置就在 __init__ 裡面，因此會大部分的程式碼定義的層級幾乎都會在 Instance Level。</p>
+<blockquote>
+<p>若在這還是看不懂的話現在會有實作範例。</p>
+</blockquote>
+<h2 id="Bonus-self-到底在指誰？"><a href="#Bonus-self-到底在指誰？" class="headerlink" title="Bonus - self 到底在指誰？"></a>Bonus - self 到底在指誰？</h2><p>初學的一定很容易搞混這個部分，因為兩個層級基本上是共用同一個 <code>self</code>，因此在變數的宣告上 class level 我一般習慣用全大寫，意指在 Class level 這層的「全域變數」，而小寫則是在 Instance level 中的「區域變數」，這個習慣基本上在每個語言間都是通用，因此在定義變數時若發現大小寫時記得要注意喔！</p>
+<h1 id="實作一個範例"><a href="#實作一個範例" class="headerlink" title="實作一個範例"></a>實作一個範例</h1><p>製作一個 Example 的類別，包含著 <code>class_variable</code> 以及 <code>instance_variable</code> 兩個變數，其中 <code>instance_variable</code> 首次附值若初始化沒定義 instance_variable 的話則為 class_variable 的值 <code>123</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span>:</span></span><br><span class="line">     class_variable = <span class="number">123</span></span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, instance_variable=<span class="literal">None</span></span>):</span></span><br><span class="line">         self.instance_variable = instance_variable <span class="keyword">or</span> <span class="built_in">type</span>(self).class_variable</span><br></pre></td></tr></table></figure>
+
+<p>Example 的類別(Class)物件值如下：</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI4MXB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6MjE3cHg7aGVpZ2h0OjgxcHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjE3IDgxIiB3aWR0aD0iMjE3cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9FeGFtcGxlIj48cmVjdCBmaWxsPSIjRjFGMUYxIiBoZWlnaHQ9IjYwLjg5MDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjE5NiIgeD0iNyIgeT0iNyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjYyIiB4PSI3NCIgeT0iMjEuOTk1MSI+RXhhbXBsZTwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHgxPSI4IiB4Mj0iMjAyIiB5MT0iMjcuMjk2OSIgeTI9IjI3LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNTciIHg9IjEzIiB5PSI0NC4yOTIiPmNsYXNzX3ZhcmlhYmxlID0gIjEyMyI8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTg0IiB4PSIxMyIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiMTIzIjwvdGV4dD48L2c+PCEtLVNSQz1bb3FfQUlhcWtLTjJqSUNtam80ZGJXajhBTFdoOUVPZDVuVjViWUtNUFlLYjAwTGk1OUtDWk9vS2ExUGJ2bklNOVVTY2Y2NmUwXS0tPjwvZz48L3N2Zz4='>
+
+<p>接著宣告<code>s1</code> &amp; <code>s2</code> 兩個 Instance 來做實驗：</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI3NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6NDQxcHg7aGVpZ2h0Ojc0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNDQxIDc0IiB3aWR0aD0iNDQxcHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9zMSI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxOTYiIHg9IjciIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNiIgeD0iOTciIHk9IjIxLjk5NTEiPnMxPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIyMDIiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE1NyIgeD0iMTMiIHk9IjQ0LjI5MiI+Y2xhc3NfdmFyaWFibGUgPSAiMTIzIjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxODQiIHg9IjEzIiB5PSI2MC41ODg5Ij5pbnN0YW5jZV92YXJpYWJsZSA9ICIxMjMiPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9zMiI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxOTYiIHg9IjIzOCIgeT0iNyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE1IiB4PSIzMjguNSIgeT0iMjEuOTk1MSI+czI8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iMjM5IiB4Mj0iNDMzIiB5MT0iMjcuMjk2OSIgeTI9IjI3LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNTciIHg9IjI0NCIgeT0iNDQuMjkyIj5jbGFzc192YXJpYWJsZSA9ICIxMjMiPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE4NCIgeD0iMjQ0IiB5PSI2MC41ODg5Ij5pbnN0YW5jZV92YXJpYWJsZSA9ICI0NTYiPC90ZXh0PjwvZz48IS0tU1JDPVtvcV9BSWFxa0tJV3N2MmVzTEIxSUlDdjlCMndFQnFpaW9hbkNvYWJMaTVMR0NaR29MZUI4UFVPTGJvSmM5UVRZSWRGYkdxcW51WWVzbWNFQTRJdkpKNHBEYjAwMF0tLT48L2c+PC9zdmc+'>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s1 = Example()</span><br><span class="line">s2 = Example(<span class="number">456</span>)</span><br><span class="line"></span><br><span class="line">s1.class_variable     <span class="comment"># 123</span></span><br><span class="line">s2.class_variable     <span class="comment"># 123</span></span><br></pre></td></tr></table></figure>
+
+<p>此時因為初始化所以值都會 <code>123</code>，接下來直接改 Example 的 class 為 <code>&quot;I am CLASS !!&quot;</code>：</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI3NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6NTIzcHg7aGVpZ2h0Ojc0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTIzIDc0IiB3aWR0aD0iNTIzcHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9zMSI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIyMzciIHg9IjciIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNiIgeD0iMTE3LjUiIHk9IjIxLjk5NTEiPnMxPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIyNDMiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyNSIgeD0iMTMiIHk9IjQ0LjI5MiI+Y2xhc3NfdmFyaWFibGUgPSAiSSBhbSBDTEFTUyAhISI8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTg0IiB4PSIxMyIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiMTIzIjwvdGV4dD48L2c+PGcgaWQ9ImVsZW1fczIiPjxyZWN0IGZpbGw9IiNGMUYxRjEiIGhlaWdodD0iNjAuODkwNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iMjM3IiB4PSIyNzkiIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNSIgeD0iMzkwIiB5PSIyMS45OTUxIj5zMjwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHgxPSIyODAiIHgyPSI1MTUiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyNSIgeD0iMjg1IiB5PSI0NC4yOTIiPmNsYXNzX3ZhcmlhYmxlID0gIkkgYW0gQ0xBU1MgISEiPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE4NCIgeD0iMjg1IiB5PSI2MC41ODg5Ij5pbnN0YW5jZV92YXJpYWJsZSA9ICI0NTYiPC90ZXh0PjwvZz48IS0tU1JDPVtvcV9BSWFxa0tJV3N2MmVzTEIxSUlDdjlCMndFQnFpaW9hbkNvYWJMaTVMR3liSDhwNUxtemQ0QzNiUEdMNUkyZ0NoQ0FvdjlwNGpFSEw1ZVE2SWluQ01MM3BORllBbE9ZMlpwWjcyUFBzOWdmV0cwXS0tPjwvZz48L3N2Zz4='>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  直接改 Example 類別的值</span></span><br><span class="line">Example.class_variable = <span class="string">&quot;I am CLASS !!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  印出 class_variable &amp; instance_variable</span></span><br><span class="line">print(s1.class_variable)     <span class="comment"># &#x27;I am CLASS !!&#x27;</span></span><br><span class="line">print(s1.instance_variable)  <span class="comment"># 123</span></span><br><span class="line">print(s2.class_variable)     <span class="comment"># &#x27;I am CLASS !!&#x27;</span></span><br><span class="line">print(s2.instance_variable)  <span class="comment"># 456</span></span><br></pre></td></tr></table></figure>
+
+<p>從上述實驗中驗證了 class Level 層級的變數在 s1 以及 s2 這兩個 Instance 中是共用的，接著來實驗 Instance 層級的變數：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(s1.instance_variable)  <span class="comment"># 123</span></span><br><span class="line">print(s2.instance_variable)  <span class="comment"># 456</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 s1 的值</span></span><br><span class="line">s1.instance_variable = <span class="string">&quot;I am S1 variable&quot;</span></span><br><span class="line"></span><br><span class="line">print(s1.instance_variable)  <span class="comment"># &quot;I am S1 variable&quot;</span></span><br><span class="line">print(s2.instance_variable)  <span class="comment"># 456</span></span><br></pre></td></tr></table></figure>
+
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI3NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6NTY5cHg7aGVpZ2h0Ojc0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTY5IDc0IiB3aWR0aD0iNTY5cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48ZyBpZD0iZWxlbV9zMSI+PHJlY3QgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI2MC44OTA2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIyODMiIHg9IjciIHk9IjciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNiIgeD0iMTQwLjUiIHk9IjIxLjk5NTEiPnMxPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIyODkiIHkxPSIyNy4yOTY5IiB5Mj0iMjcuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjIyNSIgeD0iMTMiIHk9IjQ0LjI5MiI+Y2xhc3NfdmFyaWFibGUgPSAiSSBhbSBDTEFTUyAhISI8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjcxIiB4PSIxMyIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiSSBhbSBTMSB2YXJpYWJsZSI8L3RleHQ+PC9nPjxnIGlkPSJlbGVtX3MyIj48cmVjdCBmaWxsPSIjRjFGMUYxIiBoZWlnaHQ9IjYwLjg5MDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjIzNyIgeD0iMzI1IiB5PSI3Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTUiIHg9IjQzNiIgeT0iMjEuOTk1MSI+czI8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iMzI2IiB4Mj0iNTYxIiB5MT0iMjcuMjk2OSIgeTI9IjI3LjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyMjUiIHg9IjMzMSIgeT0iNDQuMjkyIj5jbGFzc192YXJpYWJsZSA9ICJJIGFtIENMQVNTICEhIjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxODQiIHg9IjMzMSIgeT0iNjAuNTg4OSI+aW5zdGFuY2VfdmFyaWFibGUgPSAiNDU2IjwvdGV4dD48L2c+PCEtLVNSQz1bb3FfQUlhcWtLSVdzdjJlc0xCMUlJQ3Y5QjJ3RUJxaWlvYW5Db2FiTGk1TEd5Ykg4cDVMbXpkNEMzYlBHTDVJMmdDaENBb3Y5cDRqRW5MR09SQVcwNHJGWXVpZzc2Y3g0TE1uNGJFNTZrMG10Q0pMSjBXMDBdLS0+PC9nPjwvc3ZnPg=='>
+
+<p>從這實驗中能看到個別 Instance 之間的參數不會互相影響，因此再更改變數值前記得要先了解當前的層級在哪才不會失手改錯造成問題。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>Class 層級的變數很適合給<code>環境變數</code>、<code>系統參數</code>，通常這兩個值影響都會是整個專案，而 Instance 之間因為不會互相影響所以適用於獨立情境中，例如 <code>Model 定義</code>、<code>JSON 物件</code> 就很適合。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span>:</span></span><br><span class="line">    CLIENT_ID = os.environ.get(<span class="string">&#x27;LINE_NOTIFY_CLIENT_ID&#x27;</span>)</span><br><span class="line">    CLIENT_SECRET = os.environ.get(<span class="string">&#x27;LINE_NOTIFY_CLIENT_SECRET&#x27;</span>)</span><br><span class="line">    REDIRECT_URI = os.environ.get(<span class="string">&#x27;LINE_NOTIFY_REDIRECT_URI&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考 <a target="_blank" rel="noopener" href="https://github.com/louis70109/lotify/blob/master/lotify/client.py">Lotify 範例</a></p>
+</blockquote>
+<p>透過幾個簡單的例子也了解到變數在定義時的位置是<code>很重要的</code>，因此不管在寫套件或是專案時要注意一下變數的位置以防出問題喔！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/Class-level/" rel="tag"><i class="fa fa-tag"></i> Class level</a>
+              <a href="/tags/Instance-level/" rel="tag"><i class="fa fa-tag"></i> Instance level</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/13/learn-javascript-promise/" rel="prev" title="【Javascript】你知道你常用的 Promise 嗎?">
+      <i class="fa fa-chevron-left"></i> 【Javascript】你知道你常用的 Promise 嗎?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/21/why-i-need-lint/" rel="next" title="我從 Lint 中學到了什麼？">
+      我從 Lint 中學到了什麼？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-Level"><span class="nav-number">2.1.</span> <span class="nav-text">Class Level</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instance-Level"><span class="nav-number">2.2.</span> <span class="nav-text">Instance Level</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonus-self-%E5%88%B0%E5%BA%95%E5%9C%A8%E6%8C%87%E8%AA%B0%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">Bonus - self 到底在指誰？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E7%AF%84%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">實作一個範例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

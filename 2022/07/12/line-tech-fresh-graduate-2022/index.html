@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2021 屆的 TECH FRESH 在六月底時已經畢業囉！不管是繼續留下，抑或是生涯另有規劃，相信在 LINE 研發工程團隊中經歷的一切都會讓大家印象深刻。而除了日常的開發工作外，究竟在其他的工作時間 TECH FRESH 會經歷哪些活動呢？讓我們一探究竟！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？">
+<meta property="og:url" content="https://nijialin.com/2022/07/12/line-tech-fresh-graduate-2022/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="2021 屆的 TECH FRESH 在六月底時已經畢業囉！不管是繼續留下，抑或是生涯另有規劃，相信在 LINE 研發工程團隊中經歷的一切都會讓大家印象深刻。而除了日常的開發工作外，究竟在其他的工作時間 TECH FRESH 會經歷哪些活動呢？讓我們一探究竟！">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://engineering.linecorp.com/wp-content/uploads/2022/04/1-1024x768.jpeg">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/techpulse.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/ldm16/1.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/fb_blog.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/1-1.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/2-1.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/2-2.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/3.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/3-1.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/4.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/5.png">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/steve.gif">
+<meta property="og:image" content="https://nijialin.com/images/2022/tech-fresh-2022/TECH_FRESH.png">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2022-07-12T04:10:10.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:04:15.058Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="LINE TECH FRESH">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://engineering.linecorp.com/wp-content/uploads/2022/04/1-1024x768.jpeg">
+
+<link rel="canonical" href="https://nijialin.com/2022/07/12/line-tech-fresh-graduate-2022/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？ | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/07/12/line-tech-fresh-graduate-2022/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-07-12 04:10:10" itemprop="dateCreated datePublished" datetime="2022-07-12T04:10:10+00:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>2021 屆的 <a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/83">TECH FRESH</a> 在六月底時已經畢業囉！不管是繼續留下，抑或是生涯另有規劃，相信在 LINE 研發工程團隊中經歷的一切都會讓大家印象深刻。而除了日常的開發工作外，究竟在其他的工作時間 <a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/83">TECH FRESH</a> 會經歷哪些活動呢？讓我們一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="把握每次的曝光機會"><a href="#把握每次的曝光機會" class="headerlink" title="把握每次的曝光機會"></a>把握每次的曝光機會</h1><p>我們日常在工作中，有許多的研討會&#x2F;讀書會&#x2F;社群&#x2F;訓練&#x2F;社團…可以參加，一直以來我們都很鼓勵每位同仁多分享自己在日常生活的經驗(不僅限工作)，當然同學們也不例外啦！以下讓大家看看這一年來有參加哪些活動吧！</p>
+<h2 id="發揮你的創意！內部黑客松競賽"><a href="#發揮你的創意！內部黑客松競賽" class="headerlink" title="發揮你的創意！內部黑客松競賽"></a>發揮你的創意！<a href="(https://engineering.linecorp.com/zh-hant/blog/internal-hackathon-2021/)">內部黑客松競賽</a></h2><p><img src="https://engineering.linecorp.com/wp-content/uploads/2022/04/1-1024x768.jpeg"></p>
+<p>在 2021 十一月，舉辦了<a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/internal-hackathon-2021/">【AI For The New Normal】 LINE Taiwan Internal Hackathon 2021</a>，雖然當時因為疫情的關係有大多隊伍都於線上組隊&#x2F;討論，在十一月時也順利舉辦，以跨部門組隊為核心，讓每個隊伍可以在黑客松期間，認識到平時可能不會接觸到的同事！</p>
+<p>而這場活動當然也都有不同屆的 TECH FRESH 參與其中，不管最後成績如何，相信在過程中與跨部門同仁合作、各種應用發想的討論經驗都會是非常寶貴的！</p>
+<h2 id="年度研討會-登壇-TECHPULSE-2022"><a href="#年度研討會-登壇-TECHPULSE-2022" class="headerlink" title="年度研討會 - 登壇 TECHPULSE 2022"></a>年度研討會 - 登壇 <a target="_blank" rel="noopener" href="https://techpulse.line.me/">TECHPULSE 2022</a></h2><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/techpulse.png"></p>
+<p>過去在 2020 年時，大家還能線下聽精彩議程與交流，而在這次雖然只能透過線上直播的方式進行，而在這一年一度研討會當下則是大多同事&#x2F;同學初體驗，從 <mark>投稿-審核&#x2F;入選-簡報製作-講者訓練-行前演練-化妝-錄製</mark> 經過重重關卡，讓講者們可以表現最好的一面給螢幕前的各位，相信經過這次的經驗，同學們也體驗到研討會等級的準備過程，未來在各種分享會上都能借鏡這次的經驗，讓表現更上一層！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-techpluse-2022-session-throw-back/#line-tech-fresh-programhttpsmusic-twlinemeliveplayer73d6151e-159f-4435-a3ec-82481b27b6d6">【LINE TECHPLUSE 2022】議程回顧</a></li>
+</ul>
+<blockquote>
+<p>TECHPULSE 2022 - TECH FRESH session</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-c26eLPUuOI?start=240" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="社群活動-拉近同學與-LINE-的距離"><a href="#社群活動-拉近同學與-LINE-的距離" class="headerlink" title="社群活動 - 拉近同學與 LINE 的距離"></a>社群活動 - 拉近同學與 LINE 的距離</h2><p><img src="https://nijialin.com/images/2022/ldm16/1.jpg"></p>
+<p>日常大家會在各種技術社團看到 LINE 的相關同仁到處分享工作上開發的經驗，就連我們在公司內部也有大量的讀書會&#x2F;工作坊運作著，因此我們也會鼓勵所有的同學，進來 LINE 之後，要試著找到機會分享自己所學，別覺得自己只是新人就不敢分享，畢竟大家工作一陣子後，也需要不同角度的想法來碰撞出新的方向，因此不管在內部或外部，也希望大家踴躍分享！</p>
+<p>而以下則為 2021 同學們參加各種活動累積的內容，如果你也關注 <a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/83">TECH FRESH</a> 日常能做什麼，歡迎參考看看學長姐的經驗吧！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/show-you-my-wisdom-test-corner-32/">我的聰明，讓你知道 @ Test Corner 32</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/data-dev-team-tech-fresh-life-1/">資料工程團隊 TECH FRESH 實習生活分享</a></li>
+<li><a target="_blank" rel="noopener" href="http://ㄍhttps//engineering.linecorp.com/zh-hant/blog/data-dev-team-tech-fresh-life-2/">Data Dev Team 實習生在做什麼？LINE TECH FRESH 生活心得分享</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/qa-automation-engineer-line-shopping/">QA — Automation Engineer 日常都在做什麼？以 LINE SHOPPING 為例</a></li>
+</ul>
+<h1 id="我們畢業囉！TECH-FRESH-畢業分享會"><a href="#我們畢業囉！TECH-FRESH-畢業分享會" class="headerlink" title="我們畢業囉！TECH FRESH 畢業分享會"></a>我們畢業囉！TECH FRESH 畢業分享會</h1><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/fb_blog.png"></p>
+<blockquote>
+<p>古人常說:「如果不曝光分享讓更多知道你，沒有人知道你到底做了多少事。」</p>
+</blockquote>
+<p>最後，在大家在實習旅途的最後，內部舉辦了一年一度的 TECH FRESH 畢業分享，藉由這個內部公開活動，讓同學可以整理這一年來在工程部門的經驗，也因為 TA 來自大大小小的部門，在準備上就需要思考更多的面相，以下就分享一些畢業展上的內容給大家～</p>
+<h2 id="關於開發，可能會讓你很驚訝的-POINTS"><a href="#關於開發，可能會讓你很驚訝的-POINTS" class="headerlink" title="關於開發，可能會讓你很驚訝的 POINTS"></a>關於開發，可能會讓你很驚訝的 POINTS</h2><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/1.png"></p>
+<p>這組同學手氣非常好，抽組別時開抽就到了第一組，開場就由 Yi Han 打先鋒，介紹了 QA TECH FRESH 在 LINE SHOPPING 擔任的腳色與定位，分享了許多測試相關的機制與自動化的撇步，讓大家了解到實習生來到 QA 團隊其實也是可以學到非常多精實的內容！</p>
+<p><img src="https://nijialin.com/images/2022/tech-fresh-2022/1-1.png"></p>
+<p>另一方面由 Euni 介紹了如何研究開源 feature flagging 工具：Flagr 的一些技巧，並且分享如何文件化讓內部同仁未來可以更有效率地從文件中找到更多有用的資訊。而最後兩位透過對談的形式來分享一下實習中的一些甘苦談，讓 Yi Han 在畢業之餘也可以把更多的經驗傳承給 Euni，讓接下來實習的過程有個借鏡，學到更多更不宜樣的經驗！</p>
+<h2 id="歸剛欸！前端開發經驗談"><a href="#歸剛欸！前端開發經驗談" class="headerlink" title="歸剛欸！前端開發經驗談"></a>歸剛欸！前端開發經驗談</h2><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/2-1.png"></p>
+<p>接下來由 Jerry、JunBin 分享在做一些活動上的專案時，需要注意哪些細節，才能讓更多的用戶達到更好的體驗，這邊就以前陣子「澎湖花火節」來當作範例跟大家分享用到的前端小撇步，因為有許多支援性的問題(各種手機支援、瀏覽器)，當中也用到許多原生 JS 的作法，讓專案在上線之餘也可以增加未來的可維護性。</p>
+<p><img src="https://nijialin.com/images/2022/tech-fresh-2022/2-2.png"></p>
+<p>也因為跟上不同的專案，了解到除了與開發者們溝通之外，與不同團隊也需要有很多的技能，在這邊也學到不同的內容呢！</p>
+<h2 id="EC-叢林開始的異世界生活"><a href="#EC-叢林開始的異世界生活" class="headerlink" title="EC: 叢林開始的異世界生活"></a>EC: 叢林開始的異世界生活</h2><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/3.png"></p>
+<p>一開始由 TU 分享從再 iOS &amp; Android team 中所學的內容，在團隊中除了有各種讀書會分享不同精實的開發技巧(Clean architecture、DDD…)，也參與許多不同的內部專案，協助許多運作流程的改善，並精簡的描述在團隊中擔任的角色與團隊屬性；此外 TU 也參加公司不同的對外活動，如 TECHPULSE、Developer Meetup，學習把實習之間的資訊整理出去，不僅在專業上有顯著進步，在口條上也能有明顯進展！</p>
+<blockquote>
+<p>參考團隊分享的影片</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NqqjX7sdCD0?start=34" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><img src="https://nijialin.com/images/2022/tech-fresh-2022/3-1.png"></p>
+<p>接著輪到 Frank 分享，開發<a target="_blank" rel="noopener" href="https://sme.linebiz.com/tw">SMB Website</a>時，需要從 VM 的方式搬到 Container-Based 的架構上，初期因為不太熟悉，需要花較多的時間鑽研，卡關時也需要整理自己遇到的問題，清楚的列出自己的問題詢問 Mentor，降低雙方的溝通成本，也加速問題的排解，從中不僅學到參與開發的專案從 0 到上線，也學習到許多的軟實力。</p>
+<blockquote>
+<p>雖然初期看到問題都頭很痛，不過隨著學習越來越多就更能收斂問題！</p>
+</blockquote>
+<h2 id="「資料多的是你不知道的事」-一起變成資料管理大師"><a href="#「資料多的是你不知道的事」-一起變成資料管理大師" class="headerlink" title="「資料多的是你不知道的事」- 一起變成資料管理大師"></a>「資料多的是你不知道的事」- 一起變成資料管理大師</h2><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/4.png"></p>
+<p>來到了第四組，由 Data Dev team 三位女孩組成，分享在裡面做到的工作內容，由身為 Data Analyst, Data Scientist 及 Data Engineer 三個面向去帶到，從跟隨正職一起分析 Voom 的一些內容、Knowledge Graph、推薦系統、及許多 NLP 上的開發，當中的內容大綱也非常有趣，分享給大家：</p>
+<ul>
+<li>如果是實習生看到 - Voom，不喜歡他的話，那就不是實習生</li>
+<li>做不到一人的寵愛，那就做萬人的喜歡</li>
+<li>我不渣，只想給每個 service 一個家</li>
+<li>寶貝，你聽我解釋</li>
+</ul>
+<blockquote>
+<p>其中一位同學分享的文章： <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/data-dev-team-tech-fresh-life-2/">Data Dev Team 實習生在做什麼？LINE TECH FRESH 生活心得分享</a></p>
+</blockquote>
+<h2 id="降肉！降肉！在實習地圖中找到你的熱點"><a href="#降肉！降肉！在實習地圖中找到你的熱點" class="headerlink" title="降肉！降肉！在實習地圖中找到你的熱點"></a>降肉！降肉！在實習地圖中找到你的熱點</h2><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/5.png"></p>
+<p>最後由 Steve 帶來在 <a target="_blank" rel="noopener" href="https://spot.line.me/">LINE SPOT</a> 團隊中的實習生活，作為一個前端的 TECH FRESH，除了了解瀏覽器、效能及語言特性外，時常也會做到 UI 上的改良，讓各種用戶&#x2F;小編的體驗可以更棒，下圖則是 Steve 其中負責的一個部分。</p>
+<p><img src="https://nijialin.com/images/2022/tech-fresh-2022/steve.gif"></p>
+<p>而在 LINE SPOT 團隊中因為有專職的 Scrum Master 帶領，讓團隊的同仁可以更有效的進行工作，讓功能可以更快速的迭代上去。Steve 也分享了以 <a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/83">TECH FRESH</a> 在一個 Scrum team 裡面的經驗談，學習到許多在學校之外更難得可貴的業界經驗，了解到分工的重要性，</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2ca0ce07777a44368b36b49e3432caa5?slide=17" title="LINE Dev Meetup 16 - Frontend &amp; LINE SPOT" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>最後也分享 Steve 在工作上的一些個人經驗分享：</p>
+<ul>
+<li>嘗試自己解決問題<ul>
+<li>試著了解問題的本質，順利解決後也會更有印象；即便解不出來，也能有條理的整理問題詢問 Mentor。</li>
+</ul>
+</li>
+<li>尋找最佳的解決方案<ul>
+<li>原生好？套件好？這在現實工作中沒有一定的解答，在每個環境下尋找最佳解都是個有挑戰的解法！</li>
+</ul>
+</li>
+<li>注重質與量<ul>
+<li>太過注重「質」，時程會變很長，甚至耽誤到其他的 task；反之太注重「量」，則會犧牲很多品質，如何在當中取捨也是在團隊中學習到的一個課題。</li>
+</ul>
+</li>
+<li>挑戰新事物<ul>
+<li>LINE 裡面很鼓勵每位實習生勇敢挑戰不同的專案，累積專業能力的同時，也能增廣見聞！</li>
+</ul>
+</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2022/tech-fresh-2022/TECH_FRESH.png"></p>
+<p>感謝每一位同學的加入，因為各位的加入，許多內&#x2F;外部專案才能順利完成，雖然在這畢業的季節許多同學因為規劃而離開，希望在這一年裡所學的每個技能都讓同學們未來的道路更加順遂！</p>
+<blockquote>
+<p>如果有學校&#x2F;系學會&#x2F;社團想與我們合作，以下的部落格提供給大家，更多校園資訊都在其中，歡迎大家與我們聯絡<br><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-devrel-campus/">https://engineering.linecorp.com/zh-hant/blog/line-devrel-campus/</a></p>
+</blockquote>
+<h4 id="如何申請校園企業參訪"><a href="#如何申請校園企業參訪" class="headerlink" title="如何申請校園企業參訪"></a>如何申請校園企業參訪</h4><p>想知道如何申請校園企業參訪嗎？ 歡迎各個系學會與相關社團發送各位的需求到這個連絡信箱： <a href="mailto:&#x64;&#108;&#x5f;&#x74;&#119;&#x6e;&#x5f;&#x64;&#x65;&#x76;&#114;&#101;&#108;&#64;&#108;&#x69;&#110;&#101;&#99;&#x6f;&#x72;&#x70;&#46;&#x63;&#111;&#109;">&#x64;&#108;&#x5f;&#x74;&#119;&#x6e;&#x5f;&#x64;&#x65;&#x76;&#114;&#101;&#108;&#64;&#108;&#x69;&#110;&#101;&#99;&#x6f;&#x72;&#x70;&#46;&#x63;&#111;&#109;</a></p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/LINE-TECH-FRESH/" rel="tag"><i class="fa fa-tag"></i> LINE TECH FRESH</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/30/google-io-extended-2022/" rel="prev" title="【GDG】Google I/O 2022 Extended 線下活動分享">
+      <i class="fa fa-chevron-left"></i> 【GDG】Google I/O 2022 Extended 線下活動分享
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/21/nijia-review-year-2-at-LINE/" rel="next" title="Nijia Two Year Journey Review at Taipei">
+      Nijia Two Year Journey Review at Taipei <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%8A%E6%8F%A1%E6%AF%8F%E6%AC%A1%E7%9A%84%E6%9B%9D%E5%85%89%E6%A9%9F%E6%9C%83"><span class="nav-number">1.</span> <span class="nav-text">把握每次的曝光機會</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BC%E6%8F%AE%E4%BD%A0%E7%9A%84%E5%89%B5%E6%84%8F%EF%BC%81%E5%85%A7%E9%83%A8%E9%BB%91%E5%AE%A2%E6%9D%BE%E7%AB%B6%E8%B3%BD"><span class="nav-number">1.1.</span> <span class="nav-text">發揮你的創意！內部黑客松競賽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B4%E5%BA%A6%E7%A0%94%E8%A8%8E%E6%9C%83-%E7%99%BB%E5%A3%87-TECHPULSE-2022"><span class="nav-number">1.2.</span> <span class="nav-text">年度研討會 - 登壇 TECHPULSE 2022</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E7%BE%A4%E6%B4%BB%E5%8B%95-%E6%8B%89%E8%BF%91%E5%90%8C%E5%AD%B8%E8%88%87-LINE-%E7%9A%84%E8%B7%9D%E9%9B%A2"><span class="nav-number">1.3.</span> <span class="nav-text">社群活動 - 拉近同學與 LINE 的距離</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E5%80%91%E7%95%A2%E6%A5%AD%E5%9B%89%EF%BC%81TECH-FRESH-%E7%95%A2%E6%A5%AD%E5%88%86%E4%BA%AB%E6%9C%83"><span class="nav-number">2.</span> <span class="nav-text">我們畢業囉！TECH FRESH 畢業分享會</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E9%96%8B%E7%99%BC%EF%BC%8C%E5%8F%AF%E8%83%BD%E6%9C%83%E8%AE%93%E4%BD%A0%E5%BE%88%E9%A9%9A%E8%A8%9D%E7%9A%84-POINTS"><span class="nav-number">2.1.</span> <span class="nav-text">關於開發，可能會讓你很驚訝的 POINTS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%B8%E5%89%9B%E6%AC%B8%EF%BC%81%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC%E7%B6%93%E9%A9%97%E8%AB%87"><span class="nav-number">2.2.</span> <span class="nav-text">歸剛欸！前端開發經驗談</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EC-%E5%8F%A2%E6%9E%97%E9%96%8B%E5%A7%8B%E7%9A%84%E7%95%B0%E4%B8%96%E7%95%8C%E7%94%9F%E6%B4%BB"><span class="nav-number">2.3.</span> <span class="nav-text">EC: 叢林開始的異世界生活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8C%E8%B3%87%E6%96%99%E5%A4%9A%E7%9A%84%E6%98%AF%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%8B%E3%80%8D-%E4%B8%80%E8%B5%B7%E8%AE%8A%E6%88%90%E8%B3%87%E6%96%99%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB"><span class="nav-number">2.4.</span> <span class="nav-text">「資料多的是你不知道的事」- 一起變成資料管理大師</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%8D%E8%82%89%EF%BC%81%E9%99%8D%E8%82%89%EF%BC%81%E5%9C%A8%E5%AF%A6%E7%BF%92%E5%9C%B0%E5%9C%96%E4%B8%AD%E6%89%BE%E5%88%B0%E4%BD%A0%E7%9A%84%E7%86%B1%E9%BB%9E"><span class="nav-number">2.5.</span> <span class="nav-text">降肉！降肉！在實習地圖中找到你的熱點</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%B3%E8%AB%8B%E6%A0%A1%E5%9C%92%E4%BC%81%E6%A5%AD%E5%8F%83%E8%A8%AA"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">如何申請校園企業參訪</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

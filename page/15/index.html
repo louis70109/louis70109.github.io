@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="You are what you do.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忍者工坊">
+<meta property="og:url" content="https://nijialin.com/page/15/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="You are what you do.">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nijialin.com/page/15/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/05/03/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AF%AB-python-%E5%A5%97%E4%BB%B6%E7%9A%84%E5%AF%A6%E6%88%B0%E5%85%A8%E8%A8%98%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/03/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AF%AB-python-%E5%A5%97%E4%BB%B6%E7%9A%84%E5%AF%A6%E6%88%B0%E5%85%A8%E8%A8%98%E9%8C%84/" class="post-title-link" itemprop="url">第一次寫 Python SDK 實戰全記錄</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-03 11:46:49" itemprop="dateCreated datePublished" datetime="2020-05-03T11:46:49+00:00">2020-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/Rms5ZNG.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>對於 LINE Notify 其實早早就一直有在使用，不管是 server 健康檢查、空汙通知、直播主開台通知…等，都一直使用著，也是因為一直在用時有個困擾，就是每次都要找 <a target="_blank" rel="noopener" href="https://notify-bot.line.me/doc/en/">API 文件</a>並且看對應的參數…這在開發流程上浪費了不少時間，也因為到 Pypi 套件庫裡找 LINE Notify 相關套件時大多都只有推送功能，幾乎沒有對於認證流程的操作的 function ，文件也不齊全，在此同時也看到卡米哥的 GitHub 在此時上傳了一個 <a target="_blank" rel="noopener" href="https://github.com/etrex/lotify">Notify SDK</a>，畢竟我對 Ruby 還不算陌生，就直接參考卡米哥的架構並加上單元測試來完成本篇要介紹的 - <a target="_blank" rel="noopener" href="https://github.com/louis70109/lotify">Lotify</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/03/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AF%AB-python-%E5%A5%97%E4%BB%B6%E7%9A%84%E5%AF%A6%E6%88%B0%E5%85%A8%E8%A8%98%E9%8C%84/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/" class="post-title-link" itemprop="url">【AWS】使用 API Gateway Authorizer 做使用者驗證 feat. Serverless</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-04-18 18:38:29" itemprop="dateCreated datePublished" datetime="2020-04-18T18:38:29+00:00">2020-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/0QAGPDc.png" alt="API Gateway Lambda authorization workflow"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 AWS 的 API gateway 上就有一個項目(<code>Authorizer</code>)是支援 Cognito 以及客制認證的方法，好處就是在進我們寫的 API 之前有個可以做<strong>身份確認</strong>的 Lambda Function 幫我們好前處理，而本篇則會介紹如何在 Serverless framework 上設定 API gateway 的 Authorizer 以及成功讓 API 回應，串接 Cognito 做使用部分就留給之後吧！</p>
+<h4 id="👉-本篇的範例全都在-GitHub"><a href="#👉-本篇的範例全都在-GitHub" class="headerlink" title="👉 本篇的範例全都在 GitHub"></a>👉 本篇的範例全都在 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-serverless-authorizer">GitHub</a></h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/" class="post-title-link" itemprop="url">【LINE API 的小眉角】feat. Flex message, LIFF, Richmenu, Provider</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-04-11 13:10:23" itemprop="dateCreated datePublished" datetime="2020-04-11T13:10:23+00:00">2020-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chatbot/" itemprop="url" rel="index"><span itemprop="name">Chatbot</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/HHj7c5Kl.jpg" alt="birds"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因為遇到了很多不算坑的坑(<del>說啥呢？</del>)，有些是文件沒有寫而有些可能是我沒有注意到的，但既然都知道了就乾脆記下來吧！</p>
+<h1 id="LIFF-reply-到底算不算收費？"><a href="#LIFF-reply-到底算不算收費？" class="headerlink" title="LIFF reply 到底算不算收費？"></a>LIFF reply 到底算不算收費？</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/liff/developing-liff-apps/#developing-a-liff-app">LIFF SendMessage api</a></p>
+</blockquote>
+<p>字面上看起來很像 <code>Push Message</code> 的事件，但實際上是走 Flex Message，使用 Message api 的 Reply 功能來幫忙使用者發送條件引發 Bot 行為，並非是透過 Push api 發送讓 Bot 反應，這邊需要多注意喔！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">liff.sendMessages([</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">    text: <span class="string">&quot;You&#x27;ve successfully sent a message! Hooray!&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/03/28/LINE-new-API-Icon-Switch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/28/LINE-new-API-Icon-Switch/" class="post-title-link" itemprop="url">【LINE API】- 使用 Icon Switch 讓你的機器人同時有多個角色！ feat. Python</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-28 03:16:47" itemprop="dateCreated datePublished" datetime="2020-03-28T03:16:47+00:00">2020-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chatbot/" itemprop="url" rel="index"><span itemprop="name">Chatbot</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近 LINE 釋出了一個我很喜歡的功能 - <a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/reference/messaging-api/#icon-nickname-switch">Icon Switch</a>🎚，從字面上的意思就是可以切換機器人的 Icon (名稱以及大頭貼)，過往開發者在使用時都只能較死板的使用同一個頭像或暱稱來回應使用者，而現在只要使用這個這個功能就可以很輕易地切換你想要的大頭貼以及暱稱了 😇</p>
+<blockquote>
+<p>據可靠消息指出這以前是需要收費的功能，而現在則是免費推出來給大家使用，讓大家可以有更多的彈性去開發新功能～</p>
+</blockquote>
+<p><img src="https://i.imgur.com/TbtdNFjl.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/28/LINE-new-API-Icon-Switch/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/03/21/Typescript-%E7%9A%84%E6%80%AA%E7%95%B0%E4%B9%8B%E8%99%95-%E6%96%87%E7%AB%A0%E7%B0%A1%E8%A9%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/21/Typescript-%E7%9A%84%E6%80%AA%E7%95%B0%E4%B9%8B%E8%99%95-%E6%96%87%E7%AB%A0%E7%B0%A1%E8%A9%95/" class="post-title-link" itemprop="url">Typescript 不一樣的地方 - Interface, Class Type, 多型別</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-21 08:11:54" itemprop="dateCreated datePublished" datetime="2020-03-21T08:11:54+00:00">2020-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有一次在網路上閒逛的時候看到了<a target="_blank" rel="noopener" href="https://blog.asana.com/2020/01/typescript-quirks/">這篇部落格</a>，裡頭透過一些簡單的敘述來展示 Typescript 跟別人不太一樣的地方，也說到一些需要注意的眉角，這次文章則含有些許的文章翻譯以及個人評述在裡面，以下就開始吧！</p>
+<h1 id="三個項目"><a href="#三個項目" class="headerlink" title="三個項目"></a>三個項目</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/21/Typescript-%E7%9A%84%E6%80%AA%E7%95%B0%E4%B9%8B%E8%99%95-%E6%96%87%E7%AB%A0%E7%B0%A1%E8%A9%95/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/03/20/Streamlabs-Youtube-streaming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/20/Streamlabs-Youtube-streaming/" class="post-title-link" itemprop="url">【第一次直播就上手 (1)】使用 Streamlabs 在 Youtube 上直播</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-20 16:51:38" itemprop="dateCreated datePublished" datetime="2020-03-20T16:51:38+00:00">2020-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9B%B4%E6%92%AD/" itemprop="url" rel="index"><span itemprop="name">直播</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近一次的 Chatbot 小聚因為在疫情期間可預期現場來的會眾一定不多，所以在這場小聚中也加上線上直播的部分，但因為我首次導入還不是很熟悉，在谷歌大神的幫忙下找到本篇介紹的軟體 - Streamlabs，使用 XR 錄影起來的品質覺得還不錯，且連講者 Demo 時的 LINE token 都看得一清二楚 🤣，接下來就來介紹一下我使用的過程。</p>
+<blockquote>
+<p>這邊我使用 iOS 做範例，小聚資訊可以參考 <a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups/blob/master/taipei/2020.md#chatbot-meetup-17-at-dcard">Chatbot GitHub</a></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/20/Streamlabs-Youtube-streaming/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/03/09/Twitch-Bot-%E5%85%A8%E9%9D%A2%E5%8D%87%E7%B4%9A%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/09/Twitch-Bot-%E5%85%A8%E9%9D%A2%E5%8D%87%E7%B4%9A%EF%BC%81/" class="post-title-link" itemprop="url">Twitch Bot 全面升級！ 增加 LINE Notify 綁定與推播實現 LINE 的三項之力！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-09 15:18:11" itemprop="dateCreated datePublished" datetime="2020-03-09T15:18:11+00:00">2020-03-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="https://i.imgur.com/dOIsi7H.jpg" width="2000">
+
+<blockquote>
+<p>滿滿的三項之力 🏋️‍♂️</p>
+</blockquote>
+<blockquote>
+<p>來幫我的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch Bot</a> 按個星星 ⭐️⭐️</p>
+</blockquote>
+<h1 id="更新功能"><a href="#更新功能" class="headerlink" title="更新功能"></a>更新功能</h1><ul>
+<li>使用 LIFF 來綁定 Notify
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/09/Twitch-Bot-%E5%85%A8%E9%9D%A2%E5%8D%87%E7%B4%9A%EF%BC%81/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/15/serverless-cold-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/15/serverless-cold-start/" class="post-title-link" itemprop="url">Serverless cold start 問題</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-15 17:30:03" itemprop="dateCreated datePublished" datetime="2020-02-15T17:30:03+00:00">2020-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/gjLODpG.jpg" alt="workload"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前鐵人賽寫了一篇文章有提到 <a href="https://nijialin.com/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/">Cold Start 的問題</a>，不過只有粗略介紹，最近看到大家忽然又開始討論這個話題，這次就來好好的搜尋資料介紹一下。</p>
+<p>平常在做 open source 時比較常遇到休眠狀態應該就是 <code>Heroku</code>，而開頭要先澄清一下他是屬於 <code>PaaS</code> 的架構，而 AWS、Google、Azure 裡提供的 <code>Lambda</code>、<code>Cloud Run</code>、<code>Azure Function</code> 這些則屬於 FaaS 架構，而最常討論 <code>Cold start</code> 時最常會在 FaaS 上討論，只是剛好 Heroku 使用起來也是一樣，這次文章就把他一起抓進來討論啦～</p>
+<blockquote>
+<p>有很多各式各樣的服務，SaaS、FaaS、KaaS、IaaS… 等各式各樣的架構，每個都是為了解決某個問題所誕生的，至於好或不好其實就是看使用場景而定，所以大家在選用時要注意一下你使用的場景哦！</p>
+</blockquote>
+<h1 id="為什麼會休眠"><a href="#為什麼會休眠" class="headerlink" title="為什麼會休眠"></a>為什麼會休眠</h1><p>一般會有休眠機制是因為這些供應商在提供服務都是提供按次計費的方案，讓開發者在用時可以需要才喚醒使用，也就是說這些服務都是 <code>事件驅動</code>(<code>Event-Driven</code>)導向，意指是當前服務若收到訊息後，會呼叫對應的 Function 來處理對應服務所接收到的資料(Queue、Notify …)，但相對的就是會有<code>休眠</code>讓服務暫停，進而讓較少使用的服務不會因為掛在線上而一直被收費用，而重新啟動這件事就是本篇要提的<code>Cold start</code>。</p>
+<h1 id="Cold-start-流程"><a href="#Cold-start-流程" class="headerlink" title="Cold start 流程"></a>Cold start 流程</h1><p>在處理資料之後過一段時間若沒有繼續執行，雲端供應商會將模組暫停，此時 function 會處於 inactive 狀態(cold)，而當 function 再度被觸發時(<code>cold start</code>)則會再啟動模組來執行對應 function 來處理事件，在模組與 function 之間的關係可以稱他們為 <code>Function chain</code>。</p>
+<h3 id="休眠狀態喚醒流程"><a href="#休眠狀態喚醒流程" class="headerlink" title="休眠狀態喚醒流程"></a>休眠狀態喚醒流程</h3><p><img src="https://i.imgur.com/DQoGYns.png" alt="[參考](https://mikhail.io/2018/08/serverless-cold-start-war/#how-do-languages-compare-)"></p>
+<p>以 AWS 為例，在喚醒時會到 S3 去取得檔案，接著找到相關的 Lambda 並載入相關模組套件，然後再執行觸發的事件，整理過後的下:</p>
+<blockquote>
+<p>事件處理 ➡️ 過段時間 ➡️ 暫停 function 模組(休眠) ➡️ 觸發 ➡️ 啟動 function 模組 ➡️ 事件處理…</p>
+</blockquote>
+<p>這整個流程就是俗稱的 <code>cold start</code>，因為在這個過程中會花些時間，所以若是拿來處理 api 相關問題的話就會有第一批請求很久，然後之後的請求卻特別快的狀態，請大家莫急莫慌莫害怕呀！</p>
+<h1 id="平台比較表"><a href="#平台比較表" class="headerlink" title="平台比較表"></a>平台比較表</h1><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>多少時間後暫停</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS Lambda</td>
+<td>10 minutes</td>
+</tr>
+<tr>
+<td>Google Cloud Functions</td>
+<td><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/#gcp">介於 3 minutes 之間 5+ hours 都有</a></td>
+</tr>
+<tr>
+<td>Azure Functions</td>
+<td><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/#azure">20 minutes</a></td>
+</tr>
+<tr>
+<td>Heroku</td>
+<td><a href="(https://devcenter.heroku.com/articles/free-dyno-hours#dyno-sleeping)">30 minutes</a></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>前三個為 <code>FaaS</code> 架構，而 Heroku 則為 <code>PaaS</code> 架構喔！</p>
+</blockquote>
+<p>下圖則來自 2019&#x2F;09 的<a target="_blank" rel="noopener" href="https://mikhail.io/serverless/coldstarts/big3/">一篇文章</a>，較深色的部分則為啟動時間。<br><img src="https://i.imgur.com/yZxWvlL.png" alt="FaaS platform cold start time"></p>
+<h1 id="如何處理或是盡可能避免？"><a href="#如何處理或是盡可能避免？" class="headerlink" title="如何處理或是盡可能避免？"></a>如何處理或是盡可能避免？</h1><p>以我熟悉使用 <a target="_blank" rel="noopener" href="https://serverless.com/">serverless framework</a> 部署到 AWS 來說，他們提供了一個 <a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-plugin-warmup/">warm-up</a> 的套件，可以設定排程時間讓這個 function 固定去戳其他 function，避免他們進入休眠的狀態，雖然這樣子就能達到跟一般服務一樣的常駐狀態，不過相對來說就要注意次數的使用問題，若是流量還小的話沒什麼問題，但若有一定的流量就須注意一下帳單，因為這些在互戳的過程中還是有算進費用的喔！使用上還要多注意才行。</p>
+<p>另一方面要注意相依套件的問題，引用 google <a target="_blank" rel="noopener" href="https://cloud.google.com/run/docs/tips#optimizing_performance">文件的其中一段</a>:</p>
+<p>謹慎使用依附元件，如果您使用動態語言搭配相依的程式庫，例如匯入使用 Node.js 的模型，這些模組的載入時間會增加冷啟動期間的延遲時間。您可以透過以下方式縮短啟動延遲時間：</p>
+<ul>
+<li>儘可能減少相依元件的數量和大小以建置精簡的服務。</li>
+<li>只有在必要時才載入不常用的程式碼 (如果您使用的語言支援)。</li>
+<li>使用程式碼載入的最佳化，例如 PHP 的 composer 自動載入器最佳化。</li>
+</ul>
+<blockquote>
+<p>畢竟在載入模組的時候相依套件也是要一起抓進來，若是程式本身太多依賴的話也是會導致 cold start 的時間變長哦！</p>
+</blockquote>
+<p>最後就在幫大家整理一下三大平台的 warm-up 資源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-plugin-warmup/">warm-up</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/appengine/docs/standard/python/configuring-warmup-requests">Google App Engine warm up</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.serverlessnotes.com/docs/scheduling-with-azure-functions">Google Schedule</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.serverlessnotes.com/docs/scheduling-with-azure-functions">Scheduling with Azure Functions</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>為什麼要有 cold start 的機制，以供應商的角度來說他們可以提供一定的量讓使用者免費在平台上先建置服務，但若要免費就是服務會被暫時暫停，畢竟現在流量就是錢嗎 💰，像我常用的 Heroku 就會是這樣，而當你流量大的時候就看你要不要搬家，不過一般應該都懶得搬，就會形成所謂的<code>養、套、殺</code>🤣(離題)。</p>
+<p>總而言之，若是需要服務時常活著，就是需要付出點流量的錢 💰，也或許你的作品服務時間可能不用那麼長，只要在服勤時間內長駐活著就可以在省下一些費用，如果有需要的話還是付一些錢給供應商，畢竟人家也幫你保管了服務你說是不是？</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/faun/on-the-serverless-cold-start-problem-2fc0797da5cc">On the Serverless cold start problem</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/blog/keep-your-lambdas-warm/#installing-the-warmup-plugin">Lambda Warm-up</a></li>
+<li><a target="_blank" rel="noopener" href="https://devcenter.heroku.com/articles/free-dyno-hours">Heroku cold start</a></li>
+<li><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/#how-do-languages-compare-">serverless 啟動流程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.nuweba.com/blog/when-are-cold-starts-problem">Function Chain 來源</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ahmetb/cloud-run-faq#cold-starts">cloud run cold start</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/07/2020-Q1-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/07/2020-Q1-learning/" class="post-title-link" itemprop="url">2020 一、二月的學習紀錄</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-07 17:28:42" itemprop="dateCreated datePublished" datetime="2020-02-07T17:28:42+00:00">2020-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/0uMmQBV.jpg" alt="learn records"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。</p>
+<h1 id="實作項目"><a href="#實作項目" class="headerlink" title="實作項目"></a>實作項目</h1><h2 id="Docker-amp-Docker-Compose"><a href="#Docker-amp-Docker-Compose" class="headerlink" title="Docker &amp; Docker-Compose"></a>Docker &amp; Docker-Compose</h2><p>我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Dockerfile 的內容了解度也提升了許多(實在是個不錯的方法 👍)，會這樣子弄的原因是我認為 Serverless 的架構很容易被 AWS 綁架，我認為 API 這類可拆出來的功能應該要包成 container 增加彈性不讓平台限制，被這個想法 trigger 後就來好好練習 Docker 了 🏋️‍♂️。</p>
+<p>這次使用 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a> 做我的練習對象，裡面主要用了 <code>node</code> 以及 <code>mongo</code> 兩個服務，在此同時如果各別起 docker 挺麻煩，因此就需要使用 <code>docker-compose</code> 幫忙啟動，而在這過程中學到了:</p>
+<ul>
+<li>把 Dockerfile 遷移到 docker-compose 上 (<del>如何複製別人的檔案(大誤)</del>)。</li>
+<li>藉由 docker-compose 裡面的 <code>network</code> 連接兩個容器的使用方法。</li>
+<li>Google container-registry 上傳以及 gcloud 過期的 docker 使用方法(<a target="_blank" rel="noopener" href="https://cloud.google.com/container-registry/docs/support/deprecation-notices">參考</a>)，同時也修正後可以使用 docker 的原生指令將 container 送上 Google。</li>
+</ul>
+<p>接下來就是趁六月 credit 過期前趕快來玩玩 Google Kubernetes 🚀</p>
+<h2 id="AWS-IoT-Job"><a href="#AWS-IoT-Job" class="headerlink" title="AWS IoT Job"></a>AWS IoT Job</h2><p>最近在公司實作 AWS IoT Job 部分的功能(以下稱為 Job)，因為 Job 每次執行收費約 1 塊台幣，之所以會用它是因為在 IoT 執行時不是只會單純發送訊號出來讓後台收訊號做事，而是需要跟後台經過一連串的溝通來達成功能(例如 <code>韌體更新</code>)，當然還有很多更複雜的功能，這邊只列舉一個小部分。</p>
+<p>從這段時間的實作上學到的部分:</p>
+<h3 id="裝置工作列表"><a href="#裝置工作列表" class="headerlink" title="裝置工作列表"></a>裝置工作列表</h3><p>當後台的 Queue 同時塞進很多工作時要如何管理並通知裝置此時的工作有哪些(All Job)以及要做哪件事(Next Job)，實作這功能時不能只考慮到一個裝置，而是考慮到 N 個裝置時要如何過濾並管理狀態機，限制裝置要依照狀態執行避免系統錯亂。</p>
+<h3 id="平台化"><a href="#平台化" class="headerlink" title="平台化"></a>平台化</h3><p>之前主要功能都是介接 AWS IoT，而這次是要實作一個類似的功能提供給其他使用者，不能只開一個 API 就想要功能都包好，而是將功能明確劃分，讓使用者可以有彈性的去組合，只是在此時我沒有處理得很好，之後的 Task 需要更注意。</p>
+<h2 id="LINE-SDK-Narrowcast-Client-API"><a href="#LINE-SDK-Narrowcast-Client-API" class="headerlink" title="LINE SDK - Narrowcast Client API"></a>LINE SDK - Narrowcast Client API</h2><blockquote>
+<p>參考 Pull Request: <a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python/pull/237">Add narrowcast client api #237</a></p>
+</blockquote>
+<h3 id="工廠模式"><a href="#工廠模式" class="headerlink" title="工廠模式"></a>工廠模式</h3><p>功能主要是讓開發者可以透過 API 來做分眾的推播，在實作這個 issue 時讓我原本模糊的工廠模式清晰了許多，主要是 SDK 使用了 Python Class 來擔任 Model 的角色，讓進來資料可以經過 model 去轉換成對應的 key-value，所有的資料都分類進去對應的工廠處理完再回傳出來。</p>
+<p>在還沒開始看 code 前只想著要寫什麼邏輯去處理，其實使用 Model 的方法就處理掉大部分資料格式的問題，很多 LINE 文件已經清楚定義的格式只要照著填就解決了，只是在這個 Task 遇到了<code>Python 保留字</code>的問題，而經過各種 google 後只好自己寫邏輯去判斷掉這件事，之後只能繼續看有沒有更好的寫法可以取代掉這個<code>保留字</code>的問題。</p>
+<h3 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h3><p>官方 Github 有寫要 Contribute 時需要執行的內容(<a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python#contributing">參考</a>)，lint 則是遵照<code>flake8</code>，而執行<code>tox</code>後會對每個版本的 python 去做測試，但像我電腦只有 3.7 版 tox 就只會針對這個版本做測試。</p>
+<ul>
+<li>在這件事上學到的 <code>tab</code> 與 <code>空白鍵(space)</code> 的差異，<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">PEP-08</a> 上也告訴建議使用<code>空白鍵</code>，而 python 3 之後也不允許兩個混用，畢盡 python 是很注重縮排，既然官網都寫了哪有不遵守的道理呢？😃</li>
+</ul>
+<blockquote>
+<p>Lint 也不會無緣無故來刁難開發者 XD</p>
+</blockquote>
+<ul>
+<li>內部函式(Class、Function)都需要再第一行下註解，而會這樣用的因素可能在 python 上並沒有 <code>public</code>、<code>private</code> 的觀念，透過這樣的方法來表示它(Class、Function)是一個內部函式，藉由 Lint 讓開發者可以知道這個功能是內部還外部，只是在 python 只能使用這個 lint 讓大家遵守這規則，如果沒有 CI 要硬上的話其實也管不住，畢竟不像 golang 這類語言會編譯(汗顏)。</li>
+</ul>
+<p>總之使用 lint 的好處就是開發風格可以統一，能夠盡量避免不必要的 programing 麻煩，在寫任何語言都推薦使用各個語言的 lint，雖然一開始會很討厭它，但它真的是在幫助你 😆。</p>
+<h2 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h2><p>這時間與家人一起訂閱了一年份的會員，而我的初衷就是想把英文學好，而我也花了時間好好的看完一部全英文影集(發英與字幕)，第一次嘗試這樣看全英文，並且邊看邊 Google 翻譯不懂的單字同時口述跟著念一遍增加記憶力，隨著工作量減輕後下班也可以再安排時間繼續看下個影集學了～</p>
+<blockquote>
+<p>然後迷上了<code>愛的迫降</code>這個韓劇，推薦喜歡看愛情片的朋友去看 ❤️</p>
+</blockquote>
+<h2 id="武漢肺炎"><a href="#武漢肺炎" class="headerlink" title="武漢肺炎"></a>武漢肺炎</h2><p>最近剛好因為這傳染病盛行，除了防疫之餘，g0v 也提供 API 讓開發者可以拿去介接，隨著大家各種開發前端 web 以及 chatbot …的應用後本來在想有個什麼想法可以參與這個全民黑客松，只是我認為用途實在重複性太高，而在大家開發應用時我又剛好在寫 LINE SDK，錯失了第一時間發佈口罩相關的服務建立時間，本來想到 LIFF v2 + LINE Notify，但只是在使用上很容易吵到用戶進而封鎖它(LINE Notify)，因此要考慮好功能再來看會不會有比較好的使用情境。</p>
+<blockquote>
+<p>出入公共場所記得戴口罩，有帶隨身瓶酒精的記得消毒！😷</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>有時候在思考與規劃的過程中如果經驗不夠時真的很難馬上到位，不過任何事情都一樣，若這件事可以輕鬆且又得心應手，代表它可能已經是你熟悉的領域或是過於簡單，就像我一開始處理社群一樣，若是沒有前輩們帶著走的話我跟本無法有效地處理事情，總之凡是起頭難，即早加入即早熟悉各個領域才是王道 😆</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/iot/latest/developerguide/iot-rule-actions.html">AWS IoT 觸發後可以執行的功能</a><br><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/iot/latest/developerguide/events-jobs.html">Job Events</a><br><a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">Tab 與 space 的差異(PEP-08)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/01/node-gyp-rebuild-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/01/node-gyp-rebuild-error/" class="post-title-link" itemprop="url">解決 node-gyp rebuild error 問題</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-01 16:51:46" itemprop="dateCreated datePublished" datetime="2020-02-01T16:51:46+00:00">2020-02-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我對這錯誤的印象是某次在練習寫測試時裝 <a target="_blank" rel="noopener" href="https://jestjs.io/">jest</a> 後出現的，檢查了<code>package-lock.json</code>後看起來<code>jest-haste-map</code>這個套件有用到 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/fsevents">fsevents</a>，而之後使用<code>npm install</code>或者<code>yarn install</code>皆會出現以下這個訊息：<br><img src="https://i.imgur.com/zH6Mbzo.png" alt="node-gyp rebuild error"></p>
+<blockquote>
+<p>環境為 Mac OS Catalina version 10.15.2</p>
+</blockquote>
+<p>看起來是在執行階段時<code>node-gyp</code>出了問題，接著它自己重新執行了<code>node-gyp rebuild</code>後出錯，起初我認為是套件的問題並找到了<a target="_blank" rel="noopener" href="https://github.com/nodejs/node-gyp/issues/94#issuecomment-222482140">這個回答</a>並執行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm uninstall node-gyp -g</span><br><span class="line">sudo npm uninstall node-gyp</span><br></pre></td></tr></table></figure>
+
+<p>但從來沒有全域安裝<code>node-gyp</code>過，也有些網友執行<code>node-gyp configure</code>是可以的，而我執行後還是失敗，狀態跟這個 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node-gyp/issues/94#issuecomment-269909621">issue</a> 差不多。</p>
+<p>後來看到 fsevents 在套件說明裡有寫到:</p>
+<blockquote>
+<p>The FSEvents API in MacOS allows applications to register for notifications of changes to a given directory tree. It is a very fast and lightweight alternative to kqueue.</p>
+</blockquote>
+<p>並且注意到剛剛圖裡面有訊息是跟 xcode 以及 apple 相關，最後找到了這個 <a target="_blank" rel="noopener" href="https://github.com/schnerd/d3-scale-cluster/issues/7">issue</a></p>
+<h1 id="我的解決方案"><a href="#我的解決方案" class="headerlink" title="我的解決方案"></a>我的解決方案</h1><p>有些人可能是有重灌或環境重設導致沒有安裝 xcode，此時只要執行 <code>xcode-select --install</code> 即可(<a target="_blank" rel="noopener" href="https://github.com/schnerd/d3-scale-cluster/issues/7#issuecomment-402541605">參考說明</a>)。</p>
+<p>這邊我使用的解決方案為這個 <a target="_blank" rel="noopener" href="https://github.com/schnerd/d3-scale-cluster/issues/7#issuecomment-550579897">issue</a>，執行以下兩個指令來重新安裝 xcode:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf $(xcode-select -print-path)</span><br><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p>原因可能是因為我重舊版本向上更新之後 xcode 沒有相容當前版本，所以我使用以上指令來刪除重新安裝。</p>
+<blockquote>
+<p>不過這個指令很暴力的使用 <code>rm -rf</code>，使用它相對危險，使用前請詳閱公開說明書 😆。</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>為了練習測試安裝了 jest 卻讓我看著一堆 warning 實在是恨得牙癢癢，所幸目前這樣解決完後是可以用的，就看接下來些新的 side project 後會不會有其他問題再來更新，</p>
+<p>另一方面也可能因為我在寫 side project 時安裝了一堆有的沒的東西導致這個結果，看來也得找時間來整理一下環境了～</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/XuM222222/article/details/94976298">清除 npm 快取</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

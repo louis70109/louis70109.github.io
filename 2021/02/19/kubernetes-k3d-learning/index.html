@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言Kubernetes 幫忙處理掉許多以前很繁雜的問題(Auto-Scaling、容器管理..)，讓開發者只要手持 Container 與大量 yaml 檔即可將工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="將 Chatbot 丟入一台筆電中的 Kubernetes 叢集海 | k3d | Docker">
+<meta property="og:url" content="https://nijialin.com/2021/02/19/kubernetes-k3d-learning/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言Kubernetes 幫忙處理掉許多以前很繁雜的問題(Auto-Scaling、容器管理..)，讓開發者只要手持 Container 與大量 yaml 檔即可將工具">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/k3d/logo.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/k3d/chatbot-pod.png">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIxODRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjQ3NHB4O2hlaWdodDoxODRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0NzQgMTg0IiB3aWR0aD0iNDc0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMjYiIHgyPSIyNiIgeTE9IjM2LjI5NjkiIHkyPSIxNDkuNjk1MyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIyMTUuNSIgeDI9IjIxNS41IiB5MT0iMzYuMjk2OSIgeTI9IjE0OS42OTUzIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjI5OC41IiB4Mj0iMjk4LjUiIHkxPSIzNi4yOTY5IiB5Mj0iMTQ5LjY5NTMiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iNDMxLjUiIHgyPSI0MzEuNSIgeTE9IjM2LjI5NjkiIHkyPSIxNDkuNjk1MyIvPjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOCIgeD0iMTIiIHk9IjI0Ljk5NTEiPk1hYzwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQyIiB4PSI1IiB5PSIxNDguNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI4IiB4PSIxMiIgeT0iMTY4LjY5MDQiPk1hYzwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQxIiB4PSIxOTUuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI3IiB4PSIyMDIuNSIgeT0iMjQuOTk1MSI+azNkPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDEiIHg9IjE5NS41IiB5PSIxNDguNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI3IiB4PSIyMDIuNSIgeT0iMTY4LjY5MDQiPmszZDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwNCIgeD0iMjQ2LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5MCIgeD0iMjUzLjUiIHk9IjI0Ljk5NTEiPkRlcGxveW1lbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxMDQiIHg9IjI0Ni41IiB5PSIxNDguNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkwIiB4PSIyNTMuNSIgeT0iMTY4LjY5MDQiPkRlcGxveW1lbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI3NCIgeD0iMzk0LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2MCIgeD0iNDAxLjUiIHk9IjI0Ljk5NTEiPkNoYXRib3Q8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI3NCIgeD0iMzk0LjUiIHk9IjE0OC42OTUzIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjAiIHg9IjQwMS41IiB5PSIxNjguNjkwNCI+Q2hhdGJvdDwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjIwNCw2My40Mjk3LDIxNCw2Ny40Mjk3LDIwNCw3MS40Mjk3LDIwOCw2Ny40Mjk3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyNiIgeDI9IjIxMCIgeTE9IjY3LjQyOTciIHkyPSI2Ny40Mjk3Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTY2IiB4PSIzMyIgeT0iNjIuMzYzOCI+ODA4MiBwb3J0ICYjMjM1NjU7JiMyNTAzMzsgMzAwODAgcG9ydDwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMwOS41LDkyLjU2MjUsMjk5LjUsOTYuNTYyNSwzMDkuNSwxMDAuNTYyNSwzMDUuNSw5Ni41NjI1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMDMuNSIgeDI9IjQzMC41IiB5MT0iOTYuNTYyNSIgeTI9Ijk2LjU2MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDkiIHg9IjMxNS41IiB5PSI5MS40OTY2Ij4mIzIzNTU5OyA4MDAwIHBvcnQgJiMyMzU2NTsmIzIyODA2OzwvdGV4dD48cGF0aCBkPSJNMTY2LDEwOS41NjI1IEwxNjYsMTM0LjU2MjUgTDM0OCwxMzQuNTYyNSBMMzQ4LDExOS41NjI1IEwzMzgsMTA5LjU2MjUgTDE2NiwxMDkuNTYyNSAiIGZpbGw9IiNGRkFBQUEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjxwYXRoIGQ9Ik0zMzgsMTA5LjU2MjUgTDMzOCwxMTkuNTYyNSBMMzQ4LDExOS41NjI1IEwzMzgsMTA5LjU2MjUgIiBmaWxsPSIjRkZBQUFBIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNjEiIHg9IjE3MiIgeT0iMTI2LjYyOTQiPiYjMzI1NzA7JiMyMzU2OTsgbWlkZGxld2FyZSAmIzI0MTcxOyYjMjQ1Mzc7JiMyMDE3MTsmIzI1NTA5OzwvdGV4dD48IS0tU1JDPVt5cXJDcmhOQkRhd25LaDBtaTMxSUFDV2xBYjV1a2c3dE1Oa2RXaDYxV09LMU04SkI5UktXOXh5b0RwTWxuNFJORUlFbjkyY19uMGdlaDFzZW9TMDBoa2RmYWNiU1VWYWJnR2h2UFFiNTJhMTNUSEdHNlhNS3RUbVNXUzFBdVZjVU5LeXRKNUo4cEtuOW9LYWpKb25BTE5Zd1NfTkpfSkVWeEV2LXJoU0swMDAwXS0tPjwvZz48L3N2Zz4=">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzOTRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjY2MHB4O2hlaWdodDozOTRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NjAgMzk0IiB3aWR0aD0iNjYwcHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMzgiIHgyPSIzOCIgeTE9IjM2LjI5NjkiIHkyPSIzNTkuNjI1Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjE1OC41IiB4Mj0iMTU4LjUiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIzMjEiIHgyPSIzMjEiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSI0NjIiIHgyPSI0NjIiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSI2MTEiIHgyPSI2MTEiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjE3IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjgiIHg9IjI0IiB5PSIyNC45OTUxIj5NYWM8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MiIgeD0iMTciIHk9IjM1OC42MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOCIgeD0iMjQiIHk9IjM3OC42MjAxIj5NYWM8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MSIgeD0iMTM4LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyNyIgeD0iMTQ1LjUiIHk9IjI0Ljk5NTEiPmszZDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQxIiB4PSIxMzguNSIgeT0iMzU4LjYyNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI3IiB4PSIxNDUuNSIgeT0iMzc4LjYyMDEiPmszZDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwMCIgeD0iMjcxIiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iODYiIHg9IjI3OCIgeT0iMjQuOTk1MSI+Zm9yd2FyZC55bWw8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxMDAiIHg9IjI3MSIgeT0iMzU4LjYyNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijg2IiB4PSIyNzgiIHk9IjM3OC42MjAxIj5mb3J3YXJkLnltbDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwNCIgeD0iNDEwIiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTAiIHg9IjQxNyIgeT0iMjQuOTk1MSI+RGVwbG95bWVudDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwNCIgeD0iNDEwIiB5PSIzNTguNjI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTAiIHg9IjQxNyIgeT0iMzc4LjYyMDEiPkRlcGxveW1lbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI3NCIgeD0iNTc0IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjAiIHg9IjU4MSIgeT0iMjQuOTk1MSI+Q2hhdGJvdDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9Ijc0IiB4PSI1NzQiIHk9IjM1OC42MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2MCIgeD0iNTgxIiB5PSIzNzguNjIwMSI+Q2hhdGJvdDwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjE0Nyw2My40Mjk3LDE1Nyw2Ny40Mjk3LDE0Nyw3MS40Mjk3LDE1MSw2Ny40Mjk3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzOCIgeDI9IjE1MyIgeTE9IjY3LjQyOTciIHkyPSI2Ny40Mjk3Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iODciIHg9IjQ1IiB5PSI2Mi4zNjM4Ij5SZXF1ZXN0IE9PTzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMwOSw5Mi41NjI1LDMxOSw5Ni41NjI1LDMwOSwxMDAuNTYyNSwzMTMsOTYuNTYyNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTU5IiB4Mj0iMzE1IiB5MT0iOTYuNTYyNSIgeTI9Ijk2LjU2MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMzgiIHg9IjE2NiIgeT0iOTEuNDk2NiI+JiMyNDE3MTsmIzI1MTA1OyYjMjE1Nzg7JiMzNTM4MDsmIzIzNDI3OyYjMjUxMDU7JiMzNTIwMTsmIzMwMzQwOyBPT088L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI0NTAsMTIxLjY5NTMsNDYwLDEyNS42OTUzLDQ1MCwxMjkuNjk1Myw0NTQsMTI1LjY5NTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMyMSIgeDI9IjQ1NiIgeTE9IjEyNS42OTUzIiB5Mj0iMTI1LjY5NTMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NyIgeD0iMzI4IiB5PSIxMjAuNjI5NCI+azNkICYjMzU0OTg7JiMzNTIwMTsgT09PPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTk5LDE1MC44MjgxLDYwOSwxNTQuODI4MSw1OTksMTU4LjgyODEsNjAzLDE1NC44MjgxIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSI0NjIiIHgyPSI2MDUiIHkxPSIxNTQuODI4MSIgeTI9IjE1NC44MjgxIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzMiIHg9IjQ2OSIgeT0iMTQ5Ljc2MjIiPiYjMzU1MzE7JiMzMjEwMjsmIzI1MTA1OyBPT088L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI0NzMsMTc5Ljk2MDksNDYzLDE4My45NjA5LDQ3MywxODcuOTYwOSw0NjksMTgzLjk2MDkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjQ2NyIgeDI9IjYxMCIgeTE9IjE4My45NjA5IiB5Mj0iMTgzLjk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMjUiIHg9IjQ3OSIgeT0iMTc4Ljg5NSI+JiMyMjkwOTsmIzIwMTAyOyYjMzY4ODk7JiMyNjE1OTsmIzIzNDI3OyYjMzUyMDE7JiMzMDM0MDsgT09PPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMzMyLDIwOS4wOTM4LDMyMiwyMTMuMDkzOCwzMzIsMjE3LjA5MzgsMzI4LDIxMy4wOTM4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMjYiIHgyPSI0NjEiIHkxPSIyMTMuMDkzOCIgeTI9IjIxMy4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTE3IiB4PSIzMzgiIHk9IjIwOC4wMjc4Ij4mIzM2ODg5OyYjMjYxNTk7IGszZCAmIzM1MjAxOyYjMzAzNDA7IE9PTzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjE3MCwyMzguMjI2NiwxNjAsMjQyLjIyNjYsMTcwLDI0Ni4yMjY2LDE2NiwyNDIuMjI2NiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTY0IiB4Mj0iMzIwIiB5MT0iMjQyLjIyNjYiIHkyPSIyNDIuMjI2NiIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjYwIiB4PSIxNzYiIHk9IjIzNy4xNjA2Ij4mIzMyMTAyOyYjMjAzMjA7IE9PTzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjQ5LDI2Ny4zNTk0LDM5LDI3MS4zNTk0LDQ5LDI3NS4zNTk0LDQ1LDI3MS4zNTk0IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSI0MyIgeDI9IjE1OCIgeTE9IjI3MS4zNTk0IiB5Mj0iMjcxLjM1OTQiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5NyIgeD0iNTUiIHk9IjI2Ni4yOTM1Ij5SZXNwb25zZSBPT088L3RleHQ+PHBhdGggZD0iTTUsMjg0LjM1OTQgTDUsMzA5LjM1OTQgTDE5MiwzMDkuMzU5NCBMMTkyLDI5NC4zNTk0IEwxODIsMjg0LjM1OTQgTDUsMjg0LjM1OTQgIiBmaWxsPSIjRkZBQUFBIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNMTgyLDI4NC4zNTk0IEwxODIsMjk0LjM1OTQgTDE5MiwyOTQuMzU5NCBMMTgyLDI4NC4zNTk0ICIgZmlsbD0iI0ZGQUFBQSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTY2IiB4PSIxMSIgeT0iMzAxLjQyNjMiPjgwODIgcG9ydCAmIzIzNTY1OyYjMjUwMzM7IDMwMDgwIHBvcnQ8L3RleHQ+PHBhdGggZD0iTTQyMCwzMTkuNDkyMiBMNDIwLDM0NC40OTIyIEw2NTMsMzQ0LjQ5MjIgTDY1MywzMjkuNDkyMiBMNjQzLDMxOS40OTIyIEw0MjAsMzE5LjQ5MjIgIiBmaWxsPSIjRkZBQUFBIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNNjQzLDMxOS40OTIyIEw2NDMsMzI5LjQ5MjIgTDY1MywzMjkuNDkyMiBMNjQzLDMxOS40OTIyICIgZmlsbD0iI0ZGQUFBQSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTA5IiB4PSI0NzcuNSIgeT0iMzM2LjU1OTEiPiYjMjM1NTk7IDgwMDAgcG9ydCAmIzIzNTY1OyYjMjI4MDY7PC90ZXh0PjwhLS1TUkM9W3lxckNyaE5CRGF3bktXWEFCSW5EQkl2SHlGVnR2bThBd0RnYnZIVUw5blFidzVOY3ZiV2ZGRHN2LWJkN25BU0prcndpc0Y5cU5KRUdfTTlQdV9EUEJNM2JJMmZyeExuSTJ0Qm9BdERKeXFnaTU4M2NBQm5PakdnZTVBbUU4UUxodnZvSE05QUszckpwT2ROdHl3dEJXMFEyYksyNVRVcUthQ3J2a2RKbGFycmpCbmpjRmZrbjdjV3hUZ2pqVDk2ckcxSDNOODMzZk0xbDAtci1pZFMxbWpVLVlTY1dpMldrb0N5aEpXS0J2LU1OZjJoYWJ3S01BRzNiVEMwY0Foa3ZFR0ExYk9BNVdPTUhHYTUtS09kMnFtc3pwemV4NU9tRDMybUNtMjk4LVgza3FiNjBVWDFYbkRDRHhLMVozMHBXblpuVENXcTBdLS0+PC9nPjwvc3ZnPg==">
+<meta property="og:image" content="https://nijialin.com/images/ngrok.png">
+<meta property="og:image" content="https://i.imgur.com/Tn1XS13.png">
+<meta property="article:published_time" content="2021-02-19T10:04:29.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.990Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Container">
+<meta property="article:tag" content="Kubernetes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/k3d/logo.png">
+
+<link rel="canonical" href="https://nijialin.com/2021/02/19/kubernetes-k3d-learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>將 Chatbot 丟入一台筆電中的 Kubernetes 叢集海 | k3d | Docker | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/02/19/kubernetes-k3d-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          將 Chatbot 丟入一台筆電中的 Kubernetes 叢集海 | k3d | Docker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-02-19 10:04:29" itemprop="dateCreated datePublished" datetime="2021-02-19T10:04:29+00:00">2021-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Kubernetes 幫忙處理掉許多以前很繁雜的問題(Auto-Scaling、容器管理..)，讓開發者只要手持 Container 與大量 yaml 檔即可將工具部署上去(前提是容器要正常工作)，但作為僅有一台筆電的開發者(我)想試玩總不能直接至雲端開叢集(金幣攻擊)，因此找到了一個解決方案，使用 k3d 來幫助我們建立 Kubernetes 試玩，以下就一步步帶大家從容器建立到將服務部署於叢集上。</p>
+<p>範例專案：<a target="_blank" rel="noopener" href="https://github.com/louis70109/kubernetes-line-echo-bot">louis70109&#x2F;kubernetes-line-echo-bot</a></p>
+<span id="more"></span>
+
+<h1 id="建立容器"><a href="#建立容器" class="headerlink" title="建立容器"></a>建立容器</h1><p>首先要先進入 <a target="_blank" rel="noopener" href="https://github.com/louis70109/kubernetes-line-echo-bot/tree/master/echo-bot-python">echo-bot-python</a> 資料夾中，在建立前可以先測試這個範例是否正常運作，這隻機器人只是一隻基本回話的 Chatbot：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> echo-bot-python/</span><br><span class="line">pip install -r requirements.txt</span><br><span class="line">cp .env.example .env <span class="comment"># 加入 LINE_CHANNEL_SECRET, LINE_CHANNEL_ACCESS_TOKEN 兩把鑰匙</span></span><br><span class="line">python api.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>請至 <a target="_blank" rel="noopener" href="https://developers.line.biz/console/">LINE Developer Console</a> 建立 Chatbot</li>
+<li>LINE Chatbot 建立流程參考於 <a href="https://nijialin.com/2020/08/27/chatbot-taichung-08/#Massaging-API">Chatbot Taichung 工作坊的文章</a></li>
+</ul>
+</blockquote>
+<p>為求方便與練習，這邊使用 Docker Hub 作為 Kubernetes 的容器使用平台，接著請先至 <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a> 註冊帳號並下載 <a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/">Docker</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker login <span class="comment"># 登入</span></span><br><span class="line">docker build . -t=<span class="string">&quot;帳號/line-echo-bot-python&quot;</span>  <span class="comment"># 將中文改成你 Docker Hub 的帳號</span></span><br><span class="line">docker push  <span class="comment"># 推上 Docker Hub</span></span><br></pre></td></tr></table></figure>
+
+<p>第二段意思是在<strong>當前位置</strong>建立一個 <code>帳號/line-echo-bot-python</code> 的標籤，因為在上半部測試 Chatbot 時已經在 <strong>echo-bot-python&#x2F;</strong> 資料夾下，若不知道位置可使用 <code>pwd</code> 來查當前位置。</p>
+<p>若建立上還是有問題，可以使用我已經有建立好了的 <a target="_blank" rel="noopener" href="https://hub.docker.com/repository/docker/louis70109/line-echo-bot-python">Echo-Bot-Container</a>。</p>
+<blockquote>
+<p>補充: Docker 是 Container 的一個解決方案，Container 不等於 Docker</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nc3mBN3LzvM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h1 id="練習開始"><a href="#練習開始" class="headerlink" title="練習開始"></a>練習開始</h1><p>日常工作中，上半部的工作可能會更加複雜，而若只是練習許多人會直接使用 <a target="_blank" rel="noopener" href="https://hub.docker.com/_/nginx">Nginx</a> 來測試也是沒問題的，那麼接下來就開始使用 <a target="_blank" rel="noopener" href="https://k3d.io/">k3d</a> 來練習囉！</p>
+<p>k3d 是什麼呢？它是將 <a target="_blank" rel="noopener" href="https://github.com/k3s-io/k3s">k3s</a> 這個輕量化(Lightweight) Kubernetes 打包成 Docker Image，讓不同平台的 Docker 用戶可以在 Docker 上操作 Kubernetes，當然也有很多不同的服務可以支援，這邊就不贅述。</p>
+<h2 id="1-安裝-k3d-其他安裝方式-與-kubectl-其他-於-Mac"><a href="#1-安裝-k3d-其他安裝方式-與-kubectl-其他-於-Mac" class="headerlink" title="1. 安裝 k3d (其他安裝方式) 與 kubectl (其他) 於 Mac"></a>1. 安裝 k3d (<a target="_blank" rel="noopener" href="https://k3d.io/#installation">其他安裝方式</a>) 與 kubectl (<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">其他</a>) 於 Mac</h2><p><img src="https://nijialin.com/images/2021/k3d/logo.png" alt="k3d"></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>k3d</span><br><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>kubectl</span><br><span class="line"></span><br><span class="line">kubectl version --client</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>kubectl 是 kubernetes 操作叢集(cluster)的的指令集</p>
+</blockquote>
+<h2 id="2-建立叢集-cluster-，將-mycluster-改成你想要的名字"><a href="#2-建立叢集-cluster-，將-mycluster-改成你想要的名字" class="headerlink" title="2. 建立叢集(cluster)，將 mycluster 改成你想要的名字"></a>2. 建立叢集(cluster)，將 <strong>mycluster</strong> 改成你想要的名字</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">k3d</span> cluster create mycluster --agents <span class="number">1</span> -p &#x27;<span class="number">8082</span>:<span class="number">30080</span>@agent[<span class="number">0</span>]&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>-p 的意思是將本機(Mac)的 8082 port 轉到 Docker 裡的 Kubernetes 環境中的 30080 port</p>
+<h4 id="2021-x2F-10-x2F-15-更新"><a href="#2021-x2F-10-x2F-15-更新" class="headerlink" title="[2021&#x2F;10&#x2F;15 更新]"></a>[2021&#x2F;10&#x2F;15 更新]</h4><p>在這天我在回顧使用時遇到了以下錯誤</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Error </span>from server (InternalError): an error on the server (&quot;&quot;) has prevented the request from succeeding</span><br></pre></td></tr></table></figure>
+
+<p>問題是在 <code>kubectl</code> 沒有跟 <code>k3d</code> 建立的 cluster 連結</p>
+<p>因此重新建立一個 cluster 之後會看到以下的 logs:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">INFO</span>[0000] Prep: Network</span><br><span class="line"><span class="builtin-name">INFO</span>[0000]<span class="built_in"> Network </span>with name <span class="string">&#x27;k3d-nijiacluster&#x27;</span> already exists with ID <span class="string">&#x27;cd6c156a979c5cdec361aa1322a8b0486a1e910589041c5fdbee361f14693152&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0000] Created volume <span class="string">&#x27;k3d-nijiacluster-images&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0001] Creating node <span class="string">&#x27;k3d-nijiacluster-server-0&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0001] Creating node <span class="string">&#x27;k3d-nijiacluster-agent-0&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0001] Creating LoadBalancer <span class="string">&#x27;k3d-nijiacluster-serverlb&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0001] Starting cluster <span class="string">&#x27;nijiacluster&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0001] Starting Node <span class="string">&#x27;k3d-nijiacluster-server-0&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0010] Starting Node <span class="string">&#x27;k3d-nijiacluster-agent-0&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0011] Starting Node <span class="string">&#x27;k3d-nijiacluster-serverlb&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0012] (Optional) Trying <span class="keyword">to</span> <span class="builtin-name">get</span><span class="built_in"> IP </span>of the docker host <span class="keyword">and</span> inject it into the cluster as <span class="string">&#x27;host.k3d.internal&#x27;</span> <span class="keyword">for</span> easy access</span><br><span class="line">WARN[0017] Failed <span class="keyword">to</span> patch CoreDNS ConfigMap <span class="keyword">to</span> include entry <span class="string">&#x27;192.168.65.2 host.k3d.internal&#x27;</span>: Exec process <span class="keyword">in</span> node <span class="string">&#x27;k3d-nijiacluster-server-0&#x27;</span> failed with exit code <span class="string">&#x27;1&#x27;</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0017] Successfully added host record <span class="keyword">to</span> /etc/hosts <span class="keyword">in</span> 3/3 nodes</span><br><span class="line"><span class="builtin-name">INFO</span>[0017] Cluster <span class="string">&#x27;nijiacluster&#x27;</span> created successfully!</span><br><span class="line"><span class="builtin-name">INFO</span>[0017] <span class="attribute">--kubeconfig-update-default</span>=<span class="literal">false</span> --&gt; sets <span class="attribute">--kubeconfig-switch-context</span>=<span class="literal">false</span></span><br><span class="line"><span class="builtin-name">INFO</span>[0017] You can now use it like this:</span><br><span class="line">kubectl<span class="built_in"> config </span>use-context k3d-nijiacluster</span><br><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>kubectl config use-context k3d-nijiacluster</code> 非常中藥，它需要設定 config 讓 kubectl 認識你的 k3d container，下完這指令之後就不會出現剛剛以上的問題喔。</p>
+<h4 id="2021-x2F-02-x2F-24-更新"><a href="#2021-x2F-02-x2F-24-更新" class="headerlink" title="[2021&#x2F;02&#x2F;24 更新]"></a>[2021&#x2F;02&#x2F;24 更新]</h4><p>透過 <code>docker ps</code> 會看到剛剛建立的 agent 被起了一個 Docker Container，並 forward <code>8082:30080</code> port，這就是 k3d 將 k3s 包裝起來的 Container</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">CONTAINER</span> ID   IMAGE                      COMMAND                  CREATED      STATUS      PORTS                             NAMES</span><br><span class="line"><span class="attribute">cd60952ed93a</span>   rancher/k<span class="number">3</span>d-proxy:v<span class="number">4</span>.<span class="number">0</span>.<span class="number">0</span>   <span class="string">&quot;/bin/sh -c nginx-pr…&quot;</span>   <span class="number">4</span> days ago   Up <span class="number">4</span> days   <span class="number">80</span>/tcp, <span class="number">0.0.0.0:52713</span>-&gt;<span class="number">6443</span>/tcp   k<span class="number">3</span>d-nijiacluster-serverlb</span><br><span class="line"><span class="attribute">120e93a4ca0a</span>   rancher/k<span class="number">3</span>s:latest         <span class="string">&quot;/bin/k3s agent&quot;</span>         <span class="number">4</span> days ago   Up <span class="number">4</span> days   <span class="number">0.0.0.0:8082</span>-&gt;<span class="number">30080</span>/tcp           k<span class="number">3</span>d-nijiacluster-agent-<span class="number">0</span></span><br><span class="line"><span class="attribute">dc82667faec0</span>   rancher/k<span class="number">3</span>s:latest         <span class="string">&quot;/bin/k3s server --t…&quot;</span>   <span class="number">4</span> days ago   Up <span class="number">4</span> days                                     k<span class="number">3</span>d-nijiacluster-server-<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>建立完後使用 <code>k3d node list</code> 來看自己剛剛建立的 cluster 們狀態:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">k3d <span class="keyword">node</span> <span class="title">list</span></span><br><span class="line"></span><br><span class="line">NAME                        <span class="keyword">ROLE</span>           <span class="title">CLUSTER</span>        STATUS</span><br><span class="line">k3d-nijiacluster-agent-<span class="number">0</span>    agent          nijiacluster   running</span><br><span class="line">k3d-nijiacluster-server-<span class="number">0</span>   server         nijiacluster   running</span><br><span class="line">k3d-nijiacluster-serverlb   loadbalancer   nijiacluster   running</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>按造過往經驗， Mac 在這裡會是代表像是 Linux 中的 iptable(防火牆)，也就是最後一到對外關卡，因此才需要挖通道讓 Mac 與 Docker 中的 kubernetes 互通。</p>
+</blockquote>
+<h2 id="3-將-chatbot-bot-service-yml-部署到-cluster-中"><a href="#3-將-chatbot-bot-service-yml-部署到-cluster-中" class="headerlink" title="3. 將 chatbot(bot_service.yml) 部署到 cluster 中"></a>3. 將 chatbot(bot_service.yml) 部署到 cluster 中</h2><p>修改以 clone 下來的<a target="_blank" rel="noopener" href="https://github.com/louis70109/kubernetes-line-echo-bot/blob/master/bot_service.yml">專案</a>，開啟 <strong>bot_service.yml</strong> 後先把上述建立好並推上 DockerHub 的容器貼在 <strong>image</strong> 欄位，並將剛剛建立的 LINE Chatbot key <strong>env 參數</strong>中:</p>
+<ul>
+<li>容器對外是 8000 port</li>
+<li>每個像這樣會被部署的服務皆會稱為 Deployment</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">bot-service</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">帳號/line-echo-bot-python:latest</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">8000</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">LINE_CHANNEL_SECRET</span></span><br><span class="line">        <span class="attr">value:</span> <span class="string">&#x27;剛剛設定的 SECRET&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">LINE_CHANNEL_ACCESS_TOKEN</span></span><br><span class="line">        <span class="attr">value:</span> <span class="string">&#x27;剛剛設定的 TOKEN&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>將 bot_service.yml 部署上 kubernetes(k3d) 並用 get 看來看 pods 的狀態：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f bot_service.yml</span><br><span class="line">kubectl get -f bot_service.yml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">NAME</span>             READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line"><span class="attribute">bot</span>-deployment   <span class="number">0</span>/<span class="number">1</span>     <span class="number">1</span>            <span class="number">0</span>           <span class="number">12</span>s</span><br></pre></td></tr></table></figure>
+
+<p>如果要看更詳細資訊的話可以使用 describe 來看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pods <span class="comment"># 看細節</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/k3d/chatbot-pod.png" alt="k3d"></p>
+<h2 id="4-進入-forward-yml-介接-kubernetes-k3d-與-Deployment-chatbot-的-port"><a href="#4-進入-forward-yml-介接-kubernetes-k3d-與-Deployment-chatbot-的-port" class="headerlink" title="4. 進入 forward.yml 介接 kubernetes(k3d) 與 Deployment(chatbot) 的 port"></a>4. 進入 <a target="_blank" rel="noopener" href="https://github.com/louis70109/kubernetes-line-echo-bot">forward.yml</a> 介接 kubernetes(k3d) 與 Deployment(chatbot) 的 port</h2><p>做到這邊狀態現在整體狀態應該會如下：</p>
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIxODRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjQ3NHB4O2hlaWdodDoxODRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0NzQgMTg0IiB3aWR0aD0iNDc0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMjYiIHgyPSIyNiIgeTE9IjM2LjI5NjkiIHkyPSIxNDkuNjk1MyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIyMTUuNSIgeDI9IjIxNS41IiB5MT0iMzYuMjk2OSIgeTI9IjE0OS42OTUzIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjI5OC41IiB4Mj0iMjk4LjUiIHkxPSIzNi4yOTY5IiB5Mj0iMTQ5LjY5NTMiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iNDMxLjUiIHgyPSI0MzEuNSIgeTE9IjM2LjI5NjkiIHkyPSIxNDkuNjk1MyIvPjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOCIgeD0iMTIiIHk9IjI0Ljk5NTEiPk1hYzwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQyIiB4PSI1IiB5PSIxNDguNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI4IiB4PSIxMiIgeT0iMTY4LjY5MDQiPk1hYzwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQxIiB4PSIxOTUuNSIgeT0iNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI3IiB4PSIyMDIuNSIgeT0iMjQuOTk1MSI+azNkPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDEiIHg9IjE5NS41IiB5PSIxNDguNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI3IiB4PSIyMDIuNSIgeT0iMTY4LjY5MDQiPmszZDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwNCIgeD0iMjQ2LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5MCIgeD0iMjUzLjUiIHk9IjI0Ljk5NTEiPkRlcGxveW1lbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxMDQiIHg9IjI0Ni41IiB5PSIxNDguNjk1MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkwIiB4PSIyNTMuNSIgeT0iMTY4LjY5MDQiPkRlcGxveW1lbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI3NCIgeD0iMzk0LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2MCIgeD0iNDAxLjUiIHk9IjI0Ljk5NTEiPkNoYXRib3Q8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI3NCIgeD0iMzk0LjUiIHk9IjE0OC42OTUzIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjAiIHg9IjQwMS41IiB5PSIxNjguNjkwNCI+Q2hhdGJvdDwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjIwNCw2My40Mjk3LDIxNCw2Ny40Mjk3LDIwNCw3MS40Mjk3LDIwOCw2Ny40Mjk3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyNiIgeDI9IjIxMCIgeTE9IjY3LjQyOTciIHkyPSI2Ny40Mjk3Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTY2IiB4PSIzMyIgeT0iNjIuMzYzOCI+ODA4MiBwb3J0ICYjMjM1NjU7JiMyNTAzMzsgMzAwODAgcG9ydDwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMwOS41LDkyLjU2MjUsMjk5LjUsOTYuNTYyNSwzMDkuNSwxMDAuNTYyNSwzMDUuNSw5Ni41NjI1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMDMuNSIgeDI9IjQzMC41IiB5MT0iOTYuNTYyNSIgeTI9Ijk2LjU2MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDkiIHg9IjMxNS41IiB5PSI5MS40OTY2Ij4mIzIzNTU5OyA4MDAwIHBvcnQgJiMyMzU2NTsmIzIyODA2OzwvdGV4dD48cGF0aCBkPSJNMTY2LDEwOS41NjI1IEwxNjYsMTM0LjU2MjUgTDM0OCwxMzQuNTYyNSBMMzQ4LDExOS41NjI1IEwzMzgsMTA5LjU2MjUgTDE2NiwxMDkuNTYyNSAiIGZpbGw9IiNGRkFBQUEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjxwYXRoIGQ9Ik0zMzgsMTA5LjU2MjUgTDMzOCwxMTkuNTYyNSBMMzQ4LDExOS41NjI1IEwzMzgsMTA5LjU2MjUgIiBmaWxsPSIjRkZBQUFBIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNjEiIHg9IjE3MiIgeT0iMTI2LjYyOTQiPiYjMzI1NzA7JiMyMzU2OTsgbWlkZGxld2FyZSAmIzI0MTcxOyYjMjQ1Mzc7JiMyMDE3MTsmIzI1NTA5OzwvdGV4dD48IS0tU1JDPVt5cXJDcmhOQkRhd25LaDBtaTMxSUFDV2xBYjV1a2c3dE1Oa2RXaDYxV09LMU04SkI5UktXOXh5b0RwTWxuNFJORUlFbjkyY19uMGdlaDFzZW9TMDBoa2RmYWNiU1VWYWJnR2h2UFFiNTJhMTNUSEdHNlhNS3RUbVNXUzFBdVZjVU5LeXRKNUo4cEtuOW9LYWpKb25BTE5Zd1NfTkpfSkVWeEV2LXJoU0swMDAwXS0tPjwvZz48L3N2Zz4='>
+
+<p>看到檔案 - <a target="_blank" rel="noopener" href="https://github.com/louis70109/kubernetes-line-echo-bot">forward.yml</a> 中的以下欄位：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&#x27;bot-svc&#x27;</span></span><br><span class="line">    <span class="attr">nodePort:</span> <span class="number">30080</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">8000</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">8000</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://k3d.io/usage/guides/exposing_services/#2-via-nodeport">文件上</a>有提到 Kubernetes 預設的 NodePort 範圍為<strong>30000-32767</strong>，因此上述則被設定在 <strong>30080</strong>(範圍中)<br><a target="_blank" rel="noopener" href="https://k3d.io/usage/guides/exposing_services/">Reference</a></li>
+<li>port 與 targetPort 則是 Deployment(chatbot) 的對外 port</li>
+</ul>
+<p>知道動作後，接著就把它放上 kubernetes 吧！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kebectl apply -f forward.yml</span><br><span class="line">kubectl get -f forward.yml</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就用 forward.yml 這個 deployment 介接完成還可以看到是否有對應成功啦！</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">NAME</span>          TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE</span><br><span class="line"><span class="attribute">bot</span>-service   NodePort   <span class="number">10</span>.xx.ooo.<span class="number">70</span>   &lt;none&gt;        <span class="number">8000</span>:<span class="number">30080</span>/TCP   <span class="number">4</span>s</span><br></pre></td></tr></table></figure>
+
+<img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzOTRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjY2MHB4O2hlaWdodDozOTRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NjAgMzk0IiB3aWR0aD0iNjYwcHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMzgiIHgyPSIzOCIgeTE9IjM2LjI5NjkiIHkyPSIzNTkuNjI1Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LjAsNS4wOyIgeDE9IjE1OC41IiB4Mj0iMTU4LjUiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIzMjEiIHgyPSIzMjEiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSI0NjIiIHgyPSI0NjIiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSI2MTEiIHgyPSI2MTEiIHkxPSIzNi4yOTY5IiB5Mj0iMzU5LjYyNSIvPjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDIiIHg9IjE3IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjgiIHg9IjI0IiB5PSIyNC45OTUxIj5NYWM8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MiIgeD0iMTciIHk9IjM1OC42MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOCIgeD0iMjQiIHk9IjM3OC42MjAxIj5NYWM8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI0MSIgeD0iMTM4LjUiIHk9IjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyNyIgeD0iMTQ1LjUiIHk9IjI0Ljk5NTEiPmszZDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQxIiB4PSIxMzguNSIgeT0iMzU4LjYyNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI3IiB4PSIxNDUuNSIgeT0iMzc4LjYyMDEiPmszZDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwMCIgeD0iMjcxIiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iODYiIHg9IjI3OCIgeT0iMjQuOTk1MSI+Zm9yd2FyZC55bWw8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSIxMDAiIHg9IjI3MSIgeT0iMzU4LjYyNSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijg2IiB4PSIyNzgiIHk9IjM3OC42MjAxIj5mb3J3YXJkLnltbDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwNCIgeD0iNDEwIiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTAiIHg9IjQxNyIgeT0iMjQuOTk1MSI+RGVwbG95bWVudDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjEwNCIgeD0iNDEwIiB5PSIzNTguNjI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTAiIHg9IjQxNyIgeT0iMzc4LjYyMDEiPkRlcGxveW1lbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI3NCIgeD0iNTc0IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjAiIHg9IjU4MSIgeT0iMjQuOTk1MSI+Q2hhdGJvdDwvdGV4dD48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9Ijc0IiB4PSI1NzQiIHk9IjM1OC42MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2MCIgeD0iNTgxIiB5PSIzNzguNjIwMSI+Q2hhdGJvdDwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjE0Nyw2My40Mjk3LDE1Nyw2Ny40Mjk3LDE0Nyw3MS40Mjk3LDE1MSw2Ny40Mjk3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzOCIgeDI9IjE1MyIgeTE9IjY3LjQyOTciIHkyPSI2Ny40Mjk3Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iODciIHg9IjQ1IiB5PSI2Mi4zNjM4Ij5SZXF1ZXN0IE9PTzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMwOSw5Mi41NjI1LDMxOSw5Ni41NjI1LDMwOSwxMDAuNTYyNSwzMTMsOTYuNTYyNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTU5IiB4Mj0iMzE1IiB5MT0iOTYuNTYyNSIgeTI9Ijk2LjU2MjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMzgiIHg9IjE2NiIgeT0iOTEuNDk2NiI+JiMyNDE3MTsmIzI1MTA1OyYjMjE1Nzg7JiMzNTM4MDsmIzIzNDI3OyYjMjUxMDU7JiMzNTIwMTsmIzMwMzQwOyBPT088L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI0NTAsMTIxLjY5NTMsNDYwLDEyNS42OTUzLDQ1MCwxMjkuNjk1Myw0NTQsMTI1LjY5NTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMyMSIgeDI9IjQ1NiIgeTE9IjEyNS42OTUzIiB5Mj0iMTI1LjY5NTMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NyIgeD0iMzI4IiB5PSIxMjAuNjI5NCI+azNkICYjMzU0OTg7JiMzNTIwMTsgT09PPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTk5LDE1MC44MjgxLDYwOSwxNTQuODI4MSw1OTksMTU4LjgyODEsNjAzLDE1NC44MjgxIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSI0NjIiIHgyPSI2MDUiIHkxPSIxNTQuODI4MSIgeTI9IjE1NC44MjgxIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzMiIHg9IjQ2OSIgeT0iMTQ5Ljc2MjIiPiYjMzU1MzE7JiMzMjEwMjsmIzI1MTA1OyBPT088L3RleHQ+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI0NzMsMTc5Ljk2MDksNDYzLDE4My45NjA5LDQ3MywxODcuOTYwOSw0NjksMTgzLjk2MDkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjQ2NyIgeDI9IjYxMCIgeTE9IjE4My45NjA5IiB5Mj0iMTgzLjk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMjUiIHg9IjQ3OSIgeT0iMTc4Ljg5NSI+JiMyMjkwOTsmIzIwMTAyOyYjMzY4ODk7JiMyNjE1OTsmIzIzNDI3OyYjMzUyMDE7JiMzMDM0MDsgT09PPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMzMyLDIwOS4wOTM4LDMyMiwyMTMuMDkzOCwzMzIsMjE3LjA5MzgsMzI4LDIxMy4wOTM4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMjYiIHgyPSI0NjEiIHkxPSIyMTMuMDkzOCIgeTI9IjIxMy4wOTM4Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTE3IiB4PSIzMzgiIHk9IjIwOC4wMjc4Ij4mIzM2ODg5OyYjMjYxNTk7IGszZCAmIzM1MjAxOyYjMzAzNDA7IE9PTzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjE3MCwyMzguMjI2NiwxNjAsMjQyLjIyNjYsMTcwLDI0Ni4yMjY2LDE2NiwyNDIuMjI2NiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTY0IiB4Mj0iMzIwIiB5MT0iMjQyLjIyNjYiIHkyPSIyNDIuMjI2NiIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjYwIiB4PSIxNzYiIHk9IjIzNy4xNjA2Ij4mIzMyMTAyOyYjMjAzMjA7IE9PTzwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjQ5LDI2Ny4zNTk0LDM5LDI3MS4zNTk0LDQ5LDI3NS4zNTk0LDQ1LDI3MS4zNTk0IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSI0MyIgeDI9IjE1OCIgeTE9IjI3MS4zNTk0IiB5Mj0iMjcxLjM1OTQiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5NyIgeD0iNTUiIHk9IjI2Ni4yOTM1Ij5SZXNwb25zZSBPT088L3RleHQ+PHBhdGggZD0iTTUsMjg0LjM1OTQgTDUsMzA5LjM1OTQgTDE5MiwzMDkuMzU5NCBMMTkyLDI5NC4zNTk0IEwxODIsMjg0LjM1OTQgTDUsMjg0LjM1OTQgIiBmaWxsPSIjRkZBQUFBIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNMTgyLDI4NC4zNTk0IEwxODIsMjk0LjM1OTQgTDE5MiwyOTQuMzU5NCBMMTgyLDI4NC4zNTk0ICIgZmlsbD0iI0ZGQUFBQSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTY2IiB4PSIxMSIgeT0iMzAxLjQyNjMiPjgwODIgcG9ydCAmIzIzNTY1OyYjMjUwMzM7IDMwMDgwIHBvcnQ8L3RleHQ+PHBhdGggZD0iTTQyMCwzMTkuNDkyMiBMNDIwLDM0NC40OTIyIEw2NTMsMzQ0LjQ5MjIgTDY1MywzMjkuNDkyMiBMNjQzLDMxOS40OTIyIEw0MjAsMzE5LjQ5MjIgIiBmaWxsPSIjRkZBQUFBIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNNjQzLDMxOS40OTIyIEw2NDMsMzI5LjQ5MjIgTDY1MywzMjkuNDkyMiBMNjQzLDMxOS40OTIyICIgZmlsbD0iI0ZGQUFBQSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTA5IiB4PSI0NzcuNSIgeT0iMzM2LjU1OTEiPiYjMjM1NTk7IDgwMDAgcG9ydCAmIzIzNTY1OyYjMjI4MDY7PC90ZXh0PjwhLS1TUkM9W3lxckNyaE5CRGF3bktXWEFCSW5EQkl2SHlGVnR2bThBd0RnYnZIVUw5blFidzVOY3ZiV2ZGRHN2LWJkN25BU0prcndpc0Y5cU5KRUdfTTlQdV9EUEJNM2JJMmZyeExuSTJ0Qm9BdERKeXFnaTU4M2NBQm5PakdnZTVBbUU4UUxodnZvSE05QUszckpwT2ROdHl3dEJXMFEyYksyNVRVcUthQ3J2a2RKbGFycmpCbmpjRmZrbjdjV3hUZ2pqVDk2ckcxSDNOODMzZk0xbDAtci1pZFMxbWpVLVlTY1dpMldrb0N5aEpXS0J2LU1OZjJoYWJ3S01BRzNiVEMwY0Foa3ZFR0ExYk9BNVdPTUhHYTUtS09kMnFtc3pwemV4NU9tRDMybUNtMjk4LVgza3FiNjBVWDFYbkRDRHhLMVozMHBXblpuVENXcTBdLS0+PC9nPjwvc3ZnPg=='>
+
+<h2 id="5-測試"><a href="#5-測試" class="headerlink" title="5. 測試"></a>5. 測試</h2><p>我有做一個 root 路由是來測試用的，直接在瀏覽器上輸入 <code>localhost:8082/</code> 看有沒有出現 World 的字串，若有出現代表待會測試 chatbot 理論上也是會成功的。</p>
+<h2 id="6-測試-Chatbot-有沒有-Echo"><a href="#6-測試-Chatbot-有沒有-Echo" class="headerlink" title="6. 測試 Chatbot 有沒有 Echo"></a>6. 測試 Chatbot 有沒有 Echo</h2><p><img src="https://nijialin.com/images/ngrok.png"></p>
+<p>由於我是在 Mac 上執行，為求方便我使用 ngrok 來建立暫時含有 SSL 的網址，並把網址複製到剛剛於 <a target="_blank" rel="noopener" href="https://developers.line.biz/console/">LINE Developer Console</a> 建立的 Chatbot 當中的 endpoint 欄位，接著就到剛剛的 Chatbot 上開始跟它聊天吧！</p>
+<p><img src="https://i.imgur.com/Tn1XS13.png" alt="Echo bot"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>憑藉著過往僅存的經驗好不容易完成了一整個 Kubernetes 試玩的循環，雖然曾經因為不小心忘了叢集而被被索取大量費用(怕.png)，但在這次的經驗中了解到文件完整性的重要性(<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/home/">Kubernetes</a> &amp; <a target="_blank" rel="noopener" href="https://k3d.io/">k3d</a>)，讓開發者可以在碰壁的情況下快速找到需要的解答，也體現出 Kubernetes 生態的完整性！接下來若有其他的練習(踩坑)經驗我也會再透過文章分享給大家！😊</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Container/" rel="tag"><i class="fa fa-tag"></i> Container</a>
+              <a href="/tags/Kubernetes/" rel="tag"><i class="fa fa-tag"></i> Kubernetes</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/17/line-notify-in-github-actions/" rel="prev" title="如何建置與使用 GitHub Actions 市集的 LINE Notify 套件">
+      <i class="fa fa-chevron-left"></i> 如何建置與使用 GitHub Actions 市集的 LINE Notify 套件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/05/translate-sticker-driven/" rel="next" title="【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot">
+      【翻譯】嘗試透過貼圖建立 Sticker-Driven Conversations 的 Chatbot <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%AE%B9%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">建立容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B7%B4%E7%BF%92%E9%96%8B%E5%A7%8B"><span class="nav-number">3.</span> <span class="nav-text">練習開始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%9D-k3d-%E5%85%B6%E4%BB%96%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F-%E8%88%87-kubectl-%E5%85%B6%E4%BB%96-%E6%96%BC-Mac"><span class="nav-number">3.1.</span> <span class="nav-text">1. 安裝 k3d (其他安裝方式) 與 kubectl (其他) 於 Mac</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BB%BA%E7%AB%8B%E5%8F%A2%E9%9B%86-cluster-%EF%BC%8C%E5%B0%87-mycluster-%E6%94%B9%E6%88%90%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E5%90%8D%E5%AD%97"><span class="nav-number">3.2.</span> <span class="nav-text">2. 建立叢集(cluster)，將 mycluster 改成你想要的名字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2021-x2F-10-x2F-15-%E6%9B%B4%E6%96%B0"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">[2021&#x2F;10&#x2F;15 更新]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2021-x2F-02-x2F-24-%E6%9B%B4%E6%96%B0"><span class="nav-number">3.2.0.2.</span> <span class="nav-text">[2021&#x2F;02&#x2F;24 更新]</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B0%87-chatbot-bot-service-yml-%E9%83%A8%E7%BD%B2%E5%88%B0-cluster-%E4%B8%AD"><span class="nav-number">3.3.</span> <span class="nav-text">3. 將 chatbot(bot_service.yml) 部署到 cluster 中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%80%B2%E5%85%A5-forward-yml-%E4%BB%8B%E6%8E%A5-kubernetes-k3d-%E8%88%87-Deployment-chatbot-%E7%9A%84-port"><span class="nav-number">3.4.</span> <span class="nav-text">4. 進入 forward.yml 介接 kubernetes(k3d) 與 Deployment(chatbot) 的 port</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.5.</span> <span class="nav-text">5. 測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%B8%AC%E8%A9%A6-Chatbot-%E6%9C%89%E6%B2%92%E6%9C%89-Echo"><span class="nav-number">3.6.</span> <span class="nav-text">6. 測試 Chatbot 有沒有 Echo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

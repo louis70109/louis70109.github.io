@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }     翻譯來自泰國的 Jirawatee 的文章  經常許多開發人員會在 LINE 中設計 Flex Message，讓不同設備的使用者可以收到美美的訊息。在 2020">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【翻譯】使用 2020 Flex Message 的 10 個新功能 - 讓您在 LINE 的訊息設計更有彈性">
+<meta property="og:url" content="https://nijialin.com/2021/01/25/translate-flex-message-10-reason/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }     翻譯來自泰國的 Jirawatee 的文章  經常許多開發人員會在 LINE 中設計 Flex Message，讓不同設備的使用者可以收到美美的訊息。在 2020">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/2.gif">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/3.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/4.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/5.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/6.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/7.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/8.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/9.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/10.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/translate/flex2/11.png">
+<meta property="article:published_time" content="2021-01-25T04:32:42.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:51.015Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Chatbot">
+<meta property="article:tag" content="Flex Message">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/translate/flex2/1.png">
+
+<link rel="canonical" href="https://nijialin.com/2021/01/25/translate-flex-message-10-reason/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【翻譯】使用 2020 Flex Message 的 10 個新功能 - 讓您在 LINE 的訊息設計更有彈性 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/01/25/translate-flex-message-10-reason/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【翻譯】使用 2020 Flex Message 的 10 個新功能 - 讓您在 LINE 的訊息設計更有彈性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-25 04:32:42" itemprop="dateCreated datePublished" datetime="2021-01-25T04:32:42+00:00">2021-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BF%BB%E8%AD%AF/" itemprop="url" rel="index"><span itemprop="name">翻譯</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/1.png"></p>
+<blockquote>
+<p>翻譯來自泰國的 Jirawatee 的<a target="_blank" rel="noopener" href="https://medium.com/linedevth/10-%E0%B8%9F%E0%B8%B5%E0%B9%80%E0%B8%88%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B9%83%E0%B8%99-flex-message-%E0%B8%9B%E0%B8%B5-2020-%E0%B8%AD%E0%B8%B4%E0%B8%AA%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%83%E0%B8%99-line-47d9ba2cf9ed">文章</a></p>
+</blockquote>
+<p>經常許多開發人員會在 LINE 中設計 Flex Message，讓不同設備的使用者可以收到美美的訊息。在 2020 年也就是去年，Flex Message 開發團隊聽到各位開發者的聲音了，發布了比以往更輕鬆並能將您的想像力轉換成 LINE 樣式的版本。</p>
+<p>若您對於 Flex Message 不熟悉，建議先了解<a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B8%89%E0%B8%B5%E0%B8%81%E0%B8%81%E0%B8%8E%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%AA%E0%B8%94%E0%B8%87%E0%B8%9C%E0%B8%A5%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B9%86%E0%B9%83%E0%B8%99-line-messaging-api-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-flex-message-4ad4370562f">這篇文章</a>。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B8%89%E0%B8%B5%E0%B8%81%E0%B8%81%E0%B8%8E%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%AA%E0%B8%94%E0%B8%87%E0%B8%9C%E0%B8%A5%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B9%86%E0%B9%83%E0%B8%99-line-messaging-api-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-flex-message-4ad4370562f">使用 Flex Message 打破 LINE Messaging API 中的傳統顯示規則</a><span id="more"></span></li>
+</ul>
+<p>這次有 10 個新功能，將有助於了解 2020 年 Flex Message 中訊息設計的延展性。</p>
+<ol>
+<li>APNG Support</li>
+<li>內容排版</li>
+<li>字體大小和圖示大小（以 px 為單位）</li>
+<li>Shrink-to-Fit</li>
+<li>漸層背景(Gradient Background)</li>
+<li>使用 px 來設定 Margin &amp; Spacing</li>
+<li>圖片大小（以 px 和 ％ 為單位）</li>
+<li>內容可為空的 Box(Empty Box)</li>
+<li>增加了單一 Bubble 的 JSON Max size</li>
+<li>增加了 Carousel 的 Bubble 數量</li>
+</ol>
+<p>您只需查看每個功能的名稱即可。我將會在你的查詢過程中告訴您～</p>
+<h1 id="1-APNG-Support"><a href="#1-APNG-Support" class="headerlink" title="1. APNG Support"></a>1. APNG Support</h1><p>當今天有任何開發者想在 Flex Message 中使用動畫(APNG)，只需在 “圖片” 的 Component 中加入名為 animation 的 property 即可。</p>
+<ul>
+<li>animated: <code>true</code>, <code>false</code>(default)</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;image&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://apng.onevcat.com/assets/elephant.png&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;animated&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/2.gif"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>需注意用戶是否有在 “設定 &gt; 照片．影片” 中開啟 <strong>“ Auto-play GIFs”</strong> 選項，否則 Animation 將會不能執行。</li>
+<li>當前使用的圖片 URL 若大於 300KB，則動畫將無法使用，並且只會呈現第一張圖片。</li>
+<li>每個訊息最多可以指定 <strong>3 個動畫圖片</strong> Component，超過則無法發送訊息。</li>
+</ul>
+<h1 id="2-內容排版"><a href="#2-內容排版" class="headerlink" title="2. 內容排版"></a>2. 內容排版</h1><p>當我們要對 Box 中的內容進行排序時，經常使用 flex、width 和 height 之類的 property 來劃分寬度（horizontal）和高度（vertical）的比例，藉此分配間距和邊距。 Box 裡的內容之間都會需要一定距離，讓整體內容看起來更舒適。<br>此時 Flex Message 團隊準備了 2 個新 property ，您只要在 Box 中使用它們，將能讓您的內容安排更加容易。</p>
+<h2 id="2-1-justifyContent"><a href="#2-1-justifyContent" class="headerlink" title="2.1 justifyContent"></a>2.1 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/flex-message-layout/#justify-content">justifyContent</a></h2><p>該 property 讓我們能在父階層中設置幫助安排內容，且以下每個值具有不同功能 property ：</p>
+<ul>
+<li><code>flex-start</code>：這將從起點開始對所有項目進行排列。如果是水平，則將基於 bubble 給出的方向：ltr(從左至右)或 rtl(從右至左)；反之若是垂直，則所有項目將從上至下進行排列。</li>
+<li><code>center</code>：將所有項目排列在中心點</li>
+<li><code>flex-end</code>：這將從末端開始對所有項目進行排列。如果是水平，則將基於 bubble 給出的方向：ltr(從左至右)或 rtl(從右至左)；反之若是垂直，則所有項目將從下至上進行排列。</li>
+<li><code>space-between</code>：第一個與最後一個項目貼齊左右側的佈局，其餘項目平均分配到顯示畫面的中心。</li>
+<li><code>space-around</code>：將每個項目之間的距離均勻地分配。</li>
+<li><code>space-evenly</code>：平均劃分每個項目與訊息佈局的距離來進行排列</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;horizontal&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;justifyContent&quot;</span>: <span class="string">&quot;flex-start&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [&#123;&#125;, &#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/3.png"></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;vertical&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;justifyContent&quot;</span>: <span class="string">&quot;flex-start&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;height&quot;</span>: <span class="string">&quot;200px&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [&#123;&#125;, &#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/4.png"></p>
+<h2 id="2-2-alignItems"><a href="#2-2-alignItems" class="headerlink" title="2.2 alignItems"></a>2.2 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/flex-message-layout/#align-items">alignItems</a></h2><p>該 property 能讓我們指定父階層中的項目更換排序方向，而每個值具有以下 property 功能：</p>
+<ul>
+<li><code>flex-start</code>：如果父階層水平排列，則所有項目將自上而下；如果父母垂直排列，則所有項目將從一開始（取決於 Bubble 的方向）</li>
+<li><code>center</code>：將所有項目排列在水平和垂直方向的中心點</li>
+<li><code>flex-end</code>：如果將父階層水平排列，則所有項目將從下至上；並且如果將父接成垂直排列，則所有項目將從末端排列（取決於 Bubble 的方向）</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;horizontal&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;alignItems&quot;</span>: <span class="string">&quot;flex-start&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;height&quot;</span>: <span class="string">&quot;200px&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [&#123;&#125;, &#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/5.png"></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;vertical&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;alignItems&quot;</span>: <span class="string">&quot;flex-start&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;height&quot;</span>: <span class="string">&quot;200px&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [&#123;&#125;, &#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/6.png"></p>
+<h1 id="3-字體大小和圖示大小（以-px-為單位）"><a href="#3-字體大小和圖示大小（以-px-為單位）" class="headerlink" title="3. 字體大小和圖示大小（以 px 為單位）"></a>3. 字體大小和圖示大小（以 px 為單位）</h1><p>過往只能指定 property 來決定<a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/flex-message-elements/#text">文字的大小</a>，<a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/flex-message-elements/#component">Span Component</a>和<a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/flex-message-elements/#component"> Icon</a>也只能透過特定關鍵字來決定尺寸：xxs(11px)、xs(13px)、sm(14px)、md(16px)、lg(19px)、xl(22px)、xxl(29px)、3xl(35px)、4xl(48px)、5xl(74px)來規範這些 Component 的大小。像我以前就很希望能有不同的方式可以設定大小。</p>
+<p>但是現在讓每個人的夢想都實現了。因為所有給定的 Component 大小都可以設定<code>像素</code>(<code>px</code>)。</p>
+<ul>
+<li>size: <code>keywords</code>, <code>px</code></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;...&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;span&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;LINE&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;32px&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;weight&quot;</span>: <span class="string">&quot;bold&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;color&quot;</span>: <span class="string">&quot;#00ff00&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;span&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;text&quot;</span>: <span class="string">&quot; Developers&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;24px&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/7.png"></p>
+<hr>
+<h1 id="4-Shrink-to-Fit"><a href="#4-Shrink-to-Fit" class="headerlink" title="4. Shrink-to-Fit"></a>4. Shrink-to-Fit</h1><p>如果按鈕內的文字的長度大於該項目的寬度，則會發生多餘的文字將被使用 <code>...</code> 隱藏起來。</p>
+<p>以前，想要完全呈現長所有文字內容的方式是將名為 <strong>wrap</strong> 的 property 設置為 <code>true</code>，但這可能會使整體佈局變形，而 Text 或 Button 所設定的高度也可能因為展開內容會受到影響。</p>
+<p>因此，Flex Message 2020 提供了 <strong>adjustMode</strong> property ，該 property 會自動減小字體大小以適應 Component 的寬度，從而使整體佈局與設計相同。</p>
+<ul>
+<li><strong>AdjustMode</strong>：<code>shrink-to-fit</code></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;button&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;action&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;uri&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;Buy a coffee to your friends anywhere&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;uri&quot;</span>: <span class="string">&quot;http://line.me&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;style&quot;</span>: <span class="string">&quot;primary&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;adjustMode&quot;</span>: <span class="string">&quot;shrink-to-fit&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/8.png"></p>
+<h2 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h2><p>AdjustMode 可以在 LINE v10.13.0 以上的版本使用。</p>
+<h1 id="5-漸層背景-Gradient-Background"><a href="#5-漸層背景-Gradient-Background" class="headerlink" title="5. 漸層背景(Gradient Background)"></a>5. 漸層背景(Gradient Background)</h1><p>之前我們可以使用名為 <strong>backgroundColor</strong> 的 property 來更改 Box 的背景顏色，並支援使用 alpha（rgba）的十六進制色碼。</p>
+<p>今年，Flex Message 團隊讓我們能夠透過一個稱為 <strong>background</strong> 的 property 設定漸變背景顏色，它包含了以下的 property ：</p>
+<ul>
+<li>type：linearGradient（<strong>必填</strong>）</li>
+<li>angle（<strong>必填</strong>）：漸層變化的起點角度，或是您也可以使用整數(含小數)來定義角度，例如 <strong>88.8</strong>deg。<ul>
+<li>設定數值: <code>0deg — 360deg</code></li>
+</ul>
+</li>
+<li>startColor：起始位置顏色的十六進制(6 或 8 個字元)色碼（<strong>必填</strong>）。</li>
+<li>endColor：結束位置顏色的十六進制(6 或 8 個字元)色碼（<strong>必填</strong>）。</li>
+<li>centerColor：中心位置的十六進制(6 或 8 個字元)色碼。</li>
+<li>CenterPosition：從 Box 的 <strong>centerColor</strong> 位置對顏色做分區，一樣可以使用整數(含小數)來定義角度，如 <strong>88.8</strong>％。<ul>
+<li>設定數值：<code>0 — 100%</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;vertical&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [],</span><br><span class="line">  <span class="attr">&quot;background&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;linearGradient&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;angle&quot;</span>: <span class="string">&quot;0deg&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;startColor&quot;</span>: <span class="string">&quot;#ff4d79&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;centerColor&quot;</span>: <span class="string">&quot;#ff0000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;endColor&quot;</span>: <span class="string">&quot;#ffdb2c&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;centerPosition&quot;</span>: <span class="string">&quot;50%&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;height&quot;</span>: <span class="string">&quot;200px&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/9.png"></p>
+<h1 id="6-使用-px-來設定-Margin-amp-Spacing"><a href="#6-使用-px-來設定-Margin-amp-Spacing" class="headerlink" title="6. 使用 px 來設定 Margin &amp; Spacing"></a>6. 使用 px 來設定 Margin &amp; Spacing</h1><p>先前定義整個 Flex Message 的間距只能透過輸入<code>關鍵字</code>(<code>keywords</code>)的 property(<code>none</code>、<code>xs</code>、<code>sm</code>、<code>md</code>、<code>lg</code>、<code>xl</code>、<code>xxl</code>)來調整。<br>但是為了提高整體訊息設計的辨識率和精準度，今年 Flex Message 團隊提供出能夠使用 <code>pixel</code> 來設定間距，參考範例如下：</p>
+<ul>
+<li>margin: <code>keywords</code>, <code>px</code></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;Hello World!&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;margin&quot;</span>: <span class="string">&quot;16px&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>spacing: <code>keywords</code>, <code>px</code></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;horizontal&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;spacing&quot;</span>: <span class="string">&quot;16px&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;grape&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;separator&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;lemon&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/10.png"></p>
+<h2 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h2><p>從現在開始，Box 中每個 component 的間距都可以使用 Margin 設定（以前不會影響 Box 中第一個列出的 component）</p>
+<h1 id="7-圖片大小（以-px-和-％-為單位）"><a href="#7-圖片大小（以-px-和-％-為單位）" class="headerlink" title="7. 圖片大小（以 px 和 ％ 為單位）"></a>7. 圖片大小（以 px 和 ％ 為單位）</h1><p>過往設置圖片大小時，我們一樣只能使用關鍵字來定義大小(<code>xxs</code>、<code>xs</code>、<code>sm</code>、<code>md</code>、<code>lg</code>、<code>xl</code>、<code>xxl</code>、<code>3xl</code>、<code>4xl</code>、<code>5xl</code>、<code>full</code>)，以圖片的設定來說這樣設定的確會綁手綁腳。<br>但是從現在開始，圖片可以使用<code>關鍵字</code>、<code>百分比</code>、<code>pixel</code>設定，圖片的<strong>寬度</strong>和<strong>高度</strong>將會被自動計算出來，範例如下：</p>
+<ul>
+<li>size: <code>keywords</code>, <code>px</code>, <code>%</code></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;image&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://apng.onevcat.com/assets/elephant.png&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;80%&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2021/translate/flex2/11.png"></p>
+<h1 id="8-內容可為空的-Box-Empty-Box"><a href="#8-內容可為空的-Box-Empty-Box" class="headerlink" title="8. 內容可為空的 Box(Empty Box)"></a>8. 內容可為空的 Box(Empty Box)</h1><p>Box 是提供整個 Flex Message 佈局的主要元件，類似於 Web 開發中的 <div>。</p>
+<p>以前要設定 Box 的內容時我們都需要指定一個物件(Object)給 Box，但是在寫一些判斷式時會不小心會漏了定義給它 Object 導致內容為空，以至於我們無法發送 Chatbot 的訊息出去。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;box&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;layout&quot;</span>: <span class="string">&quot;vertical&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;contents&quot;</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很慶幸的是，Flex Message 團隊考量到更大的靈活性，在 2020 推出可以讓 Box 的 contents <code>可為空</code>，讓開發者們可以送出空的物件，增加更多的彈性！</p>
+<h1 id="9-增加了單一-Bubble-的-JSON-Max-size"><a href="#9-增加了單一-Bubble-的-JSON-Max-size" class="headerlink" title="9. 增加了單一 Bubble 的 JSON Max size"></a>9. 增加了單一 Bubble 的 JSON Max size</h1><p>曾經我認為 size 應該很夠用，但因為遇到了一些社群上的開發者將所有的 Flex Message 放到單一個 Bubble 裡面，導致訊息的 JSON 的大小就會超過 10KB 的限制。</p>
+<p>但是從現在開始，您將能夠在訊息中使用 3 倍的訊息量，因為單個 Bubble 的 Flex Message 中 JSON 的大小已經擴展到 <code>30KB</code> 囉！但開發者們還是要小心使用避免因為超出限制而導致錯誤發生。</p>
+<h1 id="10-增加了-Carousel-的-Bubble-數量"><a href="#10-增加了-Carousel-的-Bubble-數量" class="headerlink" title="10. 增加了 Carousel 的 Bubble 數量"></a>10. 增加了 Carousel 的 Bubble 數量</h1><p>很多人都知道，在 LINE 中以 Template Message 或 Flex Message 的形式創建 “Carousel Message” 時，每個訊息最多只能包含 10 個 Bubble。</p>
+<p>而在讀過本篇的您將會很幸運，因為我會跟您說，一個 Flex Message 現在能夠讓您的每個 Carousel 訊息最多<strong>擁有 12 個 Bubble</strong>。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>2020 年 Flex Message 團隊聽到各位開發者的聲音並釋出了許多新功能並增加彈性來改善開發流程的體驗，這裡我要感謝泰國開發人員以及 LINE API Expert 提供我們許多意見回饋和新功能需求，讓我們的服務可以持續改善。</p>
+<p>最後，我想用一個漂亮的句子結尾這篇文章…</p>
+<blockquote>
+<p>A Technology without a Community has no Meaning.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Chatbot/" rel="tag"><i class="fa fa-tag"></i> Chatbot</a>
+              <a href="/tags/Flex-Message/" rel="tag"><i class="fa fa-tag"></i> Flex Message</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/21/chatbot-meetup-27/" rel="prev" title="LINE 開發社群計畫: 202103 Chatbot 社群心得與彈幕分享">
+      <i class="fa fa-chevron-left"></i> LINE 開發社群計畫: 202103 Chatbot 社群心得與彈幕分享
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/27/deep-work-reading/" rel="next" title="深度工作力 - 讀書心得">
+      深度工作力 - 讀書心得 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-APNG-Support"><span class="nav-number">1.</span> <span class="nav-text">1. APNG Support</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%85%A7%E5%AE%B9%E6%8E%92%E7%89%88"><span class="nav-number">2.</span> <span class="nav-text">2. 內容排版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-justifyContent"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 justifyContent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-alignItems"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 alignItems</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%AD%97%E9%AB%94%E5%A4%A7%E5%B0%8F%E5%92%8C%E5%9C%96%E7%A4%BA%E5%A4%A7%E5%B0%8F%EF%BC%88%E4%BB%A5-px-%E7%82%BA%E5%96%AE%E4%BD%8D%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3. 字體大小和圖示大小（以 px 為單位）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Shrink-to-Fit"><span class="nav-number">4.</span> <span class="nav-text">4. Shrink-to-Fit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="nav-number">4.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%BC%B8%E5%B1%A4%E8%83%8C%E6%99%AF-Gradient-Background"><span class="nav-number">5.</span> <span class="nav-text">5. 漸層背景(Gradient Background)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8-px-%E4%BE%86%E8%A8%AD%E5%AE%9A-Margin-amp-Spacing"><span class="nav-number">6.</span> <span class="nav-text">6. 使用 px 來設定 Margin &amp; Spacing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-2"><span class="nav-number">6.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%9C%96%E7%89%87%E5%A4%A7%E5%B0%8F%EF%BC%88%E4%BB%A5-px-%E5%92%8C-%EF%BC%85-%E7%82%BA%E5%96%AE%E4%BD%8D%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">7. 圖片大小（以 px 和 ％ 為單位）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E5%85%A7%E5%AE%B9%E5%8F%AF%E7%82%BA%E7%A9%BA%E7%9A%84-Box-Empty-Box"><span class="nav-number">8.</span> <span class="nav-text">8. 內容可為空的 Box(Empty Box)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E5%A2%9E%E5%8A%A0%E4%BA%86%E5%96%AE%E4%B8%80-Bubble-%E7%9A%84-JSON-Max-size"><span class="nav-number">9.</span> <span class="nav-text">9. 增加了單一 Bubble 的 JSON Max size</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%A2%9E%E5%8A%A0%E4%BA%86-Carousel-%E7%9A%84-Bubble-%E6%95%B8%E9%87%8F"><span class="nav-number">10.</span> <span class="nav-text">10. 增加了 Carousel 的 Bubble 數量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">11.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

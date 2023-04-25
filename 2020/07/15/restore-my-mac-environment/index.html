@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言最近重灌了兩次 Mac 系統，而加入 LINE 之後也需要在安裝自己的工作環境，而我日常都在寫文章、寫範例，除了日常已經將開發環境上傳 Gist 以外還有一些小細節需要注意，因此以下就介紹一些我認為較常用的工具以及一些環境設定的部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速轉移我的 Mac 開發環境">
+<meta property="og:url" content="https://nijialin.com/2020/07/15/restore-my-mac-environment/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言最近重灌了兩次 Mac 系統，而加入 LINE 之後也需要在安裝自己的工作環境，而我日常都在寫文章、寫範例，除了日常已經將開發環境上傳 Gist 以外還有一些小細節需要注意，因此以下就介紹一些我認為較常用的工具以及一些環境設定的部分。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2017/02/19/23/09/success-2081167_1280.jpg">
+<meta property="og:image" content="https://i.imgur.com/s4CvKGJ.png">
+<meta property="og:image" content="https://i.imgur.com/ZUtmZAu.png">
+<meta property="og:image" content="https://i.imgur.com/fSa7oGs.png">
+<meta property="og:image" content="https://i.imgur.com/wzVzX6Z.png">
+<meta property="og:image" content="https://i.imgur.com/vMx5qW9.png">
+<meta property="og:image" content="https://i.imgur.com/molC1r7.png">
+<meta property="og:image" content="https://i.imgur.com/GywrjFi.png">
+<meta property="og:image" content="https://i.imgur.com/qfjEiAq.png">
+<meta property="og:image" content="https://i.imgur.com/SDMjle7.jpg">
+<meta property="og:image" content="https://i.imgur.com/OHaXXFD.png">
+<meta property="og:image" content="https://i.imgur.com/IRX4oGO.png">
+<meta property="og:image" content="https://i.imgur.com/Ajqr3CR.png">
+<meta property="og:image" content="https://i.imgur.com/WrO65G3.png">
+<meta property="og:image" content="https://i.imgur.com/S9CsJbT.png">
+<meta property="og:image" content="https://i.imgur.com/fUwJ5Ao.png">
+<meta property="og:image" content="https://i.imgur.com/DUXB0pU.jpg">
+<meta property="og:image" content="https://i.imgur.com/vwWjijK.png">
+<meta property="og:image" content="https://i.imgur.com/VD2Rbd6.png">
+<meta property="article:published_time" content="2020-07-15T08:07:40.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:04:15.044Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="Workspace">
+<meta property="article:tag" content="settings sync">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2017/02/19/23/09/success-2081167_1280.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2020/07/15/restore-my-mac-environment/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>快速轉移我的 Mac 開發環境 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/07/15/restore-my-mac-environment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          快速轉移我的 Mac 開發環境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-07-15 08:07:40" itemprop="dateCreated datePublished" datetime="2020-07-15T08:07:40+00:00">2020-07-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2017/02/19/23/09/success-2081167_1280.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近重灌了兩次 Mac 系統，而加入 LINE 之後也需要在安裝自己的工作環境，而我日常都在<code>寫文章</code>、<code>寫範例</code>，除了日常已經將開發環境上傳 Gist 以外還有一些小細節需要注意，因此以下就介紹一些我認為較常用的工具以及一些環境設定的部分。</p>
+<span id="more"></span>
+
+<h1 id="常用環境"><a href="#常用環境" class="headerlink" title="常用環境"></a>常用環境</h1><ul>
+<li>MacOS</li>
+<li>VScode</li>
+<li>Github</li>
+</ul>
+<h1 id="使用-SSH-key-免密碼上傳-Github"><a href="#使用-SSH-key-免密碼上傳-Github" class="headerlink" title="使用 SSH key 免密碼上傳 Github"></a>使用 SSH key 免密碼上傳 Github</h1><p>使用以下指令產生 public key:</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh-keygen</span></span><br></pre></td></tr></table></figure>
+
+<p>看到類似下圖的話就成功囉！<br><img src="https://i.imgur.com/s4CvKGJ.png"></p>
+<p>Unix like 系統一般都存在 <code>.ssh/</code> 底下，因此使用 <code>cat</code> 來找 public key 就行了：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~<span class="regexp">/.ssh/i</span>d_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>會看到 ssh-rsa 開頭，User Name 結尾的一組 public key，這就是接下來需要的東西</p>
+</blockquote>
+<p>接著到 Github 設定頁面，點選左邊 <code>SSH &amp; GPG keys</code> 後新增一筆新的資料，將 public key 填入 <code>key</code> 的欄位<br><img src="https://i.imgur.com/ZUtmZAu.png"><br>填入完後就會出現一筆新資料<br><img src="https://i.imgur.com/fSa7oGs.png"></p>
+<p>接下來再使用 git 傳到 Github 時就不需要輸入帳號密碼囉！</p>
+<h1 id="brew"><a href="#brew" class="headerlink" title="brew"></a><a target="_blank" rel="noopener" href="https://brew.sh/index_zh-tw">brew</a></h1><p>MAC 的套件管理工具，在安裝許多終端機工具時都會使用到，據說還有另一個工具為<code>apt</code>，但我還是習慣使用<code>brew</code>，透過以下指令安裝後才方便之後做事：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/bin/</span>bash -c <span class="string">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/wzVzX6Z.png"></p>
+<h1 id="VSCode-透過-Settings-Sync-安裝環境"><a href="#VSCode-透過-Settings-Sync-安裝環境" class="headerlink" title="VSCode 透過 Settings Sync 安裝環境"></a>VSCode 透過 Settings Sync 安裝環境</h1><blockquote>
+<p>平時定期將 vscode 設定上傳至 Gist 是很重要的，因為我們都不會知道什麼時候<code>換電腦</code>、<code>電腦壞掉</code>種種因素讓開發環境需要重弄，因此定期上傳真的很重要喔！</p>
+</blockquote>
+<ol>
+<li>下載完 vscode 之後皆安裝 settings Sync 這個套件來安裝我舊有的環境</li>
+</ol>
+<p><img src="https://i.imgur.com/vMx5qW9.png"></p>
+<ol start="2">
+<li>點選右邊按鈕<code>編輯設定檔</code></li>
+</ol>
+<p><img src="https://i.imgur.com/molC1r7.png"></p>
+<ol start="3">
+<li>看到這個畫面之後按下自動下載，在之後若其他電腦有更新的話這邊也會同步喔！</li>
+</ol>
+<p><img src="https://i.imgur.com/GywrjFi.png"></p>
+<ol start="4">
+<li>找到之前製作的設定檔，而 <code>Gist ID</code> 就是網址中接在使用者名稱後面的 ID</li>
+</ol>
+<p><img src="https://i.imgur.com/qfjEiAq.png"></p>
+<ol start="5">
+<li>點下右上角的 <code>Settings</code> 後會看到自己的管理後台頁面，並點選左下角的 <code>Developer settings</code> 進入設定頁面</li>
+</ol>
+<p><img src="https://i.imgur.com/SDMjle7.jpg"></p>
+<ol start="6">
+<li>進入後點選 <code>OAuth Apps</code> 會看到自己過往有透過 OAuth 連結 Github 的程式，這邊就點選 <code>code-settings-sync</code></li>
+</ol>
+<p><img src="https://i.imgur.com/OHaXXFD.png"></p>
+<ol start="7">
+<li>看到這畫面就點 <code>Regenerate token</code> 來產生一組新的 key 讓 vscode 可以連接</li>
+</ol>
+<p><img src="https://i.imgur.com/IRX4oGO.png"></p>
+<ol start="8">
+<li>會產生出一組亂數的 key 讓你貼到工具上</li>
+</ol>
+<p><img src="https://i.imgur.com/Ajqr3CR.png"></p>
+<ol start="9">
+<li>將 Gist ID &amp; Token 貼到 Setting Sync 上後重開就會開始下載啦！</li>
+</ol>
+<p><img src="https://i.imgur.com/WrO65G3.png"></p>
+<ol start="10">
+<li>重開後就開始下載囉！🎉</li>
+</ol>
+<p><img src="https://i.imgur.com/S9CsJbT.png"></p>
+<h1 id="在終端機中使用-code-指令讓-vscode-幫你開啟專案"><a href="#在終端機中使用-code-指令讓-vscode-幫你開啟專案" class="headerlink" title="在終端機中使用 code 指令讓 vscode 幫你開啟專案"></a>在終端機中使用 <code>code</code> 指令讓 vscode 幫你開啟專案</h1><p>身為一個長期使用 vscode 的工程師，又怎麼能不從 command 下手了？</p>
+<p>在 vscode 中按下 <code>command+shift+p</code> 後輸入 <code>command</code>，安裝下圖第二個選項，即可在終端機上輸入 <code>code</code> 接著路徑讓 vscode 幫你開專案～<br><img src="https://i.imgur.com/fUwJ5Ao.png"></p>
+<h1 id="應用程式介紹"><a href="#應用程式介紹" class="headerlink" title="應用程式介紹"></a>應用程式介紹</h1><h2 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a><a target="_blank" rel="noopener" href="https://www.alfredapp.com/">Alfred</a></h2><p>這是我很推的一個搜尋工具，搜尋速度比 MAC 原生的 Spotlight 還要快上許多，很推薦大家直接安裝它體驗一下效率！😄</p>
+<p><img src="https://i.imgur.com/DUXB0pU.jpg"></p>
+<blockquote>
+<p>Command + L 可以放大搜尋字喔！</p>
+</blockquote>
+<h2 id="Magnet"><a href="#Magnet" class="headerlink" title="Magnet"></a><a target="_blank" rel="noopener" href="https://apps.apple.com/tw/app/magnet/id441258766?mt=12">Magnet</a></h2><p>它是我以前在 app store 特價時購入的，在分割視窗時很方便，簡單的組合鍵即可操作完成。</p>
+<p>首次安裝有隱私權的問題，需置左上角的<code>蘋果符號</code> &gt; <code>系統偏好設定(Performance)</code> &gt; <code>安全性與隱私權</code> 中的 <code>輔助使用</code> 打勾 ✅<br><img src="https://i.imgur.com/vwWjijK.png"><br>記得點選登入時啟動喔！<br><img src="https://i.imgur.com/VD2Rbd6.png"></p>
+<h2 id="Trello"><a href="#Trello" class="headerlink" title="Trello"></a><a target="_blank" rel="noopener" href="https://trello.com/zh-Hant">Trello</a></h2><p>很常會需要一個地方紀錄著未成形的想法，而 Trello 本身支援跨平台功能，紅了很久也在最新瘋狂使用它，使用 Free tier 就很足夠囉！</p>
+<h2 id="iTerm"><a href="#iTerm" class="headerlink" title="iTerm"></a><a target="_blank" rel="noopener" href="https://www.iterm2.com/">iTerm</a></h2><p>iTerm 是一個很普及的終端機工具，而 Mac 內建的終端機雖然夠用，但有時需要裝外掛時會很難處理，因此使用 iTerm 搭配 zsh 來讓我可以更輕鬆的安裝外掛，通常都還會搭配另一個 zsh 框架 - <a target="_blank" rel="noopener" href="https://ohmyz.sh/">oh-my-zsh</a>，網路上有許多相關安裝文章供大家可以參考，以下簡單提供兩個連結:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/statementdog-engineering/prettify-your-zsh-command-line-prompt-3ca2acc967f">超簡單！十分鐘打造漂亮又好用的 zsh command line 環境</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/%E6%95%B8%E6%93%9A%E4%B8%8D%E6%AD%A2-not-only-data/macos-%E7%9A%84-terminal-%E5%A4%A7%E6%94%B9%E9%80%A0-iterms-oh-my-zsh-%E5%85%A8%E6%94%BB%E7%95%A5-77d5aae87b10">如何讓 Terminal 看起來好用又好看｜ iTerms 2 + Oh-my-zsh 全攻略</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>藉由這次的整理讓之後若再重灌時就有文章可以快速參考了 😆，目前這樣的環境加上系統內建工具已經可以應付我日常許多工作內容，也因為現在 擁有 Google 與 Apple 這兩個神兵利器，讓重灌後許多帳號密碼之類需要記得的東西可以無痛轉移(相對資料就給別人了)，若是有些比較單純優化使用者體驗的部分之後再寫一些 debug 的文章來紀錄～ 😄</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Mac/" rel="tag"><i class="fa fa-tag"></i> Mac</a>
+              <a href="/tags/Workspace/" rel="tag"><i class="fa fa-tag"></i> Workspace</a>
+              <a href="/tags/settings-sync/" rel="tag"><i class="fa fa-tag"></i> settings sync</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/10/use-line-sdk-join-oss/" rel="prev" title="藉由 LINE Python SDK 初步認識開源專案">
+      <i class="fa fa-chevron-left"></i> 藉由 LINE Python SDK 初步認識開源專案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/21/LIFF-concat-replace-mode-scenario/" rel="next" title="LIFF v2.3 更新內容 - Concatenate & Replace 模式">
+      LIFF v2.3 更新內容 - Concatenate & Replace 模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%92%B0%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">常用環境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-SSH-key-%E5%85%8D%E5%AF%86%E7%A2%BC%E4%B8%8A%E5%82%B3-Github"><span class="nav-number">3.</span> <span class="nav-text">使用 SSH key 免密碼上傳 Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#brew"><span class="nav-number">4.</span> <span class="nav-text">brew</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VSCode-%E9%80%8F%E9%81%8E-Settings-Sync-%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">VSCode 透過 Settings Sync 安裝環境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E7%B5%82%E7%AB%AF%E6%A9%9F%E4%B8%AD%E4%BD%BF%E7%94%A8-code-%E6%8C%87%E4%BB%A4%E8%AE%93-vscode-%E5%B9%AB%E4%BD%A0%E9%96%8B%E5%95%9F%E5%B0%88%E6%A1%88"><span class="nav-number">6.</span> <span class="nav-text">在終端機中使用 code 指令讓 vscode 幫你開啟專案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E4%BB%8B%E7%B4%B9"><span class="nav-number">7.</span> <span class="nav-text">應用程式介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alfred"><span class="nav-number">7.1.</span> <span class="nav-text">Alfred</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magnet"><span class="nav-number">7.2.</span> <span class="nav-text">Magnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trello"><span class="nav-number">7.3.</span> <span class="nav-text">Trello</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iTerm"><span class="nav-number">7.4.</span> <span class="nav-text">iTerm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">8.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言最近因為在找新工作，同時也需要把一些知識打穩，既然常在寫 side project，那麼一定要對於 http 請求後發生什麼事、SSL、OAuth、OpenID 都需要理解清楚，否則串了這麼多服務也寫了應用，但在關鍵時沒講出來的話作品就發揮不出它的功用了 😞，那麼以下就會用我的觀點以及紀錄方法來敘述這些功能。  註：若有發現有什麼問題或內容有誤的話麻煩再留言讓我知道，或是寄信給我也是可以喔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="從 Http 請求到認識 OAuth 以及 OpenID">
+<meta property="og:url" content="https://nijialin.com/2020/05/31/Http-request-OAuth-OpenID/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言最近因為在找新工作，同時也需要把一些知識打穩，既然常在寫 side project，那麼一定要對於 http 請求後發生什麼事、SSL、OAuth、OpenID 都需要理解清楚，否則串了這麼多服務也寫了應用，但在關鍵時沒講出來的話作品就發揮不出它的功用了 😞，那麼以下就會用我的觀點以及紀錄方法來敘述這些功能。  註：若有發現有什麼問題或內容有誤的話麻煩再留言讓我知道，或是寄信給我也是可以喔">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2015/03/10/18/46/taiwan-667565_960_720.jpg">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzOTBweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjcxNnB4O2hlaWdodDozOTBweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA3MTYgMzkwIiB3aWR0aD0iNzE2cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tZW50aXR5IFVzZXItLT48ZyBpZD0iZWxlbV9Vc2VyIj48ZWxsaXBzZSBjeD0iMjEuNSIgY3k9IjE0IiBmaWxsPSIjRjFGMUYxIiByeD0iOCIgcnk9IjgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjxwYXRoIGQ9Ik0yMS41LDIyIEwyMS41LDQ5IE04LjUsMzAgTDM0LjUsMzAgTTIxLjUsNDkgTDguNSw2NCBNMjEuNSw0OSBMMzQuNSw2NCAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI2IiB5PSI3OC40OTUxIj5Vc2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9Ccm93c2VyIj48ZWxsaXBzZSBjeD0iMzAxLjM0NzIiIGN5PSI0My43MjE1IiBmaWxsPSIjRjFGMUYxIiByeD0iNTMuMzQ3MiIgcnk9IjE0LjcyMTUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU4IiB4PSIyNjkuMzQ3MiIgeT0iNDcuNDY5Ij5Ccm93c2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9ETlMiPjxlbGxpcHNlIGN4PSIyNzIuNjk4NSIgY3k9IjIwNC41MjM2IiBmaWxsPSIjRjFGMUYxIiByeD0iMzIuNjk4NSIgcnk9IjE0LjUyMzYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMwIiB4PSIyNTcuNjcwOSIgeT0iMjA3LjM4MSI+RE5TPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9OYW1lIFNlcnZlciI+PGVsbGlwc2UgY3g9IjI3Mi42OTUyIiBjeT0iMzQwLjMzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSIyMjMuNjk1MiIgeT0iMzQ0LjA4NjYiPk5hbWUgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV8xMjMuMjIzLjQ1LjYiPjxlbGxpcHNlIGN4PSI1ODMuNjk1MiIgY3k9IjQzLjMzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSI1MzQuNjk1MiIgeT0iNDcuMDg2NiI+MTIzLjIyMy40NS42PC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9XZWIgU2VydmVyIj48ZWxsaXBzZSBjeD0iNjExLjMxNDIiIGN5PSIyMDQuMjYyOCIgZmlsbD0iI0YxRjFGMSIgcng9IjY2LjgxNDIiIHJ5PSIxNS43NjI4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NCIgeD0iNTY2LjMxNDIiIHk9IjIwOC4wMTA0Ij5XZWIgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9HTU4xNyI+PHBhdGggZD0iTTYzLjUsMjk3LjUgTDYzLjUsMzgzLjE2NDEgQTAsMCAwIDAgMCA2My41LDM4My4xNjQxIEwxNjcuNSwzODMuMTY0MSBBMCwwIDAgMCAwIDE2Ny41LDM4My4xNjQxIEwxNjcuNSwzNDQuNSBMMjAyLjg1OSwzNDAuNSBMMTY3LjUsMzM2LjUgTDE2Ny41LDMwNy41IEwxNTcuNSwyOTcuNSBMNjMuNSwyOTcuNSBBMCwwIDAgMCAwIDYzLjUsMjk3LjUgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNMTU3LjUsMjk3LjUgTDE1Ny41LDMwNy41IEwxNjcuNSwzMDcuNSBMMTU3LjUsMjk3LjUgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4MyIgeD0iNjkuNSIgeT0iMzE0LjU2NjkiPiYjMzQzODk7JiMyOTcwMjsmIzIyMjM1OyYjMjA0OTE7JiMzNzA5NjsmIzIwOTk4Ozo8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjY5LjUiIHk9IjMyOS42OTk3Ij5yb290PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMyIiB4PSI2OS41IiB5PSIzNDQuODMyNSI+LmNvbTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMyIgeD0iNjkuNSIgeT0iMzU5Ljk2NTMiPnd3dzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0NyIgeD0iNjkuNSIgeT0iMzc1LjA5ODEiPi5nb29nbGU8L3RleHQ+PC9nPjwhLS1saW5rIFVzZXIgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rX1VzZXJfQnJvd3NlciI+PHBhdGggZD0iTTM3LjM1NjMsNDMuNSBDNzYuMTk4OCw0My41IDE3Ny42ODgsNDMuNSAyNDIuOTU3LDQzLjUgIiBmaWxsPSJub25lIiBpZD0iVXNlci10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI0Ny45ODMsNDMuNSwyMzguOTgzLDM5LjUsMjQyLjk4Myw0My41LDIzOC45ODMsNDcuNSwyNDcuOTgzLDQzLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE3NCIgeD0iNTUuNSIgeT0iMzYuNTY2OSI+MS4gaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbTwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byBVc2VyLS0+PGcgaWQ9ImxpbmtfQnJvd3Nlcl9Vc2VyIj48cGF0aCBkPSJNMjYwLjU5NSw1Mi44NzkgQzIyMS4zMTMsNjAuNjY1IDE2MC4zMTIsNjkuNTYgMTA3LjUsNjMuNSBDODQuODY1OCw2MC45MDMgNTkuNTI2LDU0LjU4IDQyLjI1MTIsNDkuNzMzICIgZmlsbD0ibm9uZSIgaWQ9IkJyb3dzZXItdG8tVXNlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzNy4xNjA4LDQ4LjI4Miw0NC43MTkzLDU0LjU5NjIsNDEuOTY5Miw0OS42NTI4LDQ2LjkxMjYsNDYuOTAyNywzNy4xNjA4LDQ4LjI4MiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjgiIHg9IjEwOC41IiB5PSI1OS41NjY5Ij45LiAmIzI4MjEwOyYjMjY1Nzk7JiMzMDA1OTsmIzM4NzU0OzwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byBETlMtLT48ZyBpZD0ibGlua19Ccm93c2VyX0ROUyI+PHBhdGggZD0iTTI3NS4zMDksNTYuMTc0IEMyNTQuMzAyLDY3LjEyNSAyMjYuMjg4LDg1LjY5MiAyMTMuNSwxMTEuNSBDMjA0LjIyNiwxMzAuMjE3IDIwNC4yMzQsMTM5Ljc3OSAyMTMuNSwxNTguNSBDMjIwLjQyMiwxNzIuNDg1IDIzNC4wMDIsMTgzLjMxIDI0Ni4zOSwxOTAuODM0ICIgZmlsbD0ibm9uZSIgaWQ9IkJyb3dzZXItdG8tRE5TIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI1MC44ODUsMTkzLjQ1NywyNDUuMTI3NiwxODUuNDY2MiwyNDYuNTY2NSwxOTAuOTM3LDI0MS4wOTU3LDE5Mi4zNzU5LDI1MC44ODUsMTkzLjQ1NyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzAiIHg9IjIxNC41IiB5PSIxMzkuNTY2OSI+Mi4gJiMzNTUzMTsmIzMyMTAyOyYjMjUxMDU7IElQPC90ZXh0PjwvZz48IS0tbGluayBETlMgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rX0ROU19Ccm93c2VyIj48cGF0aCBkPSJNMjc4LjY0MiwxOTAgQzI4Mi4zNzksMTgxLjIwNyAyODYuOTE2LDE2OS4zODggMjg5LjUsMTU4LjUgQzI5Ny4zMjksMTI1LjUxNiAzMDAuMDUyLDg1Ljk1MiAzMDAuOTk4LDYzLjE3ICIgZmlsbD0ibm9uZSIgaWQ9IkROUy10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMwMS4xOTMsNTguMDI2LDI5Ni44NTY0LDY2Ljg2ODcsMzAxLjAwNDQsNjMuMDIyNCwzMDQuODUwNyw2Ny4xNzA1LDMwMS4xOTMsNTguMDI2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMzIiIHg9IjI5OC41IiB5PSIxMzkuNTY2OSI+NC4gSVAgJiMyODg1ODsgMTIzLjIyMy40NS42PC90ZXh0PjwvZz48IS0tbGluayBETlMgdG8gTmFtZSBTZXJ2ZXItLT48ZyBpZD0ibGlua19ETlNfTmFtZSBTZXJ2ZXIiPjxwYXRoIGQ9Ik0yNzIuNSwyMjQuMzYzIEMyNzIuNSwyNDkuMjMzIDI3Mi41LDI5Mi44NDgxIDI3Mi41LDMxOC42NjUxICIgZmlsbD0ibm9uZSIgaWQ9IkROUy1OYW1lIFNlcnZlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNzIuNSwyMTkuMzM2LDI2OC41LDIyOC4zMzYsMjcyLjUsMjI0LjMzNiwyNzYuNSwyMjguMzM2LDI3Mi41LDIxOS4zMzYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjcyLjUsMzIzLjg5MDksMjc2LjUsMzE0Ljg5MDksMjcyLjUsMzE4Ljg5MDksMjY4LjUsMzE0Ljg5MDksMjcyLjUsMzIzLjg5MDkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEyOCIgeD0iMjczLjUiIHk9IjI2My41NjY5Ij4zLiAmIzIzNTU5OyBEb21haW4gJiMzNjY4MTsmIzI1MTA0OyBJUDwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byAxMjMuMjIzLjQ1LjYtLT48ZyBpZD0ibGlua19Ccm93c2VyXzEyMy4yMjMuNDUuNiI+PHBhdGggZD0iTTM1NS4yMDYsNDMuNSBDMzk4LjY4Niw0My41IDQ2MC40MjYsNDMuNSA1MDguNzM4LDQzLjUgIiBmaWxsPSJub25lIiBpZD0iQnJvd3Nlci10by0xMjMuMjIzLjQ1LjYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTEzLjk2NSw0My41LDUwNC45NjUsMzkuNSw1MDguOTY1LDQzLjUsNTA0Ljk2NSw0Ny41LDUxMy45NjUsNDMuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTIyIiB4PSIzNzMuNSIgeT0iMjEuNTY2OSI+NS4mIzIxNDYyOyYjMjQ0NzE7IElQICYjMjQ0NjA7JiMzNTM3MDsmIzIxODM5OyYjMjAwMjc7JiMyNzIzMTs8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjQwMiIgeT0iMzYuNjk5NyI+JiMyMDAwNjsmIzE5OTc5OyYjMzY2MTc7JiMzNjAzOTsmIzI4MzA0OzwvdGV4dD48L2c+PCEtLWxpbmsgMTIzLjIyMy40NS42IHRvIEJyb3dzZXItLT48ZyBpZD0ibGlua18xMjMuMjIzLjQ1LjZfQnJvd3NlciI+PHBhdGggZD0iTTUzNC40NzEsNTUuMjA5IEM1MTguMDUxLDU4LjU5NCA0OTkuNTc4LDYxLjgyNSA0ODIuNSw2My41IEM0NDAuMDM3LDY3LjY2NCA0MjguODgyLDY4LjQxOSAzODYuNSw2My41IEMzNzIuMjg0LDYxLjg1IDM1Ni45OTMsNTguNjk3IDM0My4zNTQsNTUuMzc0ICIgZmlsbD0ibm9uZSIgaWQ9IjEyMy4yMjMuNDUuNi10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMzOC40MDgsNTQuMTQ1LDM0Ni4xNzU5LDYwLjE5OTgsMzQzLjI2MDEsNTUuMzUyMywzNDguMTA3NSw1Mi40MzY1LDMzOC40MDgsNTQuMTQ1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5NCIgeD0iMzg3LjUiIHk9IjU5LjU2NjkiPjguICYjMjIyMzg7JiMyMDY1OTsmIzM4NzQ4OyYjMjQ5MDc7JiMzNjAzOTsmIzI2MDA5OzwvdGV4dD48L2c+PCEtLWxpbmsgMTIzLjIyMy40NS42IHRvIFdlYiBTZXJ2ZXItLT48ZyBpZD0ibGlua18xMjMuMjIzLjQ1LjZfV2ViIFNlcnZlciI+PHBhdGggZD0iTTU3MS44MjUsNTkuOTE5IEM1NTYuMjgzLDgyLjQ3NSA1MzIuNjE1LDEyNS4zOCA1NDkuNSwxNTguNSBDNTU1LjYzMywxNzAuNTMgNTY2LjY1MywxODAuMDk1IDU3Ny43MTgsMTg3LjI1OSAiIGZpbGw9Im5vbmUiIGlkPSIxMjMuMjIzLjQ1LjYtdG8tV2ViIFNlcnZlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1ODIuMTE2LDE4OS45ODUsNTc2LjU3MzYsMTgxLjg0MzYsNTc3Ljg2NjIsMTg3LjM1MDgsNTcyLjM1OSwxODguNjQzMyw1ODIuMTE2LDE4OS45ODUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjY4IiB4PSI1NTAuNSIgeT0iMTM5LjU2NjkiPjYuICYjMzIwMzQ7JiMyMTQ2MjsmIzM2MDM5OyYjMjgzMDQ7PC90ZXh0PjwvZz48IS0tbGluayBXZWIgU2VydmVyIHRvIDEyMy4yMjMuNDUuNi0tPjxnIGlkPSJsaW5rX1dlYiBTZXJ2ZXJfMTIzLjIyMy40NS42Ij48cGF0aCBkPSJNNjE4LjM3NywxODguMjY4IEM2MjUuNzQ5LDE2OS44MTEgNjM1LjM5NSwxMzcuOTA1IDYyNy41LDExMS41IEM2MjIuMTk5LDkzLjc3MiA2MTAuNTM0LDc2LjM4NCA2MDAuNTQ3LDYzLjc2NiAiIGZpbGw9Im5vbmUiIGlkPSJXZWIgU2VydmVyLXRvLTEyMy4yMjMuNDUuNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1OTcuMjM1LDU5LjY3Niw1OTkuNzkxMSw2OS4xODc0LDYwMC4zODE5LDYzLjU2MTUsNjA2LjAwNzksNjQuMTUyMyw1OTcuMjM1LDU5LjY3NiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDIiIHg9IjY0OC41IiB5PSIxMjQuNTY2OSI+Ny4gJiMyMjIzODsmIzIwNjU5OzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1MiIgeD0iNjQzLjUiIHk9IjEzOS42OTk3Ij4mIzM4NzQ4OyYjMjQ5MDc7JiMyNzI4NDsmIzI2Njk2OzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3OCIgeD0iNjMwLjUiIHk9IjE1NC44MzI1Ij5KU09OICYjMjUxMTA7IFhNTDwvdGV4dD48L2c+PCEtLVNSQz1bVFA5REltOTE2Q1ZsLW9jVU9ucnNuRFRnWUd4WGZJV0JIRWhXbk45ejBUczlUTWNsT1FHaDZzWUtYZlg5N2lKcTRiY21NRmJmZERkck1wSWhjMnhMT1BZUFB2eFZWX3hGRjFGOVlKQm1NeDJvQk1FTGhMUzVTMkQ4QVNmUEpkMnZMNUw1SU9vSjZINlR1WXB0YW1IeTdBa0laR0wzT09QdTQ1WHp0TnBsS0VxNlRXd3ZRSFdzVUppWjVDa0E0MVJieXdjdTVtNXZBSzhHUHNEZjJRb2w0aktnMnU5dEVsNFhUV0hjVldYa1puVHZzRjN2S00zUFhmbkVmWEdSTWF2V2YxLUhTZXNDeGNzVVpBd2pSZXpLb3NGWldwd3RlakJPdzhtRHRWZWlNT0NZN0xPdTlwbXBTSUlVQjRtNzQ5WGxSUU91MXZQRV9fVW1uYWZqRjlCeTgyZkRjV19xSWdVekVfZ2FIUU5UeTQ0OGc1UTN1X3N6TnZTeDdjMXpCWjRKaUEtbHJWLWdGeUFzMGNtV2VDT2hSVHNRclZ3YXNVT2FoOFlHNEhDQXU4SXA0SG8wTFEtUWJHOWZEQ1k1RmhkaTRncVdpQVlDaVNBY1FSaTFNRl9qcFVtQlNBOEsxcmxvNm0wMF0tLT48L2c+PC9zdmc+">
+<meta property="og:image" content="https://i.imgur.com/ddrEQxs.png">
+<meta property="og:image" content="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIyMjNweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjMwNHB4O2hlaWdodDoyMjNweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMDQgMjIzIiB3aWR0aD0iMzA0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMzMiIHgyPSIzMyIgeTE9IjM2LjI5NjkiIHkyPSIxODcuOTYwOSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIyNjciIHgyPSIyNjciIHkxPSIzNi4yOTY5IiB5Mj0iMTg3Ljk2MDkiLz48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjU3IiB4PSI1IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDMiIHg9IjEyIiB5PSIyNC45OTUxIj5DbGllbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI1NyIgeD0iNSIgeT0iMTg2Ljk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0MyIgeD0iMTIiIHk9IjIwNi45NTYxIj5DbGllbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI2MSIgeD0iMjM3IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDciIHg9IjI0NCIgeT0iMjQuOTk1MSI+U2VydmVyPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNjEiIHg9IjIzNyIgeT0iMTg2Ljk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0NyIgeD0iMjQ0IiB5PSIyMDYuOTU2MSI+U2VydmVyPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjU1LjUsNjMuNDI5NywyNjUuNSw2Ny40Mjk3LDI1NS41LDcxLjQyOTcsMjU5LjUsNjcuNDI5NyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzMuNSIgeDI9IjI2MS41IiB5MT0iNjcuNDI5NyIgeTI9IjY3LjQyOTciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNzkiIHg9IjQwLjUiIHk9IjYyLjM2MzgiPiYjMjUxMDU7JiMzODY1NjsmIzM1MjAxOyYjMzY4OTk7JiMzMjIxODsoU1lOKSYjNjUyOTI7JiMyMjIzODsmIzMxNTcyOyYjMzU1MzE7JiMyOTk5MjsgTTwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjQ0LjUsMTA3LjY5NTMsMzQuNSwxMTEuNjk1Myw0NC41LDExNS42OTUzLDQwLjUsMTExLjY5NTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjM4LjUiIHgyPSIyNjYuNSIgeTE9IjExMS42OTUzIiB5Mj0iMTExLjY5NTMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNjMiIHg9IjUwLjUiIHk9IjkxLjQ5NjYiPiYjMjU5MTA7JiMyMTA0MDsmIzIwMTAyOyYjNjUyOTI7JiMyNjE1OTsgTSsxICYjMjE5NjY7KEFDSykmIzY1MzExOzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDQiIHg9IjU0LjUiIHk9IjEwNi42Mjk0Ij4mIzIyMjM4OyYjMzE1NzI7JiMzNTUzMTsmIzI5OTkyOyBOIChTWU4pPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjU1LjUsMTM2LjgyODEsMjY1LjUsMTQwLjgyODEsMjU1LjUsMTQ0LjgyODEsMjU5LjUsMTQwLjgyODEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMzLjUiIHgyPSIyNjEuNSIgeTE9IjE0MC44MjgxIiB5Mj0iMTQwLjgyODEiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyMTAiIHg9IjQwLjUiIHk9IjEzNS43NjIyIj4mIzI1OTEwOyYjMjEwNDA7JiMyMDEwMjsmIzY1MjkyO04rMSAmIzI2MTU5OyYjMjUxMDU7JiMyNTkxMDsmIzIxMDQwOyYjMzAzNDA7JiMzNTMzODsmIzM0Mzk5OyhBQ0spPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNDQuNSwxNjUuOTYwOSwzNC41LDE2OS45NjA5LDQ0LjUsMTczLjk2MDksNDAuNSwxNjkuOTYwOSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNTUuNSwxNjUuOTYwOSwyNjUuNSwxNjkuOTYwOSwyNTUuNSwxNzMuOTYwOSwyNTkuNSwxNjkuOTYwOSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7c3Ryb2tlLWRhc2hhcnJheToyLjAsMi4wOyIgeDE9IjM4LjUiIHgyPSIyNjEuNSIgeTE9IjE2OS45NjA5IiB5Mj0iMTY5Ljk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNTAiIHg9IjUwLjUiIHk9IjE2NC44OTUiPlNlcnZlciAmIzMwOTA2OyYjMzU0Njk7JiMyMzQzNjsmIzI0NDYwOyYjMzgyODM7JiMyMjk4NzsmIzM2ODk5OyYjMzIyMTg7PC90ZXh0PjwhLS1TUkM9W1N5eDlKQ3FoS1QyckttWEVCSWZCQlI5SVVET255VU1TWFhWQjZieXNCN3ctVlBQNlNBSVZ2bGl6Rkt6ZHB0ay1UaWdCclR0RmZ3bkd5RU0yZzBSZlNtUVIwREd0UFRsSlpXckZUaEsxNUotUmlMeDFMempHdVVkcUZXcjdQcy1XX2xhblVHZWVIbFdmVzR0Y1NpUHEwOTkxVmExM1c4TzF0R0dIVkp3aHZTTUFoWFNwdnVFRFhNY3NxS05JM2ROUHlxTXhOZ3BnVlJna3YtYy1kZlZKa2Z5a3h1UnUxbTAwXS0tPjwvZz48L3N2Zz4=">
+<meta property="og:image" content="https://i.imgur.com/wZk7hoS.png">
+<meta property="og:image" content="https://i.imgur.com/5tk4osI.png">
+<meta property="og:image" content="https://i.imgur.com/oeLkNoP.png">
+<meta property="og:image" content="https://i.imgur.com/WghYZJM.png">
+<meta property="article:published_time" content="2020-05-31T18:26:55.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.961Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="SSL">
+<meta property="article:tag" content="OAuth">
+<meta property="article:tag" content="OpenID">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2015/03/10/18/46/taiwan-667565_960_720.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2020/05/31/Http-request-OAuth-OpenID/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>從 Http 請求到認識 OAuth 以及 OpenID | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/05/31/Http-request-OAuth-OpenID/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          從 Http 請求到認識 OAuth 以及 OpenID
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-31 18:26:55" itemprop="dateCreated datePublished" datetime="2020-05-31T18:26:55+00:00">2020-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2015/03/10/18/46/taiwan-667565_960_720.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近因為在找新工作，同時也需要把一些知識打穩，既然常在寫 side project，那麼一定要對於 http 請求後發生什麼事、SSL、OAuth、OpenID 都需要理解清楚，否則串了這麼多服務也寫了應用，但在關鍵時沒講出來的話作品就發揮不出它的功用了 😞，那麼以下就會用我的觀點以及紀錄方法來敘述這些功能。</p>
+<blockquote>
+<p>註：若有發現有什麼問題或內容有誤的話麻煩再留言讓我知道，或是<code>寄信</code>給我也是可以喔！</p>
+</blockquote>
+<h1 id="從輸入https-www-google-com之後發生了什麼事"><a href="#從輸入https-www-google-com之後發生了什麼事" class="headerlink" title="從輸入https://www.google.com之後發生了什麼事?"></a>從輸入<code>https://www.google.com</code>之後發生了什麼事?</h1><p>首先須了解<code>https://www.google.com</code>這樣的網址是如何組成:</p>
+<span id="more"></span>
+
+<ol>
+<li>https: 通訊協定，其他常見如: tcp、udp、websocket、mqtt…</li>
+<li>www: 常聽到的 sub domain 就指這個部分，也會聽到 host 的名稱，意指在一個 Domain 下若有多個主機時則用這個部分來指定名稱為特定主機，一般預設進入點為 <code>www</code>。</li>
+<li>.google: 這部分學名為 <code>Second Level Domain</code>(SLD)，在 Top level domain 搜尋完後接著搜尋的層級，通常為個人品牌、公司行號為名稱。</li>
+<li>.com: 這層名為 <code>Top Level Domain</code>(TLD)，常見為 com、org、gov、edu、io，較好理解的方式我認為就是把當前進入點判斷為何種<code>組織</code>，再以此分類下去找 SLD，有點二元搜尋的概念 😁。</li>
+<li>root: 一開始我看到這部分也覺得霧煞煞，簡單來說每個域名(Domain)的結尾都會有 <code>.</code> 這個小數點，它是指域名(Domain)的進入點，所有上的 Domain 都會從這個地方開始判斷。</li>
+</ol>
+<blockquote>
+<p>上述是照著網址由左而右寫，實際上則是從右往左判斷</p>
+</blockquote>
+<p>上面步驟已經說明清楚每個部分了，接下來就說明從瀏覽器輸入網址後的步驟吧！</p>
+<h2 id="向-DNS-要-IP"><a href="#向-DNS-要-IP" class="headerlink" title="向 DNS 要 IP"></a>向 DNS 要 IP</h2><img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIzOTBweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjcxNnB4O2hlaWdodDozOTBweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA3MTYgMzkwIiB3aWR0aD0iNzE2cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tZW50aXR5IFVzZXItLT48ZyBpZD0iZWxlbV9Vc2VyIj48ZWxsaXBzZSBjeD0iMjEuNSIgY3k9IjE0IiBmaWxsPSIjRjFGMUYxIiByeD0iOCIgcnk9IjgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjxwYXRoIGQ9Ik0yMS41LDIyIEwyMS41LDQ5IE04LjUsMzAgTDM0LjUsMzAgTTIxLjUsNDkgTDguNSw2NCBNMjEuNSw0OSBMMzQuNSw2NCAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMxIiB4PSI2IiB5PSI3OC40OTUxIj5Vc2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9Ccm93c2VyIj48ZWxsaXBzZSBjeD0iMzAxLjM0NzIiIGN5PSI0My43MjE1IiBmaWxsPSIjRjFGMUYxIiByeD0iNTMuMzQ3MiIgcnk9IjE0LjcyMTUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU4IiB4PSIyNjkuMzQ3MiIgeT0iNDcuNDY5Ij5Ccm93c2VyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9ETlMiPjxlbGxpcHNlIGN4PSIyNzIuNjk4NSIgY3k9IjIwNC41MjM2IiBmaWxsPSIjRjFGMUYxIiByeD0iMzIuNjk4NSIgcnk9IjE0LjUyMzYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMwIiB4PSIyNTcuNjcwOSIgeT0iMjA3LjM4MSI+RE5TPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9OYW1lIFNlcnZlciI+PGVsbGlwc2UgY3g9IjI3Mi42OTUyIiBjeT0iMzQwLjMzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSIyMjMuNjk1MiIgeT0iMzQ0LjA4NjYiPk5hbWUgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV8xMjMuMjIzLjQ1LjYiPjxlbGxpcHNlIGN4PSI1ODMuNjk1MiIgY3k9IjQzLjMzOSIgZmlsbD0iI0YxRjFGMSIgcng9IjY5LjY5NTIiIHJ5PSIxNi4zMzkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSI1MzQuNjk1MiIgeT0iNDcuMDg2NiI+MTIzLjIyMy40NS42PC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9XZWIgU2VydmVyIj48ZWxsaXBzZSBjeD0iNjExLjMxNDIiIGN5PSIyMDQuMjYyOCIgZmlsbD0iI0YxRjFGMSIgcng9IjY2LjgxNDIiIHJ5PSIxNS43NjI4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NCIgeD0iNTY2LjMxNDIiIHk9IjIwOC4wMTA0Ij5XZWIgU2VydmVyPC90ZXh0PjwvZz48ZyBpZD0iZWxlbV9HTU4xNyI+PHBhdGggZD0iTTYzLjUsMjk3LjUgTDYzLjUsMzgzLjE2NDEgQTAsMCAwIDAgMCA2My41LDM4My4xNjQxIEwxNjcuNSwzODMuMTY0MSBBMCwwIDAgMCAwIDE2Ny41LDM4My4xNjQxIEwxNjcuNSwzNDQuNSBMMjAyLjg1OSwzNDAuNSBMMTY3LjUsMzM2LjUgTDE2Ny41LDMwNy41IEwxNTcuNSwyOTcuNSBMNjMuNSwyOTcuNSBBMCwwIDAgMCAwIDYzLjUsMjk3LjUgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNMTU3LjUsMjk3LjUgTDE1Ny41LDMwNy41IEwxNjcuNSwzMDcuNSBMMTU3LjUsMjk3LjUgIiBmaWxsPSIjRkVGRkREIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4MyIgeD0iNjkuNSIgeT0iMzE0LjU2NjkiPiYjMzQzODk7JiMyOTcwMjsmIzIyMjM1OyYjMjA0OTE7JiMzNzA5NjsmIzIwOTk4Ozo8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjY5LjUiIHk9IjMyOS42OTk3Ij5yb290PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjMyIiB4PSI2OS41IiB5PSIzNDQuODMyNSI+LmNvbTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIzMyIgeD0iNjkuNSIgeT0iMzU5Ljk2NTMiPnd3dzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0NyIgeD0iNjkuNSIgeT0iMzc1LjA5ODEiPi5nb29nbGU8L3RleHQ+PC9nPjwhLS1saW5rIFVzZXIgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rX1VzZXJfQnJvd3NlciI+PHBhdGggZD0iTTM3LjM1NjMsNDMuNSBDNzYuMTk4OCw0My41IDE3Ny42ODgsNDMuNSAyNDIuOTU3LDQzLjUgIiBmaWxsPSJub25lIiBpZD0iVXNlci10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI0Ny45ODMsNDMuNSwyMzguOTgzLDM5LjUsMjQyLjk4Myw0My41LDIzOC45ODMsNDcuNSwyNDcuOTgzLDQzLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE3NCIgeD0iNTUuNSIgeT0iMzYuNTY2OSI+MS4gaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbTwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byBVc2VyLS0+PGcgaWQ9ImxpbmtfQnJvd3Nlcl9Vc2VyIj48cGF0aCBkPSJNMjYwLjU5NSw1Mi44NzkgQzIyMS4zMTMsNjAuNjY1IDE2MC4zMTIsNjkuNTYgMTA3LjUsNjMuNSBDODQuODY1OCw2MC45MDMgNTkuNTI2LDU0LjU4IDQyLjI1MTIsNDkuNzMzICIgZmlsbD0ibm9uZSIgaWQ9IkJyb3dzZXItdG8tVXNlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIzNy4xNjA4LDQ4LjI4Miw0NC43MTkzLDU0LjU5NjIsNDEuOTY5Miw0OS42NTI4LDQ2LjkxMjYsNDYuOTAyNywzNy4xNjA4LDQ4LjI4MiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjgiIHg9IjEwOC41IiB5PSI1OS41NjY5Ij45LiAmIzI4MjEwOyYjMjY1Nzk7JiMzMDA1OTsmIzM4NzU0OzwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byBETlMtLT48ZyBpZD0ibGlua19Ccm93c2VyX0ROUyI+PHBhdGggZD0iTTI3NS4zMDksNTYuMTc0IEMyNTQuMzAyLDY3LjEyNSAyMjYuMjg4LDg1LjY5MiAyMTMuNSwxMTEuNSBDMjA0LjIyNiwxMzAuMjE3IDIwNC4yMzQsMTM5Ljc3OSAyMTMuNSwxNTguNSBDMjIwLjQyMiwxNzIuNDg1IDIzNC4wMDIsMTgzLjMxIDI0Ni4zOSwxOTAuODM0ICIgZmlsbD0ibm9uZSIgaWQ9IkJyb3dzZXItdG8tRE5TIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjI1MC44ODUsMTkzLjQ1NywyNDUuMTI3NiwxODUuNDY2MiwyNDYuNTY2NSwxOTAuOTM3LDI0MS4wOTU3LDE5Mi4zNzU5LDI1MC44ODUsMTkzLjQ1NyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzAiIHg9IjIxNC41IiB5PSIxMzkuNTY2OSI+Mi4gJiMzNTUzMTsmIzMyMTAyOyYjMjUxMDU7IElQPC90ZXh0PjwvZz48IS0tbGluayBETlMgdG8gQnJvd3Nlci0tPjxnIGlkPSJsaW5rX0ROU19Ccm93c2VyIj48cGF0aCBkPSJNMjc4LjY0MiwxOTAgQzI4Mi4zNzksMTgxLjIwNyAyODYuOTE2LDE2OS4zODggMjg5LjUsMTU4LjUgQzI5Ny4zMjksMTI1LjUxNiAzMDAuMDUyLDg1Ljk1MiAzMDAuOTk4LDYzLjE3ICIgZmlsbD0ibm9uZSIgaWQ9IkROUy10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMwMS4xOTMsNTguMDI2LDI5Ni44NTY0LDY2Ljg2ODcsMzAxLjAwNDQsNjMuMDIyNCwzMDQuODUwNyw2Ny4xNzA1LDMwMS4xOTMsNTguMDI2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMzIiIHg9IjI5OC41IiB5PSIxMzkuNTY2OSI+NC4gSVAgJiMyODg1ODsgMTIzLjIyMy40NS42PC90ZXh0PjwvZz48IS0tbGluayBETlMgdG8gTmFtZSBTZXJ2ZXItLT48ZyBpZD0ibGlua19ETlNfTmFtZSBTZXJ2ZXIiPjxwYXRoIGQ9Ik0yNzIuNSwyMjQuMzYzIEMyNzIuNSwyNDkuMjMzIDI3Mi41LDI5Mi44NDgxIDI3Mi41LDMxOC42NjUxICIgZmlsbD0ibm9uZSIgaWQ9IkROUy1OYW1lIFNlcnZlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNzIuNSwyMTkuMzM2LDI2OC41LDIyOC4zMzYsMjcyLjUsMjI0LjMzNiwyNzYuNSwyMjguMzM2LDI3Mi41LDIxOS4zMzYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjcyLjUsMzIzLjg5MDksMjc2LjUsMzE0Ljg5MDksMjcyLjUsMzE4Ljg5MDksMjY4LjUsMzE0Ljg5MDksMjcyLjUsMzIzLjg5MDkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEyOCIgeD0iMjczLjUiIHk9IjI2My41NjY5Ij4zLiAmIzIzNTU5OyBEb21haW4gJiMzNjY4MTsmIzI1MTA0OyBJUDwvdGV4dD48L2c+PCEtLWxpbmsgQnJvd3NlciB0byAxMjMuMjIzLjQ1LjYtLT48ZyBpZD0ibGlua19Ccm93c2VyXzEyMy4yMjMuNDUuNiI+PHBhdGggZD0iTTM1NS4yMDYsNDMuNSBDMzk4LjY4Niw0My41IDQ2MC40MjYsNDMuNSA1MDguNzM4LDQzLjUgIiBmaWxsPSJub25lIiBpZD0iQnJvd3Nlci10by0xMjMuMjIzLjQ1LjYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNTEzLjk2NSw0My41LDUwNC45NjUsMzkuNSw1MDguOTY1LDQzLjUsNTA0Ljk2NSw0Ny41LDUxMy45NjUsNDMuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTIyIiB4PSIzNzMuNSIgeT0iMjEuNTY2OSI+NS4mIzIxNDYyOyYjMjQ0NzE7IElQICYjMjQ0NjA7JiMzNTM3MDsmIzIxODM5OyYjMjAwMjc7JiMyNzIzMTs8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjQwMiIgeT0iMzYuNjk5NyI+JiMyMDAwNjsmIzE5OTc5OyYjMzY2MTc7JiMzNjAzOTsmIzI4MzA0OzwvdGV4dD48L2c+PCEtLWxpbmsgMTIzLjIyMy40NS42IHRvIEJyb3dzZXItLT48ZyBpZD0ibGlua18xMjMuMjIzLjQ1LjZfQnJvd3NlciI+PHBhdGggZD0iTTUzNC40NzEsNTUuMjA5IEM1MTguMDUxLDU4LjU5NCA0OTkuNTc4LDYxLjgyNSA0ODIuNSw2My41IEM0NDAuMDM3LDY3LjY2NCA0MjguODgyLDY4LjQxOSAzODYuNSw2My41IEMzNzIuMjg0LDYxLjg1IDM1Ni45OTMsNTguNjk3IDM0My4zNTQsNTUuMzc0ICIgZmlsbD0ibm9uZSIgaWQ9IjEyMy4yMjMuNDUuNi10by1Ccm93c2VyIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjMzOC40MDgsNTQuMTQ1LDM0Ni4xNzU5LDYwLjE5OTgsMzQzLjI2MDEsNTUuMzUyMywzNDguMTA3NSw1Mi40MzY1LDMzOC40MDgsNTQuMTQ1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI5NCIgeD0iMzg3LjUiIHk9IjU5LjU2NjkiPjguICYjMjIyMzg7JiMyMDY1OTsmIzM4NzQ4OyYjMjQ5MDc7JiMzNjAzOTsmIzI2MDA5OzwvdGV4dD48L2c+PCEtLWxpbmsgMTIzLjIyMy40NS42IHRvIFdlYiBTZXJ2ZXItLT48ZyBpZD0ibGlua18xMjMuMjIzLjQ1LjZfV2ViIFNlcnZlciI+PHBhdGggZD0iTTU3MS44MjUsNTkuOTE5IEM1NTYuMjgzLDgyLjQ3NSA1MzIuNjE1LDEyNS4zOCA1NDkuNSwxNTguNSBDNTU1LjYzMywxNzAuNTMgNTY2LjY1MywxODAuMDk1IDU3Ny43MTgsMTg3LjI1OSAiIGZpbGw9Im5vbmUiIGlkPSIxMjMuMjIzLjQ1LjYtdG8tV2ViIFNlcnZlciIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1ODIuMTE2LDE4OS45ODUsNTc2LjU3MzYsMTgxLjg0MzYsNTc3Ljg2NjIsMTg3LjM1MDgsNTcyLjM1OSwxODguNjQzMyw1ODIuMTE2LDE4OS45ODUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjY4IiB4PSI1NTAuNSIgeT0iMTM5LjU2NjkiPjYuICYjMzIwMzQ7JiMyMTQ2MjsmIzM2MDM5OyYjMjgzMDQ7PC90ZXh0PjwvZz48IS0tbGluayBXZWIgU2VydmVyIHRvIDEyMy4yMjMuNDUuNi0tPjxnIGlkPSJsaW5rX1dlYiBTZXJ2ZXJfMTIzLjIyMy40NS42Ij48cGF0aCBkPSJNNjE4LjM3NywxODguMjY4IEM2MjUuNzQ5LDE2OS44MTEgNjM1LjM5NSwxMzcuOTA1IDYyNy41LDExMS41IEM2MjIuMTk5LDkzLjc3MiA2MTAuNTM0LDc2LjM4NCA2MDAuNTQ3LDYzLjc2NiAiIGZpbGw9Im5vbmUiIGlkPSJXZWIgU2VydmVyLXRvLTEyMy4yMjMuNDUuNiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSI1OTcuMjM1LDU5LjY3Niw1OTkuNzkxMSw2OS4xODc0LDYwMC4zODE5LDYzLjU2MTUsNjA2LjAwNzksNjQuMTUyMyw1OTcuMjM1LDU5LjY3NiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDIiIHg9IjY0OC41IiB5PSIxMjQuNTY2OSI+Ny4gJiMyMjIzODsmIzIwNjU5OzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1MiIgeD0iNjQzLjUiIHk9IjEzOS42OTk3Ij4mIzM4NzQ4OyYjMjQ5MDc7JiMyNzI4NDsmIzI2Njk2OzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3OCIgeD0iNjMwLjUiIHk9IjE1NC44MzI1Ij5KU09OICYjMjUxMTA7IFhNTDwvdGV4dD48L2c+PCEtLVNSQz1bVFA5REltOTE2Q1ZsLW9jVU9ucnNuRFRnWUd4WGZJV0JIRWhXbk45ejBUczlUTWNsT1FHaDZzWUtYZlg5N2lKcTRiY21NRmJmZERkck1wSWhjMnhMT1BZUFB2eFZWX3hGRjFGOVlKQm1NeDJvQk1FTGhMUzVTMkQ4QVNmUEpkMnZMNUw1SU9vSjZINlR1WXB0YW1IeTdBa0laR0wzT09QdTQ1WHp0TnBsS0VxNlRXd3ZRSFdzVUppWjVDa0E0MVJieXdjdTVtNXZBSzhHUHNEZjJRb2w0aktnMnU5dEVsNFhUV0hjVldYa1puVHZzRjN2S00zUFhmbkVmWEdSTWF2V2YxLUhTZXNDeGNzVVpBd2pSZXpLb3NGWldwd3RlakJPdzhtRHRWZWlNT0NZN0xPdTlwbXBTSUlVQjRtNzQ5WGxSUU91MXZQRV9fVW1uYWZqRjlCeTgyZkRjV19xSWdVekVfZ2FIUU5UeTQ0OGc1UTN1X3N6TnZTeDdjMXpCWjRKaUEtbHJWLWdGeUFzMGNtV2VDT2hSVHNRclZ3YXNVT2FoOFlHNEhDQXU4SXA0SG8wTFEtUWJHOWZEQ1k1RmhkaTRncVdpQVlDaVNBY1FSaTFNRl9qcFVtQlNBOEsxcmxvNm0wMF0tLT48L2c+PC9zdmc+'>
+
+<p>DNS 全名為 Domain Name Server，主要職責是幫忙把 網域名稱(Domain Name) 轉成 IP，因為網域名稱是人才看得懂而機器只認得 IP，因此需要 DNS 來幫忙轉譯。</p>
+<h3 id="Name-Server"><a href="#Name-Server" class="headerlink" title="Name Server"></a>Name Server</h3><p>藉由上圖最終 DNS 會收到每個單獨的 Name Server 回傳後的值並組成 IP 回傳給瀏覽器。</p>
+<h2 id="跟-IP-請求資源"><a href="#跟-IP-請求資源" class="headerlink" title="跟 IP 請求資源"></a>跟 IP 請求資源</h2><p>待瀏覽器收到 IP 後去請求資源，而 IP (資源方)那一般來說都會有個 Web Server 擋在前面(Nginx、Apache)，若是有前端頁面則是讓瀏覽器下載靜態檔案(static)，而若只是單純導向至 API 的話就直接回傳定義的資料格式(JSON、XML…)。</p>
+<h2 id="快取"><a href="#快取" class="headerlink" title="快取"></a>快取</h2><p>此時瀏覽器下載完後則會存到快取(Cache)裡，加速下次載入。</p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p><img src="https://i.imgur.com/ddrEQxs.png" alt="https://i.imgur.com/ddrEQxs.png"></p>
+<blockquote>
+<p>參考<a target="_blank" rel="noopener" href="https://w3c.hexschool.com/blog/8d691e4f">六角學院</a></p>
+</blockquote>
+<p>這邊就簡單敘述一下前端渲染發生的經過，HTML 會產生出一個 <code>DOM Tree</code>，CSS 會有一個 <code>CSSOM Tree</code>，在各別產生完後會合併成一個 <code>render Tree</code>，最後經由 <code>layout</code> 的步驟讓瀏覽器將 Tree 渲染至畫面上，完成畫面顯示的步驟。</p>
+<ul>
+<li>上述的 DOM 就是寫 jQuery 時呼叫的那個 DOM 元素</li>
+</ul>
+<p>以上就是當你輸入一個網址後會遇到的事情經過～</p>
+<h1 id="輸入網址後，你怎能不知道怎麼連線呢？"><a href="#輸入網址後，你怎能不知道怎麼連線呢？" class="headerlink" title="輸入網址後，你怎能不知道怎麼連線呢？"></a>輸入網址後，你怎能不知道怎麼連線呢？</h1><h2 id="準備連線-三方交握-Three-Way-Handshake"><a href="#準備連線-三方交握-Three-Way-Handshake" class="headerlink" title="準備連線 - 三方交握 (Three-Way Handshake)"></a>準備連線 - 三方交握 (Three-Way Handshake)</h2><img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIyMjNweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjMwNHB4O2hlaWdodDoyMjNweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMDQgMjIzIiB3aWR0aD0iMzA0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUuMCw1LjA7IiB4MT0iMzMiIHgyPSIzMyIgeTE9IjM2LjI5NjkiIHkyPSIxODcuOTYwOSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NS4wLDUuMDsiIHgxPSIyNjciIHgyPSIyNjciIHkxPSIzNi4yOTY5IiB5Mj0iMTg3Ljk2MDkiLz48cmVjdCBmaWxsPSIjRTJFMkYwIiBoZWlnaHQ9IjMwLjI5NjkiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjU3IiB4PSI1IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDMiIHg9IjEyIiB5PSIyNC45OTUxIj5DbGllbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI1NyIgeD0iNSIgeT0iMTg2Ljk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0MyIgeD0iMTIiIHk9IjIwNi45NTYxIj5DbGllbnQ8L3RleHQ+PHJlY3QgZmlsbD0iI0UyRTJGMCIgaGVpZ2h0PSIzMC4yOTY5IiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI2MSIgeD0iMjM3IiB5PSI1Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDciIHg9IjI0NCIgeT0iMjQuOTk1MSI+U2VydmVyPC90ZXh0PjxyZWN0IGZpbGw9IiNFMkUyRjAiIGhlaWdodD0iMzAuMjk2OSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNjEiIHg9IjIzNyIgeT0iMTg2Ljk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0NyIgeD0iMjQ0IiB5PSIyMDYuOTU2MSI+U2VydmVyPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjU1LjUsNjMuNDI5NywyNjUuNSw2Ny40Mjk3LDI1NS41LDcxLjQyOTcsMjU5LjUsNjcuNDI5NyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzMuNSIgeDI9IjI2MS41IiB5MT0iNjcuNDI5NyIgeTI9IjY3LjQyOTciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNzkiIHg9IjQwLjUiIHk9IjYyLjM2MzgiPiYjMjUxMDU7JiMzODY1NjsmIzM1MjAxOyYjMzY4OTk7JiMzMjIxODsoU1lOKSYjNjUyOTI7JiMyMjIzODsmIzMxNTcyOyYjMzU1MzE7JiMyOTk5MjsgTTwvdGV4dD48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjQ0LjUsMTA3LjY5NTMsMzQuNSwxMTEuNjk1Myw0NC41LDExNS42OTUzLDQwLjUsMTExLjY5NTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjM4LjUiIHgyPSIyNjYuNSIgeTE9IjExMS42OTUzIiB5Mj0iMTExLjY5NTMiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNjMiIHg9IjUwLjUiIHk9IjkxLjQ5NjYiPiYjMjU5MTA7JiMyMTA0MDsmIzIwMTAyOyYjNjUyOTI7JiMyNjE1OTsgTSsxICYjMjE5NjY7KEFDSykmIzY1MzExOzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMDQiIHg9IjU0LjUiIHk9IjEwNi42Mjk0Ij4mIzIyMjM4OyYjMzE1NzI7JiMzNTUzMTsmIzI5OTkyOyBOIChTWU4pPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iMjU1LjUsMTM2LjgyODEsMjY1LjUsMTQwLjgyODEsMjU1LjUsMTQ0LjgyODEsMjU5LjUsMTQwLjgyODEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMzLjUiIHgyPSIyNjEuNSIgeTE9IjE0MC44MjgxIiB5Mj0iMTQwLjgyODEiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyMTAiIHg9IjQwLjUiIHk9IjEzNS43NjIyIj4mIzI1OTEwOyYjMjEwNDA7JiMyMDEwMjsmIzY1MjkyO04rMSAmIzI2MTU5OyYjMjUxMDU7JiMyNTkxMDsmIzIxMDQwOyYjMzAzNDA7JiMzNTMzODsmIzM0Mzk5OyhBQ0spPC90ZXh0Pjxwb2x5Z29uIGZpbGw9IiMxODE4MTgiIHBvaW50cz0iNDQuNSwxNjUuOTYwOSwzNC41LDE2OS45NjA5LDQ0LjUsMTczLjk2MDksNDAuNSwxNjkuOTYwOSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIyNTUuNSwxNjUuOTYwOSwyNjUuNSwxNjkuOTYwOSwyNTUuNSwxNzMuOTYwOSwyNTkuNSwxNjkuOTYwOSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7c3Ryb2tlLWRhc2hhcnJheToyLjAsMi4wOyIgeDE9IjM4LjUiIHgyPSIyNjEuNSIgeTE9IjE2OS45NjA5IiB5Mj0iMTY5Ljk2MDkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxNTAiIHg9IjUwLjUiIHk9IjE2NC44OTUiPlNlcnZlciAmIzMwOTA2OyYjMzU0Njk7JiMyMzQzNjsmIzI0NDYwOyYjMzgyODM7JiMyMjk4NzsmIzM2ODk5OyYjMzIyMTg7PC90ZXh0PjwhLS1TUkM9W1N5eDlKQ3FoS1QyckttWEVCSWZCQlI5SVVET255VU1TWFhWQjZieXNCN3ctVlBQNlNBSVZ2bGl6Rkt6ZHB0ay1UaWdCclR0RmZ3bkd5RU0yZzBSZlNtUVIwREd0UFRsSlpXckZUaEsxNUotUmlMeDFMempHdVVkcUZXcjdQcy1XX2xhblVHZWVIbFdmVzR0Y1NpUHEwOTkxVmExM1c4TzF0R0dIVkp3aHZTTUFoWFNwdnVFRFhNY3NxS05JM2ROUHlxTXhOZ3BnVlJna3YtYy1kZlZKa2Z5a3h1UnUxbTAwXS0tPjwvZz48L3N2Zz4='>
+
+<p>這邊我用最簡單的表示，<code>SYN</code>在三方交握會是一個帶有序列號(n)的請求，而<code>ACK</code>則是代表回應對方我們這邊收到的訊號，會帶有 n+1 的數字回傳。</p>
+<p>在三方交握中，會先由 Client 告訴 Server 現在它要連線並給一個數字，回傳時會送 n+1 的原因是避免在請求的過程中因各種因素導致回來的值錯誤時的一個防範機制，用 <code>+1</code> 這個做法來確保對方給的回傳值是我剛剛送出去的值 +1，避免連線過程中混亂。</p>
+<p>簡單的記法就是從 Client 先送一個數字 N 給 Server，而回傳時一定是給 N+1 並且帶著一個 M，Client 收到後確認完則在回傳 M+1 讓 Server 也確定 CLient 收到了，完成三次連線。</p>
+<h3 id="Bonus-為什麼不兩次或四次交握呢？"><a href="#Bonus-為什麼不兩次或四次交握呢？" class="headerlink" title="Bonus - 為什麼不兩次或四次交握呢？"></a>Bonus - 為什麼不兩次或四次交握呢？</h3><p>經過上述的流程，一定是一個發(SYN)，一個收完後告訴對方它收到(ACK)，那如果是只有<code>兩次</code>， Client 會不知道 Server 收到沒，導致這次連線失敗。</p>
+<p>然後四次、五次、六次其實都是可以做到的，但只是工程師在實作東西時都會盡可能的精簡它，所以為了不浪費系統資源，因此最低次數就是<code>三次</code>！🎉</p>
+<h2 id="斷開連線-四次揮手-Four-Way-Wavehand"><a href="#斷開連線-四次揮手-Four-Way-Wavehand" class="headerlink" title="斷開連線 - 四次揮手(Four-Way Wavehand)"></a>斷開連線 - 四次揮手(Four-Way Wavehand)</h2><blockquote>
+<p>四次揮手是用 FIN 以及 ACK 當作 請求 以及 回應</p>
+</blockquote>
+<p><img src="https://i.imgur.com/wZk7hoS.png" alt="https://i.imgur.com/wZk7hoS.png"></p>
+<blockquote>
+<p>圖片<a href="(https://kknews.cc/code/yr9ng6j.html)">參考</a></p>
+</blockquote>
+<blockquote>
+<p>Client &#x3D; 1, Server &#x3D; 2 的話，順序就是 1 - 2 - 2 - 1</p>
+</blockquote>
+<p>我了解這部分的方法是</p>
+<h4 id="每個關閉連線時都需要等待"><a href="#每個關閉連線時都需要等待" class="headerlink" title="每個關閉連線時都需要等待"></a>每個關閉連線時都需要等待</h4><p>所以向 Client 送請求(<code>FIN</code>)到 Server 會先告訴 Client 已經收到(<code>ACK</code>)，處理完後再送一個請求給 Client，Client 最後就在回應 Server 告訴他能關閉來斷開連線。</p>
+<p>因為是在第三步驟最後回應時需要等待 Server 的主動發送，因此交握的最低數量就變成<code>4</code>了。</p>
+<p>基本上跟三方交握流程是一樣的，差別在於到 Server 時不會馬上告訴 Client 等等要回應的值(N)是多少，而是等 ACK 完後過一陣子才回傳 publish FIN flag。</p>
+<p>詳細可以參考<a target="_blank" rel="noopener" href="https://kknews.cc/code/yr9ng6j.html">這篇</a></p>
+<h1 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h1><p>經過了上面無情摧殘後，接下來就是要認識 SSL 這個安全機制了。</p>
+<p><img src="https://i.imgur.com/5tk4osI.png"></p>
+<p>除非你的網站內容是全靜態輸出，完全沒串任何 API，否則沒有 SSL 安全性實在是嚴重不足啊！因為沒有 SSL 的網站會享有<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中間人攻擊</a>的優惠，那既然那麼重要接著就來介紹吧！</p>
+<blockquote>
+<p>這裡會簡單敘述一下流程以及功能，但詳細的還是要參考其他部落格詳細的文章喔！</p>
+</blockquote>
+<h2 id="SSL-有的裝備"><a href="#SSL-有的裝備" class="headerlink" title="SSL 有的裝備"></a>SSL 有的裝備</h2><p>SSL 申請時一般都會給三種東西，公鑰(Public key)、私鑰(Private key)、CA(Certificate authority)</p>
+<ol>
+<li>公鑰是 Server 發給信任裝置使用的鑰匙</li>
+<li>私鑰則是解開來自信任裝置加密封包的鑰匙</li>
+<li>CA 是 Server 的證書，用來確認 Server 的合法性，若只拿私鑰來解也會含有中間人攻擊的問題</li>
+</ol>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p><img src="https://i.imgur.com/oeLkNoP.png" alt="https://i.imgur.com/oeLkNoP.png"></p>
+<blockquote>
+<p>圖片參考<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">阮一峰的部落格</a></p>
+</blockquote>
+<p>Visitor 就等於前面文章提到的 Client，而 CloudFlare 則等於 Server 端。</p>
+<ol>
+<li>Client 把一個<code>隨機數</code>並發送給 Server</li>
+<li>Server 在產生一組<code>隨機數+公鑰</code>給 Client</li>
+<li>Client 利用收到的<code>隨機數+公鑰</code>加密資料回傳給 Server</li>
+<li>Server 用<code>私鑰</code>來解開資料</li>
+<li>拿著上圖灰色虛線的東西來產生 Session Key 確認對方</li>
+</ol>
+<blockquote>
+<p>隨機數用意為讓密鑰每次產生都不一樣</p>
+</blockquote>
+<h2 id="SSL-小結"><a href="#SSL-小結" class="headerlink" title="SSL 小結"></a>SSL 小結</h2><p>這邊沒有提太多實作跟詳細內容，但看著上述的流程來說有沒有覺得其實跟<code>三方交握</code>很像，差別在於 Server 端回傳時有多給 Client 一個公鑰(Public Key)，所以再記這部分時，利用三方交握來理解這件事情，基本上就如魚得水了！😊</p>
+<h1 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h1><p>接著就一起陪我釐清 OAuth 吧！</p>
+<h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><p>讓客戶端能以 OAuth 開放標準在第三方應用程式上透過授權(Authorization)的方式取得在服務提供商(LINE、Facebook、Google…)的資料(檔案、照片、影片…)。</p>
+<h2 id="擁有四種角色"><a href="#擁有四種角色" class="headerlink" title="擁有四種角色"></a>擁有四種角色</h2><ul>
+<li>Resource Owner(簡稱 RO)：可以授權於<code>終端用戶</code>存取受保護之資料。</li>
+<li>Resource Server(簡稱 RS)：存取受保護資料的地方，根據 Access Token 之權限處理請求。</li>
+<li>Client：代表使用者去存取受保護資料的應用程式。Client 指任何在 Server 端、桌面或設備上執行的應用程式。</li>
+<li>Authorization Server(簡稱 AS)：職責為認證過使用者的身份，且經由使用者許可後，就會簽發 Access Token 的地方。</li>
+</ul>
+<h2 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h2><p>以下為一個 OAuth 的流程:</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+--------+                               +---------------+</span><br><span class="line">|<span class="string">        </span>|<span class="string">--(1)- Authorization Request -&gt;</span>|<span class="string">   Resource    </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">                               </span>|<span class="string">     Owner     </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">&lt;-(2)-- Authorization Grant ---</span>|<span class="string">               </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">                               +---------------+</span></span><br><span class="line">|<span class="string">        </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">                               +---------------+</span></span><br><span class="line">|<span class="string">        </span>|<span class="string">--(3)-- Authorization Grant --&gt;</span>|<span class="string"> Authorization </span>|</span><br><span class="line">|<span class="string"> Client </span>|<span class="string">                               </span>|<span class="string">     Server    </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">&lt;-(4)----- Access Token -------</span>|<span class="string">               </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">                               +---------------+</span></span><br><span class="line">|<span class="string">        </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">                               +---------------+</span></span><br><span class="line">|<span class="string">        </span>|<span class="string">--(5)----- Access Token ------&gt;</span>|<span class="string">    Resource   </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">                               </span>|<span class="string">     Server    </span>|</span><br><span class="line">|<span class="string">        </span>|<span class="string">&lt;-(6)--- Protected Resource ---</span>|<span class="string">               </span>|</span><br><span class="line">+--------+                               +---------------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="小故事"><a href="#小故事" class="headerlink" title="小故事"></a>小故事</h2><p>以下會分別用四個角色代替他們：<br>Client &#x3D; A 員工、RO &#x3D; 大樓警衛、AS &#x3D; 公司櫃檯、RS &#x3D; 倉庫</p>
+<p>並用小故事說明，情境是員工假日需返回公司倉庫拿取零件，但是卻沒帶公司的證件，而公司是在商業辦公室中，大樓警衛認不得這麼多間公司的人，因此需要按照基本流程才能進公司拿取資料，A 員工抵達商辦大樓後：</p>
+<ol>
+<li>A 員工拿證件出來並填寫基本資料的單子給警衛 (發送請求)</li>
+<li>警衛確認完後拿了一個暫時性的鑰匙(<code>code</code>)給 A 員工</li>
+<li>A 員工拿著暫時性鑰匙(<code>code</code>)跟公司櫃檯</li>
+<li>櫃檯將臨時鑰匙(<code>code</code>)換成公司的門禁卡(Access Token)</li>
+<li>A 員工去倉庫使用門禁卡(Access Token)開倉庫門</li>
+<li>倉庫門打開後 A 員工從裡面拿取自己需要的零件(Protected Resource)</li>
+</ol>
+<blockquote>
+<p>透過這樣的解釋應該比較好懂吧 ❓</p>
+</blockquote>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>看著流程圖，有沒有覺得它還是很像三方交握嗎？只是 Server 端功能切開變成微服務的樣子，並透過三個步驟來獲取 Server 的資源，如此一來會不會覺得這樣親切點呢？</p>
+<p>希望能藉由文章的敘述讓你能更快速點了解這些玩意兒。</p>
+<h1 id="OpenID-Connect"><a href="#OpenID-Connect" class="headerlink" title="OpenID Connect"></a>OpenID Connect</h1><p>大家寫了這麼多 side project，對 OAuth 的見聞與使用一定不在其數，但實際上在做像是 LINE Login、Facebook、Google 這類型的 Single Sign On(SSO) 的服務時很常誤以為 <code>SSO == OAuth</code>，答案是錯的，SSO 這件事情本身是由 OpenID 來實現，對於實際的原由呢，這邊有<a target="_blank" rel="noopener" href="https://medium.com/@petertc/openid-connect-a27e0a3cc2ae">很詳細的介紹</a>，這邊就不贅述。</p>
+<p>主要的核心我覺得要記得這件事：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">OpenID</span> Connect 是認證（Authentication），OAuth <span class="number">2</span>.<span class="number">0</span> 則是授權（Authorization）</span><br></pre></td></tr></table></figure>
+
+<p>一般來說只要搞懂這兩個字的意思，並透過實作經驗加上記得文件內容，就會對於 OpenID 以及 OAuth 個別的職責是什麼很清楚。</p>
+<p><img src="https://i.imgur.com/WghYZJM.png"></p>
+<blockquote>
+<p>這邊一樣參考 petertc 的<a target="_blank" rel="noopener" href="https://medium.com/@petertc/openid-connect-a27e0a3cc2ae">文章</a></p>
+</blockquote>
+<p>上圖流程可能太複雜，這裡簡單敘述一下，就是他流程基本上與 OAuth 差不多，因為 OpenID 就是在 OAuth 上加一層<code>使用者認證層(User Identify Layer)</code>，若記得上述 OAuth 的話，OpenID 會在取得 Access Token 的同時取得一個 ID Token，以下說明一下 ID Token：</p>
+<p>ID Token 一般比較常見是 Json Web Token(JWT) 的格式，使用者的資訊一般都會放在這邊，只要拿到了這個就可以跟資料庫去 mapping 就能做使用者管理囉 ❗️</p>
+<h2 id="小結-1"><a href="#小結-1" class="headerlink" title="小結"></a>小結</h2><p>OpenID 其中一部分解決了 OAuth scope 這參數定義的問題，在 OpenID 還沒出來之前這個時基本上是服務提供商說的算，眾說紛紜的話那就損失了公信力，因此 OpenID 的 scope 除了要必須輸入 <code>openid</code> 以外呢，他還有規定可以輸入<code>email</code>、<code>phone</code>、<code>profile</code>，因此在有規範後在串接第三方服務後就不會各說各的啦！</p>
+<p>此外這邊需要再重複一次，OpenID 是<code>驗證</code>與各戶端的交握過程後並給初使用者資料，而 OAuth 則是<code>授權</code>於應用程式可以取用服務中的某個資料(從倉庫拿貨)，如此一來就能較有效的記得 OpenID 與 OAuth 的差異囉！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在這些熱門面試題中往往是準備不完的 😅，但如何有效的記得這些東西的步驟卻是很重要，畢竟不可能只把 HTTP、SSL、OpenID、OAuth 讀完面試就過了吧？還有演算法、資料庫 這些哩哩摳摳的需要釐清，當然這邊是整理出我自己的紀錄方法，希望能透過我的方法讓你能夠更快速的釐清這些功能，但看完了各個文章後還是記得要看官方文件，把真正的東西學進去才是對自己有益的喔！</p>
+<p>那本篇就先記錄到這，希望大家能有收穫 😁</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Http/" rel="tag"><i class="fa fa-tag"></i> Http</a>
+              <a href="/tags/SSL/" rel="tag"><i class="fa fa-tag"></i> SSL</a>
+              <a href="/tags/OAuth/" rel="tag"><i class="fa fa-tag"></i> OAuth</a>
+              <a href="/tags/OpenID/" rel="tag"><i class="fa fa-tag"></i> OpenID</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/05/Serverless-Flask-Swagger-AWS-Open-API/" rel="prev" title="使用 Serverless/Flask/Swagger 在 AWS 上搭建打造 Open API">
+      <i class="fa fa-chevron-left"></i> 使用 Serverless/Flask/Swagger 在 AWS 上搭建打造 Open API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/03/create-plant-uml-in-hexo/" rel="next" title="在 Hexo 樣式的部落格引入 PlantUML">
+      在 Hexo 樣式的部落格引入 PlantUML <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%9E%E8%BC%B8%E5%85%A5https-www-google-com%E4%B9%8B%E5%BE%8C%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%E4%BA%8B"><span class="nav-number">2.</span> <span class="nav-text">從輸入https:&#x2F;&#x2F;www.google.com之後發生了什麼事?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91-DNS-%E8%A6%81-IP"><span class="nav-number">2.1.</span> <span class="nav-text">向 DNS 要 IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Name-Server"><span class="nav-number">2.1.1.</span> <span class="nav-text">Name Server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%9F-IP-%E8%AB%8B%E6%B1%82%E8%B3%87%E6%BA%90"><span class="nav-number">2.2.</span> <span class="nav-text">跟 IP 請求資源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E5%8F%96"><span class="nav-number">2.3.</span> <span class="nav-text">快取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93"><span class="nav-number">2.4.</span> <span class="nav-text">渲染</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BC%B8%E5%85%A5%E7%B6%B2%E5%9D%80%E5%BE%8C%EF%BC%8C%E4%BD%A0%E6%80%8E%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E6%80%8E%E9%BA%BC%E9%80%A3%E7%B7%9A%E5%91%A2%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">輸入網址後，你怎能不知道怎麼連線呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%96%E5%82%99%E9%80%A3%E7%B7%9A-%E4%B8%89%E6%96%B9%E4%BA%A4%E6%8F%A1-Three-Way-Handshake"><span class="nav-number">3.1.</span> <span class="nav-text">準備連線 - 三方交握 (Three-Way Handshake)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus-%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E5%85%A9%E6%AC%A1%E6%88%96%E5%9B%9B%E6%AC%A1%E4%BA%A4%E6%8F%A1%E5%91%A2%EF%BC%9F"><span class="nav-number">3.1.1.</span> <span class="nav-text">Bonus - 為什麼不兩次或四次交握呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B7%E9%96%8B%E9%80%A3%E7%B7%9A-%E5%9B%9B%E6%AC%A1%E6%8F%AE%E6%89%8B-Four-Way-Wavehand"><span class="nav-number">3.2.</span> <span class="nav-text">斷開連線 - 四次揮手(Four-Way Wavehand)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%8F%E5%80%8B%E9%97%9C%E9%96%89%E9%80%A3%E7%B7%9A%E6%99%82%E9%83%BD%E9%9C%80%E8%A6%81%E7%AD%89%E5%BE%85"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">每個關閉連線時都需要等待</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL"><span class="nav-number">4.</span> <span class="nav-text">SSL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-%E6%9C%89%E7%9A%84%E8%A3%9D%E5%82%99"><span class="nav-number">4.1.</span> <span class="nav-text">SSL 有的裝備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-%E5%B0%8F%E7%B5%90"><span class="nav-number">4.3.</span> <span class="nav-text">SSL 小結</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OAuth"><span class="nav-number">5.</span> <span class="nav-text">OAuth</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AA%AA%E6%98%8E"><span class="nav-number">5.1.</span> <span class="nav-text">說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%81%E6%9C%89%E5%9B%9B%E7%A8%AE%E8%A7%92%E8%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">擁有四種角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-1"><span class="nav-number">5.3.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%95%85%E4%BA%8B"><span class="nav-number">5.4.</span> <span class="nav-text">小故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">5.5.</span> <span class="nav-text">小結</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenID-Connect"><span class="nav-number">6.</span> <span class="nav-text">OpenID Connect</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90-1"><span class="nav-number">6.1.</span> <span class="nav-text">小結</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">7.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

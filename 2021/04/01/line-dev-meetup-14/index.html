@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言大家好，我是 LINE Taiwan Developer Relations 團隊的 NiJia Lin。很開心在這裡跟各位分享 2021 年的首場開發者小聚，本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="帶你了解 LINE Developers Meetup 第 14 場的精彩內容！">
+<meta property="og:url" content="https://nijialin.com/2021/04/01/line-dev-meetup-14/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言大家好，我是 LINE Taiwan Developer Relations 團隊的 NiJia Lin。很開心在這裡跟各位分享 2021 年的首場開發者小聚，本">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/root.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/1.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/2.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/12.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/6.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/8.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/7.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/13.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/5.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/line-14/9.jpg">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2021-04-01T02:00:24.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.992Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/line-14/root.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2021/04/01/line-dev-meetup-14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>帶你了解 LINE Developers Meetup 第 14 場的精彩內容！ | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/04/01/line-dev-meetup-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          帶你了解 LINE Developers Meetup 第 14 場的精彩內容！
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-01 02:00:24" itemprop="dateCreated datePublished" datetime="2021-04-01T02:00:24+00:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://nijialin.com/images/2021/line-14/root.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan Developer Relations 團隊的 NiJia Lin。很開心在這裡跟各位分享 2021 年的首場開發者小聚，本場次是我加入以來第一次在台北舉辦的線下活動(過往都是會眾身份)，除了有美味餐點以外，現場也能感受到滿滿的開發者們對於技術熱情(同仁們一直包圍詢問)，以下就由我帶大家體驗一下現場的熱情吧！</p>
+<p>KKTIX 活動網頁: <a target="_blank" rel="noopener" href="https://linegroup.kktix.cc/events/20210319">活動網址</a></p>
+<span id="more"></span>
+
+<h1 id="活動內容與外場分享"><a href="#活動內容與外場分享" class="headerlink" title="活動內容與外場分享"></a>活動內容與外場分享</h1><p><img src="https://nijialin.com/images/2021/line-14/1.jpg"></p>
+<p>開場由 Tech Evangelist - Evan Lin 為大家介紹近期 LINE 公開的活動，讓對於來跨國工作有興趣的大家可以有個初步的了解，如最近的 04&#x2F;16 在新竹的線下實體活動，以及一年一度的招募日，對外公佈活動讓大家有機會加入到國際級公司與我們一起打造 WoW 的產品，可以參考以下兩個活動資訊：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://linegroup.kktix.cc/events/20210416">LINE Developers Meetup 開發者小聚系列活動 #15 @ 清大教育館</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-taiwan-developers-recruitment-day/">2021 LINE Taiwan Developers Recruitment Day</a></li>
+</ul>
+<blockquote>
+<p>當然也不會漏了學生朋友！對來 LINE 實習體驗不同的工作文化有興趣，請參考 - <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021/">Life in LINE – 你不知道的 LINE TECH FRESH 實習日常</a></p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/line-14/2.jpg"></p>
+<p>本次 LINE Developer Meetup 開發者小聚，第一位講者 Nina Chang 來分享在資料工程團隊中的經驗分享 - 「<strong>Let’s Play in DataPark</strong>」，帶大家認識 LINE 資料工程團隊的角色分工以及目前所接觸到的部分(<strong>MLOps、MarTech、NLP</strong>)，也敘述了許多與在學時學習的比較，更多內容歡迎參考 Nina 寫的文章：<a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/lets-play-in-data-park/">LINE 資料工程團隊如何透過專業分工與 MLOps 打造不同服務 | 以 MarTech &amp; NLP 為例</a>。</p>
+<p><img src="https://nijialin.com/images/2021/line-14/12.jpg"></p>
+<p>在一個研討會中最重要的時光除了聽講者的精彩議程外，最精華的部分就是把握與講者交流時間，透過交流除了了解相關職務以外，也能幫你釐清剛剛在聽講過程中不了解的部分，也許你的疑問也是大家的疑問，前往不同的研討會時別害羞提出你的問題哦！</p>
+<h2 id="LINE-CLIENT-團隊"><a href="#LINE-CLIENT-團隊" class="headerlink" title="LINE CLIENT 團隊"></a><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw2/line-client-team">LINE CLIENT 團隊</a></h2><p><img src="https://nijialin.com/images/2021/line-14/6.jpg"></p>
+<script async class="speakerdeck-embed" data-slide="2" data-id="d0a4a5f15ad54a688f3eea7ab3258e92" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>工程師成就感許多的來源相信大多都是希望自己開發的產品是能夠在路上看到有人使用它，而 LINE 的 CLIENT 團隊負責的部分正是大家平常每天在用的 App，如以下簡報所示，除了將 <a target="_blank" rel="noopener" href="https://today.line.me/tw/v2/tab">LINE TODAY 的新聞頁面</a>引入 APP 的分頁外，如我們平常使用的 <strong>影片自動播放</strong>、<strong>子畫面觀看影片</strong>、<strong>長截圖</strong>(還可以匿名)也都是 CLIENT 團隊處理的喔！</p>
+<ul>
+<li>長截圖相關開發介紹影片 - <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=y22Z76j3S00">Android Chatroom Message Capturing</a></li>
+</ul>
+<script async class="speakerdeck-embed" data-slide="3" data-id="d0a4a5f15ad54a688f3eea7ab3258e92" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>當然不只有這些開發，還有像是 <a target="_blank" rel="noopener" href="https://today.line.me/tw/v2/tab">LINE TODAY</a>、<a target="_blank" rel="noopener" href="https://buy.line.me/">LINE SHOPPING</a>、<a target="_blank" rel="noopener" href="https://github.com/line">LINE SDK</a> 都是工作上會接觸到的產品，想了解更多關於工作以及團隊文化可以參考下方簡報：</p>
+<script async class="speakerdeck-embed" data-slide="7" data-id="d0a4a5f15ad54a688f3eea7ab3258e92" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<blockquote>
+<p>如果你對於開發 Client 產品有興趣，目前有在找 <a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/17">iOS Developer</a>。</p>
+</blockquote>
+<h2 id="LINE-SHOPPING-購物"><a href="#LINE-SHOPPING-購物" class="headerlink" title="LINE SHOPPING(購物)"></a><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw2/20210319-line-shopping-team">LINE SHOPPING(購物)</a></h2><script async class="speakerdeck-embed" data-slide="3" data-id="b6b53ddd79624379b4809fc52cb4dd87" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>電商在我們生活中已經是密不可分的一部份，LINE 購物作為一個導購平台與各大電商平台合作，讓用戶可以在平台上比價找到自己最滿意的價格去購買商品，因此就有了「<strong>先 LINE 購物 再購物</strong>」的這句名言產生了～</p>
+<script async class="speakerdeck-embed" data-slide="6" data-id="b6b53ddd79624379b4809fc52cb4dd87" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>當然現場的大家對於技術團隊中運作的方式也很好奇，因為需要整合許多平台的資料，會有以下三個部分：</p>
+<ul>
+<li>Domain：整合與處理不同形式的 API 資料。</li>
+<li>Large Scale Project：因為專案本身規模龐大，因此<strong>程式碼品質</strong>、<strong>CI&#x2F;CD</strong>、<strong>跨團隊(國)合作</strong>都是在開發過程中相當重要的部分。</li>
+<li>Scalability：擴展性在 LINE 中一直是很重要的一環，寫出具有彈性且有品質的程式碼也是每位 LINE 的開發者所注重的。</li>
+</ul>
+<p>&gt; 對於挑戰流量有興趣的朋友可以查看相關職缺：<a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/250">Server-Side Developer</a></p>
+<h2 id="LINE-Frontend-團隊"><a href="#LINE-Frontend-團隊" class="headerlink" title="LINE Frontend 團隊"></a><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw2/line-frontend-team">LINE Frontend 團隊</a></h2><p><img src="https://nijialin.com/images/2021/line-14/8.jpg"></p>
+<p>在你我看到 LINE APP 許多頁面中，其實藏著許多 Webview 的畫面，也就是開發者們常見的 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/liff/overview/">LIFF</a>，在大部分的服務內都有前端部門的足跡，當然除了提供外部服務外，其中也建立了三個內部的服務讓 LINE 前端工程師們可以更有效率的使用一些常用的功能：</p>
+<script async class="speakerdeck-embed" data-slide="4" data-id="b1a6c4534d5942dcb89e709b8b3416d3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>而在 LINE 中很鼓勵大家多學習不同的技能，在前端部門這當然也是一樣，如平常所見開發者為了提升 SEO 會去使用一些 <a target="_blank" rel="noopener" href="https://nuxtjs.org/docs/2.x/concepts/server-side-rendering">Server-Side Rendering</a>(SSR) 的框架(如 Nuxt.js)來提升搜尋效率等等，除了鼓勵大家勇於學習不同的技能外，另一方面當然也讓大家提升對於產品的了解度。</p>
+<script async class="speakerdeck-embed" data-slide="8" data-id="b1a6c4534d5942dcb89e709b8b3416d3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>如上述所說除了產品開發外，LINE 也很注重多元學習，講者概略統計出一週工程師們常做的事情，是不是覺得很讚呢！如果你也喜歡前端部門的話歡迎來挑戰一起加入 LINE 的大家庭！(<a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/7">投遞入口</a>)</p>
+<script async class="speakerdeck-embed" data-slide="10" data-id="b1a6c4534d5942dcb89e709b8b3416d3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="LINE-TODAY-團隊"><a href="#LINE-TODAY-團隊" class="headerlink" title="LINE TODAY 團隊"></a><a target="_blank" rel="noopener" href="https://today.line.me/tw/v2/tab">LINE TODAY 團隊</a></h2><script async class="speakerdeck-embed" data-slide="4" data-id="52067d63f1814086824fdec298e3f1e7" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>在前面 Client 團隊有稍微提到，LINE TODAY 作為數一數二的新聞入口相信也是大家平常每天看時事的一個平台，且不只在台灣，泰國、印尼、香港也都有上架喔！當然除了時事以外也有相關轉播(直播)的功能，像我最愛看的 NBA 就有在 TODAY 上轉播。</p>
+<script async class="speakerdeck-embed" data-slide="8" data-id="52067d63f1814086824fdec298e3f1e7" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>當然要面對大流量勢必得有個好的架構才有辦法應付不同的情境，講者也不吝嗇提供出 LINE TODAY 的架構，從前端、串接第三方 API、推薦系統、後端、Cache Sever、Databases…都有在上面。</p>
+<p>如果你也喜歡 LINE TODAY 並想加入，目前也有在徵人喔！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/7">Frontend</a></li>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/250">Server-Side Developer</a></li>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/19">QA Engineer</a></li>
+</ul>
+<h2 id="LINE-Travel-團隊"><a href="#LINE-Travel-團隊" class="headerlink" title="LINE Travel 團隊"></a><a target="_blank" rel="noopener" href="https://travel.line.me/">LINE Travel 團隊</a></h2><p><img src="https://nijialin.com/images/2021/line-14/7.jpg"></p>
+<script async class="speakerdeck-embed" data-slide="5" data-id="9902387d29304ad6af58a39852beb825" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>講到服務平台當然不能少了 LINE TRAVEL 呀！LINE TRAVEL 致力於打造全台最大的行程規劃與旅遊導購平台，從旅遊前的資訊搜集、與旅伴共同規劃行程，到導購下單的訂購機票飯店與團旅等的一站式體驗。</p>
+<script async class="speakerdeck-embed" data-slide="8" data-id="9902387d29304ad6af58a39852beb825" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>講者也分享了再交付平台功能時的週期中會有什麼部分在其中，Scrum Sprint 從計畫-開發-測試(Unit、Automation、Regression…)-Release，是不是跟上述其他團隊的流程也很像呢？在 LINE 工程部門內都會遵照一定的標準下開發，讓大家同樣的環境下工作，一方面增加開發效率，另一方面則可以降低大家的溝通成本。</p>
+<script async class="speakerdeck-embed" data-slide="9" data-id="9902387d29304ad6af58a39852beb825" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://nijialin.com/images/2021/line-14/13.jpg"></p>
+<blockquote>
+<p>大家再跟 TRAVEL 同仁溝通時也都非常熱絡，相信在交流中也能學到不少知識～</p>
+</blockquote>
+<h2 id="TECH-FRESH"><a href="#TECH-FRESH" class="headerlink" title="TECH FRESH"></a><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/83">TECH FRESH</a></h2><p><img src="https://nijialin.com/images/2021/line-14/5.jpg"></p>
+<p>學生時期最快與社會接軌其中宜方法就是到企業實習啦！LINE 除了提供優良的實習環境給學生外，也讓學生朋友能實際體會到跨國企業的開發流程上的規模。</p>
+<script async class="speakerdeck-embed" data-slide="3" data-id="d30fa9ef715c40eb89e3d14be4bce5cd" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>當然如同上述其他團隊一樣，我們更鼓勵學生別限制自己的技能樹，勇於挑戰不同的開發環境，不管前&#x2F;後端、DevOps、Database、ML…，讓自己成為獨一無二的人才，增加自己的競爭力！</p>
+<script async class="speakerdeck-embed" data-slide="5" data-id="d30fa9ef715c40eb89e3d14be4bce5cd" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>最後講者也大方的更大家說在投遞履歷時需要注意的部分，以下這些都是能夠幫助你職涯的內容，學生朋友別忘了日常就培養一下自己的專業技能喔！</p>
+<script async class="speakerdeck-embed" data-slide="7" data-id="d30fa9ef715c40eb89e3d14be4bce5cd" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2021/line-14/9.jpg"></p>
+<p>分享 Evan 在交流中說過的一段話 「這場聚會可能是某個參與者畢生參與的第一次活動，也可能是改變他人生，最重要（或是最難忘）的活動。 」</p>
+<p>我們在每次舉辦的活動時都希望會眾能在其中獲取新知，也盡力與每位會眾交流，並幫助每一位同學與求職者可以媒合到想要交流的同仁們，希望大家能夠享受在這個活動中。</p>
+<p>最後別忘了，在四月我們還會在<strong>清華大學教育館</strong>舉辦第 15 場的線下活動喔！大家趕快手刀報名起來～</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://linegroup.kktix.cc/events/20210416">活動網址</a></li>
+</ul>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表 (持續更新)</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/28/postgresql-sqlalchemy-prefix-debug/" rel="prev" title="解決 SQLAlchemy 無法在 Heroku 上連接 PostgreSQL">
+      <i class="fa fa-chevron-left"></i> 解決 SQLAlchemy 無法在 Heroku 上連接 PostgreSQL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/05/pytest-mock-skills/" rel="next" title="【Python】測試階段的類別、函式、全域變數、期望值設定 | Pytest | Mock | MonkeyPatch">
+      【Python】測試階段的類別、函式、全域變數、期望值設定 | Pytest | Mock | MonkeyPatch <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%85%A7%E5%AE%B9%E8%88%87%E5%A4%96%E5%A0%B4%E5%88%86%E4%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">活動內容與外場分享</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-CLIENT-%E5%9C%98%E9%9A%8A"><span class="nav-number">2.1.</span> <span class="nav-text">LINE CLIENT 團隊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-SHOPPING-%E8%B3%BC%E7%89%A9"><span class="nav-number">2.2.</span> <span class="nav-text">LINE SHOPPING(購物)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-Frontend-%E5%9C%98%E9%9A%8A"><span class="nav-number">2.3.</span> <span class="nav-text">LINE Frontend 團隊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-TODAY-%E5%9C%98%E9%9A%8A"><span class="nav-number">2.4.</span> <span class="nav-text">LINE TODAY 團隊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-Travel-%E5%9C%98%E9%9A%8A"><span class="nav-number">2.5.</span> <span class="nav-text">LINE Travel 團隊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TECH-FRESH"><span class="nav-number">2.6.</span> <span class="nav-text">TECH FRESH</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

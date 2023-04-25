@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="You are what you do.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忍者工坊">
+<meta property="og:url" content="https://nijialin.com/page/19/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="You are what you do.">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nijialin.com/page/19/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/" class="post-title-link" itemprop="url">Day17 - 看一下自己寫的東西都去哪了</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-01 12:49:05" itemprop="dateCreated datePublished" datetime="2019-10-01T12:49:05+00:00">2019-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用 Serverless 用得這麼爽，也是時候來看一下他的資源在哪，距離我上次自己手動上傳 python 檔已經是 N 個月之前的事了(遠望)，當時也沒用過什麼<code>Api Gateway</code>相關的服務，以下就帶大家來介紹一下嚕！</p>
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><h3 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h3><p>CloudFormation 是一個 AWS 所提供的 JSON-base 服務，主要是用來讓使用者能夠快速建立 AWS 的服務。</p>
+<blockquote>
+<p>這邊也不用擔心設定的問題，Serverless 再 deploy 的過程中會幫忙 CloudFormation 的 json 檔</p>
+</blockquote>
+<p><img src="https://i.imgur.com/mK9lYCD.png"><br>透過 CloudFormation 建立 JSON-based 的 template 你可以快速建立所需要的資源堆疊（stack）。</p>
+<p><img src="https://i.imgur.com/GzHh65j.jpg"><br>按下<code>Template</code>後如下圖所示，他會顯示你已經有建立的服務 Map，整個線牽起來看起來就很爽 XD<br><img src="https://i.imgur.com/bcg1f0a.png"></p>
+<h3 id="Api-Gateway"><a href="#Api-Gateway" class="headerlink" title="Api Gateway"></a>Api Gateway</h3><p>Serverless 建立過程中也會透過 CloudFormation 幫忙建立 Api Gateway，因為我們是用 <code>WSGI</code>，所以只會看到兩個<code>ANY</code>的路由。<br>點進去後就可以看到 Client 是怎麼進出的，最右邊是打到 AWS Lambda 上，可以點選上面的字進入 Lambda 所在地。<br><img src="https://i.imgur.com/GPVXsc9.jpg"></p>
+<h3 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h3><p>點選進來之後可以看到 Lambda 接了什麼服務，以我到目前的程式就會有<code>API Gateway</code>、<code>SQS</code>以及預設的<code>CloudWatch</code>(都是透過這個來看 log)<br><img src="https://i.imgur.com/0MYquqC.png"><br>接著往下會看到之前設定的<code>環境變數</code>以及<code>STAGE</code>，這些都是托<code>Serverless</code>的福免去這些麻煩的設定<br><img src="https://i.imgur.com/nwKK3xb.png"></p>
+<h3 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h3><p>Serverless 在過程中會在 S3 幫忙建立一個 Bucket，並在後面加個 hash key 以免 bucket 重複。<br><img src="https://i.imgur.com/flZtoFn.png"></p>
+<h3 id="Cloud-Watch-Log"><a href="#Cloud-Watch-Log" class="headerlink" title="Cloud Watch Log"></a>Cloud Watch Log</h3><p>在開始測試後 AWS 會幫忙在這個地方輸出 Log，<br><img src="https://i.imgur.com/t3Ki0gi.png"></p>
+<h3 id="Serverless-deploy-紀錄"><a href="#Serverless-deploy-紀錄" class="headerlink" title="Serverless deploy 紀錄"></a>Serverless deploy 紀錄</h3><h4 id="這邊使用-Serverless-deploy-verbose-就可以看到所有部署中的基本資訊了"><a href="#這邊使用-Serverless-deploy-verbose-就可以看到所有部署中的基本資訊了" class="headerlink" title="這邊使用 Serverless deploy --verbose 就可以看到所有部署中的基本資訊了"></a>這邊使用 <code>Serverless deploy --verbose</code> 就可以看到所有部署中的基本資訊了</h4><p>首先因為我們有使用<code>.env</code>，所以在一開始時會先設定環境變數，接著就是把相依套件的東西都放進去，再去啟動 CloudFormation<br><img src="https://i.imgur.com/yMKZfAQ.png"></p>
+<hr>
+<p>接著會建立一個 S3 的 Bucket，將程式透過 CloudFormation 處理成 <code>zip</code>的檔案格式並上傳到 S3 上面<br><img src="https://i.imgur.com/NDh2rU8.png"></p>
+<hr>
+<p>接著就會部署到 <code>Lambda</code> 以及 <code>Api Gateway</code> 上，並做對應 CloudFormation JSON 檔的設定<br><img src="https://i.imgur.com/7D4v9qS.png"></p>
+<hr>
+<p>在最後部署完之後就可以看到所有的基本資訊，物件名稱、部署階段、區域、網域以及 Function 們(因為 Lambda 是 Function-base 的服務)等等的基本資訊都會在此<br><img src="https://i.imgur.com/wCBixvO.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>以目前的架構基本上到這麼基本資訊都顯示出來了，若是有使用像是<code>Route 53</code>、<code>CloudFront</code>等等的服務它就會顯示在這邊了。雖然說 CloudFormation 在設定上已經很方便了，但不得不說 Serverless 真的幫忙做了很多事，讓開發者又更能專注在打 Code 上了～</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://medium.com/@chihsuan/cloudformation-%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%8B-aws-%E8%B3%87%E6%BA%90-d3378b096249">使用 CloudFormation 快速部署 AWS 資源</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/30/Day16-%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E4%B8%8A%E4%B8%8B%E9%A0%81%E7%9A%84-richmenu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/30/Day16-%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E4%B8%8A%E4%B8%8B%E9%A0%81%E7%9A%84-richmenu/" class="post-title-link" itemprop="url">Day16 - 實作一個上下頁的 richmenu</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-30 12:47:37" itemprop="dateCreated datePublished" datetime="2019-09-30T12:47:37+00:00">2019-09-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著很多人的機器人都有上下頁的功能就心癢癢，一直沒有實際去操作，雖然看起來好像不難，但身為一個肥宅就是只有懶，到了現在才把他實作出來(羞)，以下就帶大家來做嚕！</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>首先我做了兩個超級陽春的圖片，來展示一下上下一頁的樣子(超弱)<br>(1)<br><img src="https://i.imgur.com/Rs5jnJ8.png"></p>
+<hr>
+<p>(2)<br><img src="https://i.imgur.com/97XG3mv.png"></p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我把上一篇的 richmenu_api_controller.py 的 create 部分改編了一下，<br>增加了讀 <code>state</code> Query string 的一個參數，用<code>up</code>&amp;<code>down</code>來簡單判斷上傳的內容要傳什麼</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> usage == <span class="string">&#x27;create&#x27;</span>:</span><br><span class="line">            rich_menu_to_create = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">if</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;up&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第一頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;下一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">elif</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;down&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第二頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(</span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;上一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是測試使用&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=URIAction(label=<span class="string">&#x27;Go to line.me&#x27;</span>, uri=<span class="string">&#x27;https://line.me&#x27;</span>))]</span><br><span class="line">                )</span><br><span class="line">            rich_menu_id = self.line_bot_api.create_rich_menu(</span><br><span class="line">                rich_menu=rich_menu_to_create)</span><br><span class="line">            print(rich_menu_id)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;id&#x27;</span>: rich_menu_id&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>接著回到 <code>message_api_controller.py</code> 把前幾篇的 reply SDK code 先註解掉，並加入以下的 code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">message = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> message == <span class="string">&quot;上一頁&quot;</span> <span class="keyword">or</span> message == <span class="string">&quot;下一頁&quot;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        rich_menu_id = self.line_bot_api.get_rich_menu_id_of_user(<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># link default rich menu</span></span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rich_menu_id == <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-e31be74ad7e577b4752ab70c9c2a3fba&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    self.line_bot_api.reply_message(token, TextSendMessage(text=message))</span><br></pre></td></tr></table></figure>
+
+<p>這邊簡單判斷讀取使用者回應來進入控制的程式碼，透過<code>get_rich_menu_id_of_user</code>來抓取當前使用者的 rich menu，但因為他是會返回 Error response，所以這邊就使用<code>try</code> <code>except</code>來包<br>except 部分就是透過<code>link_rich_menu_to_user</code>來設定當前使用者為第一張圖片的 <code>richmenu id</code>，下面的判斷式就是讓他互換成對應的 rich menu id 來換頁。</p>
+<blockquote>
+<p>Richmenu 那邊事實上是要用 <code>postback</code>，因為要 demo 的關係我就弄成一般的文字格式，因為這個上下頁字串的理論上是不該讓使用者看到的，只要用圖片來引導使用者就好。</p>
+</blockquote>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><img src="https://i.imgur.com/QL3m90U.png"><br><img src="https://i.imgur.com/DhBRsyT.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>透過這次練習大概把 LINE SDK 玩得差不多了(<code>message api</code> &amp; <code>richmenu api</code>)，寫到了今天真的是苦讀 LINE 的文件啊，都要以防萬一我這狗眼沒有看錯而寫出錯誤的程式碼 XD，到這打完收工，繼續期待下一篇～</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/" class="post-title-link" itemprop="url">Day15 - 串接 LINE Richmenu API</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-29 12:46:24" itemprop="dateCreated datePublished" datetime="2019-09-29T12:46:24+00:00">2019-09-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前我在使用時都是直接在 Postman 上直接打 API，本來是打算自己刻 接 Richmenu API 的，但剛剛看到<a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python">Python SDK</a> 很佛心的也提供 Richmenu 相關的 SDK，如此一來就不用自己包一包了。</p>
+<blockquote>
+<p>注意 Richmenu 圖片的方向是 由上到下、由左到右 哦！算位置記得別算錯ＸＤ</p>
+</blockquote>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><h3 id="設定座標"><a href="#設定座標" class="headerlink" title="設定座標"></a>設定座標</h3><p>首先先使用 <code>create_rich_menu(self, rich_menu, timeout=None)</code>告訴 LINE 說你的 Richmenu 的基本設定是什麼，格式區域什麼個別要做什麼對應的事情，</p>
+<p>Creates a rich menu. You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 10 rich menus for one bot.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#create-rich-menu">https://developers.line.biz/en/reference/messaging-api/#create-rich-menu</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> usage == <span class="string">&#x27;create&#x27;</span>:</span><br><span class="line">    rich_menu_to_create = RichMenu(</span><br><span class="line">        size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">        selected=<span class="literal">False</span>,</span><br><span class="line">        name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">        chat_bar_text=<span class="string">&quot;我是測試使用&quot;</span>,</span><br><span class="line">        areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">            bounds=RichMenuBounds(x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">            action=URIAction(label=<span class="string">&#x27;Go to line.me&#x27;</span>, uri=<span class="string">&#x27;https://line.me&#x27;</span>))]</span><br><span class="line">    )</span><br><span class="line">    rich_menu_id = self.line_bot_api.create_rich_menu(</span><br><span class="line">        rich_menu=rich_menu_to_create)</span><br><span class="line">    print(rich_menu_id)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;id&#x27;</span>: rich_menu_id&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="set-rich-menu-image-self-rich-menu-id-content-type-content-timeout-x3D-None"><a href="#set-rich-menu-image-self-rich-menu-id-content-type-content-timeout-x3D-None" class="headerlink" title="set_rich_menu_image(self, rich_menu_id, content_type, content, timeout&#x3D;None)"></a>set_rich_menu_image(self, rich_menu_id, content_type, content, timeout&#x3D;None)</h2><p>上面設定完圖片裡每個座標區間要幹嘛了，接著就可以自己弄圖片或是下載官網提供的<a target="_blank" rel="noopener" href="https://developers.line.biz/media/messaging-api/rich-menu/controller-rich-menu-image-e1734c7d.jpg">圖片</a></p>
+<h3 id="MAC-用戶的小技巧"><a href="#MAC-用戶的小技巧" class="headerlink" title="MAC 用戶的小技巧"></a>MAC 用戶的小技巧</h3><p>這邊教大家一個小技巧，可以點選想使用的照片，在預覽程式裡的選擇工具-&gt;調整大小<br><img src="https://i.imgur.com/OqsDU20.jpg"><br>接著看到這畫面，把依比例縮放的勾勾取消，然後把長寬調到對應的大小後就完成圖片大小的設定嚕！<br><img src="https://i.imgur.com/OH1tYUl.png"></p>
+<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image">https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image</a></p>
+<p><img src="https://i.imgur.com/iA2xMJd.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;upload&#x27;</span>:</span><br><span class="line">    file = request.files[<span class="string">&#x27;the_file&#x27;</span>].read()</span><br><span class="line">    rich_menu_id = request.form[<span class="string">&#x27;richmenu_id&#x27;</span>]</span><br><span class="line">    content_type = <span class="string">&quot;image/png&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.line_bot_api.set_rich_menu_image(</span><br><span class="line">            rich_menu_id, content_type, file)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">&quot;===Upload Exception===&quot;</span>)</span><br><span class="line">        <span class="keyword">raise</span> BadRequest(e)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;upload ok&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="set-default-rich-menu-self-rich-menu-id-timeout-x3D-None"><a href="#set-default-rich-menu-self-rich-menu-id-timeout-x3D-None" class="headerlink" title="set_default_rich_menu(self, rich_menu_id, timeout&#x3D;None)"></a>set_default_rich_menu(self, rich_menu_id, timeout&#x3D;None)</h2><p>設定完了之後要幹嘛？就是要把他設定<code>default</code>啦！<br>不囉唆， show you the code.</p>
+<blockquote>
+<p>Sets the default rich menu.<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu">https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;set&#x27;</span>:</span><br><span class="line">    rich_menu_id = request.form[<span class="string">&#x27;richmenu_id&#x27;</span>]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.line_bot_api.set_default_rich_menu(rich_menu_id)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">raise</span> BadRequest(<span class="string">&quot;Maybe your richmenu id error.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;set default ok!&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="get-default-rich-menu-self-timeout-x3D-None"><a href="#get-default-rich-menu-self-timeout-x3D-None" class="headerlink" title="get_default_rich_menu(self, timeout&#x3D;None)"></a>get_default_rich_menu(self, timeout&#x3D;None)</h2><p>糟糕，我好像瘋狂建立卻不知道有幾組？用這個就對了！</p>
+<blockquote>
+<p>Gets the ID of the default rich menu set with the Messaging API.<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id">https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;get&#x27;</span>:</span><br><span class="line">    rich_menu_list = self.line_bot_api.get_rich_menu_list()</span><br><span class="line">    total = []</span><br><span class="line">    <span class="keyword">for</span> rich_menu <span class="keyword">in</span> rich_menu_list:</span><br><span class="line">        total.append(rich_menu.rich_menu_id)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: total&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="delete-rich-menu-rich-menu-id"><a href="#delete-rich-menu-rich-menu-id" class="headerlink" title="delete_rich_menu(rich_menu_id)"></a>delete_rich_menu(rich_menu_id)</h2><p>不行，我弄的座標什麼全錯怎麼辦？有時候上傳的圖片可能不是自己想的那樣？，透過這個方法來刪掉它</p>
+<blockquote>
+<p>Deletes a rich menu.<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu">https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;delete&#x27;</span>:</span><br><span class="line">    rich_menu_id = request.form[<span class="string">&#x27;richmenu_id&#x27;</span>]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.line_bot_api.delete_rich_menu(rich_menu_id)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">raise</span> BadRequest(<span class="string">&quot;Maybe your richmenu id error.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">f&#x27;<span class="subst">&#123;rich_menu_id&#125;</span> is delete!&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>我都把 <code>raise</code> 打成 <code>rails</code> (大誤)，LINE 幫忙做的 SDK 真的是好用，透過這次練習我也多學了好多不一樣的用法，順便把自己的腦袋也整理一下 😃，程式碼同步在這邊哦 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/richmenu_api_controller.py">URL</a>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/28/Day14-LINE-Richmenu-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/28/Day14-LINE-Richmenu-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day14 - LINE Richmenu 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-28 12:42:52" itemprop="dateCreated datePublished" datetime="2019-09-28T12:42:52+00:00">2019-09-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Rich menu 是一個 LINE 提供給 chatbot 的圖文選單，可以再上面設定很多各式各樣的功能，下圖為一個範例<br><img src="https://i.imgur.com/AkZnaWs.png"></p>
+<h2 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h2><ul>
+<li>擁有長板 &amp; 短板的圖片支援，讓一張圖片不再是一張圖片，機器人看起來可以更有品牌風格，根據 User 喜好、訂閱功能或是下一頁 Menu(即時切換)等等不同創意巧思，且可以客製化圖片讓機器人看起來有更不一樣的特色，也讓對話是互動並不限於對話，而圖片來讓使用者可以更直觀地去使用機器人。</li>
+<li>一個 Chatbot 可以設定 1000 組的功能選單</li>
+<li>針對不同 user ID 顯示不同功能選單<br>Rich menu 可以自己設計圖片並上傳，再透過 JSON 的樣式去設定圖片區間要進行各種用途，這邊使用 Youbike 小幫手為範例，設定很多相關的設計，並設計上下頁的選單提供像是 APP 的操作。<br><img src="https://i.imgur.com/kp3aYTWl.jpg"></li>
+</ul>
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><ul>
+<li>圖片格式: JPEG、PNG</li>
+<li>圖片尺寸: 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270</li>
+<li>圖片大小: 1 MB</li>
+</ul>
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li>先準備一個圖片</li>
+<li>對這個 API 下圖片每個位置要做什麼事 <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/richmenu">https://api.line.me/v2/bot/richmenu</a></li>
+<li>接著上傳圖片給 LINE <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/richmenu/richmenu-%7Bid%7D/content">https://api.line.me/v2/bot/richmenu/richmenu-{id}/content</a></li>
+<li>設定預設 <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/user/all/richmenu/richmenu-%7Bid%7D">https://api.line.me/v2/bot/user/all/richmenu/richmenu-{id}</a></li>
+</ol>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>有很多的文章都有介紹過類似的功能，這邊簡介一下限制以及下篇要做的步驟～</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/%E6%89%BE%E5%88%B0%E4%BC%AF%E7%89%B9-find-your-bot/line-bot%E7%B3%BB%E5%88%97-%E8%A8%AD%E8%A8%88%E4%B8%80%E5%80%8B%E5%8A%9F%E8%83%BD%E9%81%B8%E5%96%AE-ea5f1d7cde94">設計一個功能選單</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-rich-menus/">LINE 官方文件</a></li>
+</ul>
+<hr>
+<p><img src="https://i.imgur.com/JlsLphHl.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/" class="post-title-link" itemprop="url">Day13 - 試玩 python SDK</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-27 12:41:31" itemprop="dateCreated datePublished" datetime="2019-09-27T12:41:31+00:00">2019-09-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前從花落落的文件中找到一個方法，像是使用 push message<br><img src="https://i.imgur.com/ZZVg7mI.png"><br>我都會笨笨的 call API 的方法去執行功能，殊不知 SDK 早就包好了，然後邊做邊罵自己為什麼要解這些 JSON (拍桌)<br>到了現在比較會看文件，才知道原來以前是自己雷自己 (捶心肝)…接下來就試玩幾個我覺得常會用到的 method 好了不廢話了，來簡單介紹一下一些常用的方法 😎</p>
+<h2 id="get-profile"><a href="#get-profile" class="headerlink" title="get_profile"></a>get_profile</h2><p>回傳使用者的個人狀態，可以透過每次的 reply 去拿到使用者的資訊，一般使用的話都話把它存下來，等之後有介接其他服務時方便使用 userId 去判斷使用者。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">profile = line_bot_api.get_profile(event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;source&#x27;</span>][<span class="string">&#x27;userId&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">        cur.execute(</span><br><span class="line">            <span class="string">f&quot;INSERT INTO users(id, name, picture) VALUES (&#x27;<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>&#x27;, &#x27;<span class="subst">&#123;name&#125;</span>&#x27;, &#x27;<span class="subst">&#123;picture&#125;</span>&#x27;)&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> <span class="comment"># 這邊簡單處理相同 id 的問題(id我有設 Private key 哦！)</span></span><br><span class="line">state = <span class="string">f&quot;Hello 👉 `<span class="subst">&#123;profile.display_name&#125;</span>` 👈&quot;</span></span><br><span class="line">line_bot_api.reply_message(token, [</span><br><span class="line">  TextSendMessage(text=state),</span><br><span class="line">  ImageSendMessage(original_content_url=profile.picture_url, preview_image_url=profile.picture_url)</span><br><span class="line">  ])</span><br></pre></td></tr></table></figure>
+
+<p>這邊搭配 <code>ImageSendMessage</code> 來幫忙發送圖片，他主要是透過 original_content_url 以及 preview_image_url 這兩個參數來幫忙轉成圖片</p>
+<ul>
+<li>original 就是讓使用者看到的圖片</li>
+<li>preview 在還沒載入時的樣子</li>
+</ul>
+<h2 id="push-message"><a href="#push-message" class="headerlink" title="push_message"></a>push_message</h2><p>既然都取到使用者的 id 了，下一步就是推訊息給使用者啦!</p>
+<p>建立一個 GET 的路由在 &#x2F;webhook 上，收到 query string 的 msg 的值並找到所有使用者的 id 並逐一推送訊息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">line_bot_api = LineBotApi(os.getenv(<span class="string">&#x27;LINE_CHANNEL_TOKEN&#x27;</span>))</span><br><span class="line">handler = WebhookHandler(os.getenv(<span class="string">&#x27;LINE_CHANNEL_SECRET_KEY&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">    msg = request.args.get(<span class="string">&#x27;msg&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">        cur.execute(<span class="string">&quot;SELECT * FROM users&quot;</span>)</span><br><span class="line">        fetch = cur.fetchall()</span><br><span class="line">    <span class="keyword">for</span> user <span class="keyword">in</span> fetch:</span><br><span class="line">        self.line_bot_api.push_message(</span><br><span class="line">            user[<span class="string">&#x27;id&#x27;</span>], TextSendMessage(text=msg))</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;message&#x27;</span>: msg&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/MHfYmlZ.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/x7fgvhY.png"></p>
+<h2 id="Reply-Mode"><a href="#Reply-Mode" class="headerlink" title="Reply Mode"></a>Reply Mode</h2><h3 id="LocationSendMessage"><a href="#LocationSendMessage" class="headerlink" title="LocationSendMessage"></a>LocationSendMessage</h3><p>這邊直接拿 SDK 的範例來用，若是有在做商家功能的機器人可以使用這個方式讓使用者接收到商家訊息～</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.line_bot_api.reply_message(token, LocationSendMessage(</span><br><span class="line">    title=<span class="string">&#x27;my location&#x27;</span>,</span><br><span class="line">    address=<span class="string">&#x27;Tokyo&#x27;</span>,</span><br><span class="line">    latitude=<span class="number">35.65910807942215</span>,</span><br><span class="line">    longitude=<span class="number">139.70372892916203</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+
+<h3 id="StickerSendMessage"><a href="#StickerSendMessage" class="headerlink" title="StickerSendMessage"></a>StickerSendMessage</h3><p>這個方法可以搭配使用，讓整個回應看起來跟真實吧！</p>
+<blockquote>
+<p>不知道清單能用什麼可以<a target="_blank" rel="noopener" href="https://developers.line.biz/media/messaging-api/sticker_list.pdf">參考</a>，</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.line_bot_api.reply_message(token, StickerSendMessage(package_id=<span class="string">&#x27;1&#x27;</span>,sticker_id=<span class="string">&#x27;1&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Button-Template"><a href="#Button-Template" class="headerlink" title="Button Template"></a>Button Template</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">buttons_template_message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">&#x27;Buttons template&#x27;</span>,</span><br><span class="line">    template=ButtonsTemplate(</span><br><span class="line">        thumbnail_image_url=<span class="string">f&#x27;<span class="subst">&#123;picture&#125;</span>.jpg&#x27;</span>,</span><br><span class="line">        title=<span class="string">&#x27;Menu&#x27;</span>,</span><br><span class="line">        text=<span class="string">&#x27;Please select&#x27;</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackAction(</span><br><span class="line">                label=<span class="string">&#x27;postback&#x27;</span>,</span><br><span class="line">                display_text=<span class="string">&#x27;postback text&#x27;</span>,</span><br><span class="line">                data=<span class="string">&#x27;action=buy&amp;itemid=1&#x27;</span></span><br><span class="line">            ),</span><br><span class="line">            MessageAction(</span><br><span class="line">                label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                text=<span class="string">&#x27;message text&#x27;</span></span><br><span class="line">            ),</span><br><span class="line">            URIAction(</span><br><span class="line">                label=<span class="string">&#x27;uri&#x27;</span>,</span><br><span class="line">                uri=<span class="string">&#x27;http://example.com/&#x27;</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">self.line_bot_api.reply_message(token, buttons_template_message)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/T30NNHt.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>簡單玩了幾個 API，大概就這幾個比較常搭配著使用，用過之後才知道其實有好多 API 我都還不是很清楚用法 🤣<br>而 LINE 最近更新了他們文件的功能，多了一個<code>Try</code>的按鈕提供使用者可以線上直接測 API，只是像是 push messages 這個就剛好沒有 😓，但至少有很多 API 不用通靈去測試，直接拿著 Token 在網頁上測試嚕！<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">Doc Sample</a><br><img src="https://i.imgur.com/xfk13a3.png"></p>
+<p>Code is <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/message_api_controller.py">here</a></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">LINE develop page</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/" class="post-title-link" itemprop="url">Day12 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (3) - 應聲蟲實作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-26 12:39:32" itemprop="dateCreated datePublished" datetime="2019-09-26T12:39:32+00:00">2019-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>新增兩個 LINE Channel key 至 <code>.env</code></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LINE_CHANNEL_TOKEN=</span><br><span class="line">LINE_CHANNEL_SECRET_KEY=</span><br></pre></td></tr></table></figure>
+
+<p>接著加入 LINE 的 python SDK 至 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">line</span>-bot-sdk==<span class="number">1</span>.<span class="number">12</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>透過 pip 安裝一下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt <span class="comment">--user</span></span><br></pre></td></tr></table></figure>
+
+<p>在 controller&#x2F; 底下新增一個 message_api_controller.py 並輸入以下程式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, abort</span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> linebot <span class="keyword">import</span> (</span><br><span class="line">    LineBotApi, WebhookHandler</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.exceptions <span class="keyword">import</span> (</span><br><span class="line">    InvalidSignatureError</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> (</span><br><span class="line">    MessageEvent, TextMessage, TextSendMessage,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LineMessageApiWebhookController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        line_bot_api = LineBotApi(os.getenv(<span class="string">&#x27;LINE_CHANNEL_TOKEN&#x27;</span>))</span><br><span class="line">        handler = WebhookHandler(os.getenv(<span class="string">&#x27;LINE_CHANNEL_SECRET_KEY&#x27;</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># get X-Line-Signature header value</span></span><br><span class="line">        signature = request.headers[<span class="string">&#x27;X-Line-Signature&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        body = request.get_data(as_text=<span class="literal">True</span>)</span><br><span class="line">        event = json.loads(body)</span><br><span class="line">        print(event)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            handler.handle(body, signature)</span><br><span class="line">        <span class="keyword">except</span> InvalidSignatureError:</span><br><span class="line">            print(</span><br><span class="line">                <span class="string">&quot;Invalid signature. Please check your channel access token/channel secret.&quot;</span>)</span><br><span class="line">            abort(<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">        token = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;replyToken&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> token == <span class="string">&quot;00000000000000000000000000000000&quot;</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            line_bot_api.reply_message(token, TextSendMessage(</span><br><span class="line">                text=event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;OK&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>用任何語言都會看到回傳會有 200, ‘OK’…回傳的成功訊息，在內部系統的部分在處理時要考慮到回傳時間的問題，一般來說如果回傳的時間大於 1 秒的話就有可能失效，或許有些朋友有測試過大於 1 秒也可以，但最好還是於時間內回覆哦！</p>
+<blockquote>
+<p>以下圖片來自 <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-device-10/">https://engineering.linecorp.com/zh-hant/blog/line-device-10/</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/nrJl2XM.png" alt="https://engineering.linecorp.com/zh-hant/blog/line-device-10/"></p>
+<p>接著在 api.py 加入下面兩段 code，新增一個<code>webhook</code>的路由</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> controller.message_api_controller <span class="keyword">import</span> LineMessageApiWebhookController</span><br><span class="line">api.add_resource(LineMessageApiWebhookController, <span class="string">&#x27;/webhook&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以使用<code>sls wsgi serve</code> + <code>ngrok</code>去搭配做測試</p>
+<p>接著就部署啦</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sls deploy</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>現在在接這種第三方的 API 時最好都使用 <code>https</code>，而使用 Serverless 的好處就是 AWS 在部署完之後會送你一個含有 SSL 的網址～</p>
+</blockquote>
+<p>把網址貼到 <code>webhook URL</code> 上並在尾端加上 <code>/webhook</code><br><img src="https://i.imgur.com/uoiU96f.png"></p>
+<p>測試結果如下<br><img src="https://i.imgur.com/9wPNuma.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這次整合了以前寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-wsgi-python">Repo</a>，加入了<code>.env</code>讓我在抓下來使用時也更方便，也整合成 Restful 格式讓之後有需要的人在看 code 時可以更容易理解了～</p>
+<p>專案也會持續更新，更多詳情可以 follow 我的專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api">aws-python-line-api</a>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/" class="post-title-link" itemprop="url">Day11 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (2) - 申請一步步</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-25 12:38:18" itemprop="dateCreated datePublished" datetime="2019-09-25T12:38:18+00:00">2019-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天會帶大家如何一步一步的建立 Message api 以及需要注意設定的地方。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><ol>
+<li>首先先到 <a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/">https://developers.line.biz/zh-hant/</a> ，點選右上角的大頭貼並選擇 <code>Add new provider</code><br><img src="https://i.imgur.com/ZDumwCq.jpg"></li>
+<li>接著在 Provider name 填上自己的想要的名稱<br><img src="https://i.imgur.com/JrSgcQO.png"></li>
+<li>再次確認<br><img src="https://i.imgur.com/D86u1mQ.png"></li>
+<li>選擇想要使用那種服務，這邊我們就選擇<code>Message API</code>並按下<code>Create Channel</code><br><img src="https://i.imgur.com/8WA1uER.png"></li>
+<li>接著就開始填寫自己的機器人(channel)所需要的資訊嚕！<br><img src="https://i.imgur.com/VQWPJtn.png"></li>
+<li>這邊我們需要填寫的內容為<br>6.1. 大頭貼(option)<br>6.2. 名稱 App name (required)<br>6.3. 描述 app description (required)<br>6.4. 類別與子類別 Catagory (required)<br>6.5. 信箱 Email address (required)<br>6.6. 政策網址 Policy URL (option)<br>6.7. 服務條款網址 Term of use URL (option)</li>
+</ol>
+<p><img src="https://i.imgur.com/0Wj570j.png"><br><img src="https://i.imgur.com/7TW5dzU.png"></p>
+<hr>
+<ol start="7">
+<li>當填寫完之後的寫一步最後會需要勾兩個服務說明確認的選項並按下 Create<br><img src="https://i.imgur.com/VsLYgJK.png"></li>
+<li>如此一來就看到自己百般折騰建立出來的 Message api 啦<br><img src="https://i.imgur.com/6tBdbEa.png"></li>
+<li>滑到最下面，首先掃描 QR code 加入自己機器人的好友讓接下來好測試，接著按下圖篇右手邊的 Set message 進入調整頁面<br><img src="https://i.imgur.com/wTxU7FM.png"></li>
+<li>進入之後到下面，將<strong>歡迎訊息</strong> &amp; <strong>自動回應</strong> <code>停用</code>，並將 <strong>Webhook</strong> 打開，讓之後的串接可以透過 Webhook 打到 Serverless 上，若是前兩個回應的選項沒有關的話即使 Webhook 有啟動也會因為優先權問題被擋下來哦！<br><img src="https://i.imgur.com/gS2k9ZP.png"></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day10 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (1) - 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-24 12:36:40" itemprop="dateCreated datePublished" datetime="2019-09-24T12:36:40+00:00">2019-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>LINE 在 2016 年 9 月底發表了 Messaging API 功能，用戶可以透過 Messaging API 將自家的服務內容串聯到 LINE@ 上。</p>
+<p>接著在 2019&#x2F;04&#x2F;18 之後 LINE@ 2.0 正式上線，在 5&#x2F;22 後有升級的選項並會陸續更新，升級完的官方帳號也可以申請專屬 ID、進行帳號認證。</p>
+<p>我認為比前一版本的最大的好處是在<strong>好友無上限</strong>的這部分，以前只能有 50 位好友，若一般開發者的機器人好不容易上線了並開放測試時被限制住，除了再開一隻機器人或是其他方法就超麻煩，現在好友無上限了，就不會有上述的問題了。</p>
+<blockquote>
+<p>若您以前有開發過的機器人到現在還沒升級的話，可以參考 -&gt; <a target="_blank" rel="noopener" href="http://at-blog.line.me/tw/archives/lineat_manual_upgrade_02.html">URL</a></p>
+</blockquote>
+<p>這邊需要注意 1 on 1 聊天與 Messaging API 是無法同時使用的，但可以在後台切換看要使用哪種模式與顧客互動。對話記錄也會保存在各自的模式下，若要查看完整的對話記錄的話會建議以固定模式與顧客進行互動哦！</p>
+<h3 id="主要的功能環繞在以下兩點"><a href="#主要的功能環繞在以下兩點" class="headerlink" title="主要的功能環繞在以下兩點"></a>主要的功能環繞在以下兩點</h3><p><img src="https://i.imgur.com/kqf5mo5.png"></p>
+<ol>
+<li><strong>Push mode:</strong> 主動推播訊息給用戶，2.0 每個機器人都有 500 則免費推播則數，超過則數的話可以參考以下的價目表：</li>
+</ol>
+<p><img src="https://i.imgur.com/7HJySLK.png"></p>
+<ol start="2">
+<li><strong>Reply mode:</strong> 這個模式是接受使用者的訊息並透過 webhook 打到伺服器上讓伺服器去做對應訊息的處理，重點是它是是免費、免費、免費的！所以若能引導使用者去輸入訊息的話用這個模式是不用錢的哦 🎉</li>
+</ol>
+<p>Message API 支援以下格式</p>
+<ul>
+<li>Text message</li>
+<li>Sticker message</li>
+<li>Image message</li>
+<li>Video message</li>
+<li>Audio message</li>
+<li>Location message</li>
+<li>Imagemap message</li>
+<li>Template message</li>
+<li>Flex message</li>
+</ul>
+<blockquote>
+<p>詳細內容可以參考 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/message-types/">LINE doc</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/PLWylFy.png" alt="line sample 1"><br><img src="https://i.imgur.com/lInGVV0.png" alt="line sample 2"></p>
+<h2 id="回傳格式"><a href="#回傳格式" class="headerlink" title="回傳格式"></a>回傳格式</h2><p>Message API 回傳格式都是一個陣列的格式，一開始在接的時候都沒注意到一直瘋狂出錯，事實上這樣陣列對 Server 有個好處就是當一次需要送較多訊息時格式會比較統一，只是對於有潔癖的開發者來說每次都要多打<code>[0]</code>會覺得有點髒 🤣</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x27;events&#x27;: [&#123;</span><br><span class="line">    &#x27;replyToken&#x27;: &#x27;<span class="number">00000000000000</span><span class="number">00000000000000</span><span class="number">0000</span>&#x27;,</span><br><span class="line">    &#x27;type&#x27;: &#x27;message&#x27;,</span><br><span class="line">    &#x27;timestamp&#x27;: <span class="number">1568983962754</span>,</span><br><span class="line">    &#x27;source&#x27;: &#123;</span><br><span class="line">      &#x27;type&#x27;: &#x27;user&#x27;,</span><br><span class="line">      &#x27;userId&#x27;: &#x27;Udeadbeefdaaaaefdeadbeefdeadbeef&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;message&#x27;: &#123;</span><br><span class="line">      &#x27;id&#x27;: &#x27;<span class="number">100001</span>&#x27;,</span><br><span class="line">      &#x27;type&#x27;: &#x27;text&#x27;,</span><br><span class="line">      &#x27;text&#x27;: &#x27;Hello, world&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    &#x27;replyToken&#x27;: &#x27;ffffffffffffffffffffffffffffffff&#x27;,</span><br><span class="line">    &#x27;type&#x27;: &#x27;message&#x27;,</span><br><span class="line">    &#x27;timestamp&#x27;: <span class="number">1568983962754</span>,</span><br><span class="line">    &#x27;source&#x27;: &#123;</span><br><span class="line">      &#x27;type&#x27;: &#x27;user&#x27;,</span><br><span class="line">      &#x27;userId&#x27;: &#x27;Udeadbeeaaaaefdeadbeefdeadbeef&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;message&#x27;: &#123;</span><br><span class="line">      &#x27;id&#x27;: &#x27;<span class="number">100002</span>&#x27;,</span><br><span class="line">      &#x27;type&#x27;: &#x27;sticker&#x27;,</span><br><span class="line">      &#x27;packageId&#x27;: &#x27;1&#x27;,</span><br><span class="line">      &#x27;stickerId&#x27;: &#x27;1&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>以前剛開始接 LINE Message API 的時候都覺得他的文件不太人性，更新到現在文件內容也越來完整，讓開發者在開發的過程中不用再為了找不到文件而放棄了(我以前就是 🤣)，下一篇將會帶來如何申請一隻機器人到如何建立一個 webhook API 到 AWS 上</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="http://at-blog.line.me/tw/messaging_api_intro">功能介紹】Messaging API</a><br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/message-types/">LINE message template</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/23/Day9-SQS-%E4%B8%B2%E6%8E%A5-Notify-%E5%AF%A6%E4%BD%9C%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/23/Day9-SQS-%E4%B8%B2%E6%8E%A5-Notify-%E5%AF%A6%E4%BD%9C%EF%BC%81/" class="post-title-link" itemprop="url">Day9 - SQS 串接 Notify 實作！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-23 12:35:36" itemprop="dateCreated datePublished" datetime="2019-09-23T12:35:36+00:00">2019-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先先建立一個<code>consumer/</code>資料夾，新增<code>__init__.py</code>以及<code>notify_handler.py</code></p>
+<p>在<code>notify_handler.py</code>輸入以下程式碼</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">line_notify_handler</span>(<span class="params">event, context</span>):</span></span><br><span class="line">    print(event)</span><br><span class="line">    body = json.loads(event[<span class="string">&#x27;Records&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;body&#x27;</span>])</span><br><span class="line">    print(body)</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;body[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    r = requests.post(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>,</span><br><span class="line">                      headers=headers,</span><br><span class="line">                      data=&#123;<span class="string">&#x27;message&#x27;</span>: body[<span class="string">&#x27;message&#x27;</span>]&#125;)</span><br><span class="line">    print(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># AWS record sample</span></span><br><span class="line"><span class="comment"># &#123;&#x27;Records&#x27;: [&#123;&#x27;messageId&#x27;: &#x27;fddc42ba-a122-4581-965e-d0144ac8a5ad&#x27;, &#x27;receiptHandle&#x27;: &#x27;AQEBjO32gY5pXOfOrmDR0hD4k1av9KyjbHFpc+rIBPV2Brif7Lo+jqnGevSjfFwlICyGf+BhWwKaxFw8XdB3QTzRbw0vnLURjnQeDSBrJHa/S57SRs9TOLRBq38maycAVg69iZbetg9VhLMBCcLtOtPHTzKkmo+/Sosm51WA5CzXK7A0rteikx6nxS1CUIpq6MAujodupP0Hgr5RjK5nH/nmxA4Db0leWEmLokalZbtlx4W14tp7PZxPOrQOLDaGrH//p4h32tY8IN3MkCqi+gyNT7kCU4KwCGOIrybb07ZWyKBTKw+KOMNr/Ykj4z2N1qxIvTM55UY9d8V29YsH32OjrZTei5P7Nke/51E2tWkmkqoFAlqzxDjQPvpP+Pvvr8aazeeZ6opkr59UefAiiyM71Q==&#x27;, &#x27;body&#x27;: &#x27;hi&#x27;, &#x27;attributes&#x27;: &#123;&#x27;ApproximateReceiveCount&#x27;: &#x27;9&#x27;, &#x27;SentTimestamp&#x27;: &#x27;1566621263072&#x27;, &#x27;SenderId&#x27;: &#x27;901588721449&#x27;, &#x27;ApproximateFirstReceiveTimestamp&#x27;: &#x27;1566621263072&#x27;&#125;, &#x27;messageAttributes&#x27;: &#123;&#125;, &#x27;md5OfBody&#x27;: &#x27;49f68a5c8493ec2c0bf489821c21fc3b&#x27;, &#x27;eventSource&#x27;: &#x27;aws:sqs&#x27;, &#x27;eventSourceARN&#x27;: &#x27;arn:aws:sqs:us-east-1:901588721449:LINE_notify_consumer&#x27;, &#x27;awsRegion&#x27;: &#x27;us-east-1&#x27;&#125;]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>接著在<code>requirements.txt</code>加入<code>boto3</code>，他是一個使用 python 介接 AWS 的套件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">boto3</span>==<span class="number">1</span>.<span class="number">9</span>.<span class="number">189</span></span><br></pre></td></tr></table></figure>
+
+<p>加入<code>SQS_URL</code>以及<code>SQS_ARN</code>到<code>.env</code>裡面</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">SQS_URL</span>=sqs url</span><br><span class="line"><span class="attr">SQS_ARN</span>=your sqs arn</span><br></pre></td></tr></table></figure>
+
+<p>add controller&#x2F;notify_sqs_controller.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource, reqparse</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> lib.db <span class="keyword">import</span> Database</span><br><span class="line"><span class="keyword">import</span> psycopg2.extras</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> boto3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_message</span>(<span class="params">url, attr, body, delay=<span class="number">0</span></span>):</span></span><br><span class="line">    cli.send_message(</span><br><span class="line">        QueueUrl=url,</span><br><span class="line">        DelaySeconds=<span class="number">0</span>,</span><br><span class="line">        MessageAttributes=attr,</span><br><span class="line">        MessageBody=body,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SendNotifyBySQSController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    cli = boto3.client(<span class="string">&quot;sqs&quot;</span>, region_name=os.environ(<span class="string">&quot;region&quot;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>, required=<span class="literal">True</span>, <span class="built_in">help</span>=<span class="string">&#x27;message can not be blank!&#x27;</span>)</span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        msg = args[<span class="string">&#x27;message&#x27;</span>]</span><br><span class="line">        <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">            <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                cur.execute(</span><br><span class="line">                    <span class="string">f&quot;SELECT token FROM notify&quot;</span>)</span><br><span class="line">                fetch = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> f <span class="keyword">in</span> fetch:</span><br><span class="line">            body = &#123;</span><br><span class="line">                <span class="string">&#x27;token&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;f[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span>,</span><br><span class="line">                <span class="string">&#x27;message&#x27;</span>: <span class="string">f&quot;Hello everyone, <span class="subst">&#123;msg&#125;</span>&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">            cli.send_message(</span><br><span class="line">                QueueUrl=os.environ(<span class="string">&quot;SQS_URL&quot;</span>),</span><br><span class="line">                DelaySeconds=<span class="number">0</span>,</span><br><span class="line">                MessageAttributes=&#123;&#125;,</span><br><span class="line">                MessageBody=json.dumps(body),</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;ok&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>程式寫完了就是要加一條路由<code>/notify/sqs</code></p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> controller.notify_sqs_controller <span class="keyword">import</span> SendNotifyBySQSController</span><br><span class="line">api.add_resource(SendNotifyBySQSController, <span class="string">&#x27;/notify/sqs&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>接著透過<code>wsgi</code>在本地起一個 server</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sls wsgi serve</span></span><br></pre></td></tr></table></figure>
+
+<p>再搭配 postman 來做測試，測試內容如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;test Content&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接著透過<code>sls deploy</code>部署上會遇到一個問題，會有 Access Denied，所以要在<code>serverless.yml</code>加入 IAM role 的設定</p>
+<p>add iam in provider</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">iamRoleStatements:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">Effect:</span> <span class="string">Allow</span></span><br><span class="line">    <span class="attr">Action:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">sqs:SendMessage</span></span><br><span class="line">    <span class="attr">Resource:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;env:SQS_ARN&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p><img src="https://i.imgur.com/5FViVEk.png"><br><img src="https://i.imgur.com/Xg70nDp.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>使用 SQS 這類服務都會需要透過<code>boto3</code>來幫忙串接，最需要注意的就是 IAM role，因為在本地端的 key 通常權限都是最大的，但上到 AWS 上就會有權限的問題，所以要記得加入 IAM 哦！</p>
+<p>Code is <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/notify_sqs_controller.py">here</a></p>
+<p>專案也會持續更新，更多詳情可以 follow 我的專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api">aws-python-line-api</a>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/22/Day8-SQS-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-%E5%BB%BA%E7%AB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/22/Day8-SQS-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-%E5%BB%BA%E7%AB%8B/" class="post-title-link" itemprop="url">Day8 - SQS 簡單介紹 & 建立</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-22 12:34:30" itemprop="dateCreated datePublished" datetime="2019-09-22T12:34:30+00:00">2019-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10194654">詳細介紹</a></p>
+<p>以前自己在架伺服器的時候，提到訊息佇列不外乎都是 RabbitMQ 或是 Kafka，只是現在 AWS、GCP 這類的雲端平台都越來越火紅了，手動按一下服務就建好了(信用卡也在哭泣)，省去很多建立服務的時間，只是說一般時候根本找不到項目練習 😓，剛好最近在複習 LINE Notfiy，就趁這個機會順便練習並記錄一下 ✌️</p>
+<h2 id="你需要先了解…"><a href="#你需要先了解…" class="headerlink" title="你需要先了解…"></a>你需要先了解…</h2><blockquote>
+<p>當 Http requests 非常大量到一定程度，database 已經跟不上處理的速度，尤其是 relational database，這時就需要 queue 來緩衝；所以社群網站像 Facebook or LinkedIn 都使用大量的 message queue and cache.<br>By -&gt; Leonard Lee</p>
+</blockquote>
+<blockquote>
+<p>SQS 就是 managed queue service，主要就是 async, central messaging (對相對應的程式來說，通常處理 api 的會有多個 instances 同時存在，像是 auto-scaling)，像是 fb 通知、寄送 email 認證信這種不用即時處理的情況，只要給訊息給 queue 讓其他服務或程式去處理，可以把原本的邏輯簡化(以及責任區分)，甚至些事件是預期同時會有多個 listener 會需要處理的情況，在一個 api 裡面去處理這些會讓邏輯變很複雜&#x2F;不好維護。<br>By -&gt; Bill Chung</p>
+</blockquote>
+<blockquote>
+<p>還有就是如果負責處理 request 的 host 有問題，message queue 可以用來短暫儲存還未被處理的 requests 使他們不至於丟失，直到 host 回復正常或是換了一個好的 host 後，message queue 裡面的的 requests 就可以繼續被處理<br>By -&gt; 盧元駿</p>
+</blockquote>
+<p>以上來自我之前寫過的文章 <a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/%E4%BD%BF%E7%94%A8-serverless-%E8%AE%93-aws-sqs-%E5%B9%AB%E4%BD%A0%E7%99%BC%E9%80%81-line-notify-fc3b918473cc">使用 Serverless 讓 AWS SQS 幫你發送 LINE Notify</a></p>
+<p>今天在需要發個請求去呼叫 LINE API(或是其他服務的 API)，都可能會碰到圖片，圖片不管他怎麼壓縮，終究還是比文字肥，在數量多的情況下可能就會發現 API 罷工(就會像被斷詠唱一樣)。雖然平常使用可能不會這麼平凡呼叫，但若在商業用途上使用者多的時候一次呼叫就會有一大筆，這時候用 Queue 讓他們排隊一個一個來就在適合不過了 🎉。</p>
+<h2 id="為什麼選擇-AWS-SQS"><a href="#為什麼選擇-AWS-SQS" class="headerlink" title="為什麼選擇 AWS SQS"></a>為什麼選擇 AWS SQS</h2><p>Amazon Simple Queue Service (SQS) 是全受管訊息佇列服務，可讓您分離和擴展微型服務、分散式系統及無伺服器應用程式。SQS 可免除與管理和操作訊息導向中介軟體相關的複雜性及開銷，也可讓開發人員專注在與眾不同的工作上。您可以使用 SQS 在軟體元件之間傳送、存放和接收不限數量的訊息，不會遺失訊息或需要其他服務可用。使用 AWS 主控台、命令列界面或自選的 SDK 以及三個簡單的命令，即可在幾分鐘內開始使用 SQS。(參考 <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/sqs/">AWS</a>)</p>
+<p>SQS 有在免費方案裡面，只要一個月別高於 100 萬個請求就不會被收錢啦 💪<br><img src="https://i.imgur.com/az2V5a4.png"></p>
+<blockquote>
+<p>AWS 的免費方案可以參考 -&gt; <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsm.page-all-free-tier=5&source=post_page-----fc3b918473cc----------------------">LINK</a></p>
+</blockquote>
+<h2 id="建立-SQS"><a href="#建立-SQS" class="headerlink" title="建立 SQS"></a>建立 SQS</h2><p>接著就要開始引入 SQS 嚕，首先到 AWS 上的 SQS 頁面，如下</p>
+<p><img src="https://i.imgur.com/HXXX2SI.png"></p>
+<hr>
+<p>接著選左邊的<code>Standard Queue</code>並填入 name 就好<br><img src="https://i.imgur.com/Q88vd9t.png"></p>
+<hr>
+<p>建立完之後就可以看到下面有建立完的資訊</p>
+<blockquote>
+<p>ARN 以及 URL 接下來都會用到哦</p>
+</blockquote>
+<p><img src="https://i.imgur.com/7pUSK9Q.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>接下來會帶各位使用 Notify 接在 SQS 上，這篇就先帶各位介紹並先手動建立一個 Queue，之後會在大家使用 python 的 boto3 的套件來搭配使用 AWS 服務使用 👏</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

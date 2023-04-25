@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言故事是這樣的，前幾天好像有微軟的開發者日(❓)，因此同事在收看完線上影片後分享給我一篇關於在 VSCode 開發 FastAPI+PostgreSQL 的影片，內容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在 VSCode 中以 Container 方式開發 FastAPI + PostgreSQL">
+<meta property="og:url" content="https://nijialin.com/2021/05/29/fastapi-dev-in-container-vscode/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言故事是這樣的，前幾天好像有微軟的開發者日(❓)，因此同事在收看完線上影片後分享給我一篇關於在 VSCode 開發 FastAPI+PostgreSQL 的影片，內容">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/remote0.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/remote1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/open1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/lauch1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/launch2.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/port.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/debug1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/fastapi-container/sql1.png">
+<meta property="article:published_time" content="2021-05-29T11:25:33.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.977Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="PostgreSQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/fastapi-container/remote0.png">
+
+<link rel="canonical" href="https://nijialin.com/2021/05/29/fastapi-dev-in-container-vscode/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>如何在 VSCode 中以 Container 方式開發 FastAPI + PostgreSQL | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/05/29/fastapi-dev-in-container-vscode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何在 VSCode 中以 Container 方式開發 FastAPI + PostgreSQL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-29 11:25:33" itemprop="dateCreated datePublished" datetime="2021-05-29T11:25:33+00:00">2021-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>故事是這樣的，前幾天好像有微軟的開發者日(❓)，因此同事在收看完線上影片後分享給我一篇關於在 VSCode 開發 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FvUpjdWnibo">FastAPI+PostgreSQL 的影片</a>，內容主要在講解如何在 VSCode 中以 Container 模式做開發，詳細內容以下會提到。</p>
+<p>而因為過往我因為很懶得處理環境問題，因此都快速安裝 Python 後在使用 PyCharm 來協助處理開發問題，在這次看了影片中的使用覺得整體效果非常讚(香 🥰)，以下就來介紹一下如何使用以及範例吧！</p>
+<blockquote>
+<p>官方範例是用 Poetry 來管理套件，我則習慣使用 PIP + requirements.txt 來管理</p>
+</blockquote>
+<p>延伸閱讀：</p>
+<ul>
+<li><a href="https://nijialin.com/2021/05/03/how-to-debug-python-by-pycharm-tw/">如何在 PyCharm 幫 Python 除蟲(Debug)</a><span id="more"></span></li>
+</ul>
+<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><ul>
+<li>環境孤立化(在容器中)，不會污染本機環境</li>
+<li>該有的 VSCode Plugins 都在</li>
+<li>不用再找 Container IP，直接 127.0.0.1</li>
+<li>Configuration Plugin 都幫你弄好了</li>
+<li>本地開發+資料庫(介面)都弄好，很夠用(香)</li>
+<li>UI 感覺變直覺了? (以前不太會用 VSCode 寫 Python)</li>
+</ul>
+<p>可能會遇到的問題:</p>
+<ul>
+<li>硬碟空間不足(容器一多可能會炸)</li>
+<li>有機會需要重開 Container</li>
+<li>有些功能還是沒 PyCharm 方便(各有好壞)</li>
+</ul>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><blockquote>
+<p>本次範例專案： <a target="_blank" rel="noopener" href="https://github.com/louis70109/fastapi-vscode-example">fastapi-vscode-example</a></p>
+</blockquote>
+<p>首先在需要在 VSCode 中安裝兩個套件，Python 以及 Remote-Container，以下是 Remote-Container 的套件截圖(大家應該知道安裝哪個 Python?)</p>
+<p><img src="https://nijialin.com/images/2021/fastapi-container/remote0.png" alt="remote container"></p>
+<h2 id="範例專案-fastapi-vscode-example-架構"><a href="#範例專案-fastapi-vscode-example-架構" class="headerlink" title="範例專案 fastapi-vscode-example 架構"></a>範例專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/fastapi-vscode-example">fastapi-vscode-example</a> 架構</h2><p>接著 Clone 這次的範例專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/fastapi-vscode-example">fastapi-vscode-example</a>，以下我來跟大家稍微解釋一下資料夾結構：</p>
+<ul>
+<li><code>.devcontainer/</code>: Remote-Container 使用時所需要的資料夾，下面會有三個檔案 Dockerfile、docker-compose.yml、devcontainer.json，前兩個為容器的設定檔，最後一個則是 Remote-Container 所需要的檔案。</li>
+<li><code>.vscode/</code>: 在 VSCode 裡面執行相關操作時幫大家儲存下來的設定檔位置。</li>
+<li><code>Container database.session.sql</code>: 在 VSCode 中透過介面來操作資料庫時會初始化跑的檔案。</li>
+<li><code>main.py</code>: 主程式要跑的檔案。</li>
+<li>其餘檔案則是專案在寫時所分類的資料夾以及 Heroku 設定檔。</li>
+</ul>
+<h2 id="開始使用-Remote-Container-環境"><a href="#開始使用-Remote-Container-環境" class="headerlink" title="開始使用 Remote Container 環境"></a>開始使用 Remote Container 環境</h2><p>大致了解架構後，接著按下 Command+Shift+p 開啟一個輸入框，並輸入 <code>remote container</code> 後找到 <code>Reopen in Container</code> 的選項，如下圖所示。</p>
+<p><img src="https://nijialin.com/images/2021/fastapi-container/remote1.png" alt="remote container1"></p>
+<p>接著 VSCode 會開始幫忙在 Docker 中產生容器，需要稍等它 pull 以及建立容器，建立完後可以在裡面開啟終端機看一下(pwd)自己是否真的在容器(Container)裡面。<br><img src="https://nijialin.com/images/2021/fastapi-container/open1.png" alt="open folder"></p>
+<p>進來之後就要來啟動專案，按下畫面上執行的按鈕，而這個按鈕則會在 <code>.vscode</code> 中建立 <code>launch.json</code> 來幫忙放相關設定檔，裡頭就是設定要跑的相關指令。<br><img src="https://nijialin.com/images/2021/fastapi-container/lauch1.png" alt="launch"></p>
+<p>執行之後會在下方出現終端機來顯示跑起來的訊息，相關 call API 的測試結果當然也都會在這邊。<br><img src="https://nijialin.com/images/2021/fastapi-container/launch2.png" alt="launch2"></p>
+<h2 id="Port-Forward"><a href="#Port-Forward" class="headerlink" title="Port Forward"></a>Port Forward</h2><p>執行完後大概果幾秒後，右下角會出現視窗來詢問你說要不要在 <code>瀏覽器上開啟</code> 的彈跳視窗，按下去後 VSCode 就會幫忙把相對應的 Port 全部對外，讓大家可以無痛在本地端(127.0.0.1)直接 call API</p>
+<p>解決了：</p>
+<ul>
+<li>不用找 Docker IP 為了呼叫容器裡的服務</li>
+<li>跟在電腦(本地端)開發狀態一樣，而多了不會<code>污染環境</code>的好處</li>
+</ul>
+<p><img src="https://nijialin.com/images/2021/fastapi-container/port.png" alt="port"></p>
+<h2 id="執行與除錯-Debug-模式"><a href="#執行與除錯-Debug-模式" class="headerlink" title="執行與除錯(Debug)模式"></a>執行與除錯(Debug)模式</h2><p>跟許多開發工具一樣，要 Debug 時就在行數的<code>左邊</code>點上<code>紅點</code>，打一次訊息到 API 後就會在想除錯的那行中停下來，左邊訊息欄就會顯示當前相關參數喔。</p>
+<blockquote>
+<p>下方有兩個顏色，<code>紫色</code>是當前正在的處於的環境(Container)，紅色則是告訴你現在<code>服務啟動</code>了，等關閉終端機時就會變回一般的顏色囉。</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/fastapi-container/debug1.png" alt="debug"></p>
+<h2 id="資料庫"><a href="#資料庫" class="headerlink" title="資料庫"></a>資料庫</h2><p>這邊看資料庫解決了筆者開發的一個小痛點，左邊欄支援直接看資料庫，可以快速查詢相關開發的資料是否正確，透過介面上的內容大致可以解決許多開發上會遇到的問題。(當然其他工具(pgadmin)還是有他好用的地方)</p>
+<p><img src="https://nijialin.com/images/2021/fastapi-container/sql1.png" alt="sql1"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>像筆者我之前都很習慣在筆電中直接灌爆所有環境需要的東西，想要時直接取用，使用速度也都很及時，到目前比較有經驗之後也很少遇到環境打架問題。</p>
+<p>但想起以前有些開發時需要多環境切換測試時就很容易遇到污染的問題，導致本地端看似對的但部署上去都是錯的的問題，因此之後才會逐漸切換成將開發用的工具以 Docker 的方式切開來使用。</p>
+<p>藉由這次與各位分享在 VSCode 中以 Container 的方式開發 FastAPI + PostgreSQL 中的經驗，過程中也讓我釐清了許多操作上的內容，希望透過這篇文章能夠讓各位也可以開始嘗試在 Container 裡面開始開發自己的服務，同時也讓自己系統內的環境更加乾淨喔！</p>
+<blockquote>
+<p>本次範例專案： <a target="_blank" rel="noopener" href="https://github.com/louis70109/fastapi-vscode-example">fastapi-vscode-example</a></p>
+</blockquote>
+<blockquote>
+<p>Docker 是 Container 這個技術的解決方案之一，但是 Container 不是 Docker 喔！！</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/VSCode/" rel="tag"><i class="fa fa-tag"></i> VSCode</a>
+              <a href="/tags/PostgreSQL/" rel="tag"><i class="fa fa-tag"></i> PostgreSQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/26/line-recruitment-day-2021/" rel="prev" title="LINE Recruitment Day 2021 活動紀錄">
+      <i class="fa fa-chevron-left"></i> LINE Recruitment Day 2021 活動紀錄
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/09/line-flex-message-simulator/" rel="next" title="藉由 Flex Message Simulator 實現並發送測試用 Flex Message">
+      藉由 Flex Message Simulator 實現並發送測試用 Flex Message <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TL-DR"><span class="nav-number">1.1.</span> <span class="nav-text">TL;DR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%E5%B0%88%E6%A1%88-fastapi-vscode-example-%E6%9E%B6%E6%A7%8B"><span class="nav-number">2.1.</span> <span class="nav-text">範例專案 fastapi-vscode-example 架構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A7%8B%E4%BD%BF%E7%94%A8-Remote-Container-%E7%92%B0%E5%A2%83"><span class="nav-number">2.2.</span> <span class="nav-text">開始使用 Remote Container 環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Port-Forward"><span class="nav-number">2.3.</span> <span class="nav-text">Port Forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%B7%E8%A1%8C%E8%88%87%E9%99%A4%E9%8C%AF-Debug-%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">執行與除錯(Debug)模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB"><span class="nav-number">2.5.</span> <span class="nav-text">資料庫</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

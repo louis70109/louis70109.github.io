@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言大家好，我是 LINE Taiwan 的 Tech Evangelist - NiJia Lin。這次很開心受到 chatbot 社群的邀請，參加了 “Chatb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINE 開發社群計畫: 202103 Chatbot 社群心得與彈幕分享">
+<meta property="og:url" content="https://nijialin.com/2021/01/21/chatbot-meetup-27/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }    前言大家好，我是 LINE Taiwan 的 Tech Evangelist - NiJia Lin。這次很開心受到 chatbot 社群的邀請，參加了 “Chatb">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/chatbot-27/0.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2021/chatbot-27/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/chatbot-27/3.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/chatbot-27/2.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/chatbot-27/demo.gif">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2021-01-21T08:12:37.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:04:15.080Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Chatbot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/chatbot-27/0.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2021/01/21/chatbot-meetup-27/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>LINE 開發社群計畫: 202103 Chatbot 社群心得與彈幕分享 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/01/21/chatbot-meetup-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LINE 開發社群計畫: 202103 Chatbot 社群心得與彈幕分享
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-21 08:12:37" itemprop="dateCreated datePublished" datetime="2021-01-21T08:12:37+00:00">2021-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://nijialin.com/images/2021/chatbot-27/0.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的 Tech Evangelist - NiJia Lin。這次很開心受到 chatbot 社群的邀請，參加了 “<a target="_blank" rel="noopener" href="https://events.chatbot.tw/events/26">Chatbot meetup 聊天機器人小小聚 27 @ Onramp Studio</a>“ 的聚會活動，並且分享 LINE API 更新與個人開發的心得。在此也跟各位分享本次參與的心得，並且也希望透過社群分享的力量能夠讓聊天機器人的開發動能更加的盛大。</p>
+<ul>
+<li>社群 Chatbots Meetup： <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw">https://www.facebook.com/groups/chatbot.tw</a></li>
+<li>本次活動網頁: <a target="_blank" rel="noopener" href="https://events.chatbot.tw/events/26">活動網址</a></li>
+<li>本次活動的共筆紀錄： <a target="_blank" rel="noopener" href="https://hackmd.io/@chatbot-tw/meetups-027">https:&#x2F;&#x2F;hackmd.io&#x2F;@chatbot-tw&#x2F;meetups-027</a></li>
+</ul>
+<p>由於 Chatbots Meetup 本身屬於社群自主性的活動，裡面也有許多社群朋友所贊助的閃電秀。裡面的所有內容也是相當的難得與有趣。也希望能夠透過本篇文章讓大家稍微了解 Chatbots Meetup 社群閃電秀的魅力。</p>
+<p>這次就由我用文章帶大家了解一下近期有什麼有趣的更新內容吧！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/OaX09Qp95Yw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="Share-Target-Picker-UI"><a href="#Share-Target-Picker-UI" class="headerlink" title="Share Target Picker UI"></a><a href="(https://developers.line.biz/zh-hant/news/2020/12/01/share-target-picker-ui-improve/)">Share Target Picker UI</a></h2><script async class="speakerdeck-embed" data-slide="3" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>過往將<strong>一對一好友</strong>的選項放在第一位，但在排版選擇上容易使用混淆，LIFF 開發團隊聽到各位開發者的心聲囉！調整了文案排版內容讓大家在使用中更 friendly。</p>
+<h2 id="Sticker-關鍵字訊息"><a href="#Sticker-關鍵字訊息" class="headerlink" title="Sticker 關鍵字訊息"></a><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/news/2020/12/02/messaging-api-update-december-2020/">Sticker 關鍵字訊息</a></h2><script async class="speakerdeck-embed" data-slide="4" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>貼圖是 LINE 其中一個很吸引人使用的功能，過去使用者在對談中使用貼圖時 Chatbot 無法辨別其用途，而在 2020&#x2F;12 月發佈的更新中能夠讓 Chatbot 在 Webhook event 中收到 Keywords 的欄位，透過這個欄位可以讓你的 Chatbot 服務知道當前貼圖的用意，甚至可以透過文字辨識相關的服務來做更多的使用者預測&#x2F;互動的功能喔！</p>
+<blockquote>
+<p>目前<a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/">官方網站</a>上的標題文字有修正囉！讓大家在查詢相關 API 時能更快找到相關地方。</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/chatbot-27/1.png"></p>
+<h2 id="Beacon-請使用-Stay-Event-取代-Leave-Event"><a href="#Beacon-請使用-Stay-Event-取代-Leave-Event" class="headerlink" title="Beacon - 請使用 Stay Event 取代 Leave Event"></a><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/news/2021/01/07/deprecate-leave-event-for-beacon/">Beacon - 請使用 Stay Event 取代 Leave Event</a></h2><script async class="speakerdeck-embed" data-slide="10" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>再次提醒各位有在使用開發 Beacon 的用戶要注意自己是否有使用到 Leave Event，此功能目前已經停止支援。</p>
+<p><img src="https://nijialin.com/images/2021/chatbot-27/3.png"></p>
+<p>建議能改成使用 Stay Event，但可能會有開發者問要使用 Stay 取代呢？</p>
+<p>以台北捷運為例子，你會在等車時收到一個 LINE TODAY 的新聞，在<code>等車</code>(<code>Stay</code>)的用戶在此時一般情況都會使用手機，此時推播訊息給他有<strong>較高的機率</strong>點開；若同個情境下當用戶搭上捷運<code>離開</code>(<code>Leave</code>)時才推播訊息，可能在車上會遇到人潮無法打開手機等等的因素，那這個做法就會打不到預期的結果，因此還是推薦大家使用 <code>Stay Event</code> 取代會是比較好喔！</p>
+<p><img src="https://nijialin.com/images/2021/chatbot-27/2.png"></p>
+<h2 id="LIFF-相關資訊"><a href="#LIFF-相關資訊" class="headerlink" title="LIFF 相關資訊"></a>LIFF 相關資訊</h2><script async class="speakerdeck-embed" data-slide="12" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/news/2021/01/14/release-liff-2-7-0/">2.7.0 release</a>:<ul>
+<li>加入 <strong>RequireJS</strong>: 讓您的 LIFF 能夠確保載入後在執行，避免出現非預期錯誤</li>
+<li>修正 <code>liff.getDecodedIDToken()</code>: 修正解開後名字亂碼的問題</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/news/2021/01/20/release-liff-2-7-1/">2.7.1 release</a> 修正了開啟外部瀏覽器會出錯的問題</li>
+</ul>
+<blockquote>
+<p>若各位開發者有使用新版的需求請記得要升級至 <code>2.7.1</code> 喔！避免使用時遇到非預期錯誤。</p>
+</blockquote>
+<h3 id="更改您的-LIFF-至-Concatenate-模式"><a href="#更改您的-LIFF-至-Concatenate-模式" class="headerlink" title="更改您的 LIFF 至 Concatenate 模式"></a><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/news/2021/01/18/remind-discontinue-replace-mode-announcement/">更改您的 LIFF 至 Concatenate 模式</a></h3><script async class="speakerdeck-embed" data-slide="6" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>筆者近期寫了<a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/liff-replace-to-concatenate/">一篇教學文章</a>教大家如何轉移至 <strong>Concatenate 模式</strong>，避免在 <strong>2021&#x2F;03&#x2F;01</strong> 移除 Replace 模式時影響到您的 LIFF 應用程式喔！</p>
+<h2 id="一月平台更新資訊"><a href="#一月平台更新資訊" class="headerlink" title="一月平台更新資訊"></a><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/news/2021/01/20/messaging-api-update-january-2021/">一月平台更新資訊</a></h2><h3 id="Narrowcast-訊息發送狀態參數"><a href="#Narrowcast-訊息發送狀態參數" class="headerlink" title="Narrowcast 訊息發送狀態參數"></a>Narrowcast 訊息發送狀態參數</h3><script async class="speakerdeck-embed" data-slide="7" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>此次加入了這兩個屬性 <code>acceptedTime</code> &amp; <code>completedTime</code>，讓使用 Narrowcast 的廠商可以透過這兩個屬性來得知服務<code>接收到的時間</code>與<code>訊息完成時間</code>(成功或失敗)，可以更加有效地從小地方得知狀態喔！</p>
+<h3 id="用-Mention-API-得知群組-x2F-聊天室誰-tag-誰"><a href="#用-Mention-API-得知群組-x2F-聊天室誰-tag-誰" class="headerlink" title="用 Mention API 得知群組&#x2F;聊天室誰 tag 誰"></a>用 Mention API 得知群組&#x2F;聊天室誰 tag 誰</h3><script async class="speakerdeck-embed" data-slide="9" data-id="72900f18058940949e021bbc93066200" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>這邊使用一個翻譯的 Chatbot 案例來呈現，過往 Chatbot 在收到句子時就會直接進行整串文字翻譯，但在不同語系對話中多少會有 Tag 對方的時候，過去名字會直接進入翻譯程序，會造成翻譯上的困擾。</p>
+<p>現在透過這 API 不僅可以避免類似的問題，也能讓讀者們抓到相關的姓名位置做更多相關的應用，詳細使用方式可<a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/reference/messaging-api/#wh-text">參考文件</a>。</p>
+<h2 id="彈幕範例"><a href="#彈幕範例" class="headerlink" title="彈幕範例"></a>彈幕範例</h2><p><img src="https://nijialin.com/images/2021/chatbot-27/demo.gif"></p>
+<p>前一陣子我寫了一篇文章來介紹 - <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-chatbot-screen-bullets/">開發結合 LINE Chatbot 的簡易彈幕系統</a>，細節就不加贅述，筆者就在這次的分享中直接讓大家試玩這個功能，了解一下 Chatbot 究竟還有什麼有趣的心應用！ ：）</p>
+<p>參考專案連結：<a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets">https://github.com/louis70109/Screen-LINE-Bullets</a></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>除了在社群上分享 LINE 平台的更新之外，當中也看到許多不同的應用(Bert、地方創生、旅遊 AA 小幫手、Swift SDK、LIFF 密室遊戲…)，在討論中也激發出許多不同應用的點子，若你也在做 Chatbot 相關的開發，不妨到 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw">Chatbot 的小聚</a>中與各位分享吧！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Chatbot/" rel="tag"><i class="fa fa-tag"></i> Chatbot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/19/liff-replace-migrate-concat/" rel="prev" title="LIFF migration: from Replace to Concatenate mode">
+      <i class="fa fa-chevron-left"></i> LIFF migration: from Replace to Concatenate mode
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/25/translate-flex-message-10-reason/" rel="next" title="【翻譯】使用 2020 Flex Message 的 10 個新功能 - 讓您在 LINE 的訊息設計更有彈性">
+      【翻譯】使用 2020 Flex Message 的 10 個新功能 - 讓您在 LINE 的訊息設計更有彈性 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Share-Target-Picker-UI"><span class="nav-number">2.1.</span> <span class="nav-text">Share Target Picker UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sticker-%E9%97%9C%E9%8D%B5%E5%AD%97%E8%A8%8A%E6%81%AF"><span class="nav-number">2.2.</span> <span class="nav-text">Sticker 關鍵字訊息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Beacon-%E8%AB%8B%E4%BD%BF%E7%94%A8-Stay-Event-%E5%8F%96%E4%BB%A3-Leave-Event"><span class="nav-number">2.3.</span> <span class="nav-text">Beacon - 請使用 Stay Event 取代 Leave Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIFF-%E7%9B%B8%E9%97%9C%E8%B3%87%E8%A8%8A"><span class="nav-number">2.4.</span> <span class="nav-text">LIFF 相關資訊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%82%A8%E7%9A%84-LIFF-%E8%87%B3-Concatenate-%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">更改您的 LIFF 至 Concatenate 模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%9C%88%E5%B9%B3%E5%8F%B0%E6%9B%B4%E6%96%B0%E8%B3%87%E8%A8%8A"><span class="nav-number">2.5.</span> <span class="nav-text">一月平台更新資訊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Narrowcast-%E8%A8%8A%E6%81%AF%E7%99%BC%E9%80%81%E7%8B%80%E6%85%8B%E5%8F%83%E6%95%B8"><span class="nav-number">2.5.1.</span> <span class="nav-text">Narrowcast 訊息發送狀態參數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-Mention-API-%E5%BE%97%E7%9F%A5%E7%BE%A4%E7%B5%84-x2F-%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%AA%B0-tag-%E8%AA%B0"><span class="nav-number">2.5.2.</span> <span class="nav-text">用 Mention API 得知群組&#x2F;聊天室誰 tag 誰</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%88%E5%B9%95%E7%AF%84%E4%BE%8B"><span class="nav-number">2.6.</span> <span class="nav-text">彈幕範例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

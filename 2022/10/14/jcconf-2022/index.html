@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言JCConf 為台灣最大的 Java 開發者研討會，這次的研討會中也看到許多講者、開發者的活力！有在現場的朋友一定會被這活力感染。當然今年 LINE 如往常一樣透過「黃金級」贊助 JCConf，除了讓開發者可以在攤位上與 LINER 互動外，也讓社群能夠有持續前進的動力！沒參加到也沒關係，以下就讓小編用文章帶大家走走。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【JCConf 2022】活動紀錄 | Keynote, 攤位, 開發統計版">
+<meta property="og:url" content="https://nijialin.com/2022/10/14/jcconf-2022/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言JCConf 為台灣最大的 Java 開發者研討會，這次的研討會中也看到許多講者、開發者的活力！有在現場的朋友一定會被這活力感染。當然今年 LINE 如往常一樣透過「黃金級」贊助 JCConf，除了讓開發者可以在攤位上與 LINER 互動外，也讓社群能夠有持續前進的動力！沒參加到也沒關係，以下就讓小編用文章帶大家走走。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2022/jcconf/2.JPG">
+<meta property="og:image" content="https://nijialin.com/images/2022/jcconf/1.JPG">
+<meta property="og:image" content="https://nijialin.com/images/2022/jcconf/3.JPG">
+<meta property="og:image" content="https://nijialin.com/images/2022/jcconf/6.JPG">
+<meta property="og:image" content="https://nijialin.com/images/2022/jcconf/IMG_2609.JPG">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2022-10-14T10:00:50.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:17:50.989Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="JCConf">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2022/jcconf/2.JPG">
+
+<link rel="canonical" href="https://nijialin.com/2022/10/14/jcconf-2022/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【JCConf 2022】活動紀錄 | Keynote, 攤位, 開發統計版 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/10/14/jcconf-2022/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【JCConf 2022】活動紀錄 | Keynote, 攤位, 開發統計版
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-10-14 10:00:50" itemprop="dateCreated datePublished" datetime="2022-10-14T10:00:50+00:00">2022-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2022/jcconf/2.JPG"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>JCConf 為台灣最大的 Java 開發者研討會，這次的研討會中也看到許多講者、開發者的活力！有在現場的朋友一定會被這活力感染。當然今年 LINE 如往常一樣透過「黃金級」贊助 JCConf，除了讓開發者可以在攤位上與 LINER 互動外，也讓社群能夠有持續前進的動力！沒參加到也沒關係，以下就讓小編用文章帶大家走走。</p>
+<span id="more"></span>
+
+<h2 id="什麼是-JCConf"><a href="#什麼是-JCConf" class="headerlink" title="什麼是 JCConf?"></a><a target="_blank" rel="noopener" href="https://jcconf.tw/2022/">什麼是 JCConf?</a></h2><p>JCConf Taiwan (Java Community Conference Taiwan) 是由社群成員發起的 Java 程式語言及相關領域研討會，由 TWJUG (Taiwan Java User Group) 主辦，Scala Taiwan 和 科斯高 協辦。宗旨在提供台灣的 Java 開發者有更多參與社群以及交流技術的機會，目標與會對象主要為使用 Java 語言及 JVM 相關技術的程式開發者和相關從業人員。</p>
+<h1 id="Keynote-LINE-TODAY"><a href="#Keynote-LINE-TODAY" class="headerlink" title="Keynote - LINE TODAY"></a>Keynote - LINE TODAY</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/4d3bbc1078594d23b6146d0e7949d098?slide=4" title="LINE TODAY keynote in JCConf 2022 " allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>因為這次是黃金級贊助，特此邀請 LINE TODAY 團隊的 PJ Tsai 用五分鐘的時間快速介紹整個團隊的技術架構與組成，既然是在 Java 研討會，當然基本的 Java EE, Aspect, Spring Boot…都是必要的，但大家總會有疑問，LINE 有各式各樣的團隊，是不是都自己維護工具呢？其實 LINE 也是相當<a target="_blank" rel="noopener" href="https://github.com/line">支持 Open Source</a>，當然在這次的 Keynote 中 PJ 也分享了 LINE TODAY 中使用到的 Open Source。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/4d3bbc1078594d23b6146d0e7949d098?slide=5" title="LINE TODAY keynote in JCConf 2022 " allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>LINE TODAY 團隊也相當重視 DevOps 的流程，以下概略列出來給大家：</p>
+<ul>
+<li>透過 JIRA 專案管理</li>
+<li>Container 方式存取</li>
+<li>SonarQube 做靜態程式碼分析</li>
+<li>Jenkins 處理各種自動化流程</li>
+<li>透過 ArgoCD 佈署於 Kubernetes</li>
+<li>使用 Grafana 來監控服務狀態</li>
+<li>透過 LeSS 大型敏捷框架來增進交付效率</li>
+</ul>
+<p>當然你若想了解更細節的團隊內容，歡迎參考以下職缺：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://lnkd.in/gUYE4dTi">Server-Side Developer - LINE TODAY</a></li>
+</ul>
+<h1 id="攤位"><a href="#攤位" class="headerlink" title="攤位"></a>攤位</h1><p><img src="https://nijialin.com/images/2022/jcconf/1.JPG"></p>
+<h2 id="EC-team"><a href="#EC-team" class="headerlink" title="EC team"></a><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/teams/LINE%20SHOPPING/">EC team</a></h2><p>LINE 電商包含購物、直播、禮物、口袋商店、快電商以及金物流 &#x2F; 電子發票等 microservices。LINE 購物是我們的主要服務，透過商品比價功能，讓用戶可以從上千萬筆的商品中找到最低價或回饋最多的商品，當用戶透過 LINE 購物完成消費，我們將回饋 LINE POINTS 給用戶，除了新功能的開發外，也需要與各合作廠商或 LINE 其他國家的服務合作或平台串接。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/1155">Senior Data Engineer - EC</a></li>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/1308">Machine Learning Engineer - EC</a></li>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/1230">Full Stack Developer - EC</a></li>
+</ul>
+<h2 id="Android-amp-iOS-team"><a href="#Android-amp-iOS-team" class="headerlink" title="Android &amp; iOS team"></a><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/2022-ios-and-android-team-introduction">Android &amp; iOS team</a></h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2bf0b0ada56e4bd3a004fe0b0a0e6c4c?slide=7" title="2022 iOS &amp; Android team introduction" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>作為 Android 和 iOS 開發者，加入 LINE 工程團隊，可以親手維護自己與親友每天使用的軟體。在這次攤位中分享了在 LINE 當中負責的應用程式以及使用的語言，同時也因為 LINE 功能眾多為大型程式，有機會深入研究模組化與編譯技術。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2bf0b0ada56e4bd3a004fe0b0a0e6c4c?slide=9" title="2022 iOS &amp; Android team introduction" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>也分享去年推出的 LINE 購物 App，由台灣團隊一手打造出來，採用了最新的 Google Flutter 技術，讓 Android 及 iOS 兩個平台的開發能更密切，讓現場交流的會眾覺得非常有趣，詢問了許多使用者體驗的問題，當然若讀者有興趣也歡迎參考以下資訊：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/1362">Flutter iOS Developer</a></li>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/1227">Android Developer</a></li>
+</ul>
+<h2 id="LINE-Pay"><a href="#LINE-Pay" class="headerlink" title="LINE Pay"></a><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/line-pay-in-jcconf-2022">LINE Pay</a></h2><p><img src="https://nijialin.com/images/2022/jcconf/3.JPG"></p>
+<p>這次的攤位中也邀請的 LINE Pay 的 Luther 以及 Kevin 來攤位上跟大家分享在團隊中處理支付上的一些討論。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2d79c6c989c44c519132da68f67fcd97?slide=4" title="LINE Pay in JCConf 2022" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>介紹當中也有提到近期推出的 <a target="_blank" rel="noopener" href="https://apps.apple.com/tw/app/line-pay-%E6%94%AF%E4%BB%98%E9%AB%94%E9%A9%97-%E7%85%A5%E7%84%B6%E4%B8%80%E6%96%B0/id1563230455">LINE Pay App</a>，在使用上小編真的是日常生活都會用到它，使用體驗非常好且直觀呢！</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2d79c6c989c44c519132da68f67fcd97?slide=10" title="LINE Pay in JCConf 2022" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>當然在技能方面也是含有許多 Open Source 的工具，如果想更透徹了解 LINE Pay 日常開發到底會用到哪些工具，請看這邊:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/75">Server-side Engineer - LINE Pay</a></li>
+<li><a target="_blank" rel="noopener" href="https://careers.linecorp.com/jobs/639">Android Developer - LINE Pay</a></li>
+</ul>
+<h2 id="Global-Content-Platform-team"><a href="#Global-Content-Platform-team" class="headerlink" title="Global Content Platform team"></a><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/global-content-platform-in-jcconf-2022">Global Content Platform team</a></h2><p><img src="https://nijialin.com/images/2022/jcconf/6.JPG"></p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/34ba3bd80e8d440d95254f8952b7441e?slide=2" title="Global Content Platform in JCConf 2022" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>在 LINE 服務當中，像是 LINE TODAY、LINE 旅遊、LINE 購物、LINE 熱點等等，都會需要有許多的資料來呈現內容給使用者，隨著服務越來越多，也就需要專門在負責消化&#x2F;吞吐這些資料的團隊，來幫助大家處理日常資料流。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/34ba3bd80e8d440d95254f8952b7441e?slide=8" title="Global Content Platform in JCConf 2022" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
+
+<p>而在處理資料上會因為許多來源跟需求不同，需要處理&#x2F;整理不同的格式(JSON, XML…)，進而讓介接的服務可以在使用體驗上達到一致。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2022/jcconf/IMG_2609.JPG"></p>
+<p>以語言開發為基礎的研討會中，有相關的調查都是非常有趣的，本次的攤位中調查「使用何種方式開發 Java」、「都怎麼版控」；其中多數開發者都以 JetBrain 的 IntelliJ IDEA 作為開發首選，搭配 Git 作為版本控制，當然也有開發者選用其他的方式開發以及版本控制，透過這問卷版在現場的互動中真的是很有趣呢！</p>
+<p>很高興這次有機會參與年度的 Java 盛事，如果對於加入我們有興趣的開發者，歡迎參考上方的團隊敘述中的連結喔！希望能在 LINE 台灣與大家相見！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/JCConf/" rel="tag"><i class="fa fa-tag"></i> JCConf</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/02/upload-image-get-url-ways/" rel="prev" title="在 GCS || GitHub 上傳圖片並取得網址">
+      <i class="fa fa-chevron-left"></i> 在 GCS || GitHub 上傳圖片並取得網址
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/27/meichu-hackathon-2022/" rel="next" title="【梅竹黑客松 2022】活動分享">
+      【梅竹黑客松 2022】活動分享 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-JCConf"><span class="nav-number">1.1.</span> <span class="nav-text">什麼是 JCConf?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Keynote-LINE-TODAY"><span class="nav-number">2.</span> <span class="nav-text">Keynote - LINE TODAY</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%A4%E4%BD%8D"><span class="nav-number">3.</span> <span class="nav-text">攤位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EC-team"><span class="nav-number">3.1.</span> <span class="nav-text">EC team</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-amp-iOS-team"><span class="nav-number">3.2.</span> <span class="nav-text">Android &amp; iOS team</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-Pay"><span class="nav-number">3.3.</span> <span class="nav-text">LINE Pay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global-Content-Platform-team"><span class="nav-number">3.4.</span> <span class="nav-text">Global Content Platform team</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">6.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

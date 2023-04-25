@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言 去年下半年時於 COSCUP 2020 的閉幕閃電秀中與 Chatbot 社群小聚看到社群朋友展示使用 LIFF 來發射彈幕覺得有趣又回憶滿滿，從以前在看ニコニコ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="開發結合 LINE Chatbot 的簡易彈幕系統">
+<meta property="og:url" content="https://nijialin.com/2021/01/11/screen-bullet-line-bot/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="section.compact {     font-size: 150%     }   img[alt~&#x3D;&quot;center&quot;] {     display: block;     margin: 0 auto;   }   前言 去年下半年時於 COSCUP 2020 的閉幕閃電秀中與 Chatbot 社群小聚看到社群朋友展示使用 LIFF 來發射彈幕覺得有趣又回憶滿滿，從以前在看ニコニコ">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/bullets-sample1.gif">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/1.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/2.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/3.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/4.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/5.png">
+<meta property="og:image" content="https://nijialin.com/images/2021/bullets/6.png">
+<meta property="og:image" content="https://www.evanlin.com/images/2020/line-tw-dev-qr.png">
+<meta property="article:published_time" content="2021-01-11T04:50:28.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:04:15.059Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Chatbot">
+<meta property="article:tag" content="OBS">
+<meta property="article:tag" content="Vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2021/bullets/bullets-sample1.gif">
+
+<link rel="canonical" href="https://nijialin.com/2021/01/11/screen-bullet-line-bot/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>開發結合 LINE Chatbot 的簡易彈幕系統 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/01/11/screen-bullet-line-bot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          開發結合 LINE Chatbot 的簡易彈幕系統
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-11 04:50:28" itemprop="dateCreated datePublished" datetime="2021-01-11T04:50:28+00:00">2021-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2021/bullets/bullets-sample1.gif"></p>
+<p>去年下半年時於 <a target="_blank" rel="noopener" href="https://coscup.org/2020/">COSCUP 2020</a> 的閉幕閃電秀中與 <a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups/blob/master/taipei/2020.md#chatbot-meetup-23-at-onramp-studio">Chatbot 社群小聚</a>看到社群朋友展示使用 LIFF 來發射彈幕覺得有趣又回憶滿滿，從以前在看<strong>ニコニコ動画</strong>時就很常看到彈幕出現在影片中(甚至有時候彈幕還比影片還好笑)，而透過這樣的互動讓觀眾並及時回饋，拉近活動(影片、直播、演唱會…)與觀眾的距離。想到去年因為疫情需要把社群聚會改成線上，剛好在前一陣子搜尋到<a target="_blank" rel="noopener" href="https://qiita.com/youtoy/items/051dc658025a3b21c7f0">這篇文章</a>，以下就使用 Chatbot 搭配文章在使用 OBS 來使用它！</p>
+<span id="more"></span>
+
+<blockquote>
+<p>完整專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets">louis70109&#x2F;Screen-LINE-Bullets</a></p>
+</blockquote>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="GSAP"><a href="#GSAP" class="headerlink" title="GSAP"></a><a target="_blank" rel="noopener" href="https://greensock.com/docs/v3/Installation">GSAP</a></h2><p>對於一個動畫苦手卻又喜歡看特效的人有工具就再好不過了，除了可以自己寫 CSS Animation 以外，還可以使用 GSAP 這個套件來輔助，以下就使用參考文章中的範例來大概解釋一下運作原理</p>
+<script src="https://gist.github.com/louis70109/886d43a4a5b8ca1a24429c147fa35baa.js"></script>
+
+<ul>
+<li>建立一個 <code>createText()</code> 函式讓 Javascript 產生<code>個別彈幕的 HTML</code></li>
+<li>用<code>id=&quot;button01&quot;</code>按鈕監聽 <strong>click 事件</strong>來啟動 createText() 函式</li>
+<li>24, 25 行: 使用亂數並以<code>視窗上方</code>(<code>Top</code>)為起點建立一個<code>隨機位置</code></li>
+<li>26, 27 行: 加入文字於<code>子節點</code>(<code>子彈</code>)，再將整個 div 加入於 <body> 中(整個畫面)</li>
+<li>針對特定 id 的 <code>&lt;div&gt;子彈</code> 進行動畫(右至左)，<code>duration</code> 則是移動速度</li>
+<li>31 行: 跑到最左邊後要把<code>子彈</code>刪除</li>
+</ul>
+<h2 id="讓-Websocket-連結-Chatbot-跟前端吧！"><a href="#讓-Websocket-連結-Chatbot-跟前端吧！" class="headerlink" title="讓 Websocket 連結 Chatbot 跟前端吧！"></a>讓 Websocket 連結 Chatbot 跟前端吧！</h2><h2 id="Chatbot-API"><a href="#Chatbot-API" class="headerlink" title="Chatbot + API"></a>Chatbot + API</h2><p>首先先說明一下 Chatbot 這部分，一般來說寫 Chatbot 都是使用 Web API 的形式接收 Webhook 事件，但因為彈幕是即時性的且現在需求無需儲存文字，因此就使用 Websocket 來溝通前後端啦！</p>
+<blockquote>
+<p>NodeJS Webhook 寫法參考這篇: <a target="_blank" rel="noopener" href="https://medium.com/enjoy-life-enjoy-coding/javascript-websocket-%E8%AE%93%E5%89%8D%E5%BE%8C%E7%AB%AF%E6%B2%92%E6%9C%89%E8%B7%9D%E9%9B%A2-34536c333e1b">JavaScript | WebSocket 讓前後端沒有距離</a></p>
+</blockquote>
+<p>那我是怎麼讓 Chatbot Webhook 事件透過 Websocket 送出去呢？答案很簡單，參考<a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets/blob/master/chatbot/index.js">這份程式碼</a>或<code>下方 Gist</code></p>
+<script src="https://gist.github.com/louis70109/fa0ae938a4b6f141e95191ff910a959e.js"></script>
+
+<ul>
+<li>第<strong>14、15 行</strong>，我設定了<code>BULLETS</code>、<code>USER_AVATAR</code> 兩個全域變數</li>
+<li><strong>45 行</strong> 則是使用 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-quick-reply/">Quick Reply</a> 功能讓用戶可以快速發送訊息</li>
+<li>透過 <strong>65 行</strong>把 Socket Server 與 API Server 綁在一起</li>
+<li>接著第 <strong>67~82 行</strong>的 Websocket 中使用 <code>setInterval()</code> 來週期性地送文字出去</li>
+<li>發送後需要把<code>全域變數</code>清空，否則前端會出現 undefined</li>
+</ul>
+<blockquote>
+<p>或許讀者已經注意到一開始的圖片是使用手機點選 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-quick-reply/">Quick Reply</a>，這部分初步考量是為了避免來賓亂打字導致現場不可收拾，讀者若有照著實作請斟酌使用囉！</p>
+</blockquote>
+<h2 id="彈幕程式碼解析"><a href="#彈幕程式碼解析" class="headerlink" title="彈幕程式碼解析"></a>彈幕程式碼解析</h2><p>這邊為了方便我使用了 Vue 3，參考<a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets/blob/master/frontend/src/components/Barrage.vue">這頁的程式碼</a>並引入了 <code>&#123; onMounted, onUnmounted &#125;</code> 來協助網頁生命週期當眾的<code>掛載</code>以及<code>卸載</code>，以下就來敘述一下程式碼區塊的用途：</p>
+<script src="https://gist.github.com/louis70109/308be6a80d2e7977926ae099bb6471b8.js"></script>
+
+<ul>
+<li>12 行: 從環境變數中取得 <code>VUE_APP_WEBSOCKET_URL</code>並建立 Websocket 連線</li>
+<li>19 行: 把 Websocket 的 <code>onmessage</code> 監聽事件掛載起來</li>
+<li>29 行: createText() 為建立一個<code>子彈</code>的函式，當中除了上述有提到的隨機位置，因為訊息是從 Chatbot 來並夾帶著用戶的大頭貼 CDN 連結，因此在 <code>42 行</code> 就建立一個使用 Bootstrap 的<strong>元素</strong>(<strong>Element</strong>)</li>
+<li>由於因為 Chatbot 是週期性發送訊號，會有沒內容的情況，因此需要加判斷式(Condition)來避免錯誤的產生</li>
+</ul>
+<h2 id="在本地端啟動專案"><a href="#在本地端啟動專案" class="headerlink" title="在本地端啟動專案"></a>在本地端啟動專案</h2><ul>
+<li>先開三個終端機</li>
+<li>第一個進入前端(frontend)資料夾，先<code>npm install</code>後<code>npm run dev</code>執行程式</li>
+<li>第二個進入 chatbot 資料夾，一樣<code>npm install</code>後<code>npm run dev</code>執行程式</li>
+<li>第三個使用 <code>npx ngrok http -region=ap --host-header=rewrite 3000</code> 來建立一個暫時含有 SSL 的網址<ul>
+<li>npx 在安裝 NodeJS 時就安裝的工具，可以遠端執行一個終端指令，在用完之後會刪除，不會污染環境</li>
+<li>使用 ap 這個區域</li>
+<li>覆蓋網址的 Header，避免前端呼叫時 Header 是 localhost</li>
+<li>使用的 Port &#x3D; 3000</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>你也可以部署上 Heroku，效果會是一樣的喔！</p>
+</blockquote>
+<h2 id="彈幕與-OBS-融合"><a href="#彈幕與-OBS-融合" class="headerlink" title="彈幕與 OBS 融合"></a>彈幕與 OBS 融合</h2><blockquote>
+<p>若你正在照著本篇實作，請先<a target="_blank" rel="noopener" href="https://obsproject.com/download">下載 OBS</a></p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2021/bullets/1.png"></p>
+<ul>
+<li>開啟 OBS 後，先建立一個場景，這邊我先放一張圖片跟視訊鏡頭讓畫面別那麼乾</li>
+</ul>
+<p><img src="https://nijialin.com/images/2021/bullets/2.png"></p>
+<ul>
+<li>因為是使用瀏覽器來建立彈幕，因此接著按下面的<code>+</code>並選擇<code>瀏覽器</code></li>
+</ul>
+<p><img src="https://nijialin.com/images/2021/bullets/3.png"></p>
+<ul>
+<li>接著會彈出這樣的視窗，可以改成你喜歡的名字後確定</li>
+</ul>
+<p><img src="https://nijialin.com/images/2021/bullets/4.png"></p>
+<ul>
+<li>確認後會出現這個頁面，由於是在<strong>本地端 Localhost</strong>操作，因此網址部分輸入<code>http://localhost:8080/</code>，且由於視窗關係，我選擇寬度 1200 x 高度 600</li>
+</ul>
+<p><img src="https://nijialin.com/images/2021/bullets/5.png"></p>
+<ul>
+<li>因為會隨著建立順序，會讓瀏覽器的<strong>排序層級</strong>在下方，因此需要將它<strong>移至最上層</strong>，畢竟彈幕就是要最先讓使用者看到呀！</li>
+</ul>
+<p><img src="https://nijialin.com/images/2021/bullets/6.png"></p>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><ul>
+<li>最後就可以在 Chatbot 中按下 Quick Reply 來跑彈幕囉！這樣是不是很好玩呢：）</li>
+<li>最後你可以錄影或是透過串流來與觀眾玩玩看喔！</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>目前這個彈幕系統還只是很陽春的版本，未來可以加上後台調整各種內容(文字、速度…)，若你對於前端有較深的理解或是想練練手，歡迎送 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets/pulls">Pull Request</a> 給我的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets">Screen-LINE-Bullets</a>，同時也歡迎大家拿去玩玩，之後有個多應用會再分享給大家！</p>
+<blockquote>
+<p>若對直播設定有興趣，請參考<a href="https://nijialin.com/2020/11/29/mac-stream-soundflower/">如何只使用一台 Mac 進行直播 feat. SoundFlower, OBS, Youtube</a></p>
+</blockquote>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：@line_tw_dev<br><img src="https://www.evanlin.com/images/2020/line-tw-dev-qr.png"></p>
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 今年年初在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來察看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Chatbot/" rel="tag"><i class="fa fa-tag"></i> Chatbot</a>
+              <a href="/tags/OBS/" rel="tag"><i class="fa fa-tag"></i> OBS</a>
+              <a href="/tags/Vue3/" rel="tag"><i class="fa fa-tag"></i> Vue3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/31/An-Easy-Proven-Way-to-Build-Good-Habits-Break-Bad-Ones/" rel="prev" title="原子習慣 - 閱讀心得">
+      <i class="fa fa-chevron-left"></i> 原子習慣 - 閱讀心得
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/11/line-techpulse-2020-review/" rel="next" title="LINE TAIWAN TECHPULSE 2020 議程內容分享">
+      LINE TAIWAN TECHPULSE 2020 議程內容分享 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GSAP"><span class="nav-number">2.1.</span> <span class="nav-text">GSAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%93-Websocket-%E9%80%A3%E7%B5%90-Chatbot-%E8%B7%9F%E5%89%8D%E7%AB%AF%E5%90%A7%EF%BC%81"><span class="nav-number">2.2.</span> <span class="nav-text">讓 Websocket 連結 Chatbot 跟前端吧！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chatbot-API"><span class="nav-number">2.3.</span> <span class="nav-text">Chatbot + API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%88%E5%B9%95%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%A7%A3%E6%9E%90"><span class="nav-number">2.4.</span> <span class="nav-text">彈幕程式碼解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%AB%AF%E5%95%9F%E5%8B%95%E5%B0%88%E6%A1%88"><span class="nav-number">2.5.</span> <span class="nav-text">在本地端啟動專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%88%E5%B9%95%E8%88%87-OBS-%E8%9E%8D%E5%90%88"><span class="nav-number">2.6.</span> <span class="nav-text">彈幕與 OBS 融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C"><span class="nav-number">2.7.</span> <span class="nav-text">成果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
