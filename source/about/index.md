@@ -24,6 +24,12 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
 
 # Achievements
 
+- [TECHPULSE 2023 project owner](https://techpulse.line.me/)
+  - [Article](https://engineering.linecorp.com/zh-hant/blog/line-techpulse-2023-report)
+  - At TECHPULSE, we went through a cost reduction of 46% and for the first time were required to find a sponsor to collaborate with. As the project owner, we worked with the marketing, business, and public relations teams to discuss feasibility and develop a process that complied with company regulations to obtain special approval to promote the sponsor on SNS. Regarding the venue, we also discussed content priorities with the marketing, design teams, and vendor to achieve a 22% cost reduction per participant. Finally, through our years of partnerships with schools, experts, and colleagues, we were able to increase actual attendance by 6% (participants/venue) and press releases by 7% (compared to 2022).
+
+- TECH FRESH(internship) event owner.
+  - Over the past year, we have seen significant growth in the number of participants sharing their experiences externally, from only about 8 people to at least 18 individuals, representing a growth of approximately 225%. These opportunities included intern monthly meetings, TECHPULSE, company visits, and more. With many opportunities to share externally, we have built trust and camaraderie among our interns toward the company.
 - [LINE API Expert](https://www.line-community.me/contributors/detail?apiId=0037F00001fJ0NHQA0) - 2019/09~2020/07
 - [iThome 2019 第 11 屆 **佳作**](https://ithelp.ithome.com.tw/announces/48) - 2019/11/26
 
