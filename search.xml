@@ -16020,7 +16020,7 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【GoogleIO】筆記 | Firebase &amp; 其他紀錄 🥷</title>
+    <title>【Google I/O】筆記 | Firebase &amp; 其他紀錄 🥷</title>
     <url>/2023/05/13/google-io-note-2023-firebase/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p>
