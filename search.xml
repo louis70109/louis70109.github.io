@@ -16034,7 +16034,7 @@ img[alt~="center"] {
 </ul>
 </li>
 </ul>
-<p><img src="https://nijialin.com/images/2023//googleui/count-operator.png"></p>
+<p><img src="https://nijialin.com/images/2023/googleio/count-operator.png"></p>
 <ul>
 <li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul>
 <li><code>cats = black OR dogs = brown</code></li>
@@ -16042,7 +16042,7 @@ img[alt~="center"] {
 </ul>
 </li>
 </ul>
-<p><img src="https://nijialin.com/images/2023//googleui/or-operator.png"></p>
+<p><img src="https://nijialin.com/images/2023/googleio/or-operator.png"></p>
 <p>關於 OR() 的用法看這邊：</p>
 <iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -16063,7 +16063,7 @@ img[alt~="center"] {
 <td>europe-west4</td>
 </tr>
 </tbody></table>
-<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023//googleui/terraform.png"></p>
+<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023/googleio/terraform.png"></p>
 <iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <p>可使用資源如下：</p>
@@ -16096,9 +16096,9 @@ img[alt~="center"] {
 </ul>
 <iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023//googleui/webdx.png"></p>
-<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023//googleui/webgpu.png"></p>
-<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023//googleui/androidbot.png"></p>
+<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023/googleio/webdx.png"></p>
+<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023/googleio/webgpu.png"></p>
+<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023/googleio/androidbot.png"></p>
 <p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>
 ]]></content>
