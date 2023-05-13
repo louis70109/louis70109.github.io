@@ -16,6 +16,13 @@
   </url>
   
   <url>
+    <loc>https://nijialin.com/2023/05/14/Openai-Speech-to-text-SRT-translations/</loc>
+    
+    <lastmod>2023-05-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nijialin.com/2023/04/04/how-cloud-run-continuely-cronjob-background/</loc>
     
     <lastmod>2023-04-04</lastmod>
@@ -3232,6 +3239,27 @@
   
   <url>
     <loc>https://nijialin.com/tags/Jukebox/</loc>
+    <lastmod>2023-05-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/OpenAI/</loc>
+    <lastmod>2023-05-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/SRT/</loc>
+    <lastmod>2023-05-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/Whisper/</loc>
     <lastmod>2023-05-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

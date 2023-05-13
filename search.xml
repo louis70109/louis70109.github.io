@@ -16020,6 +16020,63 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間</title>
+    <url>/2023/05/14/Openai-Speech-to-text-SRT-translations/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/vlc.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！</p>
+<p>去年 COSCUP 我曾經在 GDG 上分享 <a href="https://nijialin.com/2022/08/20/gccp-creator-cc-subtitle/">【GCCP Creator】增加字幕編輯的效率！</a>，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子中，許多時候他都能清楚地判斷出來，因此以下我就把一些近期找到的工具分享給大家，若有想把各種影片加上字幕的話，或許可以參考以下方式看看喔！</p>
+<span id="more"></span>
+
+<h1 id="decipher"><a href="#decipher" class="headerlink" title="decipher"></a><a href="https://github.com/dsymbol/decipher">decipher</a></h1><p>它是一個透過 Whisper API 的工具，不太確定為什麼不需要提供使用者的 OpenAI API Key(佛心來著)，初步看 Code 也沒有上傳任何東西，但總之在 Speech-To-Text 上的判斷也不錯，以下就介紹給大家使用</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">pip install git+https:<span class="regexp">//gi</span>thub.com<span class="regexp">/dsymbol/</span>decipher</span><br></pre></td></tr></table></figure>
+
+<p>因為是使用 python 安裝的緣故，故以下指令都會用 <code>python -m decipher</code> 執行。</p>
+<p>接下來透過以下指令，把指定的音檔透過模型(small)來語音轉文字的 SRT</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">python3 -m decipher transcribe -i ~<span class="regexp">/Users/</span>使用者名稱<span class="regexp">/Desktop/</span>result/example.mp4 --model small</span><br></pre></td></tr></table></figure>
+
+<p>一般來說檔案位置都會在 <code>/Users/使用者名稱/Destop/result/</code> 裡面。</p>
+<blockquote>
+<p>如果是轉其他語系，並且需要把它轉出中文字，可以參考以下步驟。</p>
+</blockquote>
+<h2 id="srt-gpt-translator"><a href="#srt-gpt-translator" class="headerlink" title="srt-gpt-translator"></a><a href="https://github.com/jesselau76/srt-gpt-translator">srt-gpt-translator</a></h2><blockquote>
+<p>他會將需判斷的長度控制在  1024 characters 之間(OpenAI 限制)，因此有些長度若過長，可能會有判斷失準的風險。<br><a href="https://github.com/jesselau76/srt-gpt-translator/blob/main/README-zh.md">中文文件</a></p>
+</blockquote>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">git pull git@github<span class="selector-class">.com</span>:jesselau76/srt-gpt-translator<span class="selector-class">.git</span></span><br><span class="line">cd srt-gpt-translator</span><br><span class="line">pip install -r requirements<span class="selector-class">.txt</span></span><br><span class="line">mv settings<span class="selector-class">.cfg</span><span class="selector-class">.example</span> settings<span class="selector-class">.cfg</span></span><br><span class="line">vim settings.cfg</span><br></pre></td></tr></table></figure>
+
+<p>將settings.cfg 裡的環境變數 openai-apikey 改為你自己的 sk-xxxxxxx (OpenAI API Key)後，設定<code>target-language</code>(預設中文)，儲存並執行以下：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">python3 srt_translation.py ~<span class="regexp">/Users/</span>使用者名稱<span class="regexp">/Desktop/</span>result/example.srt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>這邊因為真的是 API 一個一個 call，因此會執行比較長的時間。</p>
+</blockquote>
+<p>完成之後總共會有三個黨名：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example</span>.</span></span>srt</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example_translated</span>.</span></span>srt</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example_translated_bilingual</span>.</span></span>srt</span><br></pre></td></tr></table></figure>
+
+<p>假設你的 <code>Example.srt</code> 是日文的話， <code>Example_translated.srt</code> 就是中文， <code>Example_translated_bilingual.srt</code> 則是日中合體。</p>
+<p>在這個 Project 中有設定 Retry 機制，如果有一段話透過 OpenAI 處理超過 60 秒，則會 Retry 一次，若三次就使用原本的字串，以我的經驗來說，就有一些還是原本的語言，如果很依賴字幕的情況下，可能會有點疑惑…🧐</p>
+<p>但畢竟都是靠程式跟AI在跑，因此若只是自己想看的影片或是公司內部的訓練影片需要，或許一些沒完整的地方可能是可以接受的，。因此大家在使用時就自行評估能接受到的程度到哪～</p>
+<blockquote>
+<p>如果要精細的話還是需要花錢的💰💰💰</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就可以用 VLC 來播放含有字幕的檔案，就可以看有字幕的版本了。</p>
+<p><img src="https://nijialin.com/images/2023/vlc.png"></p>
+<p>但如果想要輸出影片成另一支影片，目前手頭上的可以使用 Premiere Pro(需付費)，威力導演不確定(感覺可以)</p>
+<ul>
+<li>QuickTime Player：還沒測試出來，但也無法 Export 一個新檔案</li>
+<li>iMovie: 無法 Import SRT 字幕以及無法 Export 一個新檔案</li>
+</ul>
+<p>最後就到這邊，自從有了 OpenAI 之後許多事情都變了很方便，若有任何新點子，歡迎底下留言給我，我會盡快回答各位的！</p>
+]]></content>
+      <categories>
+        <category>應用</category>
+      </categories>
+      <tags>
+        <tag>OpenAI</tag>
+        <tag>SRT</tag>
+        <tag>Whisper</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Google I/O】筆記 | Firebase &amp; 其他紀錄 🥷</title>
     <url>/2023/05/13/google-io-note-2023-firebase/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
