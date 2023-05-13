@@ -12,8 +12,7 @@
     "deploy": "hexo deploy",
     "//": "Deploy to the Nijia Blog!!",
     "p": "hexo publish",
-    "pd": "git add . && git commit -am 'Publish' && git push",
-    "d": "npm run hexo ; git add . ; git commit -am 'Deploy'&& git push"
+    "d": "git add . && git commit -am 'Publish' && git push"
   },
   "hexo": {
     "version": "5.4.1"
