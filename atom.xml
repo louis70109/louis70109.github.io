@@ -6,7 +6,7 @@
   <link href="https://nijialin.com/atom.xml" rel="self"/>
   
   <link href="https://nijialin.com/"/>
-  <updated>2023-04-04T16:58:38.889Z</updated>
+  <updated>2023-05-13T10:43:18.488Z</updated>
   <id>https://nijialin.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【GoogleIO】筆記 | Firebase &amp; 其他紀錄 🥷</title>
+    <link href="https://nijialin.com/2023/05/13/google-io-note-2023-firebase/"/>
+    <id>https://nijialin.com/2023/05/13/google-io-note-2023-firebase/</id>
+    <published>2023-05-13T18:42:35.000Z</published>
+    <updated>2023-05-13T10:43:18.488Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p><span id="more"></span><h1 id="Firebase-相關"><a href="#Firebase-相關" class="headerlink" title="Firebase 相關"></a>Firebase 相關</h1><h2 id="Cloud-Firestore-的新動態"><a href="#Cloud-Firestore-的新動態" class="headerlink" title="Cloud Firestore 的新動態"></a><a href="https://io.google/2023/program/c3737ca0-709e-4f0e-aef7-671cf6e03878/intl/zh/">Cloud Firestore 的新動態</a></h2><p>Firestore 是一個 Serverless documentation storage，是一個有可擴展以及高可用性，同時也可 offline cache(影片說的)。</p><p>近期提供的 Document Query 功能：</p><ul><li>COUNT() operator: <a href="https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023">今年一月 release</a><ul><li>Price: 1 document 1000 個 index</li></ul></li></ul><p><img src="https://nijialin.com/images/2023//googleui/count-operator.png"></p><ul><li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul><li><code>cats = black OR dogs = brown</code></li><li>Preview available now</li></ul></li></ul><p><img src="https://nijialin.com/images/2023//googleui/or-operator.png"></p><p>關於 OR() 的用法看這邊：</p><iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><h2 id="Eventarc-支援-Firestore-整合"><a href="#Eventarc-支援-Firestore-整合" class="headerlink" title="Eventarc 支援 Firestore 整合"></a><a href="https://cloud.google.com/firestore/docs/eventarc?hl=zh-cn">Eventarc 支援 Firestore 整合</a></h2><p>剛好在大會上聽到有支援 Eventarc，雖然具體還沒想出應用環節。</p><table><thead><tr><th>Firestore 區域</th><th>Eventarc 區域</th></tr></thead><tbody><tr><td>nam5</td><td>us-central1</td></tr><tr><td>eur3</td><td>europe-west4</td></tr></tbody></table><h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023//googleui/terraform.png"></p><iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>可使用資源如下：</p><ul><li>Firebase Project</li><li>Firebase App</li><li>Cloud Firestore</li><li>Cloud Storage for Firebase</li><li>Firebase Realtime Database</li><li>Firebase Authentication</li><li>Firebase Security Rule<ul><li>只給 Cloud Storage &amp; Cloud Storage</li></ul></li></ul><p>完整的說明可以看以下另一部影片</p><iframe width="560" height="315" src="https://www.youtube.com/embed/32SKh-jGXI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><h2 id="Firebase-整合-PaLM-API"><a href="#Firebase-整合-PaLM-API" class="headerlink" title="Firebase 整合 PaLM API"></a><a href="https://youtu.be/emIxn-f9bK0?t=556">Firebase 整合 PaLM API</a></h2><p>使用 chatbot 的樣式，讓你在 Firestore 的 document 中下 prompt(key)，在 PaLM API 回傳時就會直接 import 進入 document 中。</p><iframe width="560" height="315" src="https://www.youtube.com/embed/emIxn-f9bK0?start=556" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>在這 AI 盛行的期間，Firebase 能夠這樣整合真的很猛！而且用戶在用時也可以無痛使用與儲存資料，對於一般 Web 開發者來說，只需要透過 Firebase API(相對熟悉)，然後再把 prompt 下進去 Firestore 中，如此一來也操作上也可以很像 ChatGPT 這樣對話的方式，馬上用到 Google 的 PaLM，實在是很厲害的一個整合！</p><h2 id="Firebase-hosting-也支援-Flask-amp-Django"><a href="#Firebase-hosting-也支援-Flask-amp-Django" class="headerlink" title="Firebase hosting 也支援 Flask &amp; Django"></a>Firebase hosting 也支援 Flask &amp; Django</h2><ul><li><code>firebase hosting:channel:deploy staging</code></li><li>走的是 Cloud Function</li><li>如果需要 GitHub PR preview link，需要先<a href="https://firebase.google.com/docs/hosting/github-integration?hl=zh-tw">參考此文件</a><ul><li><code>firebase init hosting:github</code> 來綁定你的 github</li></ul></li></ul><iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023//googleui/webdx.png"></p><h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023//googleui/webgpu.png"></p><h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023//googleui/androidbot.png"></p><p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p><h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://nijialin.com/images/common.jpeg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="GCP" scheme="https://nijialin.com/categories/GCP/"/>
+    
+    
+    <category term="Serverless" scheme="https://nijialin.com/tags/Serverless/"/>
+    
+    <category term="Firebase" scheme="https://nijialin.com/tags/Firebase/"/>
+    
+    <category term="Firestore" scheme="https://nijialin.com/tags/Firestore/"/>
+    
+    <category term="PaLM" scheme="https://nijialin.com/tags/PaLM/"/>
+    
+  </entry>
   
   <entry>
     <title>【GCP】如何讓 Cloud Run 持續執行背景程式</title>
@@ -503,35 +531,6 @@
     <category term="JCConf" scheme="https://nijialin.com/tags/JCConf/"/>
     
     <category term="Java" scheme="https://nijialin.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 GCS || GitHub 上傳圖片並取得網址</title>
-    <link href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/"/>
-    <id>https://nijialin.com/2022/10/02/upload-image-get-url-ways/</id>
-    <published>2022-10-02T10:27:05.000Z</published>
-    <updated>2023-03-22T06:17:51.017Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>從以前使用雲端硬碟，如 Dropbox, Google Drive, Box…我們都很習慣可以手動拉照片、影片上去放，而在開始寫程式之後理所當然就會想用 API 丟，但這些雲端硬碟一般來說除非用模擬器，不然理論上應該是不好用程式跑，而在公有雲出來後，就有像是 AWS S3, Google Cloud Storage 等等的服務陸續出來，讓大家可以使用他們的服務建立自己的硬碟空間，也不用自己架伺服器弄硬碟空間，權限管控都幫你弄好好，也可以用 API 訪問，實在是很方便呢！</p><p>隨著程式越寫越多，除了在 LINE Bot 上需要圖片網址才可以發送圖片外，像是 video.js 以及許多很多服務、工具越來越依靠　 https 相關的網址來找圖片，接下來就讓筆者就帶大家認識一下近期使用的一些範例以及我發現的另一種上傳方法。</p><span id="more"></span><h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以下範例介紹 GCP &amp; GitHub 專案兩種方式來上傳圖片使用。</p><h2 id="Google-Cloud-Storage-GCS"><a href="#Google-Cloud-Storage-GCS" class="headerlink" title="Google Cloud Storage(GCS)"></a>Google Cloud Storage(GCS)</h2><p><img src="https://nijialin.com/images/2022/cloud-storage-productcard.jpg"></p><blockquote><p><a href="https://cloud.google.com/storage/pricing">定價表</a><br>Cloud Storage「一律免費」部分的用量限制<br>在 Google Cloud 免費方案下，使用者可免費使用一定限度的 Cloud Storage 資源。無論免費試用期是否已經結束，只要您未超過相關用量限制，都可以免費使用這類資源。免費試用期過後，如果超過「一律免費」方案的用量限制，系統就會根據上方價目表收費。<br>Cloud Storage「一律免費」方案的配額適用於 US-WEST1、US-CENTRAL1 和 US-EAST1 區域的資源用量，這 3 個區域的用量會合併計算。一律免費方案的內容隨時可能變更。</p></blockquote><table><thead><tr><th>資源</th><th>每月免費用量限制</th></tr></thead><tbody><tr><td>Standard Storage</td><td>Text</td></tr><tr><td>A 級作業</td><td>5,000 次</td></tr><tr><td>B 級作業</td><td>50,000 次</td></tr><tr><td>網路輸出</td><td>從北美洲到各個 GCP 輸出目的地各佔 1 GB* (澳洲和中國除外)</td></tr></tbody></table><p>雖然需要付錢，但相關的 API 文件都非常的豐富，網路上也有許多語言範例可以參考，在連結其他 GCP 服務上網內互打也會快滿多的，像是我在八月 <a href="https://nijialin.com/2022/08/20/gccp-creator-cc-subtitle/">COSCUP 分享的內容中</a>就是使用 GCS 搭配 eventarc，讓上傳後可以觸發後續動作，非常棒的服務！且另外也還可以放前端編譯完的靜態檔案(dist)上去，讓你網站部署後也可以使用。</p><blockquote><p>上傳至 GCS 範例：<a href="https://github.com/louis70109/FastAPI-GCS/blob/877189b984a6b10b8df1535e1f63b9e1b447c33c/utils/gcp.py#L4">louis70109&#x2F;FastAPI-GCS</a></p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.cloud <span class="keyword">import</span> storage</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload_data_to_gcs</span>(<span class="params">bucket_name, data, target_key, meta=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        client = storage.Client()</span><br><span class="line">        bucket = client.bucket(bucket_name)</span><br><span class="line">        blob = bucket.blob(target_key)</span><br><span class="line">        blob.upload_from_string(data, content_type=meta)</span><br><span class="line">        <span class="keyword">return</span> blob.public_url</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        <span class="keyword">raise</span></span><br></pre></td></tr></table></figure><p>透過這個函式執行成功之後，就可以取得圖片網址嚕！但若網址拿到之後還是不行使用，請確認 GCS 的權限喔！</p><h2 id="GitHub-repo"><a href="#GitHub-repo" class="headerlink" title="GitHub repo"></a>GitHub repo</h2><ul><li>空間限制 5G(<a href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github">Document</a>)</li></ul><blockquote><p>We recommend repositories remain small, ideally less than 1 GB, and less than 5 GB is strongly recommended.</p></blockquote><p>官方建議專案盡量少於 5G，但因為初期使用可能還在評估到底要用哪家 Bucket 好，因此還是可以先寫一段上傳的 code 先把檔案放上去，後續也建議把它轉移到其他的儲存平台上才好喔！</p><h2 id="應用-LINE-Bot-收到圖片後傳到-GitHub-並使用"><a href="#應用-LINE-Bot-收到圖片後傳到-GitHub-並使用" class="headerlink" title="應用 - LINE Bot 收到圖片後傳到 GitHub 並使用"></a>應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</h2><p>LINE Bot 在一次的 Webhook 收到圖片之後，會收到 Message Id，可以透過這個 ID 去取得圖片、影片、音檔以及檔案(<a href="https://developers.line.biz/en/reference/messaging-api/#get-content">Document</a>)，以下是使用 Python 為範例。</p><script src="https://gist.github.com/louis70109/d9badb4defce9c33a5e89b1d2c0c82ed.js"></script><ul><li>5~7 行將 content 內容中的 byte 給全部拉出來，檔案內容內容大概會像這樣 <code>b&#39;\x009\x002&#39;</code> (筆者忘了這是哪個編碼)。</li><li>從 LINE 拉下來的檔案需要 decode 成 ASCII 的格式，而 GitHub 只吃 base64，因此需要透過第 9 行的方式把它轉掉 <code>base64.b64encode(image_content).decode(&#39;ascii&#39;))</code>。</li><li>10~24 則是呼叫 GitHub 上傳檔案 API。<ul><li>如需使用請把 <code>committer</code> 以及 <code>url</code> 換成自己的內容喔！</li></ul></li></ul><p>搭配著 GitHub <a href="https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents">上傳檔案的 API</a> 來將檔案上傳上去，其中在 <code>content</code> 的部分他規定 <code>The new file content, using Base64 encoding.</code></p><h3 id="那我要怎麼知道我的檔案網址呢？"><a href="#那我要怎麼知道我的檔案網址呢？" class="headerlink" title="那我要怎麼知道我的檔案網址呢？"></a>那我要怎麼知道我的檔案網址呢？</h3><p>一般我們從 GitHub 介面點上進去專案時路徑都大概像是 <code>https://github.com/帳號/專案名稱/blob/master/檔案.png</code>，但因為圖片使用上這樣會抓不到原檔，在 GitHub 的儲存位置上則是以下：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/帳號/</span>專案<span class="regexp">/master/</span>檔案.png</span><br></pre></td></tr></table></figure><p>如此一來不管在 LINE Bot、video.js、HTML src 上要使用都可以直接這樣傳輸，如此一來就可以帶大家度過 side project 啟動的初期了～</p><h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>處理空間的位置一直都不是件容易的事情，尤其在現在大家都使用雲端空間的時代也很難自己在架設機器，都還是會傾向代管的方式執行，以上提供兩個方法讓大家開發時可以快速上手，如果你也覺得這篇有用的話，再請幫我多分享喔！想了解什麼內容也歡迎留言讓我知道😳 </p><style>  section.compact {    font-size: 150%    }  img[alt~="center"] {    display: block;    margin: 0 auto;  }</style>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://nijialin.com/images/common.jpeg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;從以前使用雲端硬碟，如 Dropbox, Google Drive, Box…我們都很習慣可以手動拉照片、影片上去放，而在開始寫程式之後理所當然就會想用 API 丟，但這些雲端硬碟一般來說除非用模擬器，不然理論上應該是不好用程式跑，而在公有雲出來後，就有像是 AWS S3, Google Cloud Storage 等等的服務陸續出來，讓大家可以使用他們的服務建立自己的硬碟空間，也不用自己架伺服器弄硬碟空間，權限管控都幫你弄好好，也可以用 API 訪問，實在是很方便呢！&lt;/p&gt;
-&lt;p&gt;隨著程式越寫越多，除了在 LINE Bot 上需要圖片網址才可以發送圖片外，像是 video.js 以及許多很多服務、工具越來越依靠　 https 相關的網址來找圖片，接下來就讓筆者就帶大家認識一下近期使用的一些範例以及我發現的另一種上傳方法。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="應用" scheme="https://nijialin.com/categories/%E6%87%89%E7%94%A8/"/>
-    
-    
-    <category term="LINE" scheme="https://nijialin.com/tags/LINE/"/>
-    
-    <category term="Google" scheme="https://nijialin.com/tags/Google/"/>
-    
-    <category term="GCP" scheme="https://nijialin.com/tags/GCP/"/>
-    
-    <category term="GitHub" scheme="https://nijialin.com/tags/GitHub/"/>
     
   </entry>
   

@@ -208,6 +208,115 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/09/21/line-login-vue-fastapi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/21/line-login-vue-fastapi/" class="post-title-link" itemprop="url">透過 Vue + FastAPI 完成 LINE Login 一鍵式登入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-21 09:01:15" itemprop="dateCreated datePublished" datetime="2021-09-21T09:01:15+00:00">2021-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>碰巧最近有個<strong>日文五十音消除遊戲</strong>的 Side Project 正在實作中，參考之前鐵人賽文章，實作上發現有些內容可能是年久失修，導致實作上不太順利，碰巧近期 <a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/docs/line-login/integrate-line-login/#verify-id-token">LINE Login 的官方文件</a>也有更新，並且搭配之前實作的範例是使用 (<a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets">Screen-LINE-Bullets</a>)，來延伸 Side Project，以下就為各位介紹一下其中使用 LINE Login 的一些過程。</p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+<li>LINE Login 範例從 Flask 轉到 Vue+FastAPI</li>
+<li>前後端分離<ul>
+<li>前端用兩個頁面清楚展示 LINE Login SSO 步驟</li>
+<li>後端兩個 API<ul>
+<li>取得認證導向網址</li>
+<li>認證 JWT 中的使用者參數</li>
+<li>環境變數都放後端(較安全)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/louis70109/WordsGame">LINE Login 事主專案</a></li>
+</ul>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/21/line-login-vue-fastapi/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/09/10/plantuml-windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1043,106 +1152,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/07/18/chatbot-mid-meetup-16/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/chatbot-mid-meetup-16/" class="post-title-link" itemprop="url">LINE 開發社群計畫: 中部人的聊天機器人小小聚第 16 場心得分享</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-07-18 15:34:33" itemprop="dateCreated datePublished" datetime="2021-07-18T15:34:33+00:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img src="https://nijialin.com/images/2021/chatbot-mid-16/1.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan DevRel 團隊的 NiJia Lin，感覺已經許久沒有在社群上與大家分享相關的內容，本次受邀請參加「<a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-016">2021&#x2F;07&#x2F;14 中部人的聊天機器人小小聚 第 16 場</a>」，能夠透過線上的方式帶各位會眾分享從最基本的 LINE Bot 操作開始認識，到一些大家常常會需要的 API 範例，再接著 Platform API 的更新內容，對於當天內容想回味的讀者們，趕快往下繼續看吧！</p>
-<ul>
-<li>社團頁面：<a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw">https://www.facebook.com/groups/chatbot.tw</a></li>
-<li>活動報名頁面：<a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-016">https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-016</a></li>
-<li>共同筆記：<a target="_blank" rel="noopener" href="https://hackmd.io/@chatbot-tw/chatbots-meetup-in-central-taiwan-016">https://hackmd.io/@chatbot-tw/chatbots-meetup-in-central-taiwan-016</a></li>
-<li>活動簡報：<a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/line-bot-ru-men-jie-shao-yu-platorm-api-geng-xin-zi-xun-202107">https://speakerdeck.com/line_developers_tw/line-bot-ru-men-jie-shao-yu-platorm-api-geng-xin-zi-xun-202107</a></li>
-<li>整場影片：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rZJ0yBSLaMc">https://www.youtube.com/watch?v=rZJ0yBSLaMc</a></li>
-</ul>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rZJ0yBSLaMc?start=386" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/18/chatbot-mid-meetup-16/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1214,7 +1223,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1227,7 +1236,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">258</span>
+        <span class="site-state-item-count">260</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

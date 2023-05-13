@@ -16019,4 +16019,97 @@ img[alt~="center"] {
         <tag>Jukebox</tag>
       </tags>
   </entry>
+  <entry>
+    <title>【GoogleIO】筆記 | Firebase &amp; 其他紀錄 🥷</title>
+    <url>/2023/05/13/google-io-note-2023-firebase/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p>
+<span id="more"></span>
+
+<h1 id="Firebase-相關"><a href="#Firebase-相關" class="headerlink" title="Firebase 相關"></a>Firebase 相關</h1><h2 id="Cloud-Firestore-的新動態"><a href="#Cloud-Firestore-的新動態" class="headerlink" title="Cloud Firestore 的新動態"></a><a href="https://io.google/2023/program/c3737ca0-709e-4f0e-aef7-671cf6e03878/intl/zh/">Cloud Firestore 的新動態</a></h2><p>Firestore 是一個 Serverless documentation storage，是一個有可擴展以及高可用性，同時也可 offline cache(影片說的)。</p>
+<p>近期提供的 Document Query 功能：</p>
+<ul>
+<li>COUNT() operator: <a href="https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023">今年一月 release</a><ul>
+<li>Price: 1 document 1000 個 index</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://nijialin.com/images/2023//googleui/count-operator.png"></p>
+<ul>
+<li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul>
+<li><code>cats = black OR dogs = brown</code></li>
+<li>Preview available now</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://nijialin.com/images/2023//googleui/or-operator.png"></p>
+<p>關於 OR() 的用法看這邊：</p>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="Eventarc-支援-Firestore-整合"><a href="#Eventarc-支援-Firestore-整合" class="headerlink" title="Eventarc 支援 Firestore 整合"></a><a href="https://cloud.google.com/firestore/docs/eventarc?hl=zh-cn">Eventarc 支援 Firestore 整合</a></h2><p>剛好在大會上聽到有支援 Eventarc，雖然具體還沒想出應用環節。</p>
+<table>
+<thead>
+<tr>
+<th>Firestore 區域</th>
+<th>Eventarc 區域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nam5</td>
+<td>us-central1</td>
+</tr>
+<tr>
+<td>eur3</td>
+<td>europe-west4</td>
+</tr>
+</tbody></table>
+<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023//googleui/terraform.png"></p>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>可使用資源如下：</p>
+<ul>
+<li>Firebase Project</li>
+<li>Firebase App</li>
+<li>Cloud Firestore</li>
+<li>Cloud Storage for Firebase</li>
+<li>Firebase Realtime Database</li>
+<li>Firebase Authentication</li>
+<li>Firebase Security Rule<ul>
+<li>只給 Cloud Storage &amp; Cloud Storage</li>
+</ul>
+</li>
+</ul>
+<p>完整的說明可以看以下另一部影片</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/32SKh-jGXI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="Firebase-整合-PaLM-API"><a href="#Firebase-整合-PaLM-API" class="headerlink" title="Firebase 整合 PaLM API"></a><a href="https://youtu.be/emIxn-f9bK0?t=556">Firebase 整合 PaLM API</a></h2><p>使用 chatbot 的樣式，讓你在 Firestore 的 document 中下 prompt(key)，在 PaLM API 回傳時就會直接 import 進入 document 中。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/emIxn-f9bK0?start=556" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>在這 AI 盛行的期間，Firebase 能夠這樣整合真的很猛！而且用戶在用時也可以無痛使用與儲存資料，對於一般 Web 開發者來說，只需要透過 Firebase API(相對熟悉)，然後再把 prompt 下進去 Firestore 中，如此一來也操作上也可以很像 ChatGPT 這樣對話的方式，馬上用到 Google 的 PaLM，實在是很厲害的一個整合！</p>
+<h2 id="Firebase-hosting-也支援-Flask-amp-Django"><a href="#Firebase-hosting-也支援-Flask-amp-Django" class="headerlink" title="Firebase hosting 也支援 Flask &amp; Django"></a>Firebase hosting 也支援 Flask &amp; Django</h2><ul>
+<li><code>firebase hosting:channel:deploy staging</code></li>
+<li>走的是 Cloud Function</li>
+<li>如果需要 GitHub PR preview link，需要先<a href="https://firebase.google.com/docs/hosting/github-integration?hl=zh-tw">參考此文件</a><ul>
+<li><code>firebase init hosting:github</code> 來綁定你的 github</li>
+</ul>
+</li>
+</ul>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023//googleui/webdx.png"></p>
+<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023//googleui/webgpu.png"></p>
+<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023//googleui/androidbot.png"></p>
+<p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Serverless</tag>
+        <tag>Firebase</tag>
+        <tag>Firestore</tag>
+        <tag>PaLM</tag>
+      </tags>
+  </entry>
 </search>
