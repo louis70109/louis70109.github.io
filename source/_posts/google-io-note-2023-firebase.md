@@ -1,5 +1,5 @@
 ---
-title: "【GoogleIO】筆記 | Firebase & 其他紀錄 \U0001F977"
+title: "【Google I/O】筆記 | Firebase & 其他紀錄 \U0001F977"
 tags:
   - Firebase
   - Firestore
