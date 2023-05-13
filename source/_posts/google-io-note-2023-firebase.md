@@ -29,13 +29,13 @@ Firestore 是一個 Serverless documentation storage，是一個有可擴展以�
 - COUNT() operator: [今年一月 release](https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023)
   - Price: 1 document 1000 個 index
 
-![](https://nijialin.com/images/2023//googleui/count-operator.png)
+![](https://nijialin.com/images/2023/googleio/count-operator.png)
 
 - OR(): [5/11 的今天 Python & NodeJS](https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28) 還沒支援，等待 release
   - `cats = black OR dogs = brown`
   - Preview available now
 
-![](https://nijialin.com/images/2023//googleui/or-operator.png)
+![](https://nijialin.com/images/2023/googleio/or-operator.png)
 
 關於 OR() 的用法看這邊：
 
@@ -52,7 +52,7 @@ Firestore 是一個 Serverless documentation storage，是一個有可擴展以�
 
 ## Firestore 也支援 Terraform
 
-![](https://nijialin.com/images/2023//googleui/terraform.png)
+![](https://nijialin.com/images/2023/googleio/terraform.png)
 
 <iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -92,17 +92,17 @@ Firestore 是一個 Serverless documentation storage，是一個有可擴展以�
 
 ### 針對 debugging tool 增加 DX
 
-![](https://nijialin.com/images/2023//googleui/webdx.png)
+![](https://nijialin.com/images/2023/googleio/webdx.png)
 
 ### [排隊 PaLM API](https://developers.generativeai.google/)
 
 ### WebGPU
 
-![](https://nijialin.com/images/2023//googleui/webgpu.png)
+![](https://nijialin.com/images/2023/googleio/webgpu.png)
 
 ### Android Studio bot
 
-![](https://nijialin.com/images/2023//googleui/androidbot.png)
+![](https://nijialin.com/images/2023/googleio/androidbot.png)
 
 可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼
 
