@@ -25,6 +25,7 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
 # Achievements
 
 - [TECHPULSE 2023 project owner](https://techpulse.line.me/)
+
   - [Article](https://engineering.linecorp.com/zh-hant/blog/line-techpulse-2023-report)
   - At TECHPULSE, we went through a cost reduction of 46% and for the first time were required to find a sponsor to collaborate with. As the project owner, we worked with the marketing, business, and public relations teams to discuss feasibility and develop a process that complied with company regulations to obtain special approval to promote the sponsor on SNS. Regarding the venue, we also discussed content priorities with the marketing, design teams, and vendor to achieve a 22% cost reduction per participant. Finally, through our years of partnerships with schools, experts, and colleagues, we were able to increase actual attendance by 6% (participants/venue) and press releases by 7% (compared to 2022).
 
@@ -83,9 +84,14 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
 
 # Side project
 
-- [GCCP Creator](https://github.com/louis70109/GCCP-Creator)
-- [Chatbot 彈幕](https://github.com/louis70109/Screen-LINE-Bullets)
-- [Lotify](https://github.com/louis70109/lotify) - Unofficial LINE Notify Client SDK
+| ![](https://profile.line-scdn.net/0hsGinaQWSLGhUFznAy4hTP2hSIgUjOSogLHZgDnEVIFgtdW07OnA0DiYTJ1ouJW1qbnUzDXMXdFt9)                                                                                                                 | ![](https://profile.line-scdn.net/0hHMMGzWf-F2JwPjwfYXxoNUx7GQ8HEBEqCApZUVQ7HAFVDVFgTQsPBwA7GwZcXFZgTQxYBAI6HlRe) |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [寶可夢大師 LINE Bot](https://github.com/louis70109/find-your-pokemon)                                                                                                                                                            | [QR Code 產生器](https://github.com/louis70109/qrcode-background-generator)                                       |
+| ![](https://camo.githubusercontent.com/6b62fb5ab6f9b779a350440478cea6e3a308026231e0481a07f24252e981c668/68747470733a2f2f6e696a69616c696e2e636f6d2f696d616765732f323032312f62756c6c6574732f62756c6c6574732d73616d706c65312e676966) | ![](https://i.imgur.com/Rms5ZNG.png)                                                                              |
+| [Chatbot 彈幕](https://github.com/louis70109/Screen-LINE-Bullets)                                                                                                                                                                 | - [LINE Notify SDK](https://github.com/louis70109/lotify)                                                         |
+| ![](https://user-images.githubusercontent.com/6940010/181864807-d045bb08-b18f-48e3-820f-25ac703de02a.png)                                                                                                                         |                                                                                                                   |
+| [GCCP Creator](https://github.com/louis70109/GCCP-Creator)                                                                                                                                                                        |                                                                                                                   |
+
 - [肌肉仔](https://github.com/louis70109/muscle_man)
 - [2019 鐵人賽 Serverless 範例](https://github.com/louis70109/aws-python-line-api)
 - [圖奇獸 - Twitch Bot](https://github.com/louis70109/Twitch-Bot) - 基於 Bottender 建立查詢 Twitch 直播的 LINE bot
