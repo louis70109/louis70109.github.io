@@ -78,6 +78,11 @@ Example_translated_bilingual.srt
 
 > 如果要精細的話還是需要花錢的💰💰💰
 
+
+## 使用 decipher + ffmpeg 自動判斷並 embedding
+
+<script src="https://gist.github.com/louis70109/e6050062c23b23714f942c8663859309.js"></script>
+
 # 結論
 
 最後就可以用 VLC 來播放含有字幕的檔案，就可以看有字幕的版本了。
