@@ -16058,6 +16058,8 @@ img[alt~="center"] {
 <blockquote>
 <p>如果要精細的話還是需要花錢的💰💰💰</p>
 </blockquote>
+<h2 id="使用-decipher-ffmpeg-自動判斷並-embedding"><a href="#使用-decipher-ffmpeg-自動判斷並-embedding" class="headerlink" title="使用 decipher + ffmpeg 自動判斷並 embedding"></a>使用 decipher + ffmpeg 自動判斷並 embedding</h2><script src="https://gist.github.com/louis70109/e6050062c23b23714f942c8663859309.js"></script>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就可以用 VLC 來播放含有字幕的檔案，就可以看有字幕的版本了。</p>
 <p><img src="https://nijialin.com/images/2023/vlc.png"></p>
 <p>但如果想要輸出影片成另一支影片，目前手頭上的可以使用 Premiere Pro(需付費)，威力導演不確定(感覺可以)</p>
