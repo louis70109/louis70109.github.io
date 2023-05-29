@@ -11,9 +11,13 @@ categories: LINE
 date: 2023-05-29 16:11:15
 ---
 
+![LINE 的工作環境和文化](https://nijialin.com/images/2023/techfresh/video_ending.png)
+
 ## 前言
 
 大家好！我們是 LINE Developer Relations 團隊，今天我要向你們介紹一個我們即將舉辦的特別活動 - [2023 年 6 月 27 日的 TECH FRESH 畢業分享會](https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation)。今年，我們首次將這個活動對外開放，讓更多的人有機會了解我們的實習生們在 LINE 的學習和工作經驗。
+
+<!-- more -->
 
 ### 過去文章內容分享
 
@@ -21,15 +25,14 @@ date: 2023-05-29 16:11:15
 
 - [【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？](https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute)
 - [TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？](https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate)
-<!-- more -->
 
 ## 活動介紹
-
-![LINE 的工作環境和文化](https://nijialin.com/images/2023/techfresh/video_ending.png)
 
 這個活動是 LINE 提供給 2022 屆 TECH FRESH 在離開前有個舞台可以分享實習過程中的經驗。我們都知道，畢業不只是一個結束，更是一個全新的開始。在這個重要的日子，我們希望能和所有的畢業生一起分享他們的成就，並為他們未來的旅程送上最誠摯的祝福。
 
 ## 為什麼需要參加這活動呢？
+
+![LINE TECH FRESH 活動介紹](https://engineering.linecorp.com/wp-content/uploads/2021/06/3-1-1024x577.png)
 
 參加 LINE TECH FRESH 畢業分享會有許多好處：
 
