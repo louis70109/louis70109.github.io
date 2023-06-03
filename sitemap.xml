@@ -23,6 +23,13 @@
   </url>
   
   <url>
+    <loc>https://nijialin.com/2023/06/03/knative-why-you-need/</loc>
+    
+    <lastmod>2023-06-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nijialin.com/2023/05/14/Openai-Speech-to-text-SRT-translations/</loc>
     
     <lastmod>2023-06-03</lastmod>
@@ -3281,6 +3288,13 @@
   
   <url>
     <loc>https://nijialin.com/tags/PaLM/</loc>
+    <lastmod>2023-06-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/Knative/</loc>
     <lastmod>2023-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
