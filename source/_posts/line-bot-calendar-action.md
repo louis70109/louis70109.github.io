@@ -91,3 +91,9 @@ https://example.com?action=TEMPLATE&title=123&text=456
 當然這個 LINE Bot 只是一個小工具，如果你有更好的建議，歡迎留言或在 GitHub 中開 Issue 讓我知道唷！
 
 > [GitHub 專案 - 行事曆 LINE Bot](https://github.com/louis70109/calendar-linebot)
+
+
+# 其他參考資源
+
+
+- [Google Extension - ChatGPT 萬能工具箱](https://chrome.google.com/webstore/detail/chatgpt-%E8%90%AC%E8%83%BD%E5%B7%A5%E5%85%B7%E7%AE%B1/fmijcafgekkphdijpclfgnjhchmiokgp/related?hl=zh-TW)
