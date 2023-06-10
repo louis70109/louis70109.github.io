@@ -16241,6 +16241,9 @@ img[alt~="center"] {
 
 <h1 id="如何使用-請看-VCR"><a href="#如何使用-請看-VCR" class="headerlink" title="如何使用 - 請看 VCR"></a>如何使用 - 請看 VCR</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/5JTU15VtDAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+<blockquote>
+<p>使用時請把人、事、時、地、物都盡可能提供唷！跟誰，什麼事情，什麼時間(早上幾點)，地點</p>
+</blockquote>
 <h2 id="加入好友"><a href="#加入好友" class="headerlink" title="加入好友"></a>加入好友</h2><p><img src="https://raw.githubusercontent.com/louis70109/calendar-linebot/main/screenshot/qrcode..jpeg"></p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在測試這次 OpenAI API 時，若給的內容太短或太模糊，他可能會給錯誤的行事曆，因此若有使用，建議把含有 <code>人事時地物</code> 都盡量貼進去喔！這樣他能更精確的判斷💪</p>
 <p>當然這個 LINE Bot 只是一個小工具，如果你有更好的建議，歡迎留言或在 GitHub 中開 Issue 讓我知道唷！</p>
