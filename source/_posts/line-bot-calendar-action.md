@@ -80,6 +80,8 @@ https://example.com?action=TEMPLATE&title=123&text=456
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5JTU15VtDAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+> 使用時請把人、事、時、地、物都盡可能提供唷！跟誰，什麼事情，什麼時間(早上幾點)，地點
+
 ## 加入好友
 
 ![](https://raw.githubusercontent.com/louis70109/calendar-linebot/main/screenshot/qrcode..jpeg)
