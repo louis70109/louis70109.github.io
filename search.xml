@@ -16349,4 +16349,53 @@ img[alt~="center"] {
         <tag>LINE 工作環境</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在 Apple M2 本地跑 Stable Diffusion</title>
+    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
+<span id="more"></span>
+
+<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
+<ul>
+<li>官方是使用 bash，我個人是 zsh</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
+
+<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>M2</tag>
+        <tag>Stable Diffusion</tag>
+        <tag>圖像生成</tag>
+      </tags>
+  </entry>
 </search>
