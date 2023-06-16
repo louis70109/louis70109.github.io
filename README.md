@@ -1,7 +1,8 @@
 # 部落格部署
 
+![](https://nijialin.com/images/deployflow.png)
 ```
-git clone https://github.com/louis70109/nijia-blog-backup.git
+git clone git@github.com:louis70109/louis70109.github.io.git
 npm install
 ```
 
@@ -20,5 +21,7 @@ npm run p 'article-1'
 ## 部署
 
 ```bash
-npm run d  //git add --all . ; git commit -am 'deploy blog resource'; git push
+npm run d
 ```
+
+會觸發 GitHub Actions 佈署到 gh-page 分支上
