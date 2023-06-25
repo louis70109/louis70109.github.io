@@ -83,7 +83,7 @@
   </entry>
   <entry>
     <title>2020 一、二月的學習紀錄</title>
-    <url>/2020/02/07/2020-Q1-learning/</url>
+    <url>/2020/02/08/2020-Q1-learning/</url>
     <content><![CDATA[<p><img src="https://i.imgur.com/0uMmQBV.jpg" alt="learn records"></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。</p>
 <h1 id="實作項目"><a href="#實作項目" class="headerlink" title="實作項目"></a>實作項目</h1><h2 id="Docker-amp-Docker-Compose"><a href="#Docker-amp-Docker-Compose" class="headerlink" title="Docker &amp; Docker-Compose"></a>Docker &amp; Docker-Compose</h2><p>我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Dockerfile 的內容了解度也提升了許多(實在是個不錯的方法 👍)，會這樣子弄的原因是我認為 Serverless 的架構很容易被 AWS 綁架，我認為 API 這類可拆出來的功能應該要包成 container 增加彈性不讓平台限制，被這個想法 trigger 後就來好好練習 Docker 了 🏋️‍♂️。</p>
@@ -133,8 +133,8 @@
         <tag>Docker</tag>
         <tag>LINE SDK</tag>
         <tag>AWS</tag>
-        <tag>LINT</tag>
         <tag>Netflix</tag>
+        <tag>Lint</tag>
       </tags>
   </entry>
   <entry>
@@ -1576,8 +1576,8 @@
       <tags>
         <tag>Serverless</tag>
         <tag>CDN</tag>
-        <tag>Route 53</tag>
         <tag>Certificate Manager</tag>
+        <tag>Route53</tag>
       </tags>
   </entry>
   <entry>
@@ -5503,7 +5503,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <p>想說寫好太棒了 🎉，我要把它放到部落格上，結果就會變成這樣:<br><img src="https://i.imgur.com/LwXokuE.png"></p>
 <p>這下可好了這樣是誰看得懂 😤！</p>
 <p>此時就使用 npm 來幫忙安裝(hexo 是基於 Node.js 開發的套件):</p>
-<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">npm install --<span class="built_in">save</span> hexo-<span class="built_in">filter</span>-plantuml</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">npm install <span class="attr">--save</span> hexo-<span class="attribute">filter</span>-plantuml</span><br></pre></td></tr></table></figure>
 
 <h5 id="避免不能畫其他圖的困擾，這邊也同步安裝"><a href="#避免不能畫其他圖的困擾，這邊也同步安裝" class="headerlink" title="避免不能畫其他圖的困擾，這邊也同步安裝:"></a>避免不能畫其他圖的困擾，這邊也同步安裝:</h5><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>graphviz</span><br></pre></td></tr></table></figure>
 
@@ -5519,13 +5519,13 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 <p><img src="https://i.imgur.com/gzcJJml.png"></p>
 <p>如此一來就大功告成囉！之後就可以拿著 UML 到處跟人家炫耀了 😆</p>
 <h1 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h1><p>在寫的時候一定要在頓號後面加上<code>puml</code>的標記，這樣 hexo 才看得懂喔！</p>
-<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">​</span><span class="template-tag">&#123;% <span class="name">plantuml</span> %&#125;</span><span class="xml">@startuml</span></span><br><span class="line"><span class="xml">...省略</span></span><br><span class="line"><span class="xml">@enduml</span></span><br><span class="line"><span class="xml">​</span><span class="template-tag">&#123;% <span class="name">endplantuml</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">​<span class="template-variable">&#123;% plantuml %&#125;</span><span class="variable">@startuml</span></span><br><span class="line">...省略</span><br><span class="line"><span class="variable">@enduml</span></span><br><span class="line">​<span class="template-variable">&#123;% endplantuml %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>或是習慣另一種寫法的也可以這樣：</p>
-<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">plantuml</span> %&#125;</span></span><br><span class="line"><span class="xml">@startuml</span></span><br><span class="line"><span class="xml">...省略</span></span><br><span class="line"><span class="xml">@enduml</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name">endplantuml</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="template-variable">&#123;% plantuml %&#125;</span></span><br><span class="line"><span class="variable">@startuml</span></span><br><span class="line">...省略</span><br><span class="line"><span class="variable">@enduml</span></span><br><span class="line"><span class="template-variable">&#123;% endplantuml %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="用-Node-卻遇到-Java-的問題？"><a href="#用-Node-卻遇到-Java-的問題？" class="headerlink" title="用 Node 卻遇到 Java 的問題？"></a>用 Node 卻遇到 Java 的問題？</h1><p>若你不是 Java 的開發者，或許也會遇到這樣的問題：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="literal">No</span> <span class="string">Java</span> <span class="string">runtime</span> <span class="string">present,</span> <span class="string">requesting</span> <span class="string">install.</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">No Java runtime present, requesting <span class="keyword">install</span>.</span><br></pre></td></tr></table></figure>
 
 <p>因為之前因為需要安裝 <a href="https://github.com/OpenAPITools/openapi-generator">openapi-generator</a> 時有安裝過 Java 相關套件，此時需要至<a href="https://www.oracle.com/java/technologies/">官網抓取</a>並安裝，之後再執行一次就沒問題囉！</p>
 <blockquote>
@@ -5540,7 +5540,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <tags>
         <tag>PlantUML</tag>
         <tag>Hexo</tag>
-        <tag>VScode</tag>
+        <tag>VSCode</tag>
       </tags>
   </entry>
   <entry>
@@ -16396,6 +16396,74 @@ img[alt~="center"] {
         <tag>M2</tag>
         <tag>Stable Diffusion</tag>
         <tag>圖像生成</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
+    <url>/2023/06/25/nijia-review-year-3-at-LINE/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/people.jpeg"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇紀錄著近期對於自己來台北工作三年的一些經驗分享，用比較流水帳的方式紀錄著(絕沒出動 GPT😆)。除了幫自己紀錄這幾年來的經驗，若有讀者也想來北部工作，或許這篇的內容可以參考看看！</p>
+<span id="more"></span>
+
+<blockquote>
+<p>開始前播一下撰文當下聽到的歌：</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LbiWaeLdqeA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="30-了，也是該吃保養品的年紀-XD"><a href="#30-了，也是該吃保養品的年紀-XD" class="headerlink" title="30 了，也是該吃保養品的年紀 XD"></a>30 了，也是該吃保養品的年紀 XD</h2><p><img src="https://nijialin.com/images/2023/little_horse.gif" alt="小馬怪"></p>
+<p>從 2022 年中健檢完發現好像有很多紅字，雖然後續複檢是都沒有，但年紀好像也到了，該是開始吃 B 群、魚油、發泡錠的年紀了 🥲(從 COVID 之後發現自己越來越容易體虛)，打球也感覺到年紀帶來的衝擊 😅，有時候真的不能鐵齒，該休息時就得休息了 😆(身體健康還是比較重要的！)</p>
+<h2 id="30-歲前找到願意帶你的導師"><a href="#30-歲前找到願意帶你的導師" class="headerlink" title="30 歲前找到願意帶你的導師"></a>30 歲前找到願意帶你的導師</h2><blockquote>
+<p>來自前同事阿尼的人生體悟</p>
+</blockquote>
+<p>來台北之後學到了許多專案管理、時程規劃、流程制定、做事原則，從初期做事時都搞不清楚做這些到底目的為何，到現在要能跟同事解釋每個流程脈絡與目的也是真的很不容易。除了花很多時間整理每個每次活動&#x2F;會議中提出的想法，也是 Evan 花了很多時間解釋源由與讓我去思考自己到底在講什麼 😆，讓我不是只有拿答案做事，而是要理解當中的原理。</p>
+<p>過程中也都要針對專案去建立頁面、各種會議文件、行事曆、Single Source 的重要性…etc，雖然每次建立這些都超～級～花時間，但其實在往後回去看文件時才能感覺到當初辛苦的價值，</p>
+<h2 id="專案管理上的成長"><a href="#專案管理上的成長" class="headerlink" title="專案管理上的成長"></a>專案管理上的成長</h2><p>從一開始進來時，接到任務時先從過去的樣板去管理&#x2F;設定專案時程，然後去跟各單位諮詢並完成它。到後來開始接下研討會的舉辦，跟行銷、公關、設計師、會計、採購、資安、活動公司…討論，決定每個東西的優先順序，並且持續確認專案時程的可行性。也是很感謝公司有給這次舉辦機會，讓我能在這時期強化自己的組織與規劃能力 🎉</p>
+<blockquote>
+<p>從中也才知道老闆說的「無矩不成方圓」，做專案的過程中若沒有規矩，會讓很多事情亂了序，沒辦法好好的做下去。當然制定規則時，也要把成員屬性都一起考慮進去，才會發揮團隊的特色！</p>
+</blockquote>
+<h3 id="我以為的多緒執行能力，其實只是很會多次單緒切換"><a href="#我以為的多緒執行能力，其實只是很會多次單緒切換" class="headerlink" title="我以為的多緒執行能力，其實只是很會多次單緒切換"></a>我以為的多緒執行能力，其實只是很會多次單緒切換</h3><p>在做專案過程，隨著每個 milestone 越近時，許多東西都要在同時處理，A 回就要跟 B 確認，C 也在問什麼時候好，因此手腳都要很快趕快把事情完成。</p>
+<p>在當中旁觀時會認為對方好像能同時處理很多事情，但其實我們都沒辦法同時做好幾件事，這時期只是很快速的資訊切換，因此也是為什麼很容易在這時間有掉東西&#x2F;訊息的問題。後來也學乖了，只要在東西同一時間進來時，要先讓自己冷靜一下，排出東西的優先權，評估之後在開始做事，才不會害的自己四不像，最後在東怪西怪。</p>
+<h3 id="從日常生活中培養專案管理能力-上班前，下班後的時間管理"><a href="#從日常生活中培養專案管理能力-上班前，下班後的時間管理" class="headerlink" title="從日常生活中培養專案管理能力 - 上班前，下班後的時間管理"></a>從日常生活中培養專案管理能力 - 上班前，下班後的時間管理</h3><h4 id="上班前"><a href="#上班前" class="headerlink" title="上班前"></a>上班前</h4><p>過去的工作都是六點下班，下班後的時間可以參考下圖：</p>
+<script defer class="speakerdeck-embed" data-slide="22" data-id="95e302aa691f4150805d8bd57f5467ed" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>二月大活動結束後開始審視時間，發現自己下班後的時間有點壓的太緊，很常會弄不好把自己搞的很累，後來轉變了一個部分，就是每週約有三～四天會早上 7:30 跟同事一起健身房，把時間改到早上之後，發現上班前運動反而精神會好一些，也剛好本身是一個慢熱的體質，任何需要高度專注的項目，都需要一段準備時間，因此後來把運動時間改到早上，以目前來說還算是滿好的一個調整！</p>
+<h4 id="下班後"><a href="#下班後" class="headerlink" title="下班後"></a>下班後</h4><p>身為北漂族，下班都需要各種自理，不論是吃飯、洗&#x2F;晾&#x2F;折衣服、coding、打遊戲、英文課、看廢片、洗澡、整理包包…都需要好好的安排，經常一個搞不好晚上可能還比早上忙，一般來說選其中三、四樣晚上的時間基本上就沒了 🥹</p>
+<p>通常來說現在分配動&#x2F;靜態的部分各別一天效果還不錯，或許可以繼續維持 😗</p>
+<ul>
+<li>吃飯、coding、英文課、洗澡</li>
+<li>吃飯、洗衣服、打遊戲、洗澡、整理包包</li>
+</ul>
+<blockquote>
+<p>但有時候也是會失控沒管好當晚亂七八糟 😅 把打遊戲跟英文課放在同一天真的是腦袋會切不過來</p>
+</blockquote>
+<h2 id="檢視自己的工作狀態"><a href="#檢視自己的工作狀態" class="headerlink" title="檢視自己的工作狀態"></a>檢視自己的工作狀態</h2><p>在工作上都會有兩週一次的 1on1，雖然有時會覺得密集，但在這過程中也是逼自己要檢視&#x2F;整理出近期狀態(有時後也不知道自己在講什麼)，並且可以知道自己近期做的事情有沒有符合部門的目標，才不會埋頭苦幹迷路，搞的人財兩失(績效變差)。</p>
+<h2 id="定期檢視自己的身心狀態"><a href="#定期檢視自己的身心狀態" class="headerlink" title="定期檢視自己的身心狀態"></a>定期檢視自己的身心狀態</h2><p>除了工作，隻身在外，很容易因為環境、氣候、壓力狀態影響到自己的身心，進而影響到身邊的人，因此該犒賞自己的時候千萬別手軟、該運動的時候就要出去、該健檢就去，把這些東西當作是一個投資，延長自己的工作熱情跟長度比較好。</p>
+<h2 id="把東西推薦給適合的人使用"><a href="#把東西推薦給適合的人使用" class="headerlink" title="把東西推薦給適合的人使用"></a>把東西推薦給適合的人使用</h2><p>許多時候我們會在 open source 中找到好東西，但適不適合組織其實是需要很多的討論以及了解實際開發時所遇到的問題。組織運行都會有既定的文化在那，因此找到適合的時機點是個很重要的課題，自己也是需要多花點時間去著墨跟觀察前輩們的作法。</p>
+<p>如近期超紅的 ChatGPT，在試玩時我們都會覺得真的超猛，覺得身邊的人都應該去了解，但..他們真的需要嗎？</p>
+<p>不論是何種傳教士，是要把自己信仰的思想分享出去，但每個人都有不同的家庭背景、成長環境、經歷，若在對方沒興趣的情況下，一直推坑對方，其實也是間接在浪費對方的腦袋跟時間，許多時候需要學會觀察大家近期的特性，進而找到適合的時間點導入，才會讓做的事情事半功倍。</p>
+<h2 id="時刻提醒自己"><a href="#時刻提醒自己" class="headerlink" title="時刻提醒自己"></a>時刻提醒自己</h2><h3 id="1-別被情緒影響判斷"><a href="#1-別被情緒影響判斷" class="headerlink" title="1. 別被情緒影響判斷"></a>1. 別被情緒影響判斷</h3><p>有時候聽到跟自己觀念不符合，或是被不合理要求時，可能腦中會有很多的火氣各種燒，但在這時候下的判斷很容易都是錯的，這三年中我也很常被提點：「當聽到一件事情馬上就有的第一個想做的想法，通常判斷會是錯的。」雖然不能以偏概全，但仔細思考後換位想，如果人家這樣對你時會怎樣想呢？因此經歷過這些日子的調教，我會在每件事情要發生前，盡可能的思考看是否有哪些細節&#x2F;事情沒做到，或許在當下不會影響太多，但我相信隨著時間的累積，如果做的好它會帶著你飛的！</p>
+<blockquote>
+<p>🥷 要罵事情解決再罵，先把事情處理好比較重要～</p>
+</blockquote>
+<h3 id="2-打字-x2F-對話中盡量用名詞替代「你我他」"><a href="#2-打字-x2F-對話中盡量用名詞替代「你我他」" class="headerlink" title="2. 打字&#x2F;對話中盡量用名詞替代「你我他」"></a>2. 打字&#x2F;對話中盡量用名詞替代「你我他」</h3><p>很多時候它們會有些指向性壓迫的感覺，我認為在對談的過程中(實體 or 通訊軟體)，把對方的名稱放進去會是一個更舒適的選擇，別省下打那幾個字或是思考對方名字的時間，讓這次的對話可以更舒適的結束。相信累積久了，大家也會覺得壓迫感沒那麼重，比較不會防禦喔！</p>
+<h3 id="3-我們都想改變點什麼，但反而不能急"><a href="#3-我們都想改變點什麼，但反而不能急" class="headerlink" title="3. 我們都想改變點什麼，但反而不能急"></a>3. 我們都想改變點什麼，但反而不能急</h3><p>當我們到一個新環境時，可能會覺得工作流程複雜、工具老舊、規矩很多、風氣不好…等等的疑問，血氣方剛的年紀都會覺得應該要改快做點什麼改善環境。但這時候反而要思考你不喜歡的東西，為什麼會存在在這，勢必有它的原因，導入之後對大家個 effort 是什麼。盡可能的全盤考慮+討論後再執行，有了這些討論，也更能知道團隊的大家考量點是什麼，藉此調整計畫，讓它在適合的時間點加入，也不會讓大家覺得自己是一股腦衝刺！</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>文章的最後，我覺得對於自己來北部學會最多的就是「<code>對於決定的判斷</code>」，時常我會因為無法決定某些事情，而花很多時間在猶豫，經歷過專案的大洗禮，現在對於<code>時間概念</code>、<code>執行可行性</code>、<code>行事曆追蹤</code>的掌握度又更高了一些，希望接下來在遇到更多的專案內容時，能夠把所學的這些技能好好的運用上去，讓專案以及合作的人都能夠更順暢的完成事情！</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>DevRel</tag>
+        <tag>個人成長</tag>
       </tags>
   </entry>
 </search>
