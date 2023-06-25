@@ -3,7 +3,7 @@ title: 在 Hexo 樣式的部落格引入 PlantUML
 tags:
   - PlantUML
   - Hexo
-  - VScode
+  - VSCode
 categories: 學習紀錄
 abbrlink: 715192278
 date: 2020-06-03 18:59:38

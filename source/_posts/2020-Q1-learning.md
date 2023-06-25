@@ -5,7 +5,7 @@ tags:
   - Docker
   - LINE SDK
   - AWS
-  - LINT
+  - Lint
   - Netflix
 categories: 學習紀錄
 abbrlink: 2040281021

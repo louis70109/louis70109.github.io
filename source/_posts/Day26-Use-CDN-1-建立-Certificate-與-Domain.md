@@ -3,7 +3,7 @@ title: Day26 - Use CDN (1) - 建立 Certificate 與 Domain
 tags:
   - Serverless
   - CDN
-  - Route 53
+  - Route53
   - Certificate Manager
 categories: 2019鐵人賽
 abbrlink: 2081624252
