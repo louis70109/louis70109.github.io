@@ -1,5 +1,5 @@
 ---
-title: 從 Buildpacks 了解 gcloud 佈署流程
+title: 從 Buildpacks 認識 gcloud 佈署流程
 categories: GCP
 tags:
 ---
