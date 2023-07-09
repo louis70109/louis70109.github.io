@@ -1,13 +1,11 @@
 @startuml
-User ->LINE_Bot: 傳送文字
-LINE_Bot -> Server: Webhook 傳送資訊
-Server -> LINE_Bot: 把文字存入記憶體(Sqlite)
-LINE_Bot -> User: 回傳文字供用戶確認
-
-User->LINE_Bot: 傳送正方形圖片
-LINE_Bot->Server:傳送 Message Id
-Server->GitHub: 下載 Buffer 並上傳 QR Code 圖片
-GitHub->Server: 回傳網址
-Server->LINE_Bot: 回傳網址文字
-LINE_Bot->User: 提供用戶下載原圖
+使用者A -> 使用者B: （開始）
+使用者A -> 使用者A: 保留公鑰，儲存私鑰
+使用者A -> 使用者B: 分享公鑰
+使用者B -> 使用者B: 接收公鑰
+使用者B -> 使用者A: 加密訊息
+使用者A -> 使用者A: 接收加密訊息
+使用者A -> 使用者B: 解密訊息
+使用者B -> 使用者B: 讀取訊息內容
+使用者B -> 使用者A: （結束）
 @enduml
