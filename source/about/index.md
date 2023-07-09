@@ -103,6 +103,7 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
 
 # Talks
 
+- 在 Cloud Run 託管 Python 應用程式 @ [I/O Extended Changhua 2023](https://gdg.community.dev/events/details/google-gdg-changhua-presents-io-extended-changhua-2023/)
 - [Life Hacker with LINE Bot and GitHub API](https://engineering.linecorp.com/zh-hant/blog/github-actions-line-bot-api/)
   - [Slide](https://speakerdeck.com/line_developers_tw/life-hacker-with-line-bot-and-github-api)
   - [Project](https://github.com/louis70109/line-bot-gitbub-actions-receiver)
