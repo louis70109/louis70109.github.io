@@ -5,11 +5,11 @@ tags:
   - TECH FRESH
   - 實習
 categories: LINE
-date: 2023-07-16 16:50:37
+date: 2023-07-16 17:03:01
 ---
 
 
-![](https://nijialin.com/images/2023/allfresh.jpg)
+![](https://nijialin.com/images/2023/graduation/allfresh.jpg)
 
 # 前言
 
@@ -19,7 +19,7 @@ date: 2023-07-16 16:50:37
 
 # 介紹
 
-![](https://nijialin.com/images/2023/kv.jpg)
+![](https://nijialin.com/images/2023/graduation/kv.png)
 
 接下來提供每個議程的資訊，讓大家可以再次回味當時的議程！如果當天沒跟到，也可以透過以下文章的內容感受一下當天的內容唷！
 
@@ -96,7 +96,7 @@ LINE 發票管家在每月開獎時，總是會有許多流量湧入，後面需
 
 ## Lightning Talk
 
-![](https://nijialin.com/images/2023/activity.jpg)
+![](https://nijialin.com/images/2023/graduation/activity.jpg)
 
 ### 我覺得草莓尬肉粽不行: 從草莓肉粽了解整合測試的重要性
 
@@ -128,9 +128,9 @@ LINE 發票管家在每月開獎時，總是會有許多流量湧入，後面需
 
 ### Wakuwaku!!!!!! 原來自然語言可以這樣玩
 
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/26ef13373ead44cf8b0908f41ce2c6a2?slide=5" title="Wakuwaku!!!!!! 原來自然語言可以這樣玩" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Va7NPz8v1F0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/26ef13373ead44cf8b0908f41ce2c6a2?slide=5" title="Wakuwaku!!!!!! 原來自然語言可以這樣玩" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
 
 分享在 Data dev team 裡負責 NLP process，從 LLM 介紹，說明在外面已經有了這麼多平台(ex: Hugging face)有方便的工具，為什麼還需要自己弄呢？從資料隱密性、私有領域問題下去分析，但由於在機器學習上，時常測試目前模型的狀態，就可能需要花費很多時間，並且同時又同時需要安平衡課業上的時間，Danny 是如何做得到呢？一起到影片上看看吧！
 
@@ -146,11 +146,11 @@ LINE 發票管家在每月開獎時，總是會有許多流量湧入，後面需
 
 # 結論
 
-![](https://nijialin.com/images/2023/all.jpg)
+![](https://nijialin.com/images/2023/graduation/all.jpg)
 
 不論同學們是續留或是有其他規劃，我們都衷心感謝與祝福每位同學在 LINE 期間的付出，相信透過實習能夠讓各位更了解在大型組織中的運作流程，也讓各位在往後的職涯規劃上能有個借鏡來參考！當然，看到這邊的各位若對於 TECH FRESH 想要了解更多的內容，歡迎參考部落格內的更多文章，謝謝大家！
 
-![](https://nijialin.com/images/2023/all_fresh.jpg)
+![](https://nijialin.com/images/2023/graduation/all_fresh.jpg)
 
 # 活動小結
 
