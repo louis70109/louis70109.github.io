@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 COSCUP 2023 分享業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！ 簡報：https:&#x2F;&#x2F;speakerdeck.com&#x2F;line_developers_tw&#x2F;how-to-develop-side-project-to-public-cloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【從零開始養】讓 Public Cloud 增加你的能見度！">
+<meta property="og:url" content="https://nijialin.com/2023/07/29/how-to-develop-side-project-into-public-cloud/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 COSCUP 2023 分享業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！ 簡報：https:&#x2F;&#x2F;speakerdeck.com&#x2F;line_developers_tw&#x2F;how-to-develop-side-project-to-public-cloud">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2023/coscup/1.jpg">
+<meta property="og:image" content="https://qr-official.line.me/gs/M_908lugfe_BW.png">
+<meta property="article:published_time" content="2023-07-29T16:26:06.000Z">
+<meta property="article:modified_time" content="2023-07-29T08:27:20.798Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="GCP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2023/coscup/1.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2023/07/29/how-to-develop-side-project-into-public-cloud/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【從零開始養】讓 Public Cloud 增加你的能見度！ | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2023/07/29/how-to-develop-side-project-into-public-cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【從零開始養】讓 Public Cloud 增加你的能見度！
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2023-07-29 16:26:06 / 修改時間：08:27:20" itemprop="dateCreated datePublished" datetime="2023-07-29T16:26:06+00:00">2023-07-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2023/coscup/1.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 <a target="_blank" rel="noopener" href="https://coscup.org/2023/zh-TW/session/PT8VT7">COSCUP 2023 分享</a>業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！</p>
+<p>簡報：<a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud">https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud</a></p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以下透過我這幾年收到也是我過去的各種疑問，分享給大家一些經驗談。</p>
+<h2 id="為什麼要做-Side-Project-⁉️"><a href="#為什麼要做-Side-Project-⁉️" class="headerlink" title="為什麼要做 Side Project ⁉️"></a>為什麼要做 Side Project ⁉️</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=5" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>這題在我接觸社群前，是很排斥的，其因怕被電、程式寫不乾淨、沒內容…etc，直到開始參與社群後與許多前輩請教相關問題，大家普遍都會建議透過以下四點，解決前面遇到的這些疑問：</p>
+<ul>
+<li>技術實驗</li>
+<li>解決日常問題</li>
+<li>累積作品</li>
+<li>擦亮履歷</li>
+</ul>
+<p>我們會在開發 side project 時，參考許多網路上的專案，從 try &amp; error、看到各種不同寫法，來增進自己對於程式品質這件事，畢竟我認為萬是都是從「<strong>模仿</strong>」開始，沒有一開始就可以把東西寫的又好、、有創意、又有創意(如果有請介紹)，我也是透過 side project 逐步增進自己對於該領域的熟悉度，一旦熟悉了，很多東西都會越來越上手！</p>
+<h2 id="我做完了！要怎麼放出去-佈署-呢？"><a href="#我做完了！要怎麼放出去-佈署-呢？" class="headerlink" title="我做完了！要怎麼放出去(佈署)呢？"></a>我做完了！要怎麼放出去(佈署)呢？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=10" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>從個人與身邊的大大們經驗，過往都會從許多的雲服務平台去架設自己的服務，初期都會先找許多的免費方案先操作，很多網路上的資源也都有許多的文件，讓大家在使用時可以更無痛，尤其身在台灣的我們其實有很多服務是很方便的，也有中文化，推薦大家創意點子做出來後，可以嘗試各種雲端平台，找到自己順手的使用～</p>
+<h2 id="關於付錢開發-Side-Project-這檔事…"><a href="#關於付錢開發-Side-Project-這檔事…" class="headerlink" title="關於付錢開發 Side Project 這檔事…"></a>關於付錢開發 Side Project 這檔事…</h2><p>老實說這事我也掙扎很久，但當你有自己架設 Linux、Nginx、防火牆、DNS、proxy…etc，會知道花這些時間的成本是很大的(除非有興趣)，但一般來說，我們想的點子或是實驗性專案，初期流量不高的情況下，不需要這麼複雜的基礎設施，尤其像是在開發 LINE Bot 時，我們只需要一個有 HTTPS 的 callback URL 就好。</p>
+<p>因此這個時候就可以善用這些雲平台，普遍會有的優點就是：</p>
+<ul>
+<li>流量計價，會有一定額度的免費</li>
+<li>提供 HTTPS</li>
+<li>不用處理基礎設施，安裝指令即可上線</li>
+<li>依照不同雲服務，會提供各種好用的工具，例如：<ul>
+<li>介面上即可設定觸發條件，整合更多的服務</li>
+<li>跨平台搬家支援！ (Knative)</li>
+</ul>
+</li>
+</ul>
+<p>光這幾點，就足夠掏出魔法小卡下去使用了！不論是否為實驗行專案，或是公司專案要先上線，都推薦可以嘗試使用各種雲服務來把點子送進市場檢驗！</p>
+<h2 id="不用-Dockerfile-也能佈署，真香！"><a href="#不用-Dockerfile-也能佈署，真香！" class="headerlink" title="不用 Dockerfile 也能佈署，真香！"></a>不用 Dockerfile 也能佈署，真香！</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=16" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p><a target="_blank" rel="noopener" href="https://buildpacks.io/">Buildpacks</a> 是一個<br>可以幫助開發者將應用程式部署到雲端平台上，最早是起源於 Heroku。</p>
+<p>Buildpacks 可以自動偵測應用程式所需的語言、框架和相依性，並將其轉換成可執行的容器映像檔。讓開發者可以專注於撰寫程式碼，而不用擔心部署的細節。</p>
+<p>同時也越來越多雲服務也陸續支援 Buildpacks，透過它，我們在初期就不用苦惱專案到底要怎麼上這些 Cloud，交給它，許多事情都會被神奇的魔法完成！</p>
+<blockquote>
+<p>那邊可以參考範例呢？歡迎參考我的專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/FastAPI-Cloud-Run-Sample">FastAPI-Cloud-Run-Sample</a></p>
+</blockquote>
+<h2 id="我沒想法，可以做什麼題目？"><a href="#我沒想法，可以做什麼題目？" class="headerlink" title="我沒想法，可以做什麼題目？"></a>我沒想法，可以做什麼題目？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=25" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>身處台灣的你我，一定知道 LINE，因此可以先從 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/services/messaging-api/">LINE Bot</a> 開始著手，嘗試把些創意發想從這邊開始實作，省去許多的畫面開發的工作，先讓點子可以讓周遭朋友先試用！</p>
+<p>另一方面，LINE Bot 與許多雲服務的特性很像，都是 Event-Driven 的特性，當 request 進來時才會觸發功能，在屬性相像的平台，就很適合把他們串接起來 🛠️！且許多的文章都有介紹要如何串接，大家可以到網路上搜尋一下許多鐵人賽文章喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>很高興在 COSCUP 2023 有機會實體跟這麼多有興趣的開發者分享我的經驗，希望透過每次的分享，讓軟體生態裡的各位能夠更了解不同階段遇到的挑戰，以及哪些服務能被更好的應用，如果喜歡這邊文章，歡迎分享給更多朋友知道唷！</p>
+<p>明天(7&#x2F;30 11：20 ~ 11：50)還有一場演講 - 【<a target="_blank" rel="noopener" href="https://coscup.org/2023/zh-TW/session/VAHKVH">寶可夢苦難日：結局不是重點，重點是我爬不上大師啊</a>】，歡迎大家持續關注，感謝大家！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a target="_blank" rel="noopener" href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/Google/" rel="tag"><i class="fa fa-tag"></i> Google</a>
+              <a href="/tags/GCP/" rel="tag"><i class="fa fa-tag"></i> GCP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/16/line-tech-fresh-2022-graduation/" rel="prev" title="【TECH FRESH 畢業分享會】原來實習有這些眉角？">
+      <i class="fa fa-chevron-left"></i> 【TECH FRESH 畢業分享會】原來實習有這些眉角？
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%81%9A-Side-Project-%E2%81%89%EF%B8%8F"><span class="nav-number">2.1.</span> <span class="nav-text">為什麼要做 Side Project ⁉️</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%81%9A%E5%AE%8C%E4%BA%86%EF%BC%81%E8%A6%81%E6%80%8E%E9%BA%BC%E6%94%BE%E5%87%BA%E5%8E%BB-%E4%BD%88%E7%BD%B2-%E5%91%A2%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">我做完了！要怎麼放出去(佈署)呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E4%BB%98%E9%8C%A2%E9%96%8B%E7%99%BC-Side-Project-%E9%80%99%E6%AA%94%E4%BA%8B%E2%80%A6"><span class="nav-number">2.3.</span> <span class="nav-text">關於付錢開發 Side Project 這檔事…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E7%94%A8-Dockerfile-%E4%B9%9F%E8%83%BD%E4%BD%88%E7%BD%B2%EF%BC%8C%E7%9C%9F%E9%A6%99%EF%BC%81"><span class="nav-number">2.4.</span> <span class="nav-text">不用 Dockerfile 也能佈署，真香！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E6%B2%92%E6%83%B3%E6%B3%95%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E9%BA%BC%E9%A1%8C%E7%9B%AE%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">我沒想法，可以做什麼題目？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">207</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
