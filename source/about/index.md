@@ -65,6 +65,11 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
 
 # Conferences
 
+- COSCUP 2023
+  - [【從零開始養】讓 Public Cloud 增加你的能見度！](https://coscup.org/2023/zh-TW/session/PT8VT7)
+    - [Slide](https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud)
+  - [寶可夢苦難日：結局不是重點，重點是我爬不上大師啊](https://coscup.org/2023/zh-TW/session/VAHKVH)
+    - [Slide](https://speakerdeck.com/line_developers_tw/how-to-deploy-pokemon-line-bot)
 - [COSCUP 2022 @ GDG party](https://coscup.org/2022/zh-TW/session/P7HXPX)
   - [Article](https://nijialin.com/2022/08/20/gccp-creator-cc-subtitle/)
   - [Project](https://github.com/louis70109/GCCP-Creator)
@@ -134,13 +139,14 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
   - [Video](https://youtu.be/EJgfjrfVZPo)
 - [Chatbot Taiwan meetup 8 - Chatbot x IOT](https://chatbots.kktix.cc/events/meetup-008)
 
-# Activities
-
-- [LINE Style](https://careers.linecorp.com/culture/17)
-
 ### Event host
 
-- [LINE TECH FRESH 畢業分享會]()
+- [LINE TECH FRESH 畢業分享會](https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation)
+  - 報到率: 70%
+- [LINE TAIWAN TECHPULSE 2023](https://techpulse.line.me/)
+  - 降低 22 % 支出
+  - 人數：1400
+  - 報到率： 65%
 - [LINE Taiwan Developers Recruitment Day 2022](https://engineering.linecorp.com/zh-hant/blog/line-dev-recruitment-day-2022)
 - [2019 / 2020 COSCUP [chatbot Taiwan]](https://coscup.org/2019/)
 - [2019 Modern Web [Chatbot Taiwan]](https://modernweb.tw/2019/index.html)
@@ -148,6 +154,7 @@ Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas
 
 # Others
 
+- [LINE Style](https://careers.linecorp.com/culture/17)
 - [Modern Web 2019 - muscle man lighting talk](https://www.youtube.com/watch?v=0UUFH_nysFY)
 - [Modern web 2019 - Twitch bot lighting talk](https://www.youtube.com/watch?v=Plt9Hbt3P_I)
 - [Modern web 2019 - Live demo Kamigo package in dojo](https://www.youtube.com/watch?v=rtULUl1eyXo)
