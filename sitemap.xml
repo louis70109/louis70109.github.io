@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nijialin.com/2023/06/25/nijia-review-year-3-at-LINE/</loc>
+    
+    <lastmod>2023-07-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nijialin.com/2023/07/29/why-i-buy-rog-ally/</loc>
     
     <lastmod>2023-07-30</lastmod>
@@ -10,6 +17,20 @@
   
   <url>
     <loc>https://nijialin.com/about/index.html</loc>
+    
+    <lastmod>2023-07-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/2023/06/03/knative-why-you-need/</loc>
+    
+    <lastmod>2023-07-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/2023/06/06/line-bot-calendar-action/</loc>
     
     <lastmod>2023-07-30</lastmod>
     
@@ -31,13 +52,6 @@
   
   <url>
     <loc>https://nijialin.com/2023/06/15/ml-stable-diffusion-practice/</loc>
-    
-    <lastmod>2023-07-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/2023/06/25/nijia-review-year-3-at-LINE/</loc>
     
     <lastmod>2023-07-30</lastmod>
     
@@ -72,14 +86,7 @@
   </url>
   
   <url>
-    <loc>https://nijialin.com/2023/06/03/knative-why-you-need/</loc>
-    
-    <lastmod>2023-07-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/2023/06/06/line-bot-calendar-action/</loc>
+    <loc>https://nijialin.com/2020/02/08/2020-Q1-learning/</loc>
     
     <lastmod>2023-07-30</lastmod>
     
@@ -94,13 +101,6 @@
   
   <url>
     <loc>https://nijialin.com/2023/05/14/Openai-Speech-to-text-SRT-translations/</loc>
-    
-    <lastmod>2023-07-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/2020/02/08/2020-Q1-learning/</loc>
     
     <lastmod>2023-07-30</lastmod>
     
