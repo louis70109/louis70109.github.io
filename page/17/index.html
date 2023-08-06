@@ -208,6 +208,119 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/08/2020-Q1-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/08/2020-Q1-learning/" class="post-title-link" itemprop="url">2020 一、二月的學習紀錄</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-08 01:28:42" itemprop="dateCreated datePublished" datetime="2020-02-08T01:28:42+00:00">2020-02-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-08-06 12:24:35" itemprop="dateModified" datetime="2023-08-06T12:24:35+00:00">2023-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/0uMmQBV.jpg" alt="learn records"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。</p>
+<h1 id="實作項目"><a href="#實作項目" class="headerlink" title="實作項目"></a>實作項目</h1><h2 id="Docker-amp-Docker-Compose"><a href="#Docker-amp-Docker-Compose" class="headerlink" title="Docker &amp; Docker-Compose"></a>Docker &amp; Docker-Compose</h2><p>我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Dockerfile 的內容了解度也提升了許多(實在是個不錯的方法 👍)，會這樣子弄的原因是我認為 Serverless 的架構很容易被 AWS 綁架，我認為 API 這類可拆出來的功能應該要包成 container 增加彈性不讓平台限制，被這個想法 trigger 後就來好好練習 Docker 了 🏋️‍♂️。</p>
+<p>這次使用 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a> 做我的練習對象，裡面主要用了 <code>node</code> 以及 <code>mongo</code> 兩個服務，在此同時如果各別起 docker 挺麻煩，因此就需要使用 <code>docker-compose</code> 幫忙啟動，而在這過程中學到了:</p>
+<ul>
+<li>把 Dockerfile 遷移到 docker-compose 上 (<del>如何複製別人的檔案(大誤)</del>)。</li>
+<li>藉由 docker-compose 裡面的 <code>network</code> 連接兩個容器的使用方法。</li>
+<li>Google container-registry 上傳以及 gcloud 過期的 docker 使用方法(<a target="_blank" rel="noopener" href="https://cloud.google.com/container-registry/docs/support/deprecation-notices">參考</a>)，同時也修正後可以使用 docker 的原生指令將 container 送上 Google。</li>
+</ul>
+<p>接下來就是趁六月 credit 過期前趕快來玩玩 Google Kubernetes 🚀</p>
+<h2 id="AWS-IoT-Job"><a href="#AWS-IoT-Job" class="headerlink" title="AWS IoT Job"></a>AWS IoT Job</h2><p>最近在公司實作 AWS IoT Job 部分的功能(以下稱為 Job)，因為 Job 每次執行收費約 1 塊台幣，之所以會用它是因為在 IoT 執行時不是只會單純發送訊號出來讓後台收訊號做事，而是需要跟後台經過一連串的溝通來達成功能(例如 <code>韌體更新</code>)，當然還有很多更複雜的功能，這邊只列舉一個小部分。</p>
+<p>從這段時間的實作上學到的部分:</p>
+<h3 id="裝置工作列表"><a href="#裝置工作列表" class="headerlink" title="裝置工作列表"></a>裝置工作列表</h3><p>當後台的 Queue 同時塞進很多工作時要如何管理並通知裝置此時的工作有哪些(All Job)以及要做哪件事(Next Job)，實作這功能時不能只考慮到一個裝置，而是考慮到 N 個裝置時要如何過濾並管理狀態機，限制裝置要依照狀態執行避免系統錯亂。</p>
+<h3 id="平台化"><a href="#平台化" class="headerlink" title="平台化"></a>平台化</h3><p>之前主要功能都是介接 AWS IoT，而這次是要實作一個類似的功能提供給其他使用者，不能只開一個 API 就想要功能都包好，而是將功能明確劃分，讓使用者可以有彈性的去組合，只是在此時我沒有處理得很好，之後的 Task 需要更注意。</p>
+<h2 id="LINE-SDK-Narrowcast-Client-API"><a href="#LINE-SDK-Narrowcast-Client-API" class="headerlink" title="LINE SDK - Narrowcast Client API"></a>LINE SDK - Narrowcast Client API</h2><blockquote>
+<p>參考 Pull Request: <a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python/pull/237">Add narrowcast client api #237</a></p>
+</blockquote>
+<h3 id="工廠模式"><a href="#工廠模式" class="headerlink" title="工廠模式"></a>工廠模式</h3><p>功能主要是讓開發者可以透過 API 來做分眾的推播，在實作這個 issue 時讓我原本模糊的工廠模式清晰了許多，主要是 SDK 使用了 Python Class 來擔任 Model 的角色，讓進來資料可以經過 model 去轉換成對應的 key-value，所有的資料都分類進去對應的工廠處理完再回傳出來。</p>
+<p>在還沒開始看 code 前只想著要寫什麼邏輯去處理，其實使用 Model 的方法就處理掉大部分資料格式的問題，很多 LINE 文件已經清楚定義的格式只要照著填就解決了，只是在這個 Task 遇到了<code>Python 保留字</code>的問題，而經過各種 google 後只好自己寫邏輯去判斷掉這件事，之後只能繼續看有沒有更好的寫法可以取代掉這個<code>保留字</code>的問題。</p>
+<h3 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h3><p>官方 Github 有寫要 Contribute 時需要執行的內容(<a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python#contributing">參考</a>)，lint 則是遵照<code>flake8</code>，而執行<code>tox</code>後會對每個版本的 python 去做測試，但像我電腦只有 3.7 版 tox 就只會針對這個版本做測試。</p>
+<ul>
+<li>在這件事上學到的 <code>tab</code> 與 <code>空白鍵(space)</code> 的差異，<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">PEP-08</a> 上也告訴建議使用<code>空白鍵</code>，而 python 3 之後也不允許兩個混用，畢盡 python 是很注重縮排，既然官網都寫了哪有不遵守的道理呢？😃</li>
+</ul>
+<blockquote>
+<p>Lint 也不會無緣無故來刁難開發者 XD</p>
+</blockquote>
+<ul>
+<li>內部函式(Class、Function)都需要再第一行下註解，而會這樣用的因素可能在 python 上並沒有 <code>public</code>、<code>private</code> 的觀念，透過這樣的方法來表示它(Class、Function)是一個內部函式，藉由 Lint 讓開發者可以知道這個功能是內部還外部，只是在 python 只能使用這個 lint 讓大家遵守這規則，如果沒有 CI 要硬上的話其實也管不住，畢竟不像 golang 這類語言會編譯(汗顏)。</li>
+</ul>
+<p>總之使用 lint 的好處就是開發風格可以統一，能夠盡量避免不必要的 programing 麻煩，在寫任何語言都推薦使用各個語言的 lint，雖然一開始會很討厭它，但它真的是在幫助你 😆。</p>
+<h2 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h2><p>這時間與家人一起訂閱了一年份的會員，而我的初衷就是想把英文學好，而我也花了時間好好的看完一部全英文影集(發英與字幕)，第一次嘗試這樣看全英文，並且邊看邊 Google 翻譯不懂的單字同時口述跟著念一遍增加記憶力，隨著工作量減輕後下班也可以再安排時間繼續看下個影集學了～</p>
+<blockquote>
+<p>然後迷上了<code>愛的迫降</code>這個韓劇，推薦喜歡看愛情片的朋友去看 ❤️</p>
+</blockquote>
+<h2 id="武漢肺炎"><a href="#武漢肺炎" class="headerlink" title="武漢肺炎"></a>武漢肺炎</h2><p>最近剛好因為這傳染病盛行，除了防疫之餘，g0v 也提供 API 讓開發者可以拿去介接，隨著大家各種開發前端 web 以及 chatbot …的應用後本來在想有個什麼想法可以參與這個全民黑客松，只是我認為用途實在重複性太高，而在大家開發應用時我又剛好在寫 LINE SDK，錯失了第一時間發佈口罩相關的服務建立時間，本來想到 LIFF v2 + LINE Notify，但只是在使用上很容易吵到用戶進而封鎖它(LINE Notify)，因此要考慮好功能再來看會不會有比較好的使用情境。</p>
+<blockquote>
+<p>出入公共場所記得戴口罩，有帶隨身瓶酒精的記得消毒！😷</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>有時候在思考與規劃的過程中如果經驗不夠時真的很難馬上到位，不過任何事情都一樣，若這件事可以輕鬆且又得心應手，代表它可能已經是你熟悉的領域或是過於簡單，就像我一開始處理社群一樣，若是沒有前輩們帶著走的話我跟本無法有效地處理事情，總之凡是起頭難，即早加入即早熟悉各個領域才是王道 😆</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/iot/latest/developerguide/iot-rule-actions.html">AWS IoT 觸發後可以執行的功能</a><br><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/iot/latest/developerguide/events-jobs.html">Job Events</a><br><a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">Tab 與 space 的差異(PEP-08)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/01/node-gyp-rebuild-error/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1369,115 +1482,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(2) - How we continuously delivery LINE TODAY App with high agility and high quality</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-11-21 16:55:53" itemprop="dateCreated datePublished" datetime="2019-11-21T16:55:53+00:00">2019-11-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality"><a href="#How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality" class="headerlink" title="How we continuously delivery LINE TODAY App with high agility and high quality"></a>How we continuously delivery LINE TODAY App with high agility and high quality</h1><p><img src="https://i.imgur.com/ZGXdq4F.png"></p>
-<p>簡報連結: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/how-we-continuously-delivery-line-today-app-with-high-agility-and-high-quality">URL</a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
-<p>這個議程是難得出現的台灣人，一開始只是想說聽看看 LINE TODAY 是如何透過維持高度敏捷以及保持高品質，其實也就是瞎子摸象，結果聽到自我介紹後發現是台灣人來講，感覺就是在異地聽到一個台灣味的口音覺得很親切🤣</p>
-<p>接下來就看一下我聽完這場的心得吧!</p>
-<h1 id="負責專案"><a href="#負責專案" class="headerlink" title="負責專案"></a>負責專案</h1><ul>
-<li>LINE</li>
-<li>LINE TODAY</li>
-<li>LINE SDK</li>
-<li>LINE MUSIC(Taiwan)<br><img src="https://i.imgur.com/nVgupO1m.jpg"><br>最近常常出現在左上角的那個 LINE MUSIC</li>
-</ul>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p><img src="https://i.imgur.com/WTUuqWX.png"></p>
-<p>從 Pull Request - Code review - Build pipeline - unit test - UI test - deploy</p>
-<p>當中提到兩個主要部分：</p>
-<ul>
-<li>Unit test: 覆蓋率最好要多少？</li>
-<li>UI test: 自動化測試的可信度？</li>
-</ul>
-<p><img src="https://i.imgur.com/kNu9cv9.jpg"><br>且在測試當中會有一種測試叫做 flaky test，有時候測試有過、有時候有沒過，完全讓人摸不著頭緒的測試，這會傷害到軟體品質以及覆蓋率，因此若這種狀況出現時趕快號招團隊的人來討論這個狀態是否處理。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://blog.castman.net/%E7%A0%94%E7%A9%B6/2016/06/06/flaky-tests.html">flaky test</a></p>
-</blockquote>
-<h2 id="UI-自動化測試"><a href="#UI-自動化測試" class="headerlink" title="UI 自動化測試"></a>UI 自動化測試</h2><p>在這部分提到說 UI test code 好寫但是難去維護，主要在於 UI 的東西可能會因為裝置、作業系統…等等的問題去影響到，且會很容易出現 flaky test，這邊我詢問講者得到的答案是測試只要確認在當前 UI 上最重要的元件若有出來的話這部分的測試就給過，若太精細的測試時常會影響到整體的開發敏捷度與流暢度。</p>
-<blockquote>
-<p>想想也是有道理，平常聽到人家說測試測試的，只是當今天測試時的究竟是要到多詳細還是要取決於團隊的決定。</p>
-</blockquote>
-<p>這段講者有提到要注意 UI Automation test 是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Smoke_testing_(software)">Smoke test</a>，因此要注意<strong>維護成本</strong>以及<strong>flaky test</strong>的問題！</p>
-<h2 id="驗收標準-Acceptance-Criteria"><a href="#驗收標準-Acceptance-Criteria" class="headerlink" title="驗收標準 - Acceptance Criteria"></a>驗收標準 - <a target="_blank" rel="noopener" href="https://www.altexsoft.com/blog/business/acceptance-criteria-purposes-formats-and-best-practices/">Acceptance Criteria</a></h2><p><img src="https://i.imgur.com/N5ovDf7.jpg"></p>
-<p>接著就提到團隊需要準備各種情境所需要的東西：</p>
-<ul>
-<li>不一樣的測試資料來讓產品有<strong>彈性</strong>且是<strong>可信賴</strong></li>
-<li>若有針對類似 Database 這類的測試團隊則更需要去注意測試細節避免導致特異情況<br>總之就是 Product Owner(PO) 是需要訂定團隊規則並讓大家去遵守，確保品質！</li>
-</ul>
-<p><img src="https://i.imgur.com/Vq13ngl.png"><br>這裡有提到他們經由上述制定好的驗收標準之後，隨著 Release 版本之後的手動測試比率逐漸減少，到後來都是偏向自動化測試去處理，且是有團隊可信度。</p>
-<h2 id="Code-Coverage"><a href="#Code-Coverage" class="headerlink" title="Code Coverage"></a>Code Coverage</h2><p>這邊以 iOS 開發為例，首先就是 MVC 框架上所遇到的問題，官網都是以 MVC 下去做範例，但實際上開發起來則是還得以 MVVM 的框架去執行在測試的部分才不會採太多不必要的坑。<br><img src="https://i.imgur.com/WOIgOQe.png"><br>接下來提到的部分我覺得是這個議程最重要的一部分，就是如何去取捨覆蓋範圍，像是上圖顯示，可能會有一些 Callback 或是其他的是不可預期的範圍，團隊需要將這些問題一一列出來討論，並且去制定一個最低標準以及 Must have 的標準，促使團隊可以更有規則的去進行開發，如下圖所示。<br><img src="https://i.imgur.com/jidpVl3.png"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>其實一家公司很願意花成本去讓開發者可以去寫各種測試確認服務品質，若是以普遍環境來說這真的是很難人可貴的地方，此外從中也了解到一個好的流程應該是如何，從談需求到開發中間所要經歷過多少事才能讓一個服務起來，測試這部分真的是很大的一門學問，千萬別寫一堆測試但這個測試只是自己測開心的，而是要讓測試的內容可以讓團隊很放心的將 code 交給測試去驗證，達到這樣子目的的程式我相信在市場上一定是很能接受考驗的！<br><img src="https://i.imgur.com/HnFB307.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1549,7 +1553,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-count">210</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1562,7 +1566,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">276</span>
+        <span class="site-state-item-count">279</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
