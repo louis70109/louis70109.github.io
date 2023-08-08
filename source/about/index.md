@@ -3,7 +3,7 @@ title: 關於 NiJia Lin
 date: 2019-10-16 11:28:36
 ---
 
-Technology Evangelist at LINE Taiwan. Passion for sharing and creating new ideas in the engineering ecosystem. Also, contribute open-source in free time.
+LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK 維護者之一，熱愛把各種小點子拼裝起來在社群上分享，把各種知識透過文章散播出去，培養更多初進軟體生態的開發者！
 
 - ☘️ Technology Evangelist / Software Engineer
 - 👨‍🌾 Farmer / 🏋️‍♂️ Body Builder
