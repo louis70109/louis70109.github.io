@@ -17,11 +17,6 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 - 慶宇行銷有限公司 2018/05~2019/05
 - 宜興資訊有限公司 2017/09~2018/05
 
-# Education
-
-- CYUT - Master 2015/09~2016/6
-- CYUT - Bachelor 2011/09~2015/6
-
 # Achievements
 
 - [TECHPULSE 2023 project owner](https://techpulse.line.me/)
@@ -34,22 +29,20 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 - [LINE API Expert](https://www.line-community.me/contributors/detail?apiId=0037F00001fJ0NHQA0) - 2019/09~2020/07
 - [iThome 2019 第 11 屆 **佳作**](https://ithelp.ithome.com.tw/announces/48) - 2019/11/26
 
+# Education
+
+- CYUT - Master 2015/09~2016/6
+- CYUT - Bachelor 2011/09~2015/6
+-
+
 # Skills
-
-### Frontend
-
-- Javascript / Vue.js, jQuery
-- CSS / Bootstrap
-
-### Backend
 
 - Python / Flask, FastAPI
 - NodeJS / Express
-
-### SQL, NoSQL
-
 - PostgreSQL / MySQL
 - MongoDB / Redis
+- Javascript / Vue.js, jQuery
+- CSS / Bootstrap
 
 # Workshop
 
@@ -63,7 +56,7 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 - [手把手帶你用 LINE Notify @ 朝陽科技大學(2019/05)](https://www.slideshare.net/JiaYuLin6/step-by-step-to-use-line-notify-20190527)
 - [GDG 週年之 Hachathon party @ GDG Taichung #12](https://www.meetup.com/GDGTaichung/events/266686542/)
 
-# Conferences
+# Conferences Speaker
 
 - COSCUP 2023
   - [【從零開始養】讓 Public Cloud 增加你的能見度！](https://coscup.org/2023/zh-TW/session/PT8VT7)
@@ -77,34 +70,29 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 - [TECHPULSE 2022 Platform Opening](https://techpulse.line.me/)
 - COSCUP 2021 Keynote: [Open up with LINE: from beginning to the next​.](https://coscup.org/2021/zh-TW/session/7YY9MN)
   - [Slide](https://speakerdeck.com/line_developers_tw/coscup-2021-open-up-with-line-from-beginning-to-the-next)
-- [Chatbot Taiwan 中部人 meetup 16 - LINE Bot 入門介紹與 Platorm API 更新資訊 202107](https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-016)
-  - [Slide](https://speakerdeck.com/line_developers_tw/line-bot-ru-men-jie-shao-yu-platorm-api-geng-xin-zi-xun-202107)
 - [MOPCON 2020 - 結合 Lotify 與 Swagger 建置共用型通知服務](https://mopcon.org/2020/schedule/2020011)
   - [Video](https://www.youtube.com/watch?v=sPg7qIwWD_o)
   - [Example](https://github.com/louis70109/lotify-swagger-example)
+- [COSCUP 「來台講」- 有一 tsiah 完全用 kamigo 做出來 ê muscle-man line bot](https://coscup2019.kktix.cc/events/coscup-taigi2019?)
+  - [活動照片](https://www.flickr.com/photos/coscup/49694567242/in/album-72157713607815171/)
+  - [Video](https://www.youtube.com/watch?v=wXV8aPj1Ibo&list=PLqfib4St70XNIzROJgyALYAdp-sQmfK0m&index=3)
 - [第一次開發 Python SDK 就上手！ feat. LINE Notify](https://coscup.org/2020/zh-TW/agenda/KNJDWQ)
   - [套件](https://github.com/louis70109/lotify)
   - [Slide](https://speakerdeck.com/line_developers_tw/lotify-a-python-sdk-for-line-notify)
   - [Video](https://www.youtube.com/watch?v=nPS_442OszQ)
 
-# Side project
+# Event host
 
-| ![](https://profile.line-scdn.net/0hsGinaQWSLGhUFznAy4hTP2hSIgUjOSogLHZgDnEVIFgtdW07OnA0DiYTJ1ouJW1qbnUzDXMXdFt9)                                                                                                                 | ![](https://profile.line-scdn.net/0hHMMGzWf-F2JwPjwfYXxoNUx7GQ8HEBEqCApZUVQ7HAFVDVFgTQsPBwA7GwZcXFZgTQxYBAI6HlRe) |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [寶可夢大師 LINE Bot](https://github.com/louis70109/find-your-pokemon)                                                                                                                                                            | [QR Code 產生器](https://github.com/louis70109/qrcode-background-generator)                                       |
-| ![](https://camo.githubusercontent.com/6b62fb5ab6f9b779a350440478cea6e3a308026231e0481a07f24252e981c668/68747470733a2f2f6e696a69616c696e2e636f6d2f696d616765732f323032312f62756c6c6574732f62756c6c6574732d73616d706c65312e676966) | ![](https://i.imgur.com/Rms5ZNG.png)                                                                              |
-| [Chatbot 彈幕](https://github.com/louis70109/Screen-LINE-Bullets)                                                                                                                                                                 | - [LINE Notify SDK](https://github.com/louis70109/lotify)                                                         |
-| ![](https://user-images.githubusercontent.com/6940010/181864807-d045bb08-b18f-48e3-820f-25ac703de02a.png)                                                                                                                         |                                                                                                                   |
-| [GCCP Creator](https://github.com/louis70109/GCCP-Creator)                                                                                                                                                                        |                                                                                                                   |
-
-- [肌肉仔](https://github.com/louis70109/muscle_man)
-- [2019 鐵人賽 Serverless 範例](https://github.com/louis70109/aws-python-line-api)
-- [圖奇獸 - Twitch Bot](https://github.com/louis70109/Twitch-Bot) - 基於 Bottender 建立查詢 Twitch 直播的 LINE bot
-- [aws-line-echo-bot](https://github.com/louis70109/aws-line-echo-bot)
-- [Subscribe open data with LINE Bot/Notify/LIFF](https://github.com/louis70109/LINE-subscribe-open-data-bot)
-  - [Article](https://nijialin.com/2020/08/27/chatbot-taichung-08/)
-- [動物森友會揪團機器人](https://github.com/louis70109/animal-crossing-bot)
-- [Announcer](https://github.com/louis70109/Announcer)
+- [LINE TECH FRESH 畢業分享會](https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation)
+  - 報到率: 70%
+- [LINE TAIWAN TECHPULSE 2023](https://techpulse.line.me/)
+  - 降低 22 % 支出
+  - 人數：1400
+  - 報到率： 65%
+- [LINE Taiwan Developers Recruitment Day 2022](https://engineering.linecorp.com/zh-hant/blog/line-dev-recruitment-day-2022)
+- [2019 / 2020 COSCUP [chatbot Taiwan]](https://coscup.org/2019/)
+- [2019 Modern Web [Chatbot Taiwan]](https://modernweb.tw/2019/index.html)
+- [2019 MOPCON [Chatbot Taiwan]](https://mopcon.org/2019/community/)
 
 # Talks
 
@@ -128,29 +116,35 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
   - [Video](https://youtu.be/OaX09Qp95Yw)
   - [Project](https://github.com/louis70109/Screen-LINE-Bullets)
 - [Chatbot Taiwan meetup 27 - LINE API Update](https://events.chatbot.tw/events/20-chatbots-meetup-%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA%E6%96%B0%E6%89%8B%E5%B0%8F%E8%81%9A-25)
-- [COSCUP 「來台講」- 有一 tsiah 完全用 kamigo 做出來 ê muscle-man line bot](https://coscup2019.kktix.cc/events/coscup-taigi2019?)
-  - [活動照片](https://www.flickr.com/photos/coscup/49694567242/in/album-72157713607815171/)
-  - [Video](https://www.youtube.com/watch?v=wXV8aPj1Ibo&list=PLqfib4St70XNIzROJgyALYAdp-sQmfK0m&index=3)
 - [Chatbot Taiwan meetup 19 - 使用 Lotify + Swagger 建置可共用的 LINE Notify bot](https://chatbots.kktix.cc/events/meetup-019)
   - [直播剪輯](https://www.youtube.com/watch?v=agYVz6dzh1I)
   - [Slide](https://www.slideshare.net/JiaYuLin6/build-line-notify-bot-by-lotify-and-create-client-library-by-swagger-20200527-234623929)
+- [Chatbot Taiwan 中部人 meetup 16 - LINE Bot 入門介紹與 Platorm API 更新資訊 202107](https://chatbots.kktix.cc/events/chatbots-meetup-in-central-taiwan-016)
+  - [Slide](https://speakerdeck.com/line_developers_tw/line-bot-ru-men-jie-shao-yu-platorm-api-geng-xin-zi-xun-202107)
 - [Chatbot Taiwan meetup 14 - 如何使用 kamigo 加速開發 LINE bot](https://chatbots.kktix.cc/events/meetup-014)
   - [Slide](https://www.slideshare.net/JiaYuLin6/kamigo-reviews-20191127-198374007)
   - [Video](https://youtu.be/EJgfjrfVZPo)
 - [Chatbot Taiwan meetup 8 - Chatbot x IOT](https://chatbots.kktix.cc/events/meetup-008)
 
-### Event host
+# Side project
 
-- [LINE TECH FRESH 畢業分享會](https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation)
-  - 報到率: 70%
-- [LINE TAIWAN TECHPULSE 2023](https://techpulse.line.me/)
-  - 降低 22 % 支出
-  - 人數：1400
-  - 報到率： 65%
-- [LINE Taiwan Developers Recruitment Day 2022](https://engineering.linecorp.com/zh-hant/blog/line-dev-recruitment-day-2022)
-- [2019 / 2020 COSCUP [chatbot Taiwan]](https://coscup.org/2019/)
-- [2019 Modern Web [Chatbot Taiwan]](https://modernweb.tw/2019/index.html)
-- [2019 MOPCON [Chatbot Taiwan]](https://mopcon.org/2019/community/)
+| ![](https://profile.line-scdn.net/0hsGinaQWSLGhUFznAy4hTP2hSIgUjOSogLHZgDnEVIFgtdW07OnA0DiYTJ1ouJW1qbnUzDXMXdFt9)                                                                                                                 | ![](https://profile.line-scdn.net/0hHMMGzWf-F2JwPjwfYXxoNUx7GQ8HEBEqCApZUVQ7HAFVDVFgTQsPBwA7GwZcXFZgTQxYBAI6HlRe) |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [寶可夢大師 LINE Bot](https://github.com/louis70109/find-your-pokemon)                                                                                                                                                            | [QR Code 產生器](https://github.com/louis70109/qrcode-background-generator)                                       |
+| ![](https://camo.githubusercontent.com/6b62fb5ab6f9b779a350440478cea6e3a308026231e0481a07f24252e981c668/68747470733a2f2f6e696a69616c696e2e636f6d2f696d616765732f323032312f62756c6c6574732f62756c6c6574732d73616d706c65312e676966) | ![](https://i.imgur.com/Rms5ZNG.png)                                                                              |
+| [Chatbot 彈幕](https://github.com/louis70109/Screen-LINE-Bullets)                                                                                                                                                                 | - [LINE Notify SDK](https://github.com/louis70109/lotify)                                                         |
+| ![](https://user-images.githubusercontent.com/6940010/181864807-d045bb08-b18f-48e3-820f-25ac703de02a.png)                                                                                                                         |                                                                                                                   |
+| [GCCP Creator](https://github.com/louis70109/GCCP-Creator)                                                                                                                                                                        |                                                                                                                   |
+
+- [肌肉仔](https://github.com/louis70109/muscle_man)
+- [2019 鐵人賽 Serverless 範例](https://github.com/louis70109/aws-python-line-api)
+- [圖奇獸 - Twitch Bot](https://github.com/louis70109/Twitch-Bot) - 基於 Bottender 建立查詢 Twitch 直播的 LINE bot
+- [aws-line-echo-bot](https://github.com/louis70109/aws-line-echo-bot)
+- [Subscribe open data with LINE Bot/Notify/LIFF](https://github.com/louis70109/LINE-subscribe-open-data-bot)
+  - [Article](https://nijialin.com/2020/08/27/chatbot-taichung-08/)
+- [動物森友會揪團機器人](https://github.com/louis70109/animal-crossing-bot)
+- [Announcer](https://github.com/louis70109/Announcer)
+
 
 # Others
 
