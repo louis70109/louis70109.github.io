@@ -1,34 +1,55 @@
 ---
-title: 【標題】題目
-categories: 學習紀錄
+title: '新米到上手 LangChain: 藉由 Function Agent 在 LINE Bot 上處理 Calendar 資訊！'
 tags:
+  - LangChain
+  - OpenAI
+  - LINE
+  - ChatGPT
+  - Google Calendar
+  - Function Agent
+categories: LINE
+date: 2023-08-18 12:23:46
 ---
 
-![](https://nijialin.com/images/2023/)
 ![](https://nijialin.com/images/common.jpeg)
+
+- [前言](#前言)
+- [介紹](#介紹)
+  - [為什麼選擇 Google Calender?](#為什麼選擇-google-calender)
+    - [喜歡程式碼可以看這邊](#喜歡程式碼可以看這邊)
+  - [過去我怎麼下 prompt？](#過去我怎麼下-prompt)
+  - [什麼是 LangChain？](#什麼是-langchain)
+  - [LangChain Function Agent 帶來了什麼好處？](#langchain-function-agent-帶來了什麼好處)
+  - [為什麼要在 LINE Bot 用？](#為什麼要在-line-bot-用)
+- [結論](#結論)
+- [活動小結](#活動小結)
+- [關於「LINE 開發社群計畫」](#關於line-開發社群計畫)
 
 # 前言
 
+平時我們經常需要管理/安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處ㄋ，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！
+
 Slide: https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot
+範例程式碼：https://github.com/louis70109/calendar-langchain
+歡迎試玩 LINE Bot：https://lin.ee/92O5Od8
 
 <!-- more -->
 
 # 介紹
 
-## Why I use Google Calender?
+## 為什麼選擇 Google Calender?
 
-- Cambly 上課，內建用 Google Calendar 綁訂上課資訊
-- Apple Calendar 可以綁訂/接收 Google Calendar 的事件
-  - 身為果粉會有手機、電腦、平板，一次滿足
-  - 一個電腦設定通通滿足，iCloud
+我一直在使用 Google 日曆，主要是基於以下原因：
+
+- 在 Cambly 上課時，我可以將課程資訊直接綁定到 Google Calender，方便我管理下班後的時間
+- Apple Calender 可以收來自 Google Calender 的事件，這對於熱愛使用蘋果產品的我來說非常便利，可以在手機、電腦和平板上同步查看我的行事曆 (只需要一個 iCloud)
+- Google 日曆的同步速度很快，幾乎可以立即反應行事曆狀態，讓我在規劃時間方面更加順暢
   - 同步很快，體感約<60s
-
-## Benefit of Google Calender GET API
 
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=7" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
 
-- 必須：標題，時間
-- 選項：地點，描述
+- 標題、時間：對於我來說是必須的，個人行事曆不用像公司的這麼完整，我只要知道時間跟要做什麼事情就好
+- 地點、描述：話雖如此，如果行事曆裡面能有更完整的內容當然更好，但沒有也沒關係，只要能幫助我回想就可以了，因此這兩個對我來說是選田
 
 ### 喜歡程式碼可以看這邊
 
@@ -68,11 +89,30 @@ Slide: https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot
 
 透過 LangChain，我可以少學/寫很多的黑魔法，甚至在 description 中就可以判斷今天、明天、兩天後...等等的只有人類對話能懂的東西，雖然還不太懂 LangChain 後面怎麼作，但如此一來我也省處理了很多把 prompt 一直串起來的功了。
 
-# 結論
+## 為什麼要在 LINE Bot 用？
 
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=19" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
 
-最後，一直沒說為什麼要在 LINE Bot 裡面使用，
+一直沒說為什麼要在 LINE Bot 裡面使用，主要是我個人日常就會準備一隻 Bot 來存我臨時的訊息，抑或是在群組時常常都會有很片段的消息來約時間，通常最後都會有感覺某個時間要出門，結果往往時間到就忘了也找不到訊息在哪...
+
+考慮使用的原因是，因為 LINE Bot 是 event-driven 的方式，我會在桌機板的 LINE 把群組訊息複製起來貼到 LINE Bot，訊息樣是會很像以下：
+
+```
+01:52 🤖測試用🐤 你明天想去吃範嗎？
+01:52 🤖測試用🐤 可能在內湖附近
+01:53 🥷NiJia   可啊，但幾點？
+01:53 🤖測試用🐤 應該七點下班後吧
+01:53 🤖測試用🐤 你看你要不要來在說
+01:54 🥷NiJia   喔好
+```
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=17" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+如此一來就能達到類似上述的功能，讓 LangChain 幫忙整理訊息並放到對應 Google Calendar 的 query parameter，這樣就能加到個人行事曆中了！
+
+# 結論
+
+這次的分享先來了解一下 LangChain Function Agent 帶來的魔力！讓我少研究很多 OpenAI 黑魔法的時間，甚至很多程式碼寫起來跟平常寫法都很像，在大 AI 時代對於日常用 Python 寫應用的工程師是非常友善的！如果你也正在關注相關應用，或許可以參考本篇文章唷！
 
 # 活動小結
 
