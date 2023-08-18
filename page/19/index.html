@@ -208,6 +208,126 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">Day29 - LINE API 的使用心得</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-13 13:08:19" itemprop="dateCreated datePublished" datetime="2019-10-13T13:08:19+00:00">2019-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>Imagemap</p>
+<ul>
+<li>這邊以微股力為範例，這隻機器人會再回應的時候輸出一張圖片讓使用者看到股票的曲線圖，然後圖片下方做三個類似按鈕的圖片在上面，再藉由設定觸發訊息在座標上，當使用者按到的時候就很像再按按鈕，更多使用方法或是 UX 上的問題可以參考 <a target="_blank" rel="noopener" href="https://www.facebook.com/uxerlab/">UX 三刀流</a>。<br><img src="https://i.imgur.com/A0yDTJm.png"></li>
+</ul>
+</li>
+<li><p>Richmenu</p>
+<ul>
+<li>Richmenu 等於把 imagemap 活生生的塞在下面，讓使用者再進聊天室時就能馬上看到圖片並按下對應的區塊而不用再輸入指令把 Imagemap 叫出來，如此就少了個步驟了，並讓開發者可以有更多的發揮空間呢！</li>
+</ul>
+</li>
+<li><p>設計工具</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/services/bot-designer/">Bot designer</a><br>這個工具是桌面版，可以直接抓下來在本地端直接設計，<br><img src="https://i.imgur.com/dDMSCXu.png"><br><img src="https://i.imgur.com/c2pYpFx.png"></li>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx-beta/">FLEX MESSAGE SIMULATOR [β]</a><br>它有提供<a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx-beta/">線上工具</a>讓大家可以在線上直接測試樣板或是直接刻自己想要的樣板。<ul>
+<li>使用心得：因為寫 Rails 基本上就是在寫全端了，難免會碰到 CSS，身為一個後端工程師排版，一定要用 flex 這個超級毒品(\吸起來&#x2F;)，接著過了一段時間後接觸到 LINE bot，且 flex message 也是基於 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1/">Flexbox</a> 的規格去實作的，所以很多排版上觀念都很像，也就不太會有障礙了 😁。<br>且在排版上還有表格告知你什麼 component 要在什麼區塊內才能用，多佛心啊～<br><img src="https://i.imgur.com/Fowpoyb.png"><br><img src="https://i.imgur.com/zELPSA0.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>API 文件</p>
+<ul>
+<li>在最近幾個月的時候 LINE 的文件有改版，讓某些 API 可以在線上就能測了，看起來是滿讚的，若在逛文件時碰巧想測試這些功能的話可以直接把相關參數放進去，在某些時候也是滿方便的。<br><img src="https://i.imgur.com/CuFdmcH.png"></li>
+</ul>
+</li>
+<li><p>LIFF (LINE Front-end Framework)</p>
+<ul>
+<li>個人覺得他讓 Bot 的發揮功力又更上一層樓了，以前很多開發者都會覺得在與機器人對談中會有很多東西是不好做的，像是購物車的流程，若使用者在流程中按了上面的按鈕的話可能會發生無法預期的錯誤，且得用其他的服務去儲存操作狀態，在開發上就很麻煩，那 LIFF 就讓這個流程可以簡單許多，且能透過 SDK 在網頁上取得使用者的資訊，讓網站再被使用的同時還可以確認身份。</li>
+</ul>
+</li>
+<li><p>推播 500 則</p>
+<ul>
+<li>在今年 OAuth 2.0 釋出當中推播則數也跟改動了，改成 500 則後其實看到不少的使用者在跳腳怎麼改成這樣，或是另類的變貴收費，只能說 LINE 也是要找方法收點費用呀，不然很多功能爽爽用他們也沒有地方去收費，這部分因為我也是少用，推播功能就都交給 <code>LINE Notify</code> 嚕！</li>
+</ul>
+</li>
+<li><p>客服與機器人的切換</p>
+<ul>
+<li>參考 C.T Lin 大大的文章 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10220717">Day10</a>，簡單來說 Messager 可以在機器人處理不來的時候將訊息轉丟給設定的那位管理員，讓他來回覆訊息，但 LINE 在機器人上只能透過網頁去切換機器人狀態，抑或是自己設計流程讓機器人在無法處理才通知管理員，這樣的話管理員很容易錯過黃金的第一時間，可能也會因此造成使用者的不便。</li>
+</ul>
+</li>
+<li><p>個人的 mur mur 🤣</p>
+<ul>
+<li>文件實在是太瀑布式了，雖然現在都懂的如何搜尋到相對應的功能，但若一般想開發的使用者在看到這個文件時瘋狂往下滑，結果發現還沒有滑到或是滑過頭，倒是找資料時氣得要死 😓，所以若是文件能夠分個頁籤什麼就更好了～</li>
+</ul>
+</li>
+</ul>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>當然整體來說還是很喜歡使用 LINE 這個平台(絕對不是因為熊大 🐻)，東西也不會像一開始在開發時什麼都找不太到，並且功能一直 release，讓服務可以透過不同的整合方法去達成目標，接下來 LINE 應該還會再繼續釋出不同的東西，就請大家拭目以待，或者…來參加<a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw"> chatbot 小聚</a>直接問問 LINE 的傳教士如何呢 😁</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/12/Day28-%E7%94%A8-S3-%E5%B9%AB%E5%BF%99%E8%BD%89%E5%9D%80%E5%88%B0%E5%8E%9F%E6%9C%89%E7%9A%84%E6%9C%8D%E5%8B%99%E4%B8%8A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -394,7 +514,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-17 16:39:08" itemprop="dateModified" datetime="2023-08-17T16:39:08+00:00">2023-08-17</time>
+                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1015,86 +1135,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/" class="post-title-link" itemprop="url">Day20 - LINE Login 申請與基本頁面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-04 12:59:09" itemprop="dateCreated datePublished" datetime="2019-10-04T12:59:09+00:00">2019-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇介紹了好多了，這邊就不廢話了，直接就帶大家申請一個 LINE Login 的服務。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>首先到自己的開發者頁面按<code>+</code>，並選擇最左邊的選項<br><img src="https://i.imgur.com/c9JI0vX.jpg"><br>接著輸入<code>App name</code>(服務名稱)、<code>App description</code>(服務簡介)，因為我們是實作 API ，所以選擇<code>Use WEB</code>的選項，接著再輸入<code>email</code><br><img src="https://i.imgur.com/AA8NiF8.png"><br>把該填的填完之後按下送出就會看到有一個新的服務嚕！<br><img src="https://i.imgur.com/RBM1HdJ.jpg"><br>點進去後往下滑，可以看到有個 <code>link to this channel</code> 的選項，這邊選擇一開始建立的那隻機器人，綁定之後就變它的形狀啦(?)<br><img src="https://i.imgur.com/ES4wcHn.png"><br>接著再往下會看到 Email 的狀態是 Unapplied，然後按下右邊的<code>Submit</code><br><img src="https://i.imgur.com/SHgQYsU.png"><br>會看到這樣子的一個框框，把兩個框框打勾並選擇一張圖片上傳，這部分就算是申請帳號下面的同意服務條款一樣，圖片就上傳自己希望當使用者到你頁面的時候想看到的圖片 🤣，送出之後就會看到狀態改成 <code>Applied</code> 了<br><img src="https://i.imgur.com/da7zYPg.jpg"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>很多時候實作對我們來說已經不是什麼問題了，重點是在找不到服務要怎麼去申請 😓，這篇也算是記錄一下申請的步驟細節，接下來會實作個簡單的認證頁面以及 API，打完收工嚕！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1162,7 +1206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">210</span>
+          <span class="site-state-item-count">211</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1175,7 +1219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">279</span>
+        <span class="site-state-item-count">282</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
