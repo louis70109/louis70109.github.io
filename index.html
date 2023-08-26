@@ -231,10 +231,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2023-08-18 12:23:46 / 修改時間：04:25:06" itemprop="dateCreated datePublished" datetime="2023-08-18T12:23:46+00:00">2023-08-18</time>
+              <time title="創建時間：2023-08-18 12:23:46" itemprop="dateCreated datePublished" datetime="2023-08-18T12:23:46+00:00">2023-08-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -268,6 +274,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a href="#%E4%BB%80%E9%BA%BC%E6%98%AF-langchain">什麼是 LangChain？</a></li>
 <li><a href="#langchain-function-agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95">LangChain Function Agent 帶來了什麼好處？</a></li>
 <li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-line-bot-%E7%94%A8">為什麼要在 LINE Bot 用？</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8-youtube-%E4%BB%A5%E5%8F%8A-wikipedia-tool">更新：使用 Youtube 以及 wikipedia Tool</a></li>
 </ul>
 </li>
 <li><a href="#%E7%B5%90%E8%AB%96">結論</a></li>
@@ -275,7 +282,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a href="#%E9%97%9C%E6%96%BCline-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB">關於「LINE 開發社群計畫」</a></li>
 </ul>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平時我們經常需要管理&#x2F;安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處ㄋ，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！</p>
-<p>Slide: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a><br>範例程式碼：<a target="_blank" rel="noopener" href="https://github.com/louis70109/calendar-langchain">https://github.com/louis70109/calendar-langchain</a><br>歡迎試玩 LINE Bot：<a target="_blank" rel="noopener" href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
+<p>Slide: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a><br>範例程式碼：<a target="_blank" rel="noopener" href="https://github.com/louis70109/BookingStep">https://github.com/louis70109/BookingStep</a><br>歡迎試玩 LINE Bot：<a target="_blank" rel="noopener" href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/08/18/first-time-langchain-line-bot/#more" rel="contents">
@@ -333,7 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -427,7 +434,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -512,7 +519,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -613,7 +620,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -696,7 +703,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -778,7 +785,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -860,7 +867,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -942,7 +949,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1033,7 +1040,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-18 04:25:06" itemprop="dateModified" datetime="2023-08-18T04:25:06+00:00">2023-08-18</time>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">

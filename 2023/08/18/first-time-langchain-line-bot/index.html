@@ -28,17 +28,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言 介紹 為什麼選擇 Google Calender? 喜歡程式碼可以看這邊   過去我怎麼下 prompt？ 什麼是 LangChain？ LangChain Function Agent 帶來了什麼好處？ 為什麼要在 LINE Bot 用？   結論 活動小結 關於「LINE 開發社群計畫」  前言平時我們經常需要管理&#x2F;安排行程和資訊。這篇文章將介紹我是如何透過 Google">
+  <meta name="description" content="前言 介紹 為什麼選擇 Google Calender? 喜歡程式碼可以看這邊   過去我怎麼下 prompt？ 什麼是 LangChain？ LangChain Function Agent 帶來了什麼好處？ 為什麼要在 LINE Bot 用？ 更新：使用 Youtube 以及 wikipedia Tool   結論 活動小結 關於「LINE 開發社群計畫」  前言平時我們經常需要管理&amp;#x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="新米到上手 LangChain: 藉由 Function Agent 在 LINE Bot 上處理 Calendar 資訊！">
 <meta property="og:url" content="https://nijialin.com/2023/08/18/first-time-langchain-line-bot/index.html">
 <meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言 介紹 為什麼選擇 Google Calender? 喜歡程式碼可以看這邊   過去我怎麼下 prompt？ 什麼是 LangChain？ LangChain Function Agent 帶來了什麼好處？ 為什麼要在 LINE Bot 用？   結論 活動小結 關於「LINE 開發社群計畫」  前言平時我們經常需要管理&#x2F;安排行程和資訊。這篇文章將介紹我是如何透過 Google">
+<meta property="og:description" content="前言 介紹 為什麼選擇 Google Calender? 喜歡程式碼可以看這邊   過去我怎麼下 prompt？ 什麼是 LangChain？ LangChain Function Agent 帶來了什麼好處？ 為什麼要在 LINE Bot 用？ 更新：使用 Youtube 以及 wikipedia Tool   結論 活動小結 關於「LINE 開發社群計畫」  前言平時我們經常需要管理&amp;#x">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://nijialin.com/images/common.jpeg">
 <meta property="og:image" content="https://qr-official.line.me/gs/M_908lugfe_BW.png">
 <meta property="article:published_time" content="2023-08-18T12:23:46.000Z">
-<meta property="article:modified_time" content="2023-08-18T04:25:06.445Z">
+<meta property="article:modified_time" content="2023-08-26T16:54:23.899Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="LINE">
 <meta property="article:tag" content="ChatGPT">
@@ -241,10 +241,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2023-08-18 12:23:46 / 修改時間：04:25:06" itemprop="dateCreated datePublished" datetime="2023-08-18T12:23:46+00:00">2023-08-18</time>
+              <time title="創建時間：2023-08-18 12:23:46" itemprop="dateCreated datePublished" datetime="2023-08-18T12:23:46+00:00">2023-08-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-08-26 16:54:23" itemprop="dateModified" datetime="2023-08-26T16:54:23+00:00">2023-08-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -278,6 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a href="#%E4%BB%80%E9%BA%BC%E6%98%AF-langchain">什麼是 LangChain？</a></li>
 <li><a href="#langchain-function-agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95">LangChain Function Agent 帶來了什麼好處？</a></li>
 <li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-line-bot-%E7%94%A8">為什麼要在 LINE Bot 用？</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8-youtube-%E4%BB%A5%E5%8F%8A-wikipedia-tool">更新：使用 Youtube 以及 wikipedia Tool</a></li>
 </ul>
 </li>
 <li><a href="#%E7%B5%90%E8%AB%96">結論</a></li>
@@ -285,7 +292,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a href="#%E9%97%9C%E6%96%BCline-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB">關於「LINE 開發社群計畫」</a></li>
 </ul>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平時我們經常需要管理&#x2F;安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處ㄋ，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！</p>
-<p>Slide: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a><br>範例程式碼：<a target="_blank" rel="noopener" href="https://github.com/louis70109/calendar-langchain">https://github.com/louis70109/calendar-langchain</a><br>歡迎試玩 LINE Bot：<a target="_blank" rel="noopener" href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
+<p>Slide: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a><br>範例程式碼：<a target="_blank" rel="noopener" href="https://github.com/louis70109/BookingStep">https://github.com/louis70109/BookingStep</a><br>歡迎試玩 LINE Bot：<a target="_blank" rel="noopener" href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
 <span id="more"></span>
 
 <h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="為什麼選擇-Google-Calender"><a href="#為什麼選擇-Google-Calender" class="headerlink" title="為什麼選擇 Google Calender?"></a>為什麼選擇 Google Calender?</h2><p>我一直在使用 Google 日曆，主要是基於以下原因：</p>
@@ -333,6 +340,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=17" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
 
 <p>如此一來就能達到類似上述的功能，讓 LangChain 幫忙整理訊息並放到對應 Google Calendar 的 query parameter，這樣就能加到個人行事曆中了！</p>
+<h2 id="更新：使用-Youtube-以及-wikipedia-Tool"><a href="#更新：使用-Youtube-以及-wikipedia-Tool" class="headerlink" title="更新：使用 Youtube 以及 wikipedia Tool"></a>更新：使用 Youtube 以及 wikipedia Tool</h2><p>看 LangChain 文件時發現它其實有<a target="_blank" rel="noopener" href="https://python.langchain.com/docs/integrations/tools/">許多 Tool Plugin</a>，支援了各式各樣的服務，依照我這個行事曆機器人，我選擇支援了 <a target="_blank" rel="noopener" href="https://python.langchain.com/docs/integrations/tools/youtube">Youtube</a> &amp; <a target="_blank" rel="noopener" href="https://python.langchain.com/docs/integrations/tools/wikipedia">Wikipedia</a>，只要把相依套件安裝完，基本上就可以引入使用，大概如下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> youtube_search</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.tools <span class="keyword">import</span> YouTubeSearchTool</span><br></pre></td></tr></table></figure>
+
+<p>YouTubeSearchTool API Reference:</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tool</span> <span class="operator">=</span> YouTubeSearchTool()</span><br><span class="line"></span><br><span class="line">tool.run(<span class="string">&quot;lex friedman&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>結果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;<span class="selector-attr">[<span class="string">&#x27;/watch?v=VcVfceTsD0A&amp;pp=ygUMbGV4IGZyaWVkbWFu&#x27;</span>, <span class="string">&#x27;/watch?v=gPfriiHBBek&amp;pp=ygUMbGV4IGZyaWVkbWFu&#x27;</span>]</span>&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>官方文件中其實有很多大密寶，我也透過這樣挖了好多東西～哈哈哈</p>
+</blockquote>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這次的分享先來了解一下 LangChain Function Agent 帶來的魔力！讓我少研究很多 OpenAI 黑魔法的時間，甚至很多程式碼寫起來跟平常寫法都很像，在大 AI 時代對於日常用 Python 寫應用的工程師是非常友善的！如果你也正在關注相關應用，或許可以參考本篇文章唷！</p>
 <h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
 <p>「LINE 開發者官方社群」官方帳號 ID：<a target="_blank" rel="noopener" href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
@@ -448,7 +469,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8%E6%93%87-Google-Calender"><span class="nav-number">2.1.</span> <span class="nav-text">為什麼選擇 Google Calender?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%96%9C%E6%AD%A1%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E9%80%99%E9%82%8A"><span class="nav-number">2.1.1.</span> <span class="nav-text">喜歡程式碼可以看這邊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8E%E5%8E%BB%E6%88%91%E6%80%8E%E9%BA%BC%E4%B8%8B-prompt%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">過去我怎麼下 prompt？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-LangChain%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">什麼是 LangChain？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LangChain-Function-Agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">LangChain Function Agent 帶來了什麼好處？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-LINE-Bot-%E7%94%A8%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">為什麼要在 LINE Bot 用？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8%E6%93%87-Google-Calender"><span class="nav-number">2.1.</span> <span class="nav-text">為什麼選擇 Google Calender?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%96%9C%E6%AD%A1%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E9%80%99%E9%82%8A"><span class="nav-number">2.1.1.</span> <span class="nav-text">喜歡程式碼可以看這邊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8E%E5%8E%BB%E6%88%91%E6%80%8E%E9%BA%BC%E4%B8%8B-prompt%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">過去我怎麼下 prompt？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-LangChain%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">什麼是 LangChain？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LangChain-Function-Agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">LangChain Function Agent 帶來了什麼好處？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-LINE-Bot-%E7%94%A8%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">為什麼要在 LINE Bot 用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%EF%BC%9A%E4%BD%BF%E7%94%A8-Youtube-%E4%BB%A5%E5%8F%8A-wikipedia-Tool"><span class="nav-number">2.6.</span> <span class="nav-text">更新：使用 Youtube 以及 wikipedia Tool</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
