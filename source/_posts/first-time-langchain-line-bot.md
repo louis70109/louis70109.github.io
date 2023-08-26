@@ -21,6 +21,7 @@ date: 2023-08-18 12:23:46
   - [什麼是 LangChain？](#什麼是-langchain)
   - [LangChain Function Agent 帶來了什麼好處？](#langchain-function-agent-帶來了什麼好處)
   - [為什麼要在 LINE Bot 用？](#為什麼要在-line-bot-用)
+  - [更新：使用 Youtube 以及 wikipedia Tool](#更新使用-youtube-以及-wikipedia-tool)
 - [結論](#結論)
 - [活動小結](#活動小結)
 - [關於「LINE 開發社群計畫」](#關於line-開發社群計畫)
@@ -30,7 +31,7 @@ date: 2023-08-18 12:23:46
 平時我們經常需要管理/安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處ㄋ，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！
 
 Slide: https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot
-範例程式碼：https://github.com/louis70109/calendar-langchain
+範例程式碼：https://github.com/louis70109/BookingStep
 歡迎試玩 LINE Bot：https://lin.ee/92O5Od8
 
 <!-- more -->
@@ -109,6 +110,34 @@ Slide: https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=17" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
 
 如此一來就能達到類似上述的功能，讓 LangChain 幫忙整理訊息並放到對應 Google Calendar 的 query parameter，這樣就能加到個人行事曆中了！
+
+## 更新：使用 Youtube 以及 wikipedia Tool
+
+看 LangChain 文件時發現它其實有[許多 Tool Plugin](https://python.langchain.com/docs/integrations/tools/)，支援了各式各樣的服務，依照我這個行事曆機器人，我選擇支援了 [Youtube](https://python.langchain.com/docs/integrations/tools/youtube) & [Wikipedia](https://python.langchain.com/docs/integrations/tools/wikipedia)，只要把相依套件安裝完，基本上就可以引入使用，大概如下：
+
+```
+pip install youtube_search
+```
+
+```
+from langchain.tools import YouTubeSearchTool
+```
+
+YouTubeSearchTool API Reference:
+
+```
+tool = YouTubeSearchTool()
+
+tool.run("lex friedman")
+```
+
+結果：
+```
+"['/watch?v=VcVfceTsD0A&pp=ygUMbGV4IGZyaWVkbWFu', '/watch?v=gPfriiHBBek&pp=ygUMbGV4IGZyaWVkbWFu']"
+
+```
+
+> 官方文件中其實有很多大密寶，我也透過這樣挖了好多東西～哈哈哈
 
 # 結論
 
