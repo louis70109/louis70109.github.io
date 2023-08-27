@@ -28,7 +28,7 @@ date: 2023-08-18 12:23:46
 
 # 前言
 
-平時我們經常需要管理/安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處ㄋ，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！
+平時我們經常需要管理/安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！
 
 Slide: https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot
 範例程式碼：https://github.com/louis70109/BookingStep
