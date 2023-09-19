@@ -13,7 +13,7 @@ date: 2023-07-29 16:26:06
 
 # 前言
 
-大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 [COSCUP 2023 分享](https://coscup.org/2023/zh-TW/session/PT8VT7)業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！
+大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 [COSCUP 2023 分享](https://coscup.org/2023/zh-TW/session/PT8VT7)業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！
 
 簡報：https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud
 

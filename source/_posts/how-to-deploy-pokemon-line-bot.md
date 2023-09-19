@@ -10,7 +10,7 @@ tags: ['Pokemon', 'LINE Bot']
 
 # 前言
 
-我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 [COSCUP 2023](https://coscup.org/2023/zh-TW/session/VAHKVH) 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！
+我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 [COSCUP 2023](https://coscup.org/2023/zh-TW/session/VAHKVH) 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！
 
 > 本次分享簡報：https://speakerdeck.com/line_developers_tw/how-to-deploy-pokemon-line-bot
 
