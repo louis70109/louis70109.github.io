@@ -28,17 +28,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 COSCUP 2023 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！  本次分享簡報：https:&#x2F;&#x2F;speakerdeck.com&#x2F;line_developers_tw&#x2F;how-to-deploy-pokemon-line-bot">
+  <meta name="description" content="前言我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 COSCUP 2023 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！  本次分享簡報：https:&#x2F;&#x2F;speakerdeck.com&#x2F;line_developers_tw&#x2F;how-to-deploy-pokemon-line-bot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="寶可夢苦難日: 結局不是重點 重點是我爬不上大師啊">
 <meta property="og:url" content="https://nijialin.com/2023/07/30/how-to-deploy-pokemon-line-bot/index.html">
 <meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 COSCUP 2023 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！  本次分享簡報：https:&#x2F;&#x2F;speakerdeck.com&#x2F;line_developers_tw&#x2F;how-to-deploy-pokemon-line-bot">
+<meta property="og:description" content="前言我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 COSCUP 2023 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！  本次分享簡報：https:&#x2F;&#x2F;speakerdeck.com&#x2F;line_developers_tw&#x2F;how-to-deploy-pokemon-line-bot">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://nijialin.com/images/2023/coscup/2.jpg">
 <meta property="og:image" content="https://qr-official.line.me/gs/M_908lugfe_BW.png">
 <meta property="article:published_time" content="2023-07-30T15:21:56.000Z">
-<meta property="article:modified_time" content="2023-08-27T16:21:15.429Z">
+<meta property="article:modified_time" content="2023-09-19T03:43:54.619Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="LINE Bot">
 <meta property="article:tag" content="Pokemon">
@@ -245,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-27 16:21:15" itemprop="dateModified" datetime="2023-08-27T16:21:15+00:00">2023-08-27</time>
+                <time title="修改時間：2023-09-19 03:43:54" itemprop="dateModified" datetime="2023-09-19T03:43:54+00:00">2023-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,7 +269,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       
         <p><img src="https://nijialin.com/images/2023/coscup/2.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次有幸來 <a target="_blank" rel="noopener" href="https://coscup.org/2023/zh-TW/session/VAHKVH">COSCUP 2023</a> 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 <a target="_blank" rel="noopener" href="https://coscup.org/2023/zh-TW/session/VAHKVH">COSCUP 2023</a> 分享過年期間實做關於寶可夢 Side project 的一些心得，透過以下文章跟大家分享經驗談！</p>
 <blockquote>
 <p>本次分享簡報：<a target="_blank" rel="noopener" href="https://speakerdeck.com/line_developers_tw/how-to-deploy-pokemon-line-bot">https://speakerdeck.com/line_developers_tw/how-to-deploy-pokemon-line-bot</a></p>
 </blockquote>
