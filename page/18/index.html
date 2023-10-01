@@ -208,6 +208,121 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/10/Bottender-x-Dialogflow-x-LINE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/10/Bottender-x-Dialogflow-x-LINE/" class="post-title-link" itemprop="url">Bottender x Dialogflow x LINE</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-10 15:18:31" itemprop="dateCreated datePublished" datetime="2019-12-10T15:18:31+00:00">2019-12-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chatbot/" itemprop="url" rel="index"><span itemprop="name">Chatbot</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>大家好，我是 Chatbot Taiwan 的 NiJia，最近我們 Github 開張囉，想找之前演講的紀錄都會在此哦！</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Chatbot-Taiwan/meetups">Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Facebook</a></li>
+<li><a target="_blank" rel="noopener" href="https://chatbots.kktix.cc/">KKTIX</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣的，本週末 12&#x2F;13-12&#x2F;15 我要去 <a target="_blank" rel="noopener" href="https://www.meetup.com/GDGTaichung/events/266686542/">GDG Taichung Hackthon Party</a> 上當導師，礙於我實在想不出有個題目可以分享給其他同好，碰巧之前跟過 Wolke 大大的 Dialogflow + LINE bot 工作坊，憶起當時的明媚風景，接著前陣子寫鐵人賽也有跟到 C.T Lin 大大寫的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">使用 Modern Web 技術來打造 Chat App</a>，如此一來我就乾脆把這兩個東西合在一起弄個東西！</p>
+<p>又這麼剛好的我最近瘋狂看 ABL 球賽(支持本土球隊！)，剛好週末也沒事，就順手把它做出來啦~有在看球賽的朋友別錯過這隻機器人囉！他可以告訴你下一場比賽是哪時候～<br><img src="https://i.imgur.com/RTmyJPr.png"></p>
+<p>以下記錄著我踩雷的過程 🤣，詳細 bottender 使用手冊還是參考 -&gt; <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">使用 Modern Web 技術來打造 Chat App</a></p>
+<p>本篇文章的程式碼已經開源囉 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Taiwan-ABL-games">Taiwan-ABL-Games</a></p>
+<h1 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a>建立專案</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-bottender-app taiwan-abl-games</span><br></pre></td></tr></table></figure>
+
+<p>接著會看到以下的畫面，bottender 很貼心的列出一些大家平常比較會使用的平台，這邊我們先選擇 LINE，後續會再告訴大家如何增加其他平台選項。<br><img src="https://i.imgur.com/k12ig2m.png"></p>
+<h1 id="Dialogflow-注意事項與串接"><a href="#Dialogflow-注意事項與串接" class="headerlink" title="Dialogflow 注意事項與串接"></a>Dialogflow 注意事項與串接</h1><p>這邊一定是要參考主要開發者所寫的文章啊 -&gt; <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10226833">Day25</a><br>大致上創建服務的過程差不多，這個部分就簡單帶過比較重要的部分。</p>
+<blockquote>
+<p>在處理意圖部分有個小撇步，若鼠標從左邊到右邊，到第二個時會把第一個意圖覆蓋掉，這邊我都是從右邊到左邊一個一個選，才不會遇到覆蓋的問題。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/HtZ1OWd.png"></p>
+<p>接下來再處理 Dialogflow API 的問題，Day 25 文章中所提到的地方 Google UI 似乎有換位置，我找到的位置在此 -&gt; <a target="_blank" rel="noopener" href="https://cloud.google.com/docs/authentication/production#obtaining_and_providing_service_account_credentials_manually">URL</a><br><img src="https://i.imgur.com/5HJ3uL7.png"></p>
+<p>從頁面的藍色按鈕(建立服務金鑰)後會遇到下圖畫面，第一個紅色框框需要注意是不是剛剛建立的 Dialogflow 的 agent。<br>而第二個下拉式選單選擇 <code>Dialogflow Integrations</code>，下面則選擇 <code>JSON</code> 格式。<br><img src="https://i.imgur.com/vBRfIgp.png"></p>
+<blockquote>
+<p>在一開始建立完之後若是要回來管理的話，直接到 GCP 的<a target="_blank" rel="noopener" href="https://console.cloud.google.com/home/dashboard">主控台</a>左側的<code>API &amp; Services</code>的<code>Cedemtials</code>來管理金鑰。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/IEGyogB.png"></p>
+<p>把下載的檔案放在主目錄下，接著要在<code>.env</code>下新增以下兩個 key，<code>GOOGLE_APPLICATION_CREDENTIALS</code>則需要打上<code>絕對路徑</code>，後面再部署會再解釋這段。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GOOGLE_APPLICATION_CREDENTIALS=<span class="regexp">/Users/</span>...<span class="regexp">/taiwan-abl-games/</span>YOUR_KEY.json</span><br><span class="line">GOOGLE_APPLICATION_PROJECT_ID=taiwan-abl-games-mpmomf</span><br></pre></td></tr></table></figure>
+
+<p><code>PROJECT_ID</code>要去 <a target="_blank" rel="noopener" href="https://console.cloud.google.com/home/dashboard">GCP 主控台</a>查詢。<br><img src="https://i.imgur.com/GSHaMTK.png"></p>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>這邊就先複製原作者的 code 並稍做修改至 &#x2F;src&#x2F;index.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dialogflow = <span class="built_in">require</span>(<span class="string">&#x27;dialogflow&#x27;</span>); <span class="comment">// 記得安裝</span></span><br><span class="line"><span class="keyword">const</span> &#123; format &#125; = <span class="built_in">require</span>(<span class="string">&#x27;date-fns&#x27;</span>); <span class="comment">// 記得安裝</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PROJECT_ID = process.env.GOOGLE_APPLICATION_PROJECT_ID;</span><br><span class="line"><span class="keyword">const</span> sessionClient = <span class="keyword">new</span> dialogflow.SessionsClient();</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (context.event.isText) &#123;</span><br><span class="line">    <span class="keyword">const</span> sessionPath = sessionClient.sessionPath(</span><br><span class="line">      PROJECT_ID,</span><br><span class="line">      context.session.id</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> request = &#123;</span><br><span class="line">      session: sessionPath,</span><br><span class="line">      queryInput: &#123;</span><br><span class="line">        text: &#123;</span><br><span class="line">          text: context.event.text,</span><br><span class="line">          languageCode: <span class="string">&#x27;zh-tw&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      queryParams: &#123;</span><br><span class="line">        timeZone: <span class="string">&#x27;Asia/Taipei&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 透過 dialogflow 偵測意圖</span></span><br><span class="line">    <span class="keyword">const</span> responses = <span class="keyword">await</span> sessionClient.detectIntent(request);</span><br><span class="line">    <span class="keyword">const</span> &#123; intent, parameters &#125; = responses[<span class="number">0</span>].queryResult;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (intent.displayName === <span class="string">&#x27;dreamer-next-game&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">//...YOUR CONTEXT</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> context.sendText(<span class="string">&#x27;您輸入的內容我不懂哦~🏀&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>藉由上述程式碼會發現藉由 Dialogflow 判斷出來的 intent 到底是要填入什麼？intent 顯示的字串就如下圖所示，我們在 Dialogflow 裡建立的 Intent 的名字就是最後 API 會回傳給我們的判斷字串，這邊就正規化一下自己所要提供的意圖吧！<br><img src="https://i.imgur.com/sEsEep8.png"></p>
+<h2 id="bottender-config-js"><a href="#bottender-config-js" class="headerlink" title="bottender.config.js"></a>bottender.config.js</h2><p>最後這邊提一下如何設定給多平台使用，一開始藉由<code>npx create-bottender-app xxx</code>幫我們建立 app 時這個檔案就會自動生成，bottender 很好心的把所有明台所會用到的 key 全部都會放在這裡面。<br><img src="https://i.imgur.com/Ba6I5HR.png"><br>以我為例我就有使用到 Messager 來試玩，這邊就需要把<code>enabled</code>啟動(false -&gt; true)，實際建立粉絲頁相關可以<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218682">參考</a></p>
+<blockquote>
+<p>題外話: 最後再使用<code>npx bottender messenger webhook set</code>就會幫我們把 localhost 串接到 Message 上，實在是太讚了！！！</p>
+</blockquote>
+<h1 id="部署注意事項"><a href="#部署注意事項" class="headerlink" title="部署注意事項"></a>部署注意事項</h1><p>我是使用 Heroku 當作我部署的環境，請服用這篇<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10228055">Heroku 部署</a></p>
+<p>在本地端測試時會用到很多的環境變數，而 Dialogflow API json 的路徑我是透過環境變數去取得，在 Heroku 上會把專案的內容放在<code>/app</code>底下(不管你專案叫什麼名字)，因此環境變數<code>GOOGLE_APPLICATION_CREDENTIALS</code>需要輸入<code>/app/xx-ooo.json</code>這樣就會取到當前目錄下的檔案囉！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經由這次試玩這個 project 讓我覺得 <a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">bottender</a> 這個 chatbot 框架整合真的是厲害，幫開發者處理掉很多跨平台上的問題，我認為最酷的就是 console mode，在測試程式邏輯上可以不用每次都一直用手機開 LINE 或是 FB 來測試機器人狀態，而是在終端機就解決這件事，這是我開發機器人到目前為止覺得最酷的模式 👍！</p>
+<p>而在這個專案上我使用到 Dialogflow，除了參考的原文畫面 (GCP 頁面) 已有些許更動外，其實介接的速度是非常快的，此外我很認同原文作者的觀點，把 Dialogflow 接在程式後面才去處理這件事會增加很多彈性，畢竟當一個<strong>回應</strong>來的時候可能會想做其他不同的應用，此時若是模型就在前面先把訊息回覆掉，會增加很多開發上的問題(當然若簡單的功能單人沒問題 🤣)。</p>
+<p>總而言之～誠心推薦大家去玩玩 bottender，也許你會跟我一樣發現了新大陸 😎。</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://dialogflow.com/">Dialogflow</a><br><a target="_blank" rel="noopener" href="https://console.cloud.google.com/?hl=zh-TW">GCP</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10216040">Bottneder 建立專案</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10228055">Heroku 部署</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1242,98 +1357,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/" class="post-title-link" itemprop="url">Day30 - 老是在吹 Serverless，他真的有那麼好？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-14 13:09:01" itemprop="dateCreated datePublished" datetime="2019-10-14T13:09:01+00:00">2019-10-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Cold-start"><a href="#Cold-start" class="headerlink" title="Cold start"></a>Cold start</h2><p>其實個家園端平台多少都會有這問題，畢竟大家都是靠流量賺錢，自然會需要個方法限制使用者，不然免費爽爽用他們也不是做慈善的 🤣，像我最常用的 <code>Heroku</code>，只要 30 分鐘沒有使用他就會進入睡眠時間(<a target="_blank" rel="noopener" href="https://devcenter.heroku.com/articles/free-dyno-hours">參考</a>)，叫醒的時間需要 10~15 秒，不過對於我這個免費宅來說測試夠用了 🤣</p>
-<p><code>AWS</code>以我實際測試起來大概 2 秒左右，回應時間看起來不會太差，其實<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10213431">第一天</a>就有提到這部分，需要的話可以參考。</p>
-<p>若是需要它隨時都在都活著的話就要搭配 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10226742">warm-up</a>，抑或是搭配 crontab 去設定特定時間執行 warm-up。</p>
-<h2 id="Function-as-a-Service"><a href="#Function-as-a-Service" class="headerlink" title="Function as a Service"></a>Function as a Service</h2><p>在快速成長的前、中期是很適合這個服務的， 畢竟開發者只要將 <code>serverless.yml</code> 基本設定完之後就可以先好好開發，等到中期之後把設定檔稍微整理一下又是一尾活龍了，且平台大多都擁有 <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/autoscaling/">auto-scaling</a> 的功能，在服務快扛不住流量的時候只要錢拿出來平台就幫你解決。</p>
-<p>只是說當流量越來越大之後相對錢也會越付越多，或許當流量 &gt; 10K 之後代表你的服務應該也有不少人使用了，自己架主機應該不會是什麼難事(?)</p>
-<blockquote>
-<p>幫忙推廣一下 Backend 大大的 <a target="_blank" rel="noopener" href="https://github.com/TritonHo/slides/blob/master/Taipei%202019-10%20talk/concurrency.pdf?fbclid=IwAR3R67wIt5fXPjG3hZNHaVw3tuCVrpNJtIdecTTIiQz0dgT-bZwymIYLYiA">高流量心得雜談</a></p>
-</blockquote>
-<p>在 FaaS 架構下其實很適合 Chatbot 的服務，以概念來說實作時只需要一個路由**(Function)**即個完成，不需要額外太多的資源去處理 web server 的問題，像是這個系列的只要透過 <code>serverless</code> + <code>WSGI</code> 就可以馬上就可以進行本地測試，部署只要下 <code>sls deploy</code>，實在是超級快又輕鬆，不用像以前一樣還要去處理 Nginx 等等相關的問題 😁。</p>
-<p>且 AWS、Google 在使用 python 跟 nodejs 上支援度很高，也不用怕找不到資源使用。</p>
-<blockquote>
-<p>使用 Node JS 的朋友可以參考 C.T Lin 大大的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">文章</a>，他們家的 bottender 超猛的！</p>
-</blockquote>
-<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><p>在 Log 這部分我覺得 AWS 有點不太好的地方就是他們的 Cloud Watch 應該是獨立服務，當我的 Lambda 輸出紀錄時大概要過 10 秒才會印出來，不像以前自己架主機時只要進 server 就可以馬上切到目錄看紀錄抓蟲，在使用這雲端服務可能在抓蟲有一半的時間都在等 log 出來，有時候急的時候還真的會被氣死 😭。</p>
-<h2 id="SNS"><a href="#SNS" class="headerlink" title="SNS"></a>SNS</h2><p>像是我前一陣子發的<a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/use-serverless-corn-to-execute-sns-getendpointattributes-returns-old-data-after-e7df7c09b45b">一篇文章</a>，SNS 被觸發事件之後回來的東西是舊的，那時候看到錯誤訊息真的是心很涼，就得用一個 Lambda 排程一直去抓 DB 的 updated_at 欄位有沒有變更時間而去更新狀態，這樣情況就會多浪費一個 Function 去處理這樣的事件，不得不說專門來支援 AWS 服務的 boto3 套件(python)在某些時候做的事不是那麼完善，得使用旁門做到的方法去完成這件事，讓整個開發體驗不是那麼好，若他們可以把一些 error handle 弄更好那就完美了。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><blockquote>
-<p><del>其實還有好多服務沒有玩到</del></p>
-</blockquote>
-<p>但其實使用 AWS 來實作 Serverless 的服務也是這一陣子加入新公司所學到的新技能，過程中總是會用舊的開發思維去想，但常常都因為這樣落坑 😓，但也因此讓我更了解像 AWS 這類的雲服務他們是如何開發每個服務並如何串接，同時也研究了 Serverless 相關的 plugins，看他們是如何支援雲平台讓開發者在開發時可以更像平常時在開發 web，也因為這樣我去貢獻了 example 到了 Serverless 的範例專案上面(<a target="_blank" rel="noopener" href="https://github.com/serverless/examples/pulls?q=is:pr+author:louis70109+is:closed">參考</a>)，慶祝完成人生第一場鐵三十，跟自己的競賽也告一段落，發現趕著寫文章品質真的會差很多，看來是時候該整理一下，謝謝您的收看 &lt;(_ _)&gt;</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1405,7 +1428,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">211</span>
+          <span class="site-state-item-count">212</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1418,7 +1441,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">282</span>
+        <span class="site-state-item-count">286</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
