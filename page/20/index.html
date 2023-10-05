@@ -208,6 +208,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/" class="post-title-link" itemprop="url">Day22 - 最常用的搭配 - 使用 Login + Message API 讓使用者在掃描加入好友時就綁定帳號</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-06 13:01:02" itemprop="dateCreated datePublished" datetime="2019-10-06T13:01:02+00:00">2019-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在第 Day 13 Python SDK 試玩的時候使用過 get_profile，當時使用時就是在每次訊息來的時候才去 SQL 儲存使用者資訊，若只是單純想要使用者資訊的話這樣用好像有點多餘 😓，以下就帶各位簡單的實作。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我們要將上篇的前端頁面(line_login_auth.html)改造一下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>LINE Login<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">      url: <span class="string">&quot;https://YOUR_SLS_DOMAIN.us-east-1.amazonaws.com/dev/line/auth&quot;</span>,</span></span><br><span class="line"><span class="javascript">      method: <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="javascript">      success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.location.replace(data.result);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊我將 button 的 onclick 事件以及 button 本身移除掉，目的是要讓使用者一到這個頁面之後就直接透過 AJAX call api</p>
+<p>到了這裡應該有感應到什麼了吧！接著就是把這個 html 檔的 S3 路徑網址使用 QR code 包起來，讓他看起來像是 LINE bot 的 QR code</p>
+<p>到了這邊基本上已經快完成了，參考 LINE 的<a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/?fbclid=IwAR25G73QmKIGm1l7kPNFzDIpMwBKQRQVxPP8ZpPzp3p-FSES2fnWcVCue_c">好友說明</a>或下圖<br><img src="https://i.imgur.com/fEEzOsy.png"></p>
+<p>接著到機器人的開發者頁面，並且往下滑會看到自己機器人的 QR code 以及 Bot 的 ID，把他複製下來並製作機器人的加好友網址<br><img src="https://i.imgur.com/Mn3RG26.png"></p>
+<p>像是這樣子</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>line.me<span class="regexp">/R/</span>@<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+
+<p>接著到 <code>controller/line_login_controller.py</code>的<code>def get(self)</code>最後一行，原本我們這邊做的是回傳 JSON</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> dt:</span><br><span class="line">			<span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: dt&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>改用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> redirect</span><br><span class="line"><span class="keyword">if</span> dt:</span><br><span class="line"> 		<span class="keyword">return</span> redirect(<span class="string">&quot;https://line.me/R/ti/p//@127ojvgz&quot;</span>, code=<span class="number">302</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如此一來在登入驗證完之後就會把使用者導向到加好友的頁面，在手機上若已經加過好友則會直接導到機器人對話窗上，如此一來就可以讓使用者在加入好友的同時也綁定完帳號，在未來使用的時候 api 這邊也比較好控管使用者的權限問題。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>像是我自己做的健身記錄機器人，就是以這個方法下去實作，有聽過一些朋友跟我反應這樣的方法多此一舉，但我認為若是有網頁的話也是套用 LINE SSO 來實作，就可以讓兩個入口去統一，在狀態流上就能比較好控制了。<br><img src="https://i.imgur.com/8fKlsAt.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/05/Day21-LINE-Login-%E5%AF%A6%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1037,110 +1129,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/" class="post-title-link" itemprop="url">Day12 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (3) - 應聲蟲實作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-26 12:39:32" itemprop="dateCreated datePublished" datetime="2019-09-26T12:39:32+00:00">2019-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>新增兩個 LINE Channel key 至 <code>.env</code></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LINE_CHANNEL_TOKEN=</span><br><span class="line">LINE_CHANNEL_SECRET_KEY=</span><br></pre></td></tr></table></figure>
-
-<p>接著加入 LINE 的 python SDK 至 requirements.txt</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">line</span>-bot-sdk==<span class="number">1</span>.<span class="number">12</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>透過 pip 安裝一下</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt <span class="comment">--user</span></span><br></pre></td></tr></table></figure>
-
-<p>在 controller&#x2F; 底下新增一個 message_api_controller.py 並輸入以下程式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, abort</span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> linebot <span class="keyword">import</span> (</span><br><span class="line">    LineBotApi, WebhookHandler</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.exceptions <span class="keyword">import</span> (</span><br><span class="line">    InvalidSignatureError</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> (</span><br><span class="line">    MessageEvent, TextMessage, TextSendMessage,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LineMessageApiWebhookController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        line_bot_api = LineBotApi(os.getenv(<span class="string">&#x27;LINE_CHANNEL_TOKEN&#x27;</span>))</span><br><span class="line">        handler = WebhookHandler(os.getenv(<span class="string">&#x27;LINE_CHANNEL_SECRET_KEY&#x27;</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># get X-Line-Signature header value</span></span><br><span class="line">        signature = request.headers[<span class="string">&#x27;X-Line-Signature&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        body = request.get_data(as_text=<span class="literal">True</span>)</span><br><span class="line">        event = json.loads(body)</span><br><span class="line">        print(event)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            handler.handle(body, signature)</span><br><span class="line">        <span class="keyword">except</span> InvalidSignatureError:</span><br><span class="line">            print(</span><br><span class="line">                <span class="string">&quot;Invalid signature. Please check your channel access token/channel secret.&quot;</span>)</span><br><span class="line">            abort(<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">        token = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;replyToken&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> token == <span class="string">&quot;00000000000000000000000000000000&quot;</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            line_bot_api.reply_message(token, TextSendMessage(</span><br><span class="line">                text=event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;OK&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>用任何語言都會看到回傳會有 200, ‘OK’…回傳的成功訊息，在內部系統的部分在處理時要考慮到回傳時間的問題，一般來說如果回傳的時間大於 1 秒的話就有可能失效，或許有些朋友有測試過大於 1 秒也可以，但最好還是於時間內回覆哦！</p>
-<blockquote>
-<p>以下圖片來自 <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-device-10/">https://engineering.linecorp.com/zh-hant/blog/line-device-10/</a></p>
-</blockquote>
-<p><img src="https://i.imgur.com/nrJl2XM.png" alt="https://engineering.linecorp.com/zh-hant/blog/line-device-10/"></p>
-<p>接著在 api.py 加入下面兩段 code，新增一個<code>webhook</code>的路由</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> controller.message_api_controller <span class="keyword">import</span> LineMessageApiWebhookController</span><br><span class="line">api.add_resource(LineMessageApiWebhookController, <span class="string">&#x27;/webhook&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>這邊可以使用<code>sls wsgi serve</code> + <code>ngrok</code>去搭配做測試</p>
-<p>接著就部署啦</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sls deploy</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>現在在接這種第三方的 API 時最好都使用 <code>https</code>，而使用 Serverless 的好處就是 AWS 在部署完之後會送你一個含有 SSL 的網址～</p>
-</blockquote>
-<p>把網址貼到 <code>webhook URL</code> 上並在尾端加上 <code>/webhook</code><br><img src="https://i.imgur.com/uoiU96f.png"></p>
-<p>測試結果如下<br><img src="https://i.imgur.com/9wPNuma.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這次整合了以前寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-wsgi-python">Repo</a>，加入了<code>.env</code>讓我在抓下來使用時也更方便，也整合成 Restful 格式讓之後有需要的人在看 code 時可以更容易理解了～</p>
-<p>專案也會持續更新，更多詳情可以 follow 我的專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api">aws-python-line-api</a>。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1212,7 +1200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">212</span>
+          <span class="site-state-item-count">213</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

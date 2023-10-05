@@ -208,6 +208,110 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/" class="post-title-link" itemprop="url">Day12 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (3) - 應聲蟲實作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-26 12:39:32" itemprop="dateCreated datePublished" datetime="2019-09-26T12:39:32+00:00">2019-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>新增兩個 LINE Channel key 至 <code>.env</code></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LINE_CHANNEL_TOKEN=</span><br><span class="line">LINE_CHANNEL_SECRET_KEY=</span><br></pre></td></tr></table></figure>
+
+<p>接著加入 LINE 的 python SDK 至 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">line</span>-bot-sdk==<span class="number">1</span>.<span class="number">12</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>透過 pip 安裝一下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt <span class="comment">--user</span></span><br></pre></td></tr></table></figure>
+
+<p>在 controller&#x2F; 底下新增一個 message_api_controller.py 並輸入以下程式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, abort</span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> linebot <span class="keyword">import</span> (</span><br><span class="line">    LineBotApi, WebhookHandler</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.exceptions <span class="keyword">import</span> (</span><br><span class="line">    InvalidSignatureError</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> linebot.models <span class="keyword">import</span> (</span><br><span class="line">    MessageEvent, TextMessage, TextSendMessage,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LineMessageApiWebhookController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        line_bot_api = LineBotApi(os.getenv(<span class="string">&#x27;LINE_CHANNEL_TOKEN&#x27;</span>))</span><br><span class="line">        handler = WebhookHandler(os.getenv(<span class="string">&#x27;LINE_CHANNEL_SECRET_KEY&#x27;</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># get X-Line-Signature header value</span></span><br><span class="line">        signature = request.headers[<span class="string">&#x27;X-Line-Signature&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        body = request.get_data(as_text=<span class="literal">True</span>)</span><br><span class="line">        event = json.loads(body)</span><br><span class="line">        print(event)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            handler.handle(body, signature)</span><br><span class="line">        <span class="keyword">except</span> InvalidSignatureError:</span><br><span class="line">            print(</span><br><span class="line">                <span class="string">&quot;Invalid signature. Please check your channel access token/channel secret.&quot;</span>)</span><br><span class="line">            abort(<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">        token = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;replyToken&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> token == <span class="string">&quot;00000000000000000000000000000000&quot;</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            line_bot_api.reply_message(token, TextSendMessage(</span><br><span class="line">                text=event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;OK&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>用任何語言都會看到回傳會有 200, ‘OK’…回傳的成功訊息，在內部系統的部分在處理時要考慮到回傳時間的問題，一般來說如果回傳的時間大於 1 秒的話就有可能失效，或許有些朋友有測試過大於 1 秒也可以，但最好還是於時間內回覆哦！</p>
+<blockquote>
+<p>以下圖片來自 <a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-device-10/">https://engineering.linecorp.com/zh-hant/blog/line-device-10/</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/nrJl2XM.png" alt="https://engineering.linecorp.com/zh-hant/blog/line-device-10/"></p>
+<p>接著在 api.py 加入下面兩段 code，新增一個<code>webhook</code>的路由</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> controller.message_api_controller <span class="keyword">import</span> LineMessageApiWebhookController</span><br><span class="line">api.add_resource(LineMessageApiWebhookController, <span class="string">&#x27;/webhook&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以使用<code>sls wsgi serve</code> + <code>ngrok</code>去搭配做測試</p>
+<p>接著就部署啦</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sls deploy</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>現在在接這種第三方的 API 時最好都使用 <code>https</code>，而使用 Serverless 的好處就是 AWS 在部署完之後會送你一個含有 SSL 的網址～</p>
+</blockquote>
+<p>把網址貼到 <code>webhook URL</code> 上並在尾端加上 <code>/webhook</code><br><img src="https://i.imgur.com/uoiU96f.png"></p>
+<p>測試結果如下<br><img src="https://i.imgur.com/9wPNuma.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這次整合了以前寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-wsgi-python">Repo</a>，加入了<code>.env</code>讓我在抓下來使用時也更方便，也整合成 Restful 格式讓之後有需要的人在看 code 時可以更容易理解了～</p>
+<p>專案也會持續更新，更多詳情可以 follow 我的專案 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api">aws-python-line-api</a>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1113,148 +1217,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20&%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20&%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/" class="post-title-link" itemprop="url">Day2 - 安裝並使用 wsgi & flask 建立第一個 Serverless 的專案</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-17 06:17:01" itemprop="dateCreated datePublished" datetime="2019-09-17T06:17:01+00:00">2019-09-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>透過 npm 全域安裝 serverless 指令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install serverless -g</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>因為我是用 python3 在 AWS 上實作</p>
-</blockquote>
-<ul>
-<li><code>--template</code>可以選擇你想要的模板 (<a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/cli-reference/create/">參考</a>)</li>
-<li><code>name</code> service 的名稱</li>
-<li><code>--path</code> 專案路徑，若找不到資料夾時會自動新增</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless create --template aws-python3 --name aws-wsgi-flask --path aws-wsgi-flask</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/6GZVQNo.png"></p>
-<h1 id="加入套件"><a href="#加入套件" class="headerlink" title="加入套件"></a>加入套件</h1><p>接著後面會需要使用套件，而 python 這邊會認得 requirements.txt 這個檔案，因此我們需要用 serverless 的 plugin 幫我們處理，讓專案在 deploy 上去之後會透過 requirements.txt 去安裝套件。</p>
-<p>而接下來我們會需要一個介面幫我們處理一些麻煩事，這邊就選用 wsgi 來處理。<a target="_blank" rel="noopener" href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/362704/">詳細參考</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sls plugin install -n serverless-python-requirements</span><br><span class="line">sls plugin install -n serverless-wsgi</span><br></pre></td></tr></table></figure>
-
-<p>接著去看 serverless.yml 檔案最後出現下面這樣就成功安裝了。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-python-requirements</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-wsgi</span></span><br></pre></td></tr></table></figure>
-
-<p>然後新增一個 setup.cfg 並加入以下內容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[install]</span><br><span class="line">prefix=</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>由於 AWS Lambda 上都會將套件安裝在本地端(Lambda 上)，因此在執行 <code>pip install -t . -r requirements.txt</code> 時會需要 setup.cfg。</p>
-</blockquote>
-<p>接著選用 Flask 框架作我們開發的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Flask==1.0.2&quot;</span> &gt; requirements.txt</span><br><span class="line">pip install -r requirements.txt -—user</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>serverless-python-requirements 同樣也支持 pipenv 哦，如果想完全擋掉的話可以<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-python-requirements#pipenv-support-sparklescakesparkles">參考</a></p>
-</blockquote>
-<h1 id="更改設定檔"><a href="#更改設定檔" class="headerlink" title="更改設定檔"></a>更改設定檔</h1><p>置換以下內容至 serverless.yml，讓 WSGI 去處理路由。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service:</span> <span class="string">aws-wsgi-flask</span></span><br><span class="line"><span class="attr">provider:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">aws</span></span><br><span class="line">  <span class="attr">runtime:</span> <span class="string">python3.7</span></span><br><span class="line"><span class="attr">functions:</span></span><br><span class="line">  <span class="attr">api:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">wsgi_handler.handler</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">http:</span> <span class="string">ANY</span> <span class="string">/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">http:</span> <span class="string">ANY</span> &#123;<span class="string">proxy+</span>&#125;</span><br><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">wsgi:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">api.app</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-python-requirements</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-wsgi</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="測試-wsgi"><a href="#測試-wsgi" class="headerlink" title="測試 wsgi"></a>測試 wsgi</h1><p>因為我們不是單純只用 python 架設，所以要將 handler.py 替換成 api.py，並加入以下內容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-<p>到這邊基礎設施都弄好了，但總不能部署才測試吧，所以這時候我們就出動</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless wsgi serve</span><br></pre></td></tr></table></figure>
-
-<p>透過 wsgi 去幫忙起一個 local server 供使用者可以測試，而且每次儲存都重新整理一次哦！詳細用法請<a target="_blank" rel="noopener" href="https://github.com/logandk/serverless-wsgi">參考</a><br><img src="https://i.imgur.com/S4CQJxI.png"></p>
-<p>接著用 postman 來測試一下<br><img src="https://i.imgur.com/ci26g4O.png"></p>
-<p>燈燈，hello world 出來了～</p>
-<p>最後也是最重要的一個步驟『部署』<br>只是說部署前需要有 AWS 的 secret key &amp; token</p>
-<h1 id="建立-AWS-存取金鑰"><a href="#建立-AWS-存取金鑰" class="headerlink" title="建立 AWS 存取金鑰"></a>建立 AWS 存取金鑰</h1><p>首先要先有個 AWS 帳號(廢話) ，如果沒有綁定信用卡記得去綁定才能繼續，接下來就可以去就可以去建立鑰匙囉！<br><img src="https://i.imgur.com/JOgIjXQ.png"><br>如上圖，按下紅色框框的部分，接著按箭頭指的按鈕，就會建立一個我們要的金鑰囉！<br><img src="https://i.imgur.com/A34OlY5.png"><br>如上圖所示，可以下載 key，AWS 不會幫忙保存 Secret key，若這視窗關掉的話 key 就不見了，所以使用者可以自行下載檔案保存，以免哪天要部署的時候找不到 key。<br>接著就將這兩個參數加入環境變數中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> AWS_ACCESS_KEY_ID=&lt;your-key-here&gt;</span><br><span class="line"><span class="built_in">export</span> AWS_SECRET_ACCESS_KEY=&lt;your-secret-key-here&gt;</span><br></pre></td></tr></table></figure>
-
-<p>或是藉由 serverless 指令來幫忙加入參數：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless <span class="built_in">config</span> credentials <span class="comment">--provider aws --key &lt;your-key-here&gt; --secret &lt;your-secret-key-here&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>這步驟很重要哦，不然 AWS 不認識你就不給你上傳了 ?</p>
-</blockquote>
-<p>最後就是下 <code>serverlesss deploy</code>進行部署<br><img src="https://i.imgur.com/MK8Yks7.png"></p>
-<p>這邊 AWS 幫忙建立一個含有 SSL 的 domain，可以直接對這個網址下</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">endpoints:</span> <span class="string">ANY</span> <span class="bullet">-</span> <span class="string">https://4omvn4z7re.execute-api.us-east-1.amazonaws.com/dev</span></span><br><span class="line">  <span class="string">ANY</span> <span class="bullet">-</span> <span class="string">https://4omvn4z7re.execute-api.us-east-1.amazonaws.com/dev/&#123;proxy+&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>接著把網址丟到瀏覽器上來試試看<br><img src="https://i.imgur.com/tptNSd4.png"><br>出現 <code>hello world</code>就成功囉！</p>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/%E4%BD%BF%E7%94%A8-serverless-line-message-api-%E5%9C%A8-aws-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-echo-bot-1e3e785a2a01">使用 Serverless &amp; LINE Message API 在 AWS 上打造一個 Echo bot</a></li>
-<li><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/cli-reference/">sls cli 相關參數</a></li>
-<li><a target="_blank" rel="noopener" href="https://serverless.com/">Serverless</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/serverless/serverless">Serverless Github</a></li>
-<li><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/guide/quick-start/">serverless install</a></li>
-<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-wsgi/">serverless wsgi</a></li>
-<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-python-requirements/">requirements.txt</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1326,7 +1288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">212</span>
+          <span class="site-state-item-count">213</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
