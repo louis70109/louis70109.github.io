@@ -208,6 +208,93 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/07/21/LIFF-concat-replace-mode-scenario/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/21/LIFF-concat-replace-mode-scenario/" class="post-title-link" itemprop="url">LIFF v2.3 更新內容 - Concatenate & Replace 模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-07-21 03:32:08" itemprop="dateCreated datePublished" datetime="2020-07-21T03:32:08+00:00">2020-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的 Tech Evangelist – NiJia Lin。</p>
+<p>在尚未更新前時常會遇到問題就是網址後面會接上 <code>liff.state=</code> 抑或是會在原始 target url 上加上 斜線(<code>/</code>) 這類相關的問題，開發者(包括我)都需要使用相關的 workaround 去解套，這邊提供之前我寫的 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/controller/notifiesController.ts#L6">Twitch-Bot</a> 的 Javascript workaround 來處理 <code>liff.state</code> 的問題：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> query = req.query[&#x27;liff.<span class="keyword">state</span>&#x27;].split(&#x27;?&#x27;)[<span class="number">1</span>].split(&#x27;&amp;&#x27;);</span><br><span class="line"><span class="keyword">const</span> notifyPayload = &#123; code: null, <span class="keyword">state</span>: null &#125;;</span><br><span class="line">query.<span class="keyword">for</span>Each(el =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> queryObj = el.split(&#x27;=&#x27;);</span><br><span class="line">  if (queryObj[<span class="number">0</span>] <span class="keyword">in</span> notifyPayload)</span><br><span class="line">    notifyPayload[queryObj[<span class="number">0</span>]] = queryObj[<span class="number">1</span>];</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> code = notifyPayload.code;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">user</span>Id = notifyPayload.<span class="keyword">state</span>;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的解法可以解決我的問題但會讓開發有點綁手綁腳的，但隨著 LIFF v2.3 改版上線後出現了兩個模式提供選擇，分別是 <code>Concatenate</code> 與 <code>Replace</code> 兩個選項，如下圖所示：</p>
+<p><img src="https://i.imgur.com/SkUlT3P.png"></p>
+<p>在 v2.3 的更新中將之前所會遇到問題以及已有對應 workaround 的版本變成 <code>Replace mode</code>，而新推出的 <code>Concatenate mode</code> 則已解決相關的議題。也許在使用上還是會有點困惑，以下就使用一些 Scenario 為各位介紹一下這兩個功能之間的差異以及解決了什麼問題 🙂。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/21/LIFF-concat-replace-mode-scenario/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/07/15/restore-my-mac-environment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -962,93 +1049,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/06/13/learn-javascript-promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/13/learn-javascript-promise/" class="post-title-link" itemprop="url">【Javascript】你知道你常用的 Promise 嗎?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-06-13 14:12:08" itemprop="dateCreated datePublished" datetime="2020-06-13T14:12:08+00:00">2020-06-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在寫 Javascript 時一定會看到有套件或是範例有使用到 callback function，在過往的 coding 過程中最擔心的問題就是遇到 Callback Hell(也就是俗稱的波動拳)，最常見的範例為：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span><span class="constructor">Something(<span class="params">function</span>(<span class="params">result</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">do</span><span class="constructor">SomethingElse(<span class="params">result</span>, <span class="params">function</span>(<span class="params">newResult</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">do</span><span class="constructor">ThirdThing(<span class="params">newResult</span>, <span class="params">function</span>(<span class="params">finalResult</span>)</span> &#123;</span><br><span class="line">      console.log(&#x27;Got the final result: &#x27; + finalResult);</span><br><span class="line">    &#125;, failureCallback);</span><br><span class="line">  &#125;, failureCallback);</span><br><span class="line">&#125;, failureCallback);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Sample from <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Using_promises">MDN</a></p>
-</blockquote>
-<p>為了降低波動拳的出現機率，因此就就誕生了 <code>Promise</code> 來幫忙處理 Hell world 的問題，至於如何處理就透過接下來就說明並介紹用法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/13/learn-javascript-promise/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1120,7 +1120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">214</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1133,7 +1133,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">286</span>
+        <span class="site-state-item-count">289</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
