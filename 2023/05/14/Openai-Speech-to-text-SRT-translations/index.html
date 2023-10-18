@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://nijialin.com/images/2023/vlc.png">
 <meta property="og:image" content="https://nijialin.com/images/2023/vlc.png">
 <meta property="article:published_time" content="2023-05-14T01:13:15.000Z">
-<meta property="article:modified_time" content="2023-10-07T16:02:28.956Z">
+<meta property="article:modified_time" content="2023-10-18T18:00:16.185Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="OpenAI">
 <meta property="article:tag" content="SRT">
@@ -246,7 +246,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-10-07 16:02:28" itemprop="dateModified" datetime="2023-10-07T16:02:28+00:00">2023-10-07</time>
+                <time title="修改時間：2023-10-18 18:00:16" itemprop="dateModified" datetime="2023-10-18T18:00:16+00:00">2023-10-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,7 +279,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <p>因為是使用 python 安裝的緣故，故以下指令都會用 <code>python -m decipher</code> 執行。</p>
 <p>接下來透過以下指令，把指定的音檔透過模型(small)來語音轉文字的 SRT</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m decipher transcribe -i ~<span class="regexp">/Users/</span>使用者名稱<span class="regexp">/Desktop/</span>result/example.mp4 --model small</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m decipher transcribe -i ~<span class="string">/Users/</span>使用者名稱<span class="string">/Desktop/result/example.mp4</span> <span class="params">--model</span> small</span><br></pre></td></tr></table></figure>
 
 <p>一般來說檔案位置都會在 <code>/Users/使用者名稱/Destop/result/</code> 裡面。</p>
 <blockquote>
@@ -297,7 +297,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>這邊因為真的是 API 一個一個 call，因此會執行比較長的時間。</p>
 </blockquote>
 <p>完成之後總共會有三個黨名：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example</span>.</span></span>srt</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example_translated</span>.</span></span>srt</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example_translated_bilingual</span>.</span></span>srt</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Example<span class="selector-class">.srt</span></span><br><span class="line">Example_translated<span class="selector-class">.srt</span></span><br><span class="line">Example_translated_bilingual.srt</span><br></pre></td></tr></table></figure>
 
 <p>假設你的 <code>Example.srt</code> 是日文的話， <code>Example_translated.srt</code> 就是中文， <code>Example_translated_bilingual.srt</code> 則是日中合體。</p>
 <p>在這個 Project 中有設定 Retry 機制，如果有一段話透過 OpenAI 處理超過 60 秒，則會 Retry 一次，若三次就使用原本的字串，以我的經驗來說，就有一些還是原本的語言，如果很依賴字幕的情況下，可能會有點疑惑…🧐</p>
