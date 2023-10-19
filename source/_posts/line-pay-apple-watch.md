@@ -1,8 +1,14 @@
 ---
 title: 就用 LINE Pay 在 Apple Watch 付款吧
+tags:
+  - LINE
+  - Apple
+  - Apple Watch
+  - LINE Pay
 categories: LINE
-tags: ['LINE', 'Apple', 'Apple Watch', 'LINE Pay']
+date: 2023-10-19 14:24:15
 ---
+
 
 昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!
 
