@@ -208,6 +208,176 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/" class="post-title-link" itemprop="url">【AWS】使用 API Gateway Authorizer 做使用者驗證 feat. Serverless</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-04-18 18:38:29" itemprop="dateCreated datePublished" datetime="2020-04-18T18:38:29+00:00">2020-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/0QAGPDc.png" alt="API Gateway Lambda authorization workflow"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 AWS 的 API gateway 上就有一個項目(<code>Authorizer</code>)是支援 Cognito 以及客制認證的方法，好處就是在進我們寫的 API 之前有個可以做<strong>身份確認</strong>的 Lambda Function 幫我們好前處理，而本篇則會介紹如何在 Serverless framework 上設定 API gateway 的 Authorizer 以及成功讓 API 回應，串接 Cognito 做使用部分就留給之後吧！</p>
+<h4 id="👉-本篇的範例全都在-GitHub"><a href="#👉-本篇的範例全都在-GitHub" class="headerlink" title="👉 本篇的範例全都在 GitHub"></a>👉 本篇的範例全都在 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-serverless-authorizer">GitHub</a></h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/" class="post-title-link" itemprop="url">【LINE API 的小眉角】feat. Flex message, LIFF, Richmenu, Provider</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-04-11 13:10:23" itemprop="dateCreated datePublished" datetime="2020-04-11T13:10:23+00:00">2020-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chatbot/" itemprop="url" rel="index"><span itemprop="name">Chatbot</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/HHj7c5Kl.jpg" alt="birds"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因為遇到了很多不算坑的坑(<del>說啥呢？</del>)，有些是文件沒有寫而有些可能是我沒有注意到的，但既然都知道了就乾脆記下來吧！</p>
+<h1 id="LIFF-reply-到底算不算收費？"><a href="#LIFF-reply-到底算不算收費？" class="headerlink" title="LIFF reply 到底算不算收費？"></a>LIFF reply 到底算不算收費？</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/liff/developing-liff-apps/#developing-a-liff-app">LIFF SendMessage api</a></p>
+</blockquote>
+<p>字面上看起來很像 <code>Push Message</code> 的事件，但實際上是走 Flex Message，使用 Message api 的 Reply 功能來幫忙使用者發送條件引發 Bot 行為，並非是透過 Push api 發送讓 Bot 反應，這邊需要多注意喔！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">liff.sendMessages([</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">    text: <span class="string">&quot;You&#x27;ve successfully sent a message! Hooray!&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/03/28/LINE-new-API-Icon-Switch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -723,7 +893,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-11-12 14:28:38" itemprop="dateModified" datetime="2023-11-12T14:28:38+00:00">2023-11-12</time>
+                <time title="修改時間：2023-11-13 08:57:50" itemprop="dateModified" datetime="2023-11-13T08:57:50+00:00">2023-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1052,257 +1222,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/11/corss-platform-twitch-bot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/11/corss-platform-twitch-bot/" class="post-title-link" itemprop="url">如何建立一個跨平台的 Twitch 機器人</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-11 16:53:22" itemprop="dateCreated datePublished" datetime="2020-01-11T16:53:22+00:00">2020-01-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在去年大約五月的時候寫了一隻 Twitch 的 LINE bot，不過後來似乎 Twitch API 有改版讓機器人壞掉了，最近又有需要一隻機器人幫我查詢，就開始去翻一下 Twitch 官方文件，碰巧逛到這個 <a target="_blank" rel="noopener" href="https://dev.twitch.tv/code/">Community Resources page</a>，看到了好多資料在裡面，就索性來重寫囉！</p>
-<blockquote>
-<p>因為 Twitch package 都是 Typescript，因此本篇的範例都會是 Typescript 哦！</p>
-</blockquote>
-<p>⭐️ 本專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a></p>
-<h1 id="加好友"><a href="#加好友" class="headerlink" title="加好友"></a>加好友</h1><ul>
-<li><p>LINE</p>
-<img height="200" border="0" alt="QRcode" src="https://i.imgur.com/kRcEhBN.png">
-</li>
-<li><p>Messenger</p>
-<img height="200" border="0" alt="QRcode" src="https://i.imgur.com/93yxeiy.png"></li>
-</ul>
-<h1 id="準備"><a href="#準備" class="headerlink" title="準備"></a>準備</h1><ul>
-<li>套件<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">bottender</a> 為這次實作跨平台所使用的框架</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/d-fischer/twitch">Twitch js</a> 中找到了 <a target="_blank" rel="noopener" href="https://d-fischer.github.io/twitch/docs/basic-usage/getting-started.html">npm 的套件</a></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add twitch</span><br><span class="line"><span class="comment">// or...</span></span><br><span class="line">npm install --save twitch</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>金鑰<ul>
-<li><del>申請 <a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/v5#getting-a-client-id">Client ID</a></del></li>
-<li>建立 <a target="_blank" rel="noopener" href="https://twitchapps.com/tmi/">Access Token</a></li>
-</ul>
-</li>
-</ul>
-<p>[2020&#x2F;06&#x2F;08 修正] 申請完後將 <code>oauth:</code> 後的 key 透過官方文件的 <a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/authentication/#validating-requests">Validating requests</a> 指令放入 access token 中取得 Client_id，如下:</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Authorization: OAuth &lt;access token&gt;&quot;</span> https:<span class="regexp">//i</span>d.twitch.tv<span class="regexp">/oauth2/</span>validate</span><br></pre></td></tr></table></figure>
-
-<p>本專案的 <code>TWITCH_CLIENT_ID</code> 的環境變數就是這個回傳值中的 <code>client_id</code>。</p>
-<blockquote>
-<p>這部分可能會需要去 twitch <code>設定 -&gt; 連結</code> 去綁定 Oauth 的樣子，再麻煩各位注意一下。</p>
-</blockquote>
-<ul>
-<li><p>平台</p>
-<ul>
-<li>需要有個 Facebook 粉絲頁</li>
-<li>LINE bot</li>
-</ul>
-</li>
-<li><p>資料庫</p>
-<ul>
-<li>MongoDB: Heroku 上為 <code>mLab</code></li>
-</ul>
-</li>
-</ul>
-<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>Clone 專案下來看 ➡️ <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot.git">https://github.com/louis70109/Twitch-Bot.git</a><br>首先把<code>.env.sample</code>改成 <code>.env</code>，並將對應的<code>Messenger</code>、<code>LINE</code>以及<code>Twtich</code> key 放置對應的位置</p>
-<ul>
-<li>Messenger 申請我是參考 C.T. Lin 的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218682">鐵人文章</a></li>
-<li>LINE bot 申請參考<a href="https://nijialin.com/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/">我的文章</a></li>
-</ul>
-<h2 id="跨平台"><a href="#跨平台" class="headerlink" title="跨平台"></a>跨平台</h2><p>跨平台含本地總共會有三個:</p>
-<ul>
-<li>Console (本地端)</li>
-<li>Messenger (線上)</li>
-<li>LINE (線上)</li>
-</ul>
-<p>Console 是 bottender 的特色之一，可以在終端機上直接測試 Bot 的行為，會先用此模式先測試路由的回覆是否正常。</p>
-<p>接著要讓同樣的 Action 可以導到 Messenger 以及 LINE，bottender 提供了可以設計針對特定平台處理 Action，如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; platform &#125; <span class="keyword">from</span> <span class="string">&#x27;bottender/router&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>): <span class="title">Promise</span>&lt;<span class="title">void</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> router([</span><br><span class="line">    platform(<span class="string">&#x27;line&#x27;</span>, LineAction),</span><br><span class="line">    platform(<span class="string">&#x27;messenger&#x27;</span>, MessengerAction),</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>透過<code>platform</code>來把特定平台的訊息到打對應的 Action (如 <code>LineAction</code>、<code>MessengerAction</code>)，在傳遞 Action 過程中會有一個 <code>context</code> 的變數，裡頭會有底層幫忙整理好的參數:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ConsoleContext &#123;</span><br><span class="line">  ...</span><br><span class="line">  _session: &#123;</span><br><span class="line">    _id: 5e08a45c719a1335aeae39bc,</span><br><span class="line">    id: <span class="string">&#x27;console:1&#x27;</span>,</span><br><span class="line">    _state: &#123;&#125;,</span><br><span class="line">    lastActivity: 1578743328620,</span><br><span class="line">    platform: <span class="string">&#x27;console&#x27;</span>,</span><br><span class="line">    user: &#123; id: <span class="string">&#x27;1&#x27;</span>, name: <span class="string">&#x27;you&#x27;</span>, _updatedAt: <span class="string">&#x27;2019-12-29T13:04:25.633Z&#x27;</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>_session</code> 裡有個 <code>platform</code> 的參數，只要判斷這參數就能知道訊息是來自哪個平台，而<code>user</code>則是被正規化完後的使用者資訊 (這兩個參數為目前為止我最常用的參數)</p>
-<h2 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h2><p>由於長期使用 LINE flex message 的 button template (<a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/view/line/games.ts#L56">參考</a>)，這按鈕事件可以設定按鈕上的文字並設定按下去回覆的字串。</p>
-<p>而 Messenger 的按鈕就跟人家不一樣了(<a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/view/messenger/games.ts#L22">參考</a>)！他沒有 LINE 的這個事件，差不多的事件只有 <code>postback</code>，在路由上就得特別處理這個事件，為了讓跨平台所使用的內容要統一，在訊息進 router 時就要處理掉:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; messenger &#125; <span class="keyword">from</span> <span class="string">&#x27;bottender/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; withProps &#125; <span class="keyword">from</span> <span class="string">&#x27;bottender&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">LineAction</span>(<span class="params">context</span>): <span class="title">Promise</span>&lt;<span class="title">void</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> router([</span><br><span class="line">    ...</span><br><span class="line">    text(<span class="regexp">/^[f|F]ind\s*(?&lt;topic&gt;.*)$/</span>, searchGame)</span><br><span class="line">    ...</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">MessengerAction</span>(<span class="params">context</span>): <span class="title">Promise</span>&lt;<span class="title">void</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> payload = context.event?.postback?.payload;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> router([</span><br><span class="line">    ...</span><br><span class="line">    messenger.postback(</span><br><span class="line">      withProps(searchGame, &#123; <span class="attr">match</span>: &#123; <span class="attr">groups</span>: &#123; <span class="attr">topic</span>: payload &#125; &#125; &#125;)</span><br><span class="line">    )</span><br><span class="line">    ...</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這邊找到 <a target="_blank" rel="noopener" href="https://bottender.js.org/docs/channel-messenger-routing">bottender 官方文件</a>中函式專門在處理 Messenger 的 postback 事件，並搭配<code>withProps</code>來幫忙把參數 postback 收到的參數傳進對應 Action。</p>
-<p>為什麼會要把傳入的參數設定成巢狀 object -&gt; <code>&#123; match: &#123; groups: &#123; topic: payload &#125;&#125;&#125;</code>，因為在設計初期本是希望進來的內容都是從<code>text</code>傳進來，意指都是透過使用者打字進來，那 bottender 都會透過傳 match 參數進來(<a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/controller/twitches/searchGame.ts#L7">參考</a>)，而解析完 Messenger 的 postback 時也得需要符合這樣的格式，因此就這樣設計，當然如果有更好的設計歡迎送 PR 🎉。</p>
-<h1 id="Chatbot-MVC"><a href="#Chatbot-MVC" class="headerlink" title="Chatbot MVC"></a>Chatbot MVC</h1><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/blob/master/src/model">Model</a></h2><ul>
-<li><code>Twitch</code>: 這裡我設定 userId 為 unique，針對每個平台有自己的 id，每個平台都可以綁定 twitch 帳號，進而去做相關操作。</li>
-<li><code>Game</code>: 因為 Twitch 套件這部分是<code>read only</code>，因此我就在建立一個一樣的 model 來處理。</li>
-</ul>
-<blockquote>
-<p>Twich id 是全開放的，只要知道其他使用者的 id 就可以查詢某些功能(<a target="_blank" rel="noopener" href="https://dev.twitch.tv/docs/v5">參考</a>)，這邊我就使用查詢<code>追隨</code>的功能。</p>
-</blockquote>
-<h2 id="View"><a href="#View" class="headerlink" title="View"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/tree/master/src/view">View</a></h2><p>這裡設計上只要屬於送出訊息相關的樣板(<code>Flex</code>、<code>Genetic</code>、<code>Text</code>)接放在此。</p>
-<ul>
-<li>common: <code>作者資訊(author)</code> 以及 <code>幫助我(help)</code> 的相關</li>
-<li>LINE: Flex message 相關樣板</li>
-<li>messenger: Genetic template 相關樣板</li>
-</ul>
-<h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot/tree/master/src/controller">Controller</a></h2><p>在呼叫 twitch api 出來的資料有時候會大於 LINE 以及 Messenger 的樣板限制，因此所有計算服務都會放在這邊，剛好就搭上 Controller 的對應功能。</p>
-<ul>
-<li>common: 負責將 controller 處理完的內容送至 <code>View</code></li>
-<li>twitch: 處理<code>最多人看得遊戲</code>以及<code>搜尋指定遊戲</code></li>
-<li>user: 處理<code>綁定</code>以及<code>查詢追隨</code></li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>基本上做到這如果之後要擴增<code>Telegram</code>或是<code>Slack</code>都可以很快速擴充，只要把相對只要把相對的 Action 加在 <code>App.ts</code> 就行了。</p>
-<p>藉由這次也學到跨平台的機器人真的不好做，每家廠牌的行為都不一樣，所幸 bottender 已經處理大部分平台間的問題，接著我們只需要將欲輸出的內容處理好對應框架所提供的功能去回傳給使用者，讓整體的開發可以更專注在開發功能上並更有彈性。</p>
-<p>歡迎各位幫我按個星星 ⭐️➡️ <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">https://github.com/louis70109/Twitch-Bot</a><br>也一起支持開源專案 <code>bottender</code>⭐️➡️ <a target="_blank" rel="noopener" href="https://github.com/Yoctol/bottender">https://github.com/Yoctol/bottender</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/10/2020-01-10-%E7%9A%84mur-mur/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/10/2020-01-10-%E7%9A%84mur-mur/" class="post-title-link" itemprop="url">2020/01/10 的mur mur</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-10 13:19:08" itemprop="dateCreated datePublished" datetime="2020-01-10T13:19:08+00:00">2020-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:04:15" itemprop="dateModified" datetime="2023-03-22T06:04:15+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">日記</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h1><p>其實本來也沒打算在我的部落格發這種 mur mur 文，但總覺得在前往更高層級時總是需要思考一下自己在做的事情是不是對的，接下來就在描述一下好了 😆</p>
-<h1 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h1><p>就在今天跟著大家一起看<code>GitHub</code> 全球最大軟體工程師交友平台的排名網站(可惜我貢獻還不夠多沒排進去 😭)<br><a target="_blank" rel="noopener" href="https://commits.top/taiwan.html">https://commits.top/taiwan.html</a></p>
-<p>看著各位為大神的排行榜中點來點去就碰巧點到了這篇文章<br><a target="_blank" rel="noopener" href="https://jaceju.net/be-a-senior-engineer/">https://jaceju.net/be-a-senior-engineer/</a></p>
-<p>而最近也是一直在想這問題</p>
-<blockquote>
-<p>「如何才有資格稱為資深工程師」</p>
-</blockquote>
-<p>以前總想著只要工作一陣子之後我就可以號稱我是 senior<br>但工作後又跑社群發現認識的一個比一個還強都覺得離他們好遠啊 👀</p>
-<p>但看完這篇之後也很慶幸自己身邊有那麼多貴人在幫助我往資深工程師的方向在走<br>但不管職稱是什麼我認為「自我反省」是一件很重要的事<br>小到文件錯字、大到系統 runtime 爆炸 🐛<br>都得從中去找到錯誤去找出讓自己成長的契機</p>
-<p>這是最近做了一個類似 AWS IoT Job 的 mur mur 🤣<br>讓自己成為更好的軟體工程師～</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1374,7 +1293,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">215</span>
+          <span class="site-state-item-count">217</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1387,7 +1306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">292</span>
+        <span class="site-state-item-count">293</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

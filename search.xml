@@ -16597,6 +16597,57 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
+    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
+<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
+</ol>
+<blockquote>
+<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
+<blockquote>
+<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
+</blockquote>
+<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
+<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
+<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
+<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
+<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
+<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
+</blockquote>
+<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
+<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
+<blockquote>
+<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>Cloud Run</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何有效使用 Quote Message</title>
     <url>/2023/10/08/line-bot-quote-message-reply-later/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
@@ -17018,6 +17069,41 @@ img[alt~="center"] {
       <tags>
         <tag>DevRel</tag>
         <tag>個人成長</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【滑板】彩虹輪狀車練習場道路指引</title>
+    <url>/2023/10/26/skateboard-rainbow-park/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於最近迷上了衝浪滑板，但本身又是一個很喜歡挑戰許多不同的地方，但因為我在<strong>彩虹輪狀車練習場</strong>外面迷路了很久，以下分享一下道路指引 😆</p>
+<p>地點：<a href="https://maps.app.goo.gl/U4GfNdgZdfG4HXrz6">https://maps.app.goo.gl/U4GfNdgZdfG4HXrz6</a></p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>這邊不是一個捷運會到的地方，如果從西湖捷運站過來的話，就需要搭 藍 7 or 藍 26 就可以到附近了；另外的選項也可以使用 GoShare or WeMoo 之類的共享機車即可前往。</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876101.jpg"></p>
+<p>一般抵達的路徑應該會在<a href="https://maps.app.goo.gl/Vostsxjf578t9HNi9">內湖科工 D-總部大樓</a>附近找不到入口，他有一個地下道可以過馬路，位置請參考如上圖。</p>
+<blockquote>
+<p>我在這邊迷路了好久 XD</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876104.jpg"></p>
+<p>會到一個地下道，這裡進來通常都已經開始滑了</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876105.jpg"></p>
+<p>出來之後還要爬一下河堤的樓梯，翻牆過去</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876106.jpg"></p>
+<p>上來之後就會看到很空曠的河堤以及極限運動場，傍晚來真的很漂亮！</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876107.jpg"></p>
+<p>這邊場地就有很多 pump 的地方，來玩的朋友一定要把護具都帶好再來，護腕、護肘、護膝、護墊都要帶好！我才看到有人裸裝直接摔，看了真的很痛 🥲</p>
+<blockquote>
+<p>之前因為挑戰 J 台而摔了一個大傷，大家來玩的時候要把一些基本的平衡都練好還是比較好喔</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>以上分享<strong>彩虹輪狀車練習場</strong>的道路指引給大家，台北有很多很棒的滑板場，推薦大家都去挑戰看看！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+      <tags>
+        <tag>Skateboard</tag>
+        <tag>滑板</tag>
       </tags>
   </entry>
   <entry>
