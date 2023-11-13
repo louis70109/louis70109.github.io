@@ -1,13 +1,15 @@
 ---
-title: 【標題】題目
-categories: 學習紀錄
+title: 在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像
 tags:
+  - Google
+  - Cloud Run
+  - LINE
+categories: LINE
+date: 2023-11-13 16:57:13
 ---
 
 
-![](https://nijialin.com/images/2023/)
 ![](https://nijialin.com/images/common.jpeg)
-
 
 # 前言
 
@@ -16,7 +18,6 @@ tags:
 <!-- more -->
 
 # 介紹
-
 
 ## 安裝 Chromium 在 Container 上
 
@@ -29,6 +30,8 @@ chromedriver-binary==77.0.3865.40.0
 ```
 
 2. 參考我的 Dockerfile ([URL](https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6)):
+
+> 參考來自 [dev.to](https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp)
 
 ```
 RUN apt-get update
@@ -45,13 +48,13 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 ## 在 LINE Bot 上需要的注意事項
 
-1. 輸出圖片需要提供URL ([API Doc](https://developers.line.biz/en/reference/messaging-api/#image-message))，這邊大家可以參考我過去寫的文章-[應用 - LINE Bot 收到圖片後傳到 GitHub 並使用](https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8)，透過 **Base64** 的方式從 GitHub API 上傳到 Repo 中
+1. 輸出圖片需要提供 URL ([API Doc](https://developers.line.biz/en/reference/messaging-api/#image-message))，這邊大家可以參考我過去寫的文章-[應用 - LINE Bot 收到圖片後傳到 GitHub 並使用](https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8)，透過 **Base64** 的方式從 GitHub API 上傳到 Repo 中
 2. 注意: Repo 要記得是 **Public** 喔! 否則 LINE Server 會讀不到檔案
 3. 網址組成為: `f"https://raw.githubusercontent.com/{USER}/{REPO_NAME}/{master || main}/{IMAGE_NAME}.png"`，記得別用到網頁上看到的名字喔！
-4. 建議使用 Push Message 的方式發出(可搭配回覆訊息Quote功能)，因為抓圖片以及上傳其實很花時間
+4. 建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間
    1. 如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用
 
-> 我自己日常紀錄的東西都放在[這個Repo](https://github.com/louis70109/ideas-tree)
+> 我自己日常紀錄的東西都放在[這個 Repo](https://github.com/louis70109/ideas-tree)
 
 ## 佈署在 Cloud Run
 
