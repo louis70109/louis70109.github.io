@@ -33,7 +33,6 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 
 - CYUT - Master 2015/09~2016/6
 - CYUT - Bachelor 2011/09~2015/6
--
 
 # Skills
 
@@ -128,13 +127,13 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 
 # Side project
 
-| ![](https://profile.line-scdn.net/0hsGinaQWSLGhUFznAy4hTP2hSIgUjOSogLHZgDnEVIFgtdW07OnA0DiYTJ1ouJW1qbnUzDXMXdFt9)                                                                                                                 | ![](https://profile.line-scdn.net/0hHMMGzWf-F2JwPjwfYXxoNUx7GQ8HEBEqCApZUVQ7HAFVDVFgTQsPBwA7GwZcXFZgTQxYBAI6HlRe) |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [寶可夢大師 LINE Bot](https://github.com/louis70109/find-your-pokemon)                                                                                                                                                            | [QR Code 產生器](https://github.com/louis70109/qrcode-background-generator)                                       |
-| ![](https://camo.githubusercontent.com/6b62fb5ab6f9b779a350440478cea6e3a308026231e0481a07f24252e981c668/68747470733a2f2f6e696a69616c696e2e636f6d2f696d616765732f323032312f62756c6c6574732f62756c6c6574732d73616d706c65312e676966) | ![](https://i.imgur.com/Rms5ZNG.png)                                                                              |
-| [Chatbot 彈幕](https://github.com/louis70109/Screen-LINE-Bullets)                                                                                                                                                                 | - [LINE Notify SDK](https://github.com/louis70109/lotify)                                                         |
-| ![](https://user-images.githubusercontent.com/6940010/181864807-d045bb08-b18f-48e3-820f-25ac703de02a.png)                                                                                                                         |                                                                                                                   |
-| [GCCP Creator](https://github.com/louis70109/GCCP-Creator)                                                                                                                                                                        |                                                                                                                   |
+|                                                                                                                                                                                                                                   |                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [寶可夢大師 LINE Bot](https://github.com/louis70109/find-your-pokemon)                                                                                                                                                            | [QR Code 產生器](https://github.com/louis70109/qrcode-background-generator) |
+| ![](https://camo.githubusercontent.com/6b62fb5ab6f9b779a350440478cea6e3a308026231e0481a07f24252e981c668/68747470733a2f2f6e696a69616c696e2e636f6d2f696d616765732f323032312f62756c6c6574732f62756c6c6574732d73616d706c65312e676966) | ![](https://i.imgur.com/Rms5ZNG.png)                                        |
+| [Chatbot 彈幕](https://github.com/louis70109/Screen-LINE-Bullets)                                                                                                                                                                 | - [LINE Notify SDK](https://github.com/louis70109/lotify)                   |
+| ![](https://user-images.githubusercontent.com/6940010/181864807-d045bb08-b18f-48e3-820f-25ac703de02a.png)                                                                                                                         |                                                                             |
+| [GCCP Creator](https://github.com/louis70109/GCCP-Creator)                                                                                                                                                                        | [Awesome Chatbot](https://github.com/Chatbot-Taiwan/AwesomeChatbots)        |
 
 - [肌肉仔](https://github.com/louis70109/muscle_man)
 - [2019 鐵人賽 Serverless 範例](https://github.com/louis70109/aws-python-line-api)
@@ -144,7 +143,6 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
   - [Article](https://nijialin.com/2020/08/27/chatbot-taichung-08/)
 - [動物森友會揪團機器人](https://github.com/louis70109/animal-crossing-bot)
 - [Announcer](https://github.com/louis70109/Announcer)
-
 
 # Others
 
