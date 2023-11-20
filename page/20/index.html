@@ -208,6 +208,114 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/" class="post-title-link" itemprop="url">Day26 - Use CDN (1) - 建立 Certificate 與 Domain</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-10 21:05:23" itemprop="dateCreated datePublished" datetime="2019-10-10T21:05:23+00:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-11-20 04:23:16" itemprop="dateModified" datetime="2023-11-20T04:23:16+00:00">2023-11-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>繼上一篇 warm-up 機制之後來了解一下如何使用 AWS 的 CDN 服務 - cloudfont，CDN 顧名思義就是要讓使用者可以到最接近的主機上去拉到對應的資料，透過撒點的方式讓主機去挑選離自己近的服務據點，藉此加速服務。</p>
+<p>像我之前部署在 ohio，想想光網路的時間 + Cold start 的時間就已經去了一大半，即便我們有熱開機，服務沒有 Timeout 我該慶幸了，既然如此就不得不認識一下 CDN 服務，而 AWS 的 CDN 服務就是 cloudfont 啦！</p>
+<p>只是說原本的 domain 已經有 SSL 了，但是代理沒有這個東西，所以我們要 ban 出一個 Certificate，那在在建立 cloudfont 以前需要先到 Certificate Manager，接著會用圖片帶大家一步一步做</p>
+<p><img src="https://i.imgur.com/vLLfKyr.png"></p>
+<h2 id="開始之前"><a href="#開始之前" class="headerlink" title="開始之前"></a>開始之前</h2><p>我已經有先在 Route53 註冊了一個 <code>nijialin.com</code> 的 domain，<code>.com</code>大概 10 美金左右，若是有在其他地方註冊域名的話要找一下相關文章把它導進 Route53 哦！</p>
+<h2 id="註冊-Certificate"><a href="#註冊-Certificate" class="headerlink" title="註冊 Certificate"></a>註冊 Certificate</h2><ul>
+<li>先來到 Certificate Manager 頁面，按下左下角的這個</li>
+</ul>
+<p><img src="https://i.imgur.com/WVk2YFJ.png"></p>
+<ul>
+<li>接著就直接按右下角啦，但是要確定是不是 public</li>
+</ul>
+<p><img src="https://i.imgur.com/sNxd3LG.png"></p>
+<ul>
+<li>這裡輸入你在 route53 註冊的 domain，這邊我是輸入 *.nijialin.com</li>
+</ul>
+<p><img src="https://i.imgur.com/FXnknbj.png"></p>
+<ul>
+<li>到第四部之後就會看到申請的 SSL Pending</li>
+</ul>
+<p><img src="https://i.imgur.com/WlY5PCf.png"></p>
+<ul>
+<li>最後回首頁之後就會看到 SSL 簽證正在送簽中<br><img src="https://i.imgur.com/kRRtvJ5.png"></li>
+</ul>
+<p>最後就等他完成嚕！將將<br><img src="https://i.imgur.com/495PjEw.png"><br>接著我們到 API Gateway 找到左邊的 <code>Custom Domain Name</code>，我們要來建立屬於這個 API 的 Domain 了<br><img src="https://i.imgur.com/BzkvgUR.png"><br>按下藍色的按鈕之後，輸入<code>Domain name</code>以及選擇剛剛註冊的 Certificate 後按下 <code>Save</code><br><img src="https://i.imgur.com/xwBEC5O.png"><br>他就會開始初始化剛剛的設定，這邊大概需要等 15 分鐘左右<br><img src="https://i.imgur.com/dLMaXrx.png"><br>在此同時我們就去新增專案裡的套件 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-domain-manager">Domain-Manager</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install serverless-domain-manager --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>並且在<code>plugin</code>下加入套件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-domain-manager</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>custom</code>底下加入</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">domainName:</span></span><br><span class="line">    <span class="attr">default:</span></span><br><span class="line">      <span class="attr">domainName:</span> <span class="string">line.nijialin.com</span></span><br><span class="line">      <span class="attr">certificateName:</span> <span class="string">&quot;*.nijialin.com&quot;</span></span><br><span class="line">      <span class="attr">createRoute53Record:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">endpointType:</span> <span class="string">edge</span></span><br></pre></td></tr></table></figure>
+
+<p>等待前面初始化成功之後部署這個專案<code>sls deploy</code>之後就會看到剛剛註冊的域名啟動囉！<br><img src="https://i.imgur.com/Pn2TyMD.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>在建立 Certificate 那邊倒沒什麼問題，畢竟需要一個 SSL，只是到了建立 domain 這邊遇到了很怪的問題，一般來說使用 serverless 框架來跑的話只要照的文件裡說的 <code>serverless create_domain</code>就會幫忙註冊，而且可以依照自己開發環境去自動設定，在公司的專案中這樣使用是沒問題的，在是在寫這篇文章時卻只能使用以上的方法來替代使用，雖然結果是一樣的，但是用起來實在是很不符合邏輯，google 也沒找到類似的問題，或許這個問題還要多實測幾次才夠…😭</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/10/welcome-line-api-expert/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1004,99 +1112,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/" class="post-title-link" itemprop="url">Day17 - 看一下自己寫的東西都去哪了</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-01 12:49:05" itemprop="dateCreated datePublished" datetime="2019-10-01T12:49:05+00:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用 Serverless 用得這麼爽，也是時候來看一下他的資源在哪，距離我上次自己手動上傳 python 檔已經是 N 個月之前的事了(遠望)，當時也沒用過什麼<code>Api Gateway</code>相關的服務，以下就帶大家來介紹一下嚕！</p>
-<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><h3 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h3><p>CloudFormation 是一個 AWS 所提供的 JSON-base 服務，主要是用來讓使用者能夠快速建立 AWS 的服務。</p>
-<blockquote>
-<p>這邊也不用擔心設定的問題，Serverless 再 deploy 的過程中會幫忙 CloudFormation 的 json 檔</p>
-</blockquote>
-<p><img src="https://i.imgur.com/mK9lYCD.png"><br>透過 CloudFormation 建立 JSON-based 的 template 你可以快速建立所需要的資源堆疊（stack）。</p>
-<p><img src="https://i.imgur.com/GzHh65j.jpg"><br>按下<code>Template</code>後如下圖所示，他會顯示你已經有建立的服務 Map，整個線牽起來看起來就很爽 XD<br><img src="https://i.imgur.com/bcg1f0a.png"></p>
-<h3 id="Api-Gateway"><a href="#Api-Gateway" class="headerlink" title="Api Gateway"></a>Api Gateway</h3><p>Serverless 建立過程中也會透過 CloudFormation 幫忙建立 Api Gateway，因為我們是用 <code>WSGI</code>，所以只會看到兩個<code>ANY</code>的路由。<br>點進去後就可以看到 Client 是怎麼進出的，最右邊是打到 AWS Lambda 上，可以點選上面的字進入 Lambda 所在地。<br><img src="https://i.imgur.com/GPVXsc9.jpg"></p>
-<h3 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h3><p>點選進來之後可以看到 Lambda 接了什麼服務，以我到目前的程式就會有<code>API Gateway</code>、<code>SQS</code>以及預設的<code>CloudWatch</code>(都是透過這個來看 log)<br><img src="https://i.imgur.com/0MYquqC.png"><br>接著往下會看到之前設定的<code>環境變數</code>以及<code>STAGE</code>，這些都是托<code>Serverless</code>的福免去這些麻煩的設定<br><img src="https://i.imgur.com/nwKK3xb.png"></p>
-<h3 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h3><p>Serverless 在過程中會在 S3 幫忙建立一個 Bucket，並在後面加個 hash key 以免 bucket 重複。<br><img src="https://i.imgur.com/flZtoFn.png"></p>
-<h3 id="Cloud-Watch-Log"><a href="#Cloud-Watch-Log" class="headerlink" title="Cloud Watch Log"></a>Cloud Watch Log</h3><p>在開始測試後 AWS 會幫忙在這個地方輸出 Log，<br><img src="https://i.imgur.com/t3Ki0gi.png"></p>
-<h3 id="Serverless-deploy-紀錄"><a href="#Serverless-deploy-紀錄" class="headerlink" title="Serverless deploy 紀錄"></a>Serverless deploy 紀錄</h3><h4 id="這邊使用-Serverless-deploy-verbose-就可以看到所有部署中的基本資訊了"><a href="#這邊使用-Serverless-deploy-verbose-就可以看到所有部署中的基本資訊了" class="headerlink" title="這邊使用 Serverless deploy --verbose 就可以看到所有部署中的基本資訊了"></a>這邊使用 <code>Serverless deploy --verbose</code> 就可以看到所有部署中的基本資訊了</h4><p>首先因為我們有使用<code>.env</code>，所以在一開始時會先設定環境變數，接著就是把相依套件的東西都放進去，再去啟動 CloudFormation<br><img src="https://i.imgur.com/yMKZfAQ.png"></p>
-<hr>
-<p>接著會建立一個 S3 的 Bucket，將程式透過 CloudFormation 處理成 <code>zip</code>的檔案格式並上傳到 S3 上面<br><img src="https://i.imgur.com/NDh2rU8.png"></p>
-<hr>
-<p>接著就會部署到 <code>Lambda</code> 以及 <code>Api Gateway</code> 上，並做對應 CloudFormation JSON 檔的設定<br><img src="https://i.imgur.com/7D4v9qS.png"></p>
-<hr>
-<p>在最後部署完之後就可以看到所有的基本資訊，物件名稱、部署階段、區域、網域以及 Function 們(因為 Lambda 是 Function-base 的服務)等等的基本資訊都會在此<br><img src="https://i.imgur.com/wCBixvO.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>以目前的架構基本上到這麼基本資訊都顯示出來了，若是有使用像是<code>Route 53</code>、<code>CloudFront</code>等等的服務它就會顯示在這邊了。雖然說 CloudFormation 在設定上已經很方便了，但不得不說 Serverless 真的幫忙做了很多事，讓開發者又更能專注在打 Code 上了～</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://medium.com/@chihsuan/cloudformation-%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%8B-aws-%E8%B3%87%E6%BA%90-d3378b096249">使用 CloudFormation 快速部署 AWS 資源</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1168,7 +1183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">217</span>
+          <span class="site-state-item-count">218</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

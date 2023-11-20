@@ -17072,6 +17072,31 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
+    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
+<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
+<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【滑板】彩虹輪狀車練習場道路指引</title>
     <url>/2023/10/26/skateboard-rainbow-park/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
@@ -17104,6 +17129,42 @@ img[alt~="center"] {
       <tags>
         <tag>Skateboard</tag>
         <tag>滑板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【入坑記】衝浪滑板</title>
+    <url>/2023/10/01/surfing-skateboard-rookie/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475307204158423368.png" alt="surfing skateboard"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
+<span id="more"></span>
+
+<h1 id="想那麼多幹嘛？買"><a href="#想那麼多幹嘛？買" class="headerlink" title="想那麼多幹嘛？買"></a>想那麼多幹嘛？買</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303260036006002.png"></p>
+<blockquote>
+<p>剛買它的第一天 2023&#x2F;9&#x2F;28</p>
+</blockquote>
+<p>我是在內湖的 ALL RIDE 購買 <a href="https://www.allride.com.tw/product/detail/15354">Hydroponic Fish 31.5” x 9.75” 衝浪滑板</a>，我的板子本身是 32” 的，店員提到差 0.5”是沒啥差的，主要還是在輪子跟靈敏度需要什麼，在考量上我可能會在河濱公園玩滑板(有柏油的地方)，因此推薦起來我還是選擇靈敏度低些，有些時候需要自主加速的衝浪板。</p>
+<p>剛來到店裡時店員臉真的很跩很有距離感 😆，但其實聊起來只是非常的做自己而已，只要稍微知道自己想購買的方向，但有許多不清楚的地方，都可以請他跟你解釋，當店員講完時就會發現自己想要的是什麼，幫助你選擇可以更快喔！但因為我一開始就打算買最便宜的(NTD 6,800)，因此我就以這款為主跟他討論～</p>
+<blockquote>
+<p>至於為什麼滑板店員臉都很跩，可以看看下面的影片 XD</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vr_jyGYcqS8?si=6orijF-txomUW5OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h1 id="護具：降低受傷的風險"><a href="#護具：降低受傷的風險" class="headerlink" title="護具：降低受傷的風險"></a>護具：降低受傷的風險</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303237705793734.png" alt="迪卡儂"></p>
+<p>護具我本來想皮不想戴，但想想如果都只基本滑行好像滿弱的？因此這邊跟大家了起來覺得可以先買個基本的全套 <strong>(手掌、護肘、護膝)</strong> ，至少要先保護好關節，誰知道初學一次的噴飛摔下去受傷會噴多少錢修復呢？因此我就先買個基本的保護著。</p>
+<blockquote>
+<p>護具在我玩的第三天就發會功用，我在學著 kick turn 時滑掉，在我下去時就剛好磨到手掌的地方，真的是好險有帶著，只是屁股剛好沒有防摔褲，寫文章✍️的當下，半邊水蜜桃還是受傷的狀態🥲</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303716225548738.png"></p>
+<p>雖然入坑真的是不便宜，荷包君再次哭泣，不過整體的體驗算是滿讚的，尤其練習平衡感以及各種轉彎真的是耗盡本肥宅的洪荒之力，每次出去玩都大噴汗，希望可以讓我稍微地瘦身一些些😆，更多內容就先讓我把水蜜桃的摔傷養好，後續再來繼續分享心得！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+      <tags>
+        <tag>Skateboard</tag>
+        <tag>Surfing</tag>
+        <tag>路滑</tag>
+        <tag>運動</tag>
       </tags>
   </entry>
   <entry>
@@ -17170,42 +17231,6 @@ img[alt~="center"] {
         <tag>快打旋風</tag>
         <tag>ROG Ally</tag>
         <tag>搖桿</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【入坑記】衝浪滑板</title>
-    <url>/2023/10/01/surfing-skateboard-rookie/</url>
-    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475307204158423368.png" alt="surfing skateboard"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
-<span id="more"></span>
-
-<h1 id="想那麼多幹嘛？買"><a href="#想那麼多幹嘛？買" class="headerlink" title="想那麼多幹嘛？買"></a>想那麼多幹嘛？買</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303260036006002.png"></p>
-<blockquote>
-<p>剛買它的第一天 2023&#x2F;9&#x2F;28</p>
-</blockquote>
-<p>我是在內湖的 ALL RIDE 購買 <a href="https://www.allride.com.tw/product/detail/15354">Hydroponic Fish 31.5” x 9.75” 衝浪滑板</a>，我的板子本身是 32” 的，店員提到差 0.5”是沒啥差的，主要還是在輪子跟靈敏度需要什麼，在考量上我可能會在河濱公園玩滑板(有柏油的地方)，因此推薦起來我還是選擇靈敏度低些，有些時候需要自主加速的衝浪板。</p>
-<p>剛來到店裡時店員臉真的很跩很有距離感 😆，但其實聊起來只是非常的做自己而已，只要稍微知道自己想購買的方向，但有許多不清楚的地方，都可以請他跟你解釋，當店員講完時就會發現自己想要的是什麼，幫助你選擇可以更快喔！但因為我一開始就打算買最便宜的(NTD 6,800)，因此我就以這款為主跟他討論～</p>
-<blockquote>
-<p>至於為什麼滑板店員臉都很跩，可以看看下面的影片 XD</p>
-</blockquote>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vr_jyGYcqS8?si=6orijF-txomUW5OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h1 id="護具：降低受傷的風險"><a href="#護具：降低受傷的風險" class="headerlink" title="護具：降低受傷的風險"></a>護具：降低受傷的風險</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303237705793734.png" alt="迪卡儂"></p>
-<p>護具我本來想皮不想戴，但想想如果都只基本滑行好像滿弱的？因此這邊跟大家了起來覺得可以先買個基本的全套 <strong>(手掌、護肘、護膝)</strong> ，至少要先保護好關節，誰知道初學一次的噴飛摔下去受傷會噴多少錢修復呢？因此我就先買個基本的保護著。</p>
-<blockquote>
-<p>護具在我玩的第三天就發會功用，我在學著 kick turn 時滑掉，在我下去時就剛好磨到手掌的地方，真的是好險有帶著，只是屁股剛好沒有防摔褲，寫文章✍️的當下，半邊水蜜桃還是受傷的狀態🥲</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303716225548738.png"></p>
-<p>雖然入坑真的是不便宜，荷包君再次哭泣，不過整體的體驗算是滿讚的，尤其練習平衡感以及各種轉彎真的是耗盡本肥宅的洪荒之力，每次出去玩都大噴汗，希望可以讓我稍微地瘦身一些些😆，更多內容就先讓我把水蜜桃的摔傷養好，後續再來繼續分享心得！</p>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
-      <tags>
-        <tag>Skateboard</tag>
-        <tag>Surfing</tag>
-        <tag>路滑</tag>
-        <tag>運動</tag>
       </tags>
   </entry>
   <entry>
