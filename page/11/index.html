@@ -208,6 +208,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/05/13/javascript-callback-promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/13/javascript-callback-promise/" class="post-title-link" itemprop="url">解決在 NodeJS 環境中遇到 Redis 套件的 Callback 的問題 | Promise 封裝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-13 11:45:59" itemprop="dateCreated datePublished" datetime="2021-05-13T11:45:59+00:00">2021-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期在想活動時想到之前有做個<a target="_blank" rel="noopener" href="https://github.com/louis70109/Screen-LINE-Bullets">彈幕機器人</a>，異想天開下想說在上面加個投票系統，不過為求方便想快速完成，因此想說用 Docker 啟動一個 Redis 來做個 PoC，因為當初為求前後端方便彈幕機器人就使用全 js 的方式撰寫，在很直觀找到最多星星的 Redis 套件 - <a target="_blank" rel="noopener" href="https://github.com/NodeRedis/node-redis">node-redis</a>，以下就分享我被 callback 雷到的經驗ＸＤ</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/13/javascript-callback-promise/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/05/02/how-to-debug-python-by-pycharm-tw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1054,110 +1146,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/03/22/translate-richmenu-personalize/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/22/translate-richmenu-personalize/" class="post-title-link" itemprop="url">【翻譯】如何個性化在 LINE 中顯示 Rich Menu 以匹配用戶的語系</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-03-22 03:59:30" itemprop="dateCreated datePublished" datetime="2021-03-22T03:59:30+00:00">2021-03-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BF%BB%E8%AD%AF/" itemprop="url" rel="index"><span itemprop="name">翻譯</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img src="https://nijialin.com/images/2021/translate/richmenu-personalize/1.png"></p>
-<blockquote>
-<p>翻譯來自泰國的 Jirawatee 的<a target="_blank" rel="noopener" href="https://medium.com/linedevth/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B9%81%E0%B8%AA%E0%B8%94%E0%B8%87%E0%B8%9C%E0%B8%A5-rich-menu-%E0%B9%83%E0%B8%99-line-%E0%B9%81%E0%B8%9A%E0%B8%9A-personalize-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99-9c3fd2083ba7">文章</a></p>
-</blockquote>
-<p>在過去的一年中，Rich Menu 上的文章非常受歡迎，它的優點是在用戶聊天頁面上顯示重要的**選單(Menu)**並可以選擇各種操作，降低用戶使用官方帳號的門檻。而對於擁有 LINE 正式帳戶或 LINE Chatbot 的用戶而言，加上創建步驟是相當簡單的，可以透過 <a target="_blank" rel="noopener" href="https://manager.line.biz/">Official Account 後台</a>或是讓具有程式能力的朋友透過呼叫 API 的方式建立 Rich Menu，若能這麼容易就建立 Rich Menu，那麼成為每個帳戶必須具備的基本功能也就不足為奇了。</p>
-<p>本文中我將邀請所有人開發一個 Rich Menu，以便能夠顯示出來每個用戶在手機上使用的語系。首先必須知道的是 “<strong>該用戶使用哪種語言？</strong>”，我們可以透過哪種方式獲取用戶手機上的語系，早期我們只能取得 <code>userId</code>、<code>displayName</code>、<code>pictureUrl</code>和<code>statusMessage</code>，而現今 LINE 已在用戶的個人資料訊息中添加了一個 <strong>language</strong> 參數以供使用。</p>
-<p>到目前為止，我們已經準備好了想法。因此，讓我們看一下開發它的步驟：</p>
-<ol>
-<li>準備使用 Cloud Functions for Firebase 開發的 LINE Chatbot</li>
-<li>準備<strong>泰語</strong>和<strong>英語</strong>的 Rich Menu</li>
-<li>建立條件以獲取 Follow 類型 Webhook 的事件</li>
-<li>從用戶個人資料中取得 “<strong>language</strong>” 參數</li>
-<li>讓用戶匹配對應語系的 Rich Menu</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/22/translate-richmenu-personalize/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1229,7 +1217,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">218</span>
+          <span class="site-state-item-count">219</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

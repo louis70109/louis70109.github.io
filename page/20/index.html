@@ -208,6 +208,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/11/Day27-Use-CDN-2-CloudFront/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/11/Day27-Use-CDN-2-CloudFront/" class="post-title-link" itemprop="url">Day27 - Use CDN (2) - CloudFront</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-11 13:06:26" itemprop="dateCreated datePublished" datetime="2019-10-11T13:06:26+00:00">2019-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不管是建立虛擬機(EC2)，又或是像我們建立 Serverless 的服務(Lambda)，總會挑選離自己家近的節點(東京)，又或者可能因為價錢的關係選擇相對便宜的地點，但不管機器在哪，對於在台灣的我們來說都是一樣跨海啊！但好險台灣擁有 CloudFront 的節點，透過快取讓使用者可以更快的取得服務器上的資源，可能第一次都會比較慢，但只要讓 CloudFront 看過一次就會幫忙快取起來，下次使用者在用的時候就不會那麼慢囉！</p>
+<h2 id="建立-CDN"><a href="#建立-CDN" class="headerlink" title="建立 CDN"></a>建立 CDN</h2><p>首先我們先進去 CloudFront 的頁面，按下左欄的<code>Distribution</code>後並 <code>Create</code>的藍色按鈕<br><img src="https://i.imgur.com/WQ5o8rl.png"><br>因為我們是做 Web API 相關的，這邊當然就是選 Web 囉！<br><img src="https://i.imgur.com/htzGaGA.png"><br>到了這邊，AWS 很有心的在這些輸入框大多都有下拉式選單，這邊就選建立完的那個專案名稱<br><img src="https://i.imgur.com/ntJu1Cm.jpg"><br>選完之後下面三個就照著這樣點選，Comment 會幫你自動填入<br><img src="https://i.imgur.com/XkbNkfz.png"><br>CNAMEs 的部分這邊我填入我在 <code>serverless.yml</code>裡 create_domain 所設定的 <code>line.nijia.lin</code> 字串，SSL 就選擇上一篇所建立的 Certificate<br><img src="https://i.imgur.com/SdnaZhe.png"><br>建立完成之後就會看到他 <code>In progress</code>，CloudFront 就開始撒點告訴其他節點有建立這個名為 <code>line.nijia.lin</code>，有看到他的時候記得幫他做個 Cache<br><img src="https://i.imgur.com/RibhSWw.png"><br>等個大概 15 分鐘後他就部署完成啦～<br><img src="https://i.imgur.com/kHYSETU.png"><br>點進來可以確認自己剛剛設定的資訊對不對，若有設定錯誤在按 Edit 來修正<br><img src="https://i.imgur.com/HdCn9ue.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>現在每個服務都很流行 CDN，若有在寫前端的朋友常常就會用到 jQuery、Bootstrap、Vue 等等可以再標頭檔就引入的 CDN 路徑，CDN 不僅加速我們平常在抓伺服器資料的速度，也便利了我們有時候需要寫一些簡單的靜態頁面時可以透過抓取 CDN 路徑來快速取得需要的資源，但是像是 AWS 他們都是收取流量費，用得很爽時別忘了看一下自己的帳單是不是在哀嚎 🤣</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -239,7 +315,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-11-20 04:23:16" itemprop="dateModified" datetime="2023-11-20T04:23:16+00:00">2023-11-20</time>
+                <time title="修改時間：2023-11-21 16:49:28" itemprop="dateModified" datetime="2023-11-21T16:49:28+00:00">2023-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1024,94 +1100,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/02/Day18-%E5%9C%A8-Serverless-%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%80%8B%E6%8E%92%E7%A8%8B%E4%BE%86%E7%99%BC%E9%80%81%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93%E6%AA%A2%E6%B8%AC%E5%90%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/02/Day18-%E5%9C%A8-Serverless-%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%80%8B%E6%8E%92%E7%A8%8B%E4%BE%86%E7%99%BC%E9%80%81%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93%E6%AA%A2%E6%B8%AC%E5%90%A7/" class="post-title-link" itemprop="url">Day18 - 在 Serverless 上設定個排程來發送空氣污染檢測吧</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-02 12:55:35" itemprop="dateCreated datePublished" datetime="2019-10-02T12:55:35+00:00">2019-10-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>過往寫了這麼多的 api，總是會有特定的功能會需要輪詢資料庫或是監聽某些事件，以前還要到弄個虛擬機寫腳本用 crontab，這時候 Lambda 的用處就來啦！不只可以處理 api 的事情，還可以設定排程做事，太舒服啦，以下就來介紹一下～</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>首先在 <code>consumer</code> 資料夾下<code>line_bot_alert.py</code>，再寫一段需要定時跑的程式，這邊我去抓中央氣象局的資料，大概簡單判斷一下區域以及算出他的範圍：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">alert_handler</span>(<span class="params">event, context</span>):</span></span><br><span class="line">    air = requests.get(</span><br><span class="line">        <span class="string">&#x27;http://opendata.epa.gov.tw/webapi/Data/REWIQA/?$orderby=SiteName&amp;$skip=0&amp;$top=1000&amp;format=json&#x27;</span>)</span><br><span class="line">    air_body = json.loads(air.text)</span><br><span class="line">    air_status = [<span class="string">&quot;良好&quot;</span>,	<span class="string">&quot;普通&quot;</span>,	<span class="string">&quot;對敏感族群不健康&quot;</span>,	<span class="string">&quot;對所有族群不健康&quot;</span>,	<span class="string">&quot;非常不健康&quot;</span>,	<span class="string">&quot;危害&quot;</span>, <span class="string">&quot;資料有誤&quot;</span>]</span><br><span class="line">    total, count = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> fetch <span class="keyword">in</span> air_body:</span><br><span class="line">        <span class="keyword">if</span> (fetch[<span class="string">&#x27;County&#x27;</span>] == <span class="string">&quot;臺中市&quot;</span> <span class="keyword">and</span> (fetch[<span class="string">&#x27;SiteName&#x27;</span>] == <span class="string">&quot;西屯&quot;</span> <span class="keyword">or</span> fetch[<span class="string">&#x27;SiteName&#x27;</span>] == <span class="string">&quot;沙鹿&quot;</span>)):</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> fetch[<span class="string">&#x27;AQI&#x27;</span>] != <span class="number">0</span>:</span><br><span class="line">                total = total + <span class="built_in">int</span>(fetch[<span class="string">&#x27;AQI&#x27;</span>])</span><br><span class="line">    switch = <span class="number">0</span></span><br><span class="line">    pm = <span class="built_in">int</span>(total / count)</span><br><span class="line">    print(pm)</span><br><span class="line">    <span class="keyword">if</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">50</span>):</span><br><span class="line">        switch = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">51</span>, <span class="number">100</span>):</span><br><span class="line">        switch = <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">101</span>, <span class="number">150</span>):</span><br><span class="line">        switch = <span class="number">2</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">151</span>, <span class="number">200</span>):</span><br><span class="line">        switch = <span class="number">3</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">201</span>, <span class="number">250</span>):</span><br><span class="line">        switch = <span class="number">4</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">251</span>, <span class="number">300</span>):</span><br><span class="line">        switch = <span class="number">5</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        switch = <span class="number">6</span></span><br><span class="line">    payload = <span class="string">f&quot;\n空氣品質: <span class="subst">&#123;air_status[switch]&#125;</span>&quot;</span></span><br><span class="line">    r = requests.post(<span class="string">&#x27;https://1uv2o723o4.execute-api.us-east-1.amazonaws.com/dev/notify/sqs&#x27;</span>,</span><br><span class="line">                      data=&#123;<span class="string">&#x27;message&#x27;</span>: payload&#125;)</span><br><span class="line">    print(r)</span><br></pre></td></tr></table></figure>
-
-<p>在<code>serverless.yml</code>的 function 下面加入 Lambda，handler 就是 <code>資料夾/檔案.類別</code>，設定事件(event)排程一分鐘一次</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">function:</span></span><br><span class="line">  <span class="attr">line_bot_alert:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">consumer/line_bot_alert_handler.alert_handler</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">schedule:</span> <span class="string">rate(1</span> <span class="string">minute)</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>AWS Lambda 有兩種設定排程的方法，<code>rate</code>以及<code>cron</code>，若是比較固定時建議用<code>rate</code>，比較複雜的排程就可以讓<code>cron</code>來，下面兩張圖分別是來自 <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html">AWS</a> &gt; <img src="https://i.imgur.com/r9ZaBhO.png"></p>
-</blockquote>
-<hr>
-<p><img src="https://i.imgur.com/BLrbUPP.png"></p>
-<p>下<code>sls deploy</code>部署之後就會看到剛剛做<code>line_bot_alert</code>的<code>function</code>，他每分鐘都在跑，若玩完之後不想用了可以下<code>sls remove</code>把上面有的東西刪掉嚕！<br><img src="https://i.imgur.com/0tpDSdf.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>其實還有很多應用可以實作排程，像是有朋友就用 GCP 的來定時發文 🤣，而且可以把腳本寫得像是 api 一樣，讓整個靈活性都增加了不少，下一篇就帶大家來做 LINE Login 嚕！</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html">AWS document</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1183,7 +1171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">218</span>
+          <span class="site-state-item-count">219</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

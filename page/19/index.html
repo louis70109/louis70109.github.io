@@ -208,6 +208,141 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(1) - Seamless device migration using LINE secure backup</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-21 06:58:09" itemprop="dateCreated datePublished" datetime="2019-11-21T06:58:09+00:00">2019-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Seamless-device-migration-using-LINE-secure-backup"><a href="#Seamless-device-migration-using-LINE-secure-backup" class="headerlink" title="Seamless device migration using LINE secure backup"></a>Seamless device migration using LINE secure backup</h1><p><img src="https://i.imgur.com/IWGmnvQ.jpg"></p>
+<p>簡報連結: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/seamless-device-migration-using-line-secure-backups">LINE Dev Day 2019</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，這次被 LINE 邀請來參加 LINE Developer Day 2019。<br>經由 每位負責人的 Keynote 開場完後就是會眾們開始聽議程的時候了，我選擇跟資安相關的主題來開始我今日的第一場議程，想想在接觸資安時還是大學時期呢(遠望)。</p>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>開場不免俗的一定是要自我介紹並說主要大綱，講者本身為一個駭客並是 <a target="_blank" rel="noopener" href="https://github.com/SideChannelMarvels">Side-Channel Marvels</a> 成員之一，在 GitHub 上坐了一個逆向工程的工具 - <a target="_blank" rel="noopener" href="https://github.com/QBDI/QBDI">QBDI</a>。而作為一個 Hacker 破壞當然對他們來說是相對簡單，但換個方向來看，就是透過滲透測試來建立更完整的服務內容，的確在真實世界上要摧毀一個服務是相對容易的！</p>
+<p>但講者是在 LINE 這種規模較大的公司裡做滲透測試，在滲透後做完測試報告時需要顧慮到其他開發團隊的工作時程問題，也許這個漏洞在實際服務運轉上的容錯率是相對高的話，就可以讓開發團隊安排時程去修補漏洞而避免延遲產品上線時間。</p>
+<p> <img src="https://i.imgur.com/r60FVBM.jpg"></p>
+<p>這邊主要提到一些 <strong>加密協定原則</strong> 以及傳統訊息傳送都是怎麼做。<br><img src="https://i.imgur.com/wJHnXMz.jpg"><br>接著說到帳號轉移裝置時的問題，今天要從舊的裝置備份到新裝置時，若透過 Server 的話他只有加密過後的資料，如此一來根本無法備份過去，而 end-to-end 的備份的話會遇到以下問題：</p>
+<ul>
+<li>會受到各種通訊協定的問題(wifi, Bluetooth, NFC…)</li>
+<li>ios - andriod 不同裝置相容性問題</li>
+<li>需要重新建構訊息模型</li>
+<li>要怎麼處理來自 parameter 的攻擊<ul>
+<li>Hacker 透過中間人攻擊</li>
+<li>會透過各種狀態來找尋漏洞 (BGP, DNS, Certificate PKI…)</li>
+</ul>
+</li>
+</ul>
+<h2 id="UX-x-Security"><a href="#UX-x-Security" class="headerlink" title="UX x Security"></a>UX x Security</h2><p>前面簡單介紹一些備份上的問題以裝置間的問題，接下來就進入如何在最好的使用者體驗上並擁有資訊安全：</p>
+<h3 id="若要最好的使用者體驗-Best-UX"><a href="#若要最好的使用者體驗-Best-UX" class="headerlink" title="若要最好的使用者體驗 - Best UX"></a>若要最好的使用者體驗 - Best UX</h3><p><img src="https://i.imgur.com/E3N0d5l.jpg" alt="流程"></p>
+<ul>
+<li>✅不需要在意裝置間的問題</li>
+<li>❌會被駭客透過中間人攻擊去塞有問題的資料</li>
+<li>❌安全層級等於零</li>
+</ul>
+<blockquote>
+<p>這樣公司就不用運作啦 (笑)</p>
+</blockquote>
+<h3 id="最安全的等級但最差的-UX"><a href="#最安全的等級但最差的-UX" class="headerlink" title="最安全的等級但最差的 UX"></a>最安全的等級但最差的 UX</h3><p><img src="https://i.imgur.com/RFkmVAE.jpg" alt="Best security"></p>
+<ul>
+<li>✅Private key 加密過並且擁有最難破解的密碼</li>
+<li>❌使用者根本記不得這密碼</li>
+<li>❌密碼過於複雜</li>
+</ul>
+<blockquote>
+<p>這邊講者有補充若是只有六位數的密碼他大概有 <strong>一百萬</strong> 種可能性，可以透過暴力破解的方式就解決，且有大約 <strong>10%</strong> 的密碼是重覆性很高的，因此還是建議擁有大小寫以及特殊符號是相對好！</p>
+</blockquote>
+<p>每天都會有弱密碼出現於生活中</p>
+<ul>
+<li>combination padlock<ul>
+<li>硬體設備都用很弱的加密協定</li>
+</ul>
+</li>
+<li>Banking card PIN<ul>
+<li>很容易出現像是 <strong>生日</strong> 這類的密碼</li>
+</ul>
+</li>
+<li>smart phone lock screen<ul>
+<li>使用者求快 </li>
+<li>ARM trustZone &#x2F; apple secure</li>
+</ul>
+</li>
+</ul>
+<h2 id="Server-Side-相關相關加密元件"><a href="#Server-Side-相關相關加密元件" class="headerlink" title="Server Side 相關相關加密元件"></a>Server Side 相關相關加密元件</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trusted_execution_environment">Trusted execution environment(TEE)</a>: 保護 process 相關</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trusted_Platform_Module">Trusted Platform Module(TPM)</a>: 微控制器相關加密元件</li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97">Hardware security module(HSM)</a>: 一種用於保障和管理強認證系統所使用的數字金鑰，並同時提供相關密碼學操作的電腦硬體裝置。</li>
+</ul>
+<h2 id="HSM-in-backups"><a href="#HSM-in-backups" class="headerlink" title="HSM in backups"></a>HSM in backups</h2><p>接著就介紹是如何透過 HSM 的硬體元件來處理備份資料資安的問題<br><img src="https://i.imgur.com/CSkYEHD.jpg"><br>透過硬體(HSM)來幫忙加密確保每一段上傳下載都是安全且可加解密，使用者在這過程中也不需要輸入一大串的密碼就只顧及資訊安全而放棄 UX，而在 HSM 當中會將私鑰安全的存下來，不用擔心會有被攔取之類的問題。</p>
+<p>由於 HSM 經過雙重加密認證達到資訊安全且是安全的儲存下來，因此不會因為被抓到之後就馬上被解開，確保整個資料傳遞上的安全性。</p>
+<p><img src="https://i.imgur.com/A6Mo2mw.jpg"><br>上圖則為 HSM 簽證公鑰的註冊流程，經由一連串的加密把它存成二進制 source code，且裝置還是能使用 public key 來解開這個二進制檔案，如此一來在備份到新裝置上就不用擔心整包資料的安全性了！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我們在實作的網站在沒什麼流量時都不太需要注意資安相關，但當系統請求越來越大或是有金流時在每段的加解密終究都相對重要很多，且在建立 UX 以及 Security 之間要如何平衡也是個重要的議題，如同講者說的，在做這些技術的同時且站在巨人的肩膀上(LINE)對於白帽駭客的成就感是源源不絕的，能夠透過滲透來讓我們每天在用的東西更加完整也是很棒的一個作法😊。</p>
+<p>而過往在聽駭客朋友們在聊都是在講 <a target="_blank" rel="noopener" href="https://www.techbang.com/posts/1826-waf-web-host-bridge-is-falling-down">WAF</a> 較多是在講 Web application 相關的，這次聽到的 HSM 功能看起來雖然很相似，但看來是叫專注在資料的加解密當中，或許當中應該還有更深入的功能還未提到，透過這個議程認識到新的東西也是一大收穫😁。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/12/sentry-in-serverless/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1169,82 +1304,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/11/Day27-Use-CDN-2-CloudFront/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/11/Day27-Use-CDN-2-CloudFront/" class="post-title-link" itemprop="url">Day27 - Use CDN (2) - CloudFront</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-11 13:06:26" itemprop="dateCreated datePublished" datetime="2019-10-11T13:06:26+00:00">2019-10-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不管是建立虛擬機(EC2)，又或是像我們建立 Serverless 的服務(Lambda)，總會挑選離自己家近的節點(東京)，又或者可能因為價錢的關係選擇相對便宜的地點，但不管機器在哪，對於在台灣的我們來說都是一樣跨海啊！但好險台灣擁有 CloudFront 的節點，透過快取讓使用者可以更快的取得服務器上的資源，可能第一次都會比較慢，但只要讓 CloudFront 看過一次就會幫忙快取起來，下次使用者在用的時候就不會那麼慢囉！</p>
-<h2 id="建立-CDN"><a href="#建立-CDN" class="headerlink" title="建立 CDN"></a>建立 CDN</h2><p>首先我們先進去 CloudFront 的頁面，按下左欄的<code>Distribution</code>後並 <code>Create</code>的藍色按鈕<br><img src="https://i.imgur.com/WQ5o8rl.png"><br>因為我們是做 Web API 相關的，這邊當然就是選 Web 囉！<br><img src="https://i.imgur.com/htzGaGA.png"><br>到了這邊，AWS 很有心的在這些輸入框大多都有下拉式選單，這邊就選建立完的那個專案名稱<br><img src="https://i.imgur.com/ntJu1Cm.jpg"><br>選完之後下面三個就照著這樣點選，Comment 會幫你自動填入<br><img src="https://i.imgur.com/XkbNkfz.png"><br>CNAMEs 的部分這邊我填入我在 <code>serverless.yml</code>裡 create_domain 所設定的 <code>line.nijia.lin</code> 字串，SSL 就選擇上一篇所建立的 Certificate<br><img src="https://i.imgur.com/SdnaZhe.png"><br>建立完成之後就會看到他 <code>In progress</code>，CloudFront 就開始撒點告訴其他節點有建立這個名為 <code>line.nijia.lin</code>，有看到他的時候記得幫他做個 Cache<br><img src="https://i.imgur.com/RibhSWw.png"><br>等個大概 15 分鐘後他就部署完成啦～<br><img src="https://i.imgur.com/kHYSETU.png"><br>點進來可以確認自己剛剛設定的資訊對不對，若有設定錯誤在按 Edit 來修正<br><img src="https://i.imgur.com/HdCn9ue.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>現在每個服務都很流行 CDN，若有在寫前端的朋友常常就會用到 jQuery、Bootstrap、Vue 等等可以再標頭檔就引入的 CDN 路徑，CDN 不僅加速我們平常在抓伺服器資料的速度，也便利了我們有時候需要寫一些簡單的靜態頁面時可以透過抓取 CDN 路徑來快速取得需要的資源，但是像是 AWS 他們都是收取流量費，用得很爽時別忘了看一下自己的帳單是不是在哀嚎 🤣</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1316,7 +1375,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">218</span>
+          <span class="site-state-item-count">219</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
