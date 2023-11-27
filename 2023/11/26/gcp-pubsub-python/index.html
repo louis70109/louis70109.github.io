@@ -45,7 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://nijialin.com/images/2023/pubsub/5.png">
 <meta property="og:image" content="https://nijialin.com/images/2023/pubsub/code.png">
 <meta property="article:published_time" content="2023-11-26T22:52:34.000Z">
-<meta property="article:modified_time" content="2023-11-27T03:25:59.638Z">
+<meta property="article:modified_time" content="2023-11-27T04:20:24.700Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="LINE">
@@ -255,7 +255,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-11-27 03:25:59" itemprop="dateModified" datetime="2023-11-27T03:25:59+00:00">2023-11-27</time>
+                <time title="修改時間：2023-11-27 04:20:24" itemprop="dateModified" datetime="2023-11-27T04:20:24+00:00">2023-11-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,6 +333,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>接著可以在本地端 <code>python pub.py</code> 來把消息疼過 GCP CRED 打上去 Pub&#x2F;Sub，接下來看一下訊息有沒有轉打到 Cloud Run。</p>
 <blockquote>
 <p>如果測試發現有任何環節看不到，可以先在本地端把 API Server 起起來，然後用 ngrok 之類代理本地服務去測試，並且把 Pub&#x2F;Sub 服務的網址先換掉來 debug，接著再看看 pub.py 是否有東西沒準備好</p>
+</blockquote>
+<blockquote>
+<p>ngrok 可以參考這篇文章 - <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10249308">Day 20 GCP 公有雲_雲端事件消息傳遞服務實戰 - Pub&#x2F;Sub 組建測試之路</a></p>
 </blockquote>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
 
