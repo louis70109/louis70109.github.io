@@ -16079,107 +16079,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</title>
-    <url>/2023/11/26/gcp-pubsub-python/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/pubsub/OIG.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章為 2023&#x2F;12&#x2F;09 DevFest Taichung Serverless workshop 步驟文章，如果有需要透過 GCP Pub&#x2F;Sub 將訊息轉打給訂閱的 Cloud Run endpoint，可以參考看看這篇文章喔！</p>
-<span id="more"></span>
-
-<h1 id="前置準備"><a href="#前置準備" class="headerlink" title="前置準備"></a>前置準備</h1><ul>
-<li>需要有 GCP 的帳戶，有綁信用卡可開啟服務，且需要開啟個專案</li>
-<li>需要有 LINE 帳號，且要能登入 <a href="https://developers.line.biz/console/">LINE Developer Console</a><ul>
-<li>要能開啟一個 Provider + Channel</li>
-</ul>
-</li>
-</ul>
-<h1 id="服務使用介紹"><a href="#服務使用介紹" class="headerlink" title="服務使用介紹"></a>服務使用介紹</h1><p><img src="https://nijialin.com/images/2023/pubsub/1.png"></p>
-<p>首先到 GCP 上的 <a href="https://console.cloud.google.com/cloudpubsub/topic/create">Pub&#x2F;Sub 服務</a>中按下<strong>建立主題</strong>，這邊很貼心的下方也有加上晚點會使用到的 topic name</p>
-<p><img src="https://nijialin.com/images/2023/pubsub/2.png"></p>
-<p>進到 Topic 頁面，往下滑找到<strong>建立訂閱項目</strong>，建立一個<strong>項目 ID</strong>，稍候測試與設定會需要用它</p>
-<p><img src="https://nijialin.com/images/2023/pubsub/3.png"></p>
-<p>接著來到工作坊的專案<a href="https://github.com/gcp-serverless-workshop/notifier-line">gcp-serverless-workshop&#x2F;notifier-line</a>下，按下下方的佈署按鈕，接下來會進入 Cloud Shell 的部分</p>
-<p><img src="https://nijialin.com/images/2023/pubsub/cloudshell.png"></p>
-<blockquote>
-<p>Cloud Shell 有上限：<a href="https://cloud.google.com/shell/docs/quotas-limits">https://cloud.google.com/shell/docs/quotas-limits</a></p>
-</blockquote>
-<h2 id="LINE-Bot-建立與設定-Cloud-Run-環境變數"><a href="#LINE-Bot-建立與設定-Cloud-Run-環境變數" class="headerlink" title="LINE Bot 建立與設定 Cloud Run 環境變數"></a>LINE Bot 建立與設定 Cloud Run 環境變數</h2><p>接著是建立官方帳號，詳細步驟請參考 <a href="https://developers.line.biz/en/docs/messaging-api/getting-started/#step-one-enable-use-of-messaging-api">LINE Developers 官方文件</a>，主要我們要做到可以<a href="https://developers.line.biz/en/docs/messaging-api/building-bot/#setting-webhook-url">設定 webhook URL 這個部分</a>，把剛剛佈署完的 Cloud Run 網址複製到 Webhook 欄位上： <code>https://CLOUD_RUN_URL/webhooks/line</code> (如果是使用這個<a href="https://github.com/gcp-serverless-workshop/notifier-line">範例專案</a>)</p>
-<p><img src="https://nijialin.com/images/2023/pubsub/6.png"></p>
-<ul>
-<li>需要到 <a href="https://manager.line.biz/">Official Account Manager</a>將 LINE Bot 群組功能打開，以供測試使用</li>
-<li>將 LINE Bot 的 ACCESS—TOKEN 以及 SECRET 放入 Cloud Run 環境變數中<ul>
-<li>LINE_CHANNEL_ACCESS_TOKEN&#x3D;your_line_channel_access_token</li>
-<li>LINE_CHANNEL_SECRET&#x3D;your_line_channel_secret</li>
-</ul>
-</li>
-<li>把 Event 當中的 LINE 群組 ID 存下來放在 Cloud Run 環境變數中<ul>
-<li>LINE_GROUP_ID&#x3D;</li>
-</ul>
-</li>
-</ul>
-<h2 id="回到-GCP-Pub-x2F-Sub-上"><a href="#回到-GCP-Pub-x2F-Sub-上" class="headerlink" title="回到 GCP Pub&#x2F;Sub 上"></a>回到 GCP Pub&#x2F;Sub 上</h2><p><img src="https://nijialin.com/images/2023/pubsub/4.png"></p>
-<p>這部份把 Cloud Run 的 Domain 設定到 訂閱項目 ID(Subscribe Topic ID)上，進入到上圖的畫面，按下<strong>編輯</strong></p>
-<p><img src="https://nijialin.com/images/2023/pubsub/5.png"></p>
-<p>把傳送類型從 <strong>提取</strong> -&gt; <strong>推送</strong>，並且把**端點網址(Endpoint)**換成 Cloud Run 的 Domain，並加上 <code>/sub</code> (專案設定的路徑)</p>
-<h2 id="寫一個-pub-py-來試試看"><a href="#寫一個-pub-py-來試試看" class="headerlink" title="寫一個 pub.py 來試試看"></a>寫一個 pub.py 來試試看</h2><p>參考 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/pub.py">gcp-serverless-workshop&#x2F;notifier-line</a>，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：</p>
-<ul>
-<li>需到 GCP Service Accounts 中拿取一把金鑰，<code>放到本專案當中</code>，是 JSON 格式，並且把路徑置換<ul>
-<li>第 9 行：<code>os.environ[&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;] = &#39;YOUR_GCP_CA_PATH&#39;</code><ul>
-<li>開啟終端機，執行 <code>pwd</code>，並且把檔案名字加在路徑後方</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>第 12 行：project_id &#x3D; “換成你 GCP Project ID”</li>
-<li>第 13 行：topic_id &#x3D; “你剛剛建立的 TOPIC ID”</li>
-</ul>
-<h2 id="測試看看"><a href="#測試看看" class="headerlink" title="測試看看"></a>測試看看</h2><p><img src="https://nijialin.com/images/2023/pubsub/code.png"></p>
-<p>接著可以在本地端 <code>python pub.py</code> 來把消息疼過 GCP CRED 打上去 Pub&#x2F;Sub，接下來看一下訊息有沒有轉打到 Cloud Run。</p>
-<blockquote>
-<p>如果測試發現有任何環節看不到，可以先在本地端把 API Server 起起來，然後用 ngrok 之類代理本地服務去測試，並且把 Pub&#x2F;Sub 服務的網址先換掉來 debug，接著再看看 pub.py 是否有東西沒準備好</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>GCP</tag>
-        <tag>Pub/Sub</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【GitHub】建立第一個 Issue Template</title>
-    <url>/2023/10/05/github-issue-report-yaml-template/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
-<span id="more"></span>
-
-<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
-<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
-<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
-<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
-<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
-<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
-<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
-<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
-<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
-<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>新米到上手 LangChain: 藉由 Function Agent 在 LINE Bot 上處理 Calendar 資訊！</title>
     <url>/2023/08/18/first-time-langchain-line-bot/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -16296,6 +16195,107 @@ img[alt~="center"] {
         <tag>LangChain</tag>
         <tag>Google Calendar</tag>
         <tag>Function Agent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</title>
+    <url>/2023/11/26/gcp-pubsub-python/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/pubsub/OIG.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章為 2023&#x2F;12&#x2F;09 DevFest Taichung Serverless workshop 步驟文章，如果有需要透過 GCP Pub&#x2F;Sub 將訊息轉打給訂閱的 Cloud Run endpoint，可以參考看看這篇文章喔！</p>
+<span id="more"></span>
+
+<h1 id="前置準備"><a href="#前置準備" class="headerlink" title="前置準備"></a>前置準備</h1><ul>
+<li>需要有 GCP 的帳戶，有綁信用卡可開啟服務，且需要開啟個專案</li>
+<li>需要有 LINE 帳號，且要能登入 <a href="https://developers.line.biz/console/">LINE Developer Console</a><ul>
+<li>要能開啟一個 Provider + Channel</li>
+</ul>
+</li>
+</ul>
+<h1 id="服務使用介紹"><a href="#服務使用介紹" class="headerlink" title="服務使用介紹"></a>服務使用介紹</h1><p><img src="https://nijialin.com/images/2023/pubsub/1.png"></p>
+<p>首先到 GCP 上的 <a href="https://console.cloud.google.com/cloudpubsub/topic/create">Pub&#x2F;Sub 服務</a>中按下<strong>建立主題</strong>，這邊很貼心的下方也有加上晚點會使用到的 topic name</p>
+<p><img src="https://nijialin.com/images/2023/pubsub/2.png"></p>
+<p>進到 Topic 頁面，往下滑找到<strong>建立訂閱項目</strong>，建立一個<strong>項目 ID</strong>，稍候測試與設定會需要用它</p>
+<p><img src="https://nijialin.com/images/2023/pubsub/3.png"></p>
+<p>接著來到工作坊的專案<a href="https://github.com/gcp-serverless-workshop/notifier-line">gcp-serverless-workshop&#x2F;notifier-line</a>下，按下下方的佈署按鈕，接下來會進入 Cloud Shell 的部分</p>
+<p><img src="https://nijialin.com/images/2023/pubsub/cloudshell.png"></p>
+<blockquote>
+<p>Cloud Shell 有上限：<a href="https://cloud.google.com/shell/docs/quotas-limits">https://cloud.google.com/shell/docs/quotas-limits</a></p>
+</blockquote>
+<h2 id="LINE-Bot-建立與設定-Cloud-Run-環境變數"><a href="#LINE-Bot-建立與設定-Cloud-Run-環境變數" class="headerlink" title="LINE Bot 建立與設定 Cloud Run 環境變數"></a>LINE Bot 建立與設定 Cloud Run 環境變數</h2><p>接著是建立官方帳號，詳細步驟請參考 <a href="https://developers.line.biz/en/docs/messaging-api/getting-started/#step-one-enable-use-of-messaging-api">LINE Developers 官方文件</a>，主要我們要做到可以<a href="https://developers.line.biz/en/docs/messaging-api/building-bot/#setting-webhook-url">設定 webhook URL 這個部分</a>，把剛剛佈署完的 Cloud Run 網址複製到 Webhook 欄位上： <code>https://CLOUD_RUN_URL/webhooks/line</code> (如果是使用這個<a href="https://github.com/gcp-serverless-workshop/notifier-line">範例專案</a>)</p>
+<p><img src="https://nijialin.com/images/2023/pubsub/6.png"></p>
+<ul>
+<li>需要到 <a href="https://manager.line.biz/">Official Account Manager</a>將 LINE Bot 群組功能打開，以供測試使用</li>
+<li>將 LINE Bot 的 ACCESS—TOKEN 以及 SECRET 放入 Cloud Run 環境變數中<ul>
+<li>LINE_CHANNEL_ACCESS_TOKEN&#x3D;your_line_channel_access_token</li>
+<li>LINE_CHANNEL_SECRET&#x3D;your_line_channel_secret</li>
+</ul>
+</li>
+<li>把 Event 當中的 LINE 群組 ID 存下來放在 Cloud Run 環境變數中<ul>
+<li>LINE_GROUP_ID&#x3D;</li>
+</ul>
+</li>
+</ul>
+<h2 id="回到-GCP-Pub-x2F-Sub-上"><a href="#回到-GCP-Pub-x2F-Sub-上" class="headerlink" title="回到 GCP Pub&#x2F;Sub 上"></a>回到 GCP Pub&#x2F;Sub 上</h2><p><img src="https://nijialin.com/images/2023/pubsub/4.png"></p>
+<p>這部份把 Cloud Run 的 Domain 設定到 訂閱項目 ID(Subscribe Topic ID)上，進入到上圖的畫面，按下<strong>編輯</strong></p>
+<p><img src="https://nijialin.com/images/2023/pubsub/5.png"></p>
+<p>把傳送類型從 <strong>提取</strong> -&gt; <strong>推送</strong>，並且把**端點網址(Endpoint)**換成 Cloud Run 的 Domain，並加上 <code>/sub</code> (專案設定的路徑)</p>
+<h2 id="寫一個-pub-py-來試試看"><a href="#寫一個-pub-py-來試試看" class="headerlink" title="寫一個 pub.py 來試試看"></a>寫一個 pub.py 來試試看</h2><p>參考 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/pub.py">gcp-serverless-workshop&#x2F;notifier-line</a>，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：</p>
+<ul>
+<li>需到 GCP Service Accounts 中拿取一把金鑰，<code>放到本專案當中</code>，是 JSON 格式，並且把路徑置換<ul>
+<li>第 9 行：<code>os.environ[&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;] = &#39;YOUR_GCP_CA_PATH&#39;</code><ul>
+<li>開啟終端機，執行 <code>pwd</code>，並且把檔案名字加在路徑後方</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第 12 行：project_id &#x3D; “換成你 GCP Project ID”</li>
+<li>第 13 行：topic_id &#x3D; “你剛剛建立的 TOPIC ID”</li>
+</ul>
+<h2 id="測試看看"><a href="#測試看看" class="headerlink" title="測試看看"></a>測試看看</h2><p><img src="https://nijialin.com/images/2023/pubsub/code.png"></p>
+<p>接著可以在本地端 <code>python pub.py</code> 來把消息疼過 GCP CRED 打上去 Pub&#x2F;Sub，接下來看一下訊息有沒有轉打到 Cloud Run。</p>
+<blockquote>
+<p>如果測試發現有任何環節看不到，可以先在本地端把 API Server 起起來，然後用 ngrok 之類代理本地服務去測試，並且把 Pub&#x2F;Sub 服務的網址先換掉來 debug，接著再看看 pub.py 是否有東西沒準備好</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>GCP</tag>
+        <tag>Pub/Sub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【GitHub】建立第一個 Issue Template</title>
+    <url>/2023/10/05/github-issue-report-yaml-template/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
+<span id="more"></span>
+
+<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
+<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
+<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
+<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
+<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
+<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
+<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
+<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
+<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
+<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
       </tags>
   </entry>
   <entry>
@@ -16669,6 +16669,57 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
+    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
+<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
+</ol>
+<blockquote>
+<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
+<blockquote>
+<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
+</blockquote>
+<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
+<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
+<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
+<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
+<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
+<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
+</blockquote>
+<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
+<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
+<blockquote>
+<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>Cloud Run</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何有效使用 Quote Message</title>
     <url>/2023/10/08/line-bot-quote-message-reply-later/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
@@ -16723,57 +16774,6 @@ img[alt~="center"] {
         <tag>Quote Message</tag>
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
-    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
-<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
-</ol>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
-</ol>
-<blockquote>
-<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
-</blockquote>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
-
-<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
-<blockquote>
-<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
-</blockquote>
-<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
-<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
-<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
-<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
-<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
-<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
-</blockquote>
-<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
-<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
-<blockquote>
-<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>Cloud Run</tag>
       </tags>
   </entry>
   <entry>
@@ -17114,31 +17114,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
-    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
-<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
-<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
-<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
     <url>/2023/06/25/nijia-review-year-3-at-LINE/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/people.jpeg"></p>
@@ -17207,38 +17182,28 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【滑板】彩虹輪狀車練習場道路指引</title>
-    <url>/2023/10/26/skateboard-rainbow-park/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於最近迷上了衝浪滑板，但本身又是一個很喜歡挑戰許多不同的地方，但因為我在<strong>彩虹輪狀車練習場</strong>外面迷路了很久，以下分享一下道路指引 😆</p>
-<p>地點：<a href="https://maps.app.goo.gl/U4GfNdgZdfG4HXrz6">https://maps.app.goo.gl/U4GfNdgZdfG4HXrz6</a></p>
+    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
+    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
 <span id="more"></span>
 
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>這邊不是一個捷運會到的地方，如果從西湖捷運站過來的話，就需要搭 藍 7 or 藍 26 就可以到附近了；另外的選項也可以使用 GoShare or WeMoo 之類的共享機車即可前往。</p>
-<p><img src="https://nijialin.com/images/2023/skateboard/S__15876101.jpg"></p>
-<p>一般抵達的路徑應該會在<a href="https://maps.app.goo.gl/Vostsxjf578t9HNi9">內湖科工 D-總部大樓</a>附近找不到入口，他有一個地下道可以過馬路，位置請參考如上圖。</p>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
+<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
+<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>我在這邊迷路了好久 XD</p>
+<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
 </blockquote>
-<p><img src="https://nijialin.com/images/2023/skateboard/S__15876104.jpg"></p>
-<p>會到一個地下道，這裡進來通常都已經開始滑了</p>
-<p><img src="https://nijialin.com/images/2023/skateboard/S__15876105.jpg"></p>
-<p>出來之後還要爬一下河堤的樓梯，翻牆過去</p>
-<p><img src="https://nijialin.com/images/2023/skateboard/S__15876106.jpg"></p>
-<p>上來之後就會看到很空曠的河堤以及極限運動場，傍晚來真的很漂亮！</p>
-<p><img src="https://nijialin.com/images/2023/skateboard/S__15876107.jpg"></p>
-<p>這邊場地就有很多 pump 的地方，來玩的朋友一定要把護具都帶好再來，護腕、護肘、護膝、護墊都要帶好！我才看到有人裸裝直接摔，看了真的很痛 🥲</p>
-<blockquote>
-<p>之前因為挑戰 J 台而摔了一個大傷，大家來玩的時候要把一些基本的平衡都練好還是比較好喔</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>以上分享<strong>彩虹輪狀車練習場</strong>的道路指引給大家，台北有很多很棒的滑板場，推薦大家都去挑戰看看！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
 ]]></content>
       <categories>
-        <category>日記</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>Skateboard</tag>
-        <tag>滑板</tag>
+        <tag>Python</tag>
+        <tag>Flask</tag>
       </tags>
   </entry>
   <entry>
@@ -17275,6 +17240,41 @@ img[alt~="center"] {
         <tag>Surfing</tag>
         <tag>路滑</tag>
         <tag>運動</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【滑板】彩虹輪狀車練習場道路指引</title>
+    <url>/2023/10/26/skateboard-rainbow-park/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於最近迷上了衝浪滑板，但本身又是一個很喜歡挑戰許多不同的地方，但因為我在<strong>彩虹輪狀車練習場</strong>外面迷路了很久，以下分享一下道路指引 😆</p>
+<p>地點：<a href="https://maps.app.goo.gl/U4GfNdgZdfG4HXrz6">https://maps.app.goo.gl/U4GfNdgZdfG4HXrz6</a></p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>這邊不是一個捷運會到的地方，如果從西湖捷運站過來的話，就需要搭 藍 7 or 藍 26 就可以到附近了；另外的選項也可以使用 GoShare or WeMoo 之類的共享機車即可前往。</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876101.jpg"></p>
+<p>一般抵達的路徑應該會在<a href="https://maps.app.goo.gl/Vostsxjf578t9HNi9">內湖科工 D-總部大樓</a>附近找不到入口，他有一個地下道可以過馬路，位置請參考如上圖。</p>
+<blockquote>
+<p>我在這邊迷路了好久 XD</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876104.jpg"></p>
+<p>會到一個地下道，這裡進來通常都已經開始滑了</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876105.jpg"></p>
+<p>出來之後還要爬一下河堤的樓梯，翻牆過去</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876106.jpg"></p>
+<p>上來之後就會看到很空曠的河堤以及極限運動場，傍晚來真的很漂亮！</p>
+<p><img src="https://nijialin.com/images/2023/skateboard/S__15876107.jpg"></p>
+<p>這邊場地就有很多 pump 的地方，來玩的朋友一定要把護具都帶好再來，護腕、護肘、護膝、護墊都要帶好！我才看到有人裸裝直接摔，看了真的很痛 🥲</p>
+<blockquote>
+<p>之前因為挑戰 J 台而摔了一個大傷，大家來玩的時候要把一些基本的平衡都練好還是比較好喔</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>以上分享<strong>彩虹輪狀車練習場</strong>的道路指引給大家，台北有很多很棒的滑板場，推薦大家都去挑戰看看！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+      <tags>
+        <tag>Skateboard</tag>
+        <tag>滑板</tag>
       </tags>
   </entry>
   <entry>
