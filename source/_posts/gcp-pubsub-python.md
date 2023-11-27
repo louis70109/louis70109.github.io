@@ -11,7 +11,7 @@ date: 2023-11-26 22:52:34
 ---
 
 
-![](https://nijialin.com/images/pubsub/OIG.jpeg)
+![](https://nijialin.com/images/2023/pubsub/OIG.jpeg)
 
 # 前言
 
