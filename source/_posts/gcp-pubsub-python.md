@@ -85,6 +85,7 @@ date: 2023-11-26 22:52:34
 
 > 如果測試發現有任何環節看不到，可以先在本地端把 API Server 起起來，然後用 ngrok 之類代理本地服務去測試，並且把 Pub/Sub 服務的網址先換掉來 debug，接著再看看 pub.py 是否有東西沒準備好
 
+> ngrok 可以參考這篇文章 - [Day 20 GCP 公有雲_雲端事件消息傳遞服務實戰 - Pub/Sub 組建測試之路](https://ithelp.ithome.com.tw/articles/10249308)
 # 結論
 
 由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 **LINE_GROUP_ID** 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！
