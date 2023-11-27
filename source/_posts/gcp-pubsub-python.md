@@ -10,7 +10,6 @@ categories: GCP
 date: 2023-11-26 22:52:34
 ---
 
-
 ![](https://nijialin.com/images/2023/pubsub/OIG.jpeg)
 
 # 前言
@@ -37,18 +36,27 @@ date: 2023-11-26 22:52:34
 
 ![](https://nijialin.com/images/2023/pubsub/3.png)
 
+## 佈署 Cloud Run
+
 接著來到工作坊的專案[gcp-serverless-workshop/notifier-line](https://github.com/gcp-serverless-workshop/notifier-line)下，按下下方的佈署按鈕，接下來會進入 Cloud Shell 的部分
 
 ![](https://nijialin.com/images/2023/pubsub/cloudshell.png)
 
 > Cloud Shell 有上限：https://cloud.google.com/shell/docs/quotas-limits
 
+跟 cloud build 有關皆需要以下權限 ([URL](https://cloud.google.com/run/docs/deploying-source-code#permissions_required_to_deploy))
+
+- Cloud Build Editor role
+- Artifact Registry Admin role
+- Storage Admin role
+- Cloud Run Admin role
+- Service Account User role
+
 ## LINE Bot 建立與設定 Cloud Run 環境變數
 
 接著是建立官方帳號，詳細步驟請參考 [LINE Developers 官方文件](https://developers.line.biz/en/docs/messaging-api/getting-started/#step-one-enable-use-of-messaging-api)，主要我們要做到可以[設定 webhook URL 這個部分](https://developers.line.biz/en/docs/messaging-api/building-bot/#setting-webhook-url)，把剛剛佈署完的 Cloud Run 網址複製到 Webhook 欄位上： `https://CLOUD_RUN_URL/webhooks/line` (如果是使用這個[範例專案](https://github.com/gcp-serverless-workshop/notifier-line))
 
 ![](https://nijialin.com/images/2023/pubsub/6.png)
-
 
 - 需要到 [Official Account Manager](https://manager.line.biz/)將 LINE Bot 群組功能打開，以供測試使用
 - 將 LINE Bot 的 ACCESS—TOKEN 以及 SECRET 放入 Cloud Run 環境變數中
@@ -85,7 +93,8 @@ date: 2023-11-26 22:52:34
 
 > 如果測試發現有任何環節看不到，可以先在本地端把 API Server 起起來，然後用 ngrok 之類代理本地服務去測試，並且把 Pub/Sub 服務的網址先換掉來 debug，接著再看看 pub.py 是否有東西沒準備好
 
-> ngrok 可以參考這篇文章 - [Day 20 GCP 公有雲_雲端事件消息傳遞服務實戰 - Pub/Sub 組建測試之路](https://ithelp.ithome.com.tw/articles/10249308)
+> ngrok 可以參考這篇文章 - [Day 20 GCP 公有雲\_雲端事件消息傳遞服務實戰 - Pub/Sub 組建測試之路](https://ithelp.ithome.com.tw/articles/10249308)
+
 # 結論
 
 由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 **LINE_GROUP_ID** 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！
