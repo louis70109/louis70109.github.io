@@ -6,7 +6,7 @@ date: 2019-10-16 11:28:36
 LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK 維護者之一，熱愛把各種小點子拼裝起來在社群上分享，把各種知識透過文章散播出去，培養更多初進軟體生態的開發者！
 
 - ☘️ Technology Evangelist / Software Engineer
-- 👨‍🌾 Farmer / 🏋️‍♂️ Body Builder
+- 🛹 Skater / 🏋️‍♂️ Body Builder / 👨‍🌾 Farmer
 - 👾 [Chatbot Developer Taiwan](https://www.facebook.com/groups/chatbot.tw/) - Co-organizers
 - 😇 德水園身障教養院 - 志工 2016~
 
@@ -45,6 +45,7 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 
 # Workshop
 
+- [Serverless 大雜燴: 以 Google Cloud Platform 打造線上商店服務 @ DevFest Taichung 2023](https://gdg.community.dev/events/details/google-gdg-taichung-presents-devfest-taichung-2023/)
 - [手把手透過 LINE Bot 打造出雲端的 ChatOps @ Cloud Edge Summit 2021](https://cloudsummit.ithome.com.tw/2021/workshop-page/550)
 - [[EN] NYCU Global Design Competition @ online](https://event.oia.nycu.edu.tw/page/competition)
   - [LINE Bot APIs introduction and demonstration](https://speakerdeck.com/line_developers_tw2/line-bot-apis-introduction-and-demonstration)
@@ -57,6 +58,8 @@ LINE 台灣技術傳教士/軟體工程生態系觀察家/ LINE Bot Python SDK �
 
 # Conferences Speaker
 
+- [GDG DevFest 2023](https://gdg.community.dev/events/details/google-gdg-taipei-presents-devfest-taipei-2023/)
+  - [Empowering Community-Driven Learning through Serverless Practice](https://speakerdeck.com/line_developers_tw/empowering-community-driven-learning-through-serverless-practice)
 - COSCUP 2023
   - [【從零開始養】讓 Public Cloud 增加你的能見度！](https://coscup.org/2023/zh-TW/session/PT8VT7)
     - [Slide](https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud)
