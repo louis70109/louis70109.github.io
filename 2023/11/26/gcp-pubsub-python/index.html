@@ -44,8 +44,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://nijialin.com/images/2023/pubsub/4.png">
 <meta property="og:image" content="https://nijialin.com/images/2023/pubsub/5.png">
 <meta property="og:image" content="https://nijialin.com/images/2023/pubsub/code.png">
+<meta property="og:image" content="https://nijialin.com/images/2023/pubsub/intro.jpeg">
 <meta property="article:published_time" content="2023-11-26T22:52:34.000Z">
-<meta property="article:modified_time" content="2023-12-11T04:09:24.901Z">
+<meta property="article:modified_time" content="2023-12-18T02:05:06.677Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="LINE">
@@ -255,7 +256,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-11 04:09:24" itemprop="dateModified" datetime="2023-12-11T04:09:24+00:00">2023-12-11</time>
+                <time title="修改時間：2023-12-18 02:05:06" itemprop="dateModified" datetime="2023-12-18T02:05:06+00:00">2023-12-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,6 +290,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>範例專案：<a target="_blank" rel="noopener" href="https://github.com/gcp-serverless-workshop/notifier-line-bot/tree/main">gcp-serverless-workshop&#x2F;notifier-line-bot</a></p>
+</blockquote>
+<h2 id="本地開發參考以下步驟"><a href="#本地開發參考以下步驟" class="headerlink" title="本地開發參考以下步驟"></a>本地開發參考以下步驟</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.<span class="keyword">com</span>:gcp-serverless-workshop/notifier-<span class="built_in">line</span>.git</span><br><span class="line"><span class="keyword">cd</span> notifier-<span class="built_in">line</span>/</span><br><span class="line"><span class="keyword">python3</span> -<span class="keyword">m</span> venv venv</span><br><span class="line"><span class="keyword">source</span> venv/bin/activate</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
 <h1 id="服務使用介紹"><a href="#服務使用介紹" class="headerlink" title="服務使用介紹"></a>服務使用介紹</h1><p><img src="https://nijialin.com/images/2023/pubsub/1.png"></p>
 <p>首先到 GCP 上的 <a target="_blank" rel="noopener" href="https://console.cloud.google.com/cloudpubsub/topic/create">Pub&#x2F;Sub 服務</a>中按下<strong>建立主題</strong>，這邊很貼心的下方也有加上晚點會使用到的 topic name</p>
 <p><img src="https://nijialin.com/images/2023/pubsub/2.png"></p>
@@ -325,7 +331,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>這部份把 Cloud Run 的 Domain 設定到 訂閱項目 ID(Subscribe Topic ID)上，進入到上圖的畫面，按下<strong>編輯</strong></p>
 <p><img src="https://nijialin.com/images/2023/pubsub/5.png"></p>
 <p>把傳送類型從 <strong>提取</strong> -&gt; <strong>推送</strong>，並且把**端點網址(Endpoint)**換成 Cloud Run 的 Domain，並加上 <code>/sub</code> (專案設定的路徑)</p>
-<h2 id="寫一個-pub-py-來試試看"><a href="#寫一個-pub-py-來試試看" class="headerlink" title="寫一個 pub.py 來試試看"></a>寫一個 pub.py 來試試看</h2><p>參考 <a target="_blank" rel="noopener" href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/pub.py">gcp-serverless-workshop&#x2F;notifier-line</a>，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：</p>
+<h2 id="寫一個-pub-py-來試試看"><a href="#寫一個-pub-py-來試試看" class="headerlink" title="寫一個 pub.py 來試試看"></a>寫一個 pub.py 來試試看</h2><p>參考 <a target="_blank" rel="noopener" href="https://github.com/gcp-serverless-workshop/notifier-line-bot/blob/main/pub.py">gcp-serverless-workshop&#x2F;notifier-line</a>，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：</p>
 <ul>
 <li>需到 GCP Service Accounts 中拿取一把金鑰，<code>放到本專案當中</code>，是 JSON 格式，並且把路徑置換<ul>
 <li>第 9 行：<code>os.environ[&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;] = &#39;YOUR_GCP_CA_PATH&#39;</code><ul>
@@ -345,7 +351,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <p>ngrok 可以參考這篇文章 - <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10249308">Day 20 GCP 公有雲_雲端事件消息傳遞服務實戰 - Pub&#x2F;Sub 組建測試之路</a></p>
 </blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2023/pubsub/intro.jpeg"></p>
+<p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
 
     </div>
 
@@ -439,7 +446,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%BA%96%E5%82%99"><span class="nav-number">2.</span> <span class="nav-text">前置準備</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8B%99%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">服務使用介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%88%E7%BD%B2-Cloud-Run"><span class="nav-number">3.1.</span> <span class="nav-text">佈署 Cloud Run</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-Bot-%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%AD%E5%AE%9A-Cloud-Run-%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="nav-number">3.2.</span> <span class="nav-text">LINE Bot 建立與設定 Cloud Run 環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0-GCP-Pub-x2F-Sub-%E4%B8%8A"><span class="nav-number">3.3.</span> <span class="nav-text">回到 GCP Pub&#x2F;Sub 上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%AB%E4%B8%80%E5%80%8B-pub-py-%E4%BE%86%E8%A9%A6%E8%A9%A6%E7%9C%8B"><span class="nav-number">3.4.</span> <span class="nav-text">寫一個 pub.py 來試試看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%9C%8B%E7%9C%8B"><span class="nav-number">3.5.</span> <span class="nav-text">測試看看</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%BA%96%E5%82%99"><span class="nav-number">2.</span> <span class="nav-text">前置準備</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%96%8B%E7%99%BC%E5%8F%83%E8%80%83%E4%BB%A5%E4%B8%8B%E6%AD%A5%E9%A9%9F"><span class="nav-number">2.1.</span> <span class="nav-text">本地開發參考以下步驟</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8B%99%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">服務使用介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%88%E7%BD%B2-Cloud-Run"><span class="nav-number">3.1.</span> <span class="nav-text">佈署 Cloud Run</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-Bot-%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%AD%E5%AE%9A-Cloud-Run-%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="nav-number">3.2.</span> <span class="nav-text">LINE Bot 建立與設定 Cloud Run 環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0-GCP-Pub-x2F-Sub-%E4%B8%8A"><span class="nav-number">3.3.</span> <span class="nav-text">回到 GCP Pub&#x2F;Sub 上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%AB%E4%B8%80%E5%80%8B-pub-py-%E4%BE%86%E8%A9%A6%E8%A9%A6%E7%9C%8B"><span class="nav-number">3.4.</span> <span class="nav-text">寫一個 pub.py 來試試看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%9C%8B%E7%9C%8B"><span class="nav-number">3.5.</span> <span class="nav-text">測試看看</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -16211,6 +16211,11 @@ img[alt~="center"] {
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>範例專案：<a href="https://github.com/gcp-serverless-workshop/notifier-line-bot/tree/main">gcp-serverless-workshop&#x2F;notifier-line-bot</a></p>
+</blockquote>
+<h2 id="本地開發參考以下步驟"><a href="#本地開發參考以下步驟" class="headerlink" title="本地開發參考以下步驟"></a>本地開發參考以下步驟</h2><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone git@github.<span class="keyword">com</span>:gcp-serverless-workshop/notifier-<span class="built_in">line</span>.git</span><br><span class="line"><span class="keyword">cd</span> notifier-<span class="built_in">line</span>/</span><br><span class="line"><span class="keyword">python3</span> -<span class="keyword">m</span> venv venv</span><br><span class="line"><span class="keyword">source</span> venv/bin/activate</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
 <h1 id="服務使用介紹"><a href="#服務使用介紹" class="headerlink" title="服務使用介紹"></a>服務使用介紹</h1><p><img src="https://nijialin.com/images/2023/pubsub/1.png"></p>
 <p>首先到 GCP 上的 <a href="https://console.cloud.google.com/cloudpubsub/topic/create">Pub&#x2F;Sub 服務</a>中按下<strong>建立主題</strong>，這邊很貼心的下方也有加上晚點會使用到的 topic name</p>
 <p><img src="https://nijialin.com/images/2023/pubsub/2.png"></p>
@@ -16247,7 +16252,7 @@ img[alt~="center"] {
 <p>這部份把 Cloud Run 的 Domain 設定到 訂閱項目 ID(Subscribe Topic ID)上，進入到上圖的畫面，按下<strong>編輯</strong></p>
 <p><img src="https://nijialin.com/images/2023/pubsub/5.png"></p>
 <p>把傳送類型從 <strong>提取</strong> -&gt; <strong>推送</strong>，並且把**端點網址(Endpoint)**換成 Cloud Run 的 Domain，並加上 <code>/sub</code> (專案設定的路徑)</p>
-<h2 id="寫一個-pub-py-來試試看"><a href="#寫一個-pub-py-來試試看" class="headerlink" title="寫一個 pub.py 來試試看"></a>寫一個 pub.py 來試試看</h2><p>參考 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/pub.py">gcp-serverless-workshop&#x2F;notifier-line</a>，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：</p>
+<h2 id="寫一個-pub-py-來試試看"><a href="#寫一個-pub-py-來試試看" class="headerlink" title="寫一個 pub.py 來試試看"></a>寫一個 pub.py 來試試看</h2><p>參考 <a href="https://github.com/gcp-serverless-workshop/notifier-line-bot/blob/main/pub.py">gcp-serverless-workshop&#x2F;notifier-line</a>，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：</p>
 <ul>
 <li>需到 GCP Service Accounts 中拿取一把金鑰，<code>放到本專案當中</code>，是 JSON 格式，並且把路徑置換<ul>
 <li>第 9 行：<code>os.environ[&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;] = &#39;YOUR_GCP_CA_PATH&#39;</code><ul>
@@ -16267,7 +16272,8 @@ img[alt~="center"] {
 <blockquote>
 <p>ngrok 可以參考這篇文章 - <a href="https://ithelp.ithome.com.tw/articles/10249308">Day 20 GCP 公有雲_雲端事件消息傳遞服務實戰 - Pub&#x2F;Sub 組建測試之路</a></p>
 </blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2023/pubsub/intro.jpeg"></p>
+<p>由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 <strong>LINE_GROUP_ID</strong> 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！</p>
 ]]></content>
       <categories>
         <category>GCP</category>
@@ -16400,85 +16406,6 @@ img[alt~="center"] {
         <tag>Firebase</tag>
         <tag>Firestore</tag>
         <tag>PaLM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【從零開始養】讓 Public Cloud 增加你的能見度！</title>
-    <url>/2023/07/29/how-to-develop-side-project-into-public-cloud/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/1.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 <a href="https://coscup.org/2023/zh-TW/session/PT8VT7">COSCUP 2023 分享</a>業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！</p>
-<p>簡報：<a href="https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud">https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud</a></p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以下透過我這幾年收到也是我過去的各種疑問，分享給大家一些經驗談。</p>
-<h2 id="為什麼要做-Side-Project-⁉️"><a href="#為什麼要做-Side-Project-⁉️" class="headerlink" title="為什麼要做 Side Project ⁉️"></a>為什麼要做 Side Project ⁉️</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=5" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>這題在我接觸社群前，是很排斥的，其因怕被電、程式寫不乾淨、沒內容…etc，直到開始參與社群後與許多前輩請教相關問題，大家普遍都會建議透過以下四點，解決前面遇到的這些疑問：</p>
-<ul>
-<li>技術實驗</li>
-<li>解決日常問題</li>
-<li>累積作品</li>
-<li>擦亮履歷</li>
-</ul>
-<p>我們會在開發 side project 時，參考許多網路上的專案，從 try &amp; error、看到各種不同寫法，來增進自己對於程式品質這件事，畢竟我認為萬是都是從「<strong>模仿</strong>」開始，沒有一開始就可以把東西寫的又好、、有創意、又有創意(如果有請介紹)，我也是透過 side project 逐步增進自己對於該領域的熟悉度，一旦熟悉了，很多東西都會越來越上手！</p>
-<h2 id="我做完了！要怎麼放出去-佈署-呢？"><a href="#我做完了！要怎麼放出去-佈署-呢？" class="headerlink" title="我做完了！要怎麼放出去(佈署)呢？"></a>我做完了！要怎麼放出去(佈署)呢？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=10" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>從個人與身邊的大大們經驗，過往都會從許多的雲服務平台去架設自己的服務，初期都會先找許多的免費方案先操作，很多網路上的資源也都有許多的文件，讓大家在使用時可以更無痛，尤其身在台灣的我們其實有很多服務是很方便的，也有中文化，推薦大家創意點子做出來後，可以嘗試各種雲端平台，找到自己順手的使用～</p>
-<h2 id="關於付錢開發-Side-Project-這檔事…"><a href="#關於付錢開發-Side-Project-這檔事…" class="headerlink" title="關於付錢開發 Side Project 這檔事…"></a>關於付錢開發 Side Project 這檔事…</h2><p>老實說這事我也掙扎很久，但當你有自己架設 Linux、Nginx、防火牆、DNS、proxy…etc，會知道花這些時間的成本是很大的(除非有興趣)，但一般來說，我們想的點子或是實驗性專案，初期流量不高的情況下，不需要這麼複雜的基礎設施，尤其像是在開發 LINE Bot 時，我們只需要一個有 HTTPS 的 callback URL 就好。</p>
-<p>因此這個時候就可以善用這些雲平台，普遍會有的優點就是：</p>
-<ul>
-<li>流量計價，會有一定額度的免費</li>
-<li>提供 HTTPS</li>
-<li>不用處理基礎設施，安裝指令即可上線</li>
-<li>依照不同雲服務，會提供各種好用的工具，例如：<ul>
-<li>介面上即可設定觸發條件，整合更多的服務</li>
-<li>跨平台搬家支援！ (Knative)</li>
-</ul>
-</li>
-</ul>
-<p>光這幾點，就足夠掏出魔法小卡下去使用了！不論是否為實驗行專案，或是公司專案要先上線，都推薦可以嘗試使用各種雲服務來把點子送進市場檢驗！</p>
-<h2 id="不用-Dockerfile-也能佈署，真香！"><a href="#不用-Dockerfile-也能佈署，真香！" class="headerlink" title="不用 Dockerfile 也能佈署，真香！"></a>不用 Dockerfile 也能佈署，真香！</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=16" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p><a href="https://buildpacks.io/">Buildpacks</a> 是一個<br>可以幫助開發者將應用程式部署到雲端平台上，最早是起源於 Heroku。</p>
-<p>Buildpacks 可以自動偵測應用程式所需的語言、框架和相依性，並將其轉換成可執行的容器映像檔。讓開發者可以專注於撰寫程式碼，而不用擔心部署的細節。</p>
-<p>同時也越來越多雲服務也陸續支援 Buildpacks，透過它，我們在初期就不用苦惱專案到底要怎麼上這些 Cloud，交給它，許多事情都會被神奇的魔法完成！</p>
-<blockquote>
-<p>那邊可以參考範例呢？歡迎參考我的專案: <a href="https://github.com/louis70109/FastAPI-Cloud-Run-Sample">FastAPI-Cloud-Run-Sample</a></p>
-</blockquote>
-<h2 id="我沒想法，可以做什麼題目？"><a href="#我沒想法，可以做什麼題目？" class="headerlink" title="我沒想法，可以做什麼題目？"></a>我沒想法，可以做什麼題目？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=25" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>身處台灣的你我，一定知道 LINE，因此可以先從 <a href="https://developers.line.biz/en/services/messaging-api/">LINE Bot</a> 開始著手，嘗試把些創意發想從這邊開始實作，省去許多的畫面開發的工作，先讓點子可以讓周遭朋友先試用！</p>
-<p>另一方面，LINE Bot 與許多雲服務的特性很像，都是 Event-Driven 的特性，當 request 進來時才會觸發功能，在屬性相像的平台，就很適合把他們串接起來 🛠️！且許多的文章都有介紹要如何串接，大家可以到網路上搜尋一下許多鐵人賽文章喔！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>很高興在 COSCUP 2023 有機會實體跟這麼多有興趣的開發者分享我的經驗，希望透過每次的分享，讓軟體生態裡的各位能夠更了解不同階段遇到的挑戰，以及哪些服務能被更好的應用，如果喜歡這邊文章，歡迎分享給更多朋友知道唷！</p>
-<p>明天(7&#x2F;30 11：20 ~ 11：50)還有一場演講 - 【<a href="https://coscup.org/2023/zh-TW/session/VAHKVH">寶可夢苦難日：結局不是重點，重點是我爬不上大師啊</a>】，歡迎大家持續關注，感謝大家！</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>研討會</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>GCP</tag>
       </tags>
   </entry>
   <entry>
@@ -16618,6 +16545,85 @@ img[alt~="center"] {
         <tag>GCP</tag>
         <tag>Cloud Run</tag>
         <tag>Knative</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【從零開始養】讓 Public Cloud 增加你的能見度！</title>
+    <url>/2023/07/29/how-to-develop-side-project-into-public-cloud/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/1.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 LINE Taiwan 的技術傳教士 Nijia (a.k.a 忍者)，這次很榮幸可以來 <a href="https://coscup.org/2023/zh-TW/session/PT8VT7">COSCUP 2023 分享</a>業餘時間作 Side project 的一些心得，這次透過文章跟大家分享經驗談！</p>
+<p>簡報：<a href="https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud">https://speakerdeck.com/line_developers_tw/how-to-develop-side-project-to-public-cloud</a></p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>以下透過我這幾年收到也是我過去的各種疑問，分享給大家一些經驗談。</p>
+<h2 id="為什麼要做-Side-Project-⁉️"><a href="#為什麼要做-Side-Project-⁉️" class="headerlink" title="為什麼要做 Side Project ⁉️"></a>為什麼要做 Side Project ⁉️</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=5" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>這題在我接觸社群前，是很排斥的，其因怕被電、程式寫不乾淨、沒內容…etc，直到開始參與社群後與許多前輩請教相關問題，大家普遍都會建議透過以下四點，解決前面遇到的這些疑問：</p>
+<ul>
+<li>技術實驗</li>
+<li>解決日常問題</li>
+<li>累積作品</li>
+<li>擦亮履歷</li>
+</ul>
+<p>我們會在開發 side project 時，參考許多網路上的專案，從 try &amp; error、看到各種不同寫法，來增進自己對於程式品質這件事，畢竟我認為萬是都是從「<strong>模仿</strong>」開始，沒有一開始就可以把東西寫的又好、、有創意、又有創意(如果有請介紹)，我也是透過 side project 逐步增進自己對於該領域的熟悉度，一旦熟悉了，很多東西都會越來越上手！</p>
+<h2 id="我做完了！要怎麼放出去-佈署-呢？"><a href="#我做完了！要怎麼放出去-佈署-呢？" class="headerlink" title="我做完了！要怎麼放出去(佈署)呢？"></a>我做完了！要怎麼放出去(佈署)呢？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=10" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>從個人與身邊的大大們經驗，過往都會從許多的雲服務平台去架設自己的服務，初期都會先找許多的免費方案先操作，很多網路上的資源也都有許多的文件，讓大家在使用時可以更無痛，尤其身在台灣的我們其實有很多服務是很方便的，也有中文化，推薦大家創意點子做出來後，可以嘗試各種雲端平台，找到自己順手的使用～</p>
+<h2 id="關於付錢開發-Side-Project-這檔事…"><a href="#關於付錢開發-Side-Project-這檔事…" class="headerlink" title="關於付錢開發 Side Project 這檔事…"></a>關於付錢開發 Side Project 這檔事…</h2><p>老實說這事我也掙扎很久，但當你有自己架設 Linux、Nginx、防火牆、DNS、proxy…etc，會知道花這些時間的成本是很大的(除非有興趣)，但一般來說，我們想的點子或是實驗性專案，初期流量不高的情況下，不需要這麼複雜的基礎設施，尤其像是在開發 LINE Bot 時，我們只需要一個有 HTTPS 的 callback URL 就好。</p>
+<p>因此這個時候就可以善用這些雲平台，普遍會有的優點就是：</p>
+<ul>
+<li>流量計價，會有一定額度的免費</li>
+<li>提供 HTTPS</li>
+<li>不用處理基礎設施，安裝指令即可上線</li>
+<li>依照不同雲服務，會提供各種好用的工具，例如：<ul>
+<li>介面上即可設定觸發條件，整合更多的服務</li>
+<li>跨平台搬家支援！ (Knative)</li>
+</ul>
+</li>
+</ul>
+<p>光這幾點，就足夠掏出魔法小卡下去使用了！不論是否為實驗行專案，或是公司專案要先上線，都推薦可以嘗試使用各種雲服務來把點子送進市場檢驗！</p>
+<h2 id="不用-Dockerfile-也能佈署，真香！"><a href="#不用-Dockerfile-也能佈署，真香！" class="headerlink" title="不用 Dockerfile 也能佈署，真香！"></a>不用 Dockerfile 也能佈署，真香！</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=16" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p><a href="https://buildpacks.io/">Buildpacks</a> 是一個<br>可以幫助開發者將應用程式部署到雲端平台上，最早是起源於 Heroku。</p>
+<p>Buildpacks 可以自動偵測應用程式所需的語言、框架和相依性，並將其轉換成可執行的容器映像檔。讓開發者可以專注於撰寫程式碼，而不用擔心部署的細節。</p>
+<p>同時也越來越多雲服務也陸續支援 Buildpacks，透過它，我們在初期就不用苦惱專案到底要怎麼上這些 Cloud，交給它，許多事情都會被神奇的魔法完成！</p>
+<blockquote>
+<p>那邊可以參考範例呢？歡迎參考我的專案: <a href="https://github.com/louis70109/FastAPI-Cloud-Run-Sample">FastAPI-Cloud-Run-Sample</a></p>
+</blockquote>
+<h2 id="我沒想法，可以做什麼題目？"><a href="#我沒想法，可以做什麼題目？" class="headerlink" title="我沒想法，可以做什麼題目？"></a>我沒想法，可以做什麼題目？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/778f40dcaf544983b4027d68aaccd9be?slide=25" title="【從零開始養】讓 Public Cloud 增加你的能見度！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>身處台灣的你我，一定知道 LINE，因此可以先從 <a href="https://developers.line.biz/en/services/messaging-api/">LINE Bot</a> 開始著手，嘗試把些創意發想從這邊開始實作，省去許多的畫面開發的工作，先讓點子可以讓周遭朋友先試用！</p>
+<p>另一方面，LINE Bot 與許多雲服務的特性很像，都是 Event-Driven 的特性，當 request 進來時才會觸發功能，在屬性相像的平台，就很適合把他們串接起來 🛠️！且許多的文章都有介紹要如何串接，大家可以到網路上搜尋一下許多鐵人賽文章喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>很高興在 COSCUP 2023 有機會實體跟這麼多有興趣的開發者分享我的經驗，希望透過每次的分享，讓軟體生態裡的各位能夠更了解不同階段遇到的挑戰，以及哪些服務能被更好的應用，如果喜歡這邊文章，歡迎分享給更多朋友知道唷！</p>
+<p>明天(7&#x2F;30 11：20 ~ 11：50)還有一場演講 - 【<a href="https://coscup.org/2023/zh-TW/session/VAHKVH">寶可夢苦難日：結局不是重點，重點是我爬不上大師啊</a>】，歡迎大家持續關注，感謝大家！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>GCP</tag>
       </tags>
   </entry>
   <entry>
@@ -17038,44 +17044,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>人生過了三分之一，做點紀錄</title>
-    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
-<span id="more"></span>
-
-<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
-<li>健身、上班、滑板</li>
-<li>健身、上班、滑板、上英文課</li>
-<li>睡飽、上班、打掃、上英文課</li>
-<li>健身、上班、羽球社(滑板)</li>
-<li>睡飽、上班、滑板<ol>
-<li>近期太多參訪早上都不練 👀</li>
-</ol>
-</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-</ol>
-<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
-<blockquote>
-<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
-</blockquote>
-<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
-<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
-<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
-<ul>
-<li>不開心想吃東西但怕胖？吃</li>
-<li>最近穿著都很黯淡？買</li>
-<li>家具缺點什麼更好些？買</li>
-</ul>
-<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
-  </entry>
-  <entry>
     <title>在 Apple M2 本地跑 Stable Diffusion</title>
     <url>/2023/06/15/ml-stable-diffusion-practice/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -17125,72 +17093,42 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
-    <url>/2023/06/25/nijia-review-year-3-at-LINE/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/people.jpeg"></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇紀錄著近期對於自己來台北工作三年的一些經驗分享，用比較流水帳的方式紀錄著(絕沒出動 GPT😆)。除了幫自己紀錄這幾年來的經驗，若有讀者也想來北部工作，或許這篇的內容可以參考看看！</p>
+    <title>人生過了三分之一，做點紀錄</title>
+    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
 <span id="more"></span>
 
+<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
+<li>健身、上班、滑板</li>
+<li>健身、上班、滑板、上英文課</li>
+<li>睡飽、上班、打掃、上英文課</li>
+<li>健身、上班、羽球社(滑板)</li>
+<li>睡飽、上班、滑板<ol>
+<li>近期太多參訪早上都不練 👀</li>
+</ol>
+</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+</ol>
+<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
 <blockquote>
-<p>開始前播一下撰文當下聽到的歌：</p>
+<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
 </blockquote>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LbiWaeLdqeA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="30-了，也是該吃保養品的年紀-XD"><a href="#30-了，也是該吃保養品的年紀-XD" class="headerlink" title="30 了，也是該吃保養品的年紀 XD"></a>30 了，也是該吃保養品的年紀 XD</h2><p><img src="https://nijialin.com/images/2023/little_horse.gif" alt="小馬怪"></p>
-<p>從 2022 年中健檢完發現好像有很多紅字，雖然後續複檢是都沒有，但年紀好像也到了，該是開始吃 B 群、魚油、發泡錠的年紀了 🥲(從 COVID 之後發現自己越來越容易體虛)，打球也感覺到年紀帶來的衝擊 😅，有時候真的不能鐵齒，該休息時就得休息了 😆(身體健康還是比較重要的！)</p>
-<h2 id="30-歲前找到願意帶你的導師"><a href="#30-歲前找到願意帶你的導師" class="headerlink" title="30 歲前找到願意帶你的導師"></a>30 歲前找到願意帶你的導師</h2><blockquote>
-<p>來自前同事阿尼的人生體悟</p>
-</blockquote>
-<p>來台北之後學到了許多專案管理、時程規劃、流程制定、做事原則，從初期做事時都搞不清楚做這些到底目的為何，到現在要能跟同事解釋每個流程脈絡與目的也是真的很不容易。除了花很多時間整理每個每次活動&#x2F;會議中提出的想法，也是 Evan 花了很多時間解釋源由與讓我去思考自己到底在講什麼 😆，讓我不是只有拿答案做事，而是要理解當中的原理。</p>
-<p>過程中也都要針對專案去建立頁面、各種會議文件、行事曆、Single Source 的重要性…etc，雖然每次建立這些都超～級～花時間，但其實在往後回去看文件時才能感覺到當初辛苦的價值，</p>
-<h2 id="專案管理上的成長"><a href="#專案管理上的成長" class="headerlink" title="專案管理上的成長"></a>專案管理上的成長</h2><p>從一開始進來時，接到任務時先從過去的樣板去管理&#x2F;設定專案時程，然後去跟各單位諮詢並完成它。到後來開始接下研討會的舉辦，跟行銷、公關、設計師、會計、採購、資安、活動公司…討論，決定每個東西的優先順序，並且持續確認專案時程的可行性。也是很感謝公司有給這次舉辦機會，讓我能在這時期強化自己的組織與規劃能力 🎉</p>
-<blockquote>
-<p>從中也才知道老闆說的「無矩不成方圓」，做專案的過程中若沒有規矩，會讓很多事情亂了序，沒辦法好好的做下去。當然制定規則時，也要把成員屬性都一起考慮進去，才會發揮團隊的特色！</p>
-</blockquote>
-<h3 id="我以為的多緒執行能力，其實只是很會多次單緒切換"><a href="#我以為的多緒執行能力，其實只是很會多次單緒切換" class="headerlink" title="我以為的多緒執行能力，其實只是很會多次單緒切換"></a>我以為的多緒執行能力，其實只是很會多次單緒切換</h3><p>在做專案過程，隨著每個 milestone 越近時，許多東西都要在同時處理，A 回就要跟 B 確認，C 也在問什麼時候好，因此手腳都要很快趕快把事情完成。</p>
-<p>在當中旁觀時會認為對方好像能同時處理很多事情，但其實我們都沒辦法同時做好幾件事，這時期只是很快速的資訊切換，因此也是為什麼很容易在這時間有掉東西&#x2F;訊息的問題。後來也學乖了，只要在東西同一時間進來時，要先讓自己冷靜一下，排出東西的優先權，評估之後在開始做事，才不會害的自己四不像，最後在東怪西怪。</p>
-<h3 id="從日常生活中培養專案管理能力-上班前，下班後的時間管理"><a href="#從日常生活中培養專案管理能力-上班前，下班後的時間管理" class="headerlink" title="從日常生活中培養專案管理能力 - 上班前，下班後的時間管理"></a>從日常生活中培養專案管理能力 - 上班前，下班後的時間管理</h3><h4 id="上班前"><a href="#上班前" class="headerlink" title="上班前"></a>上班前</h4><p>過去的工作都是六點下班，下班後的時間可以參考下圖：</p>
-<script defer class="speakerdeck-embed" data-slide="22" data-id="95e302aa691f4150805d8bd57f5467ed" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>二月大活動結束後開始審視時間，發現自己下班後的時間有點壓的太緊，很常會弄不好把自己搞的很累，後來轉變了一個部分，就是每週約有三～四天會早上 7:30 跟同事一起健身房，把時間改到早上之後，發現上班前運動反而精神會好一些，也剛好本身是一個慢熱的體質，任何需要高度專注的項目，都需要一段準備時間，因此後來把運動時間改到早上，以目前來說還算是滿好的一個調整！</p>
-<h4 id="下班後"><a href="#下班後" class="headerlink" title="下班後"></a>下班後</h4><p>身為北漂族，下班都需要各種自理，不論是吃飯、洗&#x2F;晾&#x2F;折衣服、coding、打遊戲、英文課、看廢片、洗澡、整理包包…都需要好好的安排，經常一個搞不好晚上可能還比早上忙，一般來說選其中三、四樣晚上的時間基本上就沒了 🥹</p>
-<p>通常來說現在分配動&#x2F;靜態的部分各別一天效果還不錯，或許可以繼續維持 😗</p>
+<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
+<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
+<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
 <ul>
-<li>吃飯、coding、英文課、洗澡</li>
-<li>吃飯、洗衣服、打遊戲、洗澡、整理包包</li>
+<li>不開心想吃東西但怕胖？吃</li>
+<li>最近穿著都很黯淡？買</li>
+<li>家具缺點什麼更好些？買</li>
 </ul>
-<blockquote>
-<p>但有時候也是會失控沒管好當晚亂七八糟 😅 把打遊戲跟英文課放在同一天真的是腦袋會切不過來</p>
-</blockquote>
-<h2 id="檢視自己的工作狀態"><a href="#檢視自己的工作狀態" class="headerlink" title="檢視自己的工作狀態"></a>檢視自己的工作狀態</h2><p>在工作上都會有兩週一次的 1on1，雖然有時會覺得密集，但在這過程中也是逼自己要檢視&#x2F;整理出近期狀態(有時後也不知道自己在講什麼)，並且可以知道自己近期做的事情有沒有符合部門的目標，才不會埋頭苦幹迷路，搞的人財兩失(績效變差)。</p>
-<h2 id="定期檢視自己的身心狀態"><a href="#定期檢視自己的身心狀態" class="headerlink" title="定期檢視自己的身心狀態"></a>定期檢視自己的身心狀態</h2><p>除了工作，隻身在外，很容易因為環境、氣候、壓力狀態影響到自己的身心，進而影響到身邊的人，因此該犒賞自己的時候千萬別手軟、該運動的時候就要出去、該健檢就去，把這些東西當作是一個投資，延長自己的工作熱情跟長度比較好。</p>
-<h2 id="把東西推薦給適合的人使用"><a href="#把東西推薦給適合的人使用" class="headerlink" title="把東西推薦給適合的人使用"></a>把東西推薦給適合的人使用</h2><p>許多時候我們會在 open source 中找到好東西，但適不適合組織其實是需要很多的討論以及了解實際開發時所遇到的問題。組織運行都會有既定的文化在那，因此找到適合的時機點是個很重要的課題，自己也是需要多花點時間去著墨跟觀察前輩們的作法。</p>
-<p>如近期超紅的 ChatGPT，在試玩時我們都會覺得真的超猛，覺得身邊的人都應該去了解，但..他們真的需要嗎？</p>
-<p>不論是何種傳教士，是要把自己信仰的思想分享出去，但每個人都有不同的家庭背景、成長環境、經歷，若在對方沒興趣的情況下，一直推坑對方，其實也是間接在浪費對方的腦袋跟時間，許多時候需要學會觀察大家近期的特性，進而找到適合的時間點導入，才會讓做的事情事半功倍。</p>
-<h2 id="時刻提醒自己"><a href="#時刻提醒自己" class="headerlink" title="時刻提醒自己"></a>時刻提醒自己</h2><h3 id="1-別被情緒影響判斷"><a href="#1-別被情緒影響判斷" class="headerlink" title="1. 別被情緒影響判斷"></a>1. 別被情緒影響判斷</h3><p>有時候聽到跟自己觀念不符合，或是被不合理要求時，可能腦中會有很多的火氣各種燒，但在這時候下的判斷很容易都是錯的，這三年中我也很常被提點：「當聽到一件事情馬上就有的第一個想做的想法，通常判斷會是錯的。」雖然不能以偏概全，但仔細思考後換位想，如果人家這樣對你時會怎樣想呢？因此經歷過這些日子的調教，我會在每件事情要發生前，盡可能的思考看是否有哪些細節&#x2F;事情沒做到，或許在當下不會影響太多，但我相信隨著時間的累積，如果做的好它會帶著你飛的！</p>
-<blockquote>
-<p>🥷 要罵事情解決再罵，先把事情處理好比較重要～</p>
-</blockquote>
-<h3 id="2-打字-x2F-對話中盡量用名詞替代「你我他」"><a href="#2-打字-x2F-對話中盡量用名詞替代「你我他」" class="headerlink" title="2. 打字&#x2F;對話中盡量用名詞替代「你我他」"></a>2. 打字&#x2F;對話中盡量用名詞替代「你我他」</h3><p>很多時候它們會有些指向性壓迫的感覺，我認為在對談的過程中(實體 or 通訊軟體)，把對方的名稱放進去會是一個更舒適的選擇，別省下打那幾個字或是思考對方名字的時間，讓這次的對話可以更舒適的結束。相信累積久了，大家也會覺得壓迫感沒那麼重，比較不會防禦喔！</p>
-<h3 id="3-我們都想改變點什麼，但反而不能急"><a href="#3-我們都想改變點什麼，但反而不能急" class="headerlink" title="3. 我們都想改變點什麼，但反而不能急"></a>3. 我們都想改變點什麼，但反而不能急</h3><p>當我們到一個新環境時，可能會覺得工作流程複雜、工具老舊、規矩很多、風氣不好…等等的疑問，血氣方剛的年紀都會覺得應該要改快做點什麼改善環境。但這時候反而要思考你不喜歡的東西，為什麼會存在在這，勢必有它的原因，導入之後對大家個 effort 是什麼。盡可能的全盤考慮+討論後再執行，有了這些討論，也更能知道團隊的大家考量點是什麼，藉此調整計畫，讓它在適合的時間點加入，也不會讓大家覺得自己是一股腦衝刺！</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>文章的最後，我覺得對於自己來北部學會最多的就是「<code>對於決定的判斷</code>」，時常我會因為無法決定某些事情，而花很多時間在猶豫，經歷過專案的大洗禮，現在對於<code>時間概念</code>、<code>執行可行性</code>、<code>行事曆追蹤</code>的掌握度又更高了一些，希望接下來在遇到更多的專案內容時，能夠把所學的這些技能好好的運用上去，讓專案以及合作的人都能夠更順暢的完成事情！</p>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
 ]]></content>
       <categories>
-        <category>學習紀錄</category>
+        <category>日記</category>
       </categories>
-      <tags>
-        <tag>DevRel</tag>
-        <tag>個人成長</tag>
-      </tags>
   </entry>
   <entry>
     <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
@@ -17289,6 +17227,127 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
+    <url>/2023/06/25/nijia-review-year-3-at-LINE/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/people.jpeg"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇紀錄著近期對於自己來台北工作三年的一些經驗分享，用比較流水帳的方式紀錄著(絕沒出動 GPT😆)。除了幫自己紀錄這幾年來的經驗，若有讀者也想來北部工作，或許這篇的內容可以參考看看！</p>
+<span id="more"></span>
+
+<blockquote>
+<p>開始前播一下撰文當下聽到的歌：</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LbiWaeLdqeA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="30-了，也是該吃保養品的年紀-XD"><a href="#30-了，也是該吃保養品的年紀-XD" class="headerlink" title="30 了，也是該吃保養品的年紀 XD"></a>30 了，也是該吃保養品的年紀 XD</h2><p><img src="https://nijialin.com/images/2023/little_horse.gif" alt="小馬怪"></p>
+<p>從 2022 年中健檢完發現好像有很多紅字，雖然後續複檢是都沒有，但年紀好像也到了，該是開始吃 B 群、魚油、發泡錠的年紀了 🥲(從 COVID 之後發現自己越來越容易體虛)，打球也感覺到年紀帶來的衝擊 😅，有時候真的不能鐵齒，該休息時就得休息了 😆(身體健康還是比較重要的！)</p>
+<h2 id="30-歲前找到願意帶你的導師"><a href="#30-歲前找到願意帶你的導師" class="headerlink" title="30 歲前找到願意帶你的導師"></a>30 歲前找到願意帶你的導師</h2><blockquote>
+<p>來自前同事阿尼的人生體悟</p>
+</blockquote>
+<p>來台北之後學到了許多專案管理、時程規劃、流程制定、做事原則，從初期做事時都搞不清楚做這些到底目的為何，到現在要能跟同事解釋每個流程脈絡與目的也是真的很不容易。除了花很多時間整理每個每次活動&#x2F;會議中提出的想法，也是 Evan 花了很多時間解釋源由與讓我去思考自己到底在講什麼 😆，讓我不是只有拿答案做事，而是要理解當中的原理。</p>
+<p>過程中也都要針對專案去建立頁面、各種會議文件、行事曆、Single Source 的重要性…etc，雖然每次建立這些都超～級～花時間，但其實在往後回去看文件時才能感覺到當初辛苦的價值，</p>
+<h2 id="專案管理上的成長"><a href="#專案管理上的成長" class="headerlink" title="專案管理上的成長"></a>專案管理上的成長</h2><p>從一開始進來時，接到任務時先從過去的樣板去管理&#x2F;設定專案時程，然後去跟各單位諮詢並完成它。到後來開始接下研討會的舉辦，跟行銷、公關、設計師、會計、採購、資安、活動公司…討論，決定每個東西的優先順序，並且持續確認專案時程的可行性。也是很感謝公司有給這次舉辦機會，讓我能在這時期強化自己的組織與規劃能力 🎉</p>
+<blockquote>
+<p>從中也才知道老闆說的「無矩不成方圓」，做專案的過程中若沒有規矩，會讓很多事情亂了序，沒辦法好好的做下去。當然制定規則時，也要把成員屬性都一起考慮進去，才會發揮團隊的特色！</p>
+</blockquote>
+<h3 id="我以為的多緒執行能力，其實只是很會多次單緒切換"><a href="#我以為的多緒執行能力，其實只是很會多次單緒切換" class="headerlink" title="我以為的多緒執行能力，其實只是很會多次單緒切換"></a>我以為的多緒執行能力，其實只是很會多次單緒切換</h3><p>在做專案過程，隨著每個 milestone 越近時，許多東西都要在同時處理，A 回就要跟 B 確認，C 也在問什麼時候好，因此手腳都要很快趕快把事情完成。</p>
+<p>在當中旁觀時會認為對方好像能同時處理很多事情，但其實我們都沒辦法同時做好幾件事，這時期只是很快速的資訊切換，因此也是為什麼很容易在這時間有掉東西&#x2F;訊息的問題。後來也學乖了，只要在東西同一時間進來時，要先讓自己冷靜一下，排出東西的優先權，評估之後在開始做事，才不會害的自己四不像，最後在東怪西怪。</p>
+<h3 id="從日常生活中培養專案管理能力-上班前，下班後的時間管理"><a href="#從日常生活中培養專案管理能力-上班前，下班後的時間管理" class="headerlink" title="從日常生活中培養專案管理能力 - 上班前，下班後的時間管理"></a>從日常生活中培養專案管理能力 - 上班前，下班後的時間管理</h3><h4 id="上班前"><a href="#上班前" class="headerlink" title="上班前"></a>上班前</h4><p>過去的工作都是六點下班，下班後的時間可以參考下圖：</p>
+<script defer class="speakerdeck-embed" data-slide="22" data-id="95e302aa691f4150805d8bd57f5467ed" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>二月大活動結束後開始審視時間，發現自己下班後的時間有點壓的太緊，很常會弄不好把自己搞的很累，後來轉變了一個部分，就是每週約有三～四天會早上 7:30 跟同事一起健身房，把時間改到早上之後，發現上班前運動反而精神會好一些，也剛好本身是一個慢熱的體質，任何需要高度專注的項目，都需要一段準備時間，因此後來把運動時間改到早上，以目前來說還算是滿好的一個調整！</p>
+<h4 id="下班後"><a href="#下班後" class="headerlink" title="下班後"></a>下班後</h4><p>身為北漂族，下班都需要各種自理，不論是吃飯、洗&#x2F;晾&#x2F;折衣服、coding、打遊戲、英文課、看廢片、洗澡、整理包包…都需要好好的安排，經常一個搞不好晚上可能還比早上忙，一般來說選其中三、四樣晚上的時間基本上就沒了 🥹</p>
+<p>通常來說現在分配動&#x2F;靜態的部分各別一天效果還不錯，或許可以繼續維持 😗</p>
+<ul>
+<li>吃飯、coding、英文課、洗澡</li>
+<li>吃飯、洗衣服、打遊戲、洗澡、整理包包</li>
+</ul>
+<blockquote>
+<p>但有時候也是會失控沒管好當晚亂七八糟 😅 把打遊戲跟英文課放在同一天真的是腦袋會切不過來</p>
+</blockquote>
+<h2 id="檢視自己的工作狀態"><a href="#檢視自己的工作狀態" class="headerlink" title="檢視自己的工作狀態"></a>檢視自己的工作狀態</h2><p>在工作上都會有兩週一次的 1on1，雖然有時會覺得密集，但在這過程中也是逼自己要檢視&#x2F;整理出近期狀態(有時後也不知道自己在講什麼)，並且可以知道自己近期做的事情有沒有符合部門的目標，才不會埋頭苦幹迷路，搞的人財兩失(績效變差)。</p>
+<h2 id="定期檢視自己的身心狀態"><a href="#定期檢視自己的身心狀態" class="headerlink" title="定期檢視自己的身心狀態"></a>定期檢視自己的身心狀態</h2><p>除了工作，隻身在外，很容易因為環境、氣候、壓力狀態影響到自己的身心，進而影響到身邊的人，因此該犒賞自己的時候千萬別手軟、該運動的時候就要出去、該健檢就去，把這些東西當作是一個投資，延長自己的工作熱情跟長度比較好。</p>
+<h2 id="把東西推薦給適合的人使用"><a href="#把東西推薦給適合的人使用" class="headerlink" title="把東西推薦給適合的人使用"></a>把東西推薦給適合的人使用</h2><p>許多時候我們會在 open source 中找到好東西，但適不適合組織其實是需要很多的討論以及了解實際開發時所遇到的問題。組織運行都會有既定的文化在那，因此找到適合的時機點是個很重要的課題，自己也是需要多花點時間去著墨跟觀察前輩們的作法。</p>
+<p>如近期超紅的 ChatGPT，在試玩時我們都會覺得真的超猛，覺得身邊的人都應該去了解，但..他們真的需要嗎？</p>
+<p>不論是何種傳教士，是要把自己信仰的思想分享出去，但每個人都有不同的家庭背景、成長環境、經歷，若在對方沒興趣的情況下，一直推坑對方，其實也是間接在浪費對方的腦袋跟時間，許多時候需要學會觀察大家近期的特性，進而找到適合的時間點導入，才會讓做的事情事半功倍。</p>
+<h2 id="時刻提醒自己"><a href="#時刻提醒自己" class="headerlink" title="時刻提醒自己"></a>時刻提醒自己</h2><h3 id="1-別被情緒影響判斷"><a href="#1-別被情緒影響判斷" class="headerlink" title="1. 別被情緒影響判斷"></a>1. 別被情緒影響判斷</h3><p>有時候聽到跟自己觀念不符合，或是被不合理要求時，可能腦中會有很多的火氣各種燒，但在這時候下的判斷很容易都是錯的，這三年中我也很常被提點：「當聽到一件事情馬上就有的第一個想做的想法，通常判斷會是錯的。」雖然不能以偏概全，但仔細思考後換位想，如果人家這樣對你時會怎樣想呢？因此經歷過這些日子的調教，我會在每件事情要發生前，盡可能的思考看是否有哪些細節&#x2F;事情沒做到，或許在當下不會影響太多，但我相信隨著時間的累積，如果做的好它會帶著你飛的！</p>
+<blockquote>
+<p>🥷 要罵事情解決再罵，先把事情處理好比較重要～</p>
+</blockquote>
+<h3 id="2-打字-x2F-對話中盡量用名詞替代「你我他」"><a href="#2-打字-x2F-對話中盡量用名詞替代「你我他」" class="headerlink" title="2. 打字&#x2F;對話中盡量用名詞替代「你我他」"></a>2. 打字&#x2F;對話中盡量用名詞替代「你我他」</h3><p>很多時候它們會有些指向性壓迫的感覺，我認為在對談的過程中(實體 or 通訊軟體)，把對方的名稱放進去會是一個更舒適的選擇，別省下打那幾個字或是思考對方名字的時間，讓這次的對話可以更舒適的結束。相信累積久了，大家也會覺得壓迫感沒那麼重，比較不會防禦喔！</p>
+<h3 id="3-我們都想改變點什麼，但反而不能急"><a href="#3-我們都想改變點什麼，但反而不能急" class="headerlink" title="3. 我們都想改變點什麼，但反而不能急"></a>3. 我們都想改變點什麼，但反而不能急</h3><p>當我們到一個新環境時，可能會覺得工作流程複雜、工具老舊、規矩很多、風氣不好…等等的疑問，血氣方剛的年紀都會覺得應該要改快做點什麼改善環境。但這時候反而要思考你不喜歡的東西，為什麼會存在在這，勢必有它的原因，導入之後對大家個 effort 是什麼。盡可能的全盤考慮+討論後再執行，有了這些討論，也更能知道團隊的大家考量點是什麼，藉此調整計畫，讓它在適合的時間點加入，也不會讓大家覺得自己是一股腦衝刺！</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>文章的最後，我覺得對於自己來北部學會最多的就是「<code>對於決定的判斷</code>」，時常我會因為無法決定某些事情，而花很多時間在猶豫，經歷過專案的大洗禮，現在對於<code>時間概念</code>、<code>執行可行性</code>、<code>行事曆追蹤</code>的掌握度又更高了一些，希望接下來在遇到更多的專案內容時，能夠把所學的這些技能好好的運用上去，讓專案以及合作的人都能夠更順暢的完成事情！</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>DevRel</tag>
+        <tag>個人成長</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>關於我衝動買了 ROG Ally 的夜晚⋯</title>
+    <url>/2023/07/29/why-i-buy-rog-ally/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="規格-官網"><a href="#規格-官網" class="headerlink" title="規格 - 官網"></a>規格 - <a href="https://rog.asus.com/tw/gaming-handhelds/rog-ally/rog-ally-2023/">官網</a></h1><ul>
+<li>AMD Ryzen™ Z1 Extreme</li>
+<li>記憶體：16GB</li>
+<li>硬碟：512GB​</li>
+</ul>
+<h1 id="為什麼要買它而不買-Steam-Deck-之類的？"><a href="#為什麼要買它而不買-Steam-Deck-之類的？" class="headerlink" title="為什麼要買它而不買 Steam Deck 之類的？"></a>為什麼要買它而不買 Steam Deck 之類的？</h1><ul>
+<li>台北租屋需要省空間</li>
+<li>回家也想打 LOL</li>
+<li>同事幫忙測試 Steam 快打旋風可以玩</li>
+<li>Windows 對我彈性還是比較高</li>
+<li>Steam Deck 需要另外支援，可能比 ROG 去適應 Windows 問題在多一些些</li>
+<li>大概 OLED 的 Switch 在重一點點</li>
+</ul>
+<h1 id="有哪些小缺點是需要注意的？"><a href="#有哪些小缺點是需要注意的？" class="headerlink" title="有哪些小缺點是需要注意的？"></a>有哪些小缺點是需要注意的？</h1><ul>
+<li>只有一個 Type-C</li>
+<li>要玩超級大作就要另外買外接顯卡 (3w+)</li>
+<li>可能某天 ASUS 更新沒做好爆掉？</li>
+<li>按鍵的感覺不耐操，修理可能很麻煩</li>
+<li>512G 對很多人可能不夠，需要研究黑魔法</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="我怎麼買到的？"><a href="#我怎麼買到的？" class="headerlink" title="我怎麼買到的？"></a>我怎麼買到的？</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056099347300386.png"></p>
+<p>其實有同學是 ASUS 員工，但裡面也是都搶購一空，一般我們都會想說去 PCHome || MOMO 買，經過了兩三個禮拜煎熬後，我從公司的 <a href="https://buy.line.me/s/rog%20ally">LINE 購物</a>裡去搜尋 ROG Ally，轉到 <a href="https://tw.buy.yahoo.com/gdsale/ROG-Ally-%E9%81%8A%E6%88%B2%E6%8E%8C%E6%A9%9F-10641183.html?co_servername=LN_5bcf58770c4e2f81e30be0048a7adf71">Yahoo 購物商城</a>後就買到了！而且有都還是原價～ 👍 有時候還真的沒想到 😆</p>
+<h1 id="按鈕配置"><a href="#按鈕配置" class="headerlink" title="按鈕配置"></a>按鈕配置</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056084298924484.png"></p>
+<p>按鍵據說參考 XBox 的排列，對於一個玩 Switch PS 的玩家初期需要習慣 (A 在下面，B 在最右邊)</p>
+<h1 id="開機預設畫面"><a href="#開機預設畫面" class="headerlink" title="開機預設畫面"></a>開機預設畫面</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466090716851077266.png" alt="預設畫面"></p>
+<p>開機預設會開起 ASUS 所開發的系統，主要是去適應掌機的應用，讓有用掌機玩的玩家不用大老遠去找開啟的地方。如果喜歡 PC 操作，直接關掉即可。</p>
+<h2 id="關於擴充這東東"><a href="#關於擴充這東東" class="headerlink" title="關於擴充這東東"></a>關於擴充這東東</h2><p><img src="https://nijialin.com/images/2023/rog/1.png"></p>
+<p>由於我要接的東西很多，對於 Windows 玩遊戲來說我也滿堅持要接網路線，因此買了相容 <a href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=11004814">Steam Deck 的擴充盒</a>，可以接三個 USB、原廠 Type-C 充電、網路線、HDMI，會使用到的裝置如下：</p>
+<ul>
+<li>滑鼠：用藍芽</li>
+<li>鍵盤：USB-A</li>
+<li>麥克風： USB-A (DC 用)</li>
+<li>大搖： USB-A</li>
+<li>鏡頭： USB-A (跟搖桿擇一，上課用)</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>主要是基於移動性的考量購買它，同等價位下買的桌上型電腦其實也都還不錯，而且若在家裡買一台桌機，還很有可能被家人關機😆，主要還想把桌機拿去把我以前的 Mac 換回來用 😆</p>
+]]></content>
+      <categories>
+        <category>3C</category>
+      </categories>
+      <tags>
+        <tag>ROG</tag>
+        <tag>Ally</tag>
+        <tag>ASUS</tag>
+        <tag>掌機</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【快打6】新玩法與硬體選擇</title>
     <url>/2023/08/06/why-buy-street-fighter-6/</url>
     <content><![CDATA[<ul>
@@ -17352,59 +17411,6 @@ img[alt~="center"] {
         <tag>快打旋風</tag>
         <tag>ROG Ally</tag>
         <tag>搖桿</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>關於我衝動買了 ROG Ally 的夜晚⋯</title>
-    <url>/2023/07/29/why-i-buy-rog-ally/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="規格-官網"><a href="#規格-官網" class="headerlink" title="規格 - 官網"></a>規格 - <a href="https://rog.asus.com/tw/gaming-handhelds/rog-ally/rog-ally-2023/">官網</a></h1><ul>
-<li>AMD Ryzen™ Z1 Extreme</li>
-<li>記憶體：16GB</li>
-<li>硬碟：512GB​</li>
-</ul>
-<h1 id="為什麼要買它而不買-Steam-Deck-之類的？"><a href="#為什麼要買它而不買-Steam-Deck-之類的？" class="headerlink" title="為什麼要買它而不買 Steam Deck 之類的？"></a>為什麼要買它而不買 Steam Deck 之類的？</h1><ul>
-<li>台北租屋需要省空間</li>
-<li>回家也想打 LOL</li>
-<li>同事幫忙測試 Steam 快打旋風可以玩</li>
-<li>Windows 對我彈性還是比較高</li>
-<li>Steam Deck 需要另外支援，可能比 ROG 去適應 Windows 問題在多一些些</li>
-<li>大概 OLED 的 Switch 在重一點點</li>
-</ul>
-<h1 id="有哪些小缺點是需要注意的？"><a href="#有哪些小缺點是需要注意的？" class="headerlink" title="有哪些小缺點是需要注意的？"></a>有哪些小缺點是需要注意的？</h1><ul>
-<li>只有一個 Type-C</li>
-<li>要玩超級大作就要另外買外接顯卡 (3w+)</li>
-<li>可能某天 ASUS 更新沒做好爆掉？</li>
-<li>按鍵的感覺不耐操，修理可能很麻煩</li>
-<li>512G 對很多人可能不夠，需要研究黑魔法</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="我怎麼買到的？"><a href="#我怎麼買到的？" class="headerlink" title="我怎麼買到的？"></a>我怎麼買到的？</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056099347300386.png"></p>
-<p>其實有同學是 ASUS 員工，但裡面也是都搶購一空，一般我們都會想說去 PCHome || MOMO 買，經過了兩三個禮拜煎熬後，我從公司的 <a href="https://buy.line.me/s/rog%20ally">LINE 購物</a>裡去搜尋 ROG Ally，轉到 <a href="https://tw.buy.yahoo.com/gdsale/ROG-Ally-%E9%81%8A%E6%88%B2%E6%8E%8C%E6%A9%9F-10641183.html?co_servername=LN_5bcf58770c4e2f81e30be0048a7adf71">Yahoo 購物商城</a>後就買到了！而且有都還是原價～ 👍 有時候還真的沒想到 😆</p>
-<h1 id="按鈕配置"><a href="#按鈕配置" class="headerlink" title="按鈕配置"></a>按鈕配置</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056084298924484.png"></p>
-<p>按鍵據說參考 XBox 的排列，對於一個玩 Switch PS 的玩家初期需要習慣 (A 在下面，B 在最右邊)</p>
-<h1 id="開機預設畫面"><a href="#開機預設畫面" class="headerlink" title="開機預設畫面"></a>開機預設畫面</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466090716851077266.png" alt="預設畫面"></p>
-<p>開機預設會開起 ASUS 所開發的系統，主要是去適應掌機的應用，讓有用掌機玩的玩家不用大老遠去找開啟的地方。如果喜歡 PC 操作，直接關掉即可。</p>
-<h2 id="關於擴充這東東"><a href="#關於擴充這東東" class="headerlink" title="關於擴充這東東"></a>關於擴充這東東</h2><p><img src="https://nijialin.com/images/2023/rog/1.png"></p>
-<p>由於我要接的東西很多，對於 Windows 玩遊戲來說我也滿堅持要接網路線，因此買了相容 <a href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=11004814">Steam Deck 的擴充盒</a>，可以接三個 USB、原廠 Type-C 充電、網路線、HDMI，會使用到的裝置如下：</p>
-<ul>
-<li>滑鼠：用藍芽</li>
-<li>鍵盤：USB-A</li>
-<li>麥克風： USB-A (DC 用)</li>
-<li>大搖： USB-A</li>
-<li>鏡頭： USB-A (跟搖桿擇一，上課用)</li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>主要是基於移動性的考量購買它，同等價位下買的桌上型電腦其實也都還不錯，而且若在家裡買一台桌機，還很有可能被家人關機😆，主要還想把桌機拿去把我以前的 Mac 換回來用 😆</p>
-]]></content>
-      <categories>
-        <category>3C</category>
-      </categories>
-      <tags>
-        <tag>ROG</tag>
-        <tag>Ally</tag>
-        <tag>ASUS</tag>
-        <tag>掌機</tag>
       </tags>
   </entry>
 </search>
