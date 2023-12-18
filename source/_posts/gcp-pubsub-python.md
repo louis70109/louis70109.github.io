@@ -14,7 +14,7 @@ date: 2023-11-26 22:52:34
 
 # 前言
 
-此篇文章為 2023/12/09 DevFest Taichung Serverless workshop 步驟文章，如果有需要透過 GCP Pub/Sub 將訊息轉打給訂閱的 Cloud Run endpoint，可以參考看看這篇文章喔！
+此篇文章為 [2023/12/09 DevFest Taichung Serverless workshop](https://gdg.community.dev/events/details/google-gdg-taichung-presents-devfest-taichung-2023/) 步驟文章，如果有需要透過 GCP Pub/Sub 將訊息轉打給訂閱的 Cloud Run endpoint，可以參考看看這篇文章喔！
 
 
 <!-- more -->
