@@ -16,6 +16,7 @@ date: 2023-11-26 22:52:34
 
 此篇文章為 2023/12/09 DevFest Taichung Serverless workshop 步驟文章，如果有需要透過 GCP Pub/Sub 將訊息轉打給訂閱的 Cloud Run endpoint，可以參考看看這篇文章喔！
 
+
 <!-- more -->
 
 # 前置準備
@@ -23,6 +24,18 @@ date: 2023-11-26 22:52:34
 - 需要有 GCP 的帳戶，有綁信用卡可開啟服務，且需要開啟個專案
 - 需要有 LINE 帳號，且要能登入 [LINE Developer Console](https://developers.line.biz/console/)
   - 要能開啟一個 Provider + Channel
+
+> 範例專案：[gcp-serverless-workshop/notifier-line-bot](https://github.com/gcp-serverless-workshop/notifier-line-bot/tree/main)
+
+## 本地開發參考以下步驟
+
+```
+git clone git@github.com:gcp-serverless-workshop/notifier-line.git
+cd notifier-line/
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 # 服務使用介紹
 
@@ -77,7 +90,7 @@ date: 2023-11-26 22:52:34
 
 ## 寫一個 pub.py 來試試看
 
-參考 [gcp-serverless-workshop/notifier-line](https://github.com/gcp-serverless-workshop/notifier-line/blob/main/pub.py)，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：
+參考 [gcp-serverless-workshop/notifier-line](https://github.com/gcp-serverless-workshop/notifier-line-bot/blob/main/pub.py)，我們可以針對線上環境去 pub data 去 topic，其中有些需要注意的：
 
 - 需到 GCP Service Accounts 中拿取一把金鑰，`放到本專案當中`，是 JSON 格式，並且把路徑置換
   - 第 9 行：`os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'YOUR_GCP_CA_PATH'`
@@ -96,5 +109,8 @@ date: 2023-11-26 22:52:34
 > ngrok 可以參考這篇文章 - [Day 20 GCP 公有雲\_雲端事件消息傳遞服務實戰 - Pub/Sub 組建測試之路](https://ithelp.ithome.com.tw/articles/10249308)
 
 # 結論
+
+![](https://nijialin.com/images/2023/pubsub/intro.jpeg)
+
 
 由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 **LINE_GROUP_ID** 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！
