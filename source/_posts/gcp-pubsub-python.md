@@ -49,9 +49,9 @@ pip install -r requirements.txt
 
 ![](https://nijialin.com/images/2023/pubsub/3.png)
 
-## 佈署 Cloud Run
+## 部署 Cloud Run
 
-接著來到工作坊的專案[gcp-serverless-workshop/notifier-line](https://github.com/gcp-serverless-workshop/notifier-line)下，按下下方的佈署按鈕，接下來會進入 Cloud Shell 的部分
+接著來到工作坊的專案 [gcp-serverless-workshop/notifier-line-bot](https://github.com/gcp-serverless-workshop/notifier-line-bot) 下，按下下方的部署按鈕，接下來會進入 Cloud Shell 的部分
 
 ![](https://nijialin.com/images/2023/pubsub/cloudshell.png)
 
