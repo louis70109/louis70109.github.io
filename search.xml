@@ -16316,99 +16316,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【Google I/O】筆記 | Firebase &amp; 其他紀錄 🥷</title>
-    <url>/2023/05/13/google-io-note-2023-firebase/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p>
-<span id="more"></span>
-
-<h1 id="Firebase-相關"><a href="#Firebase-相關" class="headerlink" title="Firebase 相關"></a>Firebase 相關</h1><h2 id="Cloud-Firestore-的新動態"><a href="#Cloud-Firestore-的新動態" class="headerlink" title="Cloud Firestore 的新動態"></a><a href="https://io.google/2023/program/c3737ca0-709e-4f0e-aef7-671cf6e03878/intl/zh/">Cloud Firestore 的新動態</a></h2><p>Firestore 是一個 Serverless documentation storage，是一個有可擴展以及高可用性，同時也可 offline cache(影片說的)。</p>
-<p>近期提供的 Document Query 功能：</p>
-<ul>
-<li>COUNT() operator: <a href="https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023">今年一月 release</a><ul>
-<li>Price: 1 document 1000 個 index</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://nijialin.com/images/2023/googleio/count-operator.png"></p>
-<ul>
-<li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul>
-<li><code>cats = black OR dogs = brown</code></li>
-<li>Preview available now</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://nijialin.com/images/2023/googleio/or-operator.png"></p>
-<p>關於 OR() 的用法看這邊：</p>
-<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="Eventarc-支援-Firestore-整合"><a href="#Eventarc-支援-Firestore-整合" class="headerlink" title="Eventarc 支援 Firestore 整合"></a><a href="https://cloud.google.com/firestore/docs/eventarc?hl=zh-cn">Eventarc 支援 Firestore 整合</a></h2><p>剛好在大會上聽到有支援 Eventarc，雖然具體還沒想出應用環節。</p>
-<table>
-<thead>
-<tr>
-<th>Firestore 區域</th>
-<th>Eventarc 區域</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>nam5</td>
-<td>us-central1</td>
-</tr>
-<tr>
-<td>eur3</td>
-<td>europe-west4</td>
-</tr>
-</tbody></table>
-<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023/googleio/terraform.png"></p>
-<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<p>可使用資源如下：</p>
-<ul>
-<li>Firebase Project</li>
-<li>Firebase App</li>
-<li>Cloud Firestore</li>
-<li>Cloud Storage for Firebase</li>
-<li>Firebase Realtime Database</li>
-<li>Firebase Authentication</li>
-<li>Firebase Security Rule<ul>
-<li>只給 Cloud Storage &amp; Cloud Storage</li>
-</ul>
-</li>
-</ul>
-<p>完整的說明可以看以下另一部影片</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/32SKh-jGXI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="Firebase-整合-PaLM-API"><a href="#Firebase-整合-PaLM-API" class="headerlink" title="Firebase 整合 PaLM API"></a><a href="https://youtu.be/emIxn-f9bK0?t=556">Firebase 整合 PaLM API</a></h2><p>使用 chatbot 的樣式，讓你在 Firestore 的 document 中下 prompt(key)，在 PaLM API 回傳時就會直接 import 進入 document 中。</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/emIxn-f9bK0?start=556" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<p>在這 AI 盛行的期間，Firebase 能夠這樣整合真的很猛！而且用戶在用時也可以無痛使用與儲存資料，對於一般 Web 開發者來說，只需要透過 Firebase API(相對熟悉)，然後再把 prompt 下進去 Firestore 中，如此一來也操作上也可以很像 ChatGPT 這樣對話的方式，馬上用到 Google 的 PaLM，實在是很厲害的一個整合！</p>
-<h2 id="Firebase-hosting-也支援-Flask-amp-Django"><a href="#Firebase-hosting-也支援-Flask-amp-Django" class="headerlink" title="Firebase hosting 也支援 Flask &amp; Django"></a>Firebase hosting 也支援 Flask &amp; Django</h2><ul>
-<li><code>firebase hosting:channel:deploy staging</code></li>
-<li>走的是 Cloud Function</li>
-<li>如果需要 GitHub PR preview link，需要先<a href="https://firebase.google.com/docs/hosting/github-integration?hl=zh-tw">參考此文件</a><ul>
-<li><code>firebase init hosting:github</code> 來綁定你的 github</li>
-</ul>
-</li>
-</ul>
-<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023/googleio/webdx.png"></p>
-<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023/googleio/webgpu.png"></p>
-<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023/googleio/androidbot.png"></p>
-<p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Serverless</tag>
-        <tag>Firebase</tag>
-        <tag>Firestore</tag>
-        <tag>PaLM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>寶可夢苦難日: 結局不是重點 重點是我爬不上大師啊</title>
     <url>/2023/07/30/how-to-deploy-pokemon-line-bot/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/2.jpg"></p>
@@ -16514,37 +16421,96 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
-    <url>/2023/06/03/knative-why-you-need/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
-<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+    <title>【Google I/O】筆記 | Firebase &amp; 其他紀錄 🥷</title>
+    <url>/2023/05/13/google-io-note-2023-firebase/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p>
 <span id="more"></span>
 
-<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
-<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
-<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
-<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
-<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
-<blockquote>
-<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
-</blockquote>
-<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
-<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
-<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
-<blockquote>
-<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
-<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
-<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+<h1 id="Firebase-相關"><a href="#Firebase-相關" class="headerlink" title="Firebase 相關"></a>Firebase 相關</h1><h2 id="Cloud-Firestore-的新動態"><a href="#Cloud-Firestore-的新動態" class="headerlink" title="Cloud Firestore 的新動態"></a><a href="https://io.google/2023/program/c3737ca0-709e-4f0e-aef7-671cf6e03878/intl/zh/">Cloud Firestore 的新動態</a></h2><p>Firestore 是一個 Serverless documentation storage，是一個有可擴展以及高可用性，同時也可 offline cache(影片說的)。</p>
+<p>近期提供的 Document Query 功能：</p>
+<ul>
+<li>COUNT() operator: <a href="https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023">今年一月 release</a><ul>
+<li>Price: 1 document 1000 個 index</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://nijialin.com/images/2023/googleio/count-operator.png"></p>
+<ul>
+<li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul>
+<li><code>cats = black OR dogs = brown</code></li>
+<li>Preview available now</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://nijialin.com/images/2023/googleio/or-operator.png"></p>
+<p>關於 OR() 的用法看這邊：</p>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="Eventarc-支援-Firestore-整合"><a href="#Eventarc-支援-Firestore-整合" class="headerlink" title="Eventarc 支援 Firestore 整合"></a><a href="https://cloud.google.com/firestore/docs/eventarc?hl=zh-cn">Eventarc 支援 Firestore 整合</a></h2><p>剛好在大會上聽到有支援 Eventarc，雖然具體還沒想出應用環節。</p>
+<table>
+<thead>
+<tr>
+<th>Firestore 區域</th>
+<th>Eventarc 區域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nam5</td>
+<td>us-central1</td>
+</tr>
+<tr>
+<td>eur3</td>
+<td>europe-west4</td>
+</tr>
+</tbody></table>
+<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023/googleio/terraform.png"></p>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>可使用資源如下：</p>
+<ul>
+<li>Firebase Project</li>
+<li>Firebase App</li>
+<li>Cloud Firestore</li>
+<li>Cloud Storage for Firebase</li>
+<li>Firebase Realtime Database</li>
+<li>Firebase Authentication</li>
+<li>Firebase Security Rule<ul>
+<li>只給 Cloud Storage &amp; Cloud Storage</li>
+</ul>
+</li>
+</ul>
+<p>完整的說明可以看以下另一部影片</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/32SKh-jGXI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="Firebase-整合-PaLM-API"><a href="#Firebase-整合-PaLM-API" class="headerlink" title="Firebase 整合 PaLM API"></a><a href="https://youtu.be/emIxn-f9bK0?t=556">Firebase 整合 PaLM API</a></h2><p>使用 chatbot 的樣式，讓你在 Firestore 的 document 中下 prompt(key)，在 PaLM API 回傳時就會直接 import 進入 document 中。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/emIxn-f9bK0?start=556" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>在這 AI 盛行的期間，Firebase 能夠這樣整合真的很猛！而且用戶在用時也可以無痛使用與儲存資料，對於一般 Web 開發者來說，只需要透過 Firebase API(相對熟悉)，然後再把 prompt 下進去 Firestore 中，如此一來也操作上也可以很像 ChatGPT 這樣對話的方式，馬上用到 Google 的 PaLM，實在是很厲害的一個整合！</p>
+<h2 id="Firebase-hosting-也支援-Flask-amp-Django"><a href="#Firebase-hosting-也支援-Flask-amp-Django" class="headerlink" title="Firebase hosting 也支援 Flask &amp; Django"></a>Firebase hosting 也支援 Flask &amp; Django</h2><ul>
+<li><code>firebase hosting:channel:deploy staging</code></li>
+<li>走的是 Cloud Function</li>
+<li>如果需要 GitHub PR preview link，需要先<a href="https://firebase.google.com/docs/hosting/github-integration?hl=zh-tw">參考此文件</a><ul>
+<li><code>firebase init hosting:github</code> 來綁定你的 github</li>
+</ul>
+</li>
+</ul>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023/googleio/webdx.png"></p>
+<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023/googleio/webgpu.png"></p>
+<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023/googleio/androidbot.png"></p>
+<p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>
+]]></content>
       <categories>
         <category>GCP</category>
       </categories>
       <tags>
-        <tag>Kubernetes</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Knative</tag>
+        <tag>Serverless</tag>
+        <tag>Firebase</tag>
+        <tag>Firestore</tag>
+        <tag>PaLM</tag>
       </tags>
   </entry>
   <entry>
@@ -16624,6 +16590,40 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>Google</tag>
         <tag>GCP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
+    <url>/2023/06/03/knative-why-you-need/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
+<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+<span id="more"></span>
+
+<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
+<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
+<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
+<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
+<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
+<blockquote>
+<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
+</blockquote>
+<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
+<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
+<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
+<blockquote>
+<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
+<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
+<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Knative</tag>
       </tags>
   </entry>
   <entry>
@@ -17097,7 +17097,7 @@ img[alt~="center"] {
     <url>/2023/12/23/nijia-2023-review/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
 <h1 id="🐔-前言"><a href="#🐔-前言" class="headerlink" title="🐔 前言"></a>🐔 前言</h1><p>趁出國跨年之前來整理今年的一些事情，期許 2024 年的自己可以持續跨出舒適圈</p>
-<p>自覺自己是一個很反骨的個性，不喜歡被定義就是**<code>怎樣怎樣</code>**的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
+<p>自覺自己是一個很反骨的個性，不喜歡被定義就是<code>怎樣怎樣</code>的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
 <span id="more"></span>
 
 <h1 id="🦉-心態轉換"><a href="#🦉-心態轉換" class="headerlink" title="🦉 心態轉換"></a>🦉 心態轉換</h1><p>我覺得這最重要，因此還是要放前面點 👀️ 。進入三十歲之後，有種該為什麼負責的感覺浮現上來：</p>
@@ -17122,17 +17122,22 @@ img[alt~="center"] {
 <blockquote>
 <p>今年也很感謝主管們的愛戴，拿了兩次的 spot bonus，讓我在挑戰不同 role 下還能夠被認可，無疑是對我職涯非常棒的推動力！</p>
 </blockquote>
-<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
-<p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩 J 台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。 <a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a></p>
-<p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️</p>
+<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><ul>
+<li><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
+</li>
+<li><p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩 J 台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。 <a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a></p>
+</li>
+<li><p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️</p>
+</li>
+</ul>
 <blockquote>
 <p><a href="https://maps.app.goo.gl/i2FSt9AztSkuLiH78">滑板地圖清單</a></p>
 </blockquote>
-<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「價值是跟自己比，旁邊只是參考」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
+<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「<mark>價值是跟自己比，旁邊只是參考</mark>」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
 <blockquote>
 <p>不論是工作、運動、感情…etc</p>
 </blockquote>
-<p>「堅持下去」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
+<p>「<mark>堅持下去</mark>」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
 <blockquote>
 <p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
 </blockquote>
