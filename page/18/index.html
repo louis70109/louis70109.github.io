@@ -208,6 +208,149 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/15/serverless-cold-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/15/serverless-cold-start/" class="post-title-link" itemprop="url">Serverless cold start 問題</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-15 17:30:03" itemprop="dateCreated datePublished" datetime="2020-02-15T17:30:03+00:00">2020-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/gjLODpG.jpg" alt="workload"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前鐵人賽寫了一篇文章有提到 <a href="https://nijialin.com/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/">Cold Start 的問題</a>，不過只有粗略介紹，最近看到大家忽然又開始討論這個話題，這次就來好好的搜尋資料介紹一下。</p>
+<p>平常在做 open source 時比較常遇到休眠狀態應該就是 <code>Heroku</code>，而開頭要先澄清一下他是屬於 <code>PaaS</code> 的架構，而 AWS、Google、Azure 裡提供的 <code>Lambda</code>、<code>Cloud Run</code>、<code>Azure Function</code> 這些則屬於 FaaS 架構，而最常討論 <code>Cold start</code> 時最常會在 FaaS 上討論，只是剛好 Heroku 使用起來也是一樣，這次文章就把他一起抓進來討論啦～</p>
+<blockquote>
+<p>有很多各式各樣的服務，SaaS、FaaS、KaaS、IaaS… 等各式各樣的架構，每個都是為了解決某個問題所誕生的，至於好或不好其實就是看使用場景而定，所以大家在選用時要注意一下你使用的場景哦！</p>
+</blockquote>
+<h1 id="為什麼會休眠"><a href="#為什麼會休眠" class="headerlink" title="為什麼會休眠"></a>為什麼會休眠</h1><p>一般會有休眠機制是因為這些供應商在提供服務都是提供按次計費的方案，讓開發者在用時可以需要才喚醒使用，也就是說這些服務都是 <code>事件驅動</code>(<code>Event-Driven</code>)導向，意指是當前服務若收到訊息後，會呼叫對應的 Function 來處理對應服務所接收到的資料(Queue、Notify …)，但相對的就是會有<code>休眠</code>讓服務暫停，進而讓較少使用的服務不會因為掛在線上而一直被收費用，而重新啟動這件事就是本篇要提的<code>Cold start</code>。</p>
+<h1 id="Cold-start-流程"><a href="#Cold-start-流程" class="headerlink" title="Cold start 流程"></a>Cold start 流程</h1><p>在處理資料之後過一段時間若沒有繼續執行，雲端供應商會將模組暫停，此時 function 會處於 inactive 狀態(cold)，而當 function 再度被觸發時(<code>cold start</code>)則會再啟動模組來執行對應 function 來處理事件，在模組與 function 之間的關係可以稱他們為 <code>Function chain</code>。</p>
+<h3 id="休眠狀態喚醒流程"><a href="#休眠狀態喚醒流程" class="headerlink" title="休眠狀態喚醒流程"></a>休眠狀態喚醒流程</h3><p><img src="https://i.imgur.com/DQoGYns.png" alt="[參考](https://mikhail.io/2018/08/serverless-cold-start-war/#how-do-languages-compare-)"></p>
+<p>以 AWS 為例，在喚醒時會到 S3 去取得檔案，接著找到相關的 Lambda 並載入相關模組套件，然後再執行觸發的事件，整理過後的下:</p>
+<blockquote>
+<p>事件處理 ➡️ 過段時間 ➡️ 暫停 function 模組(休眠) ➡️ 觸發 ➡️ 啟動 function 模組 ➡️ 事件處理…</p>
+</blockquote>
+<p>這整個流程就是俗稱的 <code>cold start</code>，因為在這個過程中會花些時間，所以若是拿來處理 api 相關問題的話就會有第一批請求很久，然後之後的請求卻特別快的狀態，請大家莫急莫慌莫害怕呀！</p>
+<h1 id="平台比較表"><a href="#平台比較表" class="headerlink" title="平台比較表"></a>平台比較表</h1><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>多少時間後暫停</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS Lambda</td>
+<td>10 minutes</td>
+</tr>
+<tr>
+<td>Google Cloud Functions</td>
+<td><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/#gcp">介於 3 minutes 之間 5+ hours 都有</a></td>
+</tr>
+<tr>
+<td>Azure Functions</td>
+<td><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/#azure">20 minutes</a></td>
+</tr>
+<tr>
+<td>Heroku</td>
+<td><a href="(https://devcenter.heroku.com/articles/free-dyno-hours#dyno-sleeping)">30 minutes</a></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>前三個為 <code>FaaS</code> 架構，而 Heroku 則為 <code>PaaS</code> 架構喔！</p>
+</blockquote>
+<p>下圖則來自 2019&#x2F;09 的<a target="_blank" rel="noopener" href="https://mikhail.io/serverless/coldstarts/big3/">一篇文章</a>，較深色的部分則為啟動時間。<br><img src="https://i.imgur.com/yZxWvlL.png" alt="FaaS platform cold start time"></p>
+<h1 id="如何處理或是盡可能避免？"><a href="#如何處理或是盡可能避免？" class="headerlink" title="如何處理或是盡可能避免？"></a>如何處理或是盡可能避免？</h1><p>以我熟悉使用 <a target="_blank" rel="noopener" href="https://serverless.com/">serverless framework</a> 部署到 AWS 來說，他們提供了一個 <a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-plugin-warmup/">warm-up</a> 的套件，可以設定排程時間讓這個 function 固定去戳其他 function，避免他們進入休眠的狀態，雖然這樣子就能達到跟一般服務一樣的常駐狀態，不過相對來說就要注意次數的使用問題，若是流量還小的話沒什麼問題，但若有一定的流量就須注意一下帳單，因為這些在互戳的過程中還是有算進費用的喔！使用上還要多注意才行。</p>
+<p>另一方面要注意相依套件的問題，引用 google <a target="_blank" rel="noopener" href="https://cloud.google.com/run/docs/tips#optimizing_performance">文件的其中一段</a>:</p>
+<p>謹慎使用依附元件，如果您使用動態語言搭配相依的程式庫，例如匯入使用 Node.js 的模型，這些模組的載入時間會增加冷啟動期間的延遲時間。您可以透過以下方式縮短啟動延遲時間：</p>
+<ul>
+<li>儘可能減少相依元件的數量和大小以建置精簡的服務。</li>
+<li>只有在必要時才載入不常用的程式碼 (如果您使用的語言支援)。</li>
+<li>使用程式碼載入的最佳化，例如 PHP 的 composer 自動載入器最佳化。</li>
+</ul>
+<blockquote>
+<p>畢竟在載入模組的時候相依套件也是要一起抓進來，若是程式本身太多依賴的話也是會導致 cold start 的時間變長哦！</p>
+</blockquote>
+<p>最後就在幫大家整理一下三大平台的 warm-up 資源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-plugin-warmup/">warm-up</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/appengine/docs/standard/python/configuring-warmup-requests">Google App Engine warm up</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.serverlessnotes.com/docs/scheduling-with-azure-functions">Google Schedule</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.serverlessnotes.com/docs/scheduling-with-azure-functions">Scheduling with Azure Functions</a></li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>為什麼要有 cold start 的機制，以供應商的角度來說他們可以提供一定的量讓使用者免費在平台上先建置服務，但若要免費就是服務會被暫時暫停，畢竟現在流量就是錢嗎 💰，像我常用的 Heroku 就會是這樣，而當你流量大的時候就看你要不要搬家，不過一般應該都懶得搬，就會形成所謂的<code>養、套、殺</code>🤣(離題)。</p>
+<p>總而言之，若是需要服務時常活著，就是需要付出點流量的錢 💰，也或許你的作品服務時間可能不用那麼長，只要在服勤時間內長駐活著就可以在省下一些費用，如果有需要的話還是付一些錢給供應商，畢竟人家也幫你保管了服務你說是不是？</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/faun/on-the-serverless-cold-start-problem-2fc0797da5cc">On the Serverless cold start problem</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/blog/keep-your-lambdas-warm/#installing-the-warmup-plugin">Lambda Warm-up</a></li>
+<li><a target="_blank" rel="noopener" href="https://devcenter.heroku.com/articles/free-dyno-hours">Heroku cold start</a></li>
+<li><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/#how-do-languages-compare-">serverless 啟動流程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.nuweba.com/blog/when-are-cold-starts-problem">Function Chain 來源</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ahmetb/cloud-run-faq#cold-starts">cloud run cold start</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/08/2020-Q1-learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -239,7 +382,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-22 16:49:34" itemprop="dateModified" datetime="2023-12-22T16:49:34+00:00">2023-12-22</time>
+                <time title="修改時間：2023-12-23 04:42:43" itemprop="dateModified" datetime="2023-12-23T04:42:43+00:00">2023-12-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1362,130 +1505,10 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-01 02:44:45" itemprop="dateCreated datePublished" datetime="2019-12-01T02:44:45+00:00">2019-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Armeria-A-Microservice-Framework-Well-suited-Everywhere"><a href="#Armeria-A-Microservice-Framework-Well-suited-Everywhere" class="headerlink" title="Armeria: A Microservice Framework Well-suited Everywhere"></a>Armeria: A Microservice Framework Well-suited Everywhere</h1><p><img src="https://i.imgur.com/MNnrFnm.jpg"></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/armeria-a-microservice-framework-well-suited-everywhere">簡報連結</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/line/armeria">Github</a></li>
-<li><a target="_blank" rel="noopener" href="https://line.github.io/armeria/">官網</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
-<p>本次議程是由韓國的 open source manager - <a target="_blank" rel="noopener" href="https://github.com/trustin">trustin</a> 為我們帶來議程。</p>
-<p>而在今年參加八月舉辦的 COSCUP，並且在第一天的 after party 參加 LINE BoF 上就已經看到 LINE 開發的 Open Source - <a target="_blank" rel="noopener" href="https://github.com/line/armeria">Armeria</a>，它是基於 Java 所撰寫的一個非同步的專案，支援 Java8, Netty, HTTP&#x2F;2, Thrift 以及 gRPC，當時聽團隊簡單介紹就覺得這個專案一定是個很不得的專案，只不過當時因為他們快速介紹兒少聽了很多細節，這次就把我聽到的細節告訴各位吧！</p>
-<blockquote>
-<p>據之前的議程的以及講者的分享說這個服務已經被應用於很多 LINE 服務裡頭，因為覺得好用才推出來🤣</p>
-</blockquote>
-<h1 id="如何讓開發者快速使用-Armeria"><a href="#如何讓開發者快速使用-Armeria" class="headerlink" title="如何讓開發者快速使用 Armeria"></a>如何讓開發者快速使用 Armeria</h1><p>接下來就用 Java code 來簡單火力展示如何用一個串聯式寫法把服務互叫起來，不管是要用什麼服務只要用串接的方式加入即可，像是 gRPC、Thrift、annotation…等等如下面幾張圖所示。</p>
-<p><img src="https://i.imgur.com/KKU0eXG.png"></p>
-<hr>
-<p><img src="https://i.imgur.com/6rAex3K.png"></p>
-<hr>
-<p><img src="https://i.imgur.com/mAKhwh4.png"></p>
-<hr>
-<p><img src="https://i.imgur.com/Z9jfFkI.png"></p>
-<blockquote>
-<p>這邊看到可以這麼簡單就把一個服務叫起來，然後要讓他開發者可以很輕易地理解並上手，LINE 團隊的開發文化真的是令人佩服…</p>
-</blockquote>
-<h1 id="為什麼要做成-async-以及-reactive"><a href="#為什麼要做成-async-以及-reactive" class="headerlink" title="為什麼要做成 async 以及 reactive"></a>為什麼要做成 async 以及 reactive</h1><p>首先就先提到若 Queue 裡頭的東西若是都 sync 的話會有什麼問題，這邊就以一個 Call API 常遇到的問題 - Timeout，在大量的 Queue 在排隊時，以 sync 的方式存在時光遇到 Timeout 就會有服務器爆炸的問題，因為彼此不能影響彼此，且這件事會發生在真實世界的每個地方。<br><img src="https://i.imgur.com/Telr7lG.jpg"></p>
-<hr>
-<p><img src="https://i.imgur.com/hkltFFS.jpg"></p>
-<p>這邊講者提出的解決方案為：</p>
-<ul>
-<li>增加執行緒的標記(#)並且減少呼叫堆疊(stack)</li>
-<li>預準備 Tread pools 讓大家互相共享</li>
-<li>少調用 points</li>
-<li>使用非同步的好處就是能夠平行呼叫+較少的執行緒</li>
-</ul>
-<p>現在他們能用非同步的方式解決系統被鎖住的問題，但今天若遇到一個很肥～的 payload 呢？以範例來說若一個用戶送他 10 MB 的大小，一次送給 100K 個用戶就相當於 1 TB 大小的流量。</p>
-<p>這邊使用的方法是用不同的頻寬 &amp; 處理能力，並且只需要足夠的 buffer 來排除  Out of Memory 的錯誤。</p>
-<p><img src="https://i.imgur.com/10mGUaD.jpg"></p>
-<p>聽到這邊看起來是使用相關的工具來讓整個串接服務可以更有效的 Debug，最後透過 Kibana 來讓訊息可視化，讓 Debug 可以更加快速。</p>
-<blockquote>
-<p>若對相關 Debug 工具可以參考我之前寫的 <a href="https://nijialin.com/2019/11/12/sentry-in-serverless/">Sentry 文章</a></p>
-</blockquote>
-<blockquote>
-<p>Kibana 可參考： <a target="_blank" rel="noopener" href="https://blog.toright.com/posts/5319/fulltext-search-elasticsearch-kibana-bigdata.html">安裝 ElasticSearch + Kibana 實現中文全文搜尋與數據分析</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過了講者一連串的火力展示後感受到 LINE 對於 open source 有多麽的重視，連 Slack 也都愛上 Armeria 這套 Java 函式庫，用於他們的軟體中並公開推薦，讓像我這種喜歡做 open source 的工程師可以燃起新希望繼續為開源做努力。<br><img src="https://i.imgur.com/eKYqMpo.png"></p>
-<p>其實還有很多技術細節的部分在簡報裡，這邊我就不再多家贅述，大家可以參考 <a target="_blank" rel="noopener" href="https://github.com/line/armeria">GitHub</a>，裡面有更加詳細的用法提供給大家。</p>
-<p>這次來 LINE Developer Day 讓我感受到不同於其他大公司的文化，除了精彩的議程外也招待我們這群 LINE API Expert 前來共襄盛舉，若你也想成為 LINE API Expert，不妨拿著你的貢獻來申請看看<a target="_blank" rel="noopener" href="https://www.line-community.me/contributors/request">連結</a>，或許明年我們就能一起去啦！</p>
-<p>或是你想面對面直接問問看，也可以來 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Taiwan</a> 參加我們一個月一次的社群聚會喔！我們時常會邀請 LINE 的資深技術傳教士 - Evan 來為各位帶來第一手 LINE 的資訊，也許可以跟他詢問看看，或許會有意外的收穫喔！<br><img src="https://i.imgur.com/kIDIfPl.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1553,7 +1576,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">220</span>
+          <span class="site-state-item-count">221</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

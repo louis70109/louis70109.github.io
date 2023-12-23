@@ -16198,6 +16198,35 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>【GitHub】建立第一個 Issue Template</title>
+    <url>/2023/10/05/github-issue-report-yaml-template/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
+<span id="more"></span>
+
+<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
+<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
+<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
+<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
+<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
+<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
+<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
+<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
+<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
+<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</title>
     <url>/2023/11/26/gcp-pubsub-python/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/pubsub/OIG.jpeg"></p>
@@ -16284,35 +16313,6 @@ img[alt~="center"] {
         <tag>Google</tag>
         <tag>GCP</tag>
         <tag>Pub/Sub</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【GitHub】建立第一個 Issue Template</title>
-    <url>/2023/10/05/github-issue-report-yaml-template/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
-<span id="more"></span>
-
-<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
-<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
-<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
-<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
-<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
-<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
-<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
-<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
-<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
-<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
       </tags>
   </entry>
   <entry>
@@ -16834,6 +16834,105 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Apple M2 本地跑 Stable Diffusion</title>
+    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
+<span id="more"></span>
+
+<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
+<ul>
+<li>官方是使用 bash，我個人是 zsh</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
+
+<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>M2</tag>
+        <tag>Stable Diffusion</tag>
+        <tag>圖像生成</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023  Personal Review</title>
+    <url>/2023/12/23/nijia-2023-review/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="🐔前言"><a href="#🐔前言" class="headerlink" title="🐔前言"></a>🐔前言</h1><p>趁出國跨年之前來整理今年的一些事情，期許2024年的自己可以持續跨出舒適圈</p>
+<p>自覺自己是一個很反骨的個性，不喜歡被定義就是**<code>怎樣怎樣</code>**的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累😄因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
+<p><img src="/assets/20231222_222229_ninja_cat.jpg"></p>
+<span id="more"></span>
+
+<h1 id="🦉-心態轉換"><a href="#🦉-心態轉換" class="headerlink" title="🦉 心態轉換"></a>🦉 心態轉換</h1><p>我覺得這最重要，因此還是要放前面點 👀️ 。進入三十歲之後，有種該為什麼負責的感覺浮現上來：</p>
+<ul>
+<li>許多事情與話在發生之前，總是會先想下它後面帶來的後果到底是什麼？做&#x2F;看到事前需要思考前因後果，在心中盤旋，像是跳舞一樣，需要先算好接下來的節拍大概會怎麼走，讓每一件小事能夠更好的被執行</li>
+<li>今年一直感應不到成就感這件事，直到接觸到滑雪與滑板。一直對於自己運動學習能力相當有自信的我，居然會在這兩個運動上非常受挫，重新考驗自己在<strong>平衡</strong>上的控制力，也有種重新對於任何事情燃起鬥志的感覺</li>
+<li>開始注重自身的需求，今年發生了很嚴重的胃食道逆流，把自己搞超慘，因此很多時候也開始要挑著吃了，不能想到什麼就要開吃<ul>
+<li>但很多時候為了給自己心情好，就…………🎉️</li>
+</ul>
+</li>
+<li>如果不知道當下該怎麼辦才好，就將時間安排好，按表操課，時間會帶你去你該到的地方</li>
+<li>任何學習的東西都不會沒用，現在的所有選擇皆是過去點點所累積的，千萬別小看自己學的一切</li>
+</ul>
+<h1 id="🐳-工作上的挑戰"><a href="#🐳-工作上的挑戰" class="headerlink" title="🐳 工作上的挑戰"></a>🐳 工作上的挑戰</h1><ul>
+<li><p>從年初的TECHPULSE，親身經歷與學習許多專案的眉角，在隕石飛來飛去情況下還是讓研討會順利舉辦🎉️ 現場人流來了 1400 位左右，也讓同仁們可以有個很棒的演講環境！經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下80位參加者🎉️</p>
+</li>
+<li><p>經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下80位參加者🎉️</p>
+</li>
+<li><p>下半年首度挑戰帶產品的專案，初期皆須要花上非常多時間去釐清與互相學習各種開發的習慣，希望這產品能夠越來越好，但既然還沒上線就之後再來分享經驗嚕！</p>
+</li>
+</ul>
+<blockquote>
+<p>今年也很感謝主管們的愛戴，拿了兩次的  spot bonus，讓我在挑戰不同role下還能夠被認可，無疑是對我職涯非常棒的推動力！</p>
+</blockquote>
+<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
+<p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩J台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。</p>
+<p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️ </p>
+<blockquote>
+<p><a href="https://maps.app.goo.gl/i2FSt9AztSkuLiH78">滑板地圖清單</a></p>
+</blockquote>
+<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「價值是跟自己比，旁邊只是參考」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
+<blockquote>
+<p>不論是工作、運動、感情…etc</p>
+</blockquote>
+<p>「堅持下去」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
+<blockquote>
+<p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+  </entry>
+  <entry>
     <title>【TECH FRESH 畢業分享會】原來實習有這些眉角？</title>
     <url>/2023/07/16/line-tech-fresh-2022-graduation/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/graduation/allfresh.jpg"></p>
@@ -16959,55 +17058,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Apple M2 本地跑 Stable Diffusion</title>
-    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
-<span id="more"></span>
-
-<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
-<ul>
-<li>官方是使用 bash，我個人是 zsh</li>
-</ul>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
-
-<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
-
-<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
-<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
-
-<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
-
-<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>M2</tag>
-        <tag>Stable Diffusion</tag>
-        <tag>圖像生成</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TECH FRESH 畢業分享會：探索 2022 屆實習生的故事</title>
     <url>/2023/05/29/line-tech-fresh-graduate-2023-introduction/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/techfresh/video_ending.png" alt="LINE 的工作環境和文化"></p>
@@ -17093,6 +17143,44 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>人生過了三分之一，做點紀錄</title>
+    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
+<span id="more"></span>
+
+<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
+<li>健身、上班、滑板</li>
+<li>健身、上班、滑板、上英文課</li>
+<li>睡飽、上班、打掃、上英文課</li>
+<li>健身、上班、羽球社(滑板)</li>
+<li>睡飽、上班、滑板<ol>
+<li>近期太多參訪早上都不練 👀</li>
+</ol>
+</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+</ol>
+<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
+<blockquote>
+<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
+</blockquote>
+<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
+<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
+<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
+<ul>
+<li>不開心想吃東西但怕胖？吃</li>
+<li>最近穿著都很黯淡？買</li>
+<li>家具缺點什麼更好些？買</li>
+</ul>
+<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+  </entry>
+  <entry>
     <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
     <url>/2023/06/25/nijia-review-year-3-at-LINE/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/people.jpeg"></p>
@@ -17159,44 +17247,6 @@ img[alt~="center"] {
         <tag>DevRel</tag>
         <tag>個人成長</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>人生過了三分之一，做點紀錄</title>
-    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
-<span id="more"></span>
-
-<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
-<li>健身、上班、滑板</li>
-<li>健身、上班、滑板、上英文課</li>
-<li>睡飽、上班、打掃、上英文課</li>
-<li>健身、上班、羽球社(滑板)</li>
-<li>睡飽、上班、滑板<ol>
-<li>近期太多參訪早上都不練 👀</li>
-</ol>
-</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-</ol>
-<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
-<blockquote>
-<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
-</blockquote>
-<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
-<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
-<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
-<ul>
-<li>不開心想吃東西但怕胖？吃</li>
-<li>最近穿著都很黯淡？買</li>
-<li>家具缺點什麼更好些？買</li>
-</ul>
-<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
   </entry>
   <entry>
     <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>

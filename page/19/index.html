@@ -208,6 +208,126 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/Armeria-A-Microservice-Framework-Well-suited-Everywhere/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(3) - Armeria - A Microservice Framework Well-suited Everywhere</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-01 02:44:45" itemprop="dateCreated datePublished" datetime="2019-12-01T02:44:45+00:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Armeria-A-Microservice-Framework-Well-suited-Everywhere"><a href="#Armeria-A-Microservice-Framework-Well-suited-Everywhere" class="headerlink" title="Armeria: A Microservice Framework Well-suited Everywhere"></a>Armeria: A Microservice Framework Well-suited Everywhere</h1><p><img src="https://i.imgur.com/MNnrFnm.jpg"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/armeria-a-microservice-framework-well-suited-everywhere">簡報連結</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/line/armeria">Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://line.github.io/armeria/">官網</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，很開心這次能夠以 LINE API Expert 的身份被邀請來參加 LINE Developer Day 2019。</p>
+<p>本次議程是由韓國的 open source manager - <a target="_blank" rel="noopener" href="https://github.com/trustin">trustin</a> 為我們帶來議程。</p>
+<p>而在今年參加八月舉辦的 COSCUP，並且在第一天的 after party 參加 LINE BoF 上就已經看到 LINE 開發的 Open Source - <a target="_blank" rel="noopener" href="https://github.com/line/armeria">Armeria</a>，它是基於 Java 所撰寫的一個非同步的專案，支援 Java8, Netty, HTTP&#x2F;2, Thrift 以及 gRPC，當時聽團隊簡單介紹就覺得這個專案一定是個很不得的專案，只不過當時因為他們快速介紹兒少聽了很多細節，這次就把我聽到的細節告訴各位吧！</p>
+<blockquote>
+<p>據之前的議程的以及講者的分享說這個服務已經被應用於很多 LINE 服務裡頭，因為覺得好用才推出來🤣</p>
+</blockquote>
+<h1 id="如何讓開發者快速使用-Armeria"><a href="#如何讓開發者快速使用-Armeria" class="headerlink" title="如何讓開發者快速使用 Armeria"></a>如何讓開發者快速使用 Armeria</h1><p>接下來就用 Java code 來簡單火力展示如何用一個串聯式寫法把服務互叫起來，不管是要用什麼服務只要用串接的方式加入即可，像是 gRPC、Thrift、annotation…等等如下面幾張圖所示。</p>
+<p><img src="https://i.imgur.com/KKU0eXG.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/6rAex3K.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/mAKhwh4.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/Z9jfFkI.png"></p>
+<blockquote>
+<p>這邊看到可以這麼簡單就把一個服務叫起來，然後要讓他開發者可以很輕易地理解並上手，LINE 團隊的開發文化真的是令人佩服…</p>
+</blockquote>
+<h1 id="為什麼要做成-async-以及-reactive"><a href="#為什麼要做成-async-以及-reactive" class="headerlink" title="為什麼要做成 async 以及 reactive"></a>為什麼要做成 async 以及 reactive</h1><p>首先就先提到若 Queue 裡頭的東西若是都 sync 的話會有什麼問題，這邊就以一個 Call API 常遇到的問題 - Timeout，在大量的 Queue 在排隊時，以 sync 的方式存在時光遇到 Timeout 就會有服務器爆炸的問題，因為彼此不能影響彼此，且這件事會發生在真實世界的每個地方。<br><img src="https://i.imgur.com/Telr7lG.jpg"></p>
+<hr>
+<p><img src="https://i.imgur.com/hkltFFS.jpg"></p>
+<p>這邊講者提出的解決方案為：</p>
+<ul>
+<li>增加執行緒的標記(#)並且減少呼叫堆疊(stack)</li>
+<li>預準備 Tread pools 讓大家互相共享</li>
+<li>少調用 points</li>
+<li>使用非同步的好處就是能夠平行呼叫+較少的執行緒</li>
+</ul>
+<p>現在他們能用非同步的方式解決系統被鎖住的問題，但今天若遇到一個很肥～的 payload 呢？以範例來說若一個用戶送他 10 MB 的大小，一次送給 100K 個用戶就相當於 1 TB 大小的流量。</p>
+<p>這邊使用的方法是用不同的頻寬 &amp; 處理能力，並且只需要足夠的 buffer 來排除  Out of Memory 的錯誤。</p>
+<p><img src="https://i.imgur.com/10mGUaD.jpg"></p>
+<p>聽到這邊看起來是使用相關的工具來讓整個串接服務可以更有效的 Debug，最後透過 Kibana 來讓訊息可視化，讓 Debug 可以更加快速。</p>
+<blockquote>
+<p>若對相關 Debug 工具可以參考我之前寫的 <a href="https://nijialin.com/2019/11/12/sentry-in-serverless/">Sentry 文章</a></p>
+</blockquote>
+<blockquote>
+<p>Kibana 可參考： <a target="_blank" rel="noopener" href="https://blog.toright.com/posts/5319/fulltext-search-elasticsearch-kibana-bigdata.html">安裝 ElasticSearch + Kibana 實現中文全文搜尋與數據分析</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過了講者一連串的火力展示後感受到 LINE 對於 open source 有多麽的重視，連 Slack 也都愛上 Armeria 這套 Java 函式庫，用於他們的軟體中並公開推薦，讓像我這種喜歡做 open source 的工程師可以燃起新希望繼續為開源做努力。<br><img src="https://i.imgur.com/eKYqMpo.png"></p>
+<p>其實還有很多技術細節的部分在簡報裡，這邊我就不再多家贅述，大家可以參考 <a target="_blank" rel="noopener" href="https://github.com/line/armeria">GitHub</a>，裡面有更加詳細的用法提供給大家。</p>
+<p>這次來 LINE Developer Day 讓我感受到不同於其他大公司的文化，除了精彩的議程外也招待我們這群 LINE API Expert 前來共襄盛舉，若你也想成為 LINE API Expert，不妨拿著你的貢獻來申請看看<a target="_blank" rel="noopener" href="https://www.line-community.me/contributors/request">連結</a>，或許明年我們就能一起去啦！</p>
+<p>或是你想面對面直接問問看，也可以來 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Taiwan</a> 參加我們一個月一次的社群聚會喔！我們時常會邀請 LINE 的資深技術傳教士 - Evan 來為各位帶來第一手 LINE 的資訊，也許可以跟他詢問看看，或許會有意外的收穫喔！<br><img src="https://i.imgur.com/kIDIfPl.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/How-we-continuously-delivery-LINE-TODAY-App-with-high-agility-and-high-quality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1214,130 +1334,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">Day29 - LINE API 的使用心得</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-13 13:08:19" itemprop="dateCreated datePublished" datetime="2019-10-13T13:08:19+00:00">2019-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>Imagemap</p>
-<ul>
-<li>這邊以微股力為範例，這隻機器人會再回應的時候輸出一張圖片讓使用者看到股票的曲線圖，然後圖片下方做三個類似按鈕的圖片在上面，再藉由設定觸發訊息在座標上，當使用者按到的時候就很像再按按鈕，更多使用方法或是 UX 上的問題可以參考 <a target="_blank" rel="noopener" href="https://www.facebook.com/uxerlab/">UX 三刀流</a>。<br><img src="https://i.imgur.com/A0yDTJm.png"></li>
-</ul>
-</li>
-<li><p>Richmenu</p>
-<ul>
-<li>Richmenu 等於把 imagemap 活生生的塞在下面，讓使用者再進聊天室時就能馬上看到圖片並按下對應的區塊而不用再輸入指令把 Imagemap 叫出來，如此就少了個步驟了，並讓開發者可以有更多的發揮空間呢！</li>
-</ul>
-</li>
-<li><p>設計工具</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/services/bot-designer/">Bot designer</a><br>這個工具是桌面版，可以直接抓下來在本地端直接設計，<br><img src="https://i.imgur.com/dDMSCXu.png"><br><img src="https://i.imgur.com/c2pYpFx.png"></li>
-<li><a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx-beta/">FLEX MESSAGE SIMULATOR [β]</a><br>它有提供<a target="_blank" rel="noopener" href="https://developers.line.biz/console/fx-beta/">線上工具</a>讓大家可以在線上直接測試樣板或是直接刻自己想要的樣板。<ul>
-<li>使用心得：因為寫 Rails 基本上就是在寫全端了，難免會碰到 CSS，身為一個後端工程師排版，一定要用 flex 這個超級毒品(\吸起來&#x2F;)，接著過了一段時間後接觸到 LINE bot，且 flex message 也是基於 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1/">Flexbox</a> 的規格去實作的，所以很多排版上觀念都很像，也就不太會有障礙了 😁。<br>且在排版上還有表格告知你什麼 component 要在什麼區塊內才能用，多佛心啊～<br><img src="https://i.imgur.com/Fowpoyb.png"><br><img src="https://i.imgur.com/zELPSA0.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>API 文件</p>
-<ul>
-<li>在最近幾個月的時候 LINE 的文件有改版，讓某些 API 可以在線上就能測了，看起來是滿讚的，若在逛文件時碰巧想測試這些功能的話可以直接把相關參數放進去，在某些時候也是滿方便的。<br><img src="https://i.imgur.com/CuFdmcH.png"></li>
-</ul>
-</li>
-<li><p>LIFF (LINE Front-end Framework)</p>
-<ul>
-<li>個人覺得他讓 Bot 的發揮功力又更上一層樓了，以前很多開發者都會覺得在與機器人對談中會有很多東西是不好做的，像是購物車的流程，若使用者在流程中按了上面的按鈕的話可能會發生無法預期的錯誤，且得用其他的服務去儲存操作狀態，在開發上就很麻煩，那 LIFF 就讓這個流程可以簡單許多，且能透過 SDK 在網頁上取得使用者的資訊，讓網站再被使用的同時還可以確認身份。</li>
-</ul>
-</li>
-<li><p>推播 500 則</p>
-<ul>
-<li>在今年 OAuth 2.0 釋出當中推播則數也跟改動了，改成 500 則後其實看到不少的使用者在跳腳怎麼改成這樣，或是另類的變貴收費，只能說 LINE 也是要找方法收點費用呀，不然很多功能爽爽用他們也沒有地方去收費，這部分因為我也是少用，推播功能就都交給 <code>LINE Notify</code> 嚕！</li>
-</ul>
-</li>
-<li><p>客服與機器人的切換</p>
-<ul>
-<li>參考 C.T Lin 大大的文章 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10220717">Day10</a>，簡單來說 Messager 可以在機器人處理不來的時候將訊息轉丟給設定的那位管理員，讓他來回覆訊息，但 LINE 在機器人上只能透過網頁去切換機器人狀態，抑或是自己設計流程讓機器人在無法處理才通知管理員，這樣的話管理員很容易錯過黃金的第一時間，可能也會因此造成使用者的不便。</li>
-</ul>
-</li>
-<li><p>個人的 mur mur 🤣</p>
-<ul>
-<li>文件實在是太瀑布式了，雖然現在都懂的如何搜尋到相對應的功能，但若一般想開發的使用者在看到這個文件時瘋狂往下滑，結果發現還沒有滑到或是滑過頭，倒是找資料時氣得要死 😓，所以若是文件能夠分個頁籤什麼就更好了～</li>
-</ul>
-</li>
-</ul>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>當然整體來說還是很喜歡使用 LINE 這個平台(絕對不是因為熊大 🐻)，東西也不會像一開始在開發時什麼都找不太到，並且功能一直 release，讓服務可以透過不同的整合方法去達成目標，接下來 LINE 應該還會再繼續釋出不同的東西，就請大家拭目以待，或者…來參加<a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw"> chatbot 小聚</a>直接問問 LINE 的傳教士如何呢 😁</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1405,7 +1405,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">220</span>
+          <span class="site-state-item-count">221</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
