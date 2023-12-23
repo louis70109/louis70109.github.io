@@ -16316,6 +16316,99 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>【Google I/O】筆記 | Firebase &amp; 其他紀錄 🥷</title>
+    <url>/2023/05/13/google-io-note-2023-firebase/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p>
+<span id="more"></span>
+
+<h1 id="Firebase-相關"><a href="#Firebase-相關" class="headerlink" title="Firebase 相關"></a>Firebase 相關</h1><h2 id="Cloud-Firestore-的新動態"><a href="#Cloud-Firestore-的新動態" class="headerlink" title="Cloud Firestore 的新動態"></a><a href="https://io.google/2023/program/c3737ca0-709e-4f0e-aef7-671cf6e03878/intl/zh/">Cloud Firestore 的新動態</a></h2><p>Firestore 是一個 Serverless documentation storage，是一個有可擴展以及高可用性，同時也可 offline cache(影片說的)。</p>
+<p>近期提供的 Document Query 功能：</p>
+<ul>
+<li>COUNT() operator: <a href="https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023">今年一月 release</a><ul>
+<li>Price: 1 document 1000 個 index</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://nijialin.com/images/2023/googleio/count-operator.png"></p>
+<ul>
+<li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul>
+<li><code>cats = black OR dogs = brown</code></li>
+<li>Preview available now</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://nijialin.com/images/2023/googleio/or-operator.png"></p>
+<p>關於 OR() 的用法看這邊：</p>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="Eventarc-支援-Firestore-整合"><a href="#Eventarc-支援-Firestore-整合" class="headerlink" title="Eventarc 支援 Firestore 整合"></a><a href="https://cloud.google.com/firestore/docs/eventarc?hl=zh-cn">Eventarc 支援 Firestore 整合</a></h2><p>剛好在大會上聽到有支援 Eventarc，雖然具體還沒想出應用環節。</p>
+<table>
+<thead>
+<tr>
+<th>Firestore 區域</th>
+<th>Eventarc 區域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nam5</td>
+<td>us-central1</td>
+</tr>
+<tr>
+<td>eur3</td>
+<td>europe-west4</td>
+</tr>
+</tbody></table>
+<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023/googleio/terraform.png"></p>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>可使用資源如下：</p>
+<ul>
+<li>Firebase Project</li>
+<li>Firebase App</li>
+<li>Cloud Firestore</li>
+<li>Cloud Storage for Firebase</li>
+<li>Firebase Realtime Database</li>
+<li>Firebase Authentication</li>
+<li>Firebase Security Rule<ul>
+<li>只給 Cloud Storage &amp; Cloud Storage</li>
+</ul>
+</li>
+</ul>
+<p>完整的說明可以看以下另一部影片</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/32SKh-jGXI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="Firebase-整合-PaLM-API"><a href="#Firebase-整合-PaLM-API" class="headerlink" title="Firebase 整合 PaLM API"></a><a href="https://youtu.be/emIxn-f9bK0?t=556">Firebase 整合 PaLM API</a></h2><p>使用 chatbot 的樣式，讓你在 Firestore 的 document 中下 prompt(key)，在 PaLM API 回傳時就會直接 import 進入 document 中。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/emIxn-f9bK0?start=556" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>在這 AI 盛行的期間，Firebase 能夠這樣整合真的很猛！而且用戶在用時也可以無痛使用與儲存資料，對於一般 Web 開發者來說，只需要透過 Firebase API(相對熟悉)，然後再把 prompt 下進去 Firestore 中，如此一來也操作上也可以很像 ChatGPT 這樣對話的方式，馬上用到 Google 的 PaLM，實在是很厲害的一個整合！</p>
+<h2 id="Firebase-hosting-也支援-Flask-amp-Django"><a href="#Firebase-hosting-也支援-Flask-amp-Django" class="headerlink" title="Firebase hosting 也支援 Flask &amp; Django"></a>Firebase hosting 也支援 Flask &amp; Django</h2><ul>
+<li><code>firebase hosting:channel:deploy staging</code></li>
+<li>走的是 Cloud Function</li>
+<li>如果需要 GitHub PR preview link，需要先<a href="https://firebase.google.com/docs/hosting/github-integration?hl=zh-tw">參考此文件</a><ul>
+<li><code>firebase init hosting:github</code> 來綁定你的 github</li>
+</ul>
+</li>
+</ul>
+<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023/googleio/webdx.png"></p>
+<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023/googleio/webgpu.png"></p>
+<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023/googleio/androidbot.png"></p>
+<p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Serverless</tag>
+        <tag>Firebase</tag>
+        <tag>Firestore</tag>
+        <tag>PaLM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>寶可夢苦難日: 結局不是重點 重點是我爬不上大師啊</title>
     <url>/2023/07/30/how-to-deploy-pokemon-line-bot/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/2.jpg"></p>
@@ -16421,243 +16514,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【Google I/O】筆記 | Firebase &amp; 其他紀錄 🥷</title>
-    <url>/2023/05/13/google-io-note-2023-firebase/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今年也是一個 AI 元年，Google IO 上也講了許多與 AI 的結合，當然 Firebase 也不意外，剛好近期在 Side Project 中使用了比較多 Firebase 相關的開發，因此本篇會先紀錄較多 Firebase，也同步把 Keynote 中聽到的內容給記下來。</p>
-<span id="more"></span>
-
-<h1 id="Firebase-相關"><a href="#Firebase-相關" class="headerlink" title="Firebase 相關"></a>Firebase 相關</h1><h2 id="Cloud-Firestore-的新動態"><a href="#Cloud-Firestore-的新動態" class="headerlink" title="Cloud Firestore 的新動態"></a><a href="https://io.google/2023/program/c3737ca0-709e-4f0e-aef7-671cf6e03878/intl/zh/">Cloud Firestore 的新動態</a></h2><p>Firestore 是一個 Serverless documentation storage，是一個有可擴展以及高可用性，同時也可 offline cache(影片說的)。</p>
-<p>近期提供的 Document Query 功能：</p>
-<ul>
-<li>COUNT() operator: <a href="https://firebase.google.com/support/release-notes/admin/python#version_610_-_02_february_2023">今年一月 release</a><ul>
-<li>Price: 1 document 1000 個 index</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://nijialin.com/images/2023/googleio/count-operator.png"></p>
-<ul>
-<li>OR(): <a href="https://firebase.google.com/docs/firestore/query-data/queries?hl=zh-tw#java_28">5&#x2F;11 的今天 Python &amp; NodeJS</a> 還沒支援，等待 release<ul>
-<li><code>cats = black OR dogs = brown</code></li>
-<li>Preview available now</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://nijialin.com/images/2023/googleio/or-operator.png"></p>
-<p>關於 OR() 的用法看這邊：</p>
-<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="Eventarc-支援-Firestore-整合"><a href="#Eventarc-支援-Firestore-整合" class="headerlink" title="Eventarc 支援 Firestore 整合"></a><a href="https://cloud.google.com/firestore/docs/eventarc?hl=zh-cn">Eventarc 支援 Firestore 整合</a></h2><p>剛好在大會上聽到有支援 Eventarc，雖然具體還沒想出應用環節。</p>
-<table>
-<thead>
-<tr>
-<th>Firestore 區域</th>
-<th>Eventarc 區域</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>nam5</td>
-<td>us-central1</td>
-</tr>
-<tr>
-<td>eur3</td>
-<td>europe-west4</td>
-</tr>
-</tbody></table>
-<h2 id="Firestore-也支援-Terraform"><a href="#Firestore-也支援-Terraform" class="headerlink" title="Firestore 也支援 Terraform"></a>Firestore 也支援 Terraform</h2><p><img src="https://nijialin.com/images/2023/googleio/terraform.png"></p>
-<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<p>可使用資源如下：</p>
-<ul>
-<li>Firebase Project</li>
-<li>Firebase App</li>
-<li>Cloud Firestore</li>
-<li>Cloud Storage for Firebase</li>
-<li>Firebase Realtime Database</li>
-<li>Firebase Authentication</li>
-<li>Firebase Security Rule<ul>
-<li>只給 Cloud Storage &amp; Cloud Storage</li>
-</ul>
-</li>
-</ul>
-<p>完整的說明可以看以下另一部影片</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/32SKh-jGXI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="Firebase-整合-PaLM-API"><a href="#Firebase-整合-PaLM-API" class="headerlink" title="Firebase 整合 PaLM API"></a><a href="https://youtu.be/emIxn-f9bK0?t=556">Firebase 整合 PaLM API</a></h2><p>使用 chatbot 的樣式，讓你在 Firestore 的 document 中下 prompt(key)，在 PaLM API 回傳時就會直接 import 進入 document 中。</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/emIxn-f9bK0?start=556" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<p>在這 AI 盛行的期間，Firebase 能夠這樣整合真的很猛！而且用戶在用時也可以無痛使用與儲存資料，對於一般 Web 開發者來說，只需要透過 Firebase API(相對熟悉)，然後再把 prompt 下進去 Firestore 中，如此一來也操作上也可以很像 ChatGPT 這樣對話的方式，馬上用到 Google 的 PaLM，實在是很厲害的一個整合！</p>
-<h2 id="Firebase-hosting-也支援-Flask-amp-Django"><a href="#Firebase-hosting-也支援-Flask-amp-Django" class="headerlink" title="Firebase hosting 也支援 Flask &amp; Django"></a>Firebase hosting 也支援 Flask &amp; Django</h2><ul>
-<li><code>firebase hosting:channel:deploy staging</code></li>
-<li>走的是 Cloud Function</li>
-<li>如果需要 GitHub PR preview link，需要先<a href="https://firebase.google.com/docs/hosting/github-integration?hl=zh-tw">參考此文件</a><ul>
-<li><code>firebase init hosting:github</code> 來綁定你的 github</li>
-</ul>
-</li>
-</ul>
-<iframe width="1422" height="639" src="https://www.youtube.com/embed/emIxn-f9bK0" title="What&#39;s new in Firebase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h2 id="其他紀錄"><a href="#其他紀錄" class="headerlink" title="其他紀錄"></a>其他紀錄</h2><h3 id="針對-debugging-tool-增加-DX"><a href="#針對-debugging-tool-增加-DX" class="headerlink" title="針對 debugging tool 增加 DX"></a>針對 debugging tool 增加 DX</h3><p><img src="https://nijialin.com/images/2023/googleio/webdx.png"></p>
-<h3 id="排隊-PaLM-API"><a href="#排隊-PaLM-API" class="headerlink" title="排隊 PaLM API"></a><a href="https://developers.generativeai.google/">排隊 PaLM API</a></h3><h3 id="WebGPU"><a href="#WebGPU" class="headerlink" title="WebGPU"></a>WebGPU</h3><p><img src="https://nijialin.com/images/2023/googleio/webgpu.png"></p>
-<h3 id="Android-Studio-bot"><a href="#Android-Studio-bot" class="headerlink" title="Android Studio bot"></a>Android Studio bot</h3><p><img src="https://nijialin.com/images/2023/googleio/androidbot.png"></p>
-<p>可以在 Android Studio 裡面開啟側邊欄，以對話的方式幫忙產生出 Android 的程式碼</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>下一篇預計會把 Cloud 相關的內容聽完，推薦大家先從近期手頭上專案類型先下手，且 Google IO 上的影片英文其實也滿容易理解的，推薦大家開始去聽看看唷！補齊更多的技術知識！😁🥷</p>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Serverless</tag>
-        <tag>Firebase</tag>
-        <tag>Firestore</tag>
-        <tag>PaLM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
-    <url>/2023/06/03/knative-why-you-need/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
-<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
-<span id="more"></span>
-
-<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
-<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
-<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
-<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
-<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
-<blockquote>
-<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
-</blockquote>
-<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
-<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
-<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
-<blockquote>
-<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
-<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
-<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Kubernetes</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Knative</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
-    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
-<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
-</ol>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
-</ol>
-<blockquote>
-<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
-</blockquote>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
-
-<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
-<blockquote>
-<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
-</blockquote>
-<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
-<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
-<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
-<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
-<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
-<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
-</blockquote>
-<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
-<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
-<blockquote>
-<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>Cloud Run</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
-    <url>/2023/06/06/line-bot-calendar-action/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
-<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
-<li>透過 LINE Webhook 接收使用者的文字訊息。</li>
-<li>利用 OpenAI API 處理接收到的文字，並轉換為 Google Calendar 的邀請網址。</li>
-<li>將轉換後的網址回傳給使用者點選。</li>
-</ul>
-<blockquote>
-<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
-</blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 ChatGPT 火熱了好一陣子，在 Google I&#x2F;O 之後 ChatGPT 也開放了許多 plugin (被嚇到?)，因此在這電波很弱的時刻我就買了 ChatGPT plus …🧐</p>
-<p>與此同時公司也開了許多跟「生成式 AI(GAI)」的課程，學到了一些 prompt 的技巧之外，也從課程中開始想生活周遭的範例，也因此有今天行事曆 LINE Bot 的文章 🎉 (我好歹也是傳教士一員)</p>
-<span id="more"></span>
-
-<h1 id="專案介紹"><a href="#專案介紹" class="headerlink" title="專案介紹"></a>專案介紹</h1><p>這是一個用 Python 撰寫的 FastAPI 應用程式，它運用 OpenAI 的 GPT-3 模型與 LINE Bot API 進行文字訊息處理，並將處理後的文字訊息轉換成 Google Calendar 給使用者，可以加入行事曆。</p>
-<h1 id="想解決什麼問題？"><a href="#想解決什麼問題？" class="headerlink" title="想解決什麼問題？"></a>想解決什麼問題？</h1><p>我們常常在各大通訊軟體中跟朋友&#x2F;工作&#x2F;社團…在約活動或吃飯時，經常會有一句沒一句的約，例如：</p>
-<p>A: 這幾天好無聊喔<br>B: 對啊，那明天晚上七點吃飯嗎？<br>A: 吃哪<br>C: 信義區餐廳如何？<br>B: OK<br>A: 吃到八點可以嗎？</p>
-<p>當然相關的對話還會有一大串，但隨著時程越做越多，開始會對於行事曆控管就好需要，也開始了我管理我個人行事曆。</p>
-<h2 id="Q1-我都用-Apple-行事曆？"><a href="#Q1-我都用-Apple-行事曆？" class="headerlink" title="Q1: 我都用 Apple 行事曆？"></a>Q1: 我都用 Apple 行事曆？</h2><p><img src="https://nijialin.com/images/2023/GAI/apple.png" alt="Apple 行事曆"></p>
-<p>蘋果很方便，可以在行事曆上加入自己的 Google 帳號，透過 iCloud 整合在 iPhone 行事曆上，因此這樣就能在手機上收到相關通知，非常方便。</p>
-<h2 id="Q2-為什麼選用-Google-Calendar？"><a href="#Q2-為什麼選用-Google-Calendar？" class="headerlink" title="Q2: 為什麼選用 Google Calendar？"></a>Q2: 為什麼選用 Google Calendar？</h2><ol>
-<li>我自己在業餘時上課的 Cambly 英語平台，預約課程完之後他都會放到 Google Calendar 上，並且會同步到我 Apple 行事曆上，就不會掉事情了～</li>
-</ol>
-<h3 id="Google-Calendar-GET-API-要怎麼弄？"><a href="#Google-Calendar-GET-API-要怎麼弄？" class="headerlink" title="Google Calendar GET API 要怎麼弄？"></a>Google Calendar GET API 要怎麼弄？</h3><p>參考<a href="https://blog.pulipuli.info/2016/12/google-google-calendar-new-event-url.html">這篇文章</a>，只要把 Google Calendar 網址後面的 query string 加上去參數就可以了！</p>
-<blockquote>
-<p>文章的大大還有寫工具，願意手動的話用他的很棒！</p>
-</blockquote>
-<p>網址：<a href="https://calendar.google.com/calendar/event?action=TEMPLATE">https://calendar.google.com/calendar/event?action=TEMPLATE</a></p>
-<p>在接下來的地方只要把以下的英文串上去，基本上就可以完成自己的行事曆了<br>title: 活動名稱<br>dates: 日期，需要換成 Timezone 的版本，用 <code>/</code> 區分開始與結束時間<br>location: 地點<br>text: 行事曆內容<br>add: email 邀請，如果有兩位以上，用 <code>+</code> 來串接</p>
-<p>串接方法如下：</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">https</span>://example.com?action=TEMPLATE&amp;title=<span class="number">123</span>&amp;text=<span class="number">456</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="如何使用-請看-VCR"><a href="#如何使用-請看-VCR" class="headerlink" title="如何使用 - 請看 VCR"></a>如何使用 - 請看 VCR</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/5JTU15VtDAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<blockquote>
-<p>使用時請把人、事、時、地、物都盡可能提供唷！跟誰，什麼事情，什麼時間(早上幾點)，地點</p>
-</blockquote>
-<h2 id="加入好友"><a href="#加入好友" class="headerlink" title="加入好友"></a>加入好友</h2><p><img src="https://raw.githubusercontent.com/louis70109/calendar-linebot/main/screenshot/qrcode..jpeg"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在測試這次 OpenAI API 時，若給的內容太短或太模糊，他可能會給錯誤的行事曆，因此若有使用，建議把含有 <code>人事時地物</code> 都盡量貼進去喔！這樣他能更精確的判斷💪</p>
-<p>當然這個 LINE Bot 只是一個小工具，如果你有更好的建議，歡迎留言或在 GitHub 中開 Issue 讓我知道唷！</p>
-<blockquote>
-<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
-</blockquote>
-<h1 id="其他參考資源"><a href="#其他參考資源" class="headerlink" title="其他參考資源"></a>其他參考資源</h1><ul>
-<li><a href="https://chrome.google.com/webstore/detail/chatgpt-%E8%90%AC%E8%83%BD%E5%B7%A5%E5%85%B7%E7%AE%B1/fmijcafgekkphdijpclfgnjhchmiokgp/related?hl=zh-TW">Google Extension - ChatGPT 萬能工具箱</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-        <tag>LINE Bot</tag>
-        <tag>Calendar</tag>
-        <tag>行事曆連結</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【從零開始養】讓 Public Cloud 增加你的能見度！</title>
     <url>/2023/07/29/how-to-develop-side-project-into-public-cloud/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/1.jpg"></p>
@@ -16737,43 +16593,147 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
-    <url>/2023/10/19/line-pay-apple-watch/</url>
-    <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
-<h1 id="Apple-Watch-安裝-LINE-Pay-APP"><a href="#Apple-Watch-安裝-LINE-Pay-APP" class="headerlink" title="Apple Watch 安裝 LINE Pay APP"></a>Apple Watch 安裝 LINE Pay APP</h1><p><img src="https://nijialin.com/images/2023/linepay/1.jpg"></p>
-<p>首先到手機上搜尋 Watch，找到原生的程式</p>
+    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
+    <url>/2023/06/03/knative-why-you-need/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
+<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
 <span id="more"></span>
 
-<p><img src="https://nijialin.com/images/2023/linepay/2.jpg"></p>
-<p>滑到最下面會看到可以安裝的 LINE Pay 選項</p>
+<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
+<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
+<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
+<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
+<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
 <blockquote>
-<p>APP store 的 LINE Pay APP 記得更新到最新才可以使用喔</p>
+<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
 </blockquote>
-<h1 id="換到-LINE-Pay-APP-上連接-Apple-Watch"><a href="#換到-LINE-Pay-APP-上連接-Apple-Watch" class="headerlink" title="換到 LINE Pay APP 上連接 Apple Watch"></a>換到 LINE Pay APP 上連接 Apple Watch</h1><p><img src="https://nijialin.com/images/2023/linepay/3.jpg"></p>
-<p>接著點開 LINE Pay APP，點選最右下角的<strong>全部</strong>，並且滑到最下面按下<strong>設定</strong></p>
-<p><img src="https://nijialin.com/images/2023/linepay/4.jpg"></p>
-<p>接著找到<strong>智慧手錶</strong>的選項，給他大力地點下去</p>
-<p><img src="https://nijialin.com/images/2023/linepay/5.jpg"></p>
-<p>按下連動手錶的開關，這時候請把 Apple Watch 中的 LINE Pay 也一併打開，讓他們互相綁定喔!</p>
-<p>理論上到這邊連接完之後就可以開始使用了</p>
-<h1 id="手錶付款"><a href="#手錶付款" class="headerlink" title="手錶付款"></a>手錶付款</h1><p><img src="https://nijialin.com/images/2023/linepay/6.jpg"></p>
-<p>我自己習慣把 LINE Pay APP 放在錶面當中，這樣我要結帳時就可以快速點一下開啟 Bar Code</p>
-<p><img src="https://nijialin.com/images/2023/linepay/7.jpg"></p>
-<p>輸入完密碼之後就會跳出你的 Bar Code，這時候把手伸過去給店員掃描即可!</p>
+<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
+<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
+<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
 <blockquote>
-<p>一般便利商店的 POS 機應該都滿穩定的，但如果去一些比較小型的店家，若手錶不夠亮可能也會導致掃不到喔</p>
+<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
 </blockquote>
-<p><img src="https://nijialin.com/images/2023/linepay/8.jpg"></p>
-<p>付款完成啦! 大功告成</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
+<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
+<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Knative</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
+    <url>/2023/06/06/line-bot-calendar-action/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+<li>透過 LINE Webhook 接收使用者的文字訊息。</li>
+<li>利用 OpenAI API 處理接收到的文字，並轉換為 Google Calendar 的邀請網址。</li>
+<li>將轉換後的網址回傳給使用者點選。</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 ChatGPT 火熱了好一陣子，在 Google I&#x2F;O 之後 ChatGPT 也開放了許多 plugin (被嚇到?)，因此在這電波很弱的時刻我就買了 ChatGPT plus …🧐</p>
+<p>與此同時公司也開了許多跟「生成式 AI(GAI)」的課程，學到了一些 prompt 的技巧之外，也從課程中開始想生活周遭的範例，也因此有今天行事曆 LINE Bot 的文章 🎉 (我好歹也是傳教士一員)</p>
+<span id="more"></span>
+
+<h1 id="專案介紹"><a href="#專案介紹" class="headerlink" title="專案介紹"></a>專案介紹</h1><p>這是一個用 Python 撰寫的 FastAPI 應用程式，它運用 OpenAI 的 GPT-3 模型與 LINE Bot API 進行文字訊息處理，並將處理後的文字訊息轉換成 Google Calendar 給使用者，可以加入行事曆。</p>
+<h1 id="想解決什麼問題？"><a href="#想解決什麼問題？" class="headerlink" title="想解決什麼問題？"></a>想解決什麼問題？</h1><p>我們常常在各大通訊軟體中跟朋友&#x2F;工作&#x2F;社團…在約活動或吃飯時，經常會有一句沒一句的約，例如：</p>
+<p>A: 這幾天好無聊喔<br>B: 對啊，那明天晚上七點吃飯嗎？<br>A: 吃哪<br>C: 信義區餐廳如何？<br>B: OK<br>A: 吃到八點可以嗎？</p>
+<p>當然相關的對話還會有一大串，但隨著時程越做越多，開始會對於行事曆控管就好需要，也開始了我管理我個人行事曆。</p>
+<h2 id="Q1-我都用-Apple-行事曆？"><a href="#Q1-我都用-Apple-行事曆？" class="headerlink" title="Q1: 我都用 Apple 行事曆？"></a>Q1: 我都用 Apple 行事曆？</h2><p><img src="https://nijialin.com/images/2023/GAI/apple.png" alt="Apple 行事曆"></p>
+<p>蘋果很方便，可以在行事曆上加入自己的 Google 帳號，透過 iCloud 整合在 iPhone 行事曆上，因此這樣就能在手機上收到相關通知，非常方便。</p>
+<h2 id="Q2-為什麼選用-Google-Calendar？"><a href="#Q2-為什麼選用-Google-Calendar？" class="headerlink" title="Q2: 為什麼選用 Google Calendar？"></a>Q2: 為什麼選用 Google Calendar？</h2><ol>
+<li>我自己在業餘時上課的 Cambly 英語平台，預約課程完之後他都會放到 Google Calendar 上，並且會同步到我 Apple 行事曆上，就不會掉事情了～</li>
+</ol>
+<h3 id="Google-Calendar-GET-API-要怎麼弄？"><a href="#Google-Calendar-GET-API-要怎麼弄？" class="headerlink" title="Google Calendar GET API 要怎麼弄？"></a>Google Calendar GET API 要怎麼弄？</h3><p>參考<a href="https://blog.pulipuli.info/2016/12/google-google-calendar-new-event-url.html">這篇文章</a>，只要把 Google Calendar 網址後面的 query string 加上去參數就可以了！</p>
+<blockquote>
+<p>文章的大大還有寫工具，願意手動的話用他的很棒！</p>
+</blockquote>
+<p>網址：<a href="https://calendar.google.com/calendar/event?action=TEMPLATE">https://calendar.google.com/calendar/event?action=TEMPLATE</a></p>
+<p>在接下來的地方只要把以下的英文串上去，基本上就可以完成自己的行事曆了<br>title: 活動名稱<br>dates: 日期，需要換成 Timezone 的版本，用 <code>/</code> 區分開始與結束時間<br>location: 地點<br>text: 行事曆內容<br>add: email 邀請，如果有兩位以上，用 <code>+</code> 來串接</p>
+<p>串接方法如下：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">https</span>://example.com?action=TEMPLATE&amp;title=<span class="number">123</span>&amp;text=<span class="number">456</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="如何使用-請看-VCR"><a href="#如何使用-請看-VCR" class="headerlink" title="如何使用 - 請看 VCR"></a>如何使用 - 請看 VCR</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/5JTU15VtDAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<blockquote>
+<p>使用時請把人、事、時、地、物都盡可能提供唷！跟誰，什麼事情，什麼時間(早上幾點)，地點</p>
+</blockquote>
+<h2 id="加入好友"><a href="#加入好友" class="headerlink" title="加入好友"></a>加入好友</h2><p><img src="https://raw.githubusercontent.com/louis70109/calendar-linebot/main/screenshot/qrcode..jpeg"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在測試這次 OpenAI API 時，若給的內容太短或太模糊，他可能會給錯誤的行事曆，因此若有使用，建議把含有 <code>人事時地物</code> 都盡量貼進去喔！這樣他能更精確的判斷💪</p>
+<p>當然這個 LINE Bot 只是一個小工具，如果你有更好的建議，歡迎留言或在 GitHub 中開 Issue 讓我知道唷！</p>
+<blockquote>
+<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
+</blockquote>
+<h1 id="其他參考資源"><a href="#其他參考資源" class="headerlink" title="其他參考資源"></a>其他參考資源</h1><ul>
+<li><a href="https://chrome.google.com/webstore/detail/chatgpt-%E8%90%AC%E8%83%BD%E5%B7%A5%E5%85%B7%E7%AE%B1/fmijcafgekkphdijpclfgnjhchmiokgp/related?hl=zh-TW">Google Extension - ChatGPT 萬能工具箱</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+        <tag>LINE Bot</tag>
+        <tag>Calendar</tag>
+        <tag>行事曆連結</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
+    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
+<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
+</ol>
+<blockquote>
+<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
+<blockquote>
+<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
+</blockquote>
+<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
+<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
+<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
+<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
+<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
+<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
+</blockquote>
+<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
+<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
+<blockquote>
+<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>LINE</category>
       </categories>
       <tags>
         <tag>LINE</tag>
-        <tag>Apple</tag>
-        <tag>Apple Watch</tag>
-        <tag>LINE Pay</tag>
+        <tag>Google</tag>
+        <tag>Cloud Run</tag>
       </tags>
   </entry>
   <entry>
@@ -16831,6 +16791,46 @@ img[alt~="center"] {
         <tag>Quote Message</tag>
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
+    <url>/2023/10/19/line-pay-apple-watch/</url>
+    <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
+<h1 id="Apple-Watch-安裝-LINE-Pay-APP"><a href="#Apple-Watch-安裝-LINE-Pay-APP" class="headerlink" title="Apple Watch 安裝 LINE Pay APP"></a>Apple Watch 安裝 LINE Pay APP</h1><p><img src="https://nijialin.com/images/2023/linepay/1.jpg"></p>
+<p>首先到手機上搜尋 Watch，找到原生的程式</p>
+<span id="more"></span>
+
+<p><img src="https://nijialin.com/images/2023/linepay/2.jpg"></p>
+<p>滑到最下面會看到可以安裝的 LINE Pay 選項</p>
+<blockquote>
+<p>APP store 的 LINE Pay APP 記得更新到最新才可以使用喔</p>
+</blockquote>
+<h1 id="換到-LINE-Pay-APP-上連接-Apple-Watch"><a href="#換到-LINE-Pay-APP-上連接-Apple-Watch" class="headerlink" title="換到 LINE Pay APP 上連接 Apple Watch"></a>換到 LINE Pay APP 上連接 Apple Watch</h1><p><img src="https://nijialin.com/images/2023/linepay/3.jpg"></p>
+<p>接著點開 LINE Pay APP，點選最右下角的<strong>全部</strong>，並且滑到最下面按下<strong>設定</strong></p>
+<p><img src="https://nijialin.com/images/2023/linepay/4.jpg"></p>
+<p>接著找到<strong>智慧手錶</strong>的選項，給他大力地點下去</p>
+<p><img src="https://nijialin.com/images/2023/linepay/5.jpg"></p>
+<p>按下連動手錶的開關，這時候請把 Apple Watch 中的 LINE Pay 也一併打開，讓他們互相綁定喔!</p>
+<p>理論上到這邊連接完之後就可以開始使用了</p>
+<h1 id="手錶付款"><a href="#手錶付款" class="headerlink" title="手錶付款"></a>手錶付款</h1><p><img src="https://nijialin.com/images/2023/linepay/6.jpg"></p>
+<p>我自己習慣把 LINE Pay APP 放在錶面當中，這樣我要結帳時就可以快速點一下開啟 Bar Code</p>
+<p><img src="https://nijialin.com/images/2023/linepay/7.jpg"></p>
+<p>輸入完密碼之後就會跳出你的 Bar Code，這時候把手伸過去給店員掃描即可!</p>
+<blockquote>
+<p>一般便利商店的 POS 機應該都滿穩定的，但如果去一些比較小型的店家，若手錶不夠亮可能也會導致掃不到喔</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2023/linepay/8.jpg"></p>
+<p>付款完成啦! 大功告成</p>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Apple</tag>
+        <tag>Apple Watch</tag>
+        <tag>LINE Pay</tag>
       </tags>
   </entry>
   <entry>
@@ -17044,6 +17044,55 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Apple M2 本地跑 Stable Diffusion</title>
+    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
+<span id="more"></span>
+
+<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
+<ul>
+<li>官方是使用 bash，我個人是 zsh</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
+
+<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>M2</tag>
+        <tag>Stable Diffusion</tag>
+        <tag>圖像生成</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2023  Personal Review</title>
     <url>/2023/12/23/nijia-2023-review/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/20231222_222229_ninja_cat.jpg"></p>
@@ -17092,55 +17141,6 @@ img[alt~="center"] {
       <categories>
         <category>日記</category>
       </categories>
-  </entry>
-  <entry>
-    <title>在 Apple M2 本地跑 Stable Diffusion</title>
-    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
-<span id="more"></span>
-
-<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
-<ul>
-<li>官方是使用 bash，我個人是 zsh</li>
-</ul>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
-
-<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
-
-<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
-<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
-
-<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
-
-<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>M2</tag>
-        <tag>Stable Diffusion</tag>
-        <tag>圖像生成</tag>
-      </tags>
   </entry>
   <entry>
     <title>人生過了三分之一，做點紀錄</title>
