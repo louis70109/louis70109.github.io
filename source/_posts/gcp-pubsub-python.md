@@ -16,7 +16,6 @@ date: 2023-11-26 22:52:34
 
 此篇文章為 [2023/12/09 DevFest Taichung Serverless workshop](https://gdg.community.dev/events/details/google-gdg-taichung-presents-devfest-taichung-2023/) 步驟文章，如果有需要透過 GCP Pub/Sub 將訊息轉打給訂閱的 Cloud Run endpoint，可以參考看看這篇文章喔！
 
-
 <!-- more -->
 
 # 前置準備
@@ -111,6 +110,5 @@ pip install -r requirements.txt
 # 結論
 
 ![](https://nijialin.com/images/2023/pubsub/intro.jpeg)
-
 
 由於這次工作坊中的範例專案是先以 LINE 群組推播為主(Push Message)，因此在環境變數中會先有一個 **LINE_GROUP_ID** 來指定推送，如果有其他需求可以把 Flex Message 以及 Push Message 換成你想要的內容喔！
