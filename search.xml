@@ -16959,55 +16959,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Apple M2 本地跑 Stable Diffusion</title>
-    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
-<span id="more"></span>
-
-<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
-<ul>
-<li>官方是使用 bash，我個人是 zsh</li>
-</ul>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
-
-<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
-
-<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
-<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
-
-<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
-
-<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>M2</tag>
-        <tag>Stable Diffusion</tag>
-        <tag>圖像生成</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TECH FRESH 畢業分享會：探索 2022 屆實習生的故事</title>
     <url>/2023/05/29/line-tech-fresh-graduate-2023-introduction/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/techfresh/video_ending.png" alt="LINE 的工作環境和文化"></p>
@@ -17090,6 +17041,55 @@ img[alt~="center"] {
         <tag>畢業分享會</tag>
         <tag>實習經驗</tag>
         <tag>LINE 工作環境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Apple M2 本地跑 Stable Diffusion</title>
+    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
+<span id="more"></span>
+
+<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
+<ul>
+<li>官方是使用 bash，我個人是 zsh</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
+
+<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>M2</tag>
+        <tag>Stable Diffusion</tag>
+        <tag>圖像生成</tag>
       </tags>
   </entry>
   <entry>
@@ -17310,6 +17310,62 @@ img[alt~="center"] {
       <tags>
         <tag>Skateboard</tag>
         <tag>滑板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【雪之忍法帖】白馬滑雪旅程雜記</title>
+    <url>/2024/01/06/snowboarding-2023-to-2024/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/snowboard/DCDC9CA0-4FAB-4F1D-9A92-BF8A14FFFED9.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大約在 9~10 月安排了這次跨年滑雪的旅程，以下就跟大家分享這次大約的花費，給未來想去白馬滑雪的朋友參考囉！</p>
+<h1 id="TL-DR-大致花費"><a href="#TL-DR-大致花費" class="headerlink" title="TL;DR 大致花費"></a>TL;DR 大致花費</h1><ul>
+<li><p>跨年機票 12&#x2F;27 - 1&#x2F;4 的國泰航空機票買了 16,000</p>
+</li>
+<li><p>一天住宿費大概在 1,500</p>
+<span id="more"></span>
+</li>
+<li><p>一日券：6000 yen，大概台幣 1500</p>
+</li>
+<li><p>夜滑：4200 yen，大約台幣 1000</p>
+</li>
+<li><p>雪板&#x2F;雪鞋&#x2F;安全帽：五天 20,000 yen，一天大約台幣 1,100</p>
+</li>
+<li><p>長野-白馬巴士：大概 300 台幣一趟</p>
+</li>
+<li><p>東京-長野新幹線：2000 台幣</p>
+</li>
+</ul>
+<h1 id="交通-東京-長野-白馬"><a href="#交通-東京-長野-白馬" class="headerlink" title="交通: 東京 - 長野 - 白馬"></a>交通: 東京 - 長野 - 白馬</h1><p>滑雪前因為有其他行程在東京，因此我先從 klook 上預約買了 <strong>東京-長野</strong> 以及 <strong>長野-東京</strong> 的，這邊手續費會被收 300-400 元，而回程因為不好訂票，需在 klook 重複訂幾次，klook app 上有個操作陷阱需要小心</p>
+<blockquote>
+<p>假設訂了 1&#x2F;3 沒成功，按了重新預定之後會在一兩秒後換成訂票當時的下週，當時我就太相信 app 且按太快，只能怪自己沒仔細看，如果有使用 klook 訂票要注意這問題唷！<br>但若是淡季去，建議就在現場買吧！不會被抽手續費唷</p>
+</blockquote>
+<p>關於長野如何到白馬，可以參考 <a href="https://www.alpico.co.jp/tc/timetable/nagano/r-nagano-hakuba/">ALPICO 的網站</a>，裡頭有中文介面，看著 <mark>长野站东口 ➡️ 白马八方巴士总站</mark> 即可，時間上看沒有預約的就好，這樣到現場排隊就可以了</p>
+<h1 id="住宿-パルズイン雷鳥民宿"><a href="#住宿-パルズイン雷鳥民宿" class="headerlink" title="住宿 - パルズイン雷鳥民宿"></a>住宿 - パルズイン雷鳥民宿</h1><p><img src="https://nijialin.com/images/2024/snowboard/A8C5C045-0DA3-4C49-9678-A875FA1423AB.jpg"></p>
+<p>這次 <a href="https://www.airbnb.com.tw/rooms/749618942384864422?source_impression_id=p3_1704449841_LgnAPsH9/fNsed5t">パルズイン雷鳥</a> 我是在 Airbnb 上訂的，這邊早餐會在前一天詢問預計幾點吃，早餐量也是一定讓你吃飽飽，晚餐也可以在裡面付費，附近沒啥吃的，在這裡吃也很美味～</p>
+<p>此外可以在這裡買雪票，5500 yen 一張白馬五龍一日券(500 保證金)、共用衛浴有泡澡池、洗衣服 300 yen、烘乾 100 yen&#x2F;30 mins、有烘乾室、有雪場接駁車(走路比較快但爬山累)</p>
+<blockquote>
+<p>附近走路 15 mins 才有 7-11，因此去的話建議把宵夜跟補給品一次買齊</p>
+</blockquote>
+<h1 id="白馬五龍場地狀況"><a href="#白馬五龍場地狀況" class="headerlink" title="白馬五龍場地狀況"></a>白馬五龍場地狀況</h1><p><img src="https://nijialin.com/images/2024/snowboard/92350069-77F1-4F8D-9BA2-CBFCCD202389.jpg"></p>
+<p>2023&#x2F;12 日本這邊是暖冬，因此今年雪其實不夠多，整體滑起來很像在滑冰塊(快接近小叮噹的人造雪)，但很幸運的在跨年夜滑從下雨換成下雪，至少補充的雪，也讓照片看起來比較美了～～</p>
+<h1 id="坐到山頂先去看看雪地版本的地藏王"><a href="#坐到山頂先去看看雪地版本的地藏王" class="headerlink" title="坐到山頂先去看看雪地版本的地藏王"></a>坐到山頂先去看看雪地版本的地藏王</h1><p><img src="https://nijialin.com/images/2024/snowboard/8A4361C3-4B51-4450-82EE-0293AB2FFB6D.jpg"></p>
+<p>來白馬五龍一定要來看一次山頂的地藏王，這次附近的雪量也算還行，不過因為不太懂爬山跟調整呼吸的技巧，導致這次上去有點缺氧，但整體來說有一次很棒的體驗！推薦大家千里迢迢坐車來，別忘了來山頂看看喔</p>
+<h1 id="滑雪狀態"><a href="#滑雪狀態" class="headerlink" title="滑雪狀態"></a>滑雪狀態</h1><p><img src="https://nijialin.com/images/2024/snowboard/A60AAACA-1F2B-4516-86F0-047FB8D148F0.jpg"></p>
+<p>理論上寫在已經在雪季了，但也因為暖冬所以雪量不夠，但身為滑雪愛好者們來這面也是很瘋狂，排隊也都沒在客氣，五龍新手區排隊應該都需要 5~10 mins，靠近午餐時間都會比較好排些，建議大家身上可以放些巧克力之類即時補充，等大家吃完再去吃，排隊也不用排這麼久。</p>
+<p>雪場吃飯平均應該要花 2000 yen 左右，但來這邊也沒啥東西能吃，都來了還是在這邊吃吧！</p>
+<p>這邊雪場可以滑到白馬 47 那邊，早上熱身完可以先滑過去吃飯，然後搭回山上再回白馬五龍～</p>
+<h1 id="跨年夜-我可終於等到雪了！"><a href="#跨年夜-我可終於等到雪了！" class="headerlink" title="跨年夜: 我可終於等到雪了！"></a>跨年夜: 我可終於等到雪了！</h1><p><img src="https://nijialin.com/images/2024/snowboard/ECC593B7-3F2D-417A-9559-DB241FA90472.jpg"></p>
+<p>這次白馬相關的 IG 都有寫說在五龍會有跨年煙火，當天夜滑 4200 yen 可以滑到 11:30(平常只到 9:00) 相當划算，我大概滑到 10:30 下去民宿洗澡換衣服再回來，時間算的都剛剛好～</p>
+<h1 id="突發事件：-地震"><a href="#突發事件：-地震" class="headerlink" title="突發事件： 地震"></a>突發事件： 地震</h1><p><img src="https://nijialin.com/images/2024/snowboard/003BF295-A275-4C60-8141-0728598A470E.png"></p>
+<p>因為之後要去其他地方滑雪，因此先安裝了 <strong>承換 NAVITIME</strong>，結果當天要地震前 app 一直推播通知，這點日本真的做得非常好，讓日本國內的民眾都可以快速接收到訊息 👍</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://nijialin.com/images/2024/snowboard/C2FA518A-C020-4C65-9330-9F55967C8B48.jpg"></p>
+<p>希望以上內容給預計有想之後跨年滑雪的讀者們參考參考，這次體驗也非常棒！雖然花了不少錢，但真的買到很多快樂 😆，那就後續的文章再繼續分享新東西給大家囉！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+      <tags>
+        <tag>Japan</tag>
+        <tag>Snowboard</tag>
       </tags>
   </entry>
   <entry>
