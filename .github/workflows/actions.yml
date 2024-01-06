@@ -3,7 +3,7 @@ name: Pages
 on:
   push:
     branches:
-      - main
+      - gh-pages
 
 jobs:
   pages:
@@ -31,7 +31,7 @@ jobs:
         run: npx hexo algolia
         # env:
         #   HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
-      
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
