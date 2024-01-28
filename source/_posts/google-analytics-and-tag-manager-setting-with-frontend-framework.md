@@ -1,10 +1,16 @@
 ---
-title: 如何在主流前端框架上設定 GTM?
-categories: 學習紀錄
+title: 如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?
 tags:
+  - Google
+  - Google Analytics
+  - GTM
+  - GA
+categories: 學習紀錄
+date: 2024-01-28 22:40:38
 ---
 
-![](https://nijialin.com/images/common.jpeg)
+
+![](https://nijialin.com/images/2024/ga/_ec6ea3df-b7a1-45d4-9e66-e78f2b2eeb79.jpeg)
 
 # 前言
 
