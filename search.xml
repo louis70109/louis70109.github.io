@@ -16562,6 +16562,40 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
+    <url>/2023/06/03/knative-why-you-need/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
+<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+<span id="more"></span>
+
+<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
+<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
+<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
+<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
+<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
+<blockquote>
+<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
+</blockquote>
+<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
+<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
+<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
+<blockquote>
+<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
+<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
+<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Knative</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【從零開始養】讓 Public Cloud 增加你的能見度！</title>
     <url>/2023/07/29/how-to-develop-side-project-into-public-cloud/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/1.jpg"></p>
@@ -16641,37 +16675,62 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
-    <url>/2023/06/03/knative-why-you-need/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
-<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+    <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
+    <url>/2023/06/06/line-bot-calendar-action/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+<li>透過 LINE Webhook 接收使用者的文字訊息。</li>
+<li>利用 OpenAI API 處理接收到的文字，並轉換為 Google Calendar 的邀請網址。</li>
+<li>將轉換後的網址回傳給使用者點選。</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 ChatGPT 火熱了好一陣子，在 Google I&#x2F;O 之後 ChatGPT 也開放了許多 plugin (被嚇到?)，因此在這電波很弱的時刻我就買了 ChatGPT plus …🧐</p>
+<p>與此同時公司也開了許多跟「生成式 AI(GAI)」的課程，學到了一些 prompt 的技巧之外，也從課程中開始想生活周遭的範例，也因此有今天行事曆 LINE Bot 的文章 🎉 (我好歹也是傳教士一員)</p>
 <span id="more"></span>
 
-<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
-<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
-<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
-<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
-<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
+<h1 id="專案介紹"><a href="#專案介紹" class="headerlink" title="專案介紹"></a>專案介紹</h1><p>這是一個用 Python 撰寫的 FastAPI 應用程式，它運用 OpenAI 的 GPT-3 模型與 LINE Bot API 進行文字訊息處理，並將處理後的文字訊息轉換成 Google Calendar 給使用者，可以加入行事曆。</p>
+<h1 id="想解決什麼問題？"><a href="#想解決什麼問題？" class="headerlink" title="想解決什麼問題？"></a>想解決什麼問題？</h1><p>我們常常在各大通訊軟體中跟朋友&#x2F;工作&#x2F;社團…在約活動或吃飯時，經常會有一句沒一句的約，例如：</p>
+<p>A: 這幾天好無聊喔<br>B: 對啊，那明天晚上七點吃飯嗎？<br>A: 吃哪<br>C: 信義區餐廳如何？<br>B: OK<br>A: 吃到八點可以嗎？</p>
+<p>當然相關的對話還會有一大串，但隨著時程越做越多，開始會對於行事曆控管就好需要，也開始了我管理我個人行事曆。</p>
+<h2 id="Q1-我都用-Apple-行事曆？"><a href="#Q1-我都用-Apple-行事曆？" class="headerlink" title="Q1: 我都用 Apple 行事曆？"></a>Q1: 我都用 Apple 行事曆？</h2><p><img src="https://nijialin.com/images/2023/GAI/apple.png" alt="Apple 行事曆"></p>
+<p>蘋果很方便，可以在行事曆上加入自己的 Google 帳號，透過 iCloud 整合在 iPhone 行事曆上，因此這樣就能在手機上收到相關通知，非常方便。</p>
+<h2 id="Q2-為什麼選用-Google-Calendar？"><a href="#Q2-為什麼選用-Google-Calendar？" class="headerlink" title="Q2: 為什麼選用 Google Calendar？"></a>Q2: 為什麼選用 Google Calendar？</h2><ol>
+<li>我自己在業餘時上課的 Cambly 英語平台，預約課程完之後他都會放到 Google Calendar 上，並且會同步到我 Apple 行事曆上，就不會掉事情了～</li>
+</ol>
+<h3 id="Google-Calendar-GET-API-要怎麼弄？"><a href="#Google-Calendar-GET-API-要怎麼弄？" class="headerlink" title="Google Calendar GET API 要怎麼弄？"></a>Google Calendar GET API 要怎麼弄？</h3><p>參考<a href="https://blog.pulipuli.info/2016/12/google-google-calendar-new-event-url.html">這篇文章</a>，只要把 Google Calendar 網址後面的 query string 加上去參數就可以了！</p>
 <blockquote>
-<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
+<p>文章的大大還有寫工具，願意手動的話用他的很棒！</p>
 </blockquote>
-<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
-<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
-<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
+<p>網址：<a href="https://calendar.google.com/calendar/event?action=TEMPLATE">https://calendar.google.com/calendar/event?action=TEMPLATE</a></p>
+<p>在接下來的地方只要把以下的英文串上去，基本上就可以完成自己的行事曆了<br>title: 活動名稱<br>dates: 日期，需要換成 Timezone 的版本，用 <code>/</code> 區分開始與結束時間<br>location: 地點<br>text: 行事曆內容<br>add: email 邀請，如果有兩位以上，用 <code>+</code> 來串接</p>
+<p>串接方法如下：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">https</span>://example.com?action=TEMPLATE&amp;title=<span class="number">123</span>&amp;text=<span class="number">456</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="如何使用-請看-VCR"><a href="#如何使用-請看-VCR" class="headerlink" title="如何使用 - 請看 VCR"></a>如何使用 - 請看 VCR</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/5JTU15VtDAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 <blockquote>
-<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
+<p>使用時請把人、事、時、地、物都盡可能提供唷！跟誰，什麼事情，什麼時間(早上幾點)，地點</p>
 </blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
-<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
-<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+<h2 id="加入好友"><a href="#加入好友" class="headerlink" title="加入好友"></a>加入好友</h2><p><img src="https://raw.githubusercontent.com/louis70109/calendar-linebot/main/screenshot/qrcode..jpeg"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在測試這次 OpenAI API 時，若給的內容太短或太模糊，他可能會給錯誤的行事曆，因此若有使用，建議把含有 <code>人事時地物</code> 都盡量貼進去喔！這樣他能更精確的判斷💪</p>
+<p>當然這個 LINE Bot 只是一個小工具，如果你有更好的建議，歡迎留言或在 GitHub 中開 Issue 讓我知道唷！</p>
+<blockquote>
+<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
+</blockquote>
+<h1 id="其他參考資源"><a href="#其他參考資源" class="headerlink" title="其他參考資源"></a>其他參考資源</h1><ul>
+<li><a href="https://chrome.google.com/webstore/detail/chatgpt-%E8%90%AC%E8%83%BD%E5%B7%A5%E5%85%B7%E7%AE%B1/fmijcafgekkphdijpclfgnjhchmiokgp/related?hl=zh-TW">Google Extension - ChatGPT 萬能工具箱</a></li>
+</ul>
+]]></content>
       <categories>
-        <category>GCP</category>
+        <category>LINE</category>
       </categories>
       <tags>
-        <tag>Kubernetes</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Knative</tag>
+        <tag>Google</tag>
+        <tag>LINE Bot</tag>
+        <tag>Calendar</tag>
+        <tag>行事曆連結</tag>
       </tags>
   </entry>
   <entry>
@@ -16780,65 +16839,6 @@ img[alt~="center"] {
         <tag>Quote Message</tag>
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
-    <url>/2023/06/06/line-bot-calendar-action/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
-<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
-<li>透過 LINE Webhook 接收使用者的文字訊息。</li>
-<li>利用 OpenAI API 處理接收到的文字，並轉換為 Google Calendar 的邀請網址。</li>
-<li>將轉換後的網址回傳給使用者點選。</li>
-</ul>
-<blockquote>
-<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
-</blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 ChatGPT 火熱了好一陣子，在 Google I&#x2F;O 之後 ChatGPT 也開放了許多 plugin (被嚇到?)，因此在這電波很弱的時刻我就買了 ChatGPT plus …🧐</p>
-<p>與此同時公司也開了許多跟「生成式 AI(GAI)」的課程，學到了一些 prompt 的技巧之外，也從課程中開始想生活周遭的範例，也因此有今天行事曆 LINE Bot 的文章 🎉 (我好歹也是傳教士一員)</p>
-<span id="more"></span>
-
-<h1 id="專案介紹"><a href="#專案介紹" class="headerlink" title="專案介紹"></a>專案介紹</h1><p>這是一個用 Python 撰寫的 FastAPI 應用程式，它運用 OpenAI 的 GPT-3 模型與 LINE Bot API 進行文字訊息處理，並將處理後的文字訊息轉換成 Google Calendar 給使用者，可以加入行事曆。</p>
-<h1 id="想解決什麼問題？"><a href="#想解決什麼問題？" class="headerlink" title="想解決什麼問題？"></a>想解決什麼問題？</h1><p>我們常常在各大通訊軟體中跟朋友&#x2F;工作&#x2F;社團…在約活動或吃飯時，經常會有一句沒一句的約，例如：</p>
-<p>A: 這幾天好無聊喔<br>B: 對啊，那明天晚上七點吃飯嗎？<br>A: 吃哪<br>C: 信義區餐廳如何？<br>B: OK<br>A: 吃到八點可以嗎？</p>
-<p>當然相關的對話還會有一大串，但隨著時程越做越多，開始會對於行事曆控管就好需要，也開始了我管理我個人行事曆。</p>
-<h2 id="Q1-我都用-Apple-行事曆？"><a href="#Q1-我都用-Apple-行事曆？" class="headerlink" title="Q1: 我都用 Apple 行事曆？"></a>Q1: 我都用 Apple 行事曆？</h2><p><img src="https://nijialin.com/images/2023/GAI/apple.png" alt="Apple 行事曆"></p>
-<p>蘋果很方便，可以在行事曆上加入自己的 Google 帳號，透過 iCloud 整合在 iPhone 行事曆上，因此這樣就能在手機上收到相關通知，非常方便。</p>
-<h2 id="Q2-為什麼選用-Google-Calendar？"><a href="#Q2-為什麼選用-Google-Calendar？" class="headerlink" title="Q2: 為什麼選用 Google Calendar？"></a>Q2: 為什麼選用 Google Calendar？</h2><ol>
-<li>我自己在業餘時上課的 Cambly 英語平台，預約課程完之後他都會放到 Google Calendar 上，並且會同步到我 Apple 行事曆上，就不會掉事情了～</li>
-</ol>
-<h3 id="Google-Calendar-GET-API-要怎麼弄？"><a href="#Google-Calendar-GET-API-要怎麼弄？" class="headerlink" title="Google Calendar GET API 要怎麼弄？"></a>Google Calendar GET API 要怎麼弄？</h3><p>參考<a href="https://blog.pulipuli.info/2016/12/google-google-calendar-new-event-url.html">這篇文章</a>，只要把 Google Calendar 網址後面的 query string 加上去參數就可以了！</p>
-<blockquote>
-<p>文章的大大還有寫工具，願意手動的話用他的很棒！</p>
-</blockquote>
-<p>網址：<a href="https://calendar.google.com/calendar/event?action=TEMPLATE">https://calendar.google.com/calendar/event?action=TEMPLATE</a></p>
-<p>在接下來的地方只要把以下的英文串上去，基本上就可以完成自己的行事曆了<br>title: 活動名稱<br>dates: 日期，需要換成 Timezone 的版本，用 <code>/</code> 區分開始與結束時間<br>location: 地點<br>text: 行事曆內容<br>add: email 邀請，如果有兩位以上，用 <code>+</code> 來串接</p>
-<p>串接方法如下：</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">https</span>://example.com?action=TEMPLATE&amp;title=<span class="number">123</span>&amp;text=<span class="number">456</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="如何使用-請看-VCR"><a href="#如何使用-請看-VCR" class="headerlink" title="如何使用 - 請看 VCR"></a>如何使用 - 請看 VCR</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/5JTU15VtDAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<blockquote>
-<p>使用時請把人、事、時、地、物都盡可能提供唷！跟誰，什麼事情，什麼時間(早上幾點)，地點</p>
-</blockquote>
-<h2 id="加入好友"><a href="#加入好友" class="headerlink" title="加入好友"></a>加入好友</h2><p><img src="https://raw.githubusercontent.com/louis70109/calendar-linebot/main/screenshot/qrcode..jpeg"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在測試這次 OpenAI API 時，若給的內容太短或太模糊，他可能會給錯誤的行事曆，因此若有使用，建議把含有 <code>人事時地物</code> 都盡量貼進去喔！這樣他能更精確的判斷💪</p>
-<p>當然這個 LINE Bot 只是一個小工具，如果你有更好的建議，歡迎留言或在 GitHub 中開 Issue 讓我知道唷！</p>
-<blockquote>
-<p><a href="https://github.com/louis70109/calendar-linebot">GitHub 專案 - 行事曆 LINE Bot</a></p>
-</blockquote>
-<h1 id="其他參考資源"><a href="#其他參考資源" class="headerlink" title="其他參考資源"></a>其他參考資源</h1><ul>
-<li><a href="https://chrome.google.com/webstore/detail/chatgpt-%E8%90%AC%E8%83%BD%E5%B7%A5%E5%85%B7%E7%AE%B1/fmijcafgekkphdijpclfgnjhchmiokgp/related?hl=zh-TW">Google Extension - ChatGPT 萬能工具箱</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-        <tag>LINE Bot</tag>
-        <tag>Calendar</tag>
-        <tag>行事曆連結</tag>
       </tags>
   </entry>
   <entry>
@@ -17301,6 +17301,31 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
+    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
+<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
+<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【滑板】彩虹輪狀車練習場道路指引</title>
     <url>/2023/10/26/skateboard-rainbow-park/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
@@ -17333,31 +17358,6 @@ img[alt~="center"] {
       <tags>
         <tag>Skateboard</tag>
         <tag>滑板</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
-    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
-<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
-<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
-<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
       </tags>
   </entry>
   <entry>
@@ -17453,6 +17453,59 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>關於我衝動買了 ROG Ally 的夜晚⋯</title>
+    <url>/2023/07/29/why-i-buy-rog-ally/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="規格-官網"><a href="#規格-官網" class="headerlink" title="規格 - 官網"></a>規格 - <a href="https://rog.asus.com/tw/gaming-handhelds/rog-ally/rog-ally-2023/">官網</a></h1><ul>
+<li>AMD Ryzen™ Z1 Extreme</li>
+<li>記憶體：16GB</li>
+<li>硬碟：512GB​</li>
+</ul>
+<h1 id="為什麼要買它而不買-Steam-Deck-之類的？"><a href="#為什麼要買它而不買-Steam-Deck-之類的？" class="headerlink" title="為什麼要買它而不買 Steam Deck 之類的？"></a>為什麼要買它而不買 Steam Deck 之類的？</h1><ul>
+<li>台北租屋需要省空間</li>
+<li>回家也想打 LOL</li>
+<li>同事幫忙測試 Steam 快打旋風可以玩</li>
+<li>Windows 對我彈性還是比較高</li>
+<li>Steam Deck 需要另外支援，可能比 ROG 去適應 Windows 問題在多一些些</li>
+<li>大概 OLED 的 Switch 在重一點點</li>
+</ul>
+<h1 id="有哪些小缺點是需要注意的？"><a href="#有哪些小缺點是需要注意的？" class="headerlink" title="有哪些小缺點是需要注意的？"></a>有哪些小缺點是需要注意的？</h1><ul>
+<li>只有一個 Type-C</li>
+<li>要玩超級大作就要另外買外接顯卡 (3w+)</li>
+<li>可能某天 ASUS 更新沒做好爆掉？</li>
+<li>按鍵的感覺不耐操，修理可能很麻煩</li>
+<li>512G 對很多人可能不夠，需要研究黑魔法</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="我怎麼買到的？"><a href="#我怎麼買到的？" class="headerlink" title="我怎麼買到的？"></a>我怎麼買到的？</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056099347300386.png"></p>
+<p>其實有同學是 ASUS 員工，但裡面也是都搶購一空，一般我們都會想說去 PCHome || MOMO 買，經過了兩三個禮拜煎熬後，我從公司的 <a href="https://buy.line.me/s/rog%20ally">LINE 購物</a>裡去搜尋 ROG Ally，轉到 <a href="https://tw.buy.yahoo.com/gdsale/ROG-Ally-%E9%81%8A%E6%88%B2%E6%8E%8C%E6%A9%9F-10641183.html?co_servername=LN_5bcf58770c4e2f81e30be0048a7adf71">Yahoo 購物商城</a>後就買到了！而且有都還是原價～ 👍 有時候還真的沒想到 😆</p>
+<h1 id="按鈕配置"><a href="#按鈕配置" class="headerlink" title="按鈕配置"></a>按鈕配置</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056084298924484.png"></p>
+<p>按鍵據說參考 XBox 的排列，對於一個玩 Switch PS 的玩家初期需要習慣 (A 在下面，B 在最右邊)</p>
+<h1 id="開機預設畫面"><a href="#開機預設畫面" class="headerlink" title="開機預設畫面"></a>開機預設畫面</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466090716851077266.png" alt="預設畫面"></p>
+<p>開機預設會開起 ASUS 所開發的系統，主要是去適應掌機的應用，讓有用掌機玩的玩家不用大老遠去找開啟的地方。如果喜歡 PC 操作，直接關掉即可。</p>
+<h2 id="關於擴充這東東"><a href="#關於擴充這東東" class="headerlink" title="關於擴充這東東"></a>關於擴充這東東</h2><p><img src="https://nijialin.com/images/2023/rog/1.png"></p>
+<p>由於我要接的東西很多，對於 Windows 玩遊戲來說我也滿堅持要接網路線，因此買了相容 <a href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=11004814">Steam Deck 的擴充盒</a>，可以接三個 USB、原廠 Type-C 充電、網路線、HDMI，會使用到的裝置如下：</p>
+<ul>
+<li>滑鼠：用藍芽</li>
+<li>鍵盤：USB-A</li>
+<li>麥克風： USB-A (DC 用)</li>
+<li>大搖： USB-A</li>
+<li>鏡頭： USB-A (跟搖桿擇一，上課用)</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>主要是基於移動性的考量購買它，同等價位下買的桌上型電腦其實也都還不錯，而且若在家裡買一台桌機，還很有可能被家人關機😆，主要還想把桌機拿去把我以前的 Mac 換回來用 😆</p>
+]]></content>
+      <categories>
+        <category>3C</category>
+      </categories>
+      <tags>
+        <tag>ROG</tag>
+        <tag>Ally</tag>
+        <tag>ASUS</tag>
+        <tag>掌機</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【快打6】新玩法與硬體選擇</title>
     <url>/2023/08/06/why-buy-street-fighter-6/</url>
     <content><![CDATA[<ul>
@@ -17516,59 +17569,6 @@ img[alt~="center"] {
         <tag>快打旋風</tag>
         <tag>ROG Ally</tag>
         <tag>搖桿</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>關於我衝動買了 ROG Ally 的夜晚⋯</title>
-    <url>/2023/07/29/why-i-buy-rog-ally/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="規格-官網"><a href="#規格-官網" class="headerlink" title="規格 - 官網"></a>規格 - <a href="https://rog.asus.com/tw/gaming-handhelds/rog-ally/rog-ally-2023/">官網</a></h1><ul>
-<li>AMD Ryzen™ Z1 Extreme</li>
-<li>記憶體：16GB</li>
-<li>硬碟：512GB​</li>
-</ul>
-<h1 id="為什麼要買它而不買-Steam-Deck-之類的？"><a href="#為什麼要買它而不買-Steam-Deck-之類的？" class="headerlink" title="為什麼要買它而不買 Steam Deck 之類的？"></a>為什麼要買它而不買 Steam Deck 之類的？</h1><ul>
-<li>台北租屋需要省空間</li>
-<li>回家也想打 LOL</li>
-<li>同事幫忙測試 Steam 快打旋風可以玩</li>
-<li>Windows 對我彈性還是比較高</li>
-<li>Steam Deck 需要另外支援，可能比 ROG 去適應 Windows 問題在多一些些</li>
-<li>大概 OLED 的 Switch 在重一點點</li>
-</ul>
-<h1 id="有哪些小缺點是需要注意的？"><a href="#有哪些小缺點是需要注意的？" class="headerlink" title="有哪些小缺點是需要注意的？"></a>有哪些小缺點是需要注意的？</h1><ul>
-<li>只有一個 Type-C</li>
-<li>要玩超級大作就要另外買外接顯卡 (3w+)</li>
-<li>可能某天 ASUS 更新沒做好爆掉？</li>
-<li>按鍵的感覺不耐操，修理可能很麻煩</li>
-<li>512G 對很多人可能不夠，需要研究黑魔法</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="我怎麼買到的？"><a href="#我怎麼買到的？" class="headerlink" title="我怎麼買到的？"></a>我怎麼買到的？</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056099347300386.png"></p>
-<p>其實有同學是 ASUS 員工，但裡面也是都搶購一空，一般我們都會想說去 PCHome || MOMO 買，經過了兩三個禮拜煎熬後，我從公司的 <a href="https://buy.line.me/s/rog%20ally">LINE 購物</a>裡去搜尋 ROG Ally，轉到 <a href="https://tw.buy.yahoo.com/gdsale/ROG-Ally-%E9%81%8A%E6%88%B2%E6%8E%8C%E6%A9%9F-10641183.html?co_servername=LN_5bcf58770c4e2f81e30be0048a7adf71">Yahoo 購物商城</a>後就買到了！而且有都還是原價～ 👍 有時候還真的沒想到 😆</p>
-<h1 id="按鈕配置"><a href="#按鈕配置" class="headerlink" title="按鈕配置"></a>按鈕配置</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056084298924484.png"></p>
-<p>按鍵據說參考 XBox 的排列，對於一個玩 Switch PS 的玩家初期需要習慣 (A 在下面，B 在最右邊)</p>
-<h1 id="開機預設畫面"><a href="#開機預設畫面" class="headerlink" title="開機預設畫面"></a>開機預設畫面</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466090716851077266.png" alt="預設畫面"></p>
-<p>開機預設會開起 ASUS 所開發的系統，主要是去適應掌機的應用，讓有用掌機玩的玩家不用大老遠去找開啟的地方。如果喜歡 PC 操作，直接關掉即可。</p>
-<h2 id="關於擴充這東東"><a href="#關於擴充這東東" class="headerlink" title="關於擴充這東東"></a>關於擴充這東東</h2><p><img src="https://nijialin.com/images/2023/rog/1.png"></p>
-<p>由於我要接的東西很多，對於 Windows 玩遊戲來說我也滿堅持要接網路線，因此買了相容 <a href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=11004814">Steam Deck 的擴充盒</a>，可以接三個 USB、原廠 Type-C 充電、網路線、HDMI，會使用到的裝置如下：</p>
-<ul>
-<li>滑鼠：用藍芽</li>
-<li>鍵盤：USB-A</li>
-<li>麥克風： USB-A (DC 用)</li>
-<li>大搖： USB-A</li>
-<li>鏡頭： USB-A (跟搖桿擇一，上課用)</li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>主要是基於移動性的考量購買它，同等價位下買的桌上型電腦其實也都還不錯，而且若在家裡買一台桌機，還很有可能被家人關機😆，主要還想把桌機拿去把我以前的 Mac 換回來用 😆</p>
-]]></content>
-      <categories>
-        <category>3C</category>
-      </categories>
-      <tags>
-        <tag>ROG</tag>
-        <tag>Ally</tag>
-        <tag>ASUS</tag>
-        <tag>掌機</tag>
       </tags>
   </entry>
 </search>
