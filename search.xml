@@ -16734,57 +16734,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
-    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
-<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
-</ol>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
-</ol>
-<blockquote>
-<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
-</blockquote>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
-
-<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
-<blockquote>
-<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
-</blockquote>
-<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
-<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
-<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
-<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
-<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
-<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
-</blockquote>
-<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
-<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
-<blockquote>
-<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>Cloud Run</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何有效使用 Quote Message</title>
     <url>/2023/10/08/line-bot-quote-message-reply-later/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
@@ -16839,6 +16788,57 @@ img[alt~="center"] {
         <tag>Quote Message</tag>
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
+    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
+<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
+</ol>
+<blockquote>
+<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
+<blockquote>
+<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
+</blockquote>
+<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
+<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
+<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
+<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
+<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
+<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
+</blockquote>
+<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
+<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
+<blockquote>
+<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>Cloud Run</tag>
       </tags>
   </entry>
   <entry>
@@ -17141,6 +17141,44 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>人生過了三分之一，做點紀錄</title>
+    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
+<span id="more"></span>
+
+<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
+<li>健身、上班、滑板</li>
+<li>健身、上班、滑板、上英文課</li>
+<li>睡飽、上班、打掃、上英文課</li>
+<li>健身、上班、羽球社(滑板)</li>
+<li>睡飽、上班、滑板<ol>
+<li>近期太多參訪早上都不練 👀</li>
+</ol>
+</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+</ol>
+<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
+<blockquote>
+<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
+</blockquote>
+<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
+<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
+<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
+<ul>
+<li>不開心想吃東西但怕胖？吃</li>
+<li>最近穿著都很黯淡？買</li>
+<li>家具缺點什麼更好些？買</li>
+</ul>
+<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2023  Personal Review</title>
     <url>/2023/12/23/nijia-2023-review/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
@@ -17195,42 +17233,29 @@ img[alt~="center"] {
       </categories>
   </entry>
   <entry>
-    <title>人生過了三分之一，做點紀錄</title>
-    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
+    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
+    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
 <span id="more"></span>
 
-<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
-<li>健身、上班、滑板</li>
-<li>健身、上班、滑板、上英文課</li>
-<li>睡飽、上班、打掃、上英文課</li>
-<li>健身、上班、羽球社(滑板)</li>
-<li>睡飽、上班、滑板<ol>
-<li>近期太多參訪早上都不練 👀</li>
-</ol>
-</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-</ol>
-<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
+<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
+<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
+<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
 </blockquote>
-<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
-<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
-<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
-<ul>
-<li>不開心想吃東西但怕胖？吃</li>
-<li>最近穿著都很黯淡？買</li>
-<li>家具缺點什麼更好些？買</li>
-</ul>
-<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
 ]]></content>
       <categories>
-        <category>日記</category>
+        <category>Python</category>
       </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
   </entry>
   <entry>
     <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
@@ -17298,31 +17323,6 @@ img[alt~="center"] {
       <tags>
         <tag>DevRel</tag>
         <tag>個人成長</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
-    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
-<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
-<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
-<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
       </tags>
   </entry>
   <entry>
@@ -17453,59 +17453,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>關於我衝動買了 ROG Ally 的夜晚⋯</title>
-    <url>/2023/07/29/why-i-buy-rog-ally/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="規格-官網"><a href="#規格-官網" class="headerlink" title="規格 - 官網"></a>規格 - <a href="https://rog.asus.com/tw/gaming-handhelds/rog-ally/rog-ally-2023/">官網</a></h1><ul>
-<li>AMD Ryzen™ Z1 Extreme</li>
-<li>記憶體：16GB</li>
-<li>硬碟：512GB​</li>
-</ul>
-<h1 id="為什麼要買它而不買-Steam-Deck-之類的？"><a href="#為什麼要買它而不買-Steam-Deck-之類的？" class="headerlink" title="為什麼要買它而不買 Steam Deck 之類的？"></a>為什麼要買它而不買 Steam Deck 之類的？</h1><ul>
-<li>台北租屋需要省空間</li>
-<li>回家也想打 LOL</li>
-<li>同事幫忙測試 Steam 快打旋風可以玩</li>
-<li>Windows 對我彈性還是比較高</li>
-<li>Steam Deck 需要另外支援，可能比 ROG 去適應 Windows 問題在多一些些</li>
-<li>大概 OLED 的 Switch 在重一點點</li>
-</ul>
-<h1 id="有哪些小缺點是需要注意的？"><a href="#有哪些小缺點是需要注意的？" class="headerlink" title="有哪些小缺點是需要注意的？"></a>有哪些小缺點是需要注意的？</h1><ul>
-<li>只有一個 Type-C</li>
-<li>要玩超級大作就要另外買外接顯卡 (3w+)</li>
-<li>可能某天 ASUS 更新沒做好爆掉？</li>
-<li>按鍵的感覺不耐操，修理可能很麻煩</li>
-<li>512G 對很多人可能不夠，需要研究黑魔法</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="我怎麼買到的？"><a href="#我怎麼買到的？" class="headerlink" title="我怎麼買到的？"></a>我怎麼買到的？</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056099347300386.png"></p>
-<p>其實有同學是 ASUS 員工，但裡面也是都搶購一空，一般我們都會想說去 PCHome || MOMO 買，經過了兩三個禮拜煎熬後，我從公司的 <a href="https://buy.line.me/s/rog%20ally">LINE 購物</a>裡去搜尋 ROG Ally，轉到 <a href="https://tw.buy.yahoo.com/gdsale/ROG-Ally-%E9%81%8A%E6%88%B2%E6%8E%8C%E6%A9%9F-10641183.html?co_servername=LN_5bcf58770c4e2f81e30be0048a7adf71">Yahoo 購物商城</a>後就買到了！而且有都還是原價～ 👍 有時候還真的沒想到 😆</p>
-<h1 id="按鈕配置"><a href="#按鈕配置" class="headerlink" title="按鈕配置"></a>按鈕配置</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056084298924484.png"></p>
-<p>按鍵據說參考 XBox 的排列，對於一個玩 Switch PS 的玩家初期需要習慣 (A 在下面，B 在最右邊)</p>
-<h1 id="開機預設畫面"><a href="#開機預設畫面" class="headerlink" title="開機預設畫面"></a>開機預設畫面</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466090716851077266.png" alt="預設畫面"></p>
-<p>開機預設會開起 ASUS 所開發的系統，主要是去適應掌機的應用，讓有用掌機玩的玩家不用大老遠去找開啟的地方。如果喜歡 PC 操作，直接關掉即可。</p>
-<h2 id="關於擴充這東東"><a href="#關於擴充這東東" class="headerlink" title="關於擴充這東東"></a>關於擴充這東東</h2><p><img src="https://nijialin.com/images/2023/rog/1.png"></p>
-<p>由於我要接的東西很多，對於 Windows 玩遊戲來說我也滿堅持要接網路線，因此買了相容 <a href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=11004814">Steam Deck 的擴充盒</a>，可以接三個 USB、原廠 Type-C 充電、網路線、HDMI，會使用到的裝置如下：</p>
-<ul>
-<li>滑鼠：用藍芽</li>
-<li>鍵盤：USB-A</li>
-<li>麥克風： USB-A (DC 用)</li>
-<li>大搖： USB-A</li>
-<li>鏡頭： USB-A (跟搖桿擇一，上課用)</li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>主要是基於移動性的考量購買它，同等價位下買的桌上型電腦其實也都還不錯，而且若在家裡買一台桌機，還很有可能被家人關機😆，主要還想把桌機拿去把我以前的 Mac 換回來用 😆</p>
-]]></content>
-      <categories>
-        <category>3C</category>
-      </categories>
-      <tags>
-        <tag>ROG</tag>
-        <tag>Ally</tag>
-        <tag>ASUS</tag>
-        <tag>掌機</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【快打6】新玩法與硬體選擇</title>
     <url>/2023/08/06/why-buy-street-fighter-6/</url>
     <content><![CDATA[<ul>
@@ -17569,6 +17516,59 @@ img[alt~="center"] {
         <tag>快打旋風</tag>
         <tag>ROG Ally</tag>
         <tag>搖桿</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>關於我衝動買了 ROG Ally 的夜晚⋯</title>
+    <url>/2023/07/29/why-i-buy-rog-ally/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="規格-官網"><a href="#規格-官網" class="headerlink" title="規格 - 官網"></a>規格 - <a href="https://rog.asus.com/tw/gaming-handhelds/rog-ally/rog-ally-2023/">官網</a></h1><ul>
+<li>AMD Ryzen™ Z1 Extreme</li>
+<li>記憶體：16GB</li>
+<li>硬碟：512GB​</li>
+</ul>
+<h1 id="為什麼要買它而不買-Steam-Deck-之類的？"><a href="#為什麼要買它而不買-Steam-Deck-之類的？" class="headerlink" title="為什麼要買它而不買 Steam Deck 之類的？"></a>為什麼要買它而不買 Steam Deck 之類的？</h1><ul>
+<li>台北租屋需要省空間</li>
+<li>回家也想打 LOL</li>
+<li>同事幫忙測試 Steam 快打旋風可以玩</li>
+<li>Windows 對我彈性還是比較高</li>
+<li>Steam Deck 需要另外支援，可能比 ROG 去適應 Windows 問題在多一些些</li>
+<li>大概 OLED 的 Switch 在重一點點</li>
+</ul>
+<h1 id="有哪些小缺點是需要注意的？"><a href="#有哪些小缺點是需要注意的？" class="headerlink" title="有哪些小缺點是需要注意的？"></a>有哪些小缺點是需要注意的？</h1><ul>
+<li>只有一個 Type-C</li>
+<li>要玩超級大作就要另外買外接顯卡 (3w+)</li>
+<li>可能某天 ASUS 更新沒做好爆掉？</li>
+<li>按鍵的感覺不耐操，修理可能很麻煩</li>
+<li>512G 對很多人可能不夠，需要研究黑魔法</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="我怎麼買到的？"><a href="#我怎麼買到的？" class="headerlink" title="我怎麼買到的？"></a>我怎麼買到的？</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056099347300386.png"></p>
+<p>其實有同學是 ASUS 員工，但裡面也是都搶購一空，一般我們都會想說去 PCHome || MOMO 買，經過了兩三個禮拜煎熬後，我從公司的 <a href="https://buy.line.me/s/rog%20ally">LINE 購物</a>裡去搜尋 ROG Ally，轉到 <a href="https://tw.buy.yahoo.com/gdsale/ROG-Ally-%E9%81%8A%E6%88%B2%E6%8E%8C%E6%A9%9F-10641183.html?co_servername=LN_5bcf58770c4e2f81e30be0048a7adf71">Yahoo 購物商城</a>後就買到了！而且有都還是原價～ 👍 有時候還真的沒想到 😆</p>
+<h1 id="按鈕配置"><a href="#按鈕配置" class="headerlink" title="按鈕配置"></a>按鈕配置</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466056084298924484.png"></p>
+<p>按鍵據說參考 XBox 的排列，對於一個玩 Switch PS 的玩家初期需要習慣 (A 在下面，B 在最右邊)</p>
+<h1 id="開機預設畫面"><a href="#開機預設畫面" class="headerlink" title="開機預設畫面"></a>開機預設畫面</h1><p><img src="https://github.com/louis70109/ideas-tree/raw/master/images/466090716851077266.png" alt="預設畫面"></p>
+<p>開機預設會開起 ASUS 所開發的系統，主要是去適應掌機的應用，讓有用掌機玩的玩家不用大老遠去找開啟的地方。如果喜歡 PC 操作，直接關掉即可。</p>
+<h2 id="關於擴充這東東"><a href="#關於擴充這東東" class="headerlink" title="關於擴充這東東"></a>關於擴充這東東</h2><p><img src="https://nijialin.com/images/2023/rog/1.png"></p>
+<p>由於我要接的東西很多，對於 Windows 玩遊戲來說我也滿堅持要接網路線，因此買了相容 <a href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=11004814">Steam Deck 的擴充盒</a>，可以接三個 USB、原廠 Type-C 充電、網路線、HDMI，會使用到的裝置如下：</p>
+<ul>
+<li>滑鼠：用藍芽</li>
+<li>鍵盤：USB-A</li>
+<li>麥克風： USB-A (DC 用)</li>
+<li>大搖： USB-A</li>
+<li>鏡頭： USB-A (跟搖桿擇一，上課用)</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>主要是基於移動性的考量購買它，同等價位下買的桌上型電腦其實也都還不錯，而且若在家裡買一台桌機，還很有可能被家人關機😆，主要還想把桌機拿去把我以前的 Mac 換回來用 😆</p>
+]]></content>
+      <categories>
+        <category>3C</category>
+      </categories>
+      <tags>
+        <tag>ROG</tag>
+        <tag>Ally</tag>
+        <tag>ASUS</tag>
+        <tag>掌機</tag>
       </tags>
   </entry>
 </search>
