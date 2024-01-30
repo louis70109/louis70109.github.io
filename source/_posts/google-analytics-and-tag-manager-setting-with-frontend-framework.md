@@ -10,7 +10,7 @@ date: 2024-01-28 22:40:38
 ---
 
 
-![](https://nijialin.com/images/2024/ga/_ec6ea3df-b7a1-45d4-9e66-e78f2b2eeb79.jpeg)
+![](https://nijialin.com/images/2024/ga/0.jpeg)
 
 # 前言
 
