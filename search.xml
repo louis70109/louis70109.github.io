@@ -16198,83 +16198,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【GitHub】建立第一個 Issue Template</title>
-    <url>/2023/10/05/github-issue-report-yaml-template/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
-<span id="more"></span>
-
-<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
-<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
-<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
-<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
-<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
-<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
-<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
-<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
-<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
-<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?</title>
-    <url>/2024/01/28/google-analytics-and-tag-manager-setting-with-frontend-framework/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/ga/0.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於現在主流前端框架(Next, Nuxt)皆會透過 Virtual DOM 的方式渲染網站，在網站當中像是 class 就會有類似 <code>class=&quot;qwe-1234&quot;</code> 的呈現方式，且會階層往下，但這在 google analytics 當中抓資料會有問題，因為跟一般 SPA 網站渲染方式呈現比較不同</p>
-<span id="more"></span>
-
-<h2 id="延伸閱讀：Why-Virtual-DOM"><a href="#延伸閱讀：Why-Virtual-DOM" class="headerlink" title="延伸閱讀：Why Virtual DOM?"></a>延伸閱讀：Why Virtual DOM?</h2><blockquote>
-<p>Next 或 Nuxt 前端框架使用 virtual DOM 的主要原因是為了提升網頁的效能和開發體驗。virtual DOM 是一種用 JavaScript 物件來模擬真實 DOM 的技術，它可以減少對真實 DOM 的操作，從而避免不必要的 reflow 或 repaint，這些過程會消耗瀏覽器的資源。virtual DOM 還可以利用 diff 演算法來計算出新舊 virtual DOM 之間的差異，並只更新有變動的部分，這樣可以進一步提高效率。<br>除了效能的優勢，virtual DOM 也可以讓開發者更方便地處理資料和畫面的變化，而不需要直接操作 DOM API。這樣可以減少程式碼的複雜度，並提高可讀性和可維護性。virtual DOM 還可以實現服務端渲染 (SSR)，這對於 SEO 和首頁載入速度有很大的幫助。</p>
-</blockquote>
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>假設我想在 GA 中監控事件以下範例:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;qwe-123&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;asd-456&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;accountSetting&#x27;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>我們會想在 GTM 後台設定抓取 <code>id=&#39;accountSetting&#39;</code>，設定就會跟以下很像：</p>
-<p><img src="https://nijialin.com/images/2024/ga/1.png"></p>
-<p>接著到 Tag Assistant (preview page) 中開啟 Debug mode 時，會發現事件似乎沒有被 Fire，以下先附上應該要成功的畫面：</p>
-<p><img src="https://nijialin.com/images/2024/ga/4.png"></p>
-<p>把事件點開之後才發現，怎麼內容都放在 Click Element(?) 初步猜測應該是 Virtual DOM 壓縮後讓 GA 找不到對應的欄位，因此將內容都放入 Element 當中，參考如下：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  event:</span> <span class="string">&quot;gtm.click&quot;</span>,</span><br><span class="line"><span class="symbol">  gtm:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    uniqueEventId:</span> <span class="number">16</span>,</span><br><span class="line"><span class="symbol">    start:</span> <span class="number">1706415086221</span>, <span class="comment">// 開始時間</span></span><br><span class="line"><span class="symbol">    element:</span> <span class="string">&quot;HTMLImageElement: html &gt; body &gt; div#__next &gt; div.css-xg&quot;</span> +</span><br><span class="line">             <span class="string">&quot;fukl &gt; div.css-79njnh &gt; a.css-s401k6#accountSetting &gt; img&quot;</span>,</span><br><span class="line"><span class="symbol">    elementClasses:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementId:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementTarget:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementUrl:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    historyChangeSource:</span> <span class="string">&quot;pushState&quot;</span>,</span><br><span class="line"><span class="symbol">    oldUrl:</span> <span class="string">&quot;https://用戶訪問實際網址&quot;</span>,</span><br><span class="line"><span class="symbol">    newUrl:</span> <span class="string">&quot;https://應該是首頁&quot;</span>,</span><br><span class="line"></span><br><span class="line">    ...其餘監控資料</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  eventCallback:</span> <span class="string">&quot;Function&quot;</span></span><br><span class="line"></span><br><span class="line">  ...其他自第義的內容</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>經驗分享：在越接近首頁位置的 html id 以及 class 會被放到 Element ID(Class) 欄位當中，但隨著網頁的商業邏輯越來越多，包多層之後 GTM 會搞混，因此建議方式還是可以從 Element 裡面抓</p>
-</blockquote>
-<p>因此這邊能解的方式如下：</p>
-<p><img src="https://nijialin.com/images/2024/ga/2.png"></p>
-<p>透過 <code>CSS Selector</code> 來指定想 tracking 的 HTML tag，但這邊需要 Double confirm 的地方是，有時候實作上後面的階層可能不一定有東西，因此這邊能做的方式大概為:</p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#accountSetting, #accountSetting *</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在 GTM CSS Selector 這邊可以用 <code>,</code> 來劃分條件，空白+<code>*</code> 則是代表後面不論接什麼，只要 ID &#x3D; accountSetting 就能 fire tracking，</p>
-</blockquote>
-<h2 id="Page-Path-的-contains-設定"><a href="#Page-Path-的-contains-設定" class="headerlink" title="Page Path 的 contains 設定"></a>Page Path 的 contains 設定</h2><p>建議使用 <code>contains</code>，因為可能會因為不同網站導流而在後面放了許多參數，只要路徑有符合就可以收進來<br><img src="https://nijialin.com/images/2024/ga/3.png"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>會發現這個操作方式是發現，設定了十幾個 click tracking event，結果只有幾個有成功，與同事合力才發現原來有前端框架的 Virtual DOM 影響的問題。</p>
-<p>往後若想透過GA來收集用戶行為時，記得要先知道前端是如何構建而成，SPA or Web framework，才能知道自己抓的東西能夠符合團隊需求喔！</p>
-<blockquote>
-<p>預祝大家資料都能被好好的 tracking，數據收滿滿!!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-        <tag>GTM</tag>
-        <tag>GA</tag>
-        <tag>Google Analytics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</title>
     <url>/2023/11/26/gcp-pubsub-python/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/pubsub/OIG.jpeg"></p>
@@ -16361,6 +16284,83 @@ img[alt~="center"] {
         <tag>Google</tag>
         <tag>GCP</tag>
         <tag>Pub/Sub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【GitHub】建立第一個 Issue Template</title>
+    <url>/2023/10/05/github-issue-report-yaml-template/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
+<span id="more"></span>
+
+<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
+<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
+<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
+<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
+<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
+<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
+<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
+<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
+<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
+<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?</title>
+    <url>/2024/01/28/google-analytics-and-tag-manager-setting-with-frontend-framework/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/ga/0.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於現在主流前端框架(Next, Nuxt)皆會透過 Virtual DOM 的方式渲染網站，在網站當中像是 class 就會有類似 <code>class=&quot;qwe-1234&quot;</code> 的呈現方式，且會階層往下，但這在 google analytics 當中抓資料會有問題，因為跟一般 SPA 網站渲染方式呈現比較不同</p>
+<span id="more"></span>
+
+<h2 id="延伸閱讀：Why-Virtual-DOM"><a href="#延伸閱讀：Why-Virtual-DOM" class="headerlink" title="延伸閱讀：Why Virtual DOM?"></a>延伸閱讀：Why Virtual DOM?</h2><blockquote>
+<p>Next 或 Nuxt 前端框架使用 virtual DOM 的主要原因是為了提升網頁的效能和開發體驗。virtual DOM 是一種用 JavaScript 物件來模擬真實 DOM 的技術，它可以減少對真實 DOM 的操作，從而避免不必要的 reflow 或 repaint，這些過程會消耗瀏覽器的資源。virtual DOM 還可以利用 diff 演算法來計算出新舊 virtual DOM 之間的差異，並只更新有變動的部分，這樣可以進一步提高效率。<br>除了效能的優勢，virtual DOM 也可以讓開發者更方便地處理資料和畫面的變化，而不需要直接操作 DOM API。這樣可以減少程式碼的複雜度，並提高可讀性和可維護性。virtual DOM 還可以實現服務端渲染 (SSR)，這對於 SEO 和首頁載入速度有很大的幫助。</p>
+</blockquote>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>假設我想在 GA 中監控事件以下範例:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;qwe-123&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;asd-456&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;accountSetting&#x27;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>我們會想在 GTM 後台設定抓取 <code>id=&#39;accountSetting&#39;</code>，設定就會跟以下很像：</p>
+<p><img src="https://nijialin.com/images/2024/ga/1.png"></p>
+<p>接著到 Tag Assistant (preview page) 中開啟 Debug mode 時，會發現事件似乎沒有被 Fire，以下先附上應該要成功的畫面：</p>
+<p><img src="https://nijialin.com/images/2024/ga/4.png"></p>
+<p>把事件點開之後才發現，怎麼內容都放在 Click Element(?) 初步猜測應該是 Virtual DOM 壓縮後讓 GA 找不到對應的欄位，因此將內容都放入 Element 當中，參考如下：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  event:</span> <span class="string">&quot;gtm.click&quot;</span>,</span><br><span class="line"><span class="symbol">  gtm:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    uniqueEventId:</span> <span class="number">16</span>,</span><br><span class="line"><span class="symbol">    start:</span> <span class="number">1706415086221</span>, <span class="comment">// 開始時間</span></span><br><span class="line"><span class="symbol">    element:</span> <span class="string">&quot;HTMLImageElement: html &gt; body &gt; div#__next &gt; div.css-xg&quot;</span> +</span><br><span class="line">             <span class="string">&quot;fukl &gt; div.css-79njnh &gt; a.css-s401k6#accountSetting &gt; img&quot;</span>,</span><br><span class="line"><span class="symbol">    elementClasses:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementId:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementTarget:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementUrl:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    historyChangeSource:</span> <span class="string">&quot;pushState&quot;</span>,</span><br><span class="line"><span class="symbol">    oldUrl:</span> <span class="string">&quot;https://用戶訪問實際網址&quot;</span>,</span><br><span class="line"><span class="symbol">    newUrl:</span> <span class="string">&quot;https://應該是首頁&quot;</span>,</span><br><span class="line"></span><br><span class="line">    ...其餘監控資料</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  eventCallback:</span> <span class="string">&quot;Function&quot;</span></span><br><span class="line"></span><br><span class="line">  ...其他自第義的內容</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>經驗分享：在越接近首頁位置的 html id 以及 class 會被放到 Element ID(Class) 欄位當中，但隨著網頁的商業邏輯越來越多，包多層之後 GTM 會搞混，因此建議方式還是可以從 Element 裡面抓</p>
+</blockquote>
+<p>因此這邊能解的方式如下：</p>
+<p><img src="https://nijialin.com/images/2024/ga/2.png"></p>
+<p>透過 <code>CSS Selector</code> 來指定想 tracking 的 HTML tag，但這邊需要 Double confirm 的地方是，有時候實作上後面的階層可能不一定有東西，因此這邊能做的方式大概為:</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#accountSetting, #accountSetting *</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 GTM CSS Selector 這邊可以用 <code>,</code> 來劃分條件，空白+<code>*</code> 則是代表後面不論接什麼，只要 ID &#x3D; accountSetting 就能 fire tracking，</p>
+</blockquote>
+<h2 id="Page-Path-的-contains-設定"><a href="#Page-Path-的-contains-設定" class="headerlink" title="Page Path 的 contains 設定"></a>Page Path 的 contains 設定</h2><p>建議使用 <code>contains</code>，因為可能會因為不同網站導流而在後面放了許多參數，只要路徑有符合就可以收進來<br><img src="https://nijialin.com/images/2024/ga/3.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>會發現這個操作方式是發現，設定了十幾個 click tracking event，結果只有幾個有成功，與同事合力才發現原來有前端框架的 Virtual DOM 影響的問題。</p>
+<p>往後若想透過GA來收集用戶行為時，記得要先知道前端是如何構建而成，SPA or Web framework，才能知道自己抓的東西能夠符合團隊需求喔！</p>
+<blockquote>
+<p>預祝大家資料都能被好好的 tracking，數據收滿滿!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+        <tag>GTM</tag>
+        <tag>GA</tag>
+        <tag>Google Analytics</tag>
       </tags>
   </entry>
   <entry>
@@ -16641,40 +16641,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
-    <url>/2023/06/03/knative-why-you-need/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
-<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
-<span id="more"></span>
-
-<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
-<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
-<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
-<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
-<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
-<blockquote>
-<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
-</blockquote>
-<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
-<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
-<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
-<blockquote>
-<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
-<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
-<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Kubernetes</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Knative</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
     <url>/2023/06/06/line-bot-calendar-action/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
@@ -16731,6 +16697,40 @@ img[alt~="center"] {
         <tag>LINE Bot</tag>
         <tag>Calendar</tag>
         <tag>行事曆連結</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
+    <url>/2023/06/03/knative-why-you-need/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
+<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+<span id="more"></span>
+
+<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
+<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
+<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
+<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
+<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
+<blockquote>
+<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
+</blockquote>
+<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
+<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
+<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
+<blockquote>
+<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
+<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
+<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Knative</tag>
       </tags>
   </entry>
   <entry>
@@ -17092,6 +17092,55 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Apple M2 本地跑 Stable Diffusion</title>
+    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
+<span id="more"></span>
+
+<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
+<ul>
+<li>官方是使用 bash，我個人是 zsh</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
+
+<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>M2</tag>
+        <tag>Stable Diffusion</tag>
+        <tag>圖像生成</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2023  Personal Review</title>
     <url>/2023/12/23/nijia-2023-review/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
@@ -17182,55 +17231,6 @@ img[alt~="center"] {
       <categories>
         <category>日記</category>
       </categories>
-  </entry>
-  <entry>
-    <title>在 Apple M2 本地跑 Stable Diffusion</title>
-    <url>/2023/06/15/ml-stable-diffusion-practice/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="apple-x2F-ml-stable-diffusion-介紹"><a href="#apple-x2F-ml-stable-diffusion-介紹" class="headerlink" title="apple&#x2F;ml-stable-diffusion 介紹"></a><a href="https://github.com/apple/ml-stable-diffusion">apple&#x2F;ml-stable-diffusion</a> 介紹</h1><p>由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：</p>
-<span id="more"></span>
-
-<h2 id="安裝-Conda"><a href="#安裝-Conda" class="headerlink" title="安裝 Conda"></a>安裝 Conda</h2><p>過去開發都只有用 pip install，因此這邊就把 Conda 安裝的步驟也放進來</p>
-<ul>
-<li>官方是使用 bash，我個人是 zsh</li>
-</ul>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
-
-<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
-
-<h2 id="下載-Model"><a href="#下載-Model" class="headerlink" title="下載 Model"></a>下載 Model</h2><p>因為已經在 <code>ml-stable-diffusion/</code> 資料夾中，因此跑以下指令把 model 拉進來，但因為有好幾 G，因此要確保網路跟電腦不能斷掉喔！</p>
-<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
-
-<h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
-
-<p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我個人是有買 OpenAI 的 DALLE，但能在 Apple M2 電腦上跑圖像生成真的挺酷的！(畢竟是 Apple 專案)，讓沒有 GPU 的玩家也可以加入生成式 AI 的世界跟著大家一起玩 💪</p>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>M2</tag>
-        <tag>Stable Diffusion</tag>
-        <tag>圖像生成</tag>
-      </tags>
   </entry>
   <entry>
     <title>【零到三的旅程】🥷👌🚶‍♂️📖</title>
