@@ -16641,6 +16641,40 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
+    <url>/2023/06/03/knative-why-you-need/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
+<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+<span id="more"></span>
+
+<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
+<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
+<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
+<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
+<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
+<blockquote>
+<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
+</blockquote>
+<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
+<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
+<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
+<blockquote>
+<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
+<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
+<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Knative</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
     <url>/2023/06/06/line-bot-calendar-action/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
@@ -16700,91 +16734,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
-    <url>/2023/06/03/knative-why-you-need/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
-<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
-<span id="more"></span>
-
-<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
-<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
-<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
-<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
-<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
-<blockquote>
-<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
-</blockquote>
-<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
-<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
-<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
-<blockquote>
-<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
-<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
-<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Kubernetes</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Knative</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
-    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
-<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
-</ol>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
-</ol>
-<blockquote>
-<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
-</blockquote>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
-
-<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
-<blockquote>
-<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
-</blockquote>
-<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
-<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
-<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
-<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
-<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
-<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
-</blockquote>
-<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
-<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
-<blockquote>
-<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>Cloud Run</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何有效使用 Quote Message</title>
     <url>/2023/10/08/line-bot-quote-message-reply-later/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
@@ -16839,6 +16788,57 @@ img[alt~="center"] {
         <tag>Quote Message</tag>
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
+    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
+<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
+</ol>
+<blockquote>
+<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
+<blockquote>
+<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
+</blockquote>
+<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
+<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
+<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
+<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
+<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
+<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
+</blockquote>
+<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
+<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
+<blockquote>
+<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>Cloud Run</tag>
       </tags>
   </entry>
   <entry>
