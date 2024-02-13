@@ -16079,125 +16079,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>新米到上手 LangChain: 藉由 Function Agent 在 LINE Bot 上處理 Calendar 資訊！</title>
-    <url>/2023/08/18/first-time-langchain-line-bot/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<ul>
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
-<li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8%E6%93%87-google-calender">為什麼選擇 Google Calender?</a><ul>
-<li><a href="#%E5%96%9C%E6%AD%A1%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E9%80%99%E9%82%8A">喜歡程式碼可以看這邊</a></li>
-</ul>
-</li>
-<li><a href="#%E9%81%8E%E5%8E%BB%E6%88%91%E6%80%8E%E9%BA%BC%E4%B8%8B-prompt">過去我怎麼下 prompt？</a></li>
-<li><a href="#%E4%BB%80%E9%BA%BC%E6%98%AF-langchain">什麼是 LangChain？</a></li>
-<li><a href="#langchain-function-agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95">LangChain Function Agent 帶來了什麼好處？</a></li>
-<li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-line-bot-%E7%94%A8">為什麼要在 LINE Bot 用？</a></li>
-<li><a href="#%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8-youtube-%E4%BB%A5%E5%8F%8A-wikipedia-tool">更新：使用 Youtube 以及 wikipedia Tool</a></li>
-</ul>
-</li>
-<li><a href="#%E7%B5%90%E8%AB%96">結論</a></li>
-<li><a href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
-<li><a href="#%E9%97%9C%E6%96%BCline-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB">關於「LINE 開發社群計畫」</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平時我們經常需要管理&#x2F;安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！</p>
-<p>Slide: <a href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a><br>範例程式碼：<a href="https://github.com/louis70109/BookingStep">https://github.com/louis70109/BookingStep</a><br>歡迎試玩 LINE Bot：<a href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="為什麼選擇-Google-Calender"><a href="#為什麼選擇-Google-Calender" class="headerlink" title="為什麼選擇 Google Calender?"></a>為什麼選擇 Google Calender?</h2><p>我一直在使用 Google 日曆，主要是基於以下原因：</p>
-<ul>
-<li>在 Cambly 上課時，我可以將課程資訊直接綁定到 Google Calender，方便我管理下班後的時間</li>
-<li>Apple Calender 可以收來自 Google Calender 的事件，這對於熱愛使用蘋果產品的我來說非常便利，可以在手機、電腦和平板上同步查看我的行事曆 (只需要一個 iCloud)</li>
-<li>Google 日曆的同步速度很快，幾乎可以立即反應行事曆狀態，讓我在規劃時間方面更加順暢<ul>
-<li>同步很快，體感約&lt;60s</li>
-</ul>
-</li>
-</ul>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=7" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<ul>
-<li>標題、時間：對於我來說是必須的，個人行事曆不用像公司的這麼完整，我只要知道時間跟要做什麼事情就好</li>
-<li>地點、描述：話雖如此，如果行事曆裡面能有更完整的內容當然更好，但沒有也沒關係，只要能幫助我回想就可以了，因此這兩個對我來說是選田</li>
-</ul>
-<h3 id="喜歡程式碼可以看這邊"><a href="#喜歡程式碼可以看這邊" class="headerlink" title="喜歡程式碼可以看這邊"></a>喜歡程式碼可以看這邊</h3><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=8" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>以 python 來說，因為是打 GET，不一定每個瀏覽器都會幫忙處理 unicode 的問題，為保險起見都需要先用 <code>urllib.parse.quote(&quot;STRING&quot;)</code> 來包，<code>openExternalBrowser</code> 後面在說～</p>
-<h2 id="過去我怎麼下-prompt？"><a href="#過去我怎麼下-prompt？" class="headerlink" title="過去我怎麼下 prompt？"></a>過去我怎麼下 prompt？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=10" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>在公司內部的工作坊中，學到了上圖的 prompt 可以告訴 AI 如何幫我產生我對應要的東西，從角色到要作的事情說清楚，但在這裡有沒有發現，我下面寫的一些髒 code，都要確保它(AI)若沒給東西時我應該怎麼處理，甚至還因為他只能給字串版本的 dict，要暴力破解把他轉成 dict，實在是不太好的作法…哈哈</p>
-<h2 id="什麼是-LangChain？"><a href="#什麼是-LangChain？" class="headerlink" title="什麼是 LangChain？"></a>什麼是 LangChain？</h2><p>引用至 Evan 寫的文章 - <a href="https://engineering.linecorp.com/zh-hant/blog/cloud-summit-2023-gal-linebot">Cloud Summit 2023 - 結合生成式 AI 打造有趣的 LINE Bot 應用</a></p>
-<p>要讓你的 LINE Bot 做出以上的事情，你需要很多很多的相關 Prompt 。不論是定義 LLM 的模型該如何解讀你的文字，該如何挑選即將要執行的動作，或是如何將結果作為有效的拆解，到把以往訊息得內容加以存在 Prompt 之中。</p>
-<p>但是透過 LangChain 你可以將這些工作拆解成一個個的小方塊，讓你打造相關服務與應用的時候不用在重複使用那些的 Prompt ，就可以快速打造出來。 以下透過一些簡單的程式碼範例來講解使用了 LangChain 之後，你的程式碼會變得多簡潔。</p>
-<h2 id="LangChain-Function-Agent-帶來了什麼好處？"><a href="#LangChain-Function-Agent-帶來了什麼好處？" class="headerlink" title="LangChain Function Agent 帶來了什麼好處？"></a>LangChain Function Agent 帶來了什麼好處？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=11" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>如果有在 Python 作過型別定義，一定對於 Pydantic 不陌生，因為 LangChain 有引入它方式，幫助 LLM 定義需求時可以下相關訊息(description)，透過定義完成後，在 <code>def _run()</code> 裡面 LLM 會幫你把參數放入對應的欄位，並且讓開發者可以快速拿參數做事情。</p>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=12" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>而更神奇的是，你可以在 description 裡面多寫一些內容，像是把 <code>台</code> &lt;-&gt; <code>臺</code>之類的幫你對應好，這樣是不是想到能解決了超多事情呢？</p>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=13" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>用 Function Agent 的好處是，Web 開發者可以把<code>生成式</code>這件事，用 web server 的邏輯開發，以上述為例：定義環境變數-前處理-init-Run server，霎那間還真的以為自己在寫 web service？如此一來就可以更直覺得去寫你想要的 AI 解決方案，前處理想要放更多資訊，只要定義好 class，基本上很多事情都很好解決了！</p>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=19" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>透過 LangChain，我可以少學&#x2F;寫很多的黑魔法，甚至在 description 中就可以判斷今天、明天、兩天後…等等的只有人類對話能懂的東西，雖然還不太懂 LangChain 後面怎麼作，但如此一來我也省處理了很多把 prompt 一直串起來的功了。</p>
-<h2 id="為什麼要在-LINE-Bot-用？"><a href="#為什麼要在-LINE-Bot-用？" class="headerlink" title="為什麼要在 LINE Bot 用？"></a>為什麼要在 LINE Bot 用？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=19" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>一直沒說為什麼要在 LINE Bot 裡面使用，主要是我個人日常就會準備一隻 Bot 來存我臨時的訊息，抑或是在群組時常常都會有很片段的消息來約時間，通常最後都會有感覺某個時間要出門，結果往往時間到就忘了也找不到訊息在哪…</p>
-<p>考慮使用的原因是，因為 LINE Bot 是 event-driven 的方式，我會在桌機板的 LINE 把群組訊息複製起來貼到 LINE Bot，訊息樣是會很像以下：</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">01</span>:<span class="number">52</span> 🤖測試用🐤 你明天想去吃範嗎？</span><br><span class="line"><span class="attribute">01</span>:<span class="number">52</span> 🤖測試用🐤 可能在內湖附近</span><br><span class="line"><span class="attribute">01</span>:<span class="number">53</span> 🥷NiJia   可啊，但幾點？</span><br><span class="line"><span class="attribute">01</span>:<span class="number">53</span> 🤖測試用🐤 應該七點下班後吧</span><br><span class="line"><span class="attribute">01</span>:<span class="number">53</span> 🤖測試用🐤 你看你要不要來在說</span><br><span class="line"><span class="attribute">01</span>:<span class="number">54</span> 🥷NiJia   喔好</span><br></pre></td></tr></table></figure>
-
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=17" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
-
-<p>如此一來就能達到類似上述的功能，讓 LangChain 幫忙整理訊息並放到對應 Google Calendar 的 query parameter，這樣就能加到個人行事曆中了！</p>
-<h2 id="更新：使用-Youtube-以及-wikipedia-Tool"><a href="#更新：使用-Youtube-以及-wikipedia-Tool" class="headerlink" title="更新：使用 Youtube 以及 wikipedia Tool"></a>更新：使用 Youtube 以及 wikipedia Tool</h2><p>看 LangChain 文件時發現它其實有<a href="https://python.langchain.com/docs/integrations/tools/">許多 Tool Plugin</a>，支援了各式各樣的服務，依照我這個行事曆機器人，我選擇支援了 <a href="https://python.langchain.com/docs/integrations/tools/youtube">Youtube</a> &amp; <a href="https://python.langchain.com/docs/integrations/tools/wikipedia">Wikipedia</a>，只要把相依套件安裝完，基本上就可以引入使用，大概如下：</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip <span class="keyword">install</span> youtube_search</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.tools <span class="keyword">import</span> YouTubeSearchTool</span><br></pre></td></tr></table></figure>
-
-<p>YouTubeSearchTool API Reference:</p>
-<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">tool</span> <span class="operator">=</span> YouTubeSearchTool()</span><br><span class="line"></span><br><span class="line">tool.run(<span class="string">&quot;lex friedman&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>結果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&quot;<span class="selector-attr">[<span class="string">&#x27;/watch?v=VcVfceTsD0A&amp;pp=ygUMbGV4IGZyaWVkbWFu&#x27;</span>, <span class="string">&#x27;/watch?v=gPfriiHBBek&amp;pp=ygUMbGV4IGZyaWVkbWFu&#x27;</span>]</span>&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>官方文件中其實有很多大密寶，我也透過這樣挖了好多東西～哈哈哈</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這次的分享先來了解一下 LangChain Function Agent 帶來的魔力！讓我少研究很多 OpenAI 黑魔法的時間，甚至很多程式碼寫起來跟平常寫法都很像，在大 AI 時代對於日常用 Python 寫應用的工程師是非常友善的！如果你也正在關注相關應用，或許可以參考本篇文章唷！</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>ChatGPT</tag>
-        <tag>OpenAI</tag>
-        <tag>LangChain</tag>
-        <tag>Google Calendar</tag>
-        <tag>Function Agent</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何設定 Cloud Function 2nd gen 來改善截圖爬蟲的效率！</title>
     <url>/2024/02/13/gcp-cloud-function-gen2-with-line-bot/</url>
     <content><![CDATA[<h1 id="背景介紹"><a href="#背景介紹" class="headerlink" title="背景介紹"></a>背景介紹</h1><p><img src="https://nijialin.com/images/2024/gcp/1.png"></p>
@@ -16327,6 +16208,125 @@ img[alt~="center"] {
         <tag>Google</tag>
         <tag>GCP</tag>
         <tag>Pub/Sub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新米到上手 LangChain: 藉由 Function Agent 在 LINE Bot 上處理 Calendar 資訊！</title>
+    <url>/2023/08/18/first-time-langchain-line-bot/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
+<li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8%E6%93%87-google-calender">為什麼選擇 Google Calender?</a><ul>
+<li><a href="#%E5%96%9C%E6%AD%A1%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E9%80%99%E9%82%8A">喜歡程式碼可以看這邊</a></li>
+</ul>
+</li>
+<li><a href="#%E9%81%8E%E5%8E%BB%E6%88%91%E6%80%8E%E9%BA%BC%E4%B8%8B-prompt">過去我怎麼下 prompt？</a></li>
+<li><a href="#%E4%BB%80%E9%BA%BC%E6%98%AF-langchain">什麼是 LangChain？</a></li>
+<li><a href="#langchain-function-agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95">LangChain Function Agent 帶來了什麼好處？</a></li>
+<li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-line-bot-%E7%94%A8">為什麼要在 LINE Bot 用？</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8-youtube-%E4%BB%A5%E5%8F%8A-wikipedia-tool">更新：使用 Youtube 以及 wikipedia Tool</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B5%90%E8%AB%96">結論</a></li>
+<li><a href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
+<li><a href="#%E9%97%9C%E6%96%BCline-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB">關於「LINE 開發社群計畫」</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平時我們經常需要管理&#x2F;安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！</p>
+<p>Slide: <a href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a><br>範例程式碼：<a href="https://github.com/louis70109/BookingStep">https://github.com/louis70109/BookingStep</a><br>歡迎試玩 LINE Bot：<a href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="為什麼選擇-Google-Calender"><a href="#為什麼選擇-Google-Calender" class="headerlink" title="為什麼選擇 Google Calender?"></a>為什麼選擇 Google Calender?</h2><p>我一直在使用 Google 日曆，主要是基於以下原因：</p>
+<ul>
+<li>在 Cambly 上課時，我可以將課程資訊直接綁定到 Google Calender，方便我管理下班後的時間</li>
+<li>Apple Calender 可以收來自 Google Calender 的事件，這對於熱愛使用蘋果產品的我來說非常便利，可以在手機、電腦和平板上同步查看我的行事曆 (只需要一個 iCloud)</li>
+<li>Google 日曆的同步速度很快，幾乎可以立即反應行事曆狀態，讓我在規劃時間方面更加順暢<ul>
+<li>同步很快，體感約&lt;60s</li>
+</ul>
+</li>
+</ul>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=7" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<ul>
+<li>標題、時間：對於我來說是必須的，個人行事曆不用像公司的這麼完整，我只要知道時間跟要做什麼事情就好</li>
+<li>地點、描述：話雖如此，如果行事曆裡面能有更完整的內容當然更好，但沒有也沒關係，只要能幫助我回想就可以了，因此這兩個對我來說是選田</li>
+</ul>
+<h3 id="喜歡程式碼可以看這邊"><a href="#喜歡程式碼可以看這邊" class="headerlink" title="喜歡程式碼可以看這邊"></a>喜歡程式碼可以看這邊</h3><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=8" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>以 python 來說，因為是打 GET，不一定每個瀏覽器都會幫忙處理 unicode 的問題，為保險起見都需要先用 <code>urllib.parse.quote(&quot;STRING&quot;)</code> 來包，<code>openExternalBrowser</code> 後面在說～</p>
+<h2 id="過去我怎麼下-prompt？"><a href="#過去我怎麼下-prompt？" class="headerlink" title="過去我怎麼下 prompt？"></a>過去我怎麼下 prompt？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=10" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>在公司內部的工作坊中，學到了上圖的 prompt 可以告訴 AI 如何幫我產生我對應要的東西，從角色到要作的事情說清楚，但在這裡有沒有發現，我下面寫的一些髒 code，都要確保它(AI)若沒給東西時我應該怎麼處理，甚至還因為他只能給字串版本的 dict，要暴力破解把他轉成 dict，實在是不太好的作法…哈哈</p>
+<h2 id="什麼是-LangChain？"><a href="#什麼是-LangChain？" class="headerlink" title="什麼是 LangChain？"></a>什麼是 LangChain？</h2><p>引用至 Evan 寫的文章 - <a href="https://engineering.linecorp.com/zh-hant/blog/cloud-summit-2023-gal-linebot">Cloud Summit 2023 - 結合生成式 AI 打造有趣的 LINE Bot 應用</a></p>
+<p>要讓你的 LINE Bot 做出以上的事情，你需要很多很多的相關 Prompt 。不論是定義 LLM 的模型該如何解讀你的文字，該如何挑選即將要執行的動作，或是如何將結果作為有效的拆解，到把以往訊息得內容加以存在 Prompt 之中。</p>
+<p>但是透過 LangChain 你可以將這些工作拆解成一個個的小方塊，讓你打造相關服務與應用的時候不用在重複使用那些的 Prompt ，就可以快速打造出來。 以下透過一些簡單的程式碼範例來講解使用了 LangChain 之後，你的程式碼會變得多簡潔。</p>
+<h2 id="LangChain-Function-Agent-帶來了什麼好處？"><a href="#LangChain-Function-Agent-帶來了什麼好處？" class="headerlink" title="LangChain Function Agent 帶來了什麼好處？"></a>LangChain Function Agent 帶來了什麼好處？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=11" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>如果有在 Python 作過型別定義，一定對於 Pydantic 不陌生，因為 LangChain 有引入它方式，幫助 LLM 定義需求時可以下相關訊息(description)，透過定義完成後，在 <code>def _run()</code> 裡面 LLM 會幫你把參數放入對應的欄位，並且讓開發者可以快速拿參數做事情。</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=12" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>而更神奇的是，你可以在 description 裡面多寫一些內容，像是把 <code>台</code> &lt;-&gt; <code>臺</code>之類的幫你對應好，這樣是不是想到能解決了超多事情呢？</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=13" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>用 Function Agent 的好處是，Web 開發者可以把<code>生成式</code>這件事，用 web server 的邏輯開發，以上述為例：定義環境變數-前處理-init-Run server，霎那間還真的以為自己在寫 web service？如此一來就可以更直覺得去寫你想要的 AI 解決方案，前處理想要放更多資訊，只要定義好 class，基本上很多事情都很好解決了！</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=19" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>透過 LangChain，我可以少學&#x2F;寫很多的黑魔法，甚至在 description 中就可以判斷今天、明天、兩天後…等等的只有人類對話能懂的東西，雖然還不太懂 LangChain 後面怎麼作，但如此一來我也省處理了很多把 prompt 一直串起來的功了。</p>
+<h2 id="為什麼要在-LINE-Bot-用？"><a href="#為什麼要在-LINE-Bot-用？" class="headerlink" title="為什麼要在 LINE Bot 用？"></a>為什麼要在 LINE Bot 用？</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=19" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>一直沒說為什麼要在 LINE Bot 裡面使用，主要是我個人日常就會準備一隻 Bot 來存我臨時的訊息，抑或是在群組時常常都會有很片段的消息來約時間，通常最後都會有感覺某個時間要出門，結果往往時間到就忘了也找不到訊息在哪…</p>
+<p>考慮使用的原因是，因為 LINE Bot 是 event-driven 的方式，我會在桌機板的 LINE 把群組訊息複製起來貼到 LINE Bot，訊息樣是會很像以下：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">01</span>:<span class="number">52</span> 🤖測試用🐤 你明天想去吃範嗎？</span><br><span class="line"><span class="attribute">01</span>:<span class="number">52</span> 🤖測試用🐤 可能在內湖附近</span><br><span class="line"><span class="attribute">01</span>:<span class="number">53</span> 🥷NiJia   可啊，但幾點？</span><br><span class="line"><span class="attribute">01</span>:<span class="number">53</span> 🤖測試用🐤 應該七點下班後吧</span><br><span class="line"><span class="attribute">01</span>:<span class="number">53</span> 🤖測試用🐤 你看你要不要來在說</span><br><span class="line"><span class="attribute">01</span>:<span class="number">54</span> 🥷NiJia   喔好</span><br></pre></td></tr></table></figure>
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b3671167886945a3b1231f981d95a172?slide=17" title="新米到上手 LangChain: 別再更新了，快學不動了" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586"></iframe>
+
+<p>如此一來就能達到類似上述的功能，讓 LangChain 幫忙整理訊息並放到對應 Google Calendar 的 query parameter，這樣就能加到個人行事曆中了！</p>
+<h2 id="更新：使用-Youtube-以及-wikipedia-Tool"><a href="#更新：使用-Youtube-以及-wikipedia-Tool" class="headerlink" title="更新：使用 Youtube 以及 wikipedia Tool"></a>更新：使用 Youtube 以及 wikipedia Tool</h2><p>看 LangChain 文件時發現它其實有<a href="https://python.langchain.com/docs/integrations/tools/">許多 Tool Plugin</a>，支援了各式各樣的服務，依照我這個行事曆機器人，我選擇支援了 <a href="https://python.langchain.com/docs/integrations/tools/youtube">Youtube</a> &amp; <a href="https://python.langchain.com/docs/integrations/tools/wikipedia">Wikipedia</a>，只要把相依套件安裝完，基本上就可以引入使用，大概如下：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip <span class="keyword">install</span> youtube_search</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.tools <span class="keyword">import</span> YouTubeSearchTool</span><br></pre></td></tr></table></figure>
+
+<p>YouTubeSearchTool API Reference:</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">tool</span> <span class="operator">=</span> YouTubeSearchTool()</span><br><span class="line"></span><br><span class="line">tool.run(<span class="string">&quot;lex friedman&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>結果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&quot;<span class="selector-attr">[<span class="string">&#x27;/watch?v=VcVfceTsD0A&amp;pp=ygUMbGV4IGZyaWVkbWFu&#x27;</span>, <span class="string">&#x27;/watch?v=gPfriiHBBek&amp;pp=ygUMbGV4IGZyaWVkbWFu&#x27;</span>]</span>&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>官方文件中其實有很多大密寶，我也透過這樣挖了好多東西～哈哈哈</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這次的分享先來了解一下 LangChain Function Agent 帶來的魔力！讓我少研究很多 OpenAI 黑魔法的時間，甚至很多程式碼寫起來跟平常寫法都很像，在大 AI 時代對於日常用 Python 寫應用的工程師是非常友善的！如果你也正在關注相關應用，或許可以參考本篇文章唷！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>ChatGPT</tag>
+        <tag>OpenAI</tag>
+        <tag>LangChain</tag>
+        <tag>Google Calendar</tag>
+        <tag>Function Agent</tag>
       </tags>
   </entry>
   <entry>
@@ -16777,57 +16777,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
-    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
-<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
-</ol>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
-</ol>
-<blockquote>
-<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
-</blockquote>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
-
-<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
-<blockquote>
-<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
-</blockquote>
-<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
-<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
-<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
-<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
-<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
-<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
-</blockquote>
-<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
-<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
-<blockquote>
-<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Google</tag>
-        <tag>Cloud Run</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何有效使用 Quote Message</title>
     <url>/2023/10/08/line-bot-quote-message-reply-later/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
@@ -16885,6 +16834,57 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
+    <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="安裝-Chromium-在-Container-上"><a href="#安裝-Chromium-在-Container-上" class="headerlink" title="安裝 Chromium 在 Container 上"></a>安裝 Chromium 在 Container 上</h2><ol>
+<li>很多人應該在測試時因為歷史關係，環境都已經有安裝，因此在 <code>requirements.txt</code> 上需要裝上:</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">selenium</span></span><br><span class="line"><span class="attribute">webdriver</span>-manager</span><br><span class="line"><span class="attribute">chromedriver</span>-binary==<span class="number">77</span>.<span class="number">0</span>.<span class="number">3865</span>.<span class="number">40</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>參考我的 Dockerfile (<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile#L6">URL</a>):</li>
+</ol>
+<blockquote>
+<p>參考來自 <a href="https://dev.to/googlecloud/using-headless-chrome-with-cloud-run-3fdp">dev.to</a></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">RUN</span> apt-get update</span><br><span class="line"><span class="attribute">RUN</span> apt-get install -y gconf-service libasound2 libatk1.<span class="number">0</span>-<span class="number">0</span> libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.<span class="number">0</span>-<span class="number">0</span> libgtk-<span class="number">3</span>-<span class="number">0</span> libnspr4 libpango-<span class="number">1</span>.<span class="number">0</span>-<span class="number">0</span> libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Chrome</span></span><br><span class="line"><span class="attribute">RUN</span> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"><span class="attribute">RUN</span> dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install</span><br></pre></td></tr></table></figure>
+
+<p>如此一來就可以在 <a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/utils/image.py#L21">Container 上使用 Selenium </a>操作了，接下來當然就放在 API 去使用，以下講解一些在 LINE Bot 上使用需要的注意事項。</p>
+<blockquote>
+<p>感謝公司的 QA 同事大力協助，真的是術業有專攻！</p>
+</blockquote>
+<h2 id="在-LINE-Bot-上需要的注意事項"><a href="#在-LINE-Bot-上需要的注意事項" class="headerlink" title="在 LINE Bot 上需要的注意事項"></a>在 LINE Bot 上需要的注意事項</h2><ol>
+<li>輸出圖片需要提供 URL (<a href="https://developers.line.biz/en/reference/messaging-api/#image-message">API Doc</a>)，這邊大家可以參考我過去寫的文章-<a href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/#%E6%87%89%E7%94%A8-LINE-Bot-%E6%94%B6%E5%88%B0%E5%9C%96%E7%89%87%E5%BE%8C%E5%82%B3%E5%88%B0-GitHub-%E4%B8%A6%E4%BD%BF%E7%94%A8">應用 - LINE Bot 收到圖片後傳到 GitHub 並使用</a>，透過 <strong>Base64</strong> 的方式從 GitHub API 上傳到 Repo 中</li>
+<li>注意: Repo 要記得是 <strong>Public</strong> 喔! 否則 LINE Server 會讀不到檔案</li>
+<li>網址組成為: <code>f&quot;https://raw.githubusercontent.com/&#123;USER&#125;/&#123;REPO_NAME&#125;/&#123;master || main&#125;/&#123;IMAGE_NAME&#125;.png&quot;</code>，記得別用到網頁上看到的名字喔！</li>
+<li>建議使用 Push Message 的方式發出(可搭配回覆訊息 Quote 功能)，因為抓圖片以及上傳其實很花時間<ol>
+<li>如果回傳速度比較快，或許可以寫判斷式把 Reply 以及 Push Message 兩個搭配使用</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>我自己日常紀錄的東西都放在<a href="https://github.com/louis70109/ideas-tree">這個 Repo</a></p>
+</blockquote>
+<h2 id="佈署在-Cloud-Run"><a href="#佈署在-Cloud-Run" class="headerlink" title="佈署在 Cloud Run"></a>佈署在 Cloud Run</h2><p>因為需要將 FastAPI 佈署在 Google Cloud Run 上面會需要測試，大家有需要可以參考我的<a href="https://github.com/gcp-serverless-workshop/notifier-line/blob/main/Dockerfile">Dockerfile</a>，建議使用 <code>uvicorn</code>，目前使用 <code>gunicorn</code> 遇到滿多問題還不知道怎麼排解，如果有相關經驗歡迎分享喔！</p>
+<p>除了在本地端使用 gcloud Command line 佈署，也可以透過 Cloud Shell 的方式佈署，而在我的 Repo 上都有<a href="https://github.com/gcp-serverless-workshop/notifier-line#google-cloud-platform-%E4%BD%88%E7%BD%B2">設定一鍵佈署</a>，可以直接從 GitHub 直接跳到 GCP 的 Cloud Shell 上操作，相當方便!</p>
+<blockquote>
+<p>如果有需要一直測試佈署上去的環境，建議 Cloud Shell 使用時別急著關閉，可以重複把 Cloud Shell 裡的 Repo 重新 Pull 並且佈署，否則會踩到<strong>開啟 Shell 上限</strong>喔！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Google</tag>
+        <tag>Cloud Run</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
     <url>/2023/10/19/line-pay-apple-watch/</url>
     <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
@@ -16923,145 +16923,6 @@ img[alt~="center"] {
         <tag>Apple Watch</tag>
         <tag>LINE Pay</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>TECH FRESH 畢業分享會：探索 2022 屆實習生的故事</title>
-    <url>/2023/05/29/line-tech-fresh-graduate-2023-introduction/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/techfresh/video_ending.png" alt="LINE 的工作環境和文化"></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大家好！我們是 LINE Developer Relations 團隊，今天我要向你們介紹一個我們即將舉辦的特別活動 - <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">2023 年 6 月 27 日的 TECH FRESH 畢業分享會</a>。今年，我們首次將這個活動對外開放，讓更多的人有機會了解我們的實習生們在 LINE 的學習和工作經驗。</p>
-<span id="more"></span>
-
-<h3 id="過去文章內容分享"><a href="#過去文章內容分享" class="headerlink" title="過去文章內容分享"></a>過去文章內容分享</h3><p><img src="https://vos.line-scdn.net/landpress-content-v2_954/1658286044453.png?updatedAt=1658286045000" alt="LINE TECH FRESH 畢業分享會"></p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
-</ul>
-<h2 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h2><p>這個活動是 LINE 提供給 2022 屆 TECH FRESH 在離開前有個舞台可以分享實習過程中的經驗。我們都知道，畢業不只是一個結束，更是一個全新的開始。在這個重要的日子，我們希望能和所有的畢業生一起分享他們的成就，並為他們未來的旅程送上最誠摯的祝福。</p>
-<h2 id="為什麼需要參加這活動呢？"><a href="#為什麼需要參加這活動呢？" class="headerlink" title="為什麼需要參加這活動呢？"></a>為什麼需要參加這活動呢？</h2><p><img src="https://engineering.linecorp.com/wp-content/uploads/2021/06/3-1-1024x577.png" alt="LINE TECH FRESH 活動介紹"></p>
-<p>參加 LINE TECH FRESH 畢業分享會有許多好處：</p>
-<ul>
-<li><strong>實習生的親身經驗分享</strong>：每位講者都是 LINE 的實習生，他們將分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。為學生提供寶貴的第一手資訊，幫助大家更好地理解軟體工程的實際工作情況。</li>
-<li><strong>建立人脈</strong>：這是一個與業界實習的同學建立聯繫、擴大人脈的絕佳機會。將有機會與來自不同學校和背景的人建立聯繫，對各位的未來職業發展將非常有幫助。</li>
-<li>了解 LINE 的工作環境和文化：透過這次的分享會，學生將有機會深入了解 LINE 的工作環境和文化，這將幫助他們在選擇未來的職業道路時做出更明智的決定。</li>
-<li><strong>獲得寶貴的學習和職業發展建議</strong>：在分享會中，學生將有機會聽到實習生的經驗分享，並從空檔時間與講者交流，獲得寶貴的學習和職業發展建議。</li>
-<li><strong>激發創新思維</strong>：透過聽取實習生的分享，學生將有機會了解到最新的科技趨勢和創新思維，這將對學習和創新思維產生不同面向的影響。</li>
-</ul>
-<p>參加 TECH FRESH 畢業分享會將為各位提供一個寶貴的學習機會，更好地再工作以前了解軟體工程所需注意的眉眉角角，為未來職業發展鋪平道路。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這次的活動將會有以下幾個部分：</p>
-<ul>
-<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
-<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
-<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長解，讓你更深入地了解我們的實習生們的經驗和感想。</li>
-</ul>
-<h3 id="【活動時間表-x2F-流程】"><a href="#【活動時間表-x2F-流程】" class="headerlink" title="【活動時間表&#x2F; 流程】"></a>【活動時間表&#x2F; 流程】</h3><ul>
-<li>17:40~18:00 來賓報到</li>
-<li>18:00-18:05 主持人開場</li>
-<li>18:05-18:20 LINE TECH FRESH program introduction</li>
-<li>18:20-18:40 注意看兩個男人太狠了，從開發到部署一氣呵成！</li>
-<li>18:40-19:00 【查核】用謊言支撐起的虛構世界</li>
-<li>19:00-19:20 乘坐 TECH FRESH 龍舟，比 Full Stack 更滿的一條龍</li>
-<li>19:20-19:40 Enable Resiliency and Efficiency at LINE Invoice</li>
-<li>19:40-19:50 休息時間</li>
-<li>19:50-20:20 Lightning Talk<ul>
-<li>我覺得草莓尬肉粽不行：從草莓肉粽了解整合測試的重要性</li>
-<li>專案綁粽伙！展現紗線在 monorepo 的魔力</li>
-<li>發 PR 被同事「留言灌爆」！他只用這 2 方法解決，同事驚：輕鬆很多</li>
-<li>Wakuwaku!!!!!! 原來自然語言可以這樣玩</li>
-</ul>
-</li>
-<li>20:20-20:40 學長姐等來共</li>
-<li>20:40-21:00 大合照&#x2F;交流時間</li>
-</ul>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LINE TECH FRESH 畢業分享會正是為了鼓勵並支持這些年輕的科技人才，讓他們有機會展現自己的才華，分享他們的學習和工作經驗，並從中獲得寶貴的回饋和建議。</p>
-<p>這個活動不僅僅是一個分享會，更是一個學習、交流和成長的平台。參加這個活動的學生將有機會聽到來自 LINE TECH FRESH 的第一手經驗分享，了解 LINE 的工作環境和文化，從中獲得寶貴的學習和職業發展建議。此外，還將有機會與來自不同學校和背景的人建立聯繫、擴大人脈，這對各位的未來職業發展將非常有幫助。</p>
-<p>我們誠摯地邀請所有對科技有熱情的學生參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>，無論你是一位在學的學生，還是一位正在尋找職業發展方向的學生，我們都期待你的參與。讓我們一起在這個活動中學習、交流、成長，並為我們的未來創造更多可能。</p>
-<p>現在就報名參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>吧！期待你的到來！</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>TECH FRESH</tag>
-        <tag>LINE TECH FEESH</tag>
-        <tag>畢業分享會</tag>
-        <tag>實習</tag>
-        <tag>實習經驗</tag>
-        <tag>LINE 工作環境</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023  Personal Review</title>
-    <url>/2023/12/23/nijia-2023-review/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
-<h1 id="🐔-前言"><a href="#🐔-前言" class="headerlink" title="🐔 前言"></a>🐔 前言</h1><p>趁出國跨年之前來整理今年的一些事情，期許 2024 年的自己可以持續跨出舒適圈</p>
-<p>自覺自己是一個很反骨的個性，不喜歡被定義就是<code>怎樣怎樣</code>的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
-<span id="more"></span>
-
-<h1 id="🦉-心態轉換"><a href="#🦉-心態轉換" class="headerlink" title="🦉 心態轉換"></a>🦉 心態轉換</h1><p>我覺得這最重要，因此還是要放前面點 👀️ 。進入三十歲之後，有種該為什麼負責的感覺浮現上來：</p>
-<ul>
-<li>許多事情與話在發生之前，總是會先想下它後面帶來的後果到底是什麼？做&#x2F;看到事前需要思考前因後果，在心中盤旋，像是跳舞一樣，需要先算好接下來的節拍大概會怎麼走，讓每一件小事能夠更好的被執行</li>
-<li>今年一直感應不到成就感這件事，直到接觸到滑雪與滑板。一直對於自己運動學習能力相當有自信的我，居然會在這兩個運動上非常受挫，重新考驗自己在<strong>平衡</strong>上的控制力，也有種重新對於任何事情燃起鬥志的感覺</li>
-<li>開始注重自身的需求，今年發生了很嚴重的胃食道逆流，把自己搞超慘，因此很多時候也開始要挑著吃了，不能想到什麼就要開吃<ul>
-<li>但很多時候為了給自己心情好，就…………🎉️</li>
-</ul>
-</li>
-<li>如果不知道當下該怎麼辦才好，就將時間安排好，按表操課，時間會帶你去你該到的地方 (<a href="https://nijialin.com/2023/11/22/nijia-30-years-old-4-quarter/">人生過了三分之一，做點紀錄</a>)</li>
-<li>任何學習的東西都不會沒用，現在的所有選擇皆是過去點點所累積的，千萬別小看自己學的一切</li>
-</ul>
-<h1 id="🐳-工作上的挑戰"><a href="#🐳-工作上的挑戰" class="headerlink" title="🐳 工作上的挑戰"></a>🐳 工作上的挑戰</h1><ul>
-<li><p>從年初的 TECHPULSE，親身經歷與學習許多專案的眉角，在隕石飛來飛去情況下還是讓研討會順利舉辦 🎉️ 現場人流來了 1400 位左右，也讓同仁們可以有個很棒的演講環境！經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
-</li>
-<li><p>經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
-</li>
-<li><p>下半年首度挑戰帶產品的專案，初期皆須要花上非常多時間去釐清與互相學習各種開發的習慣，希望這產品能夠越來越好，但既然還沒上線就之後再來分享經驗嚕！</p>
-</li>
-</ul>
-<blockquote>
-<p>今年也很感謝主管們的愛戴，拿了兩次的 spot bonus，讓我在挑戰不同 role 下還能夠被認可，無疑是對我職涯非常棒的推動力！</p>
-</blockquote>
-<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><ul>
-<li><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
-</li>
-<li><p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩 J 台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。 <a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a></p>
-</li>
-<li><p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://maps.app.goo.gl/i2FSt9AztSkuLiH78">滑板地圖清單</a></p>
-</blockquote>
-<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「<mark>價值是跟自己比，旁邊只是參考</mark>」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
-<blockquote>
-<p>不論是工作、運動、感情…etc</p>
-</blockquote>
-<p>「<mark>堅持下去</mark>」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
-<blockquote>
-<p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
   </entry>
   <entry>
     <title>【TECH FRESH 畢業分享會】原來實習有這些眉角？</title>
@@ -17189,6 +17050,91 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>TECH FRESH 畢業分享會：探索 2022 屆實習生的故事</title>
+    <url>/2023/05/29/line-tech-fresh-graduate-2023-introduction/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/techfresh/video_ending.png" alt="LINE 的工作環境和文化"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大家好！我們是 LINE Developer Relations 團隊，今天我要向你們介紹一個我們即將舉辦的特別活動 - <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">2023 年 6 月 27 日的 TECH FRESH 畢業分享會</a>。今年，我們首次將這個活動對外開放，讓更多的人有機會了解我們的實習生們在 LINE 的學習和工作經驗。</p>
+<span id="more"></span>
+
+<h3 id="過去文章內容分享"><a href="#過去文章內容分享" class="headerlink" title="過去文章內容分享"></a>過去文章內容分享</h3><p><img src="https://vos.line-scdn.net/landpress-content-v2_954/1658286044453.png?updatedAt=1658286045000" alt="LINE TECH FRESH 畢業分享會"></p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
+</ul>
+<h2 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h2><p>這個活動是 LINE 提供給 2022 屆 TECH FRESH 在離開前有個舞台可以分享實習過程中的經驗。我們都知道，畢業不只是一個結束，更是一個全新的開始。在這個重要的日子，我們希望能和所有的畢業生一起分享他們的成就，並為他們未來的旅程送上最誠摯的祝福。</p>
+<h2 id="為什麼需要參加這活動呢？"><a href="#為什麼需要參加這活動呢？" class="headerlink" title="為什麼需要參加這活動呢？"></a>為什麼需要參加這活動呢？</h2><p><img src="https://engineering.linecorp.com/wp-content/uploads/2021/06/3-1-1024x577.png" alt="LINE TECH FRESH 活動介紹"></p>
+<p>參加 LINE TECH FRESH 畢業分享會有許多好處：</p>
+<ul>
+<li><strong>實習生的親身經驗分享</strong>：每位講者都是 LINE 的實習生，他們將分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。為學生提供寶貴的第一手資訊，幫助大家更好地理解軟體工程的實際工作情況。</li>
+<li><strong>建立人脈</strong>：這是一個與業界實習的同學建立聯繫、擴大人脈的絕佳機會。將有機會與來自不同學校和背景的人建立聯繫，對各位的未來職業發展將非常有幫助。</li>
+<li>了解 LINE 的工作環境和文化：透過這次的分享會，學生將有機會深入了解 LINE 的工作環境和文化，這將幫助他們在選擇未來的職業道路時做出更明智的決定。</li>
+<li><strong>獲得寶貴的學習和職業發展建議</strong>：在分享會中，學生將有機會聽到實習生的經驗分享，並從空檔時間與講者交流，獲得寶貴的學習和職業發展建議。</li>
+<li><strong>激發創新思維</strong>：透過聽取實習生的分享，學生將有機會了解到最新的科技趨勢和創新思維，這將對學習和創新思維產生不同面向的影響。</li>
+</ul>
+<p>參加 TECH FRESH 畢業分享會將為各位提供一個寶貴的學習機會，更好地再工作以前了解軟體工程所需注意的眉眉角角，為未來職業發展鋪平道路。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這次的活動將會有以下幾個部分：</p>
+<ul>
+<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
+<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
+<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長解，讓你更深入地了解我們的實習生們的經驗和感想。</li>
+</ul>
+<h3 id="【活動時間表-x2F-流程】"><a href="#【活動時間表-x2F-流程】" class="headerlink" title="【活動時間表&#x2F; 流程】"></a>【活動時間表&#x2F; 流程】</h3><ul>
+<li>17:40~18:00 來賓報到</li>
+<li>18:00-18:05 主持人開場</li>
+<li>18:05-18:20 LINE TECH FRESH program introduction</li>
+<li>18:20-18:40 注意看兩個男人太狠了，從開發到部署一氣呵成！</li>
+<li>18:40-19:00 【查核】用謊言支撐起的虛構世界</li>
+<li>19:00-19:20 乘坐 TECH FRESH 龍舟，比 Full Stack 更滿的一條龍</li>
+<li>19:20-19:40 Enable Resiliency and Efficiency at LINE Invoice</li>
+<li>19:40-19:50 休息時間</li>
+<li>19:50-20:20 Lightning Talk<ul>
+<li>我覺得草莓尬肉粽不行：從草莓肉粽了解整合測試的重要性</li>
+<li>專案綁粽伙！展現紗線在 monorepo 的魔力</li>
+<li>發 PR 被同事「留言灌爆」！他只用這 2 方法解決，同事驚：輕鬆很多</li>
+<li>Wakuwaku!!!!!! 原來自然語言可以這樣玩</li>
+</ul>
+</li>
+<li>20:20-20:40 學長姐等來共</li>
+<li>20:40-21:00 大合照&#x2F;交流時間</li>
+</ul>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LINE TECH FRESH 畢業分享會正是為了鼓勵並支持這些年輕的科技人才，讓他們有機會展現自己的才華，分享他們的學習和工作經驗，並從中獲得寶貴的回饋和建議。</p>
+<p>這個活動不僅僅是一個分享會，更是一個學習、交流和成長的平台。參加這個活動的學生將有機會聽到來自 LINE TECH FRESH 的第一手經驗分享，了解 LINE 的工作環境和文化，從中獲得寶貴的學習和職業發展建議。此外，還將有機會與來自不同學校和背景的人建立聯繫、擴大人脈，這對各位的未來職業發展將非常有幫助。</p>
+<p>我們誠摯地邀請所有對科技有熱情的學生參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>，無論你是一位在學的學生，還是一位正在尋找職業發展方向的學生，我們都期待你的參與。讓我們一起在這個活動中學習、交流、成長，並為我們的未來創造更多可能。</p>
+<p>現在就報名參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>吧！期待你的到來！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>TECH FRESH</tag>
+        <tag>實習</tag>
+        <tag>LINE TECH FEESH</tag>
+        <tag>畢業分享會</tag>
+        <tag>實習經驗</tag>
+        <tag>LINE 工作環境</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Apple M2 本地跑 Stable Diffusion</title>
     <url>/2023/06/15/ml-stable-diffusion-practice/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -17236,6 +17182,60 @@ img[alt~="center"] {
         <tag>Stable Diffusion</tag>
         <tag>圖像生成</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>2023  Personal Review</title>
+    <url>/2023/12/23/nijia-2023-review/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
+<h1 id="🐔-前言"><a href="#🐔-前言" class="headerlink" title="🐔 前言"></a>🐔 前言</h1><p>趁出國跨年之前來整理今年的一些事情，期許 2024 年的自己可以持續跨出舒適圈</p>
+<p>自覺自己是一個很反骨的個性，不喜歡被定義就是<code>怎樣怎樣</code>的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
+<span id="more"></span>
+
+<h1 id="🦉-心態轉換"><a href="#🦉-心態轉換" class="headerlink" title="🦉 心態轉換"></a>🦉 心態轉換</h1><p>我覺得這最重要，因此還是要放前面點 👀️ 。進入三十歲之後，有種該為什麼負責的感覺浮現上來：</p>
+<ul>
+<li>許多事情與話在發生之前，總是會先想下它後面帶來的後果到底是什麼？做&#x2F;看到事前需要思考前因後果，在心中盤旋，像是跳舞一樣，需要先算好接下來的節拍大概會怎麼走，讓每一件小事能夠更好的被執行</li>
+<li>今年一直感應不到成就感這件事，直到接觸到滑雪與滑板。一直對於自己運動學習能力相當有自信的我，居然會在這兩個運動上非常受挫，重新考驗自己在<strong>平衡</strong>上的控制力，也有種重新對於任何事情燃起鬥志的感覺</li>
+<li>開始注重自身的需求，今年發生了很嚴重的胃食道逆流，把自己搞超慘，因此很多時候也開始要挑著吃了，不能想到什麼就要開吃<ul>
+<li>但很多時候為了給自己心情好，就…………🎉️</li>
+</ul>
+</li>
+<li>如果不知道當下該怎麼辦才好，就將時間安排好，按表操課，時間會帶你去你該到的地方 (<a href="https://nijialin.com/2023/11/22/nijia-30-years-old-4-quarter/">人生過了三分之一，做點紀錄</a>)</li>
+<li>任何學習的東西都不會沒用，現在的所有選擇皆是過去點點所累積的，千萬別小看自己學的一切</li>
+</ul>
+<h1 id="🐳-工作上的挑戰"><a href="#🐳-工作上的挑戰" class="headerlink" title="🐳 工作上的挑戰"></a>🐳 工作上的挑戰</h1><ul>
+<li><p>從年初的 TECHPULSE，親身經歷與學習許多專案的眉角，在隕石飛來飛去情況下還是讓研討會順利舉辦 🎉️ 現場人流來了 1400 位左右，也讓同仁們可以有個很棒的演講環境！經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
+</li>
+<li><p>經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
+</li>
+<li><p>下半年首度挑戰帶產品的專案，初期皆須要花上非常多時間去釐清與互相學習各種開發的習慣，希望這產品能夠越來越好，但既然還沒上線就之後再來分享經驗嚕！</p>
+</li>
+</ul>
+<blockquote>
+<p>今年也很感謝主管們的愛戴，拿了兩次的 spot bonus，讓我在挑戰不同 role 下還能夠被認可，無疑是對我職涯非常棒的推動力！</p>
+</blockquote>
+<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><ul>
+<li><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
+</li>
+<li><p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩 J 台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。 <a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a></p>
+</li>
+<li><p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://maps.app.goo.gl/i2FSt9AztSkuLiH78">滑板地圖清單</a></p>
+</blockquote>
+<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「<mark>價值是跟自己比，旁邊只是參考</mark>」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
+<blockquote>
+<p>不論是工作、運動、感情…etc</p>
+</blockquote>
+<p>「<mark>堅持下去</mark>」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
+<blockquote>
+<p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
   </entry>
   <entry>
     <title>人生過了三分之一，做點紀錄</title>
@@ -17344,6 +17344,31 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
+    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
+<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
+<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【滑板】彩虹輪狀車練習場道路指引</title>
     <url>/2023/10/26/skateboard-rainbow-park/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
@@ -17379,28 +17404,39 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>處理 Python 中的 ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls</title>
-    <url>/2023/11/20/python-flask-url-quote-import-error-werkzeug/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期總算有空寫一些 side project，當然同時也會來 maintain 有在使用的專案，但因為過去都使用 Flask(近期都 FastAPI)，有些Code年久失修，或是有升級版本，都會造成 Cloud Run 上的佈署失敗，以下就提供解法給大家。</p>
+    <title>【入坑記】衝浪滑板</title>
+    <url>/2023/10/01/surfing-skateboard-rookie/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475307204158423368.png" alt="surfing skateboard"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
 <span id="more"></span>
 
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>今天再翻新之前寫的 code，過去是使用 flask 撰寫 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver">GitHub Link</a></p>
-<p>因為本來只想說增加個 <a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/controller/line_controller.py#L106">LINE Bot 的判斷式</a>，結果發現 log 一直出現<code>&quot;ImportError: cannot import name &#39;url_quote&#39; from &#39;werkzeug.urls&#39;&quot;</code></p>
-<p>經過了搜尋之後發現可能是 Werkzeug 可能有升版本造成的，近期似乎升到 3.x.x，但由於我使用的 Flask 框架只吃到 2.2.x 版本，因此只要把以下兩個版本<a href="https://github.com/louis70109/line-bot-gitbub-actions-receiver/blob/master/requirements.txt#L9">鎖住在 requirements.txt</a> 就沒問題囉！</p>
-<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Flask</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Werkzeug</span><span class="operator">=</span><span class="operator">=</span><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
+<h1 id="想那麼多幹嘛？買"><a href="#想那麼多幹嘛？買" class="headerlink" title="想那麼多幹嘛？買"></a>想那麼多幹嘛？買</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303260036006002.png"></p>
 <blockquote>
-<p>參考 <a href="https://stackoverflow.com/questions/77213053/why-did-flask-start-failing-with-importerror-cannot-import-name-url-quote-fr">stack overflow</a></p>
+<p>剛買它的第一天 2023&#x2F;9&#x2F;28</p>
 </blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>大家在做完 side project 時可以使用 <code>pip freeze &gt; requirements.txt</code> 把版本鎖起來喔！這樣才會避免出現像我一樣的問題 😆</p>
+<p>我是在內湖的 ALL RIDE 購買 <a href="https://www.allride.com.tw/product/detail/15354">Hydroponic Fish 31.5” x 9.75” 衝浪滑板</a>，我的板子本身是 32” 的，店員提到差 0.5”是沒啥差的，主要還是在輪子跟靈敏度需要什麼，在考量上我可能會在河濱公園玩滑板(有柏油的地方)，因此推薦起來我還是選擇靈敏度低些，有些時候需要自主加速的衝浪板。</p>
+<p>剛來到店裡時店員臉真的很跩很有距離感 😆，但其實聊起來只是非常的做自己而已，只要稍微知道自己想購買的方向，但有許多不清楚的地方，都可以請他跟你解釋，當店員講完時就會發現自己想要的是什麼，幫助你選擇可以更快喔！但因為我一開始就打算買最便宜的(NTD 6,800)，因此我就以這款為主跟他討論～</p>
+<blockquote>
+<p>至於為什麼滑板店員臉都很跩，可以看看下面的影片 XD</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vr_jyGYcqS8?si=6orijF-txomUW5OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h1 id="護具：降低受傷的風險"><a href="#護具：降低受傷的風險" class="headerlink" title="護具：降低受傷的風險"></a>護具：降低受傷的風險</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303237705793734.png" alt="迪卡儂"></p>
+<p>護具我本來想皮不想戴，但想想如果都只基本滑行好像滿弱的？因此這邊跟大家了起來覺得可以先買個基本的全套 <strong>(手掌、護肘、護膝)</strong> ，至少要先保護好關節，誰知道初學一次的噴飛摔下去受傷會噴多少錢修復呢？因此我就先買個基本的保護著。</p>
+<blockquote>
+<p>護具在我玩的第三天就發會功用，我在學著 kick turn 時滑掉，在我下去時就剛好磨到手掌的地方，真的是好險有帶著，只是屁股剛好沒有防摔褲，寫文章✍️的當下，半邊水蜜桃還是受傷的狀態🥲</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303716225548738.png"></p>
+<p>雖然入坑真的是不便宜，荷包君再次哭泣，不過整體的體驗算是滿讚的，尤其練習平衡感以及各種轉彎真的是耗盡本肥宅的洪荒之力，每次出去玩都大噴汗，希望可以讓我稍微地瘦身一些些😆，更多內容就先讓我把水蜜桃的摔傷養好，後續再來繼續分享心得！</p>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>日記</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
+        <tag>Skateboard</tag>
+        <tag>Surfing</tag>
+        <tag>路滑</tag>
+        <tag>運動</tag>
       </tags>
   </entry>
   <entry>
@@ -17457,42 +17493,6 @@ img[alt~="center"] {
       <tags>
         <tag>Japan</tag>
         <tag>Snowboard</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【入坑記】衝浪滑板</title>
-    <url>/2023/10/01/surfing-skateboard-rookie/</url>
-    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475307204158423368.png" alt="surfing skateboard"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
-<span id="more"></span>
-
-<h1 id="想那麼多幹嘛？買"><a href="#想那麼多幹嘛？買" class="headerlink" title="想那麼多幹嘛？買"></a>想那麼多幹嘛？買</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303260036006002.png"></p>
-<blockquote>
-<p>剛買它的第一天 2023&#x2F;9&#x2F;28</p>
-</blockquote>
-<p>我是在內湖的 ALL RIDE 購買 <a href="https://www.allride.com.tw/product/detail/15354">Hydroponic Fish 31.5” x 9.75” 衝浪滑板</a>，我的板子本身是 32” 的，店員提到差 0.5”是沒啥差的，主要還是在輪子跟靈敏度需要什麼，在考量上我可能會在河濱公園玩滑板(有柏油的地方)，因此推薦起來我還是選擇靈敏度低些，有些時候需要自主加速的衝浪板。</p>
-<p>剛來到店裡時店員臉真的很跩很有距離感 😆，但其實聊起來只是非常的做自己而已，只要稍微知道自己想購買的方向，但有許多不清楚的地方，都可以請他跟你解釋，當店員講完時就會發現自己想要的是什麼，幫助你選擇可以更快喔！但因為我一開始就打算買最便宜的(NTD 6,800)，因此我就以這款為主跟他討論～</p>
-<blockquote>
-<p>至於為什麼滑板店員臉都很跩，可以看看下面的影片 XD</p>
-</blockquote>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vr_jyGYcqS8?si=6orijF-txomUW5OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h1 id="護具：降低受傷的風險"><a href="#護具：降低受傷的風險" class="headerlink" title="護具：降低受傷的風險"></a>護具：降低受傷的風險</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303237705793734.png" alt="迪卡儂"></p>
-<p>護具我本來想皮不想戴，但想想如果都只基本滑行好像滿弱的？因此這邊跟大家了起來覺得可以先買個基本的全套 <strong>(手掌、護肘、護膝)</strong> ，至少要先保護好關節，誰知道初學一次的噴飛摔下去受傷會噴多少錢修復呢？因此我就先買個基本的保護著。</p>
-<blockquote>
-<p>護具在我玩的第三天就發會功用，我在學著 kick turn 時滑掉，在我下去時就剛好磨到手掌的地方，真的是好險有帶著，只是屁股剛好沒有防摔褲，寫文章✍️的當下，半邊水蜜桃還是受傷的狀態🥲</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303716225548738.png"></p>
-<p>雖然入坑真的是不便宜，荷包君再次哭泣，不過整體的體驗算是滿讚的，尤其練習平衡感以及各種轉彎真的是耗盡本肥宅的洪荒之力，每次出去玩都大噴汗，希望可以讓我稍微地瘦身一些些😆，更多內容就先讓我把水蜜桃的摔傷養好，後續再來繼續分享心得！</p>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
-      <tags>
-        <tag>Skateboard</tag>
-        <tag>Surfing</tag>
-        <tag>路滑</tag>
-        <tag>運動</tag>
       </tags>
   </entry>
   <entry>
