@@ -100,7 +100,6 @@ menu:
   sitemap: 
     path: 
       - sitemap.xml
-      - sitemap.txt
     tags: true
     categories: true
   #commonweal: /404/ || heartbeat
