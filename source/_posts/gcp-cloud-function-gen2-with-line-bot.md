@@ -1,8 +1,15 @@
 ---
 title: 如何設定 Cloud Function 2nd gen 來改善截圖爬蟲的效率！
+tags:
+  - Google
+  - GCP
+  - Cloud Run
+  - Cloud Function
+  - Cloud Scheduler
 categories: GCP
-tags: ['Google', 'GCP', 'Cloud Run', 'Cloud Function', 'Cloud Scheduler']
+date: 2024-02-13 13:34:01
 ---
+
 
 # 背景介紹
 
