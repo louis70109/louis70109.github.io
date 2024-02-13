@@ -16241,6 +16241,83 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>【GitHub】建立第一個 Issue Template</title>
+    <url>/2023/10/05/github-issue-report-yaml-template/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
+<span id="more"></span>
+
+<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
+<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
+<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
+<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
+<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
+<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
+<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
+<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
+<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
+<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?</title>
+    <url>/2024/01/28/google-analytics-and-tag-manager-setting-with-frontend-framework/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/ga/0.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於現在主流前端框架(Next, Nuxt)皆會透過 Virtual DOM 的方式渲染網站，在網站當中像是 class 就會有類似 <code>class=&quot;qwe-1234&quot;</code> 的呈現方式，且會階層往下，但這在 google analytics 當中抓資料會有問題，因為跟一般 SPA 網站渲染方式呈現比較不同</p>
+<span id="more"></span>
+
+<h2 id="延伸閱讀：Why-Virtual-DOM"><a href="#延伸閱讀：Why-Virtual-DOM" class="headerlink" title="延伸閱讀：Why Virtual DOM?"></a>延伸閱讀：Why Virtual DOM?</h2><blockquote>
+<p>Next 或 Nuxt 前端框架使用 virtual DOM 的主要原因是為了提升網頁的效能和開發體驗。virtual DOM 是一種用 JavaScript 物件來模擬真實 DOM 的技術，它可以減少對真實 DOM 的操作，從而避免不必要的 reflow 或 repaint，這些過程會消耗瀏覽器的資源。virtual DOM 還可以利用 diff 演算法來計算出新舊 virtual DOM 之間的差異，並只更新有變動的部分，這樣可以進一步提高效率。<br>除了效能的優勢，virtual DOM 也可以讓開發者更方便地處理資料和畫面的變化，而不需要直接操作 DOM API。這樣可以減少程式碼的複雜度，並提高可讀性和可維護性。virtual DOM 還可以實現服務端渲染 (SSR)，這對於 SEO 和首頁載入速度有很大的幫助。</p>
+</blockquote>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>假設我想在 GA 中監控事件以下範例:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;qwe-123&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;asd-456&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;accountSetting&#x27;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>我們會想在 GTM 後台設定抓取 <code>id=&#39;accountSetting&#39;</code>，設定就會跟以下很像：</p>
+<p><img src="https://nijialin.com/images/2024/ga/1.png"></p>
+<p>接著到 Tag Assistant (preview page) 中開啟 Debug mode 時，會發現事件似乎沒有被 Fire，以下先附上應該要成功的畫面：</p>
+<p><img src="https://nijialin.com/images/2024/ga/4.png"></p>
+<p>把事件點開之後才發現，怎麼內容都放在 Click Element(?) 初步猜測應該是 Virtual DOM 壓縮後讓 GA 找不到對應的欄位，因此將內容都放入 Element 當中，參考如下：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  event:</span> <span class="string">&quot;gtm.click&quot;</span>,</span><br><span class="line"><span class="symbol">  gtm:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    uniqueEventId:</span> <span class="number">16</span>,</span><br><span class="line"><span class="symbol">    start:</span> <span class="number">1706415086221</span>, <span class="comment">// 開始時間</span></span><br><span class="line"><span class="symbol">    element:</span> <span class="string">&quot;HTMLImageElement: html &gt; body &gt; div#__next &gt; div.css-xg&quot;</span> +</span><br><span class="line">             <span class="string">&quot;fukl &gt; div.css-79njnh &gt; a.css-s401k6#accountSetting &gt; img&quot;</span>,</span><br><span class="line"><span class="symbol">    elementClasses:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementId:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementTarget:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementUrl:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    historyChangeSource:</span> <span class="string">&quot;pushState&quot;</span>,</span><br><span class="line"><span class="symbol">    oldUrl:</span> <span class="string">&quot;https://用戶訪問實際網址&quot;</span>,</span><br><span class="line"><span class="symbol">    newUrl:</span> <span class="string">&quot;https://應該是首頁&quot;</span>,</span><br><span class="line"></span><br><span class="line">    ...其餘監控資料</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  eventCallback:</span> <span class="string">&quot;Function&quot;</span></span><br><span class="line"></span><br><span class="line">  ...其他自第義的內容</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>經驗分享：在越接近首頁位置的 html id 以及 class 會被放到 Element ID(Class) 欄位當中，但隨著網頁的商業邏輯越來越多，包多層之後 GTM 會搞混，因此建議方式還是可以從 Element 裡面抓</p>
+</blockquote>
+<p>因此這邊能解的方式如下：</p>
+<p><img src="https://nijialin.com/images/2024/ga/2.png"></p>
+<p>透過 <code>CSS Selector</code> 來指定想 tracking 的 HTML tag，但這邊需要 Double confirm 的地方是，有時候實作上後面的階層可能不一定有東西，因此這邊能做的方式大概為:</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#accountSetting, #accountSetting *</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 GTM CSS Selector 這邊可以用 <code>,</code> 來劃分條件，空白+<code>*</code> 則是代表後面不論接什麼，只要 ID &#x3D; accountSetting 就能 fire tracking，</p>
+</blockquote>
+<h2 id="Page-Path-的-contains-設定"><a href="#Page-Path-的-contains-設定" class="headerlink" title="Page Path 的 contains 設定"></a>Page Path 的 contains 設定</h2><p>建議使用 <code>contains</code>，因為可能會因為不同網站導流而在後面放了許多參數，只要路徑有符合就可以收進來<br><img src="https://nijialin.com/images/2024/ga/3.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>會發現這個操作方式是發現，設定了十幾個 click tracking event，結果只有幾個有成功，與同事合力才發現原來有前端框架的 Virtual DOM 影響的問題。</p>
+<p>往後若想透過GA來收集用戶行為時，記得要先知道前端是如何構建而成，SPA or Web framework，才能知道自己抓的東西能夠符合團隊需求喔！</p>
+<blockquote>
+<p>預祝大家資料都能被好好的 tracking，數據收滿滿!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+        <tag>GTM</tag>
+        <tag>GA</tag>
+        <tag>Google Analytics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</title>
     <url>/2023/11/26/gcp-pubsub-python/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/pubsub/OIG.jpeg"></p>
@@ -16327,35 +16404,6 @@ img[alt~="center"] {
         <tag>Google</tag>
         <tag>GCP</tag>
         <tag>Pub/Sub</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【GitHub】建立第一個 Issue Template</title>
-    <url>/2023/10/05/github-issue-report-yaml-template/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
-<span id="more"></span>
-
-<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
-<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
-<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
-<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
-<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
-<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
-<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
-<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
-<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
-<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
       </tags>
   </entry>
   <entry>
@@ -16554,54 +16602,6 @@ img[alt~="center"] {
       <tags>
         <tag>LINE Bot</tag>
         <tag>Pokemon</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?</title>
-    <url>/2024/01/28/google-analytics-and-tag-manager-setting-with-frontend-framework/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/ga/0.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於現在主流前端框架(Next, Nuxt)皆會透過 Virtual DOM 的方式渲染網站，在網站當中像是 class 就會有類似 <code>class=&quot;qwe-1234&quot;</code> 的呈現方式，且會階層往下，但這在 google analytics 當中抓資料會有問題，因為跟一般 SPA 網站渲染方式呈現比較不同</p>
-<span id="more"></span>
-
-<h2 id="延伸閱讀：Why-Virtual-DOM"><a href="#延伸閱讀：Why-Virtual-DOM" class="headerlink" title="延伸閱讀：Why Virtual DOM?"></a>延伸閱讀：Why Virtual DOM?</h2><blockquote>
-<p>Next 或 Nuxt 前端框架使用 virtual DOM 的主要原因是為了提升網頁的效能和開發體驗。virtual DOM 是一種用 JavaScript 物件來模擬真實 DOM 的技術，它可以減少對真實 DOM 的操作，從而避免不必要的 reflow 或 repaint，這些過程會消耗瀏覽器的資源。virtual DOM 還可以利用 diff 演算法來計算出新舊 virtual DOM 之間的差異，並只更新有變動的部分，這樣可以進一步提高效率。<br>除了效能的優勢，virtual DOM 也可以讓開發者更方便地處理資料和畫面的變化，而不需要直接操作 DOM API。這樣可以減少程式碼的複雜度，並提高可讀性和可維護性。virtual DOM 還可以實現服務端渲染 (SSR)，這對於 SEO 和首頁載入速度有很大的幫助。</p>
-</blockquote>
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>假設我想在 GA 中監控事件以下範例:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;qwe-123&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;asd-456&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;accountSetting&#x27;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>我們會想在 GTM 後台設定抓取 <code>id=&#39;accountSetting&#39;</code>，設定就會跟以下很像：</p>
-<p><img src="https://nijialin.com/images/2024/ga/1.png"></p>
-<p>接著到 Tag Assistant (preview page) 中開啟 Debug mode 時，會發現事件似乎沒有被 Fire，以下先附上應該要成功的畫面：</p>
-<p><img src="https://nijialin.com/images/2024/ga/4.png"></p>
-<p>把事件點開之後才發現，怎麼內容都放在 Click Element(?) 初步猜測應該是 Virtual DOM 壓縮後讓 GA 找不到對應的欄位，因此將內容都放入 Element 當中，參考如下：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  event:</span> <span class="string">&quot;gtm.click&quot;</span>,</span><br><span class="line"><span class="symbol">  gtm:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    uniqueEventId:</span> <span class="number">16</span>,</span><br><span class="line"><span class="symbol">    start:</span> <span class="number">1706415086221</span>, <span class="comment">// 開始時間</span></span><br><span class="line"><span class="symbol">    element:</span> <span class="string">&quot;HTMLImageElement: html &gt; body &gt; div#__next &gt; div.css-xg&quot;</span> +</span><br><span class="line">             <span class="string">&quot;fukl &gt; div.css-79njnh &gt; a.css-s401k6#accountSetting &gt; img&quot;</span>,</span><br><span class="line"><span class="symbol">    elementClasses:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementId:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementTarget:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementUrl:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    historyChangeSource:</span> <span class="string">&quot;pushState&quot;</span>,</span><br><span class="line"><span class="symbol">    oldUrl:</span> <span class="string">&quot;https://用戶訪問實際網址&quot;</span>,</span><br><span class="line"><span class="symbol">    newUrl:</span> <span class="string">&quot;https://應該是首頁&quot;</span>,</span><br><span class="line"></span><br><span class="line">    ...其餘監控資料</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  eventCallback:</span> <span class="string">&quot;Function&quot;</span></span><br><span class="line"></span><br><span class="line">  ...其他自第義的內容</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>經驗分享：在越接近首頁位置的 html id 以及 class 會被放到 Element ID(Class) 欄位當中，但隨著網頁的商業邏輯越來越多，包多層之後 GTM 會搞混，因此建議方式還是可以從 Element 裡面抓</p>
-</blockquote>
-<p>因此這邊能解的方式如下：</p>
-<p><img src="https://nijialin.com/images/2024/ga/2.png"></p>
-<p>透過 <code>CSS Selector</code> 來指定想 tracking 的 HTML tag，但這邊需要 Double confirm 的地方是，有時候實作上後面的階層可能不一定有東西，因此這邊能做的方式大概為:</p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#accountSetting, #accountSetting *</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在 GTM CSS Selector 這邊可以用 <code>,</code> 來劃分條件，空白+<code>*</code> 則是代表後面不論接什麼，只要 ID &#x3D; accountSetting 就能 fire tracking，</p>
-</blockquote>
-<h2 id="Page-Path-的-contains-設定"><a href="#Page-Path-的-contains-設定" class="headerlink" title="Page Path 的 contains 設定"></a>Page Path 的 contains 設定</h2><p>建議使用 <code>contains</code>，因為可能會因為不同網站導流而在後面放了許多參數，只要路徑有符合就可以收進來<br><img src="https://nijialin.com/images/2024/ga/3.png"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>會發現這個操作方式是發現，設定了十幾個 click tracking event，結果只有幾個有成功，與同事合力才發現原來有前端框架的 Virtual DOM 影響的問題。</p>
-<p>往後若想透過GA來收集用戶行為時，記得要先知道前端是如何構建而成，SPA or Web framework，才能知道自己抓的東西能夠符合團隊需求喔！</p>
-<blockquote>
-<p>預祝大家資料都能被好好的 tracking，數據收滿滿!!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-        <tag>GTM</tag>
-        <tag>GA</tag>
-        <tag>Google Analytics</tag>
       </tags>
   </entry>
   <entry>
@@ -16828,46 +16828,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
-    <url>/2023/10/19/line-pay-apple-watch/</url>
-    <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
-<h1 id="Apple-Watch-安裝-LINE-Pay-APP"><a href="#Apple-Watch-安裝-LINE-Pay-APP" class="headerlink" title="Apple Watch 安裝 LINE Pay APP"></a>Apple Watch 安裝 LINE Pay APP</h1><p><img src="https://nijialin.com/images/2023/linepay/1.jpg"></p>
-<p>首先到手機上搜尋 Watch，找到原生的程式</p>
-<span id="more"></span>
-
-<p><img src="https://nijialin.com/images/2023/linepay/2.jpg"></p>
-<p>滑到最下面會看到可以安裝的 LINE Pay 選項</p>
-<blockquote>
-<p>APP store 的 LINE Pay APP 記得更新到最新才可以使用喔</p>
-</blockquote>
-<h1 id="換到-LINE-Pay-APP-上連接-Apple-Watch"><a href="#換到-LINE-Pay-APP-上連接-Apple-Watch" class="headerlink" title="換到 LINE Pay APP 上連接 Apple Watch"></a>換到 LINE Pay APP 上連接 Apple Watch</h1><p><img src="https://nijialin.com/images/2023/linepay/3.jpg"></p>
-<p>接著點開 LINE Pay APP，點選最右下角的<strong>全部</strong>，並且滑到最下面按下<strong>設定</strong></p>
-<p><img src="https://nijialin.com/images/2023/linepay/4.jpg"></p>
-<p>接著找到<strong>智慧手錶</strong>的選項，給他大力地點下去</p>
-<p><img src="https://nijialin.com/images/2023/linepay/5.jpg"></p>
-<p>按下連動手錶的開關，這時候請把 Apple Watch 中的 LINE Pay 也一併打開，讓他們互相綁定喔!</p>
-<p>理論上到這邊連接完之後就可以開始使用了</p>
-<h1 id="手錶付款"><a href="#手錶付款" class="headerlink" title="手錶付款"></a>手錶付款</h1><p><img src="https://nijialin.com/images/2023/linepay/6.jpg"></p>
-<p>我自己習慣把 LINE Pay APP 放在錶面當中，這樣我要結帳時就可以快速點一下開啟 Bar Code</p>
-<p><img src="https://nijialin.com/images/2023/linepay/7.jpg"></p>
-<p>輸入完密碼之後就會跳出你的 Bar Code，這時候把手伸過去給店員掃描即可!</p>
-<blockquote>
-<p>一般便利商店的 POS 機應該都滿穩定的，但如果去一些比較小型的店家，若手錶不夠亮可能也會導致掃不到喔</p>
-</blockquote>
-<p><img src="https://nijialin.com/images/2023/linepay/8.jpg"></p>
-<p>付款完成啦! 大功告成</p>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Apple</tag>
-        <tag>Apple Watch</tag>
-        <tag>LINE Pay</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何有效使用 Quote Message</title>
     <url>/2023/10/08/line-bot-quote-message-reply-later/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
@@ -16922,6 +16882,46 @@ img[alt~="center"] {
         <tag>Quote Message</tag>
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
+    <url>/2023/10/19/line-pay-apple-watch/</url>
+    <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
+<h1 id="Apple-Watch-安裝-LINE-Pay-APP"><a href="#Apple-Watch-安裝-LINE-Pay-APP" class="headerlink" title="Apple Watch 安裝 LINE Pay APP"></a>Apple Watch 安裝 LINE Pay APP</h1><p><img src="https://nijialin.com/images/2023/linepay/1.jpg"></p>
+<p>首先到手機上搜尋 Watch，找到原生的程式</p>
+<span id="more"></span>
+
+<p><img src="https://nijialin.com/images/2023/linepay/2.jpg"></p>
+<p>滑到最下面會看到可以安裝的 LINE Pay 選項</p>
+<blockquote>
+<p>APP store 的 LINE Pay APP 記得更新到最新才可以使用喔</p>
+</blockquote>
+<h1 id="換到-LINE-Pay-APP-上連接-Apple-Watch"><a href="#換到-LINE-Pay-APP-上連接-Apple-Watch" class="headerlink" title="換到 LINE Pay APP 上連接 Apple Watch"></a>換到 LINE Pay APP 上連接 Apple Watch</h1><p><img src="https://nijialin.com/images/2023/linepay/3.jpg"></p>
+<p>接著點開 LINE Pay APP，點選最右下角的<strong>全部</strong>，並且滑到最下面按下<strong>設定</strong></p>
+<p><img src="https://nijialin.com/images/2023/linepay/4.jpg"></p>
+<p>接著找到<strong>智慧手錶</strong>的選項，給他大力地點下去</p>
+<p><img src="https://nijialin.com/images/2023/linepay/5.jpg"></p>
+<p>按下連動手錶的開關，這時候請把 Apple Watch 中的 LINE Pay 也一併打開，讓他們互相綁定喔!</p>
+<p>理論上到這邊連接完之後就可以開始使用了</p>
+<h1 id="手錶付款"><a href="#手錶付款" class="headerlink" title="手錶付款"></a>手錶付款</h1><p><img src="https://nijialin.com/images/2023/linepay/6.jpg"></p>
+<p>我自己習慣把 LINE Pay APP 放在錶面當中，這樣我要結帳時就可以快速點一下開啟 Bar Code</p>
+<p><img src="https://nijialin.com/images/2023/linepay/7.jpg"></p>
+<p>輸入完密碼之後就會跳出你的 Bar Code，這時候把手伸過去給店員掃描即可!</p>
+<blockquote>
+<p>一般便利商店的 POS 機應該都滿穩定的，但如果去一些比較小型的店家，若手錶不夠亮可能也會導致掃不到喔</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2023/linepay/8.jpg"></p>
+<p>付款完成啦! 大功告成</p>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Apple</tag>
+        <tag>Apple Watch</tag>
+        <tag>LINE Pay</tag>
       </tags>
   </entry>
   <entry>
@@ -17184,6 +17184,44 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>人生過了三分之一，做點紀錄</title>
+    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
+<span id="more"></span>
+
+<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
+<li>健身、上班、滑板</li>
+<li>健身、上班、滑板、上英文課</li>
+<li>睡飽、上班、打掃、上英文課</li>
+<li>健身、上班、羽球社(滑板)</li>
+<li>睡飽、上班、滑板<ol>
+<li>近期太多參訪早上都不練 👀</li>
+</ol>
+</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+<li>滑板、逛街、寫專案、打遊戲</li>
+</ol>
+<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
+<blockquote>
+<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
+</blockquote>
+<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
+<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
+<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
+<ul>
+<li>不開心想吃東西但怕胖？吃</li>
+<li>最近穿著都很黯淡？買</li>
+<li>家具缺點什麼更好些？買</li>
+</ul>
+<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2023  Personal Review</title>
     <url>/2023/12/23/nijia-2023-review/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
@@ -17232,44 +17270,6 @@ img[alt~="center"] {
 <blockquote>
 <p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>人生過了三分之一，做點紀錄</title>
-    <url>/2023/11/22/nijia-30-years-old-4-quarter/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/skateboard/S__15876103.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想想最近又到了年末了，過往都會幫自己的一年做個結尾，但我覺得人生過了三分之一應該要經常的幫自己更新一下，避免未來開始忘東忘西時，卻忘了自己這陣子所獲得的一些寶貴經驗～</p>
-<span id="more"></span>
-
-<h1 id="近期一週行程-早、中、晚"><a href="#近期一週行程-早、中、晚" class="headerlink" title="近期一週行程(早、中、晚)"></a>近期一週行程(早、中、晚)</h1><ol>
-<li>健身、上班、滑板</li>
-<li>健身、上班、滑板、上英文課</li>
-<li>睡飽、上班、打掃、上英文課</li>
-<li>健身、上班、羽球社(滑板)</li>
-<li>睡飽、上班、滑板<ol>
-<li>近期太多參訪早上都不練 👀</li>
-</ol>
-</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-<li>滑板、逛街、寫專案、打遊戲</li>
-</ol>
-<p>之前寫過一篇「<a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a>」，為了年底滑雪去玩滑板，但自己實在太愛玩雙邊平衡，因此就跑來玩技術版，但因為摔太嚴重信心不足，只好請教練來幫我練動作…這邊還是很推薦各種運動初期別為了省錢，導致後面受傷傷錢又傷身 🥲，有點年紀了不能這樣摔。</p>
-<blockquote>
-<p>滑板同時也認識了很多同好，雖然以前都想著這些人應該很難接近，但加入這文化之後才發現他迷人的地方，但任何或運動都一樣，該給人家尊重的地方還是要給夠喔！</p>
-</blockquote>
-<h1 id="工作上的整理"><a href="#工作上的整理" class="headerlink" title="工作上的整理"></a>工作上的整理</h1><p>近期有機會帶專案，雖然性質跟正規專案有點不同，但也因此學了很多技能，也請教了許多公司的前輩，除了基本的敏捷流程以外，也學會整理資訊，讓作為 TPM 角色的我可以對整個專案的狀態更清晰，而不是淪為一個報告機器人的角色，這也讓我在工作的目標上做了一個很大的突破！也在這當中學習到許多合作的細節，讓雙方都能能在最短時間內抓到問題的重點，就算當中有些內容想了很氣，但還是要先回歸主題，到底要的東西是什麼…未來若有機會再來好好的分享過程。</p>
-<h1 id="有什麼遺憾嗎？"><a href="#有什麼遺憾嗎？" class="headerlink" title="有什麼遺憾嗎？"></a>有什麼遺憾嗎？</h1><p>雖然人生過了三分之一，到了人生的其中一個 milestone，身邊很多同學都在結婚生小孩，但想想在這這年紀還可以玩自己喜歡的事情真的滿難得的！目標也是多多培養自己多元的興趣，除了工作上的努力，也要幫自己，並幫助自己重回那熱情滿滿的狀態，避免燃燒殆盡。</p>
-<p>同時也覺得，人生在此時此刻的選擇上沒有一定的對錯，可能會對這陣子的某個行為覺得不應該，但我想這就是人生一部分，過去的點滴造就了現在的自己，想想他是未來的養分，應該就不會那麼的糾結過去那錯誤的選擇了，選錯再調整嘛～哪有什麼一定的對吧！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>雖然最近過的有點太滋潤了，但我想人生中許多時候就是要多多平衡一下自己身心理的狀態，在可控制的情況下我認為作些踰矩的事情是合理的</p>
-<ul>
-<li>不開心想吃東西但怕胖？吃</li>
-<li>最近穿著都很黯淡？買</li>
-<li>家具缺點什麼更好些？買</li>
-</ul>
-<p>以上也分享最近的一些心態上以及近期的狀態，歡迎分享你的點子跟觀點喔！</p>
 ]]></content>
       <categories>
         <category>日記</category>
