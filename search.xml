@@ -16241,35 +16241,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【GitHub】建立第一個 Issue Template</title>
-    <url>/2023/10/05/github-issue-report-yaml-template/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
-<span id="more"></span>
-
-<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
-<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
-<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
-<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
-<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
-<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
-<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
-<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
-<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
-<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</title>
     <url>/2023/11/26/gcp-pubsub-python/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/pubsub/OIG.jpeg"></p>
@@ -16359,51 +16330,32 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?</title>
-    <url>/2024/01/28/google-analytics-and-tag-manager-setting-with-frontend-framework/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/ga/0.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於現在主流前端框架(Next, Nuxt)皆會透過 Virtual DOM 的方式渲染網站，在網站當中像是 class 就會有類似 <code>class=&quot;qwe-1234&quot;</code> 的呈現方式，且會階層往下，但這在 google analytics 當中抓資料會有問題，因為跟一般 SPA 網站渲染方式呈現比較不同</p>
+    <title>【GitHub】建立第一個 Issue Template</title>
+    <url>/2023/10/05/github-issue-report-yaml-template/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>準備演講的同時，發現 GitHub 現在在回報 issue 上開始有框架的方式來讓專案開發者可以更快速建立，不用像以前要自己參考網路上的資料，或是自己天馬行空想一個版本。透過 yaml 的制定除了更好看以外，也讓用戶在回報 issue 時有更漂亮的畫面可以填寫，以下就分享一下如何在自己的 report 上加入～</p>
 <span id="more"></span>
 
-<h2 id="延伸閱讀：Why-Virtual-DOM"><a href="#延伸閱讀：Why-Virtual-DOM" class="headerlink" title="延伸閱讀：Why Virtual DOM?"></a>延伸閱讀：Why Virtual DOM?</h2><blockquote>
-<p>Next 或 Nuxt 前端框架使用 virtual DOM 的主要原因是為了提升網頁的效能和開發體驗。virtual DOM 是一種用 JavaScript 物件來模擬真實 DOM 的技術，它可以減少對真實 DOM 的操作，從而避免不必要的 reflow 或 repaint，這些過程會消耗瀏覽器的資源。virtual DOM 還可以利用 diff 演算法來計算出新舊 virtual DOM 之間的差異，並只更新有變動的部分，這樣可以進一步提高效率。<br>除了效能的優勢，virtual DOM 也可以讓開發者更方便地處理資料和畫面的變化，而不需要直接操作 DOM API。這樣可以減少程式碼的複雜度，並提高可讀性和可維護性。virtual DOM 還可以實現服務端渲染 (SSR)，這對於 SEO 和首頁載入速度有很大的幫助。</p>
-</blockquote>
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>假設我想在 GA 中監控事件以下範例:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;qwe-123&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;asd-456&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;accountSetting&#x27;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="建立一個-Bug-Report-的-Issue-樣板"><a href="#建立一個-Bug-Report-的-Issue-樣板" class="headerlink" title="建立一個 Bug Report 的 Issue 樣板"></a>建立一個 <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms">Bug Report 的 Issue 樣板</a></h1><p>進入頁面之後，有提供一個如下的 bug report 樣板：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Bug</span> <span class="string">Report</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">File</span> <span class="string">a</span> <span class="string">bug</span> <span class="string">report</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;[Bug]: &#x27;</span></span><br><span class="line"><span class="attr">labels:</span> [<span class="string">&#x27;bug&#x27;</span>, <span class="string">&#x27;triage&#x27;</span>]</span><br><span class="line"><span class="attr">projects:</span> [<span class="string">&#x27;octo-org/1&#x27;</span>, <span class="string">&#x27;octo-org/44&#x27;</span>]</span><br><span class="line"><span class="attr">assignees:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">octocat</span></span><br><span class="line"><span class="attr">body:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">markdown</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        Thanks for taking the time to fill out this bug report!</span></span><br><span class="line"><span class="string"></span>  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">input</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">contact</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Contact</span> <span class="string">Details</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">How</span> <span class="string">can</span> <span class="string">we</span> <span class="string">get</span> <span class="string">in</span> <span class="string">touch</span> <span class="string">with</span> <span class="string">you</span> <span class="string">if</span> <span class="string">we</span> <span class="string">need</span> <span class="string">more</span> <span class="string">info?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">ex.</span> <span class="string">email@example.com</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">false</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">what-happened</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">happened?</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Also</span> <span class="string">tell</span> <span class="string">us,</span> <span class="string">what</span> <span class="string">did</span> <span class="string">you</span> <span class="string">expect</span> <span class="string">to</span> <span class="string">happen?</span></span><br><span class="line">      <span class="attr">placeholder:</span> <span class="string">Tell</span> <span class="string">us</span> <span class="string">what</span> <span class="string">you</span> <span class="string">see!</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">&#x27;A bug happened!&#x27;</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">version</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">What</span> <span class="string">version</span> <span class="string">of</span> <span class="string">our</span> <span class="string">software</span> <span class="string">are</span> <span class="string">you</span> <span class="string">running?</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.2</span> <span class="string">(Default)</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">1.0</span><span class="number">.3</span> <span class="string">(Edge)</span></span><br><span class="line">      <span class="attr">default:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">validations:</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">dropdown</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">browsers</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">What</span> <span class="string">browsers</span> <span class="string">are</span> <span class="string">you</span> <span class="string">seeing</span> <span class="string">the</span> <span class="string">problem</span> <span class="string">on?</span></span><br><span class="line">      <span class="attr">multiple:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Firefox</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Chrome</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Safari</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Microsoft</span> <span class="string">Edge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">logs</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Relevant</span> <span class="string">log</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">Please</span> <span class="string">copy</span> <span class="string">and</span> <span class="string">paste</span> <span class="string">any</span> <span class="string">relevant</span> <span class="string">log</span> <span class="string">output.</span> <span class="string">This</span> <span class="string">will</span> <span class="string">be</span> <span class="string">automatically</span> <span class="string">formatted</span> <span class="string">into</span> <span class="string">code,</span> <span class="string">so</span> <span class="literal">no</span> <span class="string">need</span> <span class="string">for</span> <span class="string">backticks.</span></span><br><span class="line">      <span class="attr">render:</span> <span class="string">shell</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">checkboxes</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">terms</span></span><br><span class="line">    <span class="attr">attributes:</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">By</span> <span class="string">submitting</span> <span class="string">this</span> <span class="string">issue,</span> <span class="string">you</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">our</span> [<span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span>]<span class="string">(https://example.com)</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">label:</span> <span class="string">I</span> <span class="string">agree</span> <span class="string">to</span> <span class="string">follow</span> <span class="string">this</span> <span class="string">project&#x27;s</span> <span class="string">Code</span> <span class="string">of</span> <span class="string">Conduct</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<p>我們會想在 GTM 後台設定抓取 <code>id=&#39;accountSetting&#39;</code>，設定就會跟以下很像：</p>
-<p><img src="https://nijialin.com/images/2024/ga/1.png"></p>
-<p>接著到 Tag Assistant (preview page) 中開啟 Debug mode 時，會發現事件似乎沒有被 Fire，以下先附上應該要成功的畫面：</p>
-<p><img src="https://nijialin.com/images/2024/ga/4.png"></p>
-<p>把事件點開之後才發現，怎麼內容都放在 Click Element(?) 初步猜測應該是 Virtual DOM 壓縮後讓 GA 找不到對應的欄位，因此將內容都放入 Element 當中，參考如下：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  event:</span> <span class="string">&quot;gtm.click&quot;</span>,</span><br><span class="line"><span class="symbol">  gtm:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    uniqueEventId:</span> <span class="number">16</span>,</span><br><span class="line"><span class="symbol">    start:</span> <span class="number">1706415086221</span>, <span class="comment">// 開始時間</span></span><br><span class="line"><span class="symbol">    element:</span> <span class="string">&quot;HTMLImageElement: html &gt; body &gt; div#__next &gt; div.css-xg&quot;</span> +</span><br><span class="line">             <span class="string">&quot;fukl &gt; div.css-79njnh &gt; a.css-s401k6#accountSetting &gt; img&quot;</span>,</span><br><span class="line"><span class="symbol">    elementClasses:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementId:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementTarget:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementUrl:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    historyChangeSource:</span> <span class="string">&quot;pushState&quot;</span>,</span><br><span class="line"><span class="symbol">    oldUrl:</span> <span class="string">&quot;https://用戶訪問實際網址&quot;</span>,</span><br><span class="line"><span class="symbol">    newUrl:</span> <span class="string">&quot;https://應該是首頁&quot;</span>,</span><br><span class="line"></span><br><span class="line">    ...其餘監控資料</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  eventCallback:</span> <span class="string">&quot;Function&quot;</span></span><br><span class="line"></span><br><span class="line">  ...其他自第義的內容</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>經驗分享：在越接近首頁位置的 html id 以及 class 會被放到 Element ID(Class) 欄位當中，但隨著網頁的商業邏輯越來越多，包多層之後 GTM 會搞混，因此建議方式還是可以從 Element 裡面抓</p>
-</blockquote>
-<p>因此這邊能解的方式如下：</p>
-<p><img src="https://nijialin.com/images/2024/ga/2.png"></p>
-<p>透過 <code>CSS Selector</code> 來指定想 tracking 的 HTML tag，但這邊需要 Double confirm 的地方是，有時候實作上後面的階層可能不一定有東西，因此這邊能做的方式大概為:</p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#accountSetting, #accountSetting *</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在 GTM CSS Selector 這邊可以用 <code>,</code> 來劃分條件，空白+<code>*</code> 則是代表後面不論接什麼，只要 ID &#x3D; accountSetting 就能 fire tracking，</p>
-</blockquote>
-<h2 id="Page-Path-的-contains-設定"><a href="#Page-Path-的-contains-設定" class="headerlink" title="Page Path 的 contains 設定"></a>Page Path 的 contains 設定</h2><p>建議使用 <code>contains</code>，因為可能會因為不同網站導流而在後面放了許多參數，只要路徑有符合就可以收進來<br><img src="https://nijialin.com/images/2024/ga/3.png"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>會發現這個操作方式是發現，設定了十幾個 click tracking event，結果只有幾個有成功，與同事合力才發現原來有前端框架的 Virtual DOM 影響的問題。</p>
-<p>往後若想透過GA來收集用戶行為時，記得要先知道前端是如何構建而成，SPA or Web framework，才能知道自己抓的東西能夠符合團隊需求喔！</p>
-<blockquote>
-<p>預祝大家資料都能被好好的 tracking，數據收滿滿!!</p>
-</blockquote>
+<p><img src="https://nijialin.com/images/2023/github-report/1.png"></p>
+<p>接著找到你想要使用的 project，按下 <code>Add file</code> 新增檔案</p>
+<p><img src="https://nijialin.com/images/2023/github-report/2.png"></p>
+<p>在輸入框上面打上 <code>.github/ISSUE_TEMPLATE/bug-report.yaml</code> ，輸入到<strong>斜線</strong><code>/</code>時會在畫面上自動跑階層出來，因此不用太擔心會不會被失敗，然後把剛剛的 yaml code 貼上去 commit 它！</p>
+<p><img src="https://nijialin.com/images/2023/github-report/3.png"></p>
+<p>Commit 完成之後可以現看一下被 GitHub 渲染出來的樣子有沒有符合心中的樣式</p>
+<p><img src="https://nijialin.com/images/2023/github-report/4.png"></p>
+<p>送自己個 issue！成功之後應該要如同上面的畫面，會有一個新的樣板跑出來</p>
+<p><img src="https://nijialin.com/images/2023/github-report/5.png"></p>
+<p>畢竟是 bug report，該有的 prefix 以及 label 都會出現，下拉式選單有都可以使用，甚至編輯器也都是 Markdown 格式，如此以來 GitHub 專案又更完整了一些！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>快速筆記一下自己在做 issue template 這邊的發現，如果大家有發現更有趣的內容，歡迎下方留言讓我知道！想參考的 <a href="https://github.com/louis70109/youtube-search-langchain">repo 可以看這邊</a>，那我們就下次見囉！</p>
 ]]></content>
       <categories>
         <category>學習紀錄</category>
       </categories>
       <tags>
-        <tag>Google</tag>
-        <tag>GTM</tag>
-        <tag>GA</tag>
-        <tag>Google Analytics</tag>
+        <tag>GitHub</tag>
       </tags>
   </entry>
   <entry>
@@ -16605,6 +16557,54 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>如何在主流前端框架上設定 GTM? 怎麼有些資料看起來沒收到?</title>
+    <url>/2024/01/28/google-analytics-and-tag-manager-setting-with-frontend-framework/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/ga/0.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於現在主流前端框架(Next, Nuxt)皆會透過 Virtual DOM 的方式渲染網站，在網站當中像是 class 就會有類似 <code>class=&quot;qwe-1234&quot;</code> 的呈現方式，且會階層往下，但這在 google analytics 當中抓資料會有問題，因為跟一般 SPA 網站渲染方式呈現比較不同</p>
+<span id="more"></span>
+
+<h2 id="延伸閱讀：Why-Virtual-DOM"><a href="#延伸閱讀：Why-Virtual-DOM" class="headerlink" title="延伸閱讀：Why Virtual DOM?"></a>延伸閱讀：Why Virtual DOM?</h2><blockquote>
+<p>Next 或 Nuxt 前端框架使用 virtual DOM 的主要原因是為了提升網頁的效能和開發體驗。virtual DOM 是一種用 JavaScript 物件來模擬真實 DOM 的技術，它可以減少對真實 DOM 的操作，從而避免不必要的 reflow 或 repaint，這些過程會消耗瀏覽器的資源。virtual DOM 還可以利用 diff 演算法來計算出新舊 virtual DOM 之間的差異，並只更新有變動的部分，這樣可以進一步提高效率。<br>除了效能的優勢，virtual DOM 也可以讓開發者更方便地處理資料和畫面的變化，而不需要直接操作 DOM API。這樣可以減少程式碼的複雜度，並提高可讀性和可維護性。virtual DOM 還可以實現服務端渲染 (SSR)，這對於 SEO 和首頁載入速度有很大的幫助。</p>
+</blockquote>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>假設我想在 GA 中監控事件以下範例:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;qwe-123&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;asd-456&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;accountSetting&#x27;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>我們會想在 GTM 後台設定抓取 <code>id=&#39;accountSetting&#39;</code>，設定就會跟以下很像：</p>
+<p><img src="https://nijialin.com/images/2024/ga/1.png"></p>
+<p>接著到 Tag Assistant (preview page) 中開啟 Debug mode 時，會發現事件似乎沒有被 Fire，以下先附上應該要成功的畫面：</p>
+<p><img src="https://nijialin.com/images/2024/ga/4.png"></p>
+<p>把事件點開之後才發現，怎麼內容都放在 Click Element(?) 初步猜測應該是 Virtual DOM 壓縮後讓 GA 找不到對應的欄位，因此將內容都放入 Element 當中，參考如下：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  event:</span> <span class="string">&quot;gtm.click&quot;</span>,</span><br><span class="line"><span class="symbol">  gtm:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    uniqueEventId:</span> <span class="number">16</span>,</span><br><span class="line"><span class="symbol">    start:</span> <span class="number">1706415086221</span>, <span class="comment">// 開始時間</span></span><br><span class="line"><span class="symbol">    element:</span> <span class="string">&quot;HTMLImageElement: html &gt; body &gt; div#__next &gt; div.css-xg&quot;</span> +</span><br><span class="line">             <span class="string">&quot;fukl &gt; div.css-79njnh &gt; a.css-s401k6#accountSetting &gt; img&quot;</span>,</span><br><span class="line"><span class="symbol">    elementClasses:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementId:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementTarget:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    elementUrl:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="symbol">    historyChangeSource:</span> <span class="string">&quot;pushState&quot;</span>,</span><br><span class="line"><span class="symbol">    oldUrl:</span> <span class="string">&quot;https://用戶訪問實際網址&quot;</span>,</span><br><span class="line"><span class="symbol">    newUrl:</span> <span class="string">&quot;https://應該是首頁&quot;</span>,</span><br><span class="line"></span><br><span class="line">    ...其餘監控資料</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  eventCallback:</span> <span class="string">&quot;Function&quot;</span></span><br><span class="line"></span><br><span class="line">  ...其他自第義的內容</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>經驗分享：在越接近首頁位置的 html id 以及 class 會被放到 Element ID(Class) 欄位當中，但隨著網頁的商業邏輯越來越多，包多層之後 GTM 會搞混，因此建議方式還是可以從 Element 裡面抓</p>
+</blockquote>
+<p>因此這邊能解的方式如下：</p>
+<p><img src="https://nijialin.com/images/2024/ga/2.png"></p>
+<p>透過 <code>CSS Selector</code> 來指定想 tracking 的 HTML tag，但這邊需要 Double confirm 的地方是，有時候實作上後面的階層可能不一定有東西，因此這邊能做的方式大概為:</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#accountSetting, #accountSetting *</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 GTM CSS Selector 這邊可以用 <code>,</code> 來劃分條件，空白+<code>*</code> 則是代表後面不論接什麼，只要 ID &#x3D; accountSetting 就能 fire tracking，</p>
+</blockquote>
+<h2 id="Page-Path-的-contains-設定"><a href="#Page-Path-的-contains-設定" class="headerlink" title="Page Path 的 contains 設定"></a>Page Path 的 contains 設定</h2><p>建議使用 <code>contains</code>，因為可能會因為不同網站導流而在後面放了許多參數，只要路徑有符合就可以收進來<br><img src="https://nijialin.com/images/2024/ga/3.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>會發現這個操作方式是發現，設定了十幾個 click tracking event，結果只有幾個有成功，與同事合力才發現原來有前端框架的 Virtual DOM 影響的問題。</p>
+<p>往後若想透過GA來收集用戶行為時，記得要先知道前端是如何構建而成，SPA or Web framework，才能知道自己抓的東西能夠符合團隊需求喔！</p>
+<blockquote>
+<p>預祝大家資料都能被好好的 tracking，數據收滿滿!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+        <tag>GTM</tag>
+        <tag>GA</tag>
+        <tag>Google Analytics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【從零開始養】讓 Public Cloud 增加你的能見度！</title>
     <url>/2023/07/29/how-to-develop-side-project-into-public-cloud/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/coscup/1.jpg"></p>
@@ -16684,6 +16684,40 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
+    <url>/2023/06/03/knative-why-you-need/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
+<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+<span id="more"></span>
+
+<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
+<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
+<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
+<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
+<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
+<blockquote>
+<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
+</blockquote>
+<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
+<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
+<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
+<blockquote>
+<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
+<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
+<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Knative</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>把訊息整理進你的行事曆吧！透過 OpenAI 讓 LINE Bot 幫你建立行事曆連結</title>
     <url>/2023/06/06/line-bot-calendar-action/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/calendar.jpeg"></p>
@@ -16743,40 +16777,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</title>
-    <url>/2023/06/03/knative-why-you-need/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/GAI/cloud.jpeg"></p>
-<h1 id="為什麼要使用-Knative-KN"><a href="#為什麼要使用-Knative-KN" class="headerlink" title="為什麼要使用 Knative(KN)"></a>為什麼要使用 Knative(KN)</h1><p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
-<span id="more"></span>
-
-<p>相對於使用 Kubernetes 開發與佈署，Knative 應用程式方面提供了更多的彈性與便利性的地方。它把許多原本 Kubernetes 需要處理的網路、Log、Monitor…等等都包裝起來，開發者則不用擔心這些並且專注開發應用程式，且因為 Knative 是基於 Kubernetes，因此該有的自動水平擴展、根據負載增減佈署的 Instance 數量等等的優點都會包含，這一點對於需要應對流量波動的應用程式會非常有用。</p>
-<h2 id="Knative-與-Google-Cloud-Run？"><a href="#Knative-與-Google-Cloud-Run？" class="headerlink" title="Knative 與 Google Cloud Run？"></a>Knative 與 Google Cloud Run？</h2><p>Knative 和 Google Cloud Run 都是基於 Kubernetes 的開源平台，都致力於簡化開發者的佈署工作和管理現代服務導向的應用程式。然而兩者的使用方式和管理方式還是有些為差異以下來作些比較。</p>
-<p>自己架設 Knative 需要一定的 Kubernetes 服務架設經驗，並且需要在擁有 Kubernetes 環境的主機上進行安裝和設定。開發者需要自行管理 Knative 和 Kubernetes 的升級、相關的安全性問題，對於個人或是規模較小的組織來說門檻較高些。</p>
-<p>撇除這些問題，自行架設的 Knative 對於系統的彈性還是比較大的，畢竟自行架設會對於服務的熟悉度更高，開發者可以根據自己的需要的設定和調整整體服務。</p>
-<h2 id="Google-Cloud-Run-呢？"><a href="#Google-Cloud-Run-呢？" class="headerlink" title="Google Cloud Run 呢？"></a>Google Cloud Run 呢？</h2><p>Google Cloud Run 則是一種全託管的解決方案，Google 已經把開發者所需操作以及管理底層基礎設施和運維工作都做好了，開發者只需要專注於把應用程式的開發完成並且透過 gcloud 指令來佈署即可(甚至 Dockerfile 都不用寫)。<br>同時 Cloud Run 也是使用 Knative 作為底層引擎，同時擁有 Knative 以及 Kubernetes 的特性，快速部屬且能水平擴展(超棒的)。在權限控管上也可以使用 GCP 提供的身份和存取管理（IAM）等，讓開發者可以更專注在應用程式的開發。</p>
-<blockquote>
-<p>如果從 Cloud Run 上用一用，但公司想搬到自架的 Knative 上也是可以！只要把 Cloud Run Knative config 複製就可以使用了！</p>
-</blockquote>
-<h1 id="推薦使用-Knative-嗎？"><a href="#推薦使用-Knative-嗎？" class="headerlink" title="推薦使用 Knative 嗎？"></a>推薦使用 Knative 嗎？</h1><p>如果團隊的產品日常都在處理一些事件驅動的應用程式，抑或是有購物節等等會忽然暴衝流量，那可能是可以嘗試導入 Knative 使產品進入 Knative 世界，且在內部推動時大家也無須準備像是 Kubernetes 這麼多的 config，可能只需要一兩個 Yaml 就把服務架起來了，讓你們更容易地進行應用程式的佈署和管理。</p>
-<h2 id="那也推薦使用-Google-Cloud-Run？"><a href="#那也推薦使用-Google-Cloud-Run？" class="headerlink" title="那也推薦使用 Google Cloud Run？"></a>那也推薦使用 Google Cloud Run？</h2><p>以初期來說，團隊在 Infra 這邊的工作無法下太多，且需要處理上述介紹的這些問題，那 Cloud Run 可能會是一個適合的選擇，因為它能夠讓團隊成員更專注於開發，而不用沒是還要抽身去照顧 Infra，對於團隊管理在建構與實踐整體商業邏輯時，會是一個更好的選擇。</p>
-<p>另一個好處是，如果有需要銜接其他功能，Cloud Run 也能更方便地使用 Google Cloud 的其他服務，把這些架設的功夫都先省下來，讓錢先進來後續都比較好跟老闆要求其他東西 😆</p>
-<blockquote>
-<p>📖 延伸閱讀：之前分享的 <a href="https://nijialin.com/2022/06/30/google-io-extended-2022/">Cloud Run 串接 Eventarc 的文章</a></p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>整體而論，Knative 和 Google Cloud Run 都是強大的工具，能夠幫助開發者更容易地佈署和管理現代服務導向的應用程式。選擇哪一種取決於你的團隊偏向何種需求和偏好，無論是完全自行控制的 Knative，還是完全管理式的 Google Cloud Run，都有其各自的優點和需要挑戰的地方。</p>
-<p>但無論如何，也推薦大家可以先從 Public Cloud 上的這些 Service 開始學習，也會讓大家對於 Cloud Infra 以及相關的解決方案更加清楚喔！💪</p>
-<h1 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h1>]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>Kubernetes</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Knative</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</title>
     <url>/2023/11/13/line-bot-capture-image-cloud-run/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -16825,6 +16825,46 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>Google</tag>
         <tag>Cloud Run</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
+    <url>/2023/10/19/line-pay-apple-watch/</url>
+    <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
+<h1 id="Apple-Watch-安裝-LINE-Pay-APP"><a href="#Apple-Watch-安裝-LINE-Pay-APP" class="headerlink" title="Apple Watch 安裝 LINE Pay APP"></a>Apple Watch 安裝 LINE Pay APP</h1><p><img src="https://nijialin.com/images/2023/linepay/1.jpg"></p>
+<p>首先到手機上搜尋 Watch，找到原生的程式</p>
+<span id="more"></span>
+
+<p><img src="https://nijialin.com/images/2023/linepay/2.jpg"></p>
+<p>滑到最下面會看到可以安裝的 LINE Pay 選項</p>
+<blockquote>
+<p>APP store 的 LINE Pay APP 記得更新到最新才可以使用喔</p>
+</blockquote>
+<h1 id="換到-LINE-Pay-APP-上連接-Apple-Watch"><a href="#換到-LINE-Pay-APP-上連接-Apple-Watch" class="headerlink" title="換到 LINE Pay APP 上連接 Apple Watch"></a>換到 LINE Pay APP 上連接 Apple Watch</h1><p><img src="https://nijialin.com/images/2023/linepay/3.jpg"></p>
+<p>接著點開 LINE Pay APP，點選最右下角的<strong>全部</strong>，並且滑到最下面按下<strong>設定</strong></p>
+<p><img src="https://nijialin.com/images/2023/linepay/4.jpg"></p>
+<p>接著找到<strong>智慧手錶</strong>的選項，給他大力地點下去</p>
+<p><img src="https://nijialin.com/images/2023/linepay/5.jpg"></p>
+<p>按下連動手錶的開關，這時候請把 Apple Watch 中的 LINE Pay 也一併打開，讓他們互相綁定喔!</p>
+<p>理論上到這邊連接完之後就可以開始使用了</p>
+<h1 id="手錶付款"><a href="#手錶付款" class="headerlink" title="手錶付款"></a>手錶付款</h1><p><img src="https://nijialin.com/images/2023/linepay/6.jpg"></p>
+<p>我自己習慣把 LINE Pay APP 放在錶面當中，這樣我要結帳時就可以快速點一下開啟 Bar Code</p>
+<p><img src="https://nijialin.com/images/2023/linepay/7.jpg"></p>
+<p>輸入完密碼之後就會跳出你的 Bar Code，這時候把手伸過去給店員掃描即可!</p>
+<blockquote>
+<p>一般便利商店的 POS 機應該都滿穩定的，但如果去一些比較小型的店家，若手錶不夠亮可能也會導致掃不到喔</p>
+</blockquote>
+<p><img src="https://nijialin.com/images/2023/linepay/8.jpg"></p>
+<p>付款完成啦! 大功告成</p>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Apple</tag>
+        <tag>Apple Watch</tag>
+        <tag>LINE Pay</tag>
       </tags>
   </entry>
   <entry>
@@ -16883,185 +16923,6 @@ img[alt~="center"] {
         <tag>回覆訊息</tag>
         <tag>Push Message</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>就用 LINE Pay 在 Apple Watch 付款吧</title>
-    <url>/2023/10/19/line-pay-apple-watch/</url>
-    <content><![CDATA[<p>昨天看到同事用手錶付款想說是什麼功能，去問一下才發現我落後了!這篇文章來跟大家說明遺下我連結 LINE Pay APP 到 Apple Watch 的過程!</p>
-<h1 id="Apple-Watch-安裝-LINE-Pay-APP"><a href="#Apple-Watch-安裝-LINE-Pay-APP" class="headerlink" title="Apple Watch 安裝 LINE Pay APP"></a>Apple Watch 安裝 LINE Pay APP</h1><p><img src="https://nijialin.com/images/2023/linepay/1.jpg"></p>
-<p>首先到手機上搜尋 Watch，找到原生的程式</p>
-<span id="more"></span>
-
-<p><img src="https://nijialin.com/images/2023/linepay/2.jpg"></p>
-<p>滑到最下面會看到可以安裝的 LINE Pay 選項</p>
-<blockquote>
-<p>APP store 的 LINE Pay APP 記得更新到最新才可以使用喔</p>
-</blockquote>
-<h1 id="換到-LINE-Pay-APP-上連接-Apple-Watch"><a href="#換到-LINE-Pay-APP-上連接-Apple-Watch" class="headerlink" title="換到 LINE Pay APP 上連接 Apple Watch"></a>換到 LINE Pay APP 上連接 Apple Watch</h1><p><img src="https://nijialin.com/images/2023/linepay/3.jpg"></p>
-<p>接著點開 LINE Pay APP，點選最右下角的<strong>全部</strong>，並且滑到最下面按下<strong>設定</strong></p>
-<p><img src="https://nijialin.com/images/2023/linepay/4.jpg"></p>
-<p>接著找到<strong>智慧手錶</strong>的選項，給他大力地點下去</p>
-<p><img src="https://nijialin.com/images/2023/linepay/5.jpg"></p>
-<p>按下連動手錶的開關，這時候請把 Apple Watch 中的 LINE Pay 也一併打開，讓他們互相綁定喔!</p>
-<p>理論上到這邊連接完之後就可以開始使用了</p>
-<h1 id="手錶付款"><a href="#手錶付款" class="headerlink" title="手錶付款"></a>手錶付款</h1><p><img src="https://nijialin.com/images/2023/linepay/6.jpg"></p>
-<p>我自己習慣把 LINE Pay APP 放在錶面當中，這樣我要結帳時就可以快速點一下開啟 Bar Code</p>
-<p><img src="https://nijialin.com/images/2023/linepay/7.jpg"></p>
-<p>輸入完密碼之後就會跳出你的 Bar Code，這時候把手伸過去給店員掃描即可!</p>
-<blockquote>
-<p>一般便利商店的 POS 機應該都滿穩定的，但如果去一些比較小型的店家，若手錶不夠亮可能也會導致掃不到喔</p>
-</blockquote>
-<p><img src="https://nijialin.com/images/2023/linepay/8.jpg"></p>
-<p>付款完成啦! 大功告成</p>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Apple</tag>
-        <tag>Apple Watch</tag>
-        <tag>LINE Pay</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TECH FRESH 畢業分享會：探索 2022 屆實習生的故事</title>
-    <url>/2023/05/29/line-tech-fresh-graduate-2023-introduction/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/techfresh/video_ending.png" alt="LINE 的工作環境和文化"></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大家好！我們是 LINE Developer Relations 團隊，今天我要向你們介紹一個我們即將舉辦的特別活動 - <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">2023 年 6 月 27 日的 TECH FRESH 畢業分享會</a>。今年，我們首次將這個活動對外開放，讓更多的人有機會了解我們的實習生們在 LINE 的學習和工作經驗。</p>
-<span id="more"></span>
-
-<h3 id="過去文章內容分享"><a href="#過去文章內容分享" class="headerlink" title="過去文章內容分享"></a>過去文章內容分享</h3><p><img src="https://vos.line-scdn.net/landpress-content-v2_954/1658286044453.png?updatedAt=1658286045000" alt="LINE TECH FRESH 畢業分享會"></p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
-</ul>
-<h2 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h2><p>這個活動是 LINE 提供給 2022 屆 TECH FRESH 在離開前有個舞台可以分享實習過程中的經驗。我們都知道，畢業不只是一個結束，更是一個全新的開始。在這個重要的日子，我們希望能和所有的畢業生一起分享他們的成就，並為他們未來的旅程送上最誠摯的祝福。</p>
-<h2 id="為什麼需要參加這活動呢？"><a href="#為什麼需要參加這活動呢？" class="headerlink" title="為什麼需要參加這活動呢？"></a>為什麼需要參加這活動呢？</h2><p><img src="https://engineering.linecorp.com/wp-content/uploads/2021/06/3-1-1024x577.png" alt="LINE TECH FRESH 活動介紹"></p>
-<p>參加 LINE TECH FRESH 畢業分享會有許多好處：</p>
-<ul>
-<li><strong>實習生的親身經驗分享</strong>：每位講者都是 LINE 的實習生，他們將分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。為學生提供寶貴的第一手資訊，幫助大家更好地理解軟體工程的實際工作情況。</li>
-<li><strong>建立人脈</strong>：這是一個與業界實習的同學建立聯繫、擴大人脈的絕佳機會。將有機會與來自不同學校和背景的人建立聯繫，對各位的未來職業發展將非常有幫助。</li>
-<li>了解 LINE 的工作環境和文化：透過這次的分享會，學生將有機會深入了解 LINE 的工作環境和文化，這將幫助他們在選擇未來的職業道路時做出更明智的決定。</li>
-<li><strong>獲得寶貴的學習和職業發展建議</strong>：在分享會中，學生將有機會聽到實習生的經驗分享，並從空檔時間與講者交流，獲得寶貴的學習和職業發展建議。</li>
-<li><strong>激發創新思維</strong>：透過聽取實習生的分享，學生將有機會了解到最新的科技趨勢和創新思維，這將對學習和創新思維產生不同面向的影響。</li>
-</ul>
-<p>參加 TECH FRESH 畢業分享會將為各位提供一個寶貴的學習機會，更好地再工作以前了解軟體工程所需注意的眉眉角角，為未來職業發展鋪平道路。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這次的活動將會有以下幾個部分：</p>
-<ul>
-<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
-<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
-<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長解，讓你更深入地了解我們的實習生們的經驗和感想。</li>
-</ul>
-<h3 id="【活動時間表-x2F-流程】"><a href="#【活動時間表-x2F-流程】" class="headerlink" title="【活動時間表&#x2F; 流程】"></a>【活動時間表&#x2F; 流程】</h3><ul>
-<li>17:40~18:00 來賓報到</li>
-<li>18:00-18:05 主持人開場</li>
-<li>18:05-18:20 LINE TECH FRESH program introduction</li>
-<li>18:20-18:40 注意看兩個男人太狠了，從開發到部署一氣呵成！</li>
-<li>18:40-19:00 【查核】用謊言支撐起的虛構世界</li>
-<li>19:00-19:20 乘坐 TECH FRESH 龍舟，比 Full Stack 更滿的一條龍</li>
-<li>19:20-19:40 Enable Resiliency and Efficiency at LINE Invoice</li>
-<li>19:40-19:50 休息時間</li>
-<li>19:50-20:20 Lightning Talk<ul>
-<li>我覺得草莓尬肉粽不行：從草莓肉粽了解整合測試的重要性</li>
-<li>專案綁粽伙！展現紗線在 monorepo 的魔力</li>
-<li>發 PR 被同事「留言灌爆」！他只用這 2 方法解決，同事驚：輕鬆很多</li>
-<li>Wakuwaku!!!!!! 原來自然語言可以這樣玩</li>
-</ul>
-</li>
-<li>20:20-20:40 學長姐等來共</li>
-<li>20:40-21:00 大合照&#x2F;交流時間</li>
-</ul>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LINE TECH FRESH 畢業分享會正是為了鼓勵並支持這些年輕的科技人才，讓他們有機會展現自己的才華，分享他們的學習和工作經驗，並從中獲得寶貴的回饋和建議。</p>
-<p>這個活動不僅僅是一個分享會，更是一個學習、交流和成長的平台。參加這個活動的學生將有機會聽到來自 LINE TECH FRESH 的第一手經驗分享，了解 LINE 的工作環境和文化，從中獲得寶貴的學習和職業發展建議。此外，還將有機會與來自不同學校和背景的人建立聯繫、擴大人脈，這對各位的未來職業發展將非常有幫助。</p>
-<p>我們誠摯地邀請所有對科技有熱情的學生參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>，無論你是一位在學的學生，還是一位正在尋找職業發展方向的學生，我們都期待你的參與。讓我們一起在這個活動中學習、交流、成長，並為我們的未來創造更多可能。</p>
-<p>現在就報名參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>吧！期待你的到來！</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>TECH FRESH</tag>
-        <tag>LINE TECH FEESH</tag>
-        <tag>畢業分享會</tag>
-        <tag>實習</tag>
-        <tag>實習經驗</tag>
-        <tag>LINE 工作環境</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023  Personal Review</title>
-    <url>/2023/12/23/nijia-2023-review/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
-<h1 id="🐔-前言"><a href="#🐔-前言" class="headerlink" title="🐔 前言"></a>🐔 前言</h1><p>趁出國跨年之前來整理今年的一些事情，期許 2024 年的自己可以持續跨出舒適圈</p>
-<p>自覺自己是一個很反骨的個性，不喜歡被定義就是<code>怎樣怎樣</code>的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
-<span id="more"></span>
-
-<h1 id="🦉-心態轉換"><a href="#🦉-心態轉換" class="headerlink" title="🦉 心態轉換"></a>🦉 心態轉換</h1><p>我覺得這最重要，因此還是要放前面點 👀️ 。進入三十歲之後，有種該為什麼負責的感覺浮現上來：</p>
-<ul>
-<li>許多事情與話在發生之前，總是會先想下它後面帶來的後果到底是什麼？做&#x2F;看到事前需要思考前因後果，在心中盤旋，像是跳舞一樣，需要先算好接下來的節拍大概會怎麼走，讓每一件小事能夠更好的被執行</li>
-<li>今年一直感應不到成就感這件事，直到接觸到滑雪與滑板。一直對於自己運動學習能力相當有自信的我，居然會在這兩個運動上非常受挫，重新考驗自己在<strong>平衡</strong>上的控制力，也有種重新對於任何事情燃起鬥志的感覺</li>
-<li>開始注重自身的需求，今年發生了很嚴重的胃食道逆流，把自己搞超慘，因此很多時候也開始要挑著吃了，不能想到什麼就要開吃<ul>
-<li>但很多時候為了給自己心情好，就…………🎉️</li>
-</ul>
-</li>
-<li>如果不知道當下該怎麼辦才好，就將時間安排好，按表操課，時間會帶你去你該到的地方 (<a href="https://nijialin.com/2023/11/22/nijia-30-years-old-4-quarter/">人生過了三分之一，做點紀錄</a>)</li>
-<li>任何學習的東西都不會沒用，現在的所有選擇皆是過去點點所累積的，千萬別小看自己學的一切</li>
-</ul>
-<h1 id="🐳-工作上的挑戰"><a href="#🐳-工作上的挑戰" class="headerlink" title="🐳 工作上的挑戰"></a>🐳 工作上的挑戰</h1><ul>
-<li><p>從年初的 TECHPULSE，親身經歷與學習許多專案的眉角，在隕石飛來飛去情況下還是讓研討會順利舉辦 🎉️ 現場人流來了 1400 位左右，也讓同仁們可以有個很棒的演講環境！經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
-</li>
-<li><p>經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
-</li>
-<li><p>下半年首度挑戰帶產品的專案，初期皆須要花上非常多時間去釐清與互相學習各種開發的習慣，希望這產品能夠越來越好，但既然還沒上線就之後再來分享經驗嚕！</p>
-</li>
-</ul>
-<blockquote>
-<p>今年也很感謝主管們的愛戴，拿了兩次的 spot bonus，讓我在挑戰不同 role 下還能夠被認可，無疑是對我職涯非常棒的推動力！</p>
-</blockquote>
-<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><ul>
-<li><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
-</li>
-<li><p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩 J 台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。 <a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a></p>
-</li>
-<li><p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://maps.app.goo.gl/i2FSt9AztSkuLiH78">滑板地圖清單</a></p>
-</blockquote>
-<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「<mark>價值是跟自己比，旁邊只是參考</mark>」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
-<blockquote>
-<p>不論是工作、運動、感情…etc</p>
-</blockquote>
-<p>「<mark>堅持下去</mark>」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
-<blockquote>
-<p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
   </entry>
   <entry>
     <title>【TECH FRESH 畢業分享會】原來實習有這些眉角？</title>
@@ -17189,6 +17050,91 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>TECH FRESH 畢業分享會：探索 2022 屆實習生的故事</title>
+    <url>/2023/05/29/line-tech-fresh-graduate-2023-introduction/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/techfresh/video_ending.png" alt="LINE 的工作環境和文化"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大家好！我們是 LINE Developer Relations 團隊，今天我要向你們介紹一個我們即將舉辦的特別活動 - <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">2023 年 6 月 27 日的 TECH FRESH 畢業分享會</a>。今年，我們首次將這個活動對外開放，讓更多的人有機會了解我們的實習生們在 LINE 的學習和工作經驗。</p>
+<span id="more"></span>
+
+<h3 id="過去文章內容分享"><a href="#過去文章內容分享" class="headerlink" title="過去文章內容分享"></a>過去文章內容分享</h3><p><img src="https://vos.line-scdn.net/landpress-content-v2_954/1658286044453.png?updatedAt=1658286045000" alt="LINE TECH FRESH 畢業分享會"></p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
+</ul>
+<h2 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h2><p>這個活動是 LINE 提供給 2022 屆 TECH FRESH 在離開前有個舞台可以分享實習過程中的經驗。我們都知道，畢業不只是一個結束，更是一個全新的開始。在這個重要的日子，我們希望能和所有的畢業生一起分享他們的成就，並為他們未來的旅程送上最誠摯的祝福。</p>
+<h2 id="為什麼需要參加這活動呢？"><a href="#為什麼需要參加這活動呢？" class="headerlink" title="為什麼需要參加這活動呢？"></a>為什麼需要參加這活動呢？</h2><p><img src="https://engineering.linecorp.com/wp-content/uploads/2021/06/3-1-1024x577.png" alt="LINE TECH FRESH 活動介紹"></p>
+<p>參加 LINE TECH FRESH 畢業分享會有許多好處：</p>
+<ul>
+<li><strong>實習生的親身經驗分享</strong>：每位講者都是 LINE 的實習生，他們將分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。為學生提供寶貴的第一手資訊，幫助大家更好地理解軟體工程的實際工作情況。</li>
+<li><strong>建立人脈</strong>：這是一個與業界實習的同學建立聯繫、擴大人脈的絕佳機會。將有機會與來自不同學校和背景的人建立聯繫，對各位的未來職業發展將非常有幫助。</li>
+<li>了解 LINE 的工作環境和文化：透過這次的分享會，學生將有機會深入了解 LINE 的工作環境和文化，這將幫助他們在選擇未來的職業道路時做出更明智的決定。</li>
+<li><strong>獲得寶貴的學習和職業發展建議</strong>：在分享會中，學生將有機會聽到實習生的經驗分享，並從空檔時間與講者交流，獲得寶貴的學習和職業發展建議。</li>
+<li><strong>激發創新思維</strong>：透過聽取實習生的分享，學生將有機會了解到最新的科技趨勢和創新思維，這將對學習和創新思維產生不同面向的影響。</li>
+</ul>
+<p>參加 TECH FRESH 畢業分享會將為各位提供一個寶貴的學習機會，更好地再工作以前了解軟體工程所需注意的眉眉角角，為未來職業發展鋪平道路。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這次的活動將會有以下幾個部分：</p>
+<ul>
+<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
+<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
+<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長解，讓你更深入地了解我們的實習生們的經驗和感想。</li>
+</ul>
+<h3 id="【活動時間表-x2F-流程】"><a href="#【活動時間表-x2F-流程】" class="headerlink" title="【活動時間表&#x2F; 流程】"></a>【活動時間表&#x2F; 流程】</h3><ul>
+<li>17:40~18:00 來賓報到</li>
+<li>18:00-18:05 主持人開場</li>
+<li>18:05-18:20 LINE TECH FRESH program introduction</li>
+<li>18:20-18:40 注意看兩個男人太狠了，從開發到部署一氣呵成！</li>
+<li>18:40-19:00 【查核】用謊言支撐起的虛構世界</li>
+<li>19:00-19:20 乘坐 TECH FRESH 龍舟，比 Full Stack 更滿的一條龍</li>
+<li>19:20-19:40 Enable Resiliency and Efficiency at LINE Invoice</li>
+<li>19:40-19:50 休息時間</li>
+<li>19:50-20:20 Lightning Talk<ul>
+<li>我覺得草莓尬肉粽不行：從草莓肉粽了解整合測試的重要性</li>
+<li>專案綁粽伙！展現紗線在 monorepo 的魔力</li>
+<li>發 PR 被同事「留言灌爆」！他只用這 2 方法解決，同事驚：輕鬆很多</li>
+<li>Wakuwaku!!!!!! 原來自然語言可以這樣玩</li>
+</ul>
+</li>
+<li>20:20-20:40 學長姐等來共</li>
+<li>20:40-21:00 大合照&#x2F;交流時間</li>
+</ul>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LINE TECH FRESH 畢業分享會正是為了鼓勵並支持這些年輕的科技人才，讓他們有機會展現自己的才華，分享他們的學習和工作經驗，並從中獲得寶貴的回饋和建議。</p>
+<p>這個活動不僅僅是一個分享會，更是一個學習、交流和成長的平台。參加這個活動的學生將有機會聽到來自 LINE TECH FRESH 的第一手經驗分享，了解 LINE 的工作環境和文化，從中獲得寶貴的學習和職業發展建議。此外，還將有機會與來自不同學校和背景的人建立聯繫、擴大人脈，這對各位的未來職業發展將非常有幫助。</p>
+<p>我們誠摯地邀請所有對科技有熱情的學生參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>，無論你是一位在學的學生，還是一位正在尋找職業發展方向的學生，我們都期待你的參與。讓我們一起在這個活動中學習、交流、成長，並為我們的未來創造更多可能。</p>
+<p>現在就報名參加 <a href="https://linegroup.kktix.cc/events/20230627-tech-fresh-gratudation">LINE TECH FRESH 畢業分享會</a>吧！期待你的到來！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>TECH FRESH</tag>
+        <tag>實習</tag>
+        <tag>LINE TECH FEESH</tag>
+        <tag>畢業分享會</tag>
+        <tag>實習經驗</tag>
+        <tag>LINE 工作環境</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Apple M2 本地跑 Stable Diffusion</title>
     <url>/2023/06/15/ml-stable-diffusion-practice/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -17236,6 +17182,60 @@ img[alt~="center"] {
         <tag>Stable Diffusion</tag>
         <tag>圖像生成</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>2023  Personal Review</title>
+    <url>/2023/12/23/nijia-2023-review/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg"></p>
+<h1 id="🐔-前言"><a href="#🐔-前言" class="headerlink" title="🐔 前言"></a>🐔 前言</h1><p>趁出國跨年之前來整理今年的一些事情，期許 2024 年的自己可以持續跨出舒適圈</p>
+<p>自覺自己是一個很反骨的個性，不喜歡被定義就是<code>怎樣怎樣</code>的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
+<span id="more"></span>
+
+<h1 id="🦉-心態轉換"><a href="#🦉-心態轉換" class="headerlink" title="🦉 心態轉換"></a>🦉 心態轉換</h1><p>我覺得這最重要，因此還是要放前面點 👀️ 。進入三十歲之後，有種該為什麼負責的感覺浮現上來：</p>
+<ul>
+<li>許多事情與話在發生之前，總是會先想下它後面帶來的後果到底是什麼？做&#x2F;看到事前需要思考前因後果，在心中盤旋，像是跳舞一樣，需要先算好接下來的節拍大概會怎麼走，讓每一件小事能夠更好的被執行</li>
+<li>今年一直感應不到成就感這件事，直到接觸到滑雪與滑板。一直對於自己運動學習能力相當有自信的我，居然會在這兩個運動上非常受挫，重新考驗自己在<strong>平衡</strong>上的控制力，也有種重新對於任何事情燃起鬥志的感覺</li>
+<li>開始注重自身的需求，今年發生了很嚴重的胃食道逆流，把自己搞超慘，因此很多時候也開始要挑著吃了，不能想到什麼就要開吃<ul>
+<li>但很多時候為了給自己心情好，就…………🎉️</li>
+</ul>
+</li>
+<li>如果不知道當下該怎麼辦才好，就將時間安排好，按表操課，時間會帶你去你該到的地方 (<a href="https://nijialin.com/2023/11/22/nijia-30-years-old-4-quarter/">人生過了三分之一，做點紀錄</a>)</li>
+<li>任何學習的東西都不會沒用，現在的所有選擇皆是過去點點所累積的，千萬別小看自己學的一切</li>
+</ul>
+<h1 id="🐳-工作上的挑戰"><a href="#🐳-工作上的挑戰" class="headerlink" title="🐳 工作上的挑戰"></a>🐳 工作上的挑戰</h1><ul>
+<li><p>從年初的 TECHPULSE，親身經歷與學習許多專案的眉角，在隕石飛來飛去情況下還是讓研討會順利舉辦 🎉️ 現場人流來了 1400 位左右，也讓同仁們可以有個很棒的演講環境！經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
+</li>
+<li><p>經歷了兩屆的內部畢業展，今年首次將 TECH FRESH 畢業分享會對外，讓畢業的同學能夠有一個活動幫自己在 LINE 的實習生涯畫下個完美句點，擁有一個屬於實習生的活動。也讓這個空間能夠擠下 80 位參加者 🎉️</p>
+</li>
+<li><p>下半年首度挑戰帶產品的專案，初期皆須要花上非常多時間去釐清與互相學習各種開發的習慣，希望這產品能夠越來越好，但既然還沒上線就之後再來分享經驗嚕！</p>
+</li>
+</ul>
+<blockquote>
+<p>今年也很感謝主管們的愛戴，拿了兩次的 spot bonus，讓我在挑戰不同 role 下還能夠被認可，無疑是對我職涯非常棒的推動力！</p>
+</blockquote>
+<h1 id="下班後-🎮🎿"><a href="#下班後-🎮🎿" class="headerlink" title="下班後 🎮🎿"></a>下班後 🎮🎿</h1><ul>
+<li><p>買了小時候最喜歡打的快打旋風，剛好在他出新的時候跟上購買，經歷過瘋狂的研究後，也終於抵達人生第一次玩遊戲抵達最高的牌位 - 白金，雖然後續陸續時間沒調整好，加上需要大量練習而停擺，但這也是個非常棒的經驗！</p>
+</li>
+<li><p>另一個目前很喜歡的運動 - 滑板，一開始加入目標只是為了可以幫助我加強滑雪的技能而買了衝浪滑板，再玩了一陣子之後忽然愛上了地形帶來的誘惑。經驗不夠在美堤滑板場想玩 J 台，太相信自己運動神經下結果摔進醫院急診，搞得自己整個月右腳都怪怪的。 <a href="https://nijialin.com/2023/10/26/skateboard-rainbow-park/">【滑板】彩虹輪狀車練習場道路指引</a></p>
+</li>
+<li><p>而後來買了二手技術板來玩，忽然就著了魔似的一直玩，但因為玩它除了地形外，接下來就是要會玩到輪胎離開地面的動作，想想也是非常的高風險，因此在看同事也去請教練交網球學新技能，自己也找了教練來教學，讓自己的基礎可以打穩之後再來陸續挑戰更難的招式，希望滑雪玩回來之後不要放棄這個運動 👀️</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://maps.app.goo.gl/i2FSt9AztSkuLiH78">滑板地圖清單</a></p>
+</blockquote>
+<h1 id="🎲-近期的體悟"><a href="#🎲-近期的體悟" class="headerlink" title="🎲 近期的體悟"></a>🎲 近期的體悟</h1><p>「<mark>價值是跟自己比，旁邊只是參考</mark>」：許多人喜歡各種比較薪水、環境、背景等等，但我想每個人的生活跟成長歷程都不同，不可同期比較，或許大家物以類聚，但終究對手還是自己，如果在當下很努力了卻也沒獲得自認的相對價值，那我相信去其他地方一定可以找到更適合自己的位置。</p>
+<blockquote>
+<p>不論是工作、運動、感情…etc</p>
+</blockquote>
+<p>「<mark>堅持下去</mark>」：去年陪著準備英文，本來以為自己會中斷，結果就持續在 Cambly 堅持到現在了，剛好在專案上也需要跟英文很好的韓國人對口，也讓我在溝通上至少不會怕了，盡可能的表達自己的需求，畢竟大家都不是 native，先怕就輸了！</p>
+<blockquote>
+<p>現在的成就，是過去的種種累積起來的，學的東西都不會沒用，總有一天會用到它</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
   </entry>
   <entry>
     <title>人生過了三分之一，做點紀錄</title>
@@ -17404,42 +17404,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【入坑記】衝浪滑板</title>
-    <url>/2023/10/01/surfing-skateboard-rookie/</url>
-    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475307204158423368.png" alt="surfing skateboard"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
-<span id="more"></span>
-
-<h1 id="想那麼多幹嘛？買"><a href="#想那麼多幹嘛？買" class="headerlink" title="想那麼多幹嘛？買"></a>想那麼多幹嘛？買</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303260036006002.png"></p>
-<blockquote>
-<p>剛買它的第一天 2023&#x2F;9&#x2F;28</p>
-</blockquote>
-<p>我是在內湖的 ALL RIDE 購買 <a href="https://www.allride.com.tw/product/detail/15354">Hydroponic Fish 31.5” x 9.75” 衝浪滑板</a>，我的板子本身是 32” 的，店員提到差 0.5”是沒啥差的，主要還是在輪子跟靈敏度需要什麼，在考量上我可能會在河濱公園玩滑板(有柏油的地方)，因此推薦起來我還是選擇靈敏度低些，有些時候需要自主加速的衝浪板。</p>
-<p>剛來到店裡時店員臉真的很跩很有距離感 😆，但其實聊起來只是非常的做自己而已，只要稍微知道自己想購買的方向，但有許多不清楚的地方，都可以請他跟你解釋，當店員講完時就會發現自己想要的是什麼，幫助你選擇可以更快喔！但因為我一開始就打算買最便宜的(NTD 6,800)，因此我就以這款為主跟他討論～</p>
-<blockquote>
-<p>至於為什麼滑板店員臉都很跩，可以看看下面的影片 XD</p>
-</blockquote>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vr_jyGYcqS8?si=6orijF-txomUW5OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h1 id="護具：降低受傷的風險"><a href="#護具：降低受傷的風險" class="headerlink" title="護具：降低受傷的風險"></a>護具：降低受傷的風險</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303237705793734.png" alt="迪卡儂"></p>
-<p>護具我本來想皮不想戴，但想想如果都只基本滑行好像滿弱的？因此這邊跟大家了起來覺得可以先買個基本的全套 <strong>(手掌、護肘、護膝)</strong> ，至少要先保護好關節，誰知道初學一次的噴飛摔下去受傷會噴多少錢修復呢？因此我就先買個基本的保護著。</p>
-<blockquote>
-<p>護具在我玩的第三天就發會功用，我在學著 kick turn 時滑掉，在我下去時就剛好磨到手掌的地方，真的是好險有帶著，只是屁股剛好沒有防摔褲，寫文章✍️的當下，半邊水蜜桃還是受傷的狀態🥲</p>
-</blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303716225548738.png"></p>
-<p>雖然入坑真的是不便宜，荷包君再次哭泣，不過整體的體驗算是滿讚的，尤其練習平衡感以及各種轉彎真的是耗盡本肥宅的洪荒之力，每次出去玩都大噴汗，希望可以讓我稍微地瘦身一些些😆，更多內容就先讓我把水蜜桃的摔傷養好，後續再來繼續分享心得！</p>
-]]></content>
-      <categories>
-        <category>日記</category>
-      </categories>
-      <tags>
-        <tag>Skateboard</tag>
-        <tag>Surfing</tag>
-        <tag>路滑</tag>
-        <tag>運動</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【雪之忍法帖】白馬滑雪旅程雜記</title>
     <url>/2024/01/06/snowboarding-2023-to-2024/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2024/snowboard/DCDC9CA0-4FAB-4F1D-9A92-BF8A14FFFED9.jpg"></p>
@@ -17493,6 +17457,42 @@ img[alt~="center"] {
       <tags>
         <tag>Japan</tag>
         <tag>Snowboard</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【入坑記】衝浪滑板</title>
+    <url>/2023/10/01/surfing-skateboard-rookie/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475307204158423368.png" alt="surfing skateboard"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
+<span id="more"></span>
+
+<h1 id="想那麼多幹嘛？買"><a href="#想那麼多幹嘛？買" class="headerlink" title="想那麼多幹嘛？買"></a>想那麼多幹嘛？買</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303260036006002.png"></p>
+<blockquote>
+<p>剛買它的第一天 2023&#x2F;9&#x2F;28</p>
+</blockquote>
+<p>我是在內湖的 ALL RIDE 購買 <a href="https://www.allride.com.tw/product/detail/15354">Hydroponic Fish 31.5” x 9.75” 衝浪滑板</a>，我的板子本身是 32” 的，店員提到差 0.5”是沒啥差的，主要還是在輪子跟靈敏度需要什麼，在考量上我可能會在河濱公園玩滑板(有柏油的地方)，因此推薦起來我還是選擇靈敏度低些，有些時候需要自主加速的衝浪板。</p>
+<p>剛來到店裡時店員臉真的很跩很有距離感 😆，但其實聊起來只是非常的做自己而已，只要稍微知道自己想購買的方向，但有許多不清楚的地方，都可以請他跟你解釋，當店員講完時就會發現自己想要的是什麼，幫助你選擇可以更快喔！但因為我一開始就打算買最便宜的(NTD 6,800)，因此我就以這款為主跟他討論～</p>
+<blockquote>
+<p>至於為什麼滑板店員臉都很跩，可以看看下面的影片 XD</p>
+</blockquote>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vr_jyGYcqS8?si=6orijF-txomUW5OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h1 id="護具：降低受傷的風險"><a href="#護具：降低受傷的風險" class="headerlink" title="護具：降低受傷的風險"></a>護具：降低受傷的風險</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303237705793734.png" alt="迪卡儂"></p>
+<p>護具我本來想皮不想戴，但想想如果都只基本滑行好像滿弱的？因此這邊跟大家了起來覺得可以先買個基本的全套 <strong>(手掌、護肘、護膝)</strong> ，至少要先保護好關節，誰知道初學一次的噴飛摔下去受傷會噴多少錢修復呢？因此我就先買個基本的保護著。</p>
+<blockquote>
+<p>護具在我玩的第三天就發會功用，我在學著 kick turn 時滑掉，在我下去時就剛好磨到手掌的地方，真的是好險有帶著，只是屁股剛好沒有防摔褲，寫文章✍️的當下，半邊水蜜桃還是受傷的狀態🥲</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p><img src="https://raw.githubusercontent.com/louis70109/ideas-tree/master/images/475303716225548738.png"></p>
+<p>雖然入坑真的是不便宜，荷包君再次哭泣，不過整體的體驗算是滿讚的，尤其練習平衡感以及各種轉彎真的是耗盡本肥宅的洪荒之力，每次出去玩都大噴汗，希望可以讓我稍微地瘦身一些些😆，更多內容就先讓我把水蜜桃的摔傷養好，後續再來繼續分享心得！</p>
+]]></content>
+      <categories>
+        <category>日記</category>
+      </categories>
+      <tags>
+        <tag>Skateboard</tag>
+        <tag>Surfing</tag>
+        <tag>路滑</tag>
+        <tag>運動</tag>
       </tags>
   </entry>
   <entry>
