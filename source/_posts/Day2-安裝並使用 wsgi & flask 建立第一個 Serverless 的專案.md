@@ -1,5 +1,5 @@
 ---
-title: Day2 - 安裝並使用 wsgi & flask 建立第一個 Serverless 的專案
+title: Day2 - 安裝並使用 wsgi 以及 flask 建立第一個 Serverless 的專案
 tags:
   - Serverless
   - python
