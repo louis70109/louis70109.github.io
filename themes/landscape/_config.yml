@@ -42,6 +42,13 @@ keywords: "NiJia LINE nijialin python cloud backend"
 # Set rss to specific value if you have burned your feed already.
 rss:
 
+# RSS feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 0 # 最大文章數量
+  content: false # 是否顯示內文
+
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
