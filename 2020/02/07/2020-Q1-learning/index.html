@@ -28,25 +28,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！ 去年 COSCUP 我曾經在 GDG 上分享 【GCCP Creator】增加字幕編輯的效率！，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子">
+  <meta name="description" content="前言礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。 實作項目Docker &amp; Docker-Compose我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間">
-<meta property="og:url" content="https://nijialin.com/2023/05/14/Openai-Speech-to-text-SRT-translations/index.html">
+<meta property="og:title" content="2020 一、二月的學習紀錄">
+<meta property="og:url" content="https://nijialin.com/2020/02/07/2020-Q1-learning/index.html">
 <meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！ 去年 COSCUP 我曾經在 GDG 上分享 【GCCP Creator】增加字幕編輯的效率！，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子">
+<meta property="og:description" content="前言礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。 實作項目Docker &amp; Docker-Compose我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Docker">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://nijialin.com/images/2023/vlc.png">
-<meta property="og:image" content="https://nijialin.com/images/2023/vlc.png">
-<meta property="article:published_time" content="2023-05-14T01:13:15.000Z">
-<meta property="article:modified_time" content="2024-02-13T07:11:48.424Z">
+<meta property="og:image" content="https://i.imgur.com/0uMmQBV.jpg">
+<meta property="article:published_time" content="2020-02-07T17:28:42.000Z">
+<meta property="article:modified_time" content="2023-06-25T07:39:17.966Z">
 <meta property="article:author" content="NiJia Lin">
-<meta property="article:tag" content="OpenAI">
-<meta property="article:tag" content="SRT">
-<meta property="article:tag" content="Whisper">
+<meta property="article:tag" content="日記">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="LINE SDK">
+<meta property="article:tag" content="AWS">
+<meta property="article:tag" content="Netflix">
+<meta property="article:tag" content="Lint">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nijialin.com/images/2023/vlc.png">
+<meta name="twitter:image" content="https://i.imgur.com/0uMmQBV.jpg">
 
-<link rel="canonical" href="https://nijialin.com/2023/05/14/Openai-Speech-to-text-SRT-translations/">
+<link rel="canonical" href="https://nijialin.com/2020/02/07/2020-Q1-learning/">
 
 
 <script id="page-configurations">
@@ -59,7 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   };
 </script>
 
-  <title>SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間 | 忍者工坊</title>
+  <title>2020 一、二月的學習紀錄 | 忍者工坊</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
     <script>
@@ -216,7 +218,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2023/05/14/Openai-Speech-to-text-SRT-translations/">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/07/2020-Q1-learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
@@ -229,7 +231,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間
+          2020 一、二月的學習紀錄
         </h1>
 
         <div class="post-meta">
@@ -239,14 +241,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2023-05-14 01:13:15" itemprop="dateCreated datePublished" datetime="2023-05-14T01:13:15+00:00">2023-05-14</time>
+              <time title="創建時間：2020-02-07 17:28:42" itemprop="dateCreated datePublished" datetime="2020-02-07T17:28:42+00:00">2020-02-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-02-13 07:11:48" itemprop="dateModified" datetime="2024-02-13T07:11:48+00:00">2024-02-13</time>
+                <time title="修改時間：2023-06-25 07:39:17" itemprop="dateModified" datetime="2023-06-25T07:39:17+00:00">2023-06-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +256,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
                 </span>
             </span>
 
@@ -269,52 +271,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://nijialin.com/images/2023/vlc.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！</p>
-<p>去年 COSCUP 我曾經在 GDG 上分享 <a href="https://nijialin.com/2022/08/20/gccp-creator-cc-subtitle/">【GCCP Creator】增加字幕編輯的效率！</a>，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子中，許多時候他都能清楚地判斷出來，因此以下我就把一些近期找到的工具分享給大家，若有想把各種影片加上字幕的話，或許可以參考以下方式看看喔！</p>
-<span id="more"></span>
-
-<h1 id="decipher"><a href="#decipher" class="headerlink" title="decipher"></a><a target="_blank" rel="noopener" href="https://github.com/dsymbol/decipher">decipher</a></h1><p>它是一個透過 Whisper API 的工具，不太確定為什麼不需要提供使用者的 OpenAI API Key(佛心來著)，初步看 Code 也沒有上傳任何東西，但總之在 Speech-To-Text 上的判斷也不錯，以下就介紹給大家使用</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git+https:<span class="regexp">//gi</span>thub.com<span class="regexp">/dsymbol/</span>decipher</span><br></pre></td></tr></table></figure>
-
-<p>因為是使用 python 安裝的緣故，故以下指令都會用 <code>python -m decipher</code> 執行。</p>
-<p>接下來透過以下指令，把指定的音檔透過模型(small)來語音轉文字的 SRT</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m decipher transcribe -i ~<span class="string">/Users/</span>使用者名稱<span class="string">/Desktop/result/example.mp4</span> <span class="params">--model</span> small</span><br></pre></td></tr></table></figure>
-
-<p>一般來說檔案位置都會在 <code>/Users/使用者名稱/Destop/result/</code> 裡面。</p>
-<blockquote>
-<p>如果是轉其他語系，並且需要把它轉出中文字，可以參考以下步驟。</p>
-</blockquote>
-<h2 id="srt-gpt-translator"><a href="#srt-gpt-translator" class="headerlink" title="srt-gpt-translator"></a><a target="_blank" rel="noopener" href="https://github.com/jesselau76/srt-gpt-translator">srt-gpt-translator</a></h2><blockquote>
-<p>他會將需判斷的長度控制在  1024 characters 之間(OpenAI 限制)，因此有些長度若過長，可能會有判斷失準的風險。<br><a target="_blank" rel="noopener" href="https://github.com/jesselau76/srt-gpt-translator/blob/main/README-zh.md">中文文件</a></p>
-</blockquote>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull git@github<span class="selector-class">.com</span>:jesselau76/srt-gpt-translator<span class="selector-class">.git</span></span><br><span class="line">cd srt-gpt-translator</span><br><span class="line">pip install -r requirements<span class="selector-class">.txt</span></span><br><span class="line">mv settings<span class="selector-class">.cfg</span><span class="selector-class">.example</span> settings<span class="selector-class">.cfg</span></span><br><span class="line">vim settings.cfg</span><br></pre></td></tr></table></figure>
-
-<p>將settings.cfg 裡的環境變數 openai-apikey 改為你自己的 sk-xxxxxxx (OpenAI API Key)後，設定<code>target-language</code>(預設中文)，儲存並執行以下：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 srt_translation.py ~<span class="regexp">/Users/</span>使用者名稱<span class="regexp">/Desktop/</span>result/example.srt</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>這邊因為真的是 API 一個一個 call，因此會執行比較長的時間。</p>
-</blockquote>
-<p>完成之後總共會有三個黨名：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Example<span class="selector-class">.srt</span></span><br><span class="line">Example_translated<span class="selector-class">.srt</span></span><br><span class="line">Example_translated_bilingual.srt</span><br></pre></td></tr></table></figure>
-
-<p>假設你的 <code>Example.srt</code> 是日文的話， <code>Example_translated.srt</code> 就是中文， <code>Example_translated_bilingual.srt</code> 則是日中合體。</p>
-<p>在這個 Project 中有設定 Retry 機制，如果有一段話透過 OpenAI 處理超過 60 秒，則會 Retry 一次，若三次就使用原本的字串，以我的經驗來說，就有一些還是原本的語言，如果很依賴字幕的情況下，可能會有點疑惑…🧐</p>
-<p>但畢竟都是靠程式跟AI在跑，因此若只是自己想看的影片或是公司內部的訓練影片需要，或許一些沒完整的地方可能是可以接受的，。因此大家在使用時就自行評估能接受到的程度到哪～</p>
-<blockquote>
-<p>如果要精細的話還是需要花錢的💰💰💰</p>
-</blockquote>
-<h2 id="使用-decipher-ffmpeg-自動判斷並-embedding"><a href="#使用-decipher-ffmpeg-自動判斷並-embedding" class="headerlink" title="使用 decipher + ffmpeg 自動判斷並 embedding"></a>使用 decipher + ffmpeg 自動判斷並 embedding</h2><script src="https://gist.github.com/louis70109/e6050062c23b23714f942c8663859309.js"></script>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就可以用 VLC 來播放含有字幕的檔案，就可以看有字幕的版本了。</p>
-<p><img src="https://nijialin.com/images/2023/vlc.png"></p>
-<p>但如果想要輸出影片成另一支影片，目前手頭上的可以使用 Premiere Pro(需付費)，威力導演不確定(感覺可以)</p>
+        <p><img src="https://i.imgur.com/0uMmQBV.jpg" alt="learn records"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。</p>
+<h1 id="實作項目"><a href="#實作項目" class="headerlink" title="實作項目"></a>實作項目</h1><h2 id="Docker-amp-Docker-Compose"><a href="#Docker-amp-Docker-Compose" class="headerlink" title="Docker &amp; Docker-Compose"></a>Docker &amp; Docker-Compose</h2><p>我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Dockerfile 的內容了解度也提升了許多(實在是個不錯的方法 👍)，會這樣子弄的原因是我認為 Serverless 的架構很容易被 AWS 綁架，我認為 API 這類可拆出來的功能應該要包成 container 增加彈性不讓平台限制，被這個想法 trigger 後就來好好練習 Docker 了 🏋️‍♂️。</p>
+<p>這次使用 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a> 做我的練習對象，裡面主要用了 <code>node</code> 以及 <code>mongo</code> 兩個服務，在此同時如果各別起 docker 挺麻煩，因此就需要使用 <code>docker-compose</code> 幫忙啟動，而在這過程中學到了:</p>
 <ul>
-<li>QuickTime Player：還沒測試出來，但也無法 Export 一個新檔案</li>
-<li>iMovie: 無法 Import SRT 字幕以及無法 Export 一個新檔案</li>
+<li>把 Dockerfile 遷移到 docker-compose 上 (<del>如何複製別人的檔案(大誤)</del>)。</li>
+<li>藉由 docker-compose 裡面的 <code>network</code> 連接兩個容器的使用方法。</li>
+<li>Google container-registry 上傳以及 gcloud 過期的 docker 使用方法(<a target="_blank" rel="noopener" href="https://cloud.google.com/container-registry/docs/support/deprecation-notices">參考</a>)，同時也修正後可以使用 docker 的原生指令將 container 送上 Google。</li>
 </ul>
-<p>最後就到這邊，自從有了 OpenAI 之後許多事情都變了很方便，若有任何新點子，歡迎底下留言給我，我會盡快回答各位的！</p>
+<p>接下來就是趁六月 credit 過期前趕快來玩玩 Google Kubernetes 🚀</p>
+<h2 id="AWS-IoT-Job"><a href="#AWS-IoT-Job" class="headerlink" title="AWS IoT Job"></a>AWS IoT Job</h2><p>最近在公司實作 AWS IoT Job 部分的功能(以下稱為 Job)，因為 Job 每次執行收費約 1 塊台幣，之所以會用它是因為在 IoT 執行時不是只會單純發送訊號出來讓後台收訊號做事，而是需要跟後台經過一連串的溝通來達成功能(例如 <code>韌體更新</code>)，當然還有很多更複雜的功能，這邊只列舉一個小部分。</p>
+<p>從這段時間的實作上學到的部分:</p>
+<h3 id="裝置工作列表"><a href="#裝置工作列表" class="headerlink" title="裝置工作列表"></a>裝置工作列表</h3><p>當後台的 Queue 同時塞進很多工作時要如何管理並通知裝置此時的工作有哪些(All Job)以及要做哪件事(Next Job)，實作這功能時不能只考慮到一個裝置，而是考慮到 N 個裝置時要如何過濾並管理狀態機，限制裝置要依照狀態執行避免系統錯亂。</p>
+<h3 id="平台化"><a href="#平台化" class="headerlink" title="平台化"></a>平台化</h3><p>之前主要功能都是介接 AWS IoT，而這次是要實作一個類似的功能提供給其他使用者，不能只開一個 API 就想要功能都包好，而是將功能明確劃分，讓使用者可以有彈性的去組合，只是在此時我沒有處理得很好，之後的 Task 需要更注意。</p>
+<h2 id="LINE-SDK-Narrowcast-Client-API"><a href="#LINE-SDK-Narrowcast-Client-API" class="headerlink" title="LINE SDK - Narrowcast Client API"></a>LINE SDK - Narrowcast Client API</h2><blockquote>
+<p>參考 Pull Request: <a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python/pull/237">Add narrowcast client api #237</a></p>
+</blockquote>
+<h3 id="工廠模式"><a href="#工廠模式" class="headerlink" title="工廠模式"></a>工廠模式</h3><p>功能主要是讓開發者可以透過 API 來做分眾的推播，在實作這個 issue 時讓我原本模糊的工廠模式清晰了許多，主要是 SDK 使用了 Python Class 來擔任 Model 的角色，讓進來資料可以經過 model 去轉換成對應的 key-value，所有的資料都分類進去對應的工廠處理完再回傳出來。</p>
+<p>在還沒開始看 code 前只想著要寫什麼邏輯去處理，其實使用 Model 的方法就處理掉大部分資料格式的問題，很多 LINE 文件已經清楚定義的格式只要照著填就解決了，只是在這個 Task 遇到了<code>Python 保留字</code>的問題，而經過各種 google 後只好自己寫邏輯去判斷掉這件事，之後只能繼續看有沒有更好的寫法可以取代掉這個<code>保留字</code>的問題。</p>
+<h3 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h3><p>官方 Github 有寫要 Contribute 時需要執行的內容(<a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python#contributing">參考</a>)，lint 則是遵照<code>flake8</code>，而執行<code>tox</code>後會對每個版本的 python 去做測試，但像我電腦只有 3.7 版 tox 就只會針對這個版本做測試。</p>
+<ul>
+<li>在這件事上學到的 <code>tab</code> 與 <code>空白鍵(space)</code> 的差異，<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">PEP-08</a> 上也告訴建議使用<code>空白鍵</code>，而 python 3 之後也不允許兩個混用，畢盡 python 是很注重縮排，既然官網都寫了哪有不遵守的道理呢？😃</li>
+</ul>
+<blockquote>
+<p>Lint 也不會無緣無故來刁難開發者 XD</p>
+</blockquote>
+<ul>
+<li>內部函式(Class、Function)都需要再第一行下註解，而會這樣用的因素可能在 python 上並沒有 <code>public</code>、<code>private</code> 的觀念，透過這樣的方法來表示它(Class、Function)是一個內部函式，藉由 Lint 讓開發者可以知道這個功能是內部還外部，只是在 python 只能使用這個 lint 讓大家遵守這規則，如果沒有 CI 要硬上的話其實也管不住，畢竟不像 golang 這類語言會編譯(汗顏)。</li>
+</ul>
+<p>總之使用 lint 的好處就是開發風格可以統一，能夠盡量避免不必要的 programing 麻煩，在寫任何語言都推薦使用各個語言的 lint，雖然一開始會很討厭它，但它真的是在幫助你 😆。</p>
+<h2 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h2><p>這時間與家人一起訂閱了一年份的會員，而我的初衷就是想把英文學好，而我也花了時間好好的看完一部全英文影集(發英與字幕)，第一次嘗試這樣看全英文，並且邊看邊 Google 翻譯不懂的單字同時口述跟著念一遍增加記憶力，隨著工作量減輕後下班也可以再安排時間繼續看下個影集學了～</p>
+<blockquote>
+<p>然後迷上了<code>愛的迫降</code>這個韓劇，推薦喜歡看愛情片的朋友去看 ❤️</p>
+</blockquote>
+<h2 id="武漢肺炎"><a href="#武漢肺炎" class="headerlink" title="武漢肺炎"></a>武漢肺炎</h2><p>最近剛好因為這傳染病盛行，除了防疫之餘，g0v 也提供 API 讓開發者可以拿去介接，隨著大家各種開發前端 web 以及 chatbot …的應用後本來在想有個什麼想法可以參與這個全民黑客松，只是我認為用途實在重複性太高，而在大家開發應用時我又剛好在寫 LINE SDK，錯失了第一時間發佈口罩相關的服務建立時間，本來想到 LIFF v2 + LINE Notify，但只是在使用上很容易吵到用戶進而封鎖它(LINE Notify)，因此要考慮好功能再來看會不會有比較好的使用情境。</p>
+<blockquote>
+<p>出入公共場所記得戴口罩，有帶隨身瓶酒精的記得消毒！😷</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>有時候在思考與規劃的過程中如果經驗不夠時真的很難馬上到位，不過任何事情都一樣，若這件事可以輕鬆且又得心應手，代表它可能已經是你熟悉的領域或是過於簡單，就像我一開始處理社群一樣，若是沒有前輩們帶著走的話我跟本無法有效地處理事情，總之凡是起頭難，即早加入即早熟悉各個領域才是王道 😆</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/iot/latest/developerguide/iot-rule-actions.html">AWS IoT 觸發後可以執行的功能</a><br><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/iot/latest/developerguide/events-jobs.html">Job Events</a><br><a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">Tab 與 space 的差異(PEP-08)</a></p>
 
     </div>
 
@@ -325,9 +321,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/OpenAI/" rel="tag"><i class="fa fa-tag"></i> OpenAI</a>
-              <a href="/tags/SRT/" rel="tag"><i class="fa fa-tag"></i> SRT</a>
-              <a href="/tags/Whisper/" rel="tag"><i class="fa fa-tag"></i> Whisper</a>
+              <a href="/tags/%E6%97%A5%E8%A8%98/" rel="tag"><i class="fa fa-tag"></i> 日記</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/LINE-SDK/" rel="tag"><i class="fa fa-tag"></i> LINE SDK</a>
+              <a href="/tags/AWS/" rel="tag"><i class="fa fa-tag"></i> AWS</a>
+              <a href="/tags/Netflix/" rel="tag"><i class="fa fa-tag"></i> Netflix</a>
+              <a href="/tags/Lint/" rel="tag"><i class="fa fa-tag"></i> Lint</a>
           </div>
 
         
@@ -336,12 +335,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/13/google-io-note-2023-firebase/" rel="prev" title="【Google I/O】筆記 | Firebase & 其他紀錄 🥷">
-      <i class="fa fa-chevron-left"></i> 【Google I/O】筆記 | Firebase & 其他紀錄 🥷
+    <a href="/2020/02/01/node-gyp-rebuild-error/" rel="prev" title="解決 node-gyp rebuild error 問題">
+      <i class="fa fa-chevron-left"></i> 解決 node-gyp rebuild error 問題
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/05/29/line-tech-fresh-graduate-2023-introduction/" rel="next" title="TECH FRESH 畢業分享會：探索 2022 屆實習生的故事">
-      TECH FRESH 畢業分享會：探索 2022 屆實習生的故事 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/02/15/serverless-cold-start/" rel="next" title="Serverless cold start 問題">
+      Serverless cold start 問題 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -409,7 +408,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#decipher"><span class="nav-number">2.</span> <span class="nav-text">decipher</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#srt-gpt-translator"><span class="nav-number">2.1.</span> <span class="nav-text">srt-gpt-translator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-decipher-ffmpeg-%E8%87%AA%E5%8B%95%E5%88%A4%E6%96%B7%E4%B8%A6-embedding"><span class="nav-number">2.2.</span> <span class="nav-text">使用 decipher + ffmpeg 自動判斷並 embedding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C%E9%A0%85%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">實作項目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-amp-Docker-Compose"><span class="nav-number">2.1.</span> <span class="nav-text">Docker &amp; Docker-Compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT-Job"><span class="nav-number">2.2.</span> <span class="nav-text">AWS IoT Job</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%9D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E5%88%97%E8%A1%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">裝置工作列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E5%8C%96"><span class="nav-number">2.2.2.</span> <span class="nav-text">平台化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LINE-SDK-Narrowcast-Client-API"><span class="nav-number">2.3.</span> <span class="nav-text">LINE SDK - Narrowcast Client API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%BB%A0%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.1.</span> <span class="nav-text">工廠模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lint"><span class="nav-number">2.3.2.</span> <span class="nav-text">Lint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netflix"><span class="nav-number">2.4.</span> <span class="nav-text">Netflix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A6%E6%BC%A2%E8%82%BA%E7%82%8E"><span class="nav-number">2.5.</span> <span class="nav-text">武漢肺炎</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">參考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

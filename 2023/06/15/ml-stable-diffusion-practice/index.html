@@ -36,8 +36,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:description" content="apple&#x2F;ml-stable-diffusion 介紹由 Apple 官方提供，讓 Mac 的用戶能夠在自己電腦上跑 stable diffusion，由於我只有基本的 python 環境，因此以下就從頭開始的操作步驟：">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://nijialin.com/images/common.jpeg">
-<meta property="article:published_time" content="2023-06-15T15:41:44.000Z">
-<meta property="article:modified_time" content="2024-02-13T07:11:48.432Z">
+<meta property="article:published_time" content="2023-06-15T07:41:44.000Z">
+<meta property="article:modified_time" content="2023-06-15T07:41:44.704Z">
 <meta property="article:author" content="NiJia Lin">
 <meta property="article:tag" content="Mac">
 <meta property="article:tag" content="M2">
@@ -239,15 +239,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2023-06-15 15:41:44" itemprop="dateCreated datePublished" datetime="2023-06-15T15:41:44+00:00">2023-06-15</time>
+              <time title="創建時間：2023-06-15 07:41:44" itemprop="dateCreated datePublished" datetime="2023-06-15T07:41:44+00:00">2023-06-15</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-02-13 07:11:48" itemprop="dateModified" datetime="2024-02-13T07:11:48+00:00">2024-02-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -277,10 +270,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li>官方是使用 bash，我個人是 zsh</li>
 </ul>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.<span class="keyword">com</span>/miniconda/Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">sh</span> Miniconda3-latest-MacOSX-x86_64.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">wget</span> https://repo.anaconda.com/miniconda/Miniconda<span class="number">3</span>-latest-MacOSX-x<span class="number">86</span>_<span class="number">64</span>.sh</span><br><span class="line"><span class="attribute">sh</span> Miniconda<span class="number">3</span>-latest-MacOSX-x<span class="number">86</span>_<span class="number">64</span>.sh</span><br><span class="line"><span class="attribute">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
 
 <h2 id="透過-conda-建立-namespace"><a href="#透過-conda-建立-namespace" class="headerlink" title="透過 conda 建立 namespace"></a>透過 conda 建立 namespace</h2><p>我是安裝 Python3.9</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion python=3.9 -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:apple/ml-stable-diffusion.git</span><br><span class="line"><span class="built_in">cd</span> ml-stable-diffusion</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n coreml_stable_diffusion <span class="attr">python=</span><span class="number">3.9</span> -y</span><br><span class="line">conda activate coreml_stable_diffusion</span><br><span class="line">git <span class="keyword">clone</span> <span class="title">git</span>@github.com:apple/ml-stable-diffusion.git</span><br><span class="line">cd ml-stable-diffusion</span><br></pre></td></tr></table></figure>
 
 <h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p>因為我有指定的 python3 版本，因此另外指定使用 pip3</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> -e .</span><br></pre></td></tr></table></figure>
@@ -289,7 +282,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m python_coreml_stable_diffusion.torch2coreml --<span class="built_in">convert</span>-unet --<span class="built_in">convert</span>-<span class="built_in">text</span>-encoder --<span class="built_in">convert</span>-vae-decoder --<span class="built_in">convert</span>-safety-checker -o .</span><br></pre></td></tr></table></figure>
 
 <h2 id="開始下-prompt"><a href="#開始下-prompt" class="headerlink" title="開始下 prompt!"></a>開始下 prompt!</h2><p>接下來跑以下的指令下 prompt，如果英文苦手，可以先到 ChatGPT 上打完中文，請它翻譯給你再貼上：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m python_coreml_stable_diffusion<span class="selector-class">.pipeline</span> <span class="attr">--prompt</span> &quot;Draw me <span class="selector-tag">a</span> high-quality dog in <span class="selector-tag">a</span> watercolor style&quot; -<span class="selector-tag">i</span> . -o . <span class="attr">--compute-unit</span> <span class="attribute">ALL</span> <span class="attr">--seed</span> <span class="number">93</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">python3</span> -<span class="string">m</span> <span class="string">python_coreml_stable_diffusion</span>.<span class="string">pipeline</span> <span class="built_in">--prompt</span> <span class="string">&quot;Draw me a high-quality dog in a watercolor style&quot;</span> -<span class="string">i</span> . -<span class="string">o</span> . <span class="built_in">--compute-unit</span> <span class="string">ALL</span> <span class="built_in">--seed</span> <span class="string">93</span></span><br></pre></td></tr></table></figure>
 
 <p>它會在你指定的輸出目錄環境(<code>-o</code>)，使用你的 prompt 去建立一個資料夾名字，如上面的指令來說會變成以下</p>
 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./Draw_me_<span class="built_in">a_high</span>-quality_dog_in_<span class="built_in">a_watercolor</span>_style</span><br></pre></td></tr></table></figure>

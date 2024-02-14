@@ -28,27 +28,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言 近期 Messaging API 釋出了許久以前期待的 API - 回覆訊息(Quote Message)，讓 LINE Bot 回覆用戶時可以指定特定訊息(如上圖)，在生成式 AI 當下是個非常好用的一個功能(AI 需要運算時間)，接下來就快速跟大家介紹一下相關功能以及操作方式！  新聞：You can now send and receive quote messages using t">
+  <meta name="description" content="前言隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！ 去年 COSCUP 我曾經在 GDG 上分享 【GCCP Creator】增加字幕編輯的效率！，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何有效使用 Quote Message">
-<meta property="og:url" content="https://nijialin.com/2023/10/08/line-bot-quote-message-reply-later/index.html">
+<meta property="og:title" content="SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間">
+<meta property="og:url" content="https://nijialin.com/2023/05/13/Openai-Speech-to-text-SRT-translations/index.html">
 <meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言 近期 Messaging API 釋出了許久以前期待的 API - 回覆訊息(Quote Message)，讓 LINE Bot 回覆用戶時可以指定特定訊息(如上圖)，在生成式 AI 當下是個非常好用的一個功能(AI 需要運算時間)，接下來就快速跟大家介紹一下相關功能以及操作方式！  新聞：You can now send and receive quote messages using t">
+<meta property="og:description" content="前言隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！ 去年 COSCUP 我曾經在 GDG 上分享 【GCCP Creator】增加字幕編輯的效率！，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://nijialin.com/images/2023/quote/1.png">
-<meta property="og:image" content="https://nijialin.com/images/2023/quote/2.png">
-<meta property="og:image" content="https://qr-official.line.me/gs/M_908lugfe_BW.png">
-<meta property="article:published_time" content="2023-10-08T00:01:20.000Z">
-<meta property="article:modified_time" content="2024-02-13T07:11:48.428Z">
+<meta property="og:image" content="https://nijialin.com/images/2023/vlc.png">
+<meta property="og:image" content="https://nijialin.com/images/2023/vlc.png">
+<meta property="article:published_time" content="2023-05-13T17:13:15.000Z">
+<meta property="article:modified_time" content="2023-05-19T07:50:30.879Z">
 <meta property="article:author" content="NiJia Lin">
-<meta property="article:tag" content="LINE Bot">
-<meta property="article:tag" content="Quote Message">
-<meta property="article:tag" content="回覆訊息">
-<meta property="article:tag" content="Push Message">
+<meta property="article:tag" content="OpenAI">
+<meta property="article:tag" content="SRT">
+<meta property="article:tag" content="Whisper">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nijialin.com/images/2023/quote/1.png">
+<meta name="twitter:image" content="https://nijialin.com/images/2023/vlc.png">
 
-<link rel="canonical" href="https://nijialin.com/2023/10/08/line-bot-quote-message-reply-later/">
+<link rel="canonical" href="https://nijialin.com/2023/05/13/Openai-Speech-to-text-SRT-translations/">
 
 
 <script id="page-configurations">
@@ -61,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   };
 </script>
 
-  <title>如何有效使用 Quote Message | 忍者工坊</title>
+  <title>SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間 | 忍者工坊</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
     <script>
@@ -218,7 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2023/10/08/line-bot-quote-message-reply-later/">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2023/05/13/Openai-Speech-to-text-SRT-translations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
@@ -231,7 +229,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何有效使用 Quote Message
+          SRT 字幕輸出工具介紹 - 中英日韓文不求人！但求時間
         </h1>
 
         <div class="post-meta">
@@ -241,14 +239,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2023-10-08 00:01:20" itemprop="dateCreated datePublished" datetime="2023-10-08T00:01:20+00:00">2023-10-08</time>
+              <time title="創建時間：2023-05-13 17:13:15" itemprop="dateCreated datePublished" datetime="2023-05-13T17:13:15+00:00">2023-05-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-02-13 07:11:48" itemprop="dateModified" datetime="2024-02-13T07:11:48+00:00">2024-02-13</time>
+                <time title="修改時間：2023-05-19 07:50:30" itemprop="dateModified" datetime="2023-05-19T07:50:30+00:00">2023-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +254,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
                 </span>
             </span>
 
@@ -271,49 +269,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2023/quote/1.png" alt="quote message"></p>
-<p>近期 Messaging API 釋出了許久以前期待的 API - 回覆訊息(Quote Message)，讓 LINE Bot 回覆用戶時可以指定特定訊息(如上圖)，在生成式 AI 當下是個非常好用的一個功能(AI 需要運算時間)，接下來就快速跟大家介紹一下相關功能以及操作方式！</p>
-<blockquote>
-<p>新聞：<a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2023/09/14/send-and-receive-quote-messages-using-the-messaging-api/">You can now send and receive quote messages using the Messaging API</a></p>
-</blockquote>
+        <p><img src="https://nijialin.com/images/2023/vlc.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 OpenAI 的盛行，各式各樣幫助大家節省時間的工具如雪花般誕生，如今在做 SRT 字幕這邊又更加方便了！</p>
+<p>去年 COSCUP 我曾經在 GDG 上分享 <a href="https://nijialin.com/2022/08/20/gccp-creator-cc-subtitle/">【GCCP Creator】增加字幕編輯的效率！</a>，當時唯一的問題是，透過 Google STT 所判斷出來的字串其實沒有那麼的”友善”觀看，需要人工再多介入些；而如今 OpenAI 的判斷其實直接更上 N 層樓，再晶晶體夾爆的各種句子中，許多時候他都能清楚地判斷出來，因此以下我就把一些近期找到的工具分享給大家，若有想把各種影片加上字幕的話，或許可以參考以下方式看看喔！</p>
 <span id="more"></span>
 
-<h1 id="Quote-Message-介紹"><a href="#Quote-Message-介紹" class="headerlink" title="Quote Message 介紹"></a>Quote Message 介紹</h1><p>操作時主要有三個元素需要注意：</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2023/09/14/send-and-receive-quote-messages-using-the-messaging-api/#update-20230914-02">從 webhook 當中收到 Quote Message</a></li>
-<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2023/09/14/send-and-receive-quote-messages-using-the-messaging-api/#update-20230914-03">取得 Quote Token</a></li>
-<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2023/09/14/send-and-receive-quote-messages-using-the-messaging-api/#update-20230914-01">透過 Push Message 來發送 Quote</a></li>
-</ol>
-<p>透過上面三個步驟，就可以發送回復訊息啦！但大家操作起來會覺得為什麼不用 reply message 就好，平常回覆都很快啊？使用他有什麼優點嗎？</p>
-<p>大家可以在這停一下思考個，平常在打字跟朋友聊天時也不一定每一則都會按下回覆。同理到了 LINE Bot，在跟用戶互動時，偶爾穿插個 Quote 也會讓用戶覺得這官方帳號非常用心，甚至可以搭配 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/icon-nickname-switch/#specifying-icon-and-display-name">Icon Switch API</a> 也會別有一番風味喔</p>
-<h2 id="Quote-message-範例"><a href="#Quote-message-範例" class="headerlink" title="Quote message 範例"></a><a target="_blank" rel="noopener" href="https://github.com/louis70109/linebot-find-some/blob/main/main.py#L108">Quote message 範例</a></h2><p>Quote Message 是以 Push Message 的方式使用，可以從 Reply 的 webhook 當中收到 quote token(<a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#send-reply-message-response">開發文件</a>)，接著在 Push 時帶上 token，即可針對指定的訊息回覆：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> line_bot_api.push_message(push_message_request=PushMessageRequest(</span><br><span class="line">      to=event.source.user_id,</span><br><span class="line">      messages=[TextMessage(</span><br><span class="line">          text=tool_result,</span><br><span class="line">          quoteToken=event.message.quote_token)],</span><br><span class="line">  ))</span><br></pre></td></tr></table></figure>
+<h1 id="decipher"><a href="#decipher" class="headerlink" title="decipher"></a><a target="_blank" rel="noopener" href="https://github.com/dsymbol/decipher">decipher</a></h1><p>它是一個透過 Whisper API 的工具，不太確定為什麼不需要提供使用者的 OpenAI API Key(佛心來著)，初步看 Code 也沒有上傳任何東西，但總之在 Speech-To-Text 上的判斷也不錯，以下就介紹給大家使用</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git+https:<span class="regexp">//gi</span>thub.com<span class="regexp">/dsymbol/</span>decipher</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://nijialin.com/images/2023/quote/2.png" alt="quote message2"></p>
+<p>因為是使用 python 安裝的緣故，故以下指令都會用 <code>python -m decipher</code> 執行。</p>
+<p>接下來透過以下指令，把指定的音檔透過模型(small)來語音轉文字的 SRT</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m decipher transcribe -i ~<span class="regexp">/Users/</span>使用者名稱<span class="regexp">/Desktop/</span>result/example.mp4 --model small</span><br></pre></td></tr></table></figure>
+
+<p>一般來說檔案位置都會在 <code>/Users/使用者名稱/Destop/result/</code> 裡面。</p>
 <blockquote>
-<p>分享個使用案例：當大家串接生成式AI時，因為那邊運算普遍會比較慢些，因此可以把 AI 那邊的 code 另外處理，先透過 Reply Message 先請使用者稍等，後續在透過 Push Message 來回覆指定訊息，如此以來用戶在看訊息時就會比較清楚該訊息是回覆哪一則而不會錯亂～<br>參考程式碼: <a target="_blank" rel="noopener" href="https://github.com/louis70109/linebot-find-some/blob/main/main.py#L99">GitHub URL</a></p>
+<p>如果是轉其他語系，並且需要把它轉出中文字，可以參考以下步驟。</p>
 </blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>一方面透過回覆訊息(Quote)可以讓用戶知道現在 LINE Bot 是針對哪個訊息作回覆；另一方面，也可以讓處理較慢的程式碼另外在 Queue 裡面操作，等到處理完成後在另外回覆，相關的操作皆是看大家在開發 LINE Bot 時的 user story，如果這篇文章有幫助到你，歡迎分享出去唷！感謝大家的觀看✍️</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a target="_blank" rel="noopener" href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+<h2 id="srt-gpt-translator"><a href="#srt-gpt-translator" class="headerlink" title="srt-gpt-translator"></a><a target="_blank" rel="noopener" href="https://github.com/jesselau76/srt-gpt-translator">srt-gpt-translator</a></h2><blockquote>
+<p>他會將需判斷的長度控制在  1024 characters 之間(OpenAI 限制)，因此有些長度若過長，可能會有判斷失準的風險。<br><a target="_blank" rel="noopener" href="https://github.com/jesselau76/srt-gpt-translator/blob/main/README-zh.md">中文文件</a></p>
+</blockquote>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull git@github<span class="selector-class">.com</span>:jesselau76/srt-gpt-translator.git</span><br><span class="line">cd srt-gpt-translator</span><br><span class="line">pip install -r requirements.txt</span><br><span class="line">mv settings<span class="selector-class">.cfg</span><span class="selector-class">.example</span> settings.cfg</span><br><span class="line">vim settings.cfg</span><br></pre></td></tr></table></figure>
 
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<p>將settings.cfg 裡的環境變數 openai-apikey 改為你自己的 sk-xxxxxxx (OpenAI API Key)後，設定<code>target-language</code>(預設中文)，儲存並執行以下：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 srt_translation.py ~<span class="regexp">/Users/</span>使用者名稱<span class="regexp">/Desktop/</span>result/example.srt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>這邊因為真的是 API 一個一個 call，因此會執行比較長的時間。</p>
+</blockquote>
+<p>完成之後總共會有三個黨名：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example</span>.</span></span>srt</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example_translated</span>.</span></span>srt</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Example_translated_bilingual</span>.</span></span>srt</span><br></pre></td></tr></table></figure>
+
+<p>假設你的 <code>Example.srt</code> 是日文的話， <code>Example_translated.srt</code> 就是中文， <code>Example_translated_bilingual.srt</code> 則是日中合體。</p>
+<p>在這個 Project 中有設定 Retry 機制，如果有一段話透過 OpenAI 處理超過 60 秒，則會 Retry 一次，若三次就使用原本的字串，以我的經驗來說，就有一些還是原本的語言，如果很依賴字幕的情況下，可能會有點疑惑…🧐</p>
+<p>但畢竟都是靠程式跟AI在跑，因此若只是自己想看的影片或是公司內部的訓練影片需要，或許一些沒完整的地方可能是可以接受的，。因此大家在使用時就自行評估能接受到的程度到哪～</p>
+<blockquote>
+<p>如果要精細的話還是需要花錢的💰💰💰</p>
+</blockquote>
+<h2 id="使用-decipher-ffmpeg-自動判斷並-embedding"><a href="#使用-decipher-ffmpeg-自動判斷並-embedding" class="headerlink" title="使用 decipher + ffmpeg 自動判斷並 embedding"></a>使用 decipher + ffmpeg 自動判斷並 embedding</h2><script src="https://gist.github.com/louis70109/e6050062c23b23714f942c8663859309.js"></script>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就可以用 VLC 來播放含有字幕的檔案，就可以看有字幕的版本了。</p>
+<p><img src="https://nijialin.com/images/2023/vlc.png"></p>
+<p>但如果想要輸出影片成另一支影片，目前手頭上的可以使用 Premiere Pro(需付費)，威力導演不確定(感覺可以)</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+<li>QuickTime Player：還沒測試出來，但也無法 Export 一個新檔案</li>
+<li>iMovie: 無法 Import SRT 字幕以及無法 Export 一個新檔案</li>
 </ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+<p>最後就到這邊，自從有了 OpenAI 之後許多事情都變了很方便，若有任何新點子，歡迎底下留言給我，我會盡快回答各位的！</p>
 
     </div>
 
@@ -324,10 +325,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/LINE-Bot/" rel="tag"><i class="fa fa-tag"></i> LINE Bot</a>
-              <a href="/tags/Quote-Message/" rel="tag"><i class="fa fa-tag"></i> Quote Message</a>
-              <a href="/tags/%E5%9B%9E%E8%A6%86%E8%A8%8A%E6%81%AF/" rel="tag"><i class="fa fa-tag"></i> 回覆訊息</a>
-              <a href="/tags/Push-Message/" rel="tag"><i class="fa fa-tag"></i> Push Message</a>
+              <a href="/tags/OpenAI/" rel="tag"><i class="fa fa-tag"></i> OpenAI</a>
+              <a href="/tags/SRT/" rel="tag"><i class="fa fa-tag"></i> SRT</a>
+              <a href="/tags/Whisper/" rel="tag"><i class="fa fa-tag"></i> Whisper</a>
           </div>
 
         
@@ -336,12 +336,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/10/05/github-issue-report-yaml-template/" rel="prev" title="【GitHub】建立第一個 Issue Template">
-      <i class="fa fa-chevron-left"></i> 【GitHub】建立第一個 Issue Template
+    <a href="/2023/05/13/google-io-note-2023-firebase/" rel="prev" title="【Google I/O】筆記 | Firebase & 其他紀錄 🥷">
+      <i class="fa fa-chevron-left"></i> 【Google I/O】筆記 | Firebase & 其他紀錄 🥷
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/10/19/line-pay-apple-watch/" rel="next" title="就用 LINE Pay 在 Apple Watch 付款吧">
-      就用 LINE Pay 在 Apple Watch 付款吧 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/05/29/line-tech-fresh-graduate-2023-introduction/" rel="next" title="TECH FRESH 畢業分享會：探索 2022 屆實習生的故事">
+      TECH FRESH 畢業分享會：探索 2022 屆實習生的故事 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -409,7 +409,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quote-Message-%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">Quote Message 介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quote-message-%E7%AF%84%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">Quote message 範例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">5.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#decipher"><span class="nav-number">2.</span> <span class="nav-text">decipher</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#srt-gpt-translator"><span class="nav-number">2.1.</span> <span class="nav-text">srt-gpt-translator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-decipher-ffmpeg-%E8%87%AA%E5%8B%95%E5%88%A4%E6%96%B7%E4%B8%A6-embedding"><span class="nav-number">2.2.</span> <span class="nav-text">使用 decipher + ffmpeg 自動判斷並 embedding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
