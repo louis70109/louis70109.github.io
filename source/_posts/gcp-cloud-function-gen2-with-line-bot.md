@@ -17,9 +17,12 @@ date: 2024-02-13 13:34:01
 
 過年改寫了我自己的在台北常使用的路上攝影機截圖工具，一開始求方便在每次請求來時會在容器當中開啟 chrome 去截圖，但由於是 MVP 以及沒有放 queue 在前面讓請求排隊，因此這樣的做法就無法提供給別人使用。
 
-因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，不過在 GCP 上還不能 Cloud Run 搭配 Cloud Scheduler，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。
+因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。
 
 <!-- more -->
+
+> 感謝 @timfanda35 協助糾正錯誤，Cloud Run 也可以透過 Scheduler 來觸發 - [Running services on a schedule](https://cloud.google.com/run/docs/triggering/using-scheduler)
+
 
 過往我很習慣在 Cloud Run 上實作任何的功能，這次也是第一次實際操作 Cloud Function，以下就介紹一下兩者是如何搭配使用的！
 

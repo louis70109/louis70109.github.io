@@ -46,7 +46,7 @@ rss:
 feed:
   type: atom
   path: atom.xml
-  limit: 0 # 最大文章數量
+  limit: 10 # 最大文章數量
   content: false # 是否顯示內文
 
 footer:
