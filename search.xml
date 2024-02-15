@@ -16083,9 +16083,12 @@ img[alt~="center"] {
     <url>/2024/02/13/gcp-cloud-function-gen2-with-line-bot/</url>
     <content><![CDATA[<h1 id="背景介紹"><a href="#背景介紹" class="headerlink" title="背景介紹"></a>背景介紹</h1><p><img src="https://nijialin.com/images/2024/gcp/1.png"></p>
 <p>過年改寫了我自己的在台北常使用的路上攝影機截圖工具，一開始求方便在每次請求來時會在容器當中開啟 chrome 去截圖，但由於是 MVP 以及沒有放 queue 在前面讓請求排隊，因此這樣的做法就無法提供給別人使用。</p>
-<p>因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，不過在 GCP 上還不能 Cloud Run 搭配 Cloud Scheduler，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。</p>
+<p>因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。</p>
 <span id="more"></span>
 
+<blockquote>
+<p>感謝 @timfanda35 協助糾正錯誤，Cloud Run 也可以透過 Scheduler 來觸發 - <a href="https://cloud.google.com/run/docs/triggering/using-scheduler">Running services on a schedule</a></p>
+</blockquote>
 <p>過往我很習慣在 Cloud Run 上實作任何的功能，這次也是第一次實際操作 Cloud Function，以下就介紹一下兩者是如何搭配使用的！</p>
 <h2 id="台北板場截圖-LINE-Bot"><a href="#台北板場截圖-LINE-Bot" class="headerlink" title="台北板場截圖 LINE Bot"></a>台北板場截圖 LINE Bot</h2><blockquote>
 <p>參考上一篇文章：<a href="https://nijialin.com/2023/11/13/line-bot-capture-image-cloud-run/">在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</a></p>

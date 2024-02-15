@@ -232,8 +232,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2024-02-13 05:34:01" itemprop="dateCreated datePublished" datetime="2024-02-13T05:34:01+00:00">2024-02-13</time>
+              <time title="創建時間：2024-02-13 13:34:01" itemprop="dateCreated datePublished" datetime="2024-02-13T13:34:01+00:00">2024-02-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-02-15 06:55:30" itemprop="dateModified" datetime="2024-02-15T06:55:30+00:00">2024-02-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -257,7 +264,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
           <h1 id="背景介紹"><a href="#背景介紹" class="headerlink" title="背景介紹"></a>背景介紹</h1><p><img src="https://nijialin.com/images/2024/gcp/1.png"></p>
 <p>過年改寫了我自己的在台北常使用的路上攝影機截圖工具，一開始求方便在每次請求來時會在容器當中開啟 chrome 去截圖，但由於是 MVP 以及沒有放 queue 在前面讓請求排隊，因此這樣的做法就無法提供給別人使用。</p>
-<p>因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，不過在 GCP 上還不能 Cloud Run 搭配 Cloud Scheduler，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。</p>
+<p>因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/02/13/gcp-cloud-function-gen2-with-line-bot/#more" rel="contents">
