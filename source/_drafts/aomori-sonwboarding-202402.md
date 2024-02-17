@@ -35,9 +35,9 @@ tags:
 
 ## 回程 秋田-機場
 
-由於是最後一天住在秋田，然後 14:10 的飛機，因此先預估 11:30 從飯店出發，搭乘機場接送巴士去機場，時程 40 分鐘
+由於是最後一天住在秋田 [APA酒店 - 秋田千秋公園 (APA Hotel Akita-Senshukoen)](https://www.google.com/maps/place/APA+HOTEL+AKITA-SENSHUKOEN/@39.7206179,140.1166995,17z/data=!3m1!4b1!4m9!3m8!1s0x5f8fc2bfe52953e5:0xc91ceb8b6c1eb81a!5m2!4m1!1i2!8m2!3d39.7206138!4d140.1192798!16s%2Fg%2F12m9km9lj?authuser=0&entry=ttu)，然後 14:10 的飛機，因此先預估 11:30 從飯店出發，搭乘機場接送巴士去機場，時程 40 分鐘
 
-> [Google Map](https://maps.app.goo.gl/p4GrR1oMnNCMYJwf8)
+> [Google Map](https://maps.app.goo.gl/Ptum5uitHDe5Dkjo9)
 
 ![](https://nijialin.com/images/2024/amori/2.png)
 
