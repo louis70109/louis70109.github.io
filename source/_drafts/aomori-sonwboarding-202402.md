@@ -1,11 +1,10 @@
 ---
-title: 【標題】題目
+title: 【青森】滑雪紀錄, 從秋田機場出發
 categories: 學習紀錄
 tags:
 ---
 
-![](https://nijialin.com/images/2024/)
-![](https://nijialin.com/images/common.jpeg)
+![](https://nijialin.com/images/common2.jpeg)
 
 # 前言
 
