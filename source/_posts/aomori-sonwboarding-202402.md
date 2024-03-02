@@ -1,8 +1,15 @@
 ---
-title: 【青森】滑雪紀錄, 從秋田機場出發
+title: '【青森】滑雪紀錄, 從秋田機場出發'
+tags:
+  - Snowboard
+  - Japan
+  - 日本滑雪
+  - 青森
+  - 八甲田山
 categories: 學習紀錄
-tags: ['Snowboard', 'Japan', '日本滑雪', '青森', '八甲田山']
+date: 2024-03-02 14:51:08
 ---
+
 
 ![](https://nijialin.com/images/2024/amori/S__19750974_0.jpg)
 
