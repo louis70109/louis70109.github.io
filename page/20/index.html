@@ -208,6 +208,134 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/" class="post-title-link" itemprop="url">使用 Serverless & LINE Message API 在 AWS 上打造一個 Echo bot</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-31 08:20:12" itemprop="dateCreated datePublished" datetime="2019-10-31T08:20:12+00:00">2019-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。<br>那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)<br>[2019&#x2F;07&#x2F;04 更新]<br>若已經暸解的朋友可以參考我的 python 版本:<br><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot">louis70109&#x2F;aws-line-echo-bot</a><br>Ruby 的範例版本:<br><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-ruby-line-echo-bot">louis70109&#x2F;aws-ruby-line-echo-bot</a></p>
+<h1 id="為什麼要-Serverless"><a href="#為什麼要-Serverless" class="headerlink" title="為什麼要 Serverless"></a>為什麼要 Serverless</h1><p>[2019&#x2F;06&#x2F;29 更新]<br>以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login — Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～<br>但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！<br>Cold start time 問題，依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬&#x2F;月 個請求吧 😆，所以這部分就別擔新大力地給他用下去～ (感謝 petertc 幫忙找這方面的問題 💪)</p>
+<p>AWS Lambda 免費方案<br>接下來就讓我介紹如何使用 sls + LINE Message API 建立一個 Echo bot 吧！<br><img src="https://i.imgur.com/pNCDY4e.png"></p>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><p>npm 6.9.0<br>python 3.7.3<br>serverless 1.45.1</p>
+<h1 id="建立-AWS-存取金鑰"><a href="#建立-AWS-存取金鑰" class="headerlink" title="建立 AWS 存取金鑰"></a>建立 AWS 存取金鑰</h1><p>首先要先有個 AWS 帳號(廢話) ，如果沒有綁定信用卡記得去綁定才能繼續，接下來就可以去就可以去建立鑰匙囉！<br><img src="https://i.imgur.com/XHuvbyX.png"><br>如上圖，按下紅色框框的部分，接著按箭頭指的按鈕，就會建立一個我們要的金鑰囉！<br><img src="https://i.imgur.com/FzRCna0.png" alt="AWS secret &amp; ID key"></p>
+<p>如上圖所示，可以下載 key，AWS 不會幫忙保存 Secret key，若這視窗關掉的話 key 就不見了，所以使用者可以自行下載檔案保存，以免哪天要部署的時候找不到 key。<br>接著就將這兩個參數加入環境變數中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> AWS_ACCESS_KEY_ID=&lt;your-key-here&gt;</span><br><span class="line"><span class="built_in">export</span> AWS_SECRET_ACCESS_KEY=&lt;your-secret-key-here&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Serverless-建立與部署"><a href="#Serverless-建立與部署" class="headerlink" title="Serverless 建立與部署"></a>Serverless 建立與部署</h1><p>首先先透過以下指令讓 npm 幫忙安裝 sls 的指令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install serverless -g</span><br></pre></td></tr></table></figure>
+
+<p>安裝完之後就透過 sls 指令來建立專案嚕！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless create — template aws-python — path aws-line-echo-bot</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>severless 指令可以縮寫成 sls<br>template &#x3D; 想用什麼平台以及語言就在此模板了 (參考)<br>path &#x3D; 檔案名稱</p>
+</blockquote>
+<p><img src="https://i.imgur.com/2KNweWB.png"><br><img src="https://i.imgur.com/HDonmjF.png"></p>
+<p>透過 severless 建立專案指令<br>依照不同的 template 可能會建立 N 個檔案，但主要還是以下三個檔案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.gitignore</span><br><span class="line">handler.py = 主程式的地方</span><br><span class="line">serverless.yml = 所有設定都在這裡，funtion 參數會對應到指定的路由</span><br></pre></td></tr></table></figure>
+
+<p>在部署前須至 serverless.yml 裡，把 runtime 的 python2.7 改至 3.7，否則會因版本問題導致錯誤。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless deploy <span class="comment"># sls deploy</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/18Fnran.png" alt="Serverless 部署畫面"></p>
+<p>接著到 AWS Lambda 以及 S3 就可以看到第一次部署完的程式以及檔案囉！</p>
+<h1 id="加入-LINE-Message-API"><a href="#加入-LINE-Message-API" class="headerlink" title="加入 LINE Message API"></a>加入 LINE Message API</h1><p>既然是寫 python，那一定是要用 line-python-sdk<br>照著官方用法應該是要執行以下指令安裝套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install line-bot-sdk</span><br></pre></td></tr></table></figure>
+
+<p>不過我們是要部署到 AWS 的 Lambda 上，且因為他是無伺服器運算的服務，所以他沒辦法跑 pip 去幫我安裝套件。<br>此時就要出動 requirements.txt 來管理相依套件 ，但只有加入它 sls 根本不認識，因此我們需要安裝 pulgin 來讓 sls 認得(requirements.txt)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls plugin install -n serverless-python-requirements</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/0NFfVi6.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/pS7s8ls.png"></p>
+<p>安裝指令 &amp; package.json<br>如圖，安裝過程中會自動建立 package.json，且會幫忙在 serverless.yml 裡面加入 pulgin，這樣 sls 在部署時就認得 requirements.txt 囉！<br>接著將 LINE SDK 加入 requirements.txt， AWS 就會幫忙安裝套件了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;line-bot-sdk==1.12.1&quot;</span> &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>然後新增一個 setup.cfg 並加入以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[install]</span><br><span class="line">prefix=</span><br></pre></td></tr></table></figure>
+
+<p>由於 AWS Lambda 上都會將套件安裝在本地端(Lambda 上)，因此在執行 pip install -t . -r requirements.txt 時會需要 setup.cfg。<br>至於詳細原因嘛～還有請各位大大幫小弟解答 🙏<br>最後就處理 handler.py 以及 serverless.yml 囉！<br>將上述兩個 gist 分別貼到自己的 handler.py &amp; serverless.yml，在 hanlder.py 裡的 CHANNEL KEY &amp; TOKEN 記得換成自己的機器人 👾 哦！<br><img src="https://i.imgur.com/WVBHxL3.png" alt="佈屬完狀態"><br>接著在執行一次 sls deploy，將程式部署上去，如上圖所示，在 endpoints 那行會有一個網址，將那網址放到 LINE Webhook URL 上並 Verify 看看有沒有成功，如下圖所示。<br><img src="https://i.imgur.com/CQMwc8V.png"><br>最後對著自己的機器人發個話，看他有沒有回應你一模一樣的文字，若成功了就能往下一步應用層繼續開發囉！若失敗了就要檢查一下是不是有哪個步驟做錯了～</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>因為公司的緣故讓我能夠接觸到這神奇的 Serverless，經過這次的分享加深我對於 FaaS 的架構更加了熟悉，由於我也是初碰，我認為使用上可以把它當作是一個 Docker 的容器或許概念上會比較好理解，後續還有很多的設定檔都還沒詳細研究，最近讓我先研究研究一下再上來分享。</p>
+<blockquote>
+<p>文章中有任何勘誤歡迎指正</p>
+</blockquote>
+<p>如果覺得這篇文章有幫助的話請給我個掌聲鼓勵我一下 👋<br>下列是我的這次實作的專案，如果有幫助也來顆星星吧！<br><a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-line-echo-bot?source=post_page-----1e3e785a2a01----------------------">louis70109&#x2F;aws-line-echo-bot</a></p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/lambda/pricing/">AWS Lambda 費率問題</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/serverless/serverless">Serverless GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-python-requirements/">Serverless Python Requirements</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python">LINE Python SDK</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/blogs/china/iaas-faas-serverless/">FaaS 概念</a></li>
+<li><a target="_blank" rel="noopener" href="https://mikhail.io/2018/08/serverless-cold-start-war/">AWS, GCP, Azure cold start time</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/25/chatbot-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1084,107 +1212,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/09/Day25-Lambda-%E5%A5%BD%E5%83%8F%E6%9C%89%E6%99%82%E5%80%99%E4%B8%80%E9%96%8B%E5%A7%8B%E5%9B%9E%E6%87%89%E5%BE%88%E4%B9%85%EF%BC%9F%E7%94%A8-warm-up-%E4%BE%86%E7%86%B1%E6%A9%9F%E5%90%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/09/Day25-Lambda-%E5%A5%BD%E5%83%8F%E6%9C%89%E6%99%82%E5%80%99%E4%B8%80%E9%96%8B%E5%A7%8B%E5%9B%9E%E6%87%89%E5%BE%88%E4%B9%85%EF%BC%9F%E7%94%A8-warm-up-%E4%BE%86%E7%86%B1%E6%A9%9F%E5%90%A7/" class="post-title-link" itemprop="url">Day25 - Lambda 好像有時候一開始回應很久？用 warm-up 來熱機吧</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-09 13:04:36" itemprop="dateCreated datePublished" datetime="2019-10-09T13:04:36+00:00">2019-10-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇會介紹 npm 套件庫裡的 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-plugin-warmup">Serverless-plugin-warmup</a>，裡面介紹了很多參數可以使用，以下會簡介如何引入它。</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>透過<code>npm</code>來安裝套件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev serverless-plugin-warmup</span><br></pre></td></tr></table></figure>
-
-<p>在<code>serverless.yml</code>的<code>plugin</code>加入套件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-plugin-warmup</span></span><br></pre></td></tr></table></figure>
-
-<p>在<code>custom</code>加入<code>warm up</code>的設定參數</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">warmup:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">cleanFolder:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">memorySize:</span> <span class="number">128</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">&quot;LINE-warmup-pop&quot;</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">schedule:</span> <span class="string">&quot;cron(0/5 0-12 ? * MON-FRI *)&quot;</span></span><br><span class="line">    <span class="attr">timeout:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p><code>.gitignore</code>加入以下兩個<code>_warmup/</code>以及<code>.requirements.zip</code>，他在部署前建立一個<code>_warp</code>的資料夾並放一個 Lambda 來打已建立的 api 以及 Lambda 們，部署後會建立<code>.requirements.zip</code>，所以這邊就加入這兩行來防止被 git 推上去。</p>
-<blockquote>
-<p>或許會有疑問不是<code>cleanFolder</code>設定 true 就可以，這邊我自己實測時在部署會因為 Size 過大而無法上傳，把這參數設定掉他才會乖乖的上傳成功，但這部分有待驗證。</p>
-</blockquote>
-<h2 id="加入-decorator"><a href="#加入-decorator" class="headerlink" title="加入 decorator"></a>加入 decorator</h2><p>這邊我在<code>lib/</code>下新增一個<code>decorator.py</code>，加入以下的 code</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">from</span> logging <span class="keyword">import</span> Logger</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_warm_up</span>(<span class="params">func</span>):</span></span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        source = args[<span class="number">0</span>].get(<span class="string">&#x27;source&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> (source == <span class="string">&#x27;serverless-plugin-warmup&#x27;</span>):</span><br><span class="line">            Logger.info(<span class="string">&#x27;WarmUp - Lambda is warm!&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
-
-<p>主要功能是透過 python decorator 的特性讓我們在 function 之前用個前綴符號就可以引用它，很像 po 文在 tag 別人一樣 🤣<br>warm-up 建立的 Lambda 會固定對其他的 Lambda 打<code>serverless-plugin-warmup</code>的字串，這邊就寫個判斷式判斷掉後直接 return</p>
-<p>你以為這樣就結束了？還有 IAM role 的問題呢，詳細問題已不可考，想試看看的可以把 IAM 拔掉再部署一次，問題就會出現了，以下為設定檔：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">iamRoleStatements:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">Effect:</span> <span class="string">&quot;Allow&quot;</span></span><br><span class="line">    <span class="attr">Action:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;lambda:InvokeFunction&quot;</span></span><br><span class="line">    <span class="attr">Resource:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Fn::Join:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">&quot;:&quot;</span></span><br><span class="line">          <span class="bullet">-</span> <span class="bullet">-</span> <span class="string">arn:aws:lambda</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">Ref:</span> <span class="string">AWS::Region</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">Ref:</span> <span class="string">AWS::AccountId</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">function:*</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你的目錄結構跟我一樣，或是跟到今天的實作，加入以下的 code，這邊主要是告訴你的 Lambda 要在每次的 warm-up 字串來的時候呼叫這個 decorator 來幫忙處理一下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lib.decorator <span class="keyword">import</span> lambda_warm_up</span><br><span class="line"></span><br><span class="line"><span class="meta">@lambda_warm_up</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx</span>():</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>我的 Lambda 都加了，那原本的 flask 建立的 api 我要加在哪？</p>
-<p>看看這個<a target="_blank" rel="noopener" href="https://github.com/logandk/serverless-wsgi/blob/3a2d1312370a4f4351be60f5fbe838124db1916a/serverless_wsgi.py#L87">網址</a>，serverless-wsgi 在實作的時候已經有考慮到這件事了，所以 api 這邊就不用管他，他自己會去把它處理掉！<br><img src="https://i.imgur.com/skMkdmg.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>Warm-up 的機制就是透過建立一個 Lambda 來打一個 flag 到其他 Lambda 來他們別進入睡眠模式，但總是會有人考慮費用的問題，可以參考下圖，若是你建立了一個簡單的服務然後上線了，AWS 給你了一百萬個請求的量，我覺得一個月的請求可以到 100 萬應該是服務有點規模的情況，一個月能到這個量相信你也有一定的能力養它 🤣，爾後每一百萬個請求才六塊台幣，可能比 GCP 還貴，但其實以我來說這樣已經很夠用，而且還扛得住<br><img src="https://i.imgur.com/LCJh98n.png"></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://github.com/logandk/serverless-wsgi/blob/3a2d1312370a4f4351be60f5fbe838124db1916a/serverless_wsgi.py#L87">serverless-wsgi Warm-up code</a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-plugin-warmup">Serverless-plugin-warmup</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1256,7 +1283,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">225</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1269,7 +1296,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">301</span>
+        <span class="site-state-item-count">304</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
