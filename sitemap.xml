@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://nijialin.com/2024/02/18/google-devfest-2023-taipei-learn-serverless-from-communities/</loc>
-    
-    <lastmod>2024-03-02</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://nijialin.com/2024/02/13/gcp-cloud-function-gen2-with-line-bot/</loc>
     
     <lastmod>2024-03-02</lastmod>
@@ -17,6 +10,13 @@
   
   <url>
     <loc>https://nijialin.com/2024/03/02/aomori-sonwboarding-202402/</loc>
+    
+    <lastmod>2024-03-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/2024/02/18/google-devfest-2023-taipei-learn-serverless-from-communities/</loc>
     
     <lastmod>2024-03-02</lastmod>
     
