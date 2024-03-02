@@ -11,7 +11,7 @@ date: 2024-03-02 14:51:08
 ---
 
 
-![](https://nijialin.com/images/2024/amori/S__19750974_0.jpg)
+![](https://nijialin.com/images/2024/aomori/S__19750974_0.jpg)
 
 # 班機-虎航
 
@@ -30,17 +30,17 @@ date: 2024-03-02 14:51:08
 
 ## 秋田空港
 
-![](https://nijialin.com/images/2024/amori/S__19750984_0.jpg)
+![](https://nijialin.com/images/2024/aomori/S__19750984_0.jpg)
 
 秋田空港似乎是去年加開給虎航的，算起來也算是一個小機場，因此在這邊虎航的櫃位就很明顯，但回程時不能線上 check-in，不確定是不是小機場的緣故，但排隊其實很快，很多程序也都先手動處理(機票、對名單...etc)
 
 ## 秋田出發到青森
 
-![](https://nijialin.com/images/2024/amori/S__5595140.jpg)
+![](https://nijialin.com/images/2024/aomori/S__5595140.jpg)
 
 秋田機場下飛機後，需要先搭乘巴士到**秋田站**，參考上圖右側，這次我 12:40 抵達機場，小機場應該可以比較快出關，但也要趕在 14:15 抵達巴士站轉乘到秋田駛
 
-![](https://nijialin.com/images/2024/amori/S__5595159.jpg)
+![](https://nijialin.com/images/2024/aomori/S__5595159.jpg)
 
 接著需要搭乘 JR 到青森，以巴士約 40 分鐘左右，因此預計要搭乘到 15:00 之後的兩班到青森，抵達時間應該也晚上七點了
 
@@ -54,17 +54,17 @@ date: 2024-03-02 14:51:08
 
 > [Google Map](https://maps.app.goo.gl/Ptum5uitHDe5Dkjo9)
 
-![](https://nijialin.com/images/2024/amori/2.png)
+![](https://nijialin.com/images/2024/aomori/2.png)
 
 > 秋田比較冷門，個人還是喜歡最後一天可以有地方逛，下次應該會去仙台搭飛機了 XD
 
 # 雪場
 
-![](https://nijialin.com/images/2024/amori/S__19750982_0.png)
+![](https://nijialin.com/images/2024/aomori/S__19750982_0.jpg)
 
 ## [moyahills](http://moyahills.jp/index.html)
 
-![](https://nijialin.com/images/2024/amori/1.png)
+![](https://nijialin.com/images/2024/aomori/1.png)
 
 在這裡待上一天熱身，會在這邊租雪具([URL](https://moyahills.jp/winter/winter.html))，這次一樣會租雪板+鞋+帽子，然後自己帶護膝護臀
 
@@ -72,13 +72,13 @@ date: 2024-03-02 14:51:08
 > 3060 moyahills 雪票
 > 總共 9060 yen
 
-![](https://nijialin.com/images/2024/amori/20231214130801-0001.jpg)
+![](https://nijialin.com/images/2024/aomori/20231214130801-0001.jpg)
 
 備存一下地圖，這次只有話一號纜車而已，其他地方因為雪太少沒辦法滑行
 
 ## [八甲田雪場](https://maps.app.goo.gl/dVVYec58396nDwmF7)
 
-![](https://nijialin.com/images/2024/amori/S__19750976_0.jpg)
+![](https://nijialin.com/images/2024/aomori/S__19750976_0.jpg)
 
 - 營業時間以及票券的錢 http://www.hakkoda-ropeway.jp/guide
 - 這次八甲田買 11 回券，分別滑行三天 3、4、4 次，
@@ -90,7 +90,7 @@ date: 2024-03-02 14:51:08
 
 ### 現場排隊狀況
 
-![](https://nijialin.com/images/2024/amori/S__19750979_0.jpg)
+![](https://nijialin.com/images/2024/aomori/S__19750979_0.jpg)
 
 排隊中午前平均要排 1~1.5 小時，中午之後大概 1 小時，如果像我一樣因為會累或是需要熱機比較久，避開午餐人潮可以第一趟下來 11 點餐廳開了就先吃，然後去現場排隊一個小時就消化好了可以開始滑行
 
@@ -98,7 +98,7 @@ date: 2024-03-02 14:51:08
 
 ### 其他雪場內筆記
 
-![](https://nijialin.com/images/2024/amori/S__19750978_0.jpg)
+![](https://nijialin.com/images/2024/aomori/S__19750978_0.jpg)
 
 - 食物大概一千日元上下
 - 一天租借裝備:
@@ -113,18 +113,18 @@ date: 2024-03-02 14:51:08
 
 ##### 青森車站-雪場
 
-![](https://nijialin.com/images/2024/amori/491450597338513798.png)
+![](https://nijialin.com/images/2024/aomori/491450597338513798.png)
 
 - [GOOGLE MAP](https://maps.app.goo.gl/WMcRyvHcqBheBnMV9)
 - 地址：日本〒 030-0133 Aomori, Moya, Nashinoki− ６３
 
 ##### 雪場-青森車站
 
-![](https://nijialin.com/images/2024/amori/491450553851708003.png)
+![](https://nijialin.com/images/2024/aomori/491450553851708003.png)
 
 ## [Aomori Spring Ski Resort](https://maps.app.goo.gl/WaRh4C9yDwm2qaV66?g_st=ic)
 
-![](https://nijialin.com/images/2024/amori/md85_G_01.jpeg)
+![](https://nijialin.com/images/2024/aomori/md85_G_01.jpeg)
 
 
 有一天因為八甲田風太大沒有開，全體人員前往 Aomori spring 滑雪，這次去中間通往山頂的纜車沒開，也剛好藉這個機會把這邊都玩過一遍，體感這邊的紅線跟綠線等及差不多
