@@ -1,10 +1,9 @@
 ---
-title: 【標題】題目
-categories: 學習紀錄
+title: 在 Fly.io 上架設 Uptime Kuma 監控 Side Project
+categories: Serverless
 date: 2024-03-24 13:21:50
-tags:
+tags: ['Serverless', 'Monitor', 'Fly.io', 'Uptime Kuma']
 ---
-
 
 ![](https://nijialin.com/images/2024/kuma/1.png)
 
