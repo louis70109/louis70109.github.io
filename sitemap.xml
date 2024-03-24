@@ -3735,6 +3735,27 @@
   </url>
   
   <url>
+    <loc>https://nijialin.com/tags/Monitor/</loc>
+    <lastmod>2024-03-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/Fly-io/</loc>
+    <lastmod>2024-03-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/Uptime-Kuma/</loc>
+    <lastmod>2024-03-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://nijialin.com/tags/DevFest/</loc>
     <lastmod>2024-03-24</lastmod>
     <changefreq>daily</changefreq>

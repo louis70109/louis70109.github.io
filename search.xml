@@ -17749,7 +17749,7 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【標題】題目</title>
+    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
     <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
@@ -17785,8 +17785,14 @@ img[alt~="center"] {
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
 ]]></content>
       <categories>
-        <category>學習紀錄</category>
+        <category>Serverless</category>
       </categories>
+      <tags>
+        <tag>Serverless</tag>
+        <tag>Monitor</tag>
+        <tag>Fly.io</tag>
+        <tag>Uptime Kuma</tag>
+      </tags>
   </entry>
   <entry>
     <title>【DevFest 2023】Empowering Community-Driven Learning through Serverless Practice</title>
