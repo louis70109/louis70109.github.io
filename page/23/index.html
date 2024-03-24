@@ -208,6 +208,101 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/" class="post-title-link" itemprop="url">Day6 - 建立一個使用 Query string 來幫忙發送的 LINE Notify</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-21 12:30:27" itemprop="dateCreated datePublished" datetime="2019-09-21T12:30:27+00:00">2019-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>繼上一篇我們已經可以讓使用者註冊 Notify 並將 token 放入資料庫，接著就帶各位使用 query string 的方式讓你的 Notify 可以送訊息給所有註冊過的 Notify。</p>
+<p>首先我們進入我們已經建立過的 controller&#x2F;notify_controller.py，會看到 class 下有我們之前建立的 post method，這時我們就在前面加入 get method，並加入以下的 code，讓這個 class 看起來比較有順序(<del>潔癖</del>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotifyController</span>(<span class="params">Resource</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">            msg = request.args.get(<span class="string">&#x27;msg&#x27;</span>)</span><br><span class="line">            <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">                <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                    cur.execute(</span><br><span class="line">                        <span class="string">f&quot;SELECT token FROM notify&quot;</span>)</span><br><span class="line">                    fetch = cur.fetchall()</span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> fetch:</span><br><span class="line">                headers = &#123;</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;f[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">                payload = &#123;<span class="string">&#x27;message&#x27;</span>: msg&#125;</span><br><span class="line"></span><br><span class="line">                r = requests.post(</span><br><span class="line">                    <span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, data=payload, headers=headers)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;ok&#x27;</span>&#125;, <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<p>這次使用的套件比上次多 import 一個 flask 底下的 request (注意沒有 s 哦)，這個主要是讓我們可以抓到網址問號後面接的參數，這邊我設定打 API 的人會打一個 msg 的參數。</p>
+<p>接著就是使用進 DB 撈我們的 token 們，並用一個迴圈來跑</p>
+<p>再來是設定 headers 以及 payload</p>
+<p>headers 的部分參考 Notify 的文件，如下圖<br><img src="https://i.imgur.com/B4bjvja.png"><br>我們需要設定 Content-Type 以及 Authorization，需要注意的是 Authorization 是使用 Bearer 格式(<a target="_blank" rel="noopener" href="https://blog.yorkxin.org/2013/09/30/oauth2-6-bearer-token.html">參考</a>)，他中間是有加<code>空白鍵</code>的，這邊很多朋友都會錯在這裡，千萬要記得檢查這邊！</p>
+<p>接著是要送出去的東西是要用什麼送出，本篇只用 message 做範例，若需要使用到其他的功能，像是圖片、貼圖等等的可參考以下的圖片<br><img src="https://i.imgur.com/I6617R6.png"></p>
+<p>接著我們就可以使用<code>sls deploy</code>來部署我們的程式啦</p>
+<p>等等！<br>這邊有個需要注意的地方是，照著這次的範例使用的話會需要用 docker 來幫忙跑編譯，因為 psycopg2-binary 這個套件如果不是在 Linux 的環境下會需要透過 docker 幫忙編譯完再丟過去<br>這部分需要在<code>serverless.yml</code>下填入參數</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">pythonRequirements:</span></span><br><span class="line">    <span class="attr">dockerizePip:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>如此一來當前環境若不是 Linux 的話他就會使用 docker 來幫忙，記得 docker 要開哦 🙏</p>
+<blockquote>
+<p>當然最簡單的方法就是把它直接抓下來放在專案中，只是這樣就會比較髒一點，可以從這邊抓 -&gt; <a target="_blank" rel="noopener" href="https://github.com/jkehler/awslambda-psycopg2">參考</a></p>
+</blockquote>
+<blockquote>
+<p>這邊可以先在環境變數上加上<code>SLS_DEBUG=*</code> 接著在加上 sls deploy 後面加上<code>--verbose</code>可以看到 serverless 到底都在背地裡做了什麼事情 🤣</p>
+</blockquote>
+<p>接著我們就使用 Postman 來幫我們送字串出去，參考下圖，當回傳 ok 就成功了 🎉<br><img src="https://i.imgur.com/oXlBNeC.png"><br>你的 Notify 應該要回你了～<br><img src="https://i.imgur.com/nihyJxX.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這邊帶大家做一個簡單的應用，一般來說我覺得放在 query string 讓其他 API 來呼叫的時候帶參數來就可以直接用是很方便的，不用再特地自己寫方法去呼叫 LINE Notify 來幫我們送，反正 AWS Lambda 有一百萬次的請求不怕 🤣</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -950,7 +1045,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">226</span>
+          <span class="site-state-item-count">227</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
