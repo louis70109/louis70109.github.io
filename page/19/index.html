@@ -208,6 +208,160 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/27/learn-docker-with-twitch-bot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/27/learn-docker-with-twitch-bot/" class="post-title-link" itemprop="url">Docker 學習筆記 - 將 Twitch Bot 容器化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-27 10:36:05" itemprop="dateCreated datePublished" datetime="2020-01-27T10:36:05+00:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近剛好看到許多<code>EKS</code>、<code>GKE</code>相關的文章，趁著過年時刻先來補足一下 Docker 這個既熟悉又陌生的技能 😆，之後再接著研究如何串接至 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/Kubernetes">kubernetes</a> 並同時到雲平台上，接下來一起來看我從建立到建置的過程紀錄 🙂。</p>
+<p>以下就使用我的 side project - <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a> 做範例囉！</p>
+<blockquote>
+<p>主要使用的功能為 <code>node</code> 以及 <code>mongo</code></p>
+</blockquote>
+<h1 id="新增檔案"><a href="#新增檔案" class="headerlink" title="新增檔案"></a>新增檔案</h1><p>這邊我使用 vscode 的 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Docker extension</a> 來幫助我快速建立 docker 相關的檔案:</p>
+<ul>
+<li>Dockerfile</li>
+<li>docer-compose.yml</li>
+<li>.dockerignore</li>
+</ul>
+<blockquote>
+<p>透過以下的 gif 可以快速建立以上三個檔案</p>
+</blockquote>
+<p><img src="https://github.com/microsoft/vscode-docker/raw/master/resources/readme/generateFiles.gif"></p>
+<p>操作方式為 <code>Cmd+Shift+P</code> &gt;<code>docker: add</code> &gt; <code>選擇語言(Node)</code> &gt; <code>設定輸出 Port</code></p>
+<h2 id="處理-dockerfile"><a href="#處理-dockerfile" class="headerlink" title="處理 dockerfile"></a>處理 dockerfile</h2><p>藉由 extension 來幫我們產生檔案第一步就完成了，接著對 Dockerfile 稍做修改:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">10.13</span>-alpine</span><br><span class="line"><span class="keyword">MAINTAINER</span> NiJia &lt;louis70109@gmail.com&gt;</span><br><span class="line"><span class="keyword">ENV</span> NODE_ENV production</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> [<span class="string">&quot;package.json&quot;</span>, <span class="string">&quot;package-lock.json*&quot;</span>, <span class="string">&quot;/app/&quot;</span>]</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /app/</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5000</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;npm&quot;</span>, <span class="string">&quot;start&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>FROM: 來自什麼映像檔，這裡使用預設給的 node 版。</li>
+<li>MAINTAINER: 寫描述的位置，這邊我標註我的名稱與 EMail。</li>
+<li>ENV: 環境變數寫在這，不過這個專案是放在 Github 上，所以我就沒把 chatbot 平台的密鑰放在這了。</li>
+<li>WORKDIR: 當前在一個乾淨的環境下，而你預想的工作路目錄要叫什麼就在這設定，同時也會一起幫你建立好 (我用<code>/app</code>這個工作資料夾當作範例)。</li>
+<li>COPY: 把檔案複製到想要放的地方，這裡為了先讓容器安裝完相依套件，因此先把 <code>package.json</code> 以及 <code>package-lock.json</code> 先複製進 <code>/app/</code> 這個資料夾內。</li>
+<li>RUN: 執行終端機指令，在上面檔案複製過來之後，這裡我就來安裝相依套件庫。</li>
+<li>COPY: 安裝完產生 node_modules 之後把原本的有的東西都複製過來。<ul>
+<li><code>.</code> &#x3D; 當前目錄</li>
+<li>&#x2F;app&#x2F; &#x3D; 欲複製前往的地方</li>
+</ul>
+</li>
+<li>EXPOSE: 容器要打出去的 Port 出口，在前面呼叫 extension 時就已經輸入完這欄了。</li>
+<li>CMD: 幫我執行指令 (參考: <a target="_blank" rel="noopener" href="http://jenkins.readbook.tw/docker/basic/104-dockerfile/entrypoint/">CMD 與 ENTRYPOINT 的差別</a>)</li>
+</ul>
+<h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><p>這邊我將預設的修改為:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">twitch-bot:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">twitch-bot</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">NODE_ENV:</span> <span class="string">production</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5000</span><span class="string">:5000</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chatbot-network</span></span><br><span class="line">  <span class="attr">mongo:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/db:/data/db</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chatbot-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">chatbot-network:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+
+<p>首先將<code>version</code>改成 <code>3</code>，有向下相容的話當然就是要使用新的囉！</p>
+<p>接著會建立兩個 container (services):</p>
+<ol>
+<li>twitch-bot<br><code>build</code> 後面接著 <code>.</code> 是指說建立在當前位置，<code>depends_on</code> 則是依賴哪個 container，最後則透過 networks (<code>chatbot-network</code>) 來讓服務互相溝通。</li>
+<li>mongo<br>這邊則就直接去 dockerhub 裡面抓，<code>restart</code>鐵定是必要設定，不然會沒有資料庫 🤣，<code>volumes</code>則是設定說你想映射的檔案位置在哪，這邊我設定<strong>當前目錄的&#x2F;data&#x2F;db</strong> (.&#x2F;data&#x2F;db)裡面，對應到映像檔裡面的 <strong>&#x2F;data&#x2F;db</strong> 的位置，然後一樣透過 networks (<code>chatbot-network</code>) 來讓服務溝通。</li>
+</ol>
+<p>networks 這邊就有點像主機設定網卡一樣，我設定一個 <code>chatbot-network</code> 的網卡它是使用橋接(<code>bridge</code>)模式來驅動(<code>driver</code>)</p>
+<blockquote>
+<p>這部分是參考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69536325">知乎</a>，對照改出來的</p>
+</blockquote>
+<blockquote>
+<p>補給站: 一般看到 <code>5000:5000</code> 或是 <code>./data/db:/data/db</code> 的寫法，它意思是 本地端位置 對應「<code>:</code>」到 容器的位置，像上述檔案就有 port 以及 資料庫位置，這邊就會因應服務而對應到不同的功能。</p>
+</blockquote>
+<h2 id="修改-dockerignore"><a href="#修改-dockerignore" class="headerlink" title="修改 .dockerignore"></a>修改 .dockerignore</h2><p>這邊因為我很偷懶不想把<code>.env</code>裡的環境變數寫進<code>dockerfile</code>😆，因此在這就把檔案中的<code>**/.env</code>拔掉方便做事 🤣</p>
+<h1 id="測試容器"><a href="#測試容器" class="headerlink" title="測試容器"></a>測試容器</h1><h3 id="啟動"><a href="#啟動" class="headerlink" title="啟動"></a>啟動</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-d</code> 表示讓容器跑在背景，如果沒加的話就會在終端機上看到容器們的行為。</li>
+<li>會建立本地端的 container image。</li>
+</ul>
+<h3 id="關閉"><a href="#關閉" class="headerlink" title="關閉"></a>關閉</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若是使用 <a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-bot</a> 來試玩的話，則需要多開一個視窗執行 <code>npx ngrok http 5000</code> 來建立一個暫時含有 SSL 的 URL。</li>
+</ul>
+<h1 id="建置-build"><a href="#建置-build" class="headerlink" title="建置(build)"></a>建置(build)</h1><p>如果是按照原本 docker-compose.yml 的打法：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">twitch-bot:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">twitch-bot</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣的話 docker 預設會幫忙下一個 <code>latest</code> 版號的 tag。</p>
+<p>如果是按造以下做法的話在 build 就會幫忙建立 <code>帳號/容器名</code>，並下一個 <code>0.1</code> 的 tag</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">twitch-bot:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">louis70109/twitch-bot:0.1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/7Ftfpeh.png"></p>
+<p>接下來就執行 <code>docker-compose build</code> 幫忙建立一個有版本號(tag)的容器映像檔(container image)。</p>
+<p><img src="https://i.imgur.com/JiifOjy.png"></p>
+<blockquote>
+<p>補給站:</p>
+<ul>
+<li>記得要 <code>docker login</code> 哦！</li>
+<li>到 dockerhub 或其他私有倉庫建立 container repository</li>
+</ul>
+</blockquote>
+<h1 id="結碖"><a href="#結碖" class="headerlink" title="結碖"></a>結碖</h1><p>趁著春節的零碎時間來跟這個熟悉陌生技能打個招呼 😆，同時也體會到大家說到 docker 好用的地方以及給予的彈性，之前都是有需要測試某些功能才會用到，對於 <code>dockerfile</code> 以及 <code>docker-compose.yml</code> 就甚少了解，藉著年假空檔練習，之後只要在熟悉一下整體的使用方法應該就能好好的～用它來幫忙做事了 🚀。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a target="_blank" rel="noopener" href="https://github.com/lmjben/cdfang-spider/blob/master/src/nodeuii/config/index.ts#L3">連線 mongo container</a><br><a target="_blank" rel="noopener" href="http://jenkins.readbook.tw/docker/basic/104-dockerfile/entrypoint/">docker CMD 使用</a><br><a target="_blank" rel="noopener" href="https://docs.docker.com/compose/">Overview of Docker Compose</a><br><a target="_blank" rel="noopener" href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/11/corss-platform-twitch-bot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1362,157 +1516,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/12/sentry-in-serverless/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/12/sentry-in-serverless/" class="post-title-link" itemprop="url">使用 Sentry 收集錯誤並將訊息送至 Slack</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-11-12 09:50:13" itemprop="dateCreated datePublished" datetime="2019-11-12T09:50:13+00:00">2019-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot TW</a> 的 NiJia</p>
-<p>當產品開發完上線後難免會遇到可能是邏輯上的 Bug、例外錯誤或是想記錄使用上的錯誤，當沒有工具時都只能等錯誤出來時乖乖的去翻 Log 找問題，對於每次出錯要 Debug 的我就覺得很困擾 😭。</p>
-<p>公司強者寫 APP 的同事他們都很開心的在使用 Crashlytics 幫他們將 APP 出問題時將錯誤訊息丟上去，看了實在時羨慕，但那們寫 Web 的朋友要怎麼辦！</p>
-<p>最近就發現了<code>Sentry</code>這個玩意兒(<strong>應該是有段時間的產品了</strong>)，支援了幾乎支持現在市場上主流的各種框架以及語言，且串接上也都很簡單就能實現，文件也都清楚解釋每個 API 的功能如何使用，以下就來介紹如何使用它吧 😎<br><img src="https://i.imgur.com/xVHa6qg.png"></p>
-<blockquote>
-<p>這邊顯示較常用的語言，還有支援很多其他種類的框架及語言</p>
-</blockquote>
-<h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><ul>
-<li>文章的範例專案在此 -&gt; <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-sentry-flask-example">https://github.com/louis70109/aws-sentry-flask-example</a></li>
-<li>本篇是使用 flask 將 Sentry 透過 serverless 部署至 AWS 上 🗿</li>
-</ul>
-<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><p>首先先到 <a target="_blank" rel="noopener" href="https://sentry.io/welcome/">https://sentry.io/welcome/</a> <code>Get start</code></p>
-<p><img src="https://i.imgur.com/LRIVYDH.jpg"></p>
-<hr>
-<p>這邊可以整合了<code>GitHub</code>或者<code>Azure DevOps</code>兩種 OAuth 的登入方式<br><img src="https://i.imgur.com/eIYugOF.png"></p>
-<hr>
-<p>接著就照著步驟來囉！<br><img src="https://i.imgur.com/5EDwA0N.png"></p>
-<hr>
-<p>選擇自己所使用的語言，這邊我使用 Flask(python) 框架來實作<br><img src="https://i.imgur.com/piHNxXB.png"></p>
-<hr>
-<p>接著官方會有個簡單的文件告訴你要如何實作這塊，這邊就先使用<code>pip</code>在本地安裝套件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade <span class="string">&quot;sentry-sdk[flask]==0.13.2&quot;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>若是使用雲端服務的話需要將<code>sentry-sdk[flask]==0.13.2</code>放入 requirements.txt 中</p>
-</blockquote>
-<p>將以下 init code 放入 api.py 裡，在 <code>app = Flask(__name__)</code> 之前</p>
-<blockquote>
-<p>這邊我將 Sentry 的 DSN 放入 .env 裡，若有參考這部分的朋友需要注意環境變數的地方喔！</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sentry_sdk</span><br><span class="line"><span class="keyword">from</span> sentry_sdk.integrations.flask <span class="keyword">import</span> FlaskIntegration</span><br><span class="line"></span><br><span class="line">sentry_sdk.init(</span><br><span class="line">    dsn=os.environ.get(<span class="string">&#x27;SENTRY_DSN&#x27;</span>),</span><br><span class="line">    integrations=[FlaskIntegration()]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/u9WJkZL.png"></p>
-<hr>
-<p>接著就開始丟錯誤上去看看狀態，我的專案上是串著 LINE Bot，功能只是當個應聲蟲，<strong>在這情況下只需要丟個貼圖給它就會出錯</strong>。</p>
-<p>當錯誤丟出來之後原本監聽的紅色燈號就會打勾囉 ✅</p>
-<blockquote>
-<p>Sentry 預設都會寄信通知，所以若有錯誤記得看信箱哦！</p>
-</blockquote>
-<p><img src="https://i.imgur.com/JXfV97e.png"></p>
-<hr>
-<p>點進去後就可以很清楚的看到程式是錯在第幾行，寫到這有種莫名的感動，平常都是在 LOG 海裡找看看到底報錯在哪邊，終於有個地方能幫我接下來了 🎉<br><img src="https://i.imgur.com/JvVeSdd.png"></p>
-<p>到這邊基本串接已經完成了，但身為免費導向的工程師怎麼能讓 5000&#x2F;月 限制我！接下來就要去過濾一下來的錯誤內容，若不是系統造成的錯誤就不上傳。</p>
-<p>我選擇判斷 Log 達到<code>Waring</code>或是<code>Internal</code>就回報，並照著官方的指示新增以下內容:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/python/#filter-events--custom-logic">before_send</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/python/logging/">logging</a></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sentry_sdk</span><br><span class="line"><span class="keyword">from</span> sentry_sdk.integrations.flask <span class="keyword">import</span> FlaskIntegration</span><br><span class="line">+ <span class="keyword">import</span> logging</span><br><span class="line">+ <span class="keyword">from</span> http.client <span class="keyword">import</span> HTTPException</span><br><span class="line">+ <span class="keyword">from</span> sentry_sdk.integrations.logging <span class="keyword">import</span> LoggingIntegration</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ <span class="function"><span class="keyword">def</span> <span class="title">strip_sensitive_data</span>(<span class="params">event, hint</span>):</span></span><br><span class="line">+     <span class="keyword">if</span> <span class="string">&quot;exc_info&quot;</span> <span class="keyword">in</span> hint:</span><br><span class="line">+         instance = hint[<span class="string">&#x27;exc_info&#x27;</span>][<span class="number">1</span>]</span><br><span class="line">+         <span class="keyword">if</span> <span class="built_in">isinstance</span>(instance, HTTPException) <span class="keyword">and</span> instance.code &lt; <span class="number">500</span>:</span><br><span class="line">+             <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">+     <span class="keyword">return</span> event</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ sentry_logging = LoggingIntegration(</span><br><span class="line">+     level=logging.INFO,</span><br><span class="line">+     event_level=logging.WARNING</span><br><span class="line">+ )</span><br><span class="line"></span><br><span class="line">sentry_sdk.init(</span><br><span class="line">    dsn=os.environ.get(<span class="string">&#x27;SENTRY_DSN&#x27;</span>),</span><br><span class="line">+    before_send=strip_sensitive_data,</span><br><span class="line">+    integrations=[FlaskIntegration(), sentry_logging]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>strip_sensitive_data</code>: 過濾來自 Http 的 Exception 錯誤碼是否大於<code>500</code>，否則不回傳。</li>
-<li><code>sentry_logging</code>: 使用 SDK 的 <code>LoggingIntegration</code> 來定義 log 回傳事件時的層級到哪層才上傳錯誤訊息，這邊我設定<code>Waring</code>等級，並加入到 init 的 <code>integrations</code> 裡。</li>
-</ul>
-<p>此時不管你打上都會將訊息送上 Sentry：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logging.waring(<span class="string">&quot;i am waring&quot;</span>)</span><br><span class="line">logging.error(<span class="string">&quot;i am error&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>或者是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">raise</span> InternalServerError(<span class="string">&quot;Hi Error&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>或者！！自己手殘讓程式崩潰也會送通知</p>
-</blockquote>
-<p>到這基本上已經完成串接完成並能過濾錯誤訊息，接下來則為將服務串至 Slack 上。</p>
-<h1 id="Slack-bot-串接"><a href="#Slack-bot-串接" class="headerlink" title="Slack bot 串接"></a>Slack bot 串接</h1><p>首先來到<code>Settings</code>按下<code>Integrations</code>會看到以下畫面，並安裝一下<code>Slack</code><br><img src="https://i.imgur.com/Sbib4sv.png"></p>
-<hr>
-<p>接著就要跟 Slack 連動囉<br><img src="https://i.imgur.com/6wHC4Ci.png"></p>
-<hr>
-<p>連動完成後再按下<code>configure</code>來設定以下內容<br><img src="https://i.imgur.com/dSOV9KP.png"></p>
-<hr>
-<p>到了<code>Alerts</code>頁面後就開始設定以下內容囉，這部分參考<a target="_blank" rel="noopener" href="https://docs.sentry.io/workflow/integrations/global-integrations/#slack">官方文件</a><br><img src="https://i.imgur.com/qd05OJO.png"></p>
-<hr>
-<p>可以指定透過哪個<code>group</code>去傳送至哪個<code>tag</code>，我就直接送到預設的<code>#general</code><br><img src="https://i.imgur.com/22Z3pV9.png"></p>
-<hr>
-<p>測試就直接送出貼圖來讓 bot 報錯，結果就收到<code>key</code>的錯誤啦～<br><img src="https://i.imgur.com/FAvjMwy.png"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就能透過<code>sls deploy</code>將專案部署到 AWS 上，透過這次的紀錄對 Sentry SDK 運作在框架上的問題更加了解，同時也找到了一個不僅可以紀錄錯誤還能通知我錯誤訊息的地方，可以在第一時間直接進去分析 log，若完成了可以直接在 slack 上按<code>Reslove</code>來完成這個 issue。</p>
-<p>本來有在考慮要串接<code>LINE Notify</code>，不過看著 Sentry 對 Slack 的整合比較好，也就放棄了這個念頭了 🤣，但串接哪個平台其實就看公司的需求，Sentry 一樣可以透過 webhook 將錯誤訊息傳至 Server。</p>
-<p>此外它一樣可以整合<code>Github</code>、<code>GitLab</code>、<code>Azure DevOps</code>…等等，若錯誤處理好的話可以讓 Sentry 幫你送 Issue 上去，不僅整個超炫砲 😎，若是 open source 的專案也可以大家一起去修這個問題，真的是一舉兩得啊！！！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1584,7 +1587,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">227</span>
+          <span class="site-state-item-count">228</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
