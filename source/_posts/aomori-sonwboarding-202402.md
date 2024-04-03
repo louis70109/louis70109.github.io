@@ -6,10 +6,9 @@ tags:
   - 日本滑雪
   - 青森
   - 八甲田山
-categories: 學習紀錄
+categories: 日記
 date: 2024-03-02 14:51:08
 ---
-
 
 ![](https://nijialin.com/images/2024/aomori/S__19750974_0.jpg)
 
@@ -127,7 +126,6 @@ date: 2024-03-02 14:51:08
 ## [Aomori Spring Ski Resort](https://maps.app.goo.gl/WaRh4C9yDwm2qaV66?g_st=ic)
 
 ![](https://nijialin.com/images/2024/aomori/md85_G_01.jpg)
-
 
 有一天因為八甲田風太大沒有開，全體人員前往 Aomori spring 滑雪，這次去中間通往山頂的纜車沒開，也剛好藉這個機會把這邊都玩過一遍，體感這邊的紅線跟綠線等及差不多
 
