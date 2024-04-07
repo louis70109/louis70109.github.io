@@ -208,6 +208,94 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/02/Day18-%E5%9C%A8-Serverless-%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%80%8B%E6%8E%92%E7%A8%8B%E4%BE%86%E7%99%BC%E9%80%81%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93%E6%AA%A2%E6%B8%AC%E5%90%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/02/Day18-%E5%9C%A8-Serverless-%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%80%8B%E6%8E%92%E7%A8%8B%E4%BE%86%E7%99%BC%E9%80%81%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93%E6%AA%A2%E6%B8%AC%E5%90%A7/" class="post-title-link" itemprop="url">Day18 - 在 Serverless 上設定個排程來發送空氣污染檢測吧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-02 12:55:35" itemprop="dateCreated datePublished" datetime="2019-10-02T12:55:35+00:00">2019-10-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>過往寫了這麼多的 api，總是會有特定的功能會需要輪詢資料庫或是監聽某些事件，以前還要到弄個虛擬機寫腳本用 crontab，這時候 Lambda 的用處就來啦！不只可以處理 api 的事情，還可以設定排程做事，太舒服啦，以下就來介紹一下～</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>首先在 <code>consumer</code> 資料夾下<code>line_bot_alert.py</code>，再寫一段需要定時跑的程式，這邊我去抓中央氣象局的資料，大概簡單判斷一下區域以及算出他的範圍：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">alert_handler</span>(<span class="params">event, context</span>):</span></span><br><span class="line">    air = requests.get(</span><br><span class="line">        <span class="string">&#x27;http://opendata.epa.gov.tw/webapi/Data/REWIQA/?$orderby=SiteName&amp;$skip=0&amp;$top=1000&amp;format=json&#x27;</span>)</span><br><span class="line">    air_body = json.loads(air.text)</span><br><span class="line">    air_status = [<span class="string">&quot;良好&quot;</span>,	<span class="string">&quot;普通&quot;</span>,	<span class="string">&quot;對敏感族群不健康&quot;</span>,	<span class="string">&quot;對所有族群不健康&quot;</span>,	<span class="string">&quot;非常不健康&quot;</span>,	<span class="string">&quot;危害&quot;</span>, <span class="string">&quot;資料有誤&quot;</span>]</span><br><span class="line">    total, count = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> fetch <span class="keyword">in</span> air_body:</span><br><span class="line">        <span class="keyword">if</span> (fetch[<span class="string">&#x27;County&#x27;</span>] == <span class="string">&quot;臺中市&quot;</span> <span class="keyword">and</span> (fetch[<span class="string">&#x27;SiteName&#x27;</span>] == <span class="string">&quot;西屯&quot;</span> <span class="keyword">or</span> fetch[<span class="string">&#x27;SiteName&#x27;</span>] == <span class="string">&quot;沙鹿&quot;</span>)):</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> fetch[<span class="string">&#x27;AQI&#x27;</span>] != <span class="number">0</span>:</span><br><span class="line">                total = total + <span class="built_in">int</span>(fetch[<span class="string">&#x27;AQI&#x27;</span>])</span><br><span class="line">    switch = <span class="number">0</span></span><br><span class="line">    pm = <span class="built_in">int</span>(total / count)</span><br><span class="line">    print(pm)</span><br><span class="line">    <span class="keyword">if</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">50</span>):</span><br><span class="line">        switch = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">51</span>, <span class="number">100</span>):</span><br><span class="line">        switch = <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">101</span>, <span class="number">150</span>):</span><br><span class="line">        switch = <span class="number">2</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">151</span>, <span class="number">200</span>):</span><br><span class="line">        switch = <span class="number">3</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">201</span>, <span class="number">250</span>):</span><br><span class="line">        switch = <span class="number">4</span></span><br><span class="line">    <span class="keyword">elif</span> pm <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">251</span>, <span class="number">300</span>):</span><br><span class="line">        switch = <span class="number">5</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        switch = <span class="number">6</span></span><br><span class="line">    payload = <span class="string">f&quot;\n空氣品質: <span class="subst">&#123;air_status[switch]&#125;</span>&quot;</span></span><br><span class="line">    r = requests.post(<span class="string">&#x27;https://1uv2o723o4.execute-api.us-east-1.amazonaws.com/dev/notify/sqs&#x27;</span>,</span><br><span class="line">                      data=&#123;<span class="string">&#x27;message&#x27;</span>: payload&#125;)</span><br><span class="line">    print(r)</span><br></pre></td></tr></table></figure>
+
+<p>在<code>serverless.yml</code>的 function 下面加入 Lambda，handler 就是 <code>資料夾/檔案.類別</code>，設定事件(event)排程一分鐘一次</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">function:</span></span><br><span class="line">  <span class="attr">line_bot_alert:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">consumer/line_bot_alert_handler.alert_handler</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">schedule:</span> <span class="string">rate(1</span> <span class="string">minute)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>AWS Lambda 有兩種設定排程的方法，<code>rate</code>以及<code>cron</code>，若是比較固定時建議用<code>rate</code>，比較複雜的排程就可以讓<code>cron</code>來，下面兩張圖分別是來自 <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html">AWS</a> &gt; <img src="https://i.imgur.com/r9ZaBhO.png"></p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/BLrbUPP.png"></p>
+<p>下<code>sls deploy</code>部署之後就會看到剛剛做<code>line_bot_alert</code>的<code>function</code>，他每分鐘都在跑，若玩完之後不想用了可以下<code>sls remove</code>把上面有的東西刪掉嚕！<br><img src="https://i.imgur.com/0tpDSdf.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>其實還有很多應用可以實作排程，像是有朋友就用 GCP 的來定時發文 🤣，而且可以把腳本寫得像是 api 一樣，讓整個靈活性都增加了不少，下一篇就帶大家來做 LINE Login 嚕！</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html">AWS document</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1100,108 +1188,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/22/Day8-SQS-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-%E5%BB%BA%E7%AB%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/22/Day8-SQS-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-%E5%BB%BA%E7%AB%8B/" class="post-title-link" itemprop="url">Day8 - SQS 簡單介紹 & 建立</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-22 12:34:30" itemprop="dateCreated datePublished" datetime="2019-09-22T12:34:30+00:00">2019-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10194654">詳細介紹</a></p>
-<p>以前自己在架伺服器的時候，提到訊息佇列不外乎都是 RabbitMQ 或是 Kafka，只是現在 AWS、GCP 這類的雲端平台都越來越火紅了，手動按一下服務就建好了(信用卡也在哭泣)，省去很多建立服務的時間，只是說一般時候根本找不到項目練習 😓，剛好最近在複習 LINE Notfiy，就趁這個機會順便練習並記錄一下 ✌️</p>
-<h2 id="你需要先了解…"><a href="#你需要先了解…" class="headerlink" title="你需要先了解…"></a>你需要先了解…</h2><blockquote>
-<p>當 Http requests 非常大量到一定程度，database 已經跟不上處理的速度，尤其是 relational database，這時就需要 queue 來緩衝；所以社群網站像 Facebook or LinkedIn 都使用大量的 message queue and cache.<br>By -&gt; Leonard Lee</p>
-</blockquote>
-<blockquote>
-<p>SQS 就是 managed queue service，主要就是 async, central messaging (對相對應的程式來說，通常處理 api 的會有多個 instances 同時存在，像是 auto-scaling)，像是 fb 通知、寄送 email 認證信這種不用即時處理的情況，只要給訊息給 queue 讓其他服務或程式去處理，可以把原本的邏輯簡化(以及責任區分)，甚至些事件是預期同時會有多個 listener 會需要處理的情況，在一個 api 裡面去處理這些會讓邏輯變很複雜&#x2F;不好維護。<br>By -&gt; Bill Chung</p>
-</blockquote>
-<blockquote>
-<p>還有就是如果負責處理 request 的 host 有問題，message queue 可以用來短暫儲存還未被處理的 requests 使他們不至於丟失，直到 host 回復正常或是換了一個好的 host 後，message queue 裡面的的 requests 就可以繼續被處理<br>By -&gt; 盧元駿</p>
-</blockquote>
-<p>以上來自我之前寫過的文章 <a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/%E4%BD%BF%E7%94%A8-serverless-%E8%AE%93-aws-sqs-%E5%B9%AB%E4%BD%A0%E7%99%BC%E9%80%81-line-notify-fc3b918473cc">使用 Serverless 讓 AWS SQS 幫你發送 LINE Notify</a></p>
-<p>今天在需要發個請求去呼叫 LINE API(或是其他服務的 API)，都可能會碰到圖片，圖片不管他怎麼壓縮，終究還是比文字肥，在數量多的情況下可能就會發現 API 罷工(就會像被斷詠唱一樣)。雖然平常使用可能不會這麼平凡呼叫，但若在商業用途上使用者多的時候一次呼叫就會有一大筆，這時候用 Queue 讓他們排隊一個一個來就在適合不過了 🎉。</p>
-<h2 id="為什麼選擇-AWS-SQS"><a href="#為什麼選擇-AWS-SQS" class="headerlink" title="為什麼選擇 AWS SQS"></a>為什麼選擇 AWS SQS</h2><p>Amazon Simple Queue Service (SQS) 是全受管訊息佇列服務，可讓您分離和擴展微型服務、分散式系統及無伺服器應用程式。SQS 可免除與管理和操作訊息導向中介軟體相關的複雜性及開銷，也可讓開發人員專注在與眾不同的工作上。您可以使用 SQS 在軟體元件之間傳送、存放和接收不限數量的訊息，不會遺失訊息或需要其他服務可用。使用 AWS 主控台、命令列界面或自選的 SDK 以及三個簡單的命令，即可在幾分鐘內開始使用 SQS。(參考 <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/sqs/">AWS</a>)</p>
-<p>SQS 有在免費方案裡面，只要一個月別高於 100 萬個請求就不會被收錢啦 💪<br><img src="https://i.imgur.com/az2V5a4.png"></p>
-<blockquote>
-<p>AWS 的免費方案可以參考 -&gt; <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsm.page-all-free-tier=5&source=post_page-----fc3b918473cc----------------------">LINK</a></p>
-</blockquote>
-<h2 id="建立-SQS"><a href="#建立-SQS" class="headerlink" title="建立 SQS"></a>建立 SQS</h2><p>接著就要開始引入 SQS 嚕，首先到 AWS 上的 SQS 頁面，如下</p>
-<p><img src="https://i.imgur.com/HXXX2SI.png"></p>
-<hr>
-<p>接著選左邊的<code>Standard Queue</code>並填入 name 就好<br><img src="https://i.imgur.com/Q88vd9t.png"></p>
-<hr>
-<p>建立完之後就可以看到下面有建立完的資訊</p>
-<blockquote>
-<p>ARN 以及 URL 接下來都會用到哦</p>
-</blockquote>
-<p><img src="https://i.imgur.com/7pUSK9Q.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>接下來會帶各位使用 Notify 接在 SQS 上，這篇就先帶各位介紹並先手動建立一個 Queue，之後會在大家使用 python 的 boto3 的套件來搭配使用 AWS 服務使用 👏</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1273,7 +1259,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">228</span>
+          <span class="site-state-item-count">229</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1286,7 +1272,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">307</span>
+        <span class="site-state-item-count">308</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
