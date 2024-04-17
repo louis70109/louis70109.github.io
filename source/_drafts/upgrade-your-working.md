@@ -15,32 +15,18 @@ tags:
 
 # 介紹
 
+網頁 編輯器通常都共用
+- `CMD+W`: 關閉當前視窗
+- `CMD+T`: 開新分頁
+- `CMD+K`: attach url
+- `CMD+L`: 跳至網址列並全選，通常會搭配 CMD+C
+- `CMD+SHIFT+[`: 往左，`]` 往右
+- `CMD+P`: 列印，office 也共用
+- `CMD+Q`: 關閉當前應用程式，緊急用
+
+把 Control 改到 caps 位置，換語言用 control+空白鍵
+
+
+Manico 來制定客製化的快捷建
+
 # 結論
-
-# 活動小結
-
-立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼
-
-「LINE 開發者官方社群」官方帳號 ID：[@line_tw_dev](https://qr-official.line.me/gs/M_908lugfe_BW.png)
-
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-# 關於「LINE 開發社群計畫」
-
-LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:
-
-- [2021 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/)
-- [2020 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/)
-- [2019 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/)
-- [LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告](https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/)
-
-
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
