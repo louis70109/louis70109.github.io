@@ -18070,4 +18070,40 @@ img[alt~="center"] {
         <tag>Animation</tag>
       </tags>
   </entry>
+  <entry>
+    <title>日常快捷鍵 &amp; 小工具分享 | 沉浸翻譯, 切割視窗</title>
+    <url>/2024/04/18/upgrade-your-working/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作為一位需要在電腦前面待上 8 小時以上的現代人，很多時候都需要花很多時間消化日常的資訊，以下快速分享近期經常使用的快捷鍵跟小工具，加速我日常作業的時間，把時間花在其他更有興趣的地方～</p>
+<span id="more"></span>
+
+<h1 id="日常快捷鍵"><a href="#日常快捷鍵" class="headerlink" title="日常快捷鍵"></a>日常快捷鍵</h1><p>以下這幾個快捷鍵基本上在<code>網頁</code>&amp;<code>編輯器</code>通常都共用，記下來練習下有助於日常工作</p>
+<ul>
+<li><code>CMD+W</code>: 關閉當前視窗</li>
+<li><code>CMD+T</code>: 開新分頁</li>
+<li><code>CMD+K</code>: attach url</li>
+<li><code>CMD+L</code>: 跳至網址列並全選，通常會搭配 CMD+C，也可搭配後文的 Manico</li>
+<li><code>CMD+SHIFT+[</code>: 往左，<code>]</code> 往右</li>
+<li><code>CMD+P</code>: 列印，office 也共用</li>
+<li><code>CMD+Q</code>: 關閉當前應用程式，緊急用</li>
+</ul>
+<p>因為使用了 HHKB，其中他的 Control 的位置跟一般鍵盤比較不同，但因為工作需要拿著電腦到處跑，因此我也把 Mac 的 Control 改到 caps 位置，換語言轉用 <code>control+空白鍵</code>，如此一來就比較少在切換語系時轉不太過去，導致無意間惱怒 caps 的功能 🤣</p>
+<blockquote>
+<p><a href="https://nijialin.com/2022/08/20/why-you-need-hhkb/">【HHKB】為什麼要它？怎麼在二手市集挑？</a></p>
+</blockquote>
+<h1 id="利用-Edge-的分隔畫面"><a href="#利用-Edge-的分隔畫面" class="headerlink" title="利用 Edge 的分隔畫面"></a>利用 Edge 的分隔畫面</h1><p><img src="https://nijialin.com/images/2024/working/split.png"></p>
+<p>很多時候需要比對文件、翻譯結果、Code Review…etc，都需要切割視窗來輔助，這時候就可以直接用 Edge 內建的功能使用，方便又快速</p>
+<h1 id="Manico-設定自己的快捷建"><a href="#Manico-設定自己的快捷建" class="headerlink" title="Manico - 設定自己的快捷建"></a><a href="https://apps.apple.com/tw/app/manico/id724472954?mt=12">Manico</a> - 設定自己的快捷建</h1><p><a href="https://apps.apple.com/tw/app/manico/id724472954?mt=12">Manico</a> 是一個 MacOS 的工具，專門來制定客製化的快捷鍵，像我都習慣使用左邊鍵盤的組合鍵來搭配，也配合 CMD+C CMD+V 這樣的手法用，這樣找個操作直覺比較一致</p>
+<h1 id="沉浸翻譯-Chrome-套件"><a href="#沉浸翻譯-Chrome-套件" class="headerlink" title="沉浸翻譯 - Chrome 套件"></a><a href="https://chromewebstore.google.com/detail/%E6%B2%88%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AD%AF-%E7%B6%B2%E9%A0%81%E7%BF%BB%E8%AD%AF%E6%93%B4%E5%85%85-pdf%E7%BF%BB%E8%AD%AF-%E5%85%8D%E8%B2%BB/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-TW">沉浸翻譯</a> - Chrome 套件</h1><p><img src="https://nijialin.com/images/2024/working/translate.png"></p>
+<p>不論是專案管理或擔任工程師，經常都需要看各種英文文件，或是各國語系的東西，過去都需要費工複製起來貼在 Google 翻譯，這時候可以使用 Chrome 套件 - <a href="https://chromewebstore.google.com/detail/%E6%B2%88%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AD%AF-%E7%B6%B2%E9%A0%81%E7%BF%BB%E8%AD%AF%E6%93%B4%E5%85%85-pdf%E7%BF%BB%E8%AD%AF-%E5%85%8D%E8%B2%BB/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-TW">沉浸翻譯</a> 來把頁面上的內容全部翻譯，不論現在是什麼語系都可以快速翻譯，幫助日常作業可以更快理解裡面內容，當然若想要翻譯更精準，裡面也可以放入各家 AI 或企業版的功能喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1>]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>Manico</tag>
+        <tag>Chrome</tag>
+        <tag>翻譯</tag>
+      </tags>
+  </entry>
 </search>

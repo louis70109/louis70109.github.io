@@ -2,28 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://nijialin.com/2024/04/18/line-bot-loading-animation-python/</loc>
-    
-    <lastmod>2024-04-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/2024/02/13/gcp-cloud-function-gen2-with-line-bot/</loc>
-    
-    <lastmod>2024-04-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/</loc>
-    
-    <lastmod>2024-04-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/2024/04/04/flyio-quick-deploy-your-service/</loc>
+    <loc>https://nijialin.com/2024/04/18/upgrade-your-working/</loc>
     
     <lastmod>2024-04-18</lastmod>
     
@@ -44,7 +23,35 @@
   </url>
   
   <url>
+    <loc>https://nijialin.com/2024/04/18/line-bot-loading-animation-python/</loc>
+    
+    <lastmod>2024-04-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/2024/02/13/gcp-cloud-function-gen2-with-line-bot/</loc>
+    
+    <lastmod>2024-04-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nijialin.com/2024/03/02/aomori-sonwboarding-202402/</loc>
+    
+    <lastmod>2024-04-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/</loc>
+    
+    <lastmod>2024-04-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/2024/04/04/flyio-quick-deploy-your-service/</loc>
     
     <lastmod>2024-04-18</lastmod>
     
@@ -3806,6 +3813,27 @@
   
   <url>
     <loc>https://nijialin.com/tags/Animation/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/Manico/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/Chrome/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/%E7%BF%BB%E8%AD%AF/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
