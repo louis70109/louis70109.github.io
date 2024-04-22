@@ -17749,52 +17749,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
-    <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
-<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>此次使用的是 <a href="https://github.com/louislam/uptime-kuma/tree/master">uptime-kuma</a>，本來想說可以直接上到 Google Cloud Run 上，除了自己弄不上去以外，也發現 uptime kuma 是使用 SQLite 來儲存資訊，這邊很有可能被 <a href="https://nijialin.com/2020/02/15/serverless-cold-start/">Cold Start 的問題</a>打到，因此這次使用 fly.io 來部署(<a href="https://github.com/louis70109/uptime-kuma-fly/blob/main/fly.toml">民間版本.toml</a>)</p>
-<ol>
-<li>有許多的 notification 可以串接，有支援 LINE Bot &amp; Notify</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/kuma/notification.png"></p>
-<ol start="2">
-<li><p>初次進去就可以設帳密，但帳號只能一個還改不了 🫣</p>
-</li>
-<li><p>可設定群組，統一設定 notification 而不用各別弄</p>
-</li>
-<li><p>還沒研究怎麼把 SQLite 拔出來，看來有支援 MySQL</p>
-</li>
-<li><p>備份不求人，直接 Export 就可以了</p>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/kuma/backup.png"></p>
-<ol start="6">
-<li>如何部署到 fly.io</li>
-</ol>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Clone 專案到本地</span></span><br><span class="line">git clone https:<span class="string">//github.com/louis70109/uptime-kuma-fly.git</span></span><br><span class="line"><span class="comment"># 進入資料夾</span></span><br><span class="line"><span class="keyword">cd</span> uptime-kume-fly/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署，原先指令是 flyctl</span></span><br><span class="line">fly launch \</span><br><span class="line">  <span class="params">--copy-config</span> \</span><br><span class="line">  <span class="params">--auto-confirm</span> \</span><br><span class="line">  <span class="params">--ha=false</span> \</span><br><span class="line">  <span class="params">--name</span> uptime-kuma-nijia \</span><br><span class="line">  <span class="params">--now</span></span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>如果想要在 fly.io 上客製化 domain，例如：<code>status.YOURDOMAIN.com</code></li>
-</ol>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">fly certs <span class="built_in">create</span> <span class="built_in">status</span>.YOURDOMAIN.com</span><br><span class="line">fly certs <span class="built_in">create</span> <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br><span class="line">fly certs show <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
-]]></content>
-      <categories>
-        <category>Serverless</category>
-      </categories>
-      <tags>
-        <tag>Serverless</tag>
-        <tag>Monitor</tag>
-        <tag>Fly.io</tag>
-        <tag>Uptime Kuma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何建立 fly.toml 並快速佈署至 Fly.io</title>
     <url>/2024/04/04/flyio-quick-deploy-your-service/</url>
     <content><![CDATA[<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>最近因為有些專案需要有 local Volume，但在 Serverless 上要用偏麻煩，除機器上的本身功能以外，還需要另外開 VM 讓 Container 能夠 mount volume，因此需要類似 Heroku、Fly.io 這類的 SaaS 的服務，可以用很少量的費用去使用到 Database&#x2F;Volume 的功能…</p>
@@ -17846,6 +17800,52 @@ img[alt~="center"] {
       <tags>
         <tag>Serverless</tag>
         <tag>Fly.io</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
+    <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
+<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>此次使用的是 <a href="https://github.com/louislam/uptime-kuma/tree/master">uptime-kuma</a>，本來想說可以直接上到 Google Cloud Run 上，除了自己弄不上去以外，也發現 uptime kuma 是使用 SQLite 來儲存資訊，這邊很有可能被 <a href="https://nijialin.com/2020/02/15/serverless-cold-start/">Cold Start 的問題</a>打到，因此這次使用 fly.io 來部署(<a href="https://github.com/louis70109/uptime-kuma-fly/blob/main/fly.toml">民間版本.toml</a>)</p>
+<ol>
+<li>有許多的 notification 可以串接，有支援 LINE Bot &amp; Notify</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/kuma/notification.png"></p>
+<ol start="2">
+<li><p>初次進去就可以設帳密，但帳號只能一個還改不了 🫣</p>
+</li>
+<li><p>可設定群組，統一設定 notification 而不用各別弄</p>
+</li>
+<li><p>還沒研究怎麼把 SQLite 拔出來，看來有支援 MySQL</p>
+</li>
+<li><p>備份不求人，直接 Export 就可以了</p>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/kuma/backup.png"></p>
+<ol start="6">
+<li>如何部署到 fly.io</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Clone 專案到本地</span></span><br><span class="line">git clone https:<span class="string">//github.com/louis70109/uptime-kuma-fly.git</span></span><br><span class="line"><span class="comment"># 進入資料夾</span></span><br><span class="line"><span class="keyword">cd</span> uptime-kume-fly/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署，原先指令是 flyctl</span></span><br><span class="line">fly launch \</span><br><span class="line">  <span class="params">--copy-config</span> \</span><br><span class="line">  <span class="params">--auto-confirm</span> \</span><br><span class="line">  <span class="params">--ha=false</span> \</span><br><span class="line">  <span class="params">--name</span> uptime-kuma-nijia \</span><br><span class="line">  <span class="params">--now</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>如果想要在 fly.io 上客製化 domain，例如：<code>status.YOURDOMAIN.com</code></li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">fly certs <span class="built_in">create</span> <span class="built_in">status</span>.YOURDOMAIN.com</span><br><span class="line">fly certs <span class="built_in">create</span> <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br><span class="line">fly certs show <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
+]]></content>
+      <categories>
+        <category>Serverless</category>
+      </categories>
+      <tags>
+        <tag>Serverless</tag>
+        <tag>Fly.io</tag>
+        <tag>Monitor</tag>
+        <tag>Uptime Kuma</tag>
       </tags>
   </entry>
   <entry>
