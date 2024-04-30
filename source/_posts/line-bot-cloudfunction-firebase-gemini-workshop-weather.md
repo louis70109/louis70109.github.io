@@ -1,16 +1,23 @@
 ---
-title: 【標題】題目
-categories: 學習紀錄
+title: '在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線'
 tags:
+  - LINE
+  - Cloud Run
+  - Open Data
+categories: GCP
+date: 2024-04-30 18:13:37
 ---
+
 
 ![](https://nijialin.com/images/common.jpeg)
 
 # 前言
 
+此為政治大學&臺北大學 GDSC 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容
+
 <!-- more -->
 
-# 細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
+# LINE Bot & Gemini Pro 設定細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
 
 ## 事前準備
 
