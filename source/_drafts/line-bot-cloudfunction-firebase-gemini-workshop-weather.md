@@ -8,8 +8,6 @@ tags:
 
 # 前言
 
-
-
 <!-- more -->
 
 # 細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
@@ -48,7 +46,6 @@ tags:
 
 > 摘要王 v2 - [Sample code](https://github.com/louis70109/linebot-gemini-summarize/tree/main)
 
-
 # 整合天氣模組
 
 - 天氣 Open Data json 下載位置：https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001
@@ -81,23 +78,33 @@ tags:
 
 <script src="https://gist.github.com/louis70109/1c8f104eae54a3bcb23aad2347211064.js"></script>
 
-# 部署
+# 部署 - 從 Cloud Run 介面來連結 GitHub 持續部署
 
-- 透過 GitHub clone 專案 - [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize/tree/main)
-- 點選 README 中的 Run on Google Cloud 按鈕
+1. 首先先 fork 專案 - [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize)，方便後續操作
+2. 接著到 [Cloud Run 首頁](https://console.cloud.google.com/run?referrer=search&hl=zh-tw)，點選上方的`建立服務`
 
-![](https://nijialin.com/images/2024/gemini-workshop/shell1.png)
+![](https://nijialin.com/images/2024/gemini-workshop/select.jpeg)
 
-- 選好專案可能遇到 `unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request...`
-  - 執行 `gcloud auth configure-docker`
-  - Do you want to continue (Y/n)?  Y
+3. 選擇外部資源(GitHub)，從專案中來偵測部署，此步驟後續會連動 GitHub
 
+![](https://nijialin.com/images/2024/gemini-workshop/detail.jpeg)
 
-如果你看到 cloud shell 中有以下錯誤別緊張：
+4. 此步驟需要確保`認證`以及`Ingress control` 的部分，因為從 LINE 伺服器打來的流量對 Google Cloud 來說都是外來的，因此需要確定選項
 
-```
-Error: reason=HealthCheckContainerError message=Revision 'linebot-gemini-summarize-00001-fgt' is not ready and cannot serve traffic. The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable. Logs for this revision might contain more information.
-```
+![](https://nijialin.com/images/2024/gemini-workshop/env_setting.png)
+
+5. 在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入
+   1. 環境變數清單請看 [GitHub URL](https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample)
+   2. LINE bot/GEMINI pro/Firebase 的取得詳細請往前看 `事前準備`
+   3. API_ENV 需要為 `production`，否則會找 .env 檔案位置
+
+![](https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg)
+
+6. 在部署的同時可以到 GitHub 專案上看看部署的連動狀態，如此一來只要 GitHub 專案只要有更改，就會自動部署過去 Cloud Run
+
+![](https://nijialin.com/images/2024/gemini-workshop/complete.jpeg)
+
+完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去
 
 # 活動小結
 
