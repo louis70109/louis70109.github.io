@@ -18006,6 +18006,132 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
+    <url>/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為政治大學&amp;臺北大學 GDSC 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
+<span id="more"></span>
+
+<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<ul>
+<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
+<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
+<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
+<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
+<li>GitHub: Clone 專案部署的地方</li>
+</ul>
+<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
+<h1 id="先部署-從-Cloud-Run-介面來連結-GitHub-持續部署"><a href="#先部署-從-Cloud-Run-介面來連結-GitHub-持續部署" class="headerlink" title="先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署"></a>先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署</h1><ol>
+<li>首先先 fork 專案 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，方便後續操作</li>
+<li>接著到 <a href="https://console.cloud.google.com/run?referrer=search&hl=zh-tw">Cloud Run 首頁</a>，點選上方的<code>建立服務</code></li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/select.jpeg"></p>
+<ol start="3">
+<li>選擇外部資源(GitHub)，從專案中來偵測部署，此步驟後續會連動 GitHub</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/detail.jpeg"></p>
+<ol start="4">
+<li>此步驟需要確保<code>認證</code>以及<code>Ingress control</code> 的部分，因為從 LINE 伺服器打來的流量對 Google Cloud 來說都是外來的，因此需要確定選項</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/env_setting.png"></p>
+<ol start="5">
+<li>在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入<ol>
+<li>環境變數清單請看 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample">GitHub URL</a></li>
+<li>LINE bot&#x2F;GEMINI pro&#x2F;Firebase 的取得詳細請往前看 <code>事前準備</code></li>
+<li>API_ENV 需要為 <code>production</code>，否則會找 .env 檔案位置</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg"></p>
+<ol start="6">
+<li>在部署的同時可以到 GitHub 專案上看看部署的連動狀態，如此一來只要 GitHub 專案只要有更改，就會自動部署過去 Cloud Run</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/complete.jpeg"></p>
+<p>完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去</p>
+<h1 id="摘要王-v2"><a href="#摘要王-v2" class="headerlink" title="摘要王 v2"></a>摘要王 v2</h1><p>在 2022 年底，Evan 寫了一篇如何透過 ChatGPT + LINE Bot 的<a href="https://engineering.linecorp.com/zh-hant/blog/linebot-chatgpt">群組摘要王文章</a>，如今用 Gemini Pro 再做一次效果也會差不多，當時的作法是用 Golang 的 queue 方式去處理，以下介紹另一個作法 - 用 Firebase 當作對話 session 的儲存位置，實現記憶這件事</p>
+<p><a href="https://line-tw-official.weblog.to/archives/25515573.html">2023&#x2F;11&#x2F;06 訊息摘要功能上線！用 AI 總結社群聊天室訊息！</a></p>
+<p>這次做的摘要王主要用以下技術，設定細節請參考「<a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a>」：</p>
+<ul>
+<li>Firebase<ul>
+<li>儲存對話歷史</li>
+</ul>
+</li>
+<li>Gemini Pro<ul>
+<li>透過 Firebase 的歷史對話，協助判斷</li>
+</ul>
+</li>
+<li>以下選填<ul>
+<li>Cloud Run: 部署用</li>
+<li>Python: 快速開發</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/tree/main">Sample code</a></p>
+</blockquote>
+<h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
+<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
+<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
+<li><code>需要註冊</code>且拿到<code>授權碼</code></li>
+</ul>
+<blockquote>
+<p>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt<br>抓取天氣 API 的 <a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/weather.py#L7">Python code</a></p>
+</blockquote>
+<h2 id="紅外線圖-是否有雲層"><a href="#紅外線圖-是否有雲層" class="headerlink" title="紅外線圖 - 是否有雲層"></a>紅外線圖 - 是否有雲層</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
+<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
+<ul>
+<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
+<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
+<li>可以試著用時間套件+判斷式來檢測</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
+
+<h2 id="地板是否為濕的？"><a href="#地板是否為濕的？" class="headerlink" title="地板是否為濕的？"></a>地板是否為濕的？</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
+<blockquote>
+<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/common.py#L30">SkatePark code</a></p>
+</blockquote>
+<blockquote>
+<p>以下的 code 的網址為範例，可以抓任何網址為 <code>.jpg</code> 結尾的丟進去試試看。<br>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/1c8f104eae54a3bcb23aad2347211064.js"></script>
+
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Cloud Run</tag>
+        <tag>Open Data</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>幫 LINE Bot 加點回覆動畫魔法：Loading Animation 功能解析</title>
     <url>/2024/04/18/line-bot-loading-animation-python/</url>
     <content><![CDATA[<p><img src="https://developers.line.biz/assets/img/loading-animation.7aad3d6c.gif"></p>
