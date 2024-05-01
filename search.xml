@@ -18018,10 +18018,13 @@ img[alt~="center"] {
 <li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
 <li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
 <li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
-<li>GitHub: Clone 專案部署的地方</li>
+<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a></li>
 </ul>
 <h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
 <p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
+<blockquote>
+<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
+</blockquote>
 <h1 id="先部署-從-Cloud-Run-介面來連結-GitHub-持續部署"><a href="#先部署-從-Cloud-Run-介面來連結-GitHub-持續部署" class="headerlink" title="先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署"></a>先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署</h1><ol>
 <li>首先先 fork 專案 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，方便後續操作</li>
 <li>接著到 <a href="https://console.cloud.google.com/run?referrer=search&hl=zh-tw">Cloud Run 首頁</a>，點選上方的<code>建立服務</code></li>
@@ -18038,7 +18041,7 @@ img[alt~="center"] {
 <ol start="5">
 <li>在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入<ol>
 <li>環境變數清單請看 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample">GitHub URL</a></li>
-<li>LINE bot&#x2F;GEMINI pro&#x2F;Firebase 的取得詳細請往前看 <code>事前準備</code></li>
+<li>LINE bot &#x2F; GEMINI pro &#x2F; Firebase 的取得詳細請往前看 <code>事前準備</code></li>
 <li>API_ENV 需要為 <code>production</code>，否則會找 .env 檔案位置</li>
 </ol>
 </li>
@@ -18067,8 +18070,10 @@ img[alt~="center"] {
 </ul>
 </li>
 </ul>
+<p>接著建立一個群組，並將剛剛建立的官方帳號邀請進去，此步驟需要到 LINE Dev Console 設定，否則會邀請不進去。</p>
+<p>邀請進去後，群組內從 <a href="https://today.line.me/tw/v3/tab">LINE TODAY</a> 中抓取新聞片段貼貼至群組中，接著打上 <code>!摘要</code> 讓 LINE Bot 幫你整理！</p>
 <blockquote>
-<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/tree/main">Sample code</a></p>
+<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115">Sample code</a><br>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</p>
 </blockquote>
 <h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
 <li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
@@ -18092,7 +18097,7 @@ img[alt~="center"] {
 </blockquote>
 <script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
 
-<h2 id="地板是否為濕的？"><a href="#地板是否為濕的？" class="headerlink" title="地板是否為濕的？"></a>地板是否為濕的？</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
+<h2 id="地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像"><a href="#地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像" class="headerlink" title="地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)"></a>地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
 <blockquote>
 <p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/common.py#L30">SkatePark code</a></p>
 </blockquote>
