@@ -8,7 +8,6 @@ categories: GCP
 date: 2024-04-30 18:13:37
 ---
 
-
 ![](https://nijialin.com/images/common.jpeg)
 
 # 前言
@@ -27,13 +26,15 @@ date: 2024-04-30 18:13:37
 - [Google Cloud Run](https://cloud.google.com/run?hl=zh-TW)： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL
 - [Firebase](https://firebase.google.com/)：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題
 - [Google AI Studio](https://aistudio.google.com/app/prompts/new_chat): 可以透過這裡取得 Gemini Key
-- GitHub: Clone 專案部署的地方
+- GitHub: Clone 專案部署的地方 - [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize)
 
 ## 關於 Gemini API Price
 
 根據官方網站： https://ai.google.dev/pricing?hl=zh-tw
 
 ![](https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png)
+
+> 細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
 
 # 先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署
 
@@ -52,7 +53,7 @@ date: 2024-04-30 18:13:37
 
 5. 在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入
    1. 環境變數清單請看 [GitHub URL](https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample)
-   2. LINE bot/GEMINI pro/Firebase 的取得詳細請往前看 `事前準備`
+   2. LINE bot / GEMINI pro / Firebase 的取得詳細請往前看 `事前準備`
    3. API_ENV 需要為 `production`，否則會找 .env 檔案位置
 
 ![](https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg)
@@ -62,7 +63,6 @@ date: 2024-04-30 18:13:37
 ![](https://nijialin.com/images/2024/gemini-workshop/complete.jpeg)
 
 完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去
-
 
 # 摘要王 v2
 
@@ -80,7 +80,12 @@ date: 2024-04-30 18:13:37
   - Cloud Run: 部署用
   - Python: 快速開發
 
-> 摘要王 v2 - [Sample code](https://github.com/louis70109/linebot-gemini-summarize/tree/main)
+接著建立一個群組，並將剛剛建立的官方帳號邀請進去，此步驟需要到 LINE Dev Console 設定，否則會邀請不進去。
+
+邀請進去後，群組內從 [LINE TODAY](https://today.line.me/tw/v3/tab) 中抓取新聞片段貼貼至群組中，接著打上 `!摘要` 讓 LINE Bot 幫你整理！
+
+> 摘要王 v2 - [Sample code](https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115)
+> 試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項
 
 # 整合天氣模組
 
@@ -105,7 +110,7 @@ date: 2024-04-30 18:13:37
 
 <script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
 
-## 地板是否為濕的？
+## 地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)
 
 如果你有常常需要外出的活動(跑步、滑板、打球...etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的
 
