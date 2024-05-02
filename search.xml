@@ -18009,7 +18009,7 @@ img[alt~="center"] {
     <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
     <url>/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為政治大學&amp;臺北大學 GDSC 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
 <span id="more"></span>
 
 <h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
@@ -18075,6 +18075,7 @@ img[alt~="center"] {
 <blockquote>
 <p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115">Sample code</a><br>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</p>
 </blockquote>
+<h3 id="結果截圖"><a href="#結果截圖" class="headerlink" title="結果截圖"></a>結果截圖</h3><p><img src="https://nijialin.com/images/2024/gemini-workshop/result.jpg"></p>
 <h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
 <li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
 <li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
