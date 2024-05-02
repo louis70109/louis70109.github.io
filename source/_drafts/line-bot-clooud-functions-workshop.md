@@ -86,6 +86,7 @@ FIREBASE_URL
 
 8. 接著可以來到[ LINE TODAY ](https://today.line.me/tw/v3/tab)當中，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通
 
+## 試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項
 
 # 增加其他 Open Data 功能
 
