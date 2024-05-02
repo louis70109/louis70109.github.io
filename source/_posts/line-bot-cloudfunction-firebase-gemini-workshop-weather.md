@@ -12,7 +12,7 @@ date: 2024-04-30 18:13:37
 
 # 前言
 
-此為政治大學&臺北大學 GDSC 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容
+此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容
 
 <!-- more -->
 
@@ -86,6 +86,11 @@ date: 2024-04-30 18:13:37
 
 > 摘要王 v2 - [Sample code](https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115)
 > 試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項
+
+### 結果截圖
+
+![](https://nijialin.com/images/2024/gemini-workshop/result.jpg)
+
 
 # 整合天氣模組
 

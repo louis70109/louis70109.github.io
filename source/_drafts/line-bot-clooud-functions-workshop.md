@@ -1,0 +1,118 @@
+---
+title: 【標題】題目
+categories: 學習紀錄
+tags:
+---
+
+
+![](https://nijialin.com/images/2024/)
+![](https://nijialin.com/images/common.jpeg)
+
+
+# 前言
+
+
+此篇文章為延續與政治大學 & 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！
+
+<!-- more -->
+
+- [[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase = 旅行小幫手 LINE 聊天機器人(1)： 景色辨識小幫手](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
+- [[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase = 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/)
+- [[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase = 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/)
+
+
+
+# LINE Bot & Gemini Pro 設定細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
+
+
+
+## 事前準備
+
+![](https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png)
+
+- [LINE Developer Account](https://developers.line.biz/en/): 你只需要有 LINE 帳號就可以申請開發者帳號
+- [Google Cloud Run](https://cloud.google.com/run?hl=zh-TW)： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL
+- [Firebase](https://firebase.google.com/)：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題
+- [Google AI Studio](https://aistudio.google.com/app/prompts/new_chat): 可以透過這裡取得 Gemini Key
+- GitHub: Clone 專案部署的地方 - [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize)
+
+## 關於 Gemini API Price
+
+根據官方網站： https://ai.google.dev/pricing?hl=zh-tw
+
+![](https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png)
+
+> 細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
+
+# 介紹
+
+1. 首先到 GitHub 上 [linebot-summarize-cloud-functions-gemini](https://github.com/louis70109/linebot-summarize-cloud-functions-gemini)
+
+![](https://nijialin.com/images/2024/gemini-workshop/1.png)
+
+2. 將 Code 轉貼到 Cloud Functions 上的介面，這邊使用 1st Gen || 2nd Gen 都不影響，如果有舊的也可以複製一個 functions 出來
+   1. Function name 小雷：如果先建立了一個 `function-1` 的，然後砍掉之後，再建立一個名字一樣 `function-1` 的，LINE bot 這邊會打不到新的 webhook
+
+![](https://nijialin.com/images/2024/gemini-workshop/2.png)
+
+3. 加入以下的環境變數，並放上對應的參數，如果有找不到的 Key，請參考過往的系列文
+   1. 需要注意：因為使用 Python 關係，且之後圖片判斷功能，因此 Memory 會需要設定 `1GB`
+
+```
+ChannelSecret
+ChannelAccessToken
+GOOGLE_GEMINI_API_KEY
+FIREBASE_URL
+```
+
+![](https://nijialin.com/images/2024/gemini-workshop/3.png)
+
+4. 來到 GitHub 專案 [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize) 的 main.py，點選畫面上的按鈕複製程式碼
+
+![](https://nijialin.com/images/2024/gemini-workshop/4.png)
+
+5. 轉貼到 Cloud Functions 上，需要注意的地方是，預設為 JavaScript，因此這邊要先選擇 `Python 3.11`，接著**進入點**需要換成 `linebot`，main.py 以及 requirements.txt 裡面的內容都需要置換，後續才能部署
+
+![](https://nijialin.com/images/2024/gemini-workshop/5.png)
+
+
+6. 在 build 的過程，找到觸發網址的地方，將他複製起來
+
+![](https://nijialin.com/images/2024/gemini-workshop/6.png)
+
+7. 複製到 LINE Developer Console 的 webhook 地方，不用加任何的 sub-path
+
+![](https://nijialin.com/images/2024/gemini-workshop/7.png)
+
+8. 接著可以來到[ LINE TODAY ](https://today.line.me/tw/v3/tab)當中，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通
+
+
+# 增加其他 Open Data 功能
+
+# 活動小結
+
+立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼
+
+「LINE 開發者官方社群」官方帳號 ID：[@line_tw_dev](https://qr-official.line.me/gs/M_908lugfe_BW.png)
+
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+# 關於「LINE 開發社群計畫」
+
+LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:
+
+- [2021 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/)
+- [2020 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/)
+- [2019 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/)
+- [LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告](https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/)
+
+
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
