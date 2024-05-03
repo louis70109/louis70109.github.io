@@ -101,7 +101,7 @@ date: 2024-04-30 18:13:37
 > 請在專案中的 chatbot 判斷式中加入程式 & 套件放入 requirements.txt
 > 抓取天氣 API 的 [Python code](https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/weather.py#L7)
 
-## 紅外線圖 - 是否有雲層
+## 衛星雲圖 - 是否有雲層
 
 ![](https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png)
 

@@ -1,16 +1,19 @@
 ---
-title: 【標題】題目
-categories: 學習紀錄
+title: '在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線'
 tags:
+  - Serverless
+  - GCP
+  - Google
+  - LINE
+  - Cloud Function
+categories: GCP
+date: 2024-05-03 12:50:07
 ---
 
 
-![](https://nijialin.com/images/2024/)
 ![](https://nijialin.com/images/common.jpeg)
 
-
 # 前言
-
 
 此篇文章為延續與政治大學 & 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！
 
@@ -20,11 +23,7 @@ tags:
 - [[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase = 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/)
 - [[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase = 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/)
 
-
-
 # LINE Bot & Gemini Pro 設定細節請參考: [旅行小幫手 LINE Bot 文章](https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/)
-
-
 
 ## 事前準備
 
@@ -75,7 +74,6 @@ FIREBASE_URL
 
 ![](https://nijialin.com/images/2024/gemini-workshop/5.png)
 
-
 6. 在 build 的過程，找到觸發網址的地方，將他複製起來
 
 ![](https://nijialin.com/images/2024/gemini-workshop/6.png)
@@ -84,11 +82,44 @@ FIREBASE_URL
 
 ![](https://nijialin.com/images/2024/gemini-workshop/7.png)
 
-8. 接著可以來到[ LINE TODAY ](https://today.line.me/tw/v3/tab)當中，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通
+8. 接著可以來到[ LINE TODAY ](https://today.line.me/tw/v3/tab)當中，假設現在有個爬蟲想做，模擬抓下來的動作，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通
 
 ## 試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項
 
-# 增加其他 Open Data 功能
+假設你是一位喜歡音樂的人，但今天想關注籃球圈的群組，你會怎麼請 AI Bot 幫忙呢？試試看把 prompt 改掉吧！
+
+# 增加天氣 Open Data 功能
+
+> 這部分範例參考 - [在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線](https://nijialin.com/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/) 文章上的內容
+
+[範例 code 在此](https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e)，這邊需要準備的部分:
+
+- 要到中央氣象局申請 API Key (`需要註冊`且拿到`授權碼`)
+  - 天氣 Open Data json 下載位置：https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001
+  - API 位置：https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001
+- requirements.txt 裡面的套件需要加入 requests
+- 將 API Key 放入環境變數 `OPEN_API` 當中
+- 將相關的 code 貼上
+- 在 Chatbot 中加入判斷式測試
+- 再次部署 Cloud Functions
+
+> [參考作法](https://github.com/louis70109/skatepark-CCTV-line/blob/main/main.py#L113)
+
+<script src="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e.js"></script>
+
+# 衛星雲圖 - 是否有雲層
+
+![](https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png)
+
+有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過
+
+- 先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片
+  - ex: 當前是 14:30，14:20~14:30 都不會有照片
+  - 可以試著用時間套件+判斷式來檢測
+
+> 參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &套件放入 `requirements.txt`:
+
+<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
 
 # 活動小結
 
@@ -106,7 +137,6 @@ LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期�
 - [2020 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/)
 - [2019 年 LINE 開發社群計畫活動時程表](https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/)
 - [LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告](https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/)
-
 
 <style>
   section.compact {
