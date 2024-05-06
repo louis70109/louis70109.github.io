@@ -43,7 +43,7 @@ date: 2024-05-03 12:50:07
 - [Google Cloud Run](https://cloud.google.com/run?hl=zh-TW)： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL
 - [Firebase](https://firebase.google.com/)：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題
 - [Google AI Studio](https://aistudio.google.com/app/prompts/new_chat): 可以透過這裡取得 Gemini Key
-- GitHub: Clone 專案部署的地方 - [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize)
+- GitHub: Clone 專案部署的地方 - [linebot-gemini-summarize](https://github.com/louis70109/linebot-summarize-cloud-functions-gemini)
 
 ## 關於 Gemini API Price
 
