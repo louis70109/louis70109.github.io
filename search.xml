@@ -18039,7 +18039,7 @@ img[alt~="center"] {
 <li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
 <li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
 <li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
-<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a></li>
+<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a></li>
 </ul>
 <h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
 <p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
