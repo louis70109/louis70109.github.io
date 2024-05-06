@@ -12,6 +12,17 @@ date: 2024-05-03 12:50:07
 
 ![](https://nijialin.com/images/common.jpeg)
 
+- [前言](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#前言)
+- [LINE Bot \& Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#line-bot--gemini-pro-設定細節請參考-旅行小幫手-line-bot-文章)
+  - [事前準備](#事前準備)
+  - [關於 Gemini API Price](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#關於-gemini-api-price)
+  - [流程圖](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#流程圖)
+- [介紹](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#介紹)
+  - [試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#試題範例為列出五個項目修改-prompt-找出群組的大家最近關注的事項)
+- [增加天氣 Open Data 功能](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#增加天氣-open-data-功能)
+- [衛星雲圖 - 是否有雲層](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#衛星雲圖---是否有雲層)
+- [活動小結](https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#活動小結)
+
 # 前言
 
 此篇文章為延續與政治大學 & 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！
