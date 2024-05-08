@@ -17849,6 +17849,39 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>處理 Cloud Run 上的 Error loading ASGI app. Could not import module &quot;main&quot;.</title>
+    <url>/2024/04/07/handle-cloud-run-traffic-docker-container/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這兩天在寫之後工作坊需要用到的範例 <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，結果遇到部屬上去有問題，以下快速筆記這次遇到的一些蠢事，往後需要更細心點才行🤣</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p><img src="https://nijialin.com/images/2024/cloudrun-traffic/log.png"></p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">[ ✖ ] Failed deploying the application to Cloud Run.</span><br><span class="line"><span class="keyword">Error: </span>reason=HealthCheckContainerError message=Revision &#x27;linebot-gemini-summarize<span class="string">-00003</span>-pmn&#x27; is not ready and cannot serve traffic. The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable. Logs for this revision might contain more information.</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>看到 cloud run log 上出現：<code>Error loading ASGI app. Could not import module &quot;main&quot;.</code><ol>
+<li>檢查後發現自己 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/Dockerfile#L5">linebot-gemini-summarize</a> 的 Dockerfile 少了 WORKDIR</li>
+</ol>
+</li>
+<li>後來加上去後還是出了一樣問題，log上寫沒有 LINE_CHANNEL_ACCESS_TOKEN 環境變數<ol>
+<li>這邊可以用 app.json 去處理部屬上的問題</li>
+</ol>
+</li>
+</ol>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>按照記憶有幾個 side project 似乎有遇到這個問題，如果也有遇到部屬不上去 cloud run的地方，不妨先檢查一下 Dockerfile 喔！</p>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>LINE Bot</tag>
+        <tag>FastAPI</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Run</tag>
+        <tag>Gemini</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【DevFest 2023】Empowering Community-Driven Learning through Serverless Practice</title>
     <url>/2024/02/18/google-devfest-2023-taipei-learn-serverless-from-communities/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2023/devfest/1.png"></p>
@@ -17973,39 +18006,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>處理 Cloud Run 上的 Error loading ASGI app. Could not import module &quot;main&quot;.</title>
-    <url>/2024/04/07/handle-cloud-run-traffic-docker-container/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這兩天在寫之後工作坊需要用到的範例 <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，結果遇到部屬上去有問題，以下快速筆記這次遇到的一些蠢事，往後需要更細心點才行🤣</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p><img src="https://nijialin.com/images/2024/cloudrun-traffic/log.png"></p>
-<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">[ ✖ ] Failed deploying the application to Cloud Run.</span><br><span class="line"><span class="keyword">Error: </span>reason=HealthCheckContainerError message=Revision &#x27;linebot-gemini-summarize<span class="string">-00003</span>-pmn&#x27; is not ready and cannot serve traffic. The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable. Logs for this revision might contain more information.</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>看到 cloud run log 上出現：<code>Error loading ASGI app. Could not import module &quot;main&quot;.</code><ol>
-<li>檢查後發現自己 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/Dockerfile#L5">linebot-gemini-summarize</a> 的 Dockerfile 少了 WORKDIR</li>
-</ol>
-</li>
-<li>後來加上去後還是出了一樣問題，log上寫沒有 LINE_CHANNEL_ACCESS_TOKEN 環境變數<ol>
-<li>這邊可以用 app.json 去處理部屬上的問題</li>
-</ol>
-</li>
-</ol>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>按照記憶有幾個 side project 似乎有遇到這個問題，如果也有遇到部屬不上去 cloud run的地方，不妨先檢查一下 Dockerfile 喔！</p>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>LINE Bot</tag>
-        <tag>FastAPI</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Run</tag>
-        <tag>Gemini</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
     <url>/2024/05/03/line-bot-cloud-functions-workshop/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -18069,7 +18069,7 @@ img[alt~="center"] {
 
 <p><img src="https://nijialin.com/images/2024/gemini-workshop/3.png"></p>
 <ol start="4">
-<li>來到 GitHub 專案 <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a> 的 main.py，點選畫面上的按鈕複製程式碼</li>
+<li>來到 GitHub 專案 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a> 的 main.py，點選畫面上的按鈕複製程式碼</li>
 </ol>
 <p><img src="https://nijialin.com/images/2024/gemini-workshop/4.png"></p>
 <ol start="5">
