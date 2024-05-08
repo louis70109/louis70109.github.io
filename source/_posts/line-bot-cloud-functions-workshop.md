@@ -119,7 +119,7 @@ FIREBASE_URL
 
 ![](https://nijialin.com/images/2024/gemini-workshop/3.png)
 
-4. 來到 GitHub 專案 [linebot-gemini-summarize](https://github.com/louis70109/linebot-gemini-summarize) 的 main.py，點選畫面上的按鈕複製程式碼
+4. 來到 GitHub 專案 [linebot-gemini-summarize](https://github.com/louis70109/linebot-summarize-cloud-functions-gemini) 的 main.py，點選畫面上的按鈕複製程式碼
 
 ![](https://nijialin.com/images/2024/gemini-workshop/4.png)
 
