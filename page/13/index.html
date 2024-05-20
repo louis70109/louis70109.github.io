@@ -208,6 +208,115 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/04/18/first-time-to-see-fastapi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/18/first-time-to-see-fastapi/" class="post-title-link" itemprop="url">初見 FastAPI (From Flask to FastAPI)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-18 14:42:16" itemprop="dateCreated datePublished" datetime="2021-04-18T14:42:16+00:00">2021-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img src="https://camo.githubusercontent.com/86d9ca3437f5034da052cf0fd398299292aab0e4479b58c20f2fc37dd8ccbe05/68747470733a2f2f666173746170692e7469616e676f6c6f2e636f6d2f696d672f6c6f676f2d6d617267696e2f6c6f676f2d7465616c2e706e67"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>雖然現在網路越來越快，每個<strong>同步</strong>(Synchronize)的 request 處理速度都很快，但用<strong>非同步</strong>(Asynchronous)不僅可以同時處理較多 request，也不會被前面那個 request 拖時間導致後面排隊的 request 不用做事，各走各的路，出事自己負責(咦？)，雖然非同步有其他也要探討的問題，但這裡就先不討論這個～</p>
+<h1 id="FastAPI-使用起來有什麼感覺呢？"><a href="#FastAPI-使用起來有什麼感覺呢？" class="headerlink" title="FastAPI 使用起來有什麼感覺呢？"></a>FastAPI 使用起來有什麼感覺呢？</h1><ul>
+<li>適用於 Python 3.6 (含)以上的版本<ul>
+<li>3.6 為目前 line-bot-sdk-python 最多人使用的版本</li>
+</ul>
+</li>
+<li>支援<strong>非同步</strong>，藉由 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/asyncio.html">Asyncio</a></li>
+<li>Pydantic 做型別檢查 (超讚)<ul>
+<li>效能不錯，可以<a target="_blank" rel="noopener" href="https://pydantic-docs.helpmanual.io/benchmarks/">參考這</a></li>
+</ul>
+</li>
+<li>寫起來跟 Flask 很像，無痛上手</li>
+<li><strong>Production Ready</strong>，這很重要，若文件上沒這個使用要多注意，隨時可能會翻船？</li>
+<li>寫一個 API 自動建一個 Swagger 文件，API 文件一起達成！<ul>
+<li>可以使用 OpenAPI generator 來產生套件給其他語言使用者介接</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/18/first-time-to-see-fastapi/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/04/05/pytest-mock-skills/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1075,98 +1184,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/02/11/008-book-sharing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/11/008-book-sharing/" class="post-title-link" itemprop="url">【Vue.js 3】008 學習筆記</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-02-11 13:43:48" itemprop="dateCreated datePublished" datetime="2021-02-11T13:43:48+00:00">2021-02-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:39:44" itemprop="dateModified" datetime="2023-03-22T06:39:44+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img src="https://nijialin.com/images/2021/008vue3.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>過年前收到了預購的 Vue.js 3 書，除了支持以外也希望透過紀錄把看過的東西在寫下來加深印象，以下就分享一些我看的過程中覺得有學習到的部分。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/11/008-book-sharing/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1238,7 +1255,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1251,7 +1268,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">313</span>
+        <span class="site-state-item-count">314</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

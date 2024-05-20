@@ -208,6 +208,106 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/18/Day3-LINE-Notify-%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/18/Day3-LINE-Notify-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day3 - LINE Notify 介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-18 06:21:37" itemprop="dateCreated datePublished" datetime="2019-09-18T06:21:37+00:00">2019-09-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>LINE Notify 顧名思義就是通知屬性的服務，這個服務不是 LINE 的 Message API，千外別把這兩個搞在一起哦！</p>
+<p>在實作前要先認識一下在接的 api 服務原理<br>首先先參考<a target="_blank" rel="noopener" href="https://notify-bot.line.me/doc/en/">LINE Notify 官網</a><br>開頭的介紹：</p>
+<blockquote>
+<p>Overview: Becomes a provider based on OAuth2 (<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a>). The authentication method is authorization_code. The access token acquired here can only be used for notification services</p>
+</blockquote>
+<p>不負責任翻譯: 這個服務是基於 OAuth2 實作的，授權模式(grant_type)是 authorization_code <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html">參考</a><br>access_token 則是只能讓通知服務所使用的一個鑰匙</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">更詳細的流程可以參考 https:<span class="regexp">//</span>blog.yorkxin.org<span class="regexp">/2013/</span><span class="number">09</span><span class="regexp">/30/</span>oauth2-<span class="number">4</span>-<span class="number">1</span>-auth-code-grant-flow.html</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The host name for authentication API endpoint is notify-bot.line.me.</p>
+</blockquote>
+<p>然後 API 的網址是 <code>notify-bot.line.me</code></p>
+<p>接著我們來看看流程圖<br><img src="https://i.imgur.com/kmt0zrV.png" alt="https://notify-bot.line.me/doc/en/"></p>
+<ul>
+<li>當使用者拜訪你的網站時，會導向 LINE 請求認證</li>
+<li>認證過了之後會回傳一個名為 code 的參數</li>
+<li>接著網站需要持這個 code 在去找 LINE 討東西</li>
+<li>討成功後就會拿到一個 access_token</li>
+<li>網站就會知道這個 access_token &#x3D; 來註冊的使用者</li>
+<li>然後就可以透過 access_token 發送通知給使用者了?</li>
+</ul>
+<h1 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h1><p>首先就是要先加入他好友，如果之前有不小心<strong>封鎖</strong>的話要記得解除封鎖哦，不然後續會收不到消息。<br><img src="https://ithelp.ithome.com.tw/upload/images/20190903/20111481Zno98NSHwL.png" alt="https://ithelp.ithome.com.tw/upload/images/20190903/20111481Zno98NSHwL.png"></p>
+<p>下一篇會帶著時做出簡單的 index.html + 使用 Serverless 蓋我們第一個 API 來做認證。<br>會使用到 LINE Notify 的 API 為以下三個，不清楚裡面實際上功能的朋友可以嗑一下<a target="_blank" rel="noopener" href="https://notify-bot.line.me/doc/en/">官網文件</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET https: <span class="comment">//notify-bot.line.me/oauth/authorize -&gt; 前往認證拿到 code 參數</span></span><br><span class="line">POST https:<span class="comment">//notify-bot.line.me/oauth/token -&gt; 拿 code 參數換 access_token</span></span><br><span class="line">POST https:<span class="comment">//notify-api.line.me/api/notify -&gt; 發送訊息</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>今年中有帶著朝陽的學弟妹手把手實作 LINE Notify，如果只想自己用的話可以參考我之前<a target="_blank" rel="noopener" href="https://www.slideshare.net/JiaYuLin6/step-by-step-to-use-line-notify-20190527">簡報</a></p>
+<p><a target="_blank" rel="noopener" href="https://notify-bot.line.me/zh_TW/">LINE Notify</a><br><a target="_blank" rel="noopener" href="https://www.evanlin.com/go-line-notify/">如何快速建置一個 LINE Notify 的服務</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20%E4%BB%A5%E5%8F%8A%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -638,7 +738,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -651,7 +751,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">313</span>
+        <span class="site-state-item-count">314</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
