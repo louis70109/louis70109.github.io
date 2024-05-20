@@ -10,6 +10,15 @@ date: 2024-05-20 11:19:07
 
 ![](https://vos.line-scdn.net/landpress-content-v2_1761/1689497803877.png?updatedAt=1689497805000)
 
+- [前言](https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#前言)
+- [活動介紹](https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#活動介紹)
+  - [活動資訊](https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#活動資訊)
+- [活動歷史典故](https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#活動歷史典故)
+- [活動流程](https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#活動流程)
+- [結論](https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#結論)
+
+
+
 # 前言
 
 大家好！我們是 LINE Developer Relations 團隊，很高興向大家介紹一個特別的活動——**2024 年 6 月 18 日**舉行的 **TECH FRESH 畢業分享會**。去年我們首次開放對外的分享會，現場引起了取多迴響，我們在這個活動上學到了很多，因此希望透過今年的舉辦，能與更多同學分享我們 LINE TECH FRESH 的成長和收穫。
