@@ -8,8 +8,7 @@ categories: LINE
 date: 2024-06-27 18:00:43
 ---
 
-
-[](https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472774665.png?updatedAt=1719472776000)
+![](https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472774665.png?updatedAt=1719472776000)
 
 # 前言
 
@@ -19,9 +18,9 @@ date: 2024-06-27 18:00:43
 
 # 介紹
 
-# 為什麼要參加軟體實習生研討會？
-
 ![](https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472773499.png?updatedAt=1719472774000)
+
+# 為什麼要參加軟體實習生研討會？
 
 參加一場 LINE TECH FRESH 畢業分享會會帶來以下好處：
 
