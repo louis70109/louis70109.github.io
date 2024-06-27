@@ -208,6 +208,93 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/" class="post-title-link" itemprop="url">Day24 - 簡單使用 LINE LIFF API</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-08 13:02:58" itemprop="dateCreated datePublished" datetime="2019-10-08T13:02:58+00:00">2019-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下就為大家帶來簡單的實作以及如何去使用它。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>在<code>views/</code>下新增一個<code>liff_test.html</code>並加入以下內容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    &lt;meta</span><br><span class="line">      name=&quot;viewport&quot;</span><br><span class="line">      content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://d.line-scdn.net/liff/1.0/sdk.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">initializeApp</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#userid&quot;</span>).val(data.context.userId);</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">      $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        liff.init(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">          initializeApp(data);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonGetProfile&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          liff.getProfile().then(<span class="function"><span class="params">profile</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">&quot;#UserInfo&quot;</span>).val(profile.displayName);</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#ButtonSendMsg&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">          liff</span><br><span class="line">            .sendMessages([</span><br><span class="line">              &#123;</span><br><span class="line"><span class="javascript">                type: <span class="string">&quot;text&quot;</span>,</span></span><br><span class="line"><span class="javascript">                text: $(<span class="string">&quot;#msg&quot;</span>).val()</span></span><br><span class="line">              &#125;</span><br><span class="line">            ])</span><br><span class="line"><span class="javascript">            .then(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">              alert(<span class="string">&quot;done&quot;</span>);</span></span><br><span class="line"><span class="javascript">              liff.closeWindow(); <span class="comment">// 關掉頁面</span></span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;liff_btn&quot;</span>&gt;</span>Get user profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>user id:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;userid&quot;</span> /&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonGetProfile&quot;</span>&gt;</span>Get Profile<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;UserInfo&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>要傳送的訊息:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">value</span>=<span class="string">&quot;測試&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ButtonSendMsg&quot;</span>&gt;</span>要傳送的訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上參考來自<a target="_blank" rel="noopener" href="http://studyhost.blogspot.com/2018/06/linebot23-line-liff-app.html">董老師的部落格</a></p>
+</blockquote>
+<blockquote>
+<p>詳細的 LIFF API 文件可以<a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/liff/">參考</a></p>
+</blockquote>
+<p>接下來按著之前做過的一樣把這個檔案送到<code>S3</code>裡，接著它的網址複製起來<br><img src="https://i.imgur.com/wgVJ9js.png"></p>
+<p>接著來去之前建立機器人的開發者頁面裡按下最右邊的<code>LIFF</code><br><img src="https://i.imgur.com/B593Hdt.png"><br>按下去之後呢，再來按下<code>add</code><br><img src="https://i.imgur.com/5dNr9G7.png"><br>跑出這個頁面後，<code>Name</code>好辨認為主、<code>Size</code>選擇滿版(Full)、<code>Endpoint URL</code>就把剛剛複製起來的 S3 網址放進去後按<code>Confirm</code><br><img src="https://i.imgur.com/NQD9Mwv.png"><br>大概內容會長得像這樣<br><img src="https://i.imgur.com/WoTYxpv.png"><br>建立成功後往下滑會看到 LINE 給你一個屬於他們的網址，接著可以把它貼到你的機器人上(或者任何聊天室)<br><img src="https://i.imgur.com/wN69WDJ.png"><br>點下去之後就會看到來自 LIFF 的 Webview 囉！<br><img src="https://i.imgur.com/aYztzUi.jpg"><br>接下來就可以開始玩裡面的功能了 🤣</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>LIFF 整合的功能讓開發者在 Bot 裡不好實現的功能透過 Webview 的方式讓使用者可以到頁面上做邏輯處理，透過兩種的結合讓整體的應用就有更多的變化，這邊若要給使用者個話就把 <code>line://xxxoxx</code> 製作成 flex message 或者乾脆傳給使用者，引導他點選，如此就能讓使用者到自己設計的頁面上了。</p>
+<p>這邊額外補充一點，有看到程式碼裡面可以拉到<code>Query string</code>嗎？事實上可以透過<code>Query string</code>讓使用者帶些參數來做更多的判斷，像是卡米哥做的<a target="_blank" rel="noopener" href="https://github.com/etrex/kamiliff">Kamiliff</a>就是讓使用者在點選後判斷這個 LIFF 的 Size，在導去對應的路由去做處理，這樣子使用者在建立 LIFF 的時候就不用一個頁面弄一個，否則這樣在 dev 轉 prod 的時候應該會弄到很生氣 🤣。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/07/Day23-LIFF-LINE-Front-end-Framework-%E7%B0%A1%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1014,103 +1101,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/28/Day14-LINE-Richmenu-%E4%BB%8B%E7%B4%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/28/Day14-LINE-Richmenu-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day14 - LINE Richmenu 介紹</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-28 12:42:52" itemprop="dateCreated datePublished" datetime="2019-09-28T12:42:52+00:00">2019-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Rich menu 是一個 LINE 提供給 chatbot 的圖文選單，可以再上面設定很多各式各樣的功能，下圖為一個範例<br><img src="https://i.imgur.com/AkZnaWs.png"></p>
-<h2 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h2><ul>
-<li>擁有長板 &amp; 短板的圖片支援，讓一張圖片不再是一張圖片，機器人看起來可以更有品牌風格，根據 User 喜好、訂閱功能或是下一頁 Menu(即時切換)等等不同創意巧思，且可以客製化圖片讓機器人看起來有更不一樣的特色，也讓對話是互動並不限於對話，而圖片來讓使用者可以更直觀地去使用機器人。</li>
-<li>一個 Chatbot 可以設定 1000 組的功能選單</li>
-<li>針對不同 user ID 顯示不同功能選單<br>Rich menu 可以自己設計圖片並上傳，再透過 JSON 的樣式去設定圖片區間要進行各種用途，這邊使用 Youbike 小幫手為範例，設定很多相關的設計，並設計上下頁的選單提供像是 APP 的操作。<br><img src="https://i.imgur.com/kp3aYTWl.jpg"></li>
-</ul>
-<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><ul>
-<li>圖片格式: JPEG、PNG</li>
-<li>圖片尺寸: 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270</li>
-<li>圖片大小: 1 MB</li>
-</ul>
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li>先準備一個圖片</li>
-<li>對這個 API 下圖片每個位置要做什麼事 <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/richmenu">https://api.line.me/v2/bot/richmenu</a></li>
-<li>接著上傳圖片給 LINE <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/richmenu/richmenu-%7Bid%7D/content">https://api.line.me/v2/bot/richmenu/richmenu-{id}/content</a></li>
-<li>設定預設 <a target="_blank" rel="noopener" href="https://api.line.me/v2/bot/user/all/richmenu/richmenu-%7Bid%7D">https://api.line.me/v2/bot/user/all/richmenu/richmenu-{id}</a></li>
-</ol>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>有很多的文章都有介紹過類似的功能，這邊簡介一下限制以及下篇要做的步驟～</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://medium.com/%E6%89%BE%E5%88%B0%E4%BC%AF%E7%89%B9-find-your-bot/line-bot%E7%B3%BB%E5%88%97-%E8%A8%AD%E8%A8%88%E4%B8%80%E5%80%8B%E5%8A%9F%E8%83%BD%E9%81%B8%E5%96%AE-ea5f1d7cde94">設計一個功能選單</a></li>
-<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/using-rich-menus/">LINE 官方文件</a></li>
-</ul>
-<hr>
-<p><img src="https://i.imgur.com/JlsLphHl.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1182,7 +1172,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1195,7 +1185,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">314</span>
+        <span class="site-state-item-count">315</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
