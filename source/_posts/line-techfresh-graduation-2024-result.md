@@ -12,7 +12,7 @@ date: 2024-06-27 18:00:43
 
 # 前言
 
-大家好，我們是 LINE Developer Relations 團隊，不曉得大家從 LINE TECH FRESH 畢業分享會中是否有獲得哪些有趣的收穫呢？從 [Save your time - TECH FRESH 畢業分享會 2024 @ LINE](https://techblog.lycorp.co.jp/zh-hant/line-tech-fresh-graduation-2024)
+大家好，我們是 LINE Developer Relations 團隊，不曉得大家從 LINE TECH FRESH 畢業分享會中是否有獲得哪些有趣的收穫呢？從 [Save your time - TECH FRESH 畢業分享會 2024 @ LINE](https://techblog.lycorp.co.jp/zh-hant/line-tech-fresh-graduation-2024)活動當中有許多介紹，以下就帶大家回味一下當天的內容囉！
 
 <!-- more -->
 
