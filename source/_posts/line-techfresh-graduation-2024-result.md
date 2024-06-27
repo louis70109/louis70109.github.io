@@ -115,7 +115,6 @@ Young 分享了他在 LINE FACT CHECKER 系統架構、產品改進方法以及�
 
 這些案例展示了在高流量和複雜工作流程中，觀察性（Observability）如何幫助識別和解決系統問題，最終提升系統性能和用戶體驗。
 
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/d3101e26f074429b97c8da3be209743c?slide=29" title="從混亂到掌控：使用 Observability 揭開管家的神秘面紗" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/g7v_p3n_1Lw?si=m0j_2tkUKEf2Qmro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
