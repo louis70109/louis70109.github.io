@@ -3770,27 +3770,6 @@
   </url>
   
   <url>
-    <loc>https://nijialin.com/tags/%E6%97%A5%E6%9C%AC%E6%BB%91%E9%9B%AA/</loc>
-    <lastmod>2024-06-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/tags/%E9%9D%92%E6%A3%AE/</loc>
-    <lastmod>2024-06-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://nijialin.com/tags/%E5%85%AB%E7%94%B2%E7%94%B0%E5%B1%B1/</loc>
-    <lastmod>2024-06-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://nijialin.com/tags/Monitor/</loc>
     <lastmod>2024-06-27</lastmod>
     <changefreq>daily</changefreq>
@@ -3806,6 +3785,27 @@
   
   <url>
     <loc>https://nijialin.com/tags/Uptime-Kuma/</loc>
+    <lastmod>2024-06-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/%E6%97%A5%E6%9C%AC%E6%BB%91%E9%9B%AA/</loc>
+    <lastmod>2024-06-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/%E9%9D%92%E6%A3%AE/</loc>
+    <lastmod>2024-06-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nijialin.com/tags/%E5%85%AB%E7%94%B2%E7%94%B0%E5%B1%B1/</loc>
     <lastmod>2024-06-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
