@@ -1,8 +1,13 @@
 ---
-title: 【標題】題目
-categories: 學習紀錄
+title: LINE TECH FRESH 2024 畢業分享會精彩回顧
 tags:
+  - LINE
+  - TECH FRESH
+  - Internship
+categories: LINE
+date: 2024-06-27 18:00:43
 ---
+
 
 [](https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472774665.png?updatedAt=1719472776000)
 
@@ -114,6 +119,34 @@ Young 分享了他在 LINE FACT CHECKER 系統架構、產品改進方法以及�
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/d3101e26f074429b97c8da3be209743c?slide=29" title="從混亂到掌控：使用 Observability 揭開管家的神秘面紗" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/g7v_p3n_1Lw?si=m0j_2tkUKEf2Qmro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Lightning Talk
+
+### 你在 DevOps 什麼啦，我要趕快上線！
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/3c97c61de16647b388707b415027847c?slide=9" title="你在 DevOps 什麼啦，我要趕快上線！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+Calista & Ryan 分別透過自身的經驗，分享從學校到團隊中，DevOps 中間扮演的角色是多麽至關重要，以及為何要帶入這麼多的工具，持續讓專案可以在自動化的世界裡運行，並且確保產品的穩定性
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bogq44fRQn4?si=8L6iQ_IgiSWPq_6B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### 寫出不管地震怎麼搖網站都不會壞的前端測試
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/35af65b1313c40f3a1a8ca5afc2f9a55?slide=13" title="寫出不管地震怎麼搖網站都不會壞的前端測試" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+YU 作為前端實習生，在這次的分享中以前端為主軸，帶大家了解前端測試在其中扮演的重要性，開發過程中雖然功能很重要，但其實測試可以確保在 golden path 中的穩定性，並且讓用戶可以對產品有更多的信心去使用，而不會產品用到一半就莫名其妙壞掉
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GH2yNgvOPCs?si=gI4ex1q2iAWppFcb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### 一起來跑 TDD，直到完成 User Story 為止
+
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/824a73a6967343ecb95603933db8b1fa?slide=16" title="一起來跑 TDD，直到完成 User Story 為止" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+最後 Brandon 帶大家了解 TDD (Test-Driven Development)精神，TDD 強調在開發功能之前先撰寫測試，TDD 的主要目的是透過事前規劃的測試來提升程式碼質量和可測試性，並讓開發者對交付和重構更有信心。這一流程促使開發者在撰寫程式前可以更深入思考，從而讓程式碼品質更好
+
+接著帶到 ATDD (Acceptance Test-Driven Development)，畢竟產品還是需要面對終端用戶，ATDD 是透過和 stakeholder 共同定義接受的測試範圍來確保需求被正確理解和實現。這一方法可以降低開發團隊與 stakeholder 之間的溝通成本，並確保最終產品符合用戶需求。
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VsHJr42VcHY?si=rr3hdPn_AtP8NtkJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## 結論
 
