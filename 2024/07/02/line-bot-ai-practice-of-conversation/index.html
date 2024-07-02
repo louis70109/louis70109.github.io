@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言在以前開發 LINE Bot 的過程中，我們常常面臨一個問題：用戶輸入的文字千變萬化，可能包含錯字、口語化表達等。這使得我們需要設計非常複雜的判斷邏輯，才能確保 Bot 能正確地辨識並回應用戶的輸入。這不僅需要投入大量時間和精力，還需要不斷調整和維護這些判斷規則。這種方式不僅效率低下，而且容易出現錯誤。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI practice of LINE Bot first conversation">
+<meta property="og:url" content="https://nijialin.com/2024/07/02/line-bot-ai-practice-of-conversation/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言在以前開發 LINE Bot 的過程中，我們常常面臨一個問題：用戶輸入的文字千變萬化，可能包含錯字、口語化表達等。這使得我們需要設計非常複雜的判斷邏輯，才能確保 Bot 能正確地辨識並回應用戶的輸入。這不僅需要投入大量時間和精力，還需要不斷調整和維護這些判斷規則。這種方式不僅效率低下，而且容易出現錯誤。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2024/%E3%84%8Dline-bot-gemini/1.png">
+<meta property="article:published_time" content="2024-07-02T15:28:01.000Z">
+<meta property="article:modified_time" content="2024-07-02T07:28:34.335Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE Bot">
+<meta property="article:tag" content="GCP">
+<meta property="article:tag" content="Gemini">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2024/%E3%84%8Dline-bot-gemini/1.png">
+
+<link rel="canonical" href="https://nijialin.com/2024/07/02/line-bot-ai-practice-of-conversation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>AI practice of LINE Bot first conversation | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2024/07/02/line-bot-ai-practice-of-conversation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI practice of LINE Bot first conversation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2024-07-02 15:28:01 / 修改時間：07:28:34" itemprop="dateCreated datePublished" datetime="2024-07-02T15:28:01+00:00">2024-07-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/2024/%E3%84%8Dline-bot-gemini/1.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在以前開發 LINE Bot 的過程中，我們常常面臨一個問題：用戶輸入的文字千變萬化，可能包含錯字、口語化表達等。這使得我們需要設計非常複雜的判斷邏輯，才能確保 Bot 能正確地辨識並回應用戶的輸入。這不僅需要投入大量時間和精力，還需要不斷調整和維護這些判斷規則。這種方式不僅效率低下，而且容易出現錯誤。</p>
+<span id="more"></span>
+
+<p>在本文中，將快速介紹如何利用生成式 AI 技術來幫助 LINE Bot 在對話開始之前主動判斷適合的條件，並根據這些條件自動執行相關的任務。讓我們一起來看看具體的實現方法吧！</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>以前開發 LINE Bot 時，開發者往往需要投入大量時間來設計和實現正規化的判斷邏輯。這些正規化規則用於判斷用戶輸入的各種文字，進而觸發相應的功能。然而，這種方法存在一些挑戰：</p>
+<ol>
+<li><strong>多樣化輸入</strong>：用戶輸入的文字千變萬化，可能包含錯字、口語化表達等，這使得單純依靠正規化規則難以精確判斷。</li>
+<li><strong>維護成本高</strong>：由於正規化規則需要手動設計和調整，隨著需求增加，維護這些規則的成本也會不斷上升。</li>
+</ol>
+<p>為了解決這個問題，這次引入了生成式 AI。可以根據預定的條件，來幫助 LINE Bot 做初期的條件判斷。這樣一來，我們就不再需要手動設計和維護大量的判斷規則，大大提高了開發效率和準確性。</p>
+<h2 id="如何實作"><a href="#如何實作" class="headerlink" title="如何實作"></a>如何實作</h2><p>參考 GitHub 中的範例(<a target="_blank" rel="noopener" href="https://github.com/louis70109/linebot-gemini-earthquake/blob/main/main.py#L110">URL</a>)，以下是這次主要展示的片段：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定義條件對應字典</span></span><br><span class="line">bot_condition = &#123;</span><br><span class="line">    <span class="string">&quot;清空&quot;</span>: <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;摘要&quot;</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;地震&quot;</span>: <span class="string">&#x27;C&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;氣候&quot;</span>: <span class="string">&#x27;D&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;其他&quot;</span>: <span class="string">&#x27;E&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化生成式 AI 模型</span></span><br><span class="line">model = genai.GenerativeModel(<span class="string">&#x27;gemini-1.5-pro&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型生成內容並進行條件判斷</span></span><br><span class="line">response = model.generate_content(</span><br><span class="line">    <span class="string">f&#x27;請判斷 <span class="subst">&#123;text&#125;</span> 裡面的文字屬於 <span class="subst">&#123;bot_condition&#125;</span> 裡面的哪一項？符合條件請回傳對應的英文文字就好，不要有其他的文字與字元。&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Gemini 產生的字會有多餘的空白，因此需要清除</span></span><br><span class="line">text_condition = re.sub(<span class="string">r&#x27;[^A-Za-z]&#x27;</span>, <span class="string">&#x27;&#x27;</span>, response.text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根據判斷結果執行相應任務</span></span><br><span class="line"><span class="keyword">if</span> text_condition == <span class="string">&#x27;A&#x27;</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">elif</span> text_condition == <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">    <span class="comment"># 添加處理摘要的邏輯</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 處理其他情況</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>透過事前定義一個 bot_condition 的 JSON，來對應每個條件</li>
+<li>透過生成式 AI 來判斷用戶輸入的文字所對應的選項</li>
+<li>由於 Gemini 在這條件中會產生多餘的空白，因此還是用 regex 來清除空白</li>
+<li>對應事件就用選擇題的方式讓 Bot 判斷</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>本文介紹了如何利用生成式 AI 技術來幫助 LINE Bot 在對話開始之前主動判斷適合的條件，並根據這些條件自動執行相關的任務。透過事先定義條件對應選項和使用生成式 AI，開發者可以大大提高開發效率和準確性，同時減少維護成本。</p>
+<p>這種方法不僅能夠應對用戶輸入的多樣化文字，還能夠根據預定的條件快速判斷並執行相應的任務。這將為 LINE Bot 的開發帶來更高的效率和更好的用戶體驗。</p>
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><p>以下是一些關於 LINE Bot 開發的參考連結：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/messaging-api/">LINE Messaging API 官方文件</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python">LINE Bot SDK for Python 官方文件</a></li>
+</ul>
+<p>希望以上資訊對您有所幫助！</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE-Bot/" rel="tag"><i class="fa fa-tag"></i> LINE Bot</a>
+              <a href="/tags/GCP/" rel="tag"><i class="fa fa-tag"></i> GCP</a>
+              <a href="/tags/Gemini/" rel="tag"><i class="fa fa-tag"></i> Gemini</a>
+              <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i> AI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/27/line-techfresh-graduation-2024-result/" rel="prev" title="LINE TECH FRESH 2024 畢業分享會精彩回顧">
+      <i class="fa fa-chevron-left"></i> LINE TECH FRESH 2024 畢業分享會精彩回顧
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%A6%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">如何實作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">3.1.</span> <span class="nav-text">參考連結</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">316</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

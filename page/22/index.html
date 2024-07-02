@@ -208,6 +208,107 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/09/Day25-Lambda-%E5%A5%BD%E5%83%8F%E6%9C%89%E6%99%82%E5%80%99%E4%B8%80%E9%96%8B%E5%A7%8B%E5%9B%9E%E6%87%89%E5%BE%88%E4%B9%85%EF%BC%9F%E7%94%A8-warm-up-%E4%BE%86%E7%86%B1%E6%A9%9F%E5%90%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/09/Day25-Lambda-%E5%A5%BD%E5%83%8F%E6%9C%89%E6%99%82%E5%80%99%E4%B8%80%E9%96%8B%E5%A7%8B%E5%9B%9E%E6%87%89%E5%BE%88%E4%B9%85%EF%BC%9F%E7%94%A8-warm-up-%E4%BE%86%E7%86%B1%E6%A9%9F%E5%90%A7/" class="post-title-link" itemprop="url">Day25 - Lambda 好像有時候一開始回應很久？用 warm-up 來熱機吧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-09 13:04:36" itemprop="dateCreated datePublished" datetime="2019-10-09T13:04:36+00:00">2019-10-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇會介紹 npm 套件庫裡的 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-plugin-warmup">Serverless-plugin-warmup</a>，裡面介紹了很多參數可以使用，以下會簡介如何引入它。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>透過<code>npm</code>來安裝套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev serverless-plugin-warmup</span><br></pre></td></tr></table></figure>
+
+<p>在<code>serverless.yml</code>的<code>plugin</code>加入套件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-plugin-warmup</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>custom</code>加入<code>warm up</code>的設定參數</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">warmup:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">cleanFolder:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">memorySize:</span> <span class="number">128</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">&quot;LINE-warmup-pop&quot;</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">schedule:</span> <span class="string">&quot;cron(0/5 0-12 ? * MON-FRI *)&quot;</span></span><br><span class="line">    <span class="attr">timeout:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p><code>.gitignore</code>加入以下兩個<code>_warmup/</code>以及<code>.requirements.zip</code>，他在部署前建立一個<code>_warp</code>的資料夾並放一個 Lambda 來打已建立的 api 以及 Lambda 們，部署後會建立<code>.requirements.zip</code>，所以這邊就加入這兩行來防止被 git 推上去。</p>
+<blockquote>
+<p>或許會有疑問不是<code>cleanFolder</code>設定 true 就可以，這邊我自己實測時在部署會因為 Size 過大而無法上傳，把這參數設定掉他才會乖乖的上傳成功，但這部分有待驗證。</p>
+</blockquote>
+<h2 id="加入-decorator"><a href="#加入-decorator" class="headerlink" title="加入 decorator"></a>加入 decorator</h2><p>這邊我在<code>lib/</code>下新增一個<code>decorator.py</code>，加入以下的 code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">from</span> logging <span class="keyword">import</span> Logger</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_warm_up</span>(<span class="params">func</span>):</span></span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        source = args[<span class="number">0</span>].get(<span class="string">&#x27;source&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> (source == <span class="string">&#x27;serverless-plugin-warmup&#x27;</span>):</span><br><span class="line">            Logger.info(<span class="string">&#x27;WarmUp - Lambda is warm!&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+
+<p>主要功能是透過 python decorator 的特性讓我們在 function 之前用個前綴符號就可以引用它，很像 po 文在 tag 別人一樣 🤣<br>warm-up 建立的 Lambda 會固定對其他的 Lambda 打<code>serverless-plugin-warmup</code>的字串，這邊就寫個判斷式判斷掉後直接 return</p>
+<p>你以為這樣就結束了？還有 IAM role 的問題呢，詳細問題已不可考，想試看看的可以把 IAM 拔掉再部署一次，問題就會出現了，以下為設定檔：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">iamRoleStatements:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">Effect:</span> <span class="string">&quot;Allow&quot;</span></span><br><span class="line">    <span class="attr">Action:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;lambda:InvokeFunction&quot;</span></span><br><span class="line">    <span class="attr">Resource:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Fn::Join:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">&quot;:&quot;</span></span><br><span class="line">          <span class="bullet">-</span> <span class="bullet">-</span> <span class="string">arn:aws:lambda</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">Ref:</span> <span class="string">AWS::Region</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">Ref:</span> <span class="string">AWS::AccountId</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">function:*</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你的目錄結構跟我一樣，或是跟到今天的實作，加入以下的 code，這邊主要是告訴你的 Lambda 要在每次的 warm-up 字串來的時候呼叫這個 decorator 來幫忙處理一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lib.decorator <span class="keyword">import</span> lambda_warm_up</span><br><span class="line"></span><br><span class="line"><span class="meta">@lambda_warm_up</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx</span>():</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>我的 Lambda 都加了，那原本的 flask 建立的 api 我要加在哪？</p>
+<p>看看這個<a target="_blank" rel="noopener" href="https://github.com/logandk/serverless-wsgi/blob/3a2d1312370a4f4351be60f5fbe838124db1916a/serverless_wsgi.py#L87">網址</a>，serverless-wsgi 在實作的時候已經有考慮到這件事了，所以 api 這邊就不用管他，他自己會去把它處理掉！<br><img src="https://i.imgur.com/skMkdmg.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>Warm-up 的機制就是透過建立一個 Lambda 來打一個 flag 到其他 Lambda 來他們別進入睡眠模式，但總是會有人考慮費用的問題，可以參考下圖，若是你建立了一個簡單的服務然後上線了，AWS 給你了一百萬個請求的量，我覺得一個月的請求可以到 100 萬應該是服務有點規模的情況，一個月能到這個量相信你也有一定的能力養它 🤣，爾後每一百萬個請求才六塊台幣，可能比 GCP 還貴，但其實以我來說這樣已經很夠用，而且還扛得住<br><img src="https://i.imgur.com/LCJh98n.png"></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://github.com/logandk/serverless-wsgi/blob/3a2d1312370a4f4351be60f5fbe838124db1916a/serverless_wsgi.py#L87">serverless-wsgi Warm-up code</a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-plugin-warmup">Serverless-plugin-warmup</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/08/Day24-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-LINE-LIFF-API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -994,113 +1095,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/" class="post-title-link" itemprop="url">Day15 - 串接 LINE Richmenu API</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-29 12:46:24" itemprop="dateCreated datePublished" datetime="2019-09-29T12:46:24+00:00">2019-09-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前我在使用時都是直接在 Postman 上直接打 API，本來是打算自己刻 接 Richmenu API 的，但剛剛看到<a target="_blank" rel="noopener" href="https://github.com/line/line-bot-sdk-python">Python SDK</a> 很佛心的也提供 Richmenu 相關的 SDK，如此一來就不用自己包一包了。</p>
-<blockquote>
-<p>注意 Richmenu 圖片的方向是 由上到下、由左到右 哦！算位置記得別算錯ＸＤ</p>
-</blockquote>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><h3 id="設定座標"><a href="#設定座標" class="headerlink" title="設定座標"></a>設定座標</h3><p>首先先使用 <code>create_rich_menu(self, rich_menu, timeout=None)</code>告訴 LINE 說你的 Richmenu 的基本設定是什麼，格式區域什麼個別要做什麼對應的事情，</p>
-<p>Creates a rich menu. You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 10 rich menus for one bot.</p>
-<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#create-rich-menu">https://developers.line.biz/en/reference/messaging-api/#create-rich-menu</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> usage == <span class="string">&#x27;create&#x27;</span>:</span><br><span class="line">    rich_menu_to_create = RichMenu(</span><br><span class="line">        size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">        selected=<span class="literal">False</span>,</span><br><span class="line">        name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">        chat_bar_text=<span class="string">&quot;我是測試使用&quot;</span>,</span><br><span class="line">        areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">            bounds=RichMenuBounds(x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">            action=URIAction(label=<span class="string">&#x27;Go to line.me&#x27;</span>, uri=<span class="string">&#x27;https://line.me&#x27;</span>))]</span><br><span class="line">    )</span><br><span class="line">    rich_menu_id = self.line_bot_api.create_rich_menu(</span><br><span class="line">        rich_menu=rich_menu_to_create)</span><br><span class="line">    print(rich_menu_id)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;id&#x27;</span>: rich_menu_id&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="set-rich-menu-image-self-rich-menu-id-content-type-content-timeout-x3D-None"><a href="#set-rich-menu-image-self-rich-menu-id-content-type-content-timeout-x3D-None" class="headerlink" title="set_rich_menu_image(self, rich_menu_id, content_type, content, timeout&#x3D;None)"></a>set_rich_menu_image(self, rich_menu_id, content_type, content, timeout&#x3D;None)</h2><p>上面設定完圖片裡每個座標區間要幹嘛了，接著就可以自己弄圖片或是下載官網提供的<a target="_blank" rel="noopener" href="https://developers.line.biz/media/messaging-api/rich-menu/controller-rich-menu-image-e1734c7d.jpg">圖片</a></p>
-<h3 id="MAC-用戶的小技巧"><a href="#MAC-用戶的小技巧" class="headerlink" title="MAC 用戶的小技巧"></a>MAC 用戶的小技巧</h3><p>這邊教大家一個小技巧，可以點選想使用的照片，在預覽程式裡的選擇工具-&gt;調整大小<br><img src="https://i.imgur.com/OqsDU20.jpg"><br>接著看到這畫面，把依比例縮放的勾勾取消，然後把長寬調到對應的大小後就完成圖片大小的設定嚕！<br><img src="https://i.imgur.com/OH1tYUl.png"></p>
-<p><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image">https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image</a></p>
-<p><img src="https://i.imgur.com/iA2xMJd.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;upload&#x27;</span>:</span><br><span class="line">    file = request.files[<span class="string">&#x27;the_file&#x27;</span>].read()</span><br><span class="line">    rich_menu_id = request.form[<span class="string">&#x27;richmenu_id&#x27;</span>]</span><br><span class="line">    content_type = <span class="string">&quot;image/png&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.line_bot_api.set_rich_menu_image(</span><br><span class="line">            rich_menu_id, content_type, file)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">&quot;===Upload Exception===&quot;</span>)</span><br><span class="line">        <span class="keyword">raise</span> BadRequest(e)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;upload ok&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="set-default-rich-menu-self-rich-menu-id-timeout-x3D-None"><a href="#set-default-rich-menu-self-rich-menu-id-timeout-x3D-None" class="headerlink" title="set_default_rich_menu(self, rich_menu_id, timeout&#x3D;None)"></a>set_default_rich_menu(self, rich_menu_id, timeout&#x3D;None)</h2><p>設定完了之後要幹嘛？就是要把他設定<code>default</code>啦！<br>不囉唆， show you the code.</p>
-<blockquote>
-<p>Sets the default rich menu.<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu">https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu</a></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;set&#x27;</span>:</span><br><span class="line">    rich_menu_id = request.form[<span class="string">&#x27;richmenu_id&#x27;</span>]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.line_bot_api.set_default_rich_menu(rich_menu_id)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">raise</span> BadRequest(<span class="string">&quot;Maybe your richmenu id error.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;set default ok!&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="get-default-rich-menu-self-timeout-x3D-None"><a href="#get-default-rich-menu-self-timeout-x3D-None" class="headerlink" title="get_default_rich_menu(self, timeout&#x3D;None)"></a>get_default_rich_menu(self, timeout&#x3D;None)</h2><p>糟糕，我好像瘋狂建立卻不知道有幾組？用這個就對了！</p>
-<blockquote>
-<p>Gets the ID of the default rich menu set with the Messaging API.<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id">https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id</a></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;get&#x27;</span>:</span><br><span class="line">    rich_menu_list = self.line_bot_api.get_rich_menu_list()</span><br><span class="line">    total = []</span><br><span class="line">    <span class="keyword">for</span> rich_menu <span class="keyword">in</span> rich_menu_list:</span><br><span class="line">        total.append(rich_menu.rich_menu_id)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: total&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="delete-rich-menu-rich-menu-id"><a href="#delete-rich-menu-rich-menu-id" class="headerlink" title="delete_rich_menu(rich_menu_id)"></a>delete_rich_menu(rich_menu_id)</h2><p>不行，我弄的座標什麼全錯怎麼辦？有時候上傳的圖片可能不是自己想的那樣？，透過這個方法來刪掉它</p>
-<blockquote>
-<p>Deletes a rich menu.<br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu">https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu</a></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> usage == <span class="string">&#x27;delete&#x27;</span>:</span><br><span class="line">    rich_menu_id = request.form[<span class="string">&#x27;richmenu_id&#x27;</span>]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.line_bot_api.delete_rich_menu(rich_menu_id)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">raise</span> BadRequest(<span class="string">&quot;Maybe your richmenu id error.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">f&#x27;<span class="subst">&#123;rich_menu_id&#125;</span> is delete!&#x27;</span>&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>我都把 <code>raise</code> 打成 <code>rails</code> (大誤)，LINE 幫忙做的 SDK 真的是好用，透過這次練習我也多學了好多不一樣的用法，順便把自己的腦袋也整理一下 😃，程式碼同步在這邊哦 <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/richmenu_api_controller.py">URL</a>。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1172,7 +1166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1185,7 +1179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">315</span>
+        <span class="site-state-item-count">316</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
