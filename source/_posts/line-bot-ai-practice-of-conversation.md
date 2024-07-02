@@ -10,7 +10,7 @@ date: 2024-07-02 15:28:01
 ---
 
 
-![](https://nijialin.com/images/2024/ㄍline-bot-gemini/1.png)
+![](https://nijialin.com/images/2024/line-bot-gemini/1.png)
 
 # 前言
 
