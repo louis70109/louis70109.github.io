@@ -18057,156 +18057,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
-    <url>/2024/05/03/line-bot-cloud-functions-workshop/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<ul>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#line-bot--gemini-pro-%E8%A8%AD%E5%AE%9A%E7%B4%B0%E7%AF%80%E8%AB%8B%E5%8F%83%E8%80%83-%E6%97%85%E8%A1%8C%E5%B0%8F%E5%B9%AB%E6%89%8B-line-bot-%E6%96%87%E7%AB%A0">LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章</a><ul>
-<li><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99">事前準備</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E9%97%9C%E6%96%BC-gemini-api-price">關於 Gemini API Price</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B5%81%E7%A8%8B%E5%9C%96">流程圖</a></li>
-</ul>
-</li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A9%A6%E9%A1%8C%E7%AF%84%E4%BE%8B%E7%82%BA%E5%88%97%E5%87%BA%E4%BA%94%E5%80%8B%E9%A0%85%E7%9B%AE%E4%BF%AE%E6%94%B9-prompt-%E6%89%BE%E5%87%BA%E7%BE%A4%E7%B5%84%E7%9A%84%E5%A4%A7%E5%AE%B6%E6%9C%80%E8%BF%91%E9%97%9C%E6%B3%A8%E7%9A%84%E4%BA%8B%E9%A0%85">試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</a></li>
-</ul>
-</li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%A2%9E%E5%8A%A0%E5%A4%A9%E6%B0%A3-open-data-%E5%8A%9F%E8%83%BD">增加天氣 Open Data 功能</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A1%9B%E6%98%9F%E9%9B%B2%E5%9C%96---%E6%98%AF%E5%90%A6%E6%9C%89%E9%9B%B2%E5%B1%A4">衛星雲圖 - 是否有雲層</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章為延續與政治大學 &amp; 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！</p>
-<span id="more"></span>
-
-<ul>
-<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(1)： 景色辨識小幫手</a></li>
-<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a></li>
-<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」</a></li>
-</ul>
-<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
-<ul>
-<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
-<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
-<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
-<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
-<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a></li>
-</ul>
-<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
-<blockquote>
-<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
-</blockquote>
-<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><ol>
-<li>首先到 GitHub 上 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-summarize-cloud-functions-gemini</a></li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/1.png"></p>
-<ol start="2">
-<li>將 Code 轉貼到 Cloud Functions 上的介面，這邊使用 1st Gen || 2nd Gen 都不影響，如果有舊的也可以複製一個 functions 出來<ol>
-<li>Function name 小雷：如果先建立了一個 <code>function-1</code> 的，然後砍掉之後，再建立一個名字一樣 <code>function-1</code> 的，LINE bot 這邊會打不到新的 webhook</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/2.png"></p>
-<ol start="3">
-<li>加入以下的環境變數，並放上對應的參數，如果有找不到的 Key，請參考過往的系列文<ol>
-<li>需要注意：因為使用 Python 關係，且之後圖片判斷功能，因此 Memory 會需要設定 <code>1GB</code></li>
-</ol>
-</li>
-</ol>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">ChannelSecret</span><br><span class="line">ChannelAccessToken</span><br><span class="line">GOOGLE<span class="emphasis">_GEMINI_API_KEY</span></span><br><span class="line"><span class="emphasis">FIREBASE_</span>URL</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/3.png"></p>
-<ol start="4">
-<li>來到 GitHub 專案 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a> 的 main.py，點選畫面上的按鈕複製程式碼</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/4.png"></p>
-<ol start="5">
-<li>轉貼到 Cloud Functions 上，需要注意的地方是，預設為 JavaScript，因此這邊要先選擇 <code>Python 3.11</code>，接著<strong>進入點</strong>需要換成 <code>linebot</code>，main.py 以及 requirements.txt 裡面的內容都需要置換，後續才能部署</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/5.png"></p>
-<ol start="6">
-<li>在 build 的過程，找到觸發網址的地方，將他複製起來</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/6.png"></p>
-<ol start="7">
-<li>複製到 LINE Developer Console 的 webhook 地方，不用加任何的 sub-path</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/7.png"></p>
-<ol start="8">
-<li>接著可以來到<a href="https://today.line.me/tw/v3/tab"> LINE TODAY </a>當中，假設現在有個爬蟲想做，模擬抓下來的動作，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通</li>
-</ol>
-<h2 id="試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項"><a href="#試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項" class="headerlink" title="試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項"></a>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</h2><p>假設你是一位喜歡音樂的人，但今天想關注籃球圈的群組，你會怎麼請 AI Bot 幫忙呢？試試看把 prompt 改掉吧！</p>
-<h1 id="增加天氣-Open-Data-功能"><a href="#增加天氣-Open-Data-功能" class="headerlink" title="增加天氣 Open Data 功能"></a>增加天氣 Open Data 功能</h1><blockquote>
-<p>這部分範例參考 - <a href="https://nijialin.com/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/">在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</a> 文章上的內容</p>
-</blockquote>
-<p><a href="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e">範例 code 在此</a>，這邊需要準備的部分:</p>
-<ul>
-<li>要到中央氣象局申請 API Key (<code>需要註冊</code>且拿到<code>授權碼</code>)<ul>
-<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
-<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
-</ul>
-</li>
-<li>requirements.txt 裡面的套件需要加入 requests</li>
-<li>將 API Key 放入環境變數 <code>OPEN_API</code> 當中</li>
-<li>將相關的 code 貼上</li>
-<li>在 Chatbot 中加入判斷式測試</li>
-<li>再次部署 Cloud Functions</li>
-</ul>
-<blockquote>
-<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/main.py#L113">參考作法</a></p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e.js"></script>
-
-<h1 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h1><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
-<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
-<ul>
-<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
-<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
-<li>可以試著用時間套件+判斷式來檢測</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
-
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Serverless</tag>
-        <tag>Google</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Function</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
     <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -18403,6 +18253,156 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>LINE Bot</tag>
         <tag>Animation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
+    <url>/2024/05/03/line-bot-cloud-functions-workshop/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<ul>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#line-bot--gemini-pro-%E8%A8%AD%E5%AE%9A%E7%B4%B0%E7%AF%80%E8%AB%8B%E5%8F%83%E8%80%83-%E6%97%85%E8%A1%8C%E5%B0%8F%E5%B9%AB%E6%89%8B-line-bot-%E6%96%87%E7%AB%A0">LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章</a><ul>
+<li><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99">事前準備</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E9%97%9C%E6%96%BC-gemini-api-price">關於 Gemini API Price</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B5%81%E7%A8%8B%E5%9C%96">流程圖</a></li>
+</ul>
+</li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A9%A6%E9%A1%8C%E7%AF%84%E4%BE%8B%E7%82%BA%E5%88%97%E5%87%BA%E4%BA%94%E5%80%8B%E9%A0%85%E7%9B%AE%E4%BF%AE%E6%94%B9-prompt-%E6%89%BE%E5%87%BA%E7%BE%A4%E7%B5%84%E7%9A%84%E5%A4%A7%E5%AE%B6%E6%9C%80%E8%BF%91%E9%97%9C%E6%B3%A8%E7%9A%84%E4%BA%8B%E9%A0%85">試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</a></li>
+</ul>
+</li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%A2%9E%E5%8A%A0%E5%A4%A9%E6%B0%A3-open-data-%E5%8A%9F%E8%83%BD">增加天氣 Open Data 功能</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A1%9B%E6%98%9F%E9%9B%B2%E5%9C%96---%E6%98%AF%E5%90%A6%E6%9C%89%E9%9B%B2%E5%B1%A4">衛星雲圖 - 是否有雲層</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章為延續與政治大學 &amp; 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！</p>
+<span id="more"></span>
+
+<ul>
+<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(1)： 景色辨識小幫手</a></li>
+<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a></li>
+<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」</a></li>
+</ul>
+<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<ul>
+<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
+<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
+<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
+<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
+<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a></li>
+</ul>
+<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
+<blockquote>
+<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
+</blockquote>
+<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><ol>
+<li>首先到 GitHub 上 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-summarize-cloud-functions-gemini</a></li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/1.png"></p>
+<ol start="2">
+<li>將 Code 轉貼到 Cloud Functions 上的介面，這邊使用 1st Gen || 2nd Gen 都不影響，如果有舊的也可以複製一個 functions 出來<ol>
+<li>Function name 小雷：如果先建立了一個 <code>function-1</code> 的，然後砍掉之後，再建立一個名字一樣 <code>function-1</code> 的，LINE bot 這邊會打不到新的 webhook</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/2.png"></p>
+<ol start="3">
+<li>加入以下的環境變數，並放上對應的參數，如果有找不到的 Key，請參考過往的系列文<ol>
+<li>需要注意：因為使用 Python 關係，且之後圖片判斷功能，因此 Memory 會需要設定 <code>1GB</code></li>
+</ol>
+</li>
+</ol>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">ChannelSecret</span><br><span class="line">ChannelAccessToken</span><br><span class="line">GOOGLE<span class="emphasis">_GEMINI_API_KEY</span></span><br><span class="line"><span class="emphasis">FIREBASE_</span>URL</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/3.png"></p>
+<ol start="4">
+<li>來到 GitHub 專案 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a> 的 main.py，點選畫面上的按鈕複製程式碼</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/4.png"></p>
+<ol start="5">
+<li>轉貼到 Cloud Functions 上，需要注意的地方是，預設為 JavaScript，因此這邊要先選擇 <code>Python 3.11</code>，接著<strong>進入點</strong>需要換成 <code>linebot</code>，main.py 以及 requirements.txt 裡面的內容都需要置換，後續才能部署</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/5.png"></p>
+<ol start="6">
+<li>在 build 的過程，找到觸發網址的地方，將他複製起來</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/6.png"></p>
+<ol start="7">
+<li>複製到 LINE Developer Console 的 webhook 地方，不用加任何的 sub-path</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/7.png"></p>
+<ol start="8">
+<li>接著可以來到<a href="https://today.line.me/tw/v3/tab"> LINE TODAY </a>當中，假設現在有個爬蟲想做，模擬抓下來的動作，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通</li>
+</ol>
+<h2 id="試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項"><a href="#試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項" class="headerlink" title="試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項"></a>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</h2><p>假設你是一位喜歡音樂的人，但今天想關注籃球圈的群組，你會怎麼請 AI Bot 幫忙呢？試試看把 prompt 改掉吧！</p>
+<h1 id="增加天氣-Open-Data-功能"><a href="#增加天氣-Open-Data-功能" class="headerlink" title="增加天氣 Open Data 功能"></a>增加天氣 Open Data 功能</h1><blockquote>
+<p>這部分範例參考 - <a href="https://nijialin.com/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/">在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</a> 文章上的內容</p>
+</blockquote>
+<p><a href="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e">範例 code 在此</a>，這邊需要準備的部分:</p>
+<ul>
+<li>要到中央氣象局申請 API Key (<code>需要註冊</code>且拿到<code>授權碼</code>)<ul>
+<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
+<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
+</ul>
+</li>
+<li>requirements.txt 裡面的套件需要加入 requests</li>
+<li>將 API Key 放入環境變數 <code>OPEN_API</code> 當中</li>
+<li>將相關的 code 貼上</li>
+<li>在 Chatbot 中加入判斷式測試</li>
+<li>再次部署 Cloud Functions</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/main.py#L113">參考作法</a></p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e.js"></script>
+
+<h1 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h1><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
+<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
+<ul>
+<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
+<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
+<li>可以試著用時間套件+判斷式來檢測</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
+
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Serverless</tag>
+        <tag>Google</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Function</tag>
       </tags>
   </entry>
   <entry>
