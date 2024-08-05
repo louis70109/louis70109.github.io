@@ -208,6 +208,95 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/30/Day16-%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E4%B8%8A%E4%B8%8B%E9%A0%81%E7%9A%84-richmenu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/30/Day16-%E5%AF%A6%E4%BD%9C%E4%B8%80%E5%80%8B%E4%B8%8A%E4%B8%8B%E9%A0%81%E7%9A%84-richmenu/" class="post-title-link" itemprop="url">Day16 - 實作一個上下頁的 richmenu</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-30 12:47:37" itemprop="dateCreated datePublished" datetime="2019-09-30T12:47:37+00:00">2019-09-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著很多人的機器人都有上下頁的功能就心癢癢，一直沒有實際去操作，雖然看起來好像不難，但身為一個肥宅就是只有懶，到了現在才把他實作出來(羞)，以下就帶大家來做嚕！</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>首先我做了兩個超級陽春的圖片，來展示一下上下一頁的樣子(超弱)<br>(1)<br><img src="https://i.imgur.com/Rs5jnJ8.png"></p>
+<hr>
+<p>(2)<br><img src="https://i.imgur.com/97XG3mv.png"></p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>我把上一篇的 richmenu_api_controller.py 的 create 部分改編了一下，<br>增加了讀 <code>state</code> Query string 的一個參數，用<code>up</code>&amp;<code>down</code>來簡單判斷上傳的內容要傳什麼</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> usage == <span class="string">&#x27;create&#x27;</span>:</span><br><span class="line">            rich_menu_to_create = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">if</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;up&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第一頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;下一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">elif</span> request.args.get(<span class="string">&#x27;state&#x27;</span>) == <span class="string">&#x27;down&#x27;</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是第二頁&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(</span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=MessageAction(</span><br><span class="line">                            label=<span class="string">&#x27;message&#x27;</span>,</span><br><span class="line">                            text=<span class="string">&#x27;上一頁&#x27;</span></span><br><span class="line">                        ))]</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rich_menu_to_create = RichMenu(</span><br><span class="line">                    size=RichMenuSize(width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                    selected=<span class="literal">False</span>,</span><br><span class="line">                    name=<span class="string">&quot;Nice richmenu&quot;</span>,  <span class="comment"># display name</span></span><br><span class="line">                    chat_bar_text=<span class="string">&quot;我是測試使用&quot;</span>,</span><br><span class="line">                    areas=[RichMenuArea(  <span class="comment"># 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能</span></span><br><span class="line">                        bounds=RichMenuBounds(</span><br><span class="line">                            x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">2500</span>, height=<span class="number">843</span>),</span><br><span class="line">                        action=URIAction(label=<span class="string">&#x27;Go to line.me&#x27;</span>, uri=<span class="string">&#x27;https://line.me&#x27;</span>))]</span><br><span class="line">                )</span><br><span class="line">            rich_menu_id = self.line_bot_api.create_rich_menu(</span><br><span class="line">                rich_menu=rich_menu_to_create)</span><br><span class="line">            print(rich_menu_id)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;id&#x27;</span>: rich_menu_id&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>接著回到 <code>message_api_controller.py</code> 把前幾篇的 reply SDK code 先註解掉，並加入以下的 code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">message = event[<span class="string">&#x27;events&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> message == <span class="string">&quot;上一頁&quot;</span> <span class="keyword">or</span> message == <span class="string">&quot;下一頁&quot;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        rich_menu_id = self.line_bot_api.get_rich_menu_id_of_user(<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># link default rich menu</span></span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rich_menu_id == <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-e31be74ad7e577b4752ab70c9c2a3fba&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.line_bot_api.link_rich_menu_to_user(<span class="built_in">id</span>, <span class="string">&quot;richmenu-269cc28b8e8497d76c2df062b274a2ce&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    self.line_bot_api.reply_message(token, TextSendMessage(text=message))</span><br></pre></td></tr></table></figure>
+
+<p>這邊簡單判斷讀取使用者回應來進入控制的程式碼，透過<code>get_rich_menu_id_of_user</code>來抓取當前使用者的 rich menu，但因為他是會返回 Error response，所以這邊就使用<code>try</code> <code>except</code>來包<br>except 部分就是透過<code>link_rich_menu_to_user</code>來設定當前使用者為第一張圖片的 <code>richmenu id</code>，下面的判斷式就是讓他互換成對應的 rich menu id 來換頁。</p>
+<blockquote>
+<p>Richmenu 那邊事實上是要用 <code>postback</code>，因為要 demo 的關係我就弄成一般的文字格式，因為這個上下頁字串的理論上是不該讓使用者看到的，只要用圖片來引導使用者就好。</p>
+</blockquote>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><img src="https://i.imgur.com/QL3m90U.png"><br><img src="https://i.imgur.com/DhBRsyT.png"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>透過這次練習大概把 LINE SDK 玩得差不多了(<code>message api</code> &amp; <code>richmenu api</code>)，寫到了今天真的是苦讀 LINE 的文件啊，都要以防萬一我這狗眼沒有看錯而寫出錯誤的程式碼 XD，到這打完收工，繼續期待下一篇～</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1118,101 +1207,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/" class="post-title-link" itemprop="url">Day6 - 建立一個使用 Query string 來幫忙發送的 LINE Notify</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-09-21 12:30:27" itemprop="dateCreated datePublished" datetime="2019-09-21T12:30:27+00:00">2019-09-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>繼上一篇我們已經可以讓使用者註冊 Notify 並將 token 放入資料庫，接著就帶各位使用 query string 的方式讓你的 Notify 可以送訊息給所有註冊過的 Notify。</p>
-<p>首先我們進入我們已經建立過的 controller&#x2F;notify_controller.py，會看到 class 下有我們之前建立的 post method，這時我們就在前面加入 get method，並加入以下的 code，讓這個 class 看起來比較有順序(<del>潔癖</del>)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotifyController</span>(<span class="params">Resource</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">            msg = request.args.get(<span class="string">&#x27;msg&#x27;</span>)</span><br><span class="line">            <span class="keyword">with</span> Database() <span class="keyword">as</span> db, db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">                <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                    cur.execute(</span><br><span class="line">                        <span class="string">f&quot;SELECT token FROM notify&quot;</span>)</span><br><span class="line">                    fetch = cur.fetchall()</span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> fetch:</span><br><span class="line">                headers = &#123;</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;f[<span class="string">&#x27;token&#x27;</span>]&#125;</span>&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">                payload = &#123;<span class="string">&#x27;message&#x27;</span>: msg&#125;</span><br><span class="line"></span><br><span class="line">                r = requests.post(</span><br><span class="line">                    <span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, data=payload, headers=headers)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: <span class="string">&#x27;ok&#x27;</span>&#125;, <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
-
-<p>這次使用的套件比上次多 import 一個 flask 底下的 request (注意沒有 s 哦)，這個主要是讓我們可以抓到網址問號後面接的參數，這邊我設定打 API 的人會打一個 msg 的參數。</p>
-<p>接著就是使用進 DB 撈我們的 token 們，並用一個迴圈來跑</p>
-<p>再來是設定 headers 以及 payload</p>
-<p>headers 的部分參考 Notify 的文件，如下圖<br><img src="https://i.imgur.com/B4bjvja.png"><br>我們需要設定 Content-Type 以及 Authorization，需要注意的是 Authorization 是使用 Bearer 格式(<a target="_blank" rel="noopener" href="https://blog.yorkxin.org/2013/09/30/oauth2-6-bearer-token.html">參考</a>)，他中間是有加<code>空白鍵</code>的，這邊很多朋友都會錯在這裡，千萬要記得檢查這邊！</p>
-<p>接著是要送出去的東西是要用什麼送出，本篇只用 message 做範例，若需要使用到其他的功能，像是圖片、貼圖等等的可參考以下的圖片<br><img src="https://i.imgur.com/I6617R6.png"></p>
-<p>接著我們就可以使用<code>sls deploy</code>來部署我們的程式啦</p>
-<p>等等！<br>這邊有個需要注意的地方是，照著這次的範例使用的話會需要用 docker 來幫忙跑編譯，因為 psycopg2-binary 這個套件如果不是在 Linux 的環境下會需要透過 docker 幫忙編譯完再丟過去<br>這部分需要在<code>serverless.yml</code>下填入參數</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">pythonRequirements:</span></span><br><span class="line">    <span class="attr">dockerizePip:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>如此一來當前環境若不是 Linux 的話他就會使用 docker 來幫忙，記得 docker 要開哦 🙏</p>
-<blockquote>
-<p>當然最簡單的方法就是把它直接抓下來放在專案中，只是這樣就會比較髒一點，可以從這邊抓 -&gt; <a target="_blank" rel="noopener" href="https://github.com/jkehler/awslambda-psycopg2">參考</a></p>
-</blockquote>
-<blockquote>
-<p>這邊可以先在環境變數上加上<code>SLS_DEBUG=*</code> 接著在加上 sls deploy 後面加上<code>--verbose</code>可以看到 serverless 到底都在背地裡做了什麼事情 🤣</p>
-</blockquote>
-<p>接著我們就使用 Postman 來幫我們送字串出去，參考下圖，當回傳 ok 就成功了 🎉<br><img src="https://i.imgur.com/oXlBNeC.png"><br>你的 Notify 應該要回你了～<br><img src="https://i.imgur.com/nihyJxX.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這邊帶大家做一個簡單的應用，一般來說我覺得放在 query string 讓其他 API 來呼叫的時候帶參數來就可以直接用是很方便的，不用再特地自己寫方法去呼叫 LINE Notify 來幫我們送，反正 AWS Lambda 有一百萬次的請求不怕 🤣</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1284,7 +1278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1297,7 +1291,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">316</span>
+        <span class="site-state-item-count">317</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
