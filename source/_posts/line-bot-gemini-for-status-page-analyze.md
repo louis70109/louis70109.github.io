@@ -13,7 +13,7 @@ date: 2024-08-05 19:10:13
 
 # 前言
 
-大家好，以下是我在 [COSCUP 2024](https://coscup.org/2024/zh-TW/session/AEJHAC) 所分享的內容，帶大家了解在日常開發之餘，能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！
+大家好，以下是我在 [COSCUP 2024](https://coscup.org/2024/zh-TW/session/AEJHAC) 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！
 
 <!-- more -->
 
@@ -30,8 +30,7 @@ Status Page 是一個專門用來確認與查看系統、服務或是各種應�
 ## 使用 Status Page 的優點
 
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-ㄦ 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
+- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
 
 - 對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴
 
