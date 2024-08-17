@@ -208,6 +208,157 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/12/sentry-in-serverless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/12/sentry-in-serverless/" class="post-title-link" itemprop="url">使用 Sentry 收集錯誤並將訊息送至 Slack</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-12 09:50:13" itemprop="dateCreated datePublished" datetime="2019-11-12T09:50:13+00:00">2019-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot TW</a> 的 NiJia</p>
+<p>當產品開發完上線後難免會遇到可能是邏輯上的 Bug、例外錯誤或是想記錄使用上的錯誤，當沒有工具時都只能等錯誤出來時乖乖的去翻 Log 找問題，對於每次出錯要 Debug 的我就覺得很困擾 😭。</p>
+<p>公司強者寫 APP 的同事他們都很開心的在使用 Crashlytics 幫他們將 APP 出問題時將錯誤訊息丟上去，看了實在時羨慕，但那們寫 Web 的朋友要怎麼辦！</p>
+<p>最近就發現了<code>Sentry</code>這個玩意兒(<strong>應該是有段時間的產品了</strong>)，支援了幾乎支持現在市場上主流的各種框架以及語言，且串接上也都很簡單就能實現，文件也都清楚解釋每個 API 的功能如何使用，以下就來介紹如何使用它吧 😎<br><img src="https://i.imgur.com/xVHa6qg.png"></p>
+<blockquote>
+<p>這邊顯示較常用的語言，還有支援很多其他種類的框架及語言</p>
+</blockquote>
+<h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><ul>
+<li>文章的範例專案在此 -&gt; <a target="_blank" rel="noopener" href="https://github.com/louis70109/aws-sentry-flask-example">https://github.com/louis70109/aws-sentry-flask-example</a></li>
+<li>本篇是使用 flask 將 Sentry 透過 serverless 部署至 AWS 上 🗿</li>
+</ul>
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><p>首先先到 <a target="_blank" rel="noopener" href="https://sentry.io/welcome/">https://sentry.io/welcome/</a> <code>Get start</code></p>
+<p><img src="https://i.imgur.com/LRIVYDH.jpg"></p>
+<hr>
+<p>這邊可以整合了<code>GitHub</code>或者<code>Azure DevOps</code>兩種 OAuth 的登入方式<br><img src="https://i.imgur.com/eIYugOF.png"></p>
+<hr>
+<p>接著就照著步驟來囉！<br><img src="https://i.imgur.com/5EDwA0N.png"></p>
+<hr>
+<p>選擇自己所使用的語言，這邊我使用 Flask(python) 框架來實作<br><img src="https://i.imgur.com/piHNxXB.png"></p>
+<hr>
+<p>接著官方會有個簡單的文件告訴你要如何實作這塊，這邊就先使用<code>pip</code>在本地安裝套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade <span class="string">&quot;sentry-sdk[flask]==0.13.2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若是使用雲端服務的話需要將<code>sentry-sdk[flask]==0.13.2</code>放入 requirements.txt 中</p>
+</blockquote>
+<p>將以下 init code 放入 api.py 裡，在 <code>app = Flask(__name__)</code> 之前</p>
+<blockquote>
+<p>這邊我將 Sentry 的 DSN 放入 .env 裡，若有參考這部分的朋友需要注意環境變數的地方喔！</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sentry_sdk</span><br><span class="line"><span class="keyword">from</span> sentry_sdk.integrations.flask <span class="keyword">import</span> FlaskIntegration</span><br><span class="line"></span><br><span class="line">sentry_sdk.init(</span><br><span class="line">    dsn=os.environ.get(<span class="string">&#x27;SENTRY_DSN&#x27;</span>),</span><br><span class="line">    integrations=[FlaskIntegration()]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/u9WJkZL.png"></p>
+<hr>
+<p>接著就開始丟錯誤上去看看狀態，我的專案上是串著 LINE Bot，功能只是當個應聲蟲，<strong>在這情況下只需要丟個貼圖給它就會出錯</strong>。</p>
+<p>當錯誤丟出來之後原本監聽的紅色燈號就會打勾囉 ✅</p>
+<blockquote>
+<p>Sentry 預設都會寄信通知，所以若有錯誤記得看信箱哦！</p>
+</blockquote>
+<p><img src="https://i.imgur.com/JXfV97e.png"></p>
+<hr>
+<p>點進去後就可以很清楚的看到程式是錯在第幾行，寫到這有種莫名的感動，平常都是在 LOG 海裡找看看到底報錯在哪邊，終於有個地方能幫我接下來了 🎉<br><img src="https://i.imgur.com/JvVeSdd.png"></p>
+<p>到這邊基本串接已經完成了，但身為免費導向的工程師怎麼能讓 5000&#x2F;月 限制我！接下來就要去過濾一下來的錯誤內容，若不是系統造成的錯誤就不上傳。</p>
+<p>我選擇判斷 Log 達到<code>Waring</code>或是<code>Internal</code>就回報，並照著官方的指示新增以下內容:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/python/#filter-events--custom-logic">before_send</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/python/logging/">logging</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sentry_sdk</span><br><span class="line"><span class="keyword">from</span> sentry_sdk.integrations.flask <span class="keyword">import</span> FlaskIntegration</span><br><span class="line">+ <span class="keyword">import</span> logging</span><br><span class="line">+ <span class="keyword">from</span> http.client <span class="keyword">import</span> HTTPException</span><br><span class="line">+ <span class="keyword">from</span> sentry_sdk.integrations.logging <span class="keyword">import</span> LoggingIntegration</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ <span class="function"><span class="keyword">def</span> <span class="title">strip_sensitive_data</span>(<span class="params">event, hint</span>):</span></span><br><span class="line">+     <span class="keyword">if</span> <span class="string">&quot;exc_info&quot;</span> <span class="keyword">in</span> hint:</span><br><span class="line">+         instance = hint[<span class="string">&#x27;exc_info&#x27;</span>][<span class="number">1</span>]</span><br><span class="line">+         <span class="keyword">if</span> <span class="built_in">isinstance</span>(instance, HTTPException) <span class="keyword">and</span> instance.code &lt; <span class="number">500</span>:</span><br><span class="line">+             <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">+     <span class="keyword">return</span> event</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ sentry_logging = LoggingIntegration(</span><br><span class="line">+     level=logging.INFO,</span><br><span class="line">+     event_level=logging.WARNING</span><br><span class="line">+ )</span><br><span class="line"></span><br><span class="line">sentry_sdk.init(</span><br><span class="line">    dsn=os.environ.get(<span class="string">&#x27;SENTRY_DSN&#x27;</span>),</span><br><span class="line">+    before_send=strip_sensitive_data,</span><br><span class="line">+    integrations=[FlaskIntegration(), sentry_logging]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>strip_sensitive_data</code>: 過濾來自 Http 的 Exception 錯誤碼是否大於<code>500</code>，否則不回傳。</li>
+<li><code>sentry_logging</code>: 使用 SDK 的 <code>LoggingIntegration</code> 來定義 log 回傳事件時的層級到哪層才上傳錯誤訊息，這邊我設定<code>Waring</code>等級，並加入到 init 的 <code>integrations</code> 裡。</li>
+</ul>
+<p>此時不管你打上都會將訊息送上 Sentry：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logging.waring(<span class="string">&quot;i am waring&quot;</span>)</span><br><span class="line">logging.error(<span class="string">&quot;i am error&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>或者是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">raise</span> InternalServerError(<span class="string">&quot;Hi Error&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>或者！！自己手殘讓程式崩潰也會送通知</p>
+</blockquote>
+<p>到這基本上已經完成串接完成並能過濾錯誤訊息，接下來則為將服務串至 Slack 上。</p>
+<h1 id="Slack-bot-串接"><a href="#Slack-bot-串接" class="headerlink" title="Slack bot 串接"></a>Slack bot 串接</h1><p>首先來到<code>Settings</code>按下<code>Integrations</code>會看到以下畫面，並安裝一下<code>Slack</code><br><img src="https://i.imgur.com/Sbib4sv.png"></p>
+<hr>
+<p>接著就要跟 Slack 連動囉<br><img src="https://i.imgur.com/6wHC4Ci.png"></p>
+<hr>
+<p>連動完成後再按下<code>configure</code>來設定以下內容<br><img src="https://i.imgur.com/dSOV9KP.png"></p>
+<hr>
+<p>到了<code>Alerts</code>頁面後就開始設定以下內容囉，這部分參考<a target="_blank" rel="noopener" href="https://docs.sentry.io/workflow/integrations/global-integrations/#slack">官方文件</a><br><img src="https://i.imgur.com/qd05OJO.png"></p>
+<hr>
+<p>可以指定透過哪個<code>group</code>去傳送至哪個<code>tag</code>，我就直接送到預設的<code>#general</code><br><img src="https://i.imgur.com/22Z3pV9.png"></p>
+<hr>
+<p>測試就直接送出貼圖來讓 bot 報錯，結果就收到<code>key</code>的錯誤啦～<br><img src="https://i.imgur.com/FAvjMwy.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>最後就能透過<code>sls deploy</code>將專案部署到 AWS 上，透過這次的紀錄對 Sentry SDK 運作在框架上的問題更加了解，同時也找到了一個不僅可以紀錄錯誤還能通知我錯誤訊息的地方，可以在第一時間直接進去分析 log，若完成了可以直接在 slack 上按<code>Reslove</code>來完成這個 issue。</p>
+<p>本來有在考慮要串接<code>LINE Notify</code>，不過看著 Sentry 對 Slack 的整合比較好，也就放棄了這個念頭了 🤣，但串接哪個平台其實就看公司的需求，Sentry 一樣可以透過 webhook 將錯誤訊息傳至 Server。</p>
+<p>此外它一樣可以整合<code>Github</code>、<code>GitLab</code>、<code>Azure DevOps</code>…等等，若錯誤處理好的話可以讓 Sentry 幫你送 Issue 上去，不僅整個超炫砲 😎，若是 open source 的專案也可以大家一起去修這個問題，真的是一舉兩得啊！！！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1094,114 +1245,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/" class="post-title-link" itemprop="url">Day26 - Use CDN (1) - 建立 Certificate 與 Domain</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-10 13:05:23" itemprop="dateCreated datePublished" datetime="2019-10-10T13:05:23+00:00">2019-10-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-06-25 07:38:19" itemprop="dateModified" datetime="2023-06-25T07:38:19+00:00">2023-06-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>繼上一篇 warm-up 機制之後來了解一下如何使用 AWS 的 CDN 服務 - cloudfont，CDN 顧名思義就是要讓使用者可以到最接近的主機上去拉到對應的資料，透過撒點的方式讓主機去挑選離自己近的服務據點，藉此加速服務。</p>
-<p>像我之前部署在 ohio，想想光網路的時間 + Cold start 的時間就已經去了一大半，即便我們有熱開機，服務沒有 Timeout 我該慶幸了，既然如此就不得不認識一下 CDN 服務，而 AWS 的 CDN 服務就是 cloudfont 啦！</p>
-<p>只是說原本的 domain 已經有 SSL 了，但是代理沒有這個東西，所以我們要 ban 出一個 Certificate，那在在建立 cloudfont 以前需要先到 Certificate Manager，接著會用圖片帶大家一步一步做</p>
-<p><img src="https://i.imgur.com/vLLfKyr.png"></p>
-<h2 id="開始之前"><a href="#開始之前" class="headerlink" title="開始之前"></a>開始之前</h2><p>我已經有先在 Route53 註冊了一個 <code>nijialin.com</code> 的 domain，<code>.com</code>大概 10 美金左右，若是有在其他地方註冊域名的話要找一下相關文章把它導進 Route53 哦！</p>
-<h2 id="註冊-Certificate"><a href="#註冊-Certificate" class="headerlink" title="註冊 Certificate"></a>註冊 Certificate</h2><ul>
-<li>先來到 Certificate Manager 頁面，按下左下角的這個</li>
-</ul>
-<p><img src="https://i.imgur.com/WVk2YFJ.png"></p>
-<ul>
-<li>接著就直接按右下角啦，但是要確定是不是 public</li>
-</ul>
-<p><img src="https://i.imgur.com/sNxd3LG.png"></p>
-<ul>
-<li>這裡輸入你在 route53 註冊的 domain，這邊我是輸入 *.nijialin.com</li>
-</ul>
-<p><img src="https://i.imgur.com/FXnknbj.png"></p>
-<ul>
-<li>到第四部之後就會看到申請的 SSL Pending</li>
-</ul>
-<p><img src="https://i.imgur.com/WlY5PCf.png"></p>
-<ul>
-<li>最後回首頁之後就會看到 SSL 簽證正在送簽中<br><img src="https://i.imgur.com/kRRtvJ5.png"></li>
-</ul>
-<p>最後就等他完成嚕！將將<br><img src="https://i.imgur.com/495PjEw.png"><br>接著我們到 API Gateway 找到左邊的 <code>Custom Domain Name</code>，我們要來建立屬於這個 API 的 Domain 了<br><img src="https://i.imgur.com/BzkvgUR.png"><br>按下藍色的按鈕之後，輸入<code>Domain name</code>以及選擇剛剛註冊的 Certificate 後按下 <code>Save</code><br><img src="https://i.imgur.com/xwBEC5O.png"><br>他就會開始初始化剛剛的設定，這邊大概需要等 15 分鐘左右<br><img src="https://i.imgur.com/dLMaXrx.png"><br>在此同時我們就去新增專案裡的套件 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/serverless-domain-manager">Domain-Manager</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install serverless-domain-manager --save-dev</span><br></pre></td></tr></table></figure>
-
-<p>並且在<code>plugin</code>下加入套件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-domain-manager</span></span><br></pre></td></tr></table></figure>
-
-<p>在<code>custom</code>底下加入</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">domainName:</span></span><br><span class="line">    <span class="attr">default:</span></span><br><span class="line">      <span class="attr">domainName:</span> <span class="string">line.nijialin.com</span></span><br><span class="line">      <span class="attr">certificateName:</span> <span class="string">&quot;*.nijialin.com&quot;</span></span><br><span class="line">      <span class="attr">createRoute53Record:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">endpointType:</span> <span class="string">edge</span></span><br></pre></td></tr></table></figure>
-
-<p>等待前面初始化成功之後部署這個專案<code>sls deploy</code>之後就會看到剛剛註冊的域名啟動囉！<br><img src="https://i.imgur.com/Pn2TyMD.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>在建立 Certificate 那邊倒沒什麼問題，畢竟需要一個 SSL，只是到了建立 domain 這邊遇到了很怪的問題，一般來說使用 serverless 框架來跑的話只要照的文件裡說的 <code>serverless create_domain</code>就會幫忙註冊，而且可以依照自己開發環境去自動設定，在公司的專案中這樣使用是沒問題的，在是在寫這篇文章時卻只能使用以上的方法來替代使用，雖然結果是一樣的，但是用起來實在是很不符合邏輯，google 也沒找到類似的問題，或許這個問題還要多實測幾次才夠…😭</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1273,7 +1316,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">238</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1286,7 +1329,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">317</span>
+        <span class="site-state-item-count">319</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

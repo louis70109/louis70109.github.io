@@ -208,6 +208,104 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/21/Day7-%E5%9C%A8-serverless-%E8%A3%A1%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E8%AE%93%E9%80%99%E4%BA%9B-key-%E5%A5%BD%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/21/Day7-%E5%9C%A8-serverless-%E8%A3%A1%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E8%AE%93%E9%80%99%E4%BA%9B-key-%E5%A5%BD%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Day7 - 在 serverless 裡使用環境變數讓這些 key 好管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-21 12:33:28" itemprop="dateCreated datePublished" datetime="2019-09-21T12:33:28+00:00">2019-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看著前幾天的文章，像我們 notify 驗證的 API 有使用到 <code>REDIRECT_URI</code>、<code>CLIENT_ID</code> 以及 <code>CLIENT_SECRET</code>，或是像 PostgreSQL 的帳號密碼，<br>只是說若今天當程式碼變多的時候，抑或是這個參數有給其他 API 使用，那在尋找的時候不僅費工又浪費時間<br>那接下來就帶著大家在 serverless.yml 一步步加入變數值，並更改 code。</p>
+<h2 id="動手吧！"><a href="#動手吧！" class="headerlink" title="動手吧！"></a>動手吧！</h2><p>用 npm 安裝 serverless 的 <code>dotenv</code> 套件</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i -D serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
+
+<p>接著加入新的套件到<code>serverless.yml</code></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">plugins:</span></span><br><span class="line">  - serverless-dotenv-plugin</span><br></pre></td></tr></table></figure>
+
+<p>新增<code>dotenv</code>到 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">python</span>-dotenv==<span class="number">0</span>.<span class="number">10</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>到 api.py 加入下面內容</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">from</span> <span class="variable">dotenv</span> <span class="variable">import</span> <span class="variable">load_dotenv</span></span><br><span class="line"><span class="variable">env_path</span> = <span class="function"><span class="title">Path</span>(<span class="string">&#x27;.&#x27;</span>) / <span class="string">&#x27;.env&#x27;</span></span></span><br><span class="line"><span class="function"><span class="title">load_dotenv</span>(<span class="variable">dotenv_path</span>=<span class="variable">env_path</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>接著新增<code>.env</code>並輸入對應的內容</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NOTIFY_REDIRECT_URI=</span><br><span class="line">NOTIFY_CLIENT_ID=</span><br><span class="line">NOTIFY_CLIENT_SECRET=</span><br><span class="line">REGION=us-east<span class="number">-2</span></span><br><span class="line">SQS_URL=</span><br><span class="line">SQS_ARN=</span><br><span class="line">PG_DB=</span><br><span class="line">PG_HOST=</span><br><span class="line">PG_NAME=</span><br><span class="line">PG_PWD=</span><br><span class="line">PG_PORT=</span><br></pre></td></tr></table></figure>
+
+<p>接著修改有使用到他們的地方，範例如下</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.<span class="built_in">getenv</span>(<span class="string">&quot;SQS_ARN&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>既然有安裝 serverless 的套件了，那 yml 檔也可以使用哦！</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">provider:</span></span><br><span class="line"><span class="symbol">  name:</span> aws</span><br><span class="line"><span class="symbol">  runtime:</span> python3<span class="number">.7</span></span><br><span class="line"><span class="symbol">  region:</span> $&#123;env:REGION&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>有時候把專案抓下來的時候要找到這些輸入的地方很容易找不到(我有點癡呆)，一般 open source 也都會有一個<code>.env</code>的，用<code>serverless-dotenv-plugin</code>來幫忙弄就方便許多了，後續有需要再繼續往裡面新增就好了～</p>
+<p>最後在搭配 python 的 <a target="_blank" rel="noopener" href="https://serverless.com/plugins/serverless-dotenv-plugin/">dot env 套件</a>使用就讓整個好用多了 🤣，只是說 html 因為目前還不是透過 serverless 來幫忙部署，所以這邊的參數就沒辦法吃設定檔了 😓</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4906977/how-to-access-environment-variable-values">os.environ</a><br><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/guide/variables/">env setting</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1045,7 +1143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">238</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1058,7 +1156,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">317</span>
+        <span class="site-state-item-count">319</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
