@@ -18613,6 +18613,57 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>【Threads SDK】透過程式發送你的第一篇 Threads 貼文</title>
+    <url>/2024/08/17/python-threads-sdk-introduction/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期接收到 Threads 也開出 API 可以使用，看網路上有許多人討論相關做法，同時也閱讀了許多大大們的文章，以下就將我這幾天測試發文的結果記錄下來，給有需要使用的讀者們～</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="1-建立應用程式"><a href="#1-建立應用程式" class="headerlink" title="1. 建立應用程式"></a>1. 建立應用程式</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/1-createapp.png"></p>
+<p>至 <a href="https://developers.facebook.com/apps/">Meta Developer Tool</a> 右上角按下 <strong>Create App</strong>，因為是要串接 Threads，選擇 <strong>Access the Threads API</strong></p>
+<h2 id="2-選擇-Threads"><a href="#2-選擇-Threads" class="headerlink" title="2. 選擇 Threads"></a>2. 選擇 Threads</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/2-name.png"></p>
+<p>期間把需要填上的資訊補上即可，就可以建立成功</p>
+<h2 id="3-開啟-APIs"><a href="#3-開啟-APIs" class="headerlink" title="3. 開啟 APIs"></a>3. 開啟 APIs</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/3-apis.png"></p>
+<p>建立完成之後，預設 Threads 只會幫忙開一個 API，其他的可以按下去把它打開，基本上要用也都是全開，應該沒有不想開的 (?)</p>
+<h2 id="4-加入-IG-帳號"><a href="#4-加入-IG-帳號" class="headerlink" title="4. 加入 IG 帳號"></a>4. 加入 IG 帳號</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/4-add-account.png"></p>
+<p>這邊一開始會有點誤導，以為自己 Facebook 帳號有登入就可以，要再把自己的 IG 帳號加入為測試帳號，輸入帳號不用加上 <strong>＠</strong></p>
+<h2 id="5-允許-Threads-與應用程式連動"><a href="#5-允許-Threads-與應用程式連動" class="headerlink" title="5. 允許 Threads 與應用程式連動"></a>5. 允許 Threads 與應用程式連動</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/5-thread-connect.png"></p>
+<p>這邊在第四步加入帳號之後，理論上會導過去，如果沒有的話，也可以找設定頁面中的<strong>邀請</strong>，這邊點進來之後就會看到剛剛送出的測試邀請，<strong>接受</strong>即可</p>
+<h2 id="6-開始測試"><a href="#6-開始測試" class="headerlink" title="6. 開始測試"></a>6. 開始測試</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
+<p>大家剛到 <strong>Graph 測試頁</strong>之後，要先產生出 Access Token 之後才可以合法拿到相關的資料，這邊點下 Generate Token 之後，就會來到跳轉頁面</p>
+<p><img src="https://nijialin.com/images/2024/threads-sdk/6-access.png"></p>
+<p>這邊跟各種網頁應用程式一樣，都會跳一個同意頁面之後才可以開始</p>
+<h2 id="7-拿取個人帳號資訊"><a href="#7-拿取個人帳號資訊" class="headerlink" title="7. 拿取個人帳號資訊"></a>7. 拿取個人帳號資訊</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
+<p>最後就可以把 Threads API 們都打過一遍，可以透過 <code>/me</code> 先取得自己的 <code>User ID</code>，後面 API 路徑都會需要 id 才可以執行</p>
+<h2 id="8-如何透過-SDK-上傳第一篇貼文？"><a href="#8-如何透過-SDK-上傳第一篇貼文？" class="headerlink" title="8. 如何透過 SDK 上傳第一篇貼文？"></a>8. 如何透過 SDK 上傳第一篇貼文？</h2><p>安裝 Threads SDK，要透過其他方式安裝也行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install threads-sdk</span><br></pre></td></tr></table></figure>
+
+<p>接著準備三個主要的參數，USER_ID、ACCESS_TOKEN、APP_SECRET，其中前兩個上面已經有先取到了，APP_SECRET 可以透過下圖的方式到 Dashboard 中找到詳細資訊後取得</p>
+<p><img src="https://nijialin.com/images/2024/threads-sdk/8-app-secret.png"></p>
+<p>來到了發文環節，建立一個 main.py 之後，將這三個參數帶進初始化當中，由於 Threads 特性可以一次發多個文，因此需要先建立 Container 先將文章儲存起來，之後在把 Container publish</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> threads.api <span class="keyword">import</span> ThreadsAPI</span><br><span class="line"></span><br><span class="line">threads = ThreadsAPI(</span><br><span class="line">    user_id=USER_ID, access_token=ACCESS_TOKEN, app_secret=APP_SECRET</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取得個人資訊</span></span><br><span class="line"><span class="comment"># user_info = threads.get_user_bio()</span></span><br><span class="line"><span class="comment"># print(user_info)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立發文的 Container，因為 Threads 可以一次發多個文</span></span><br><span class="line">media_json = threads.create_media_container(text=<span class="string">&quot;Hello, World! \n This is a test post.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(media_json)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 Container 發文</span></span><br><span class="line">threads.publish_container(media_json.get(<span class="string">&quot;id&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2024/threads-sdk/9-post.png"></p>
+<p>執行之後就可以發現自己的測試文出去啦！</p>
+<h1 id="結論-amp-注意事項"><a href="#結論-amp-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
+<li>透過 Graph 拿到的 Token 是 short-live 的，<strong>期限是 24h</strong>，如果想要用比較久，請拿 short-live ACCESS_TOKEN + APP_SECRET 並透過<a href="https://github.com/louis70109/threads-sdk/blob/main/threads/api.py#L45">這支 API</a>來取得 <strong>long-live ACCESS_TOKEN</strong></li>
+<li>發文需要先建立 Container，後續可以一起推出</li>
+<li>相關的 API 如果不敷使用，歡迎<a href="https://github.com/louis70109/threads-sdk">透過 Pull Request </a>來更新 SDK 唷！</li>
+</ul>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a href="https://cowton0517.medium.com/come-on-%E4%BD%BF%E7%94%A8-threads-api-%E4%BE%86%E8%87%AA%E5%8B%95%E7%99%BC%E6%96%87%E5%90%A7-792797a68437">Come on！使用 Threads API 來自動發文吧</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>SDK</tag>
+        <tag>Threads</tag>
+        <tag>Meta</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LINE TECH FRESH 2024 畢業分享會精彩回顧</title>
     <url>/2024/06/27/line-techfresh-graduation-2024-result/</url>
     <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472774665.png?updatedAt=1719472776000"></p>
@@ -18742,57 +18793,6 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>TECH FRESH</tag>
         <tag>Internship</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Threads SDK】透過程式發送你的第一篇 Threads 貼文</title>
-    <url>/2024/08/17/python-threads-sdk-introduction/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期接收到 Threads 也開出 API 可以使用，看網路上有許多人討論相關做法，同時也閱讀了許多大大們的文章，以下就將我這幾天測試發文的結果記錄下來，給有需要使用的讀者們～</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="1-建立應用程式"><a href="#1-建立應用程式" class="headerlink" title="1. 建立應用程式"></a>1. 建立應用程式</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/1-createapp.png"></p>
-<p>至 <a href="https://developers.facebook.com/apps/">Meta Developer Tool</a> 右上角按下 <strong>Create App</strong>，因為是要串接 Threads，選擇 <strong>Access the Threads API</strong></p>
-<h2 id="2-選擇-Threads"><a href="#2-選擇-Threads" class="headerlink" title="2. 選擇 Threads"></a>2. 選擇 Threads</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/2-name.png"></p>
-<p>期間把需要填上的資訊補上即可，就可以建立成功</p>
-<h2 id="3-開啟-APIs"><a href="#3-開啟-APIs" class="headerlink" title="3. 開啟 APIs"></a>3. 開啟 APIs</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/3-apis.png"></p>
-<p>建立完成之後，預設 Threads 只會幫忙開一個 API，其他的可以按下去把它打開，基本上要用也都是全開，應該沒有不想開的 (?)</p>
-<h2 id="4-加入-IG-帳號"><a href="#4-加入-IG-帳號" class="headerlink" title="4. 加入 IG 帳號"></a>4. 加入 IG 帳號</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/4-add-account.png"></p>
-<p>這邊一開始會有點誤導，以為自己 Facebook 帳號有登入就可以，要再把自己的 IG 帳號加入為測試帳號，輸入帳號不用加上 <strong>＠</strong></p>
-<h2 id="5-允許-Threads-與應用程式連動"><a href="#5-允許-Threads-與應用程式連動" class="headerlink" title="5. 允許 Threads 與應用程式連動"></a>5. 允許 Threads 與應用程式連動</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/5-thread-connect.png"></p>
-<p>這邊在第四步加入帳號之後，理論上會導過去，如果沒有的話，也可以找設定頁面中的<strong>邀請</strong>，這邊點進來之後就會看到剛剛送出的測試邀請，<strong>接受</strong>即可</p>
-<h2 id="6-開始測試"><a href="#6-開始測試" class="headerlink" title="6. 開始測試"></a>6. 開始測試</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
-<p>大家剛到 <strong>Graph 測試頁</strong>之後，要先產生出 Access Token 之後才可以合法拿到相關的資料，這邊點下 Generate Token 之後，就會來到跳轉頁面</p>
-<p><img src="https://nijialin.com/images/2024/threads-sdk/6-access.png"></p>
-<p>這邊跟各種網頁應用程式一樣，都會跳一個同意頁面之後才可以開始</p>
-<h2 id="7-拿取個人帳號資訊"><a href="#7-拿取個人帳號資訊" class="headerlink" title="7. 拿取個人帳號資訊"></a>7. 拿取個人帳號資訊</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
-<p>最後就可以把 Threads API 們都打過一遍，可以透過 <code>/me</code> 先取得自己的 <code>User ID</code>，後面 API 路徑都會需要 id 才可以執行</p>
-<h2 id="8-如何透過-SDK-上傳第一篇貼文？"><a href="#8-如何透過-SDK-上傳第一篇貼文？" class="headerlink" title="8. 如何透過 SDK 上傳第一篇貼文？"></a>8. 如何透過 SDK 上傳第一篇貼文？</h2><p>安裝 Threads SDK，要透過其他方式安裝也行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install threads-sdk</span><br></pre></td></tr></table></figure>
-
-<p>接著準備三個主要的參數，USER_ID、ACCESS_TOKEN、APP_SECRET，其中前兩個上面已經有先取到了，APP_SECRET 可以透過下圖的方式到 Dashboard 中找到詳細資訊後取得</p>
-<p><img src="https://nijialin.com/images/2024/threads-sdk/8-app-secret.png"></p>
-<p>來到了發文環節，建立一個 main.py 之後，將這三個參數帶進初始化當中，由於 Threads 特性可以一次發多個文，因此需要先建立 Container 先將文章儲存起來，之後在把 Container publish</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> threads.api <span class="keyword">import</span> ThreadsAPI</span><br><span class="line"></span><br><span class="line">threads = ThreadsAPI(</span><br><span class="line">    user_id=USER_ID, access_token=ACCESS_TOKEN, app_secret=APP_SECRET</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取得個人資訊</span></span><br><span class="line"><span class="comment"># user_info = threads.get_user_bio()</span></span><br><span class="line"><span class="comment"># print(user_info)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立發文的 Container，因為 Threads 可以一次發多個文</span></span><br><span class="line">media_json = threads.create_media_container(text=<span class="string">&quot;Hello, World! \n This is a test post.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(media_json)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 Container 發文</span></span><br><span class="line">threads.publish_container(media_json.get(<span class="string">&quot;id&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2024/threads-sdk/9-post.png"></p>
-<p>執行之後就可以發現自己的測試文出去啦！</p>
-<h1 id="結論-amp-注意事項"><a href="#結論-amp-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
-<li>透過 Graph 拿到的 Token 是 short-live 的，<strong>期限是 24h</strong>，如果想要用比較久，請拿 short-live ACCESS_TOKEN + APP_SECRET 並透過<a href="https://github.com/louis70109/threads-sdk/blob/main/threads/api.py#L45">這支 API</a>來取得 <strong>long-live ACCESS_TOKEN</strong></li>
-<li>發文需要先建立 Container，後續可以一起推出</li>
-<li>相關的 API 如果不敷使用，歡迎<a href="https://github.com/louis70109/threads-sdk">透過 Pull Request </a>來更新 SDK 唷！</li>
-</ul>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
-<li><a href="https://cowton0517.medium.com/come-on-%E4%BD%BF%E7%94%A8-threads-api-%E4%BE%86%E8%87%AA%E5%8B%95%E7%99%BC%E6%96%87%E5%90%A7-792797a68437">Come on！使用 Threads API 來自動發文吧</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>SDK</tag>
-        <tag>Threads</tag>
-        <tag>Meta</tag>
       </tags>
   </entry>
   <entry>
