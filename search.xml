@@ -18057,6 +18057,140 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
+    <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
+<span id="more"></span>
+
+<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<ul>
+<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
+<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
+<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
+<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
+<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a></li>
+</ul>
+<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
+<blockquote>
+<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
+</blockquote>
+<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
+
+<h1 id="先部署-從-Cloud-Run-介面來連結-GitHub-持續部署"><a href="#先部署-從-Cloud-Run-介面來連結-GitHub-持續部署" class="headerlink" title="先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署"></a>先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署</h1><ol>
+<li>首先先 fork 專案 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，方便後續操作</li>
+<li>接著到 <a href="https://console.cloud.google.com/run?referrer=search&hl=zh-tw">Cloud Run 首頁</a>，點選上方的<code>建立服務</code></li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/select.jpeg"></p>
+<ol start="3">
+<li>選擇外部資源(GitHub)，從專案中來偵測部署，此步驟後續會連動 GitHub</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/detail.jpeg"></p>
+<ol start="4">
+<li>此步驟需要確保<code>認證</code>以及<code>Ingress control</code> 的部分，因為從 LINE 伺服器打來的流量對 Google Cloud 來說都是外來的，因此需要確定選項</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/env_setting.png"></p>
+<ol start="5">
+<li>在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入<ol>
+<li>環境變數清單請看 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample">GitHub URL</a></li>
+<li>LINE bot &#x2F; GEMINI pro &#x2F; Firebase 的取得詳細請往前看 <code>事前準備</code></li>
+<li>API_ENV 需要為 <code>production</code>，否則會找 .env 檔案位置</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg"></p>
+<ol start="6">
+<li>在部署的同時可以到 GitHub 專案上看看部署的連動狀態，如此一來只要 GitHub 專案只要有更改，就會自動部署過去 Cloud Run</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/complete.jpeg"></p>
+<p>完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去</p>
+<h1 id="摘要王-v2"><a href="#摘要王-v2" class="headerlink" title="摘要王 v2"></a>摘要王 v2</h1><p>在 2022 年底，Evan 寫了一篇如何透過 ChatGPT + LINE Bot 的<a href="https://engineering.linecorp.com/zh-hant/blog/linebot-chatgpt">群組摘要王文章</a>，如今用 Gemini Pro 再做一次效果也會差不多，當時的作法是用 Golang 的 queue 方式去處理，以下介紹另一個作法 - 用 Firebase 當作對話 session 的儲存位置，實現記憶這件事</p>
+<p><a href="https://line-tw-official.weblog.to/archives/25515573.html">2023&#x2F;11&#x2F;06 訊息摘要功能上線！用 AI 總結社群聊天室訊息！</a></p>
+<p>這次做的摘要王主要用以下技術，設定細節請參考「<a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a>」：</p>
+<ul>
+<li>Firebase<ul>
+<li>儲存對話歷史</li>
+</ul>
+</li>
+<li>Gemini Pro<ul>
+<li>透過 Firebase 的歷史對話，協助判斷</li>
+</ul>
+</li>
+<li>以下選填<ul>
+<li>Cloud Run: 部署用</li>
+<li>Python: 快速開發</li>
+</ul>
+</li>
+</ul>
+<p>接著建立一個群組，並將剛剛建立的官方帳號邀請進去，此步驟需要到 LINE Dev Console 設定，否則會邀請不進去。</p>
+<p>邀請進去後，群組內從 <a href="https://today.line.me/tw/v3/tab">LINE TODAY</a> 中抓取新聞片段貼貼至群組中，接著打上 <code>!摘要</code> 讓 LINE Bot 幫你整理！</p>
+<blockquote>
+<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115">Sample code</a><br>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</p>
+</blockquote>
+<h3 id="結果截圖"><a href="#結果截圖" class="headerlink" title="結果截圖"></a>結果截圖</h3><p><img src="https://nijialin.com/images/2024/gemini-workshop/result.jpg"></p>
+<h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
+<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
+<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
+<li><code>需要註冊</code>且拿到<code>授權碼</code></li>
+</ul>
+<blockquote>
+<p>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt<br>抓取天氣 API 的 <a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/weather.py#L7">Python code</a></p>
+</blockquote>
+<h2 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
+<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
+<ul>
+<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
+<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
+<li>可以試著用時間套件+判斷式來檢測</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
+
+<h2 id="地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像"><a href="#地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像" class="headerlink" title="地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)"></a>地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
+<blockquote>
+<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/common.py#L30">SkatePark code</a></p>
+</blockquote>
+<blockquote>
+<p>以下的 code 的網址為範例，可以抓任何網址為 <code>.jpg</code> 結尾的丟進去試試看。<br>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/1c8f104eae54a3bcb23aad2347211064.js"></script>
+
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Cloud Run</tag>
+        <tag>Open Data</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
     <url>/2024/05/03/line-bot-cloud-functions-workshop/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -18204,140 +18338,6 @@ img[alt~="center"] {
         <tag>Google</tag>
         <tag>GCP</tag>
         <tag>Cloud Function</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
-    <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
-<span id="more"></span>
-
-<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
-<ul>
-<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
-<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
-<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
-<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
-<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a></li>
-</ul>
-<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
-<blockquote>
-<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
-</blockquote>
-<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
-
-<h1 id="先部署-從-Cloud-Run-介面來連結-GitHub-持續部署"><a href="#先部署-從-Cloud-Run-介面來連結-GitHub-持續部署" class="headerlink" title="先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署"></a>先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署</h1><ol>
-<li>首先先 fork 專案 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，方便後續操作</li>
-<li>接著到 <a href="https://console.cloud.google.com/run?referrer=search&hl=zh-tw">Cloud Run 首頁</a>，點選上方的<code>建立服務</code></li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/select.jpeg"></p>
-<ol start="3">
-<li>選擇外部資源(GitHub)，從專案中來偵測部署，此步驟後續會連動 GitHub</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/detail.jpeg"></p>
-<ol start="4">
-<li>此步驟需要確保<code>認證</code>以及<code>Ingress control</code> 的部分，因為從 LINE 伺服器打來的流量對 Google Cloud 來說都是外來的，因此需要確定選項</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/env_setting.png"></p>
-<ol start="5">
-<li>在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入<ol>
-<li>環境變數清單請看 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample">GitHub URL</a></li>
-<li>LINE bot &#x2F; GEMINI pro &#x2F; Firebase 的取得詳細請往前看 <code>事前準備</code></li>
-<li>API_ENV 需要為 <code>production</code>，否則會找 .env 檔案位置</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg"></p>
-<ol start="6">
-<li>在部署的同時可以到 GitHub 專案上看看部署的連動狀態，如此一來只要 GitHub 專案只要有更改，就會自動部署過去 Cloud Run</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/complete.jpeg"></p>
-<p>完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去</p>
-<h1 id="摘要王-v2"><a href="#摘要王-v2" class="headerlink" title="摘要王 v2"></a>摘要王 v2</h1><p>在 2022 年底，Evan 寫了一篇如何透過 ChatGPT + LINE Bot 的<a href="https://engineering.linecorp.com/zh-hant/blog/linebot-chatgpt">群組摘要王文章</a>，如今用 Gemini Pro 再做一次效果也會差不多，當時的作法是用 Golang 的 queue 方式去處理，以下介紹另一個作法 - 用 Firebase 當作對話 session 的儲存位置，實現記憶這件事</p>
-<p><a href="https://line-tw-official.weblog.to/archives/25515573.html">2023&#x2F;11&#x2F;06 訊息摘要功能上線！用 AI 總結社群聊天室訊息！</a></p>
-<p>這次做的摘要王主要用以下技術，設定細節請參考「<a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a>」：</p>
-<ul>
-<li>Firebase<ul>
-<li>儲存對話歷史</li>
-</ul>
-</li>
-<li>Gemini Pro<ul>
-<li>透過 Firebase 的歷史對話，協助判斷</li>
-</ul>
-</li>
-<li>以下選填<ul>
-<li>Cloud Run: 部署用</li>
-<li>Python: 快速開發</li>
-</ul>
-</li>
-</ul>
-<p>接著建立一個群組，並將剛剛建立的官方帳號邀請進去，此步驟需要到 LINE Dev Console 設定，否則會邀請不進去。</p>
-<p>邀請進去後，群組內從 <a href="https://today.line.me/tw/v3/tab">LINE TODAY</a> 中抓取新聞片段貼貼至群組中，接著打上 <code>!摘要</code> 讓 LINE Bot 幫你整理！</p>
-<blockquote>
-<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115">Sample code</a><br>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</p>
-</blockquote>
-<h3 id="結果截圖"><a href="#結果截圖" class="headerlink" title="結果截圖"></a>結果截圖</h3><p><img src="https://nijialin.com/images/2024/gemini-workshop/result.jpg"></p>
-<h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
-<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
-<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
-<li><code>需要註冊</code>且拿到<code>授權碼</code></li>
-</ul>
-<blockquote>
-<p>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt<br>抓取天氣 API 的 <a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/weather.py#L7">Python code</a></p>
-</blockquote>
-<h2 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
-<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
-<ul>
-<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
-<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
-<li>可以試著用時間套件+判斷式來檢測</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
-
-<h2 id="地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像"><a href="#地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像" class="headerlink" title="地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)"></a>地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
-<blockquote>
-<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/common.py#L30">SkatePark code</a></p>
-</blockquote>
-<blockquote>
-<p>以下的 code 的網址為範例，可以抓任何網址為 <code>.jpg</code> 結尾的丟進去試試看。<br>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt</p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/1c8f104eae54a3bcb23aad2347211064.js"></script>
-
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Cloud Run</tag>
-        <tag>Open Data</tag>
       </tags>
   </entry>
   <entry>
@@ -18613,57 +18613,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【Threads SDK】透過程式發送你的第一篇 Threads 貼文</title>
-    <url>/2024/08/17/python-threads-sdk-introduction/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期接收到 Threads 也開出 API 可以使用，看網路上有許多人討論相關做法，同時也閱讀了許多大大們的文章，以下就將我這幾天測試發文的結果記錄下來，給有需要使用的讀者們～</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="1-建立應用程式"><a href="#1-建立應用程式" class="headerlink" title="1. 建立應用程式"></a>1. 建立應用程式</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/1-createapp.png"></p>
-<p>至 <a href="https://developers.facebook.com/apps/">Meta Developer Tool</a> 右上角按下 <strong>Create App</strong>，因為是要串接 Threads，選擇 <strong>Access the Threads API</strong></p>
-<h2 id="2-選擇-Threads"><a href="#2-選擇-Threads" class="headerlink" title="2. 選擇 Threads"></a>2. 選擇 Threads</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/2-name.png"></p>
-<p>期間把需要填上的資訊補上即可，就可以建立成功</p>
-<h2 id="3-開啟-APIs"><a href="#3-開啟-APIs" class="headerlink" title="3. 開啟 APIs"></a>3. 開啟 APIs</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/3-apis.png"></p>
-<p>建立完成之後，預設 Threads 只會幫忙開一個 API，其他的可以按下去把它打開，基本上要用也都是全開，應該沒有不想開的 (?)</p>
-<h2 id="4-加入-IG-帳號"><a href="#4-加入-IG-帳號" class="headerlink" title="4. 加入 IG 帳號"></a>4. 加入 IG 帳號</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/4-add-account.png"></p>
-<p>這邊一開始會有點誤導，以為自己 Facebook 帳號有登入就可以，要再把自己的 IG 帳號加入為測試帳號，輸入帳號不用加上 <strong>＠</strong></p>
-<h2 id="5-允許-Threads-與應用程式連動"><a href="#5-允許-Threads-與應用程式連動" class="headerlink" title="5. 允許 Threads 與應用程式連動"></a>5. 允許 Threads 與應用程式連動</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/5-thread-connect.png"></p>
-<p>這邊在第四步加入帳號之後，理論上會導過去，如果沒有的話，也可以找設定頁面中的<strong>邀請</strong>，這邊點進來之後就會看到剛剛送出的測試邀請，<strong>接受</strong>即可</p>
-<h2 id="6-開始測試"><a href="#6-開始測試" class="headerlink" title="6. 開始測試"></a>6. 開始測試</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
-<p>大家剛到 <strong>Graph 測試頁</strong>之後，要先產生出 Access Token 之後才可以合法拿到相關的資料，這邊點下 Generate Token 之後，就會來到跳轉頁面</p>
-<p><img src="https://nijialin.com/images/2024/threads-sdk/6-access.png"></p>
-<p>這邊跟各種網頁應用程式一樣，都會跳一個同意頁面之後才可以開始</p>
-<h2 id="7-拿取個人帳號資訊"><a href="#7-拿取個人帳號資訊" class="headerlink" title="7. 拿取個人帳號資訊"></a>7. 拿取個人帳號資訊</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
-<p>最後就可以把 Threads API 們都打過一遍，可以透過 <code>/me</code> 先取得自己的 <code>User ID</code>，後面 API 路徑都會需要 id 才可以執行</p>
-<h2 id="8-如何透過-SDK-上傳第一篇貼文？"><a href="#8-如何透過-SDK-上傳第一篇貼文？" class="headerlink" title="8. 如何透過 SDK 上傳第一篇貼文？"></a>8. 如何透過 SDK 上傳第一篇貼文？</h2><p>安裝 Threads SDK，要透過其他方式安裝也行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install threads-sdk</span><br></pre></td></tr></table></figure>
-
-<p>接著準備三個主要的參數，USER_ID、ACCESS_TOKEN、APP_SECRET，其中前兩個上面已經有先取到了，APP_SECRET 可以透過下圖的方式到 Dashboard 中找到詳細資訊後取得</p>
-<p><img src="https://nijialin.com/images/2024/threads-sdk/8-app-secret.png"></p>
-<p>來到了發文環節，建立一個 main.py 之後，將這三個參數帶進初始化當中，由於 Threads 特性可以一次發多個文，因此需要先建立 Container 先將文章儲存起來，之後在把 Container publish</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> threads.api <span class="keyword">import</span> ThreadsAPI</span><br><span class="line"></span><br><span class="line">threads = ThreadsAPI(</span><br><span class="line">    user_id=USER_ID, access_token=ACCESS_TOKEN, app_secret=APP_SECRET</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取得個人資訊</span></span><br><span class="line"><span class="comment"># user_info = threads.get_user_bio()</span></span><br><span class="line"><span class="comment"># print(user_info)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立發文的 Container，因為 Threads 可以一次發多個文</span></span><br><span class="line">media_json = threads.create_media_container(text=<span class="string">&quot;Hello, World! \n This is a test post.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(media_json)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 Container 發文</span></span><br><span class="line">threads.publish_container(media_json.get(<span class="string">&quot;id&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2024/threads-sdk/9-post.png"></p>
-<p>執行之後就可以發現自己的測試文出去啦！</p>
-<h1 id="結論-amp-注意事項"><a href="#結論-amp-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
-<li>透過 Graph 拿到的 Token 是 short-live 的，<strong>期限是 24h</strong>，如果想要用比較久，請拿 short-live ACCESS_TOKEN + APP_SECRET 並透過<a href="https://github.com/louis70109/threads-sdk/blob/main/threads/api.py#L45">這支 API</a>來取得 <strong>long-live ACCESS_TOKEN</strong></li>
-<li>發文需要先建立 Container，後續可以一起推出</li>
-<li>相關的 API 如果不敷使用，歡迎<a href="https://github.com/louis70109/threads-sdk">透過 Pull Request </a>來更新 SDK 唷！</li>
-</ul>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
-<li><a href="https://cowton0517.medium.com/come-on-%E4%BD%BF%E7%94%A8-threads-api-%E4%BE%86%E8%87%AA%E5%8B%95%E7%99%BC%E6%96%87%E5%90%A7-792797a68437">Come on！使用 Threads API 來自動發文吧</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>SDK</tag>
-        <tag>Threads</tag>
-        <tag>Meta</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LINE TECH FRESH 2024 畢業分享會精彩回顧</title>
     <url>/2024/06/27/line-techfresh-graduation-2024-result/</url>
     <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472774665.png?updatedAt=1719472776000"></p>
@@ -18793,6 +18742,57 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>TECH FRESH</tag>
         <tag>Internship</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Threads SDK】透過程式發送你的第一篇 Threads 貼文</title>
+    <url>/2024/08/17/python-threads-sdk-introduction/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期接收到 Threads 也開出 API 可以使用，看網路上有許多人討論相關做法，同時也閱讀了許多大大們的文章，以下就將我這幾天測試發文的結果記錄下來，給有需要使用的讀者們～</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="1-建立應用程式"><a href="#1-建立應用程式" class="headerlink" title="1. 建立應用程式"></a>1. 建立應用程式</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/1-createapp.png"></p>
+<p>至 <a href="https://developers.facebook.com/apps/">Meta Developer Tool</a> 右上角按下 <strong>Create App</strong>，因為是要串接 Threads，選擇 <strong>Access the Threads API</strong></p>
+<h2 id="2-選擇-Threads"><a href="#2-選擇-Threads" class="headerlink" title="2. 選擇 Threads"></a>2. 選擇 Threads</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/2-name.png"></p>
+<p>期間把需要填上的資訊補上即可，就可以建立成功</p>
+<h2 id="3-開啟-APIs"><a href="#3-開啟-APIs" class="headerlink" title="3. 開啟 APIs"></a>3. 開啟 APIs</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/3-apis.png"></p>
+<p>建立完成之後，預設 Threads 只會幫忙開一個 API，其他的可以按下去把它打開，基本上要用也都是全開，應該沒有不想開的 (?)</p>
+<h2 id="4-加入-IG-帳號"><a href="#4-加入-IG-帳號" class="headerlink" title="4. 加入 IG 帳號"></a>4. 加入 IG 帳號</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/4-add-account.png"></p>
+<p>這邊一開始會有點誤導，以為自己 Facebook 帳號有登入就可以，要再把自己的 IG 帳號加入為測試帳號，輸入帳號不用加上 <strong>＠</strong></p>
+<h2 id="5-允許-Threads-與應用程式連動"><a href="#5-允許-Threads-與應用程式連動" class="headerlink" title="5. 允許 Threads 與應用程式連動"></a>5. 允許 Threads 與應用程式連動</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/5-thread-connect.png"></p>
+<p>這邊在第四步加入帳號之後，理論上會導過去，如果沒有的話，也可以找設定頁面中的<strong>邀請</strong>，這邊點進來之後就會看到剛剛送出的測試邀請，<strong>接受</strong>即可</p>
+<h2 id="6-開始測試"><a href="#6-開始測試" class="headerlink" title="6. 開始測試"></a>6. 開始測試</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
+<p>大家剛到 <strong>Graph 測試頁</strong>之後，要先產生出 Access Token 之後才可以合法拿到相關的資料，這邊點下 Generate Token 之後，就會來到跳轉頁面</p>
+<p><img src="https://nijialin.com/images/2024/threads-sdk/6-access.png"></p>
+<p>這邊跟各種網頁應用程式一樣，都會跳一個同意頁面之後才可以開始</p>
+<h2 id="7-拿取個人帳號資訊"><a href="#7-拿取個人帳號資訊" class="headerlink" title="7. 拿取個人帳號資訊"></a>7. 拿取個人帳號資訊</h2><p><img src="https://nijialin.com/images/2024/threads-sdk/7-dev-tool.png"></p>
+<p>最後就可以把 Threads API 們都打過一遍，可以透過 <code>/me</code> 先取得自己的 <code>User ID</code>，後面 API 路徑都會需要 id 才可以執行</p>
+<h2 id="8-如何透過-SDK-上傳第一篇貼文？"><a href="#8-如何透過-SDK-上傳第一篇貼文？" class="headerlink" title="8. 如何透過 SDK 上傳第一篇貼文？"></a>8. 如何透過 SDK 上傳第一篇貼文？</h2><p>安裝 Threads SDK，要透過其他方式安裝也行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install threads-sdk</span><br></pre></td></tr></table></figure>
+
+<p>接著準備三個主要的參數，USER_ID、ACCESS_TOKEN、APP_SECRET，其中前兩個上面已經有先取到了，APP_SECRET 可以透過下圖的方式到 Dashboard 中找到詳細資訊後取得</p>
+<p><img src="https://nijialin.com/images/2024/threads-sdk/8-app-secret.png"></p>
+<p>來到了發文環節，建立一個 main.py 之後，將這三個參數帶進初始化當中，由於 Threads 特性可以一次發多個文，因此需要先建立 Container 先將文章儲存起來，之後在把 Container publish</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> threads.api <span class="keyword">import</span> ThreadsAPI</span><br><span class="line"></span><br><span class="line">threads = ThreadsAPI(</span><br><span class="line">    user_id=USER_ID, access_token=ACCESS_TOKEN, app_secret=APP_SECRET</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取得個人資訊</span></span><br><span class="line"><span class="comment"># user_info = threads.get_user_bio()</span></span><br><span class="line"><span class="comment"># print(user_info)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立發文的 Container，因為 Threads 可以一次發多個文</span></span><br><span class="line">media_json = threads.create_media_container(text=<span class="string">&quot;Hello, World! \n This is a test post.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(media_json)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 Container 發文</span></span><br><span class="line">threads.publish_container(media_json.get(<span class="string">&quot;id&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2024/threads-sdk/9-post.png"></p>
+<p>執行之後就可以發現自己的測試文出去啦！</p>
+<h1 id="結論-amp-注意事項"><a href="#結論-amp-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
+<li>透過 Graph 拿到的 Token 是 short-live 的，<strong>期限是 24h</strong>，如果想要用比較久，請拿 short-live ACCESS_TOKEN + APP_SECRET 並透過<a href="https://github.com/louis70109/threads-sdk/blob/main/threads/api.py#L45">這支 API</a>來取得 <strong>long-live ACCESS_TOKEN</strong></li>
+<li>發文需要先建立 Container，後續可以一起推出</li>
+<li>相關的 API 如果不敷使用，歡迎<a href="https://github.com/louis70109/threads-sdk">透過 Pull Request </a>來更新 SDK 唷！</li>
+</ul>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a href="https://cowton0517.medium.com/come-on-%E4%BD%BF%E7%94%A8-threads-api-%E4%BE%86%E8%87%AA%E5%8B%95%E7%99%BC%E6%96%87%E5%90%A7-792797a68437">Come on！使用 Threads API 來自動發文吧</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>SDK</tag>
+        <tag>Threads</tag>
+        <tag>Meta</tag>
       </tags>
   </entry>
   <entry>
