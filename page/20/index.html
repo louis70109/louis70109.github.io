@@ -208,6 +208,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/02/01/node-gyp-rebuild-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/01/node-gyp-rebuild-error/" class="post-title-link" itemprop="url">解決 node-gyp rebuild error 問題</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-01 16:51:46" itemprop="dateCreated datePublished" datetime="2020-02-01T16:51:46+00:00">2020-02-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我對這錯誤的印象是某次在練習寫測試時裝 <a target="_blank" rel="noopener" href="https://jestjs.io/">jest</a> 後出現的，檢查了<code>package-lock.json</code>後看起來<code>jest-haste-map</code>這個套件有用到 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/fsevents">fsevents</a>，而之後使用<code>npm install</code>或者<code>yarn install</code>皆會出現以下這個訊息：<br><img src="https://i.imgur.com/zH6Mbzo.png" alt="node-gyp rebuild error"></p>
+<blockquote>
+<p>環境為 Mac OS Catalina version 10.15.2</p>
+</blockquote>
+<p>看起來是在執行階段時<code>node-gyp</code>出了問題，接著它自己重新執行了<code>node-gyp rebuild</code>後出錯，起初我認為是套件的問題並找到了<a target="_blank" rel="noopener" href="https://github.com/nodejs/node-gyp/issues/94#issuecomment-222482140">這個回答</a>並執行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm uninstall node-gyp -g</span><br><span class="line">sudo npm uninstall node-gyp</span><br></pre></td></tr></table></figure>
+
+<p>但從來沒有全域安裝<code>node-gyp</code>過，也有些網友執行<code>node-gyp configure</code>是可以的，而我執行後還是失敗，狀態跟這個 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node-gyp/issues/94#issuecomment-269909621">issue</a> 差不多。</p>
+<p>後來看到 fsevents 在套件說明裡有寫到:</p>
+<blockquote>
+<p>The FSEvents API in MacOS allows applications to register for notifications of changes to a given directory tree. It is a very fast and lightweight alternative to kqueue.</p>
+</blockquote>
+<p>並且注意到剛剛圖裡面有訊息是跟 xcode 以及 apple 相關，最後找到了這個 <a target="_blank" rel="noopener" href="https://github.com/schnerd/d3-scale-cluster/issues/7">issue</a></p>
+<h1 id="我的解決方案"><a href="#我的解決方案" class="headerlink" title="我的解決方案"></a>我的解決方案</h1><p>有些人可能是有重灌或環境重設導致沒有安裝 xcode，此時只要執行 <code>xcode-select --install</code> 即可(<a target="_blank" rel="noopener" href="https://github.com/schnerd/d3-scale-cluster/issues/7#issuecomment-402541605">參考說明</a>)。</p>
+<p>這邊我使用的解決方案為這個 <a target="_blank" rel="noopener" href="https://github.com/schnerd/d3-scale-cluster/issues/7#issuecomment-550579897">issue</a>，執行以下兩個指令來重新安裝 xcode:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf $(xcode-select -print-path)</span><br><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p>原因可能是因為我重舊版本向上更新之後 xcode 沒有相容當前版本，所以我使用以上指令來刪除重新安裝。</p>
+<blockquote>
+<p>不過這個指令很暴力的使用 <code>rm -rf</code>，使用它相對危險，使用前請詳閱公開說明書 😆。</p>
+</blockquote>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>為了練習測試安裝了 jest 卻讓我看著一堆 warning 實在是恨得牙癢癢，所幸目前這樣解決完後是可以用的，就看接下來些新的 side project 後會不會有其他問題再來更新，</p>
+<p>另一方面也可能因為我在寫 side project 時安裝了一堆有的沒的東西導致這個結果，看來也得找時間來整理一下環境了～</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/XuM222222/article/details/94976298">清除 npm 快取</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/01/27/learn-docker-with-twitch-bot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1381,141 +1478,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/Seamless-device-migration-using-LINE-secure-backup/" class="post-title-link" itemprop="url">2019 LINE Dev Day - 議程心得(1) - Seamless device migration using LINE secure backup</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-11-21 06:58:09" itemprop="dateCreated datePublished" datetime="2019-11-21T06:58:09+00:00">2019-11-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Seamless-device-migration-using-LINE-secure-backup"><a href="#Seamless-device-migration-using-LINE-secure-backup" class="headerlink" title="Seamless device migration using LINE secure backup"></a>Seamless device migration using LINE secure backup</h1><p><img src="https://i.imgur.com/IWGmnvQ.jpg"></p>
-<p>簡報連結: <a target="_blank" rel="noopener" href="https://speakerdeck.com/line_devday2019/seamless-device-migration-using-line-secure-backups">LINE Dev Day 2019</a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好我是 <a target="_blank" rel="noopener" href="https://www.facebook.com/groups/chatbot.tw/">Chatbot Developer Taiwan</a> - NiJia，這次被 LINE 邀請來參加 LINE Developer Day 2019。<br>經由 每位負責人的 Keynote 開場完後就是會眾們開始聽議程的時候了，我選擇跟資安相關的主題來開始我今日的第一場議程，想想在接觸資安時還是大學時期呢(遠望)。</p>
-<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>開場不免俗的一定是要自我介紹並說主要大綱，講者本身為一個駭客並是 <a target="_blank" rel="noopener" href="https://github.com/SideChannelMarvels">Side-Channel Marvels</a> 成員之一，在 GitHub 上坐了一個逆向工程的工具 - <a target="_blank" rel="noopener" href="https://github.com/QBDI/QBDI">QBDI</a>。而作為一個 Hacker 破壞當然對他們來說是相對簡單，但換個方向來看，就是透過滲透測試來建立更完整的服務內容，的確在真實世界上要摧毀一個服務是相對容易的！</p>
-<p>但講者是在 LINE 這種規模較大的公司裡做滲透測試，在滲透後做完測試報告時需要顧慮到其他開發團隊的工作時程問題，也許這個漏洞在實際服務運轉上的容錯率是相對高的話，就可以讓開發團隊安排時程去修補漏洞而避免延遲產品上線時間。</p>
-<p> <img src="https://i.imgur.com/r60FVBM.jpg"></p>
-<p>這邊主要提到一些 <strong>加密協定原則</strong> 以及傳統訊息傳送都是怎麼做。<br><img src="https://i.imgur.com/wJHnXMz.jpg"><br>接著說到帳號轉移裝置時的問題，今天要從舊的裝置備份到新裝置時，若透過 Server 的話他只有加密過後的資料，如此一來根本無法備份過去，而 end-to-end 的備份的話會遇到以下問題：</p>
-<ul>
-<li>會受到各種通訊協定的問題(wifi, Bluetooth, NFC…)</li>
-<li>ios - andriod 不同裝置相容性問題</li>
-<li>需要重新建構訊息模型</li>
-<li>要怎麼處理來自 parameter 的攻擊<ul>
-<li>Hacker 透過中間人攻擊</li>
-<li>會透過各種狀態來找尋漏洞 (BGP, DNS, Certificate PKI…)</li>
-</ul>
-</li>
-</ul>
-<h2 id="UX-x-Security"><a href="#UX-x-Security" class="headerlink" title="UX x Security"></a>UX x Security</h2><p>前面簡單介紹一些備份上的問題以裝置間的問題，接下來就進入如何在最好的使用者體驗上並擁有資訊安全：</p>
-<h3 id="若要最好的使用者體驗-Best-UX"><a href="#若要最好的使用者體驗-Best-UX" class="headerlink" title="若要最好的使用者體驗 - Best UX"></a>若要最好的使用者體驗 - Best UX</h3><p><img src="https://i.imgur.com/E3N0d5l.jpg" alt="流程"></p>
-<ul>
-<li>✅不需要在意裝置間的問題</li>
-<li>❌會被駭客透過中間人攻擊去塞有問題的資料</li>
-<li>❌安全層級等於零</li>
-</ul>
-<blockquote>
-<p>這樣公司就不用運作啦 (笑)</p>
-</blockquote>
-<h3 id="最安全的等級但最差的-UX"><a href="#最安全的等級但最差的-UX" class="headerlink" title="最安全的等級但最差的 UX"></a>最安全的等級但最差的 UX</h3><p><img src="https://i.imgur.com/RFkmVAE.jpg" alt="Best security"></p>
-<ul>
-<li>✅Private key 加密過並且擁有最難破解的密碼</li>
-<li>❌使用者根本記不得這密碼</li>
-<li>❌密碼過於複雜</li>
-</ul>
-<blockquote>
-<p>這邊講者有補充若是只有六位數的密碼他大概有 <strong>一百萬</strong> 種可能性，可以透過暴力破解的方式就解決，且有大約 <strong>10%</strong> 的密碼是重覆性很高的，因此還是建議擁有大小寫以及特殊符號是相對好！</p>
-</blockquote>
-<p>每天都會有弱密碼出現於生活中</p>
-<ul>
-<li>combination padlock<ul>
-<li>硬體設備都用很弱的加密協定</li>
-</ul>
-</li>
-<li>Banking card PIN<ul>
-<li>很容易出現像是 <strong>生日</strong> 這類的密碼</li>
-</ul>
-</li>
-<li>smart phone lock screen<ul>
-<li>使用者求快 </li>
-<li>ARM trustZone &#x2F; apple secure</li>
-</ul>
-</li>
-</ul>
-<h2 id="Server-Side-相關相關加密元件"><a href="#Server-Side-相關相關加密元件" class="headerlink" title="Server Side 相關相關加密元件"></a>Server Side 相關相關加密元件</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trusted_execution_environment">Trusted execution environment(TEE)</a>: 保護 process 相關</li>
-<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trusted_Platform_Module">Trusted Platform Module(TPM)</a>: 微控制器相關加密元件</li>
-<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97">Hardware security module(HSM)</a>: 一種用於保障和管理強認證系統所使用的數字金鑰，並同時提供相關密碼學操作的電腦硬體裝置。</li>
-</ul>
-<h2 id="HSM-in-backups"><a href="#HSM-in-backups" class="headerlink" title="HSM in backups"></a>HSM in backups</h2><p>接著就介紹是如何透過 HSM 的硬體元件來處理備份資料資安的問題<br><img src="https://i.imgur.com/CSkYEHD.jpg"><br>透過硬體(HSM)來幫忙加密確保每一段上傳下載都是安全且可加解密，使用者在這過程中也不需要輸入一大串的密碼就只顧及資訊安全而放棄 UX，而在 HSM 當中會將私鑰安全的存下來，不用擔心會有被攔取之類的問題。</p>
-<p>由於 HSM 經過雙重加密認證達到資訊安全且是安全的儲存下來，因此不會因為被抓到之後就馬上被解開，確保整個資料傳遞上的安全性。</p>
-<p><img src="https://i.imgur.com/A6Mo2mw.jpg"><br>上圖則為 HSM 簽證公鑰的註冊流程，經由一連串的加密把它存成二進制 source code，且裝置還是能使用 public key 來解開這個二進制檔案，如此一來在備份到新裝置上就不用擔心整包資料的安全性了！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>我們在實作的網站在沒什麼流量時都不太需要注意資安相關，但當系統請求越來越大或是有金流時在每段的加解密終究都相對重要很多，且在建立 UX 以及 Security 之間要如何平衡也是個重要的議題，如同講者說的，在做這些技術的同時且站在巨人的肩膀上(LINE)對於白帽駭客的成就感是源源不絕的，能夠透過滲透來讓我們每天在用的東西更加完整也是很棒的一個作法😊。</p>
-<p>而過往在聽駭客朋友們在聊都是在講 <a target="_blank" rel="noopener" href="https://www.techbang.com/posts/1826-waf-web-host-bridge-is-falling-down">WAF</a> 較多是在講 Web application 相關的，這次聽到的 HSM 功能看起來雖然很相似，但看來是叫專注在資料的加解密當中，或許當中應該還有更深入的功能還未提到，透過這個議程認識到新的東西也是一大收穫😁。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1587,7 +1549,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1600,7 +1562,7 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">319</span>
+        <span class="site-state-item-count">320</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

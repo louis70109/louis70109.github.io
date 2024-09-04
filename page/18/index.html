@@ -208,6 +208,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/07/01/flask-atexit-question/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/01/flask-atexit-question/" class="post-title-link" itemprop="url">在 Flask 中測試 atexit 官方文件的註解(Note)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-07-01 10:41:14" itemprop="dateCreated datePublished" datetime="2020-07-01T10:41:14+00:00">2020-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://cdn.pixabay.com/photo/2017/02/11/14/45/taipei-taiwan-2057818_1280.jpg"></p>
+<blockquote>
+<p>Photo by <a target="_blank" rel="noopener" href="https://pixabay.com/zh/photos/taipei-taiwan-taipei-101-2057818/">tingyaoh</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>寫程式不管在哪個情境都會需要處理錯誤訊息，除了程式以外語言本身也需要這樣的功能，因此 python 就提供了一個標準函式庫 - <code>atexit</code>，這名字從 C 語言時態就存在的一個工具，主要是監聽程式當收到關閉請求時，可以先跳至已註冊的函式中先處理掉一些事情後再接著關閉服務，這個做法被稱為 Exit Handler，主要就是當程式收到關閉的訊號時最後會進入的函式們，一般較常見的會放上關閉<code>資料庫連線</code>、<code>釋放記憶體</code>、<code>備份 cache</code> 等等的功能，如此一來就能降低問題的產生，讓服務能夠可平滑的關閉、重啟。</p>
+<p>不管使用 python 寫 <code>腳本</code>、<code>後端</code>、<code>爬蟲</code> 都可以使用 atexit 來處理例外錯誤，而我在 flask 中使用時與官方記載的<code>註解</code>有點不同，本篇就介紹一下 atexit 以及使用中不同的部分吧！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/01/flask-atexit-question/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/06/30/CNTUG-29-sharing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -958,89 +1044,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/05/05/Serverless-Flask-Swagger-AWS-Open-API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/05/Serverless-Flask-Swagger-AWS-Open-API/" class="post-title-link" itemprop="url">使用 Serverless/Flask/Swagger 在 AWS 上搭建打造 Open API</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-05-05 09:09:39" itemprop="dateCreated datePublished" datetime="2020-05-05T09:09:39+00:00">2020-05-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://i.imgur.com/2UI8Ggs.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>約在一年前，當時公司的同事帶我玩過 Swagger，只是當時的我寫得不太習慣，直到寫這篇之前都還只是寫 markdown 來做 API 文件 😓，不過寫 API 到最後總是要開放給其他人需要測試以及用文件來描述功能，但只是寫 Readme.md 給其他人看感覺有點不負責任 (?)，所以這個時候 Swagger 就發揮它的作用啦～</p>
-<p>但是看著下面這張圖…<br><img src="https://i.imgur.com/zg1jEuy.png"><br>左邊那是怎樣！怎麼設定了一大堆右邊才出現一點點東西，估且不論還要設定 Model、Payload 什麼的，我想光寫左邊這份文件加測試的時間我都可以寫一份 Markdown 給其他同仁用 Postman 測試了…🤣🤣🤣<br>這時候套件就出動啦，這次要介紹的是 flask-restful-swagger-2.0，他是延續原版套件並加以更新的，不得不說再搭更新完後整體寫起來人性多了，像是文先寫法用 decorator 的寫法在路由之前、宣告 Schema 時只要用類別包起來之類的，讓寫文件可以用 python 的寫法去寫，除了特殊的設定需要比對 Swagger 官方文件外，在建一個 Swagger 格式的文件這樣已經超快了 💪<br>既然如此那就介紹一下他的相關設定並把它記錄下來吧！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/05/Serverless-Flask-Swagger-AWS-Open-API/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1112,7 +1115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1125,7 +1128,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">319</span>
+        <span class="site-state-item-count">320</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -208,6 +208,89 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/10/02/upload-image-get-url-ways/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/02/upload-image-get-url-ways/" class="post-title-link" itemprop="url">在 GCS || GitHub 上傳圖片並取得網址</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-10-02 10:27:05" itemprop="dateCreated datePublished" datetime="2022-10-02T10:27:05+00:00">2022-10-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>從以前使用雲端硬碟，如 Dropbox, Google Drive, Box…我們都很習慣可以手動拉照片、影片上去放，而在開始寫程式之後理所當然就會想用 API 丟，但這些雲端硬碟一般來說除非用模擬器，不然理論上應該是不好用程式跑，而在公有雲出來後，就有像是 AWS S3, Google Cloud Storage 等等的服務陸續出來，讓大家可以使用他們的服務建立自己的硬碟空間，也不用自己架伺服器弄硬碟空間，權限管控都幫你弄好好，也可以用 API 訪問，實在是很方便呢！</p>
+<p>隨著程式越寫越多，除了在 LINE Bot 上需要圖片網址才可以發送圖片外，像是 video.js 以及許多很多服務、工具越來越依靠　 https 相關的網址來找圖片，接下來就讓筆者就帶大家認識一下近期使用的一些範例以及我發現的另一種上傳方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/02/upload-image-get-url-ways/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/09/13/line-thailand-developer-conference-2022/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -962,89 +1045,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/06/30/google-io-extended-2022/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/30/google-io-extended-2022/" class="post-title-link" itemprop="url">【GDG】Google I/O 2022 Extended 線下活動分享</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2022-06-30 17:11:50" itemprop="dateCreated datePublished" datetime="2022-06-30T17:11:50+00:00">2022-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/" itemprop="url" rel="index"><span itemprop="name">研討會</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://user-images.githubusercontent.com/6940010/176736874-e16463da-d1a3-4de0-9ffa-669ba78a5417.jpg" alt="S__3801091"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上次參加外部活動時大概是四月多了，因為疫情關係讓這幾個月沒辦法參加實體活動，這次參加了 Google I&#x2F;O 2022 extended 的線下活動，透過這次文章快速記下一些現場有聽到的內容～</p>
-<p>活動連結：<a target="_blank" rel="noopener" href="https://gdg.community.dev/events/details/google-gdg-cloud-taipei-presents-gdgcloud-taipei-meetup-io-2022-extended-cloud-edition/">https://gdg.community.dev/events/details/google-gdg-cloud-taipei-presents-gdgcloud-taipei-meetup-io-2022-extended-cloud-edition/</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/30/google-io-extended-2022/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1116,7 +1116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1129,7 +1129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">319</span>
+        <span class="site-state-item-count">320</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
