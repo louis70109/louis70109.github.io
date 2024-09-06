@@ -18052,8 +18052,8 @@ img[alt~="center"] {
       <tags>
         <tag>LINE Bot</tag>
         <tag>GCP</tag>
-        <tag>Gemini</tag>
         <tag>AI</tag>
+        <tag>Gemini</tag>
       </tags>
   </entry>
   <entry>
@@ -18207,6 +18207,164 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>只有 Status page 還不夠！講人話才知道 Infra 發生什麼事</title>
+    <url>/2024/08/05/line-bot-gemini-for-status-page-analyze/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，以下是我在 <a href="https://coscup.org/2024/zh-TW/session/AEJHAC">COSCUP 2024</a> 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！</p>
+<span id="more"></span>
+
+<h1 id="什麼是-Status-Page"><a href="#什麼是-Status-Page" class="headerlink" title="什麼是 Status Page?"></a>什麼是 Status Page?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=17" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>Status Page 是一個專門用來確認與查看系統、服務或是各種應用程式執行狀態的網頁。除了監測狀態，大部分也都能接上各家通知系統，當服務出現狀況時，可以即時通知服務開發者，通常 Status Page 的功能包括：</p>
+<ul>
+<li>即時狀態：顯示當前服務的執行狀態，大致份為「正常」、「部分中斷」、「完全中斷」…etc</li>
+<li>歷史記錄：記錄過去的服務中斷事件、維護活動和其他相關事件，更多可以往後推算 SLA、SLO…etc</li>
+<li>通知：讓用戶訂閱狀態更新通知，透過電子郵件、通訊軟體或其他方式接收通知</li>
+</ul>
+<h2 id="使用-Status-Page-的優點"><a href="#使用-Status-Page-的優點" class="headerlink" title="使用 Status Page 的優點"></a>使用 Status Page 的優點</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
+
+<ul>
+<li>對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴</li>
+</ul>
+<blockquote>
+<p>每當服務越來越多時，很多時候都分身乏術，或許大家可以考慮架設一個 Status Page 來監控自家服務，幫忙分攤一些 effort</p>
+</blockquote>
+<h2 id="為什麼要自架-Uptime-Kuma？他又是什麼？"><a href="#為什麼要自架-Uptime-Kuma？他又是什麼？" class="headerlink" title="為什麼要自架 Uptime Kuma？他又是什麼？"></a>為什麼要自架 Uptime Kuma？他又是什麼？</h2><p>Uptime Kuma 是一個開源且能夠自行管理的監控工具，專門用來監控各種網站和服務的可用性。以下簡單列出一些使用 Uptime Kuma 的優點：</p>
+<ul>
+<li>開源和免費：開源的監控系統，任何人都可以根據自家需求免費使用和調整</li>
+<li>自主管理：你可以在自己的伺服器上運行 Uptime Kuma，完全掌控數據和配置，確保數據隱私和安全。</li>
+<li>簡單易用：Uptime Kuma 提供直觀的用戶界面，易於設置和使用，適合各種技術水平的用戶。</li>
+<li>多種監控選項：支援多種監控類型，包括 HTTP(s)、TCP、Ping、DNS、Push 等，滿足不同的監控需求</li>
+<li>各種通知管道：如電子郵件、Slack、LINE Messaging API、Webhook…etc，確保重要的狀態變更能夠及時傳達</li>
+<li>歷史數據和報告：提供詳細的歷史數據和報告，幫助你分析服務性能和可用性</li>
+</ul>
+<h2 id="架設建議"><a href="#架設建議" class="headerlink" title="架設建議"></a>架設建議</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=27" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>很多時候服務都會放在同一家的雲上(ex: Verda, GCP, AWS..)，但很多時候發生問題時都會是在不同的網路下發生，為了讓監控上能夠更有說服力，會建議將 Status Page 架設在不同的雲上，即便今天雲發生了任何事件，都不會影響到監控系統。</p>
+<blockquote>
+<p>以我自己來說，個人的 Side Project 都放在 GCP 上，而 Status Page 則是放在 fly.io 上面，如果想試看看可以參考<a href="https://github.com/louis70109/uptime-kuma-fly">我的 GitHub</a></p>
+</blockquote>
+<h1 id="如何整合？怎麼讓他人聽懂工程師的語言？"><a href="#如何整合？怎麼讓他人聽懂工程師的語言？" class="headerlink" title="如何整合？怎麼讓他人聽懂工程師的語言？"></a>如何整合？怎麼讓他人聽懂工程師的語言？</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=34" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>對比我工作經驗，以及周遭朋友的工作上，很多時候工作內容都會透過 LINE 傳來傳去，很多時候除了公司最大的群組之外，另外都會有各式小群組去討論不一樣的事情，因此很多時候需要有個 LINE Bot 自動化消化一些錯誤處理，讓第一線工程師可以趕快滅火，以下快速說明可以如何整合</p>
+<h2 id="想像中-Status-Page-能幫到的地方"><a href="#想像中-Status-Page-能幫到的地方" class="headerlink" title="想像中 Status Page 能幫到的地方"></a>想像中 Status Page 能幫到的地方</h2><p><img src="https://nijialin.com/images/2024/status-page/1.png"></p>
+<p>當服務遇到任何問題時</p>
+<ol>
+<li>先透過 webhook 傳進 LINE Bot Server</li>
+<li>Server 依照相關 log 查詢服務的倉庫裡面是否有囤放其他 log (prometheus, loki, SQL…etc)</li>
+<li>將相關資料傳送給 Server 去分析 (<a href="https://github.com/louis70109/line-bot-status-analyze/blob/main/controller/kuma_controller.py#L37">prompt URL</a>) 並傳到 LINE 群組裡</li>
+<li>依照嚴重程度決定要轉發到哪個群組<ol>
+<li>分享案例：Error Log 也可以依照嚴重程度決定讓 Bot 自動發到指定群組，普遍會有 1~3 個群組，大的服務有機會到 5 個</li>
+<li>適時的接上 oncall 系統也是不錯</li>
+</ol>
+</li>
+<li>人手一個 LINE，透過 LINE Bot 來推送訊息可以做更多客製化的內容</li>
+</ol>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>普遍的 Error log 在網路上通常都會有解法，同等來說 AI 在訓練時應該也都有放入相關的材料，因此依照這些日常系統出現的錯誤來說，都可以透過 AI 有條理的幫忙分析，更直接點可以幫忙 Senior 去教育 Junior 對於錯誤分析的體感，讓團隊對於系統的熟悉程度能夠更快 ✍️</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=38" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>有鑒於最近許多 Vision 的 AI 分析越來越多，個人用起來的體感真的滿不錯，雖然費用不便宜，但各家 AI 也應該都還有免費方案可以用</p>
+<p>最後，有些跟資安或是個資的東西其實不適合透過 API 打給雲端廠商，有些開發者應該會被要求要自架 AI model(<a href="https://ai.google.dev/gemma?hl=zh-tw">Gemma</a> || <a href="https://llama.meta.com/">Llama</a>)，這時可以透過 <a href="https://groq.com/">GROQ</a> 這個服務測試看看，雖然在串接上還是透過 API 實驗，但至少可以先測測 model 帶來的火力，再決定要不要花時間架起來～</p>
+<p>如果以上的內容對你有幫助，歡迎各位分享出去！</p>
+<p><a href="https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>LINE Bot</tag>
+        <tag>AI</tag>
+        <tag>Uptime Kuma</tag>
+        <tag>Gemini</tag>
+        <tag>Status Page</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>幫 LINE Bot 加點回覆動畫魔法：Loading Animation 功能解析</title>
+    <url>/2024/04/18/line-bot-loading-animation-python/</url>
+    <content><![CDATA[<p><img src="https://developers.line.biz/assets/img/loading-animation.7aad3d6c.gif"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好！今天我們要聊聊 LINE Bot 最近更新的一個超酷炫的功能——Loading Animation。對於那些經常與 LINE 官方帳號互動的朋友來說，這一定是個期待已久的更新！</p>
+<p>想象一下，當你向一個 LINE Bot 發送訊息，等待回應的時候，畫面上出現一個動畫效果，在視覺上告訴用戶 “訊息處理中，請稍等片刻”，是不是感覺整個用戶體驗都提升了呢？接下來來仔細看看這個功能的細節和如何實現它。</p>
+<span id="more"></span>
+
+<h1 id="為什麼需要-Loading-Animation？"><a href="#為什麼需要-Loading-Animation？" class="headerlink" title="為什麼需要 Loading Animation？"></a>為什麼需要 Loading Animation？</h1><p>在過去，當用戶向 LINE Bot 發送訊息後，可能需要等待一段時間才能收到回應。這段等待時間可能是因為後端正在處理複雜的查詢(或是搭配各種生成式 AI)。在這個等待過程中，用戶端缺乏足夠的回饋，可能會讓人感到焦慮或不確定是否需要重新發送訊息。</p>
+<p>有了 Loading Animation，我們可以在這個等待時間內給用戶一個明確的視覺回饋，讓他們知道系統正在處理中，增強用戶等待時的體驗。</p>
+<h1 id="功能概述"><a href="#功能概述" class="headerlink" title="功能概述"></a>功能概述</h1><p>根據<a href="https://developers.line.biz/en/news/2024/04/17/loading-indicator/">2024 年 4 月 17 日發布的新聞</a>，Messaging API 新增了一個 endpoint，允許開發者在用戶與 LINE 官方帳號互動時顯示 Loading Animation。這個動畫會在<strong>指定的秒數</strong>後自動消失，或者當你的 LINE 官方帳號<strong>發送了一則新訊息時消失</strong>。</p>
+<blockquote>
+<p>要使用這個功能，你需要確保用戶的 LINE 版本至少為 iOS 或 Android 的 13.16.0 版或更高版本。</p>
+</blockquote>
+<h1 id="如何實現？"><a href="#如何實現？" class="headerlink" title="如何實現？"></a>如何實現？</h1><p>我們來看一個簡單的 Python 範例，展示如何在你的 LINE Bot 中實現這個功能。首先，確保你已經安裝了 LINE Messaging API 的 Python SDK，然後按照以下步驟操作：</p>
+<ul>
+<li>引入所需的模組和設定 LINE Bot 的 Access Token</li>
+<li>建立一個 AsyncApiClient 以及 AsyncMessagingApi 的實例<ul>
+<li>此為選項，依照使用 Python 框架調整</li>
+</ul>
+</li>
+<li>使用 show_loading_animation 方法來顯示 loading animation，並指定要顯示的秒數</li>
+</ul>
+<blockquote>
+<p>參考官方的文件：<a href="https://github.com/line/line-bot-sdk-python/pull/622/files#diff-05cb5d307ecf35c70df85c3f7252bd9c90f6ec2155b743b26d7e4e4be019ed86">GitHub URL</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> linebot.v3.messaging <span class="keyword">import</span> ShowLoadingAnimationRequest</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">configuration = Configuration(</span><br><span class="line">    access_token=channel_access_token</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">async_api_client = AsyncApiClient(configuration)</span><br><span class="line">line_bot_api = AsyncMessagingApi(async_api_client)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> line_bot_api.show_loading_animation(ShowLoadingAnimationRequest(chatId=event.source.user_id, loadingSeconds=<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>這個 Python 範例假設你已經有一個處理 LINE 訊息的程式，當 LINE Bot 接收到 webhook 訊息時，它會向用戶顯示一個持續 5 秒的 loading animation，<code>chatId</code> 則使用 <code>user_id</code> 為主。</p>
+<blockquote>
+<p>Loading 秒數需為 5 的倍數，目前最多 60 秒，預設為 20 秒 (<a href="https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator-request-body">參考文件</a>)</p>
+</blockquote>
+<p>是不是很簡單呢？這個功能不僅可以提升用戶體驗，讓用戶在等待過程中感到更加舒適，也為你的 LINE Bot 增添了一點互動的趣味性。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>想了解更多細節，別忘了查看<a href="https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator">官方文檔</a>和<a href="https://github.com/line/line-bot-sdk-python/releases/tag/3.11.0">官方 SDK 的 release note</a>。這次的更新真的很酷，我們非常期待看到大家如何在自己的 LINE Bot 中利用這個新功能來創造出更棒的用戶體驗！</p>
+<p>就這樣，希望這篇文章能夠幫助大家更好地理解和使用 LINE Bot 的 Loading Animation 功能！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新訊息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>LINE Bot</tag>
+        <tag>Animation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
     <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -18338,164 +18496,6 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>Cloud Run</tag>
         <tag>Open Data</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>只有 Status page 還不夠！講人話才知道 Infra 發生什麼事</title>
-    <url>/2024/08/05/line-bot-gemini-for-status-page-analyze/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，以下是我在 <a href="https://coscup.org/2024/zh-TW/session/AEJHAC">COSCUP 2024</a> 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！</p>
-<span id="more"></span>
-
-<h1 id="什麼是-Status-Page"><a href="#什麼是-Status-Page" class="headerlink" title="什麼是 Status Page?"></a>什麼是 Status Page?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=17" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>Status Page 是一個專門用來確認與查看系統、服務或是各種應用程式執行狀態的網頁。除了監測狀態，大部分也都能接上各家通知系統，當服務出現狀況時，可以即時通知服務開發者，通常 Status Page 的功能包括：</p>
-<ul>
-<li>即時狀態：顯示當前服務的執行狀態，大致份為「正常」、「部分中斷」、「完全中斷」…etc</li>
-<li>歷史記錄：記錄過去的服務中斷事件、維護活動和其他相關事件，更多可以往後推算 SLA、SLO…etc</li>
-<li>通知：讓用戶訂閱狀態更新通知，透過電子郵件、通訊軟體或其他方式接收通知</li>
-</ul>
-<h2 id="使用-Status-Page-的優點"><a href="#使用-Status-Page-的優點" class="headerlink" title="使用 Status Page 的優點"></a>使用 Status Page 的優點</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
-
-<ul>
-<li>對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴</li>
-</ul>
-<blockquote>
-<p>每當服務越來越多時，很多時候都分身乏術，或許大家可以考慮架設一個 Status Page 來監控自家服務，幫忙分攤一些 effort</p>
-</blockquote>
-<h2 id="為什麼要自架-Uptime-Kuma？他又是什麼？"><a href="#為什麼要自架-Uptime-Kuma？他又是什麼？" class="headerlink" title="為什麼要自架 Uptime Kuma？他又是什麼？"></a>為什麼要自架 Uptime Kuma？他又是什麼？</h2><p>Uptime Kuma 是一個開源且能夠自行管理的監控工具，專門用來監控各種網站和服務的可用性。以下簡單列出一些使用 Uptime Kuma 的優點：</p>
-<ul>
-<li>開源和免費：開源的監控系統，任何人都可以根據自家需求免費使用和調整</li>
-<li>自主管理：你可以在自己的伺服器上運行 Uptime Kuma，完全掌控數據和配置，確保數據隱私和安全。</li>
-<li>簡單易用：Uptime Kuma 提供直觀的用戶界面，易於設置和使用，適合各種技術水平的用戶。</li>
-<li>多種監控選項：支援多種監控類型，包括 HTTP(s)、TCP、Ping、DNS、Push 等，滿足不同的監控需求</li>
-<li>各種通知管道：如電子郵件、Slack、LINE Messaging API、Webhook…etc，確保重要的狀態變更能夠及時傳達</li>
-<li>歷史數據和報告：提供詳細的歷史數據和報告，幫助你分析服務性能和可用性</li>
-</ul>
-<h2 id="架設建議"><a href="#架設建議" class="headerlink" title="架設建議"></a>架設建議</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=27" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>很多時候服務都會放在同一家的雲上(ex: Verda, GCP, AWS..)，但很多時候發生問題時都會是在不同的網路下發生，為了讓監控上能夠更有說服力，會建議將 Status Page 架設在不同的雲上，即便今天雲發生了任何事件，都不會影響到監控系統。</p>
-<blockquote>
-<p>以我自己來說，個人的 Side Project 都放在 GCP 上，而 Status Page 則是放在 fly.io 上面，如果想試看看可以參考<a href="https://github.com/louis70109/uptime-kuma-fly">我的 GitHub</a></p>
-</blockquote>
-<h1 id="如何整合？怎麼讓他人聽懂工程師的語言？"><a href="#如何整合？怎麼讓他人聽懂工程師的語言？" class="headerlink" title="如何整合？怎麼讓他人聽懂工程師的語言？"></a>如何整合？怎麼讓他人聽懂工程師的語言？</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=34" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>對比我工作經驗，以及周遭朋友的工作上，很多時候工作內容都會透過 LINE 傳來傳去，很多時候除了公司最大的群組之外，另外都會有各式小群組去討論不一樣的事情，因此很多時候需要有個 LINE Bot 自動化消化一些錯誤處理，讓第一線工程師可以趕快滅火，以下快速說明可以如何整合</p>
-<h2 id="想像中-Status-Page-能幫到的地方"><a href="#想像中-Status-Page-能幫到的地方" class="headerlink" title="想像中 Status Page 能幫到的地方"></a>想像中 Status Page 能幫到的地方</h2><p><img src="https://nijialin.com/images/2024/status-page/1.png"></p>
-<p>當服務遇到任何問題時</p>
-<ol>
-<li>先透過 webhook 傳進 LINE Bot Server</li>
-<li>Server 依照相關 log 查詢服務的倉庫裡面是否有囤放其他 log (prometheus, loki, SQL…etc)</li>
-<li>將相關資料傳送給 Server 去分析 (<a href="https://github.com/louis70109/line-bot-status-analyze/blob/main/controller/kuma_controller.py#L37">prompt URL</a>) 並傳到 LINE 群組裡</li>
-<li>依照嚴重程度決定要轉發到哪個群組<ol>
-<li>分享案例：Error Log 也可以依照嚴重程度決定讓 Bot 自動發到指定群組，普遍會有 1~3 個群組，大的服務有機會到 5 個</li>
-<li>適時的接上 oncall 系統也是不錯</li>
-</ol>
-</li>
-<li>人手一個 LINE，透過 LINE Bot 來推送訊息可以做更多客製化的內容</li>
-</ol>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>普遍的 Error log 在網路上通常都會有解法，同等來說 AI 在訓練時應該也都有放入相關的材料，因此依照這些日常系統出現的錯誤來說，都可以透過 AI 有條理的幫忙分析，更直接點可以幫忙 Senior 去教育 Junior 對於錯誤分析的體感，讓團隊對於系統的熟悉程度能夠更快 ✍️</p>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=38" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>有鑒於最近許多 Vision 的 AI 分析越來越多，個人用起來的體感真的滿不錯，雖然費用不便宜，但各家 AI 也應該都還有免費方案可以用</p>
-<p>最後，有些跟資安或是個資的東西其實不適合透過 API 打給雲端廠商，有些開發者應該會被要求要自架 AI model(<a href="https://ai.google.dev/gemma?hl=zh-tw">Gemma</a> || <a href="https://llama.meta.com/">Llama</a>)，這時可以透過 <a href="https://groq.com/">GROQ</a> 這個服務測試看看，雖然在串接上還是透過 API 實驗，但至少可以先測測 model 帶來的火力，再決定要不要花時間架起來～</p>
-<p>如果以上的內容對你有幫助，歡迎各位分享出去！</p>
-<p><a href="https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>研討會</category>
-      </categories>
-      <tags>
-        <tag>LINE Bot</tag>
-        <tag>Uptime Kuma</tag>
-        <tag>Gemini</tag>
-        <tag>AI</tag>
-        <tag>Status Page</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>幫 LINE Bot 加點回覆動畫魔法：Loading Animation 功能解析</title>
-    <url>/2024/04/18/line-bot-loading-animation-python/</url>
-    <content><![CDATA[<p><img src="https://developers.line.biz/assets/img/loading-animation.7aad3d6c.gif"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好！今天我們要聊聊 LINE Bot 最近更新的一個超酷炫的功能——Loading Animation。對於那些經常與 LINE 官方帳號互動的朋友來說，這一定是個期待已久的更新！</p>
-<p>想象一下，當你向一個 LINE Bot 發送訊息，等待回應的時候，畫面上出現一個動畫效果，在視覺上告訴用戶 “訊息處理中，請稍等片刻”，是不是感覺整個用戶體驗都提升了呢？接下來來仔細看看這個功能的細節和如何實現它。</p>
-<span id="more"></span>
-
-<h1 id="為什麼需要-Loading-Animation？"><a href="#為什麼需要-Loading-Animation？" class="headerlink" title="為什麼需要 Loading Animation？"></a>為什麼需要 Loading Animation？</h1><p>在過去，當用戶向 LINE Bot 發送訊息後，可能需要等待一段時間才能收到回應。這段等待時間可能是因為後端正在處理複雜的查詢(或是搭配各種生成式 AI)。在這個等待過程中，用戶端缺乏足夠的回饋，可能會讓人感到焦慮或不確定是否需要重新發送訊息。</p>
-<p>有了 Loading Animation，我們可以在這個等待時間內給用戶一個明確的視覺回饋，讓他們知道系統正在處理中，增強用戶等待時的體驗。</p>
-<h1 id="功能概述"><a href="#功能概述" class="headerlink" title="功能概述"></a>功能概述</h1><p>根據<a href="https://developers.line.biz/en/news/2024/04/17/loading-indicator/">2024 年 4 月 17 日發布的新聞</a>，Messaging API 新增了一個 endpoint，允許開發者在用戶與 LINE 官方帳號互動時顯示 Loading Animation。這個動畫會在<strong>指定的秒數</strong>後自動消失，或者當你的 LINE 官方帳號<strong>發送了一則新訊息時消失</strong>。</p>
-<blockquote>
-<p>要使用這個功能，你需要確保用戶的 LINE 版本至少為 iOS 或 Android 的 13.16.0 版或更高版本。</p>
-</blockquote>
-<h1 id="如何實現？"><a href="#如何實現？" class="headerlink" title="如何實現？"></a>如何實現？</h1><p>我們來看一個簡單的 Python 範例，展示如何在你的 LINE Bot 中實現這個功能。首先，確保你已經安裝了 LINE Messaging API 的 Python SDK，然後按照以下步驟操作：</p>
-<ul>
-<li>引入所需的模組和設定 LINE Bot 的 Access Token</li>
-<li>建立一個 AsyncApiClient 以及 AsyncMessagingApi 的實例<ul>
-<li>此為選項，依照使用 Python 框架調整</li>
-</ul>
-</li>
-<li>使用 show_loading_animation 方法來顯示 loading animation，並指定要顯示的秒數</li>
-</ul>
-<blockquote>
-<p>參考官方的文件：<a href="https://github.com/line/line-bot-sdk-python/pull/622/files#diff-05cb5d307ecf35c70df85c3f7252bd9c90f6ec2155b743b26d7e4e4be019ed86">GitHub URL</a></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> linebot.v3.messaging <span class="keyword">import</span> ShowLoadingAnimationRequest</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">configuration = Configuration(</span><br><span class="line">    access_token=channel_access_token</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">async_api_client = AsyncApiClient(configuration)</span><br><span class="line">line_bot_api = AsyncMessagingApi(async_api_client)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> line_bot_api.show_loading_animation(ShowLoadingAnimationRequest(chatId=event.source.user_id, loadingSeconds=<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>這個 Python 範例假設你已經有一個處理 LINE 訊息的程式，當 LINE Bot 接收到 webhook 訊息時，它會向用戶顯示一個持續 5 秒的 loading animation，<code>chatId</code> 則使用 <code>user_id</code> 為主。</p>
-<blockquote>
-<p>Loading 秒數需為 5 的倍數，目前最多 60 秒，預設為 20 秒 (<a href="https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator-request-body">參考文件</a>)</p>
-</blockquote>
-<p>是不是很簡單呢？這個功能不僅可以提升用戶體驗，讓用戶在等待過程中感到更加舒適，也為你的 LINE Bot 增添了一點互動的趣味性。</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>想了解更多細節，別忘了查看<a href="https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator">官方文檔</a>和<a href="https://github.com/line/line-bot-sdk-python/releases/tag/3.11.0">官方 SDK 的 release note</a>。這次的更新真的很酷，我們非常期待看到大家如何在自己的 LINE Bot 中利用這個新功能來創造出更棒的用戶體驗！</p>
-<p>就這樣，希望這篇文章能夠幫助大家更好地理解和使用 LINE Bot 的 Loading Animation 功能！</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新訊息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>LINE Bot</tag>
-        <tag>Animation</tag>
       </tags>
   </entry>
   <entry>
