@@ -208,6 +208,85 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/12/Day28-%E7%94%A8-S3-%E5%B9%AB%E5%BF%99%E8%BD%89%E5%9D%80%E5%88%B0%E5%8E%9F%E6%9C%89%E7%9A%84%E6%9C%8D%E5%8B%99%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/12/Day28-%E7%94%A8-S3-%E5%B9%AB%E5%BF%99%E8%BD%89%E5%9D%80%E5%88%B0%E5%8E%9F%E6%9C%89%E7%9A%84%E6%9C%8D%E5%8B%99%E4%B8%8A/" class="post-title-link" itemprop="url">Day28 - 用 S3 幫忙轉址到原有的服務上</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-12 13:07:18" itemprop="dateCreated datePublished" datetime="2019-10-12T13:07:18+00:00">2019-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在之前的文章都有將 <code>Notify</code>、<code>LINE Login</code>所需要的靜態頁面放在 S3 上面，讓其他使用者去點，雖然把前端放在程式裡面用 render template 比較好，可是在求快的情況下我把靜態頁面寫完就扔上去了(被拖走)，其實也可以透過這個方法去幫忙轉址，不過接下來我會用我的臉書做個範例提供參考～</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>照著之前的範例來建立一個名為 <code>facebook.nijialin.com</code> 來做 S3 轉址的範例<br><img src="https://i.imgur.com/BJyONqF.png"><br>建立完之後因為我們需要把網址公開給其他使用者點選，在第三個分頁中先把第一個選項的 <code>Block all public access</code> 更換成 off 狀態<br><img src="https://i.imgur.com/FAoiCbt.png"><br>到第二個按鈕選項選擇 <code>Public access</code>，暴力一點把所有選項都打開 🤣<br><img src="https://i.imgur.com/WhCoHl4.png"><br>前面都已經把權限開完，選擇<code>Static Website hosting</code>這個選項，這個是 S3 提供來讓他有另一種功能，不過我是覺得這功能在這邊有點奇怪 XD<br><img src="https://i.imgur.com/yPv6nET.png"></p>
+<hr>
+<p>接著就來到 <code>Route 53</code>，點選左欄的 <code>Hosted Zone</code><br><img src="https://i.imgur.com/k1T8wIT.png"><br>點選上面藍色的按鈕，右邊會出現輸入的地方讓你填<br><img src="https://i.imgur.com/szIVARy.png"><br>這邊我會輸入跟 S3 bucket 的名字一樣，然後 <code>Alias</code> 選擇 Yes，下面輸入框點下去會看到自己剛剛輸入的 S3 website endpoints<br><img src="https://i.imgur.com/PVlFHJZ.png"><br>建立完之後就可以在瀏覽器上輸入網址，他就會導去你預設的網站囉！向我這邊就是拿我的 facebook 來做示範。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>我透過這個方法幫我把 medium 的部落格網址重新導向，因為我想之後若是有獨立建立部落格的話網址會是一樣的，當有點粉絲的話至少他們認得的網址會是一樣的 😁。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://www.kilait.com/2015/09/08/route-53-%E9%9D%9C%E6%85%8B%E8%BD%89%E5%9D%80/">Route 53+靜態網址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/11/Day27-Use-CDN-2-CloudFront/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1012,94 +1091,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">Day19 - LINE LOGIN 介紹</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-03 12:58:22" itemprop="dateCreated datePublished" datetime="2019-10-03T12:58:22+00:00">2019-10-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>LINE 中文版也上線啦 <a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">URL</a><br>去某些網站登入你可能會有像下面這樣<br><img src="https://i.imgur.com/GNSYfYX.png"><br>或者是你有玩過 LINE Rangers (怎麼感覺我好老)，就會看到他們登入畫面有個登入鈕，按下去按確認後就登入，使用者不用輸入帳號密碼。<br><img src="https://i.imgur.com/tbOfUET.jpg"><br>這個機制被稱為 SSO (single sign-on)，它是透過 OAuth2 的機制來做認證，因為不儲存密碼除了可以降低儲存第三方網站的風險，以及使用者不需要記憶各種不同的密碼所帶來困擾，像是 Facebook、Google、LINE…都有相關的機制可以串連 SSO 的服務。</p>
-<p>以下會介紹 LINE Login 的流程。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>這裡我使用 LINE Login<br><img src="https://i.imgur.com/jouHzB0.png"></p>
-<ol>
-<li>服務要引導使用者到 LINE 認證頁面並帶著必填的欄位。</li>
-<li>LINE 會在瀏覽器上打開認證頁面，使用者必須按下同意才會進行認證。</li>
-<li>LINE 會透過設定過的 <code>redirect_uri</code> 還給你一個 <code>authorization code</code> 以及 <code>state</code> 在 Query string 上。</li>
-<li>你的服務需要將 <code>authorization code</code> 打到<code>https://api.line.me/oauth2/v2.1/token</code></li>
-<li>LINE 確認完之後就會送你一個 <code>access token</code> 嚕！<blockquote>
-<p>可以拿透過 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/reference/social-api/">social API</a> 去拿到相關資訊</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>下一篇再帶著大家申請一個 LINE Login 的服務並建立一個簡單的註冊頁面～</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83">OAuth wiki</a><br><a target="_blank" rel="noopener" href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/">LINE overview</a><br><a target="_blank" rel="noopener" href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">LINE 中文文件</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1171,7 +1162,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
