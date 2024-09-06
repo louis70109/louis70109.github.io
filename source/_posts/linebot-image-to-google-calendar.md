@@ -1,8 +1,14 @@
 ---
 title: 透過圖片或網址，讓 LINE Bot 產生行事曆來成為活動達人
+tags:
+  - LINE Bot
+  - Google Calendar
+  - Google
+  - AI
 categories: LINE
-tags: ['LINE Bot', 'Google Calendar', 'Google', 'AI']
+date: 2024-09-06 17:22:43
 ---
+
 
 ![](https://nijialin.com/images/common.jpeg)
 
