@@ -18942,6 +18942,36 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
+    <title>如何復原 Steam 遊戲紀錄檔 | 黑神話悟空</title>
+    <url>/2024/09/14/steam-recover-by-backup-windows/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/steam-backup/1.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣的，由於我跟家人個別有一台 PC，參考了巴哈上面的說法(<a href="https://forum.gamer.com.tw/C.php?bsn=60599&snA=31999">URL</a>)，為了省錢登入同樣的帳號，想說用<strong>離線模式</strong>就可以一起玩，但殊不知…操作上出了點失誤，結果我從 9&#x2F;9 ~ 9&#x2F;14 的記錄都消失(被覆蓋)，找了一下網路上的做法，看了檔案路徑中發現 Steam 居然有備份(超感動)，以下介紹一下如何救回來～</p>
+<span id="more"></span>
+
+<h1 id="步驟-1：打開-Steam-並找到你的遊戲"><a href="#步驟-1：打開-Steam-並找到你的遊戲" class="headerlink" title="步驟 1：打開 Steam 並找到你的遊戲"></a>步驟 1：打開 Steam 並找到你的遊戲</h1><p><img src="https://nijialin.com/images/2024/steam-backup/2.png"></p>
+<p>首先來到最傷心的地方 😣，這就是我被覆蓋回去的版本…打開 Steam 客戶端，在左側的遊戲列表中找到《黑神話：悟空》，右鍵點擊遊戲名稱，選擇「管理」。</p>
+<h1 id="步驟-2：瀏覽本機檔案"><a href="#步驟-2：瀏覽本機檔案" class="headerlink" title="步驟 2：瀏覽本機檔案"></a>步驟 2：瀏覽本機檔案</h1><p><img src="https://nijialin.com/images/2024/steam-backup/3.png"></p>
+<p>在「管理」選單中，選擇「瀏覽本機檔案」，這會打開 Windows 檔案總管並顯示該遊戲的安裝目錄，開啟的樣子如下圖，找到 <code>b1/</code> 的資料夾。</p>
+<p><img src="https://nijialin.com/images/2024/steam-backup/4.png"></p>
+<h1 id="步驟-3：找到存檔資料夾"><a href="#步驟-3：找到存檔資料夾" class="headerlink" title="步驟 3：找到存檔資料夾"></a>步驟 3：找到存檔資料夾</h1><p><img src="https://nijialin.com/images/2024/steam-backup/5.png"></p>
+<p>在遊戲的安裝目錄中，找到名為 Saved 的資料夾。存檔通常位於 Saved 資料夾內的 SaveGames 或 SaveGamesBackup 資料夾中。</p>
+<p><img src="https://nijialin.com/images/2024/steam-backup/6.png"></p>
+<h1 id="步驟-4：備份存檔位置"><a href="#步驟-4：備份存檔位置" class="headerlink" title="步驟 4：備份存檔位置"></a>步驟 4：備份存檔位置</h1><p><img src="https://nijialin.com/images/2024/steam-backup/7.png"></p>
+<p>點進 <code>SaveGamesBackup</code>資料夾當中，這些都是 Steam 會定期幫忙備份的檔案，有分 即時、小時、每日。</p>
+<h1 id="步驟-5：恢復存檔"><a href="#步驟-5：恢復存檔" class="headerlink" title="步驟 5：恢復存檔"></a>步驟 5：恢復存檔</h1><p><img src="https://nijialin.com/images/2024/steam-backup/8.png"></p>
+<p>如果需要恢復存檔，這邊我選擇 01ReamtimeBackup，備份檔案裡面因為我的黑神話悟空裡面有兩個存檔，所以會看到 ArchiveSaveFile.1.sav 以及 ArchiveSaveFile.2.sav，這邊檔案比較大的就是我玩比較前面的進度，因此就把他複製起來來放到<strong>步驟三</strong> SaveGames 資料夾當中，會先看到有一串數字的資料夾，再點進去之後就會看到以下圖片的樣子，把檔案複製進去即可。<br><img src="https://nijialin.com/images/2024/steam-backup/9.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過這次才發現原來 Steam 做得這麼棒，都有即時在 local 幫玩家去備份，讓紀錄不小心被覆蓋的玩家可以輕鬆地在 Windows 上備份和恢復 Steam 遊戲的存檔，確保你的遊戲進度不會丟失，這次真的是有驚無險，紀錄起來下次發生時才不會手足無措～ 👀️</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Steam</tag>
+        <tag>Backup</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日常快捷鍵 &amp; 小工具分享 | 沉浸翻譯, 切割視窗</title>
     <url>/2024/04/18/upgrade-your-working/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
