@@ -208,6 +208,99 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/08/02/parse-server-heroku-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/02/parse-server-heroku-note/" class="post-title-link" itemprop="url">如何部署 Parse Server 與 Dashboard 於 Heroku 上使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-02 16:19:59" itemprop="dateCreated datePublished" datetime="2022-08-02T16:19:59+00:00">2022-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%87%89%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">應用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://nijialin.com/images/2022/parse-server/header.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平常在寫 PoC 時，是否會像筆者一樣很困擾，每個東西都需要一個 DB，都要重新 create table、塞資料，像是每次寫 LINE Bot，一定都會綁用戶資訊(userId, name, email…)，如果範例專案共用的資料能放在一起，是不是就能更快上線呢？透過部署 Parse Server，讓許多的 CRUD 工作都可以省下來，避免許多東西重工的時間。因此這次就來介紹一下 Parse Server 這個開源莊案究竟有多好用吧！</p>
+<blockquote>
+<p>以下都是建立在 Heroku 上，若需要搭建在自家，請參考使用 Dockerfile。</p>
+</blockquote>
+<ul>
+<li>Parse Server Dashboard 部署範例：<a target="_blank" rel="noopener" href="https://github.com/louis70109/parse-dashboard-example">連結</a><ul>
+<li>Fork 來自名間版本，目前由我會手動來改 package.json 裡面的版本。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://parseplatform.org/">官網</a></li>
+<li>Parse Server 專案：<a target="_blank" rel="noopener" href="https://github.com/parse-community/parse-server">連結</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/02/parse-server-heroku-note/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/07/21/nijia-review-year-2-at-LINE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -961,103 +1054,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2022/04/02/python-env-import-json-string/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/02/python-env-import-json-string/" class="post-title-link" itemprop="url">把 JSON 字串寫入記憶體中的暫時檔案並放路徑至環境變數中 | Python, FastAPI</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2022-04-02 13:54:44" itemprop="dateCreated datePublished" datetime="2022-04-02T13:54:44+00:00">2022-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:51" itemprop="dateModified" datetime="2023-03-22T06:17:51+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="為什麼寫這篇"><a href="#為什麼寫這篇" class="headerlink" title="為什麼寫這篇"></a>為什麼寫這篇</h1><ul>
-<li>失誤把 private key 推到 GitHub 上<ul>
-<li>明明有加到 .gitignore 中</li>
-<li>但在剛建立 .git 時就一起 add 進去導致 key 都上去了</li>
-</ul>
-</li>
-<li>想要同一份 git 推到不同的 git 倉庫上(ex. GitHub + Heroku)<ul>
-<li>GitHub 不放 key</li>
-<li>Heroku 需要 key 去訪問服務</li>
-<li>存檔案在 Heroku 中休眠後會移除，因此要動態寫在記憶體中</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>本次範例專案: <a target="_blank" rel="noopener" href="https://github.com/louis70109/Python-import-env-json-string">https://github.com/louis70109/Python-import-env-json-string</a></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/02/python-env-import-json-string/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1129,7 +1125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">241</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1142,7 +1138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">322</span>
+        <span class="site-state-item-count">324</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1183,7 +1179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

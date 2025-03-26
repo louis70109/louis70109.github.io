@@ -208,6 +208,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/" class="post-title-link" itemprop="url">Day30 - 老是在吹 Serverless，他真的有那麼好？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-10-14 13:09:01" itemprop="dateCreated datePublished" datetime="2019-10-14T13:09:01+00:00">2019-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Cold-start"><a href="#Cold-start" class="headerlink" title="Cold start"></a>Cold start</h2><p>其實個家園端平台多少都會有這問題，畢竟大家都是靠流量賺錢，自然會需要個方法限制使用者，不然免費爽爽用他們也不是做慈善的 🤣，像我最常用的 <code>Heroku</code>，只要 30 分鐘沒有使用他就會進入睡眠時間(<a target="_blank" rel="noopener" href="https://devcenter.heroku.com/articles/free-dyno-hours">參考</a>)，叫醒的時間需要 10~15 秒，不過對於我這個免費宅來說測試夠用了 🤣</p>
+<p><code>AWS</code>以我實際測試起來大概 2 秒左右，回應時間看起來不會太差，其實<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10213431">第一天</a>就有提到這部分，需要的話可以參考。</p>
+<p>若是需要它隨時都在都活著的話就要搭配 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10226742">warm-up</a>，抑或是搭配 crontab 去設定特定時間執行 warm-up。</p>
+<h2 id="Function-as-a-Service"><a href="#Function-as-a-Service" class="headerlink" title="Function as a Service"></a>Function as a Service</h2><p>在快速成長的前、中期是很適合這個服務的， 畢竟開發者只要將 <code>serverless.yml</code> 基本設定完之後就可以先好好開發，等到中期之後把設定檔稍微整理一下又是一尾活龍了，且平台大多都擁有 <a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/autoscaling/">auto-scaling</a> 的功能，在服務快扛不住流量的時候只要錢拿出來平台就幫你解決。</p>
+<p>只是說當流量越來越大之後相對錢也會越付越多，或許當流量 &gt; 10K 之後代表你的服務應該也有不少人使用了，自己架主機應該不會是什麼難事(?)</p>
+<blockquote>
+<p>幫忙推廣一下 Backend 大大的 <a target="_blank" rel="noopener" href="https://github.com/TritonHo/slides/blob/master/Taipei%202019-10%20talk/concurrency.pdf?fbclid=IwAR3R67wIt5fXPjG3hZNHaVw3tuCVrpNJtIdecTTIiQz0dgT-bZwymIYLYiA">高流量心得雜談</a></p>
+</blockquote>
+<p>在 FaaS 架構下其實很適合 Chatbot 的服務，以概念來說實作時只需要一個路由**(Function)**即個完成，不需要額外太多的資源去處理 web server 的問題，像是這個系列的只要透過 <code>serverless</code> + <code>WSGI</code> 就可以馬上就可以進行本地測試，部署只要下 <code>sls deploy</code>，實在是超級快又輕鬆，不用像以前一樣還要去處理 Nginx 等等相關的問題 😁。</p>
+<p>且 AWS、Google 在使用 python 跟 nodejs 上支援度很高，也不用怕找不到資源使用。</p>
+<blockquote>
+<p>使用 Node JS 的朋友可以參考 C.T Lin 大大的<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20103630/ironman/2798">文章</a>，他們家的 bottender 超猛的！</p>
+</blockquote>
+<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><p>在 Log 這部分我覺得 AWS 有點不太好的地方就是他們的 Cloud Watch 應該是獨立服務，當我的 Lambda 輸出紀錄時大概要過 10 秒才會印出來，不像以前自己架主機時只要進 server 就可以馬上切到目錄看紀錄抓蟲，在使用這雲端服務可能在抓蟲有一半的時間都在等 log 出來，有時候急的時候還真的會被氣死 😭。</p>
+<h2 id="SNS"><a href="#SNS" class="headerlink" title="SNS"></a>SNS</h2><p>像是我前一陣子發的<a target="_blank" rel="noopener" href="https://medium.com/@nijia.lin/use-serverless-corn-to-execute-sns-getendpointattributes-returns-old-data-after-e7df7c09b45b">一篇文章</a>，SNS 被觸發事件之後回來的東西是舊的，那時候看到錯誤訊息真的是心很涼，就得用一個 Lambda 排程一直去抓 DB 的 updated_at 欄位有沒有變更時間而去更新狀態，這樣情況就會多浪費一個 Function 去處理這樣的事件，不得不說專門來支援 AWS 服務的 boto3 套件(python)在某些時候做的事不是那麼完善，得使用旁門做到的方法去完成這件事，讓整個開發體驗不是那麼好，若他們可以把一些 error handle 弄更好那就完美了。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><blockquote>
+<p><del>其實還有好多服務沒有玩到</del></p>
+</blockquote>
+<p>但其實使用 AWS 來實作 Serverless 的服務也是這一陣子加入新公司所學到的新技能，過程中總是會用舊的開發思維去想，但常常都因為這樣落坑 😓，但也因此讓我更了解像 AWS 這類的雲服務他們是如何開發每個服務並如何串接，同時也研究了 Serverless 相關的 plugins，看他們是如何支援雲平台讓開發者在開發時可以更像平常時在開發 web，也因為這樣我去貢獻了 example 到了 Serverless 的範例專案上面(<a target="_blank" rel="noopener" href="https://github.com/serverless/examples/pulls?q=is:pr+author:louis70109+is:closed">參考</a>)，慶祝完成人生第一場鐵三十，跟自己的競賽也告一段落，發現趕著寫文章品質真的會差很多，看來是時候該整理一下，謝謝您的收看 &lt;(_ _)&gt;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1044,97 +1136,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/10/05/Day21-LINE-Login-%E5%AF%A6%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/05/Day21-LINE-Login-%E5%AF%A6%E4%BD%9C/" class="post-title-link" itemprop="url">Day21 - LINE Login 實作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-10-05 12:59:50" itemprop="dateCreated datePublished" datetime="2019-10-05T12:59:50+00:00">2019-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>現在有規模的平台提供商基本上都會提供 Single Sign On (SSO)的登入機制，藉由他們的平台讓一般小網站可以讓使用者免密碼登入，雖然有很多種 Oauth2 的套件，不過我還是喜歡自己打 🤣，下面就開始嚕！</p>
-<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>在<code>views/</code>建立一個<code>line_login_auth.html</code>，填入以下內容，主要是實作一個按鈕並透過 javascript 來互叫 api 並導向到 LINE 頁面</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>LINE Login<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;auth&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;auth()&quot;</span>&gt;</span>LINE LOGIN<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">        url: <span class="string">&#x27;https://YOUR_SERVERLESS_DOMAIN.amazonaws.com/dev/line/auth&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        method: <span class="string">&#x27;POST&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="built_in">window</span>.location.replace(data.result);</span></span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>接著我們在<code>.env</code>加入 LINE Login 的環境變數並輸入對應的參數</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">LINE_LOGIN_CLIENT_ID=</span></span><br><span class="line"><span class="string">LINE_LOGIN_SECRET=</span></span><br><span class="line"><span class="string">LINE_LOGIN_URI=https://YOUR_SERVERLESS_DOMAIN.amazonaws.com/dev/line/auth</span></span><br></pre></td></tr></table></figure>
-
-<p>最後就是我們最重要的部分了，實作 GET a&amp; POST 的 api，這邊我先從 POST 講起，這邊主要是把環境變數組在網址中回傳給前端，這邊需要注意的是<code>state</code>他是在回傳回來的 JWT 需要解碼時所使用的，這邊我簡單打個字串，然而實際上會隨機產個變數，確保解碼的安全。</p>
-<p>GET 則是負責處理從 LINE 回來的參數們，這邊我只用回傳回來的<code>state</code>把<code>id_token</code>解開，拿到裡面的使用者的參數，後續可以參照應用把資訊存下來，放入 session 並告知前端已登入。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LineLoginController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">		r = requests.post(</span><br><span class="line">			<span class="string">&quot;https://api.line.me/oauth2/v2.1/token&quot;</span>,</span><br><span class="line">			data=&#123;</span><br><span class="line">				<span class="string">&quot;grant_type&quot;</span>: <span class="string">&quot;authorization_code&quot;</span>,</span><br><span class="line">				<span class="string">&quot;code&quot;</span>: request.args.get(<span class="string">&#x27;CODE&#x27;</span>),</span><br><span class="line">				<span class="string">&quot;redirect_uri&quot;</span>: os.environ.get(<span class="string">&#x27;LINE_LOGIN_URI&#x27;</span>),</span><br><span class="line">				<span class="string">&quot;client_id&quot;</span>: os.environ.get(<span class="string">&#x27;LINE_LOGIN_CLIENT_ID&#x27;</span>),</span><br><span class="line">				<span class="string">&quot;client_secret&quot;</span>: os.environ.get(<span class="string">&#x27;LINE_LOGIN_SECRET&#x27;</span>),</span><br><span class="line">			&#125;, headers=&#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/x-www-form-urlencoded&quot;</span>&#125;)</span><br><span class="line">		payload = json.loads(r.text)</span><br><span class="line">		print(payload)</span><br><span class="line">		token = payload.get(<span class="string">&quot;id_token&quot;</span>)</span><br><span class="line">		<span class="keyword">if</span> token <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: payload[<span class="string">&#x27;error_description&#x27;</span>]&#125;, <span class="number">400</span></span><br><span class="line"></span><br><span class="line">		state = request.args.get(<span class="string">&#x27;state&#x27;</span>)</span><br><span class="line">		token = token.encode()</span><br><span class="line">		dt = jwt.decode(token, state, <span class="literal">None</span>, algorithms=[<span class="string">&#x27;HS256&#x27;</span>])</span><br><span class="line">		<span class="keyword">if</span> dt:</span><br><span class="line">			<span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: dt&#125;, <span class="number">200</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">		r_uri = os.environ.get(<span class="string">&quot;LINE_LOGIN_URI&quot;</span>)</span><br><span class="line">		client = os.environ.get(<span class="string">&quot;LINE_LOGIN_CLIENT_ID&quot;</span>)</span><br><span class="line">		state = <span class="string">&quot;nostate&quot;</span> <span class="comment"># it will be random value</span></span><br><span class="line">		uri = <span class="string">f&quot;https://access.line.me/oauth2/v2.1/authorize?response_type=code&amp;client_id=<span class="subst">&#123;client&#125;</span>&amp;redirect_uri=<span class="subst">&#123;r_uri&#125;</span>&amp;scope=profile%20openid%20email&amp;state=<span class="subst">&#123;state&#125;</span>&quot;</span></span><br><span class="line">		<span class="keyword">return</span> &#123;<span class="string">&#x27;result&#x27;</span>: uri&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JWT 解開的參數如下，<code>sub</code>就是 LINE 的唯一值 ID，一般拿到這個就可以知道是來自 LINE 的使用者了。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;result&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;iss&quot;</span>: <span class="string">&quot;https://access.line.me&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;sub&quot;</span>: <span class="string">&quot;Ud6ab866a67xxxxxxxxb12b0baffb8ac&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;aud&quot;</span>: <span class="string">&quot;1622939248&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;exp&quot;</span>: <span class="number">1569925548</span>,</span><br><span class="line">    <span class="attr">&quot;iat&quot;</span>: <span class="number">1569921948</span>,</span><br><span class="line">    <span class="attr">&quot;amr&quot;</span>: [<span class="string">&quot;linesso&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;NiJia Lin&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;picture&quot;</span>: <span class="string">&quot;https://profile.line-scdn.net/0hKvTocMuLFFlpFj9HpKdrDlVTGjxxxxxxxxx1YHACMOPRtEHmkWJVIKUyUJNkQWGT0X&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;email&quot;</span>: <span class="string">&quot;loxxxxx09@gmail.com&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最後別忘了要在<code>api.py</code>加入路由才會被導出去ㄛ</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> controller.line_login_controller <span class="keyword">import</span> LineLoginController</span><br><span class="line">api.add_resource(LineLoginController, <span class="string">&#x27;/line/auth&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>在實作的時候不知道為什麼一直不能讓 python 去幫我把用戶導去 LINE 認證的頁面，我記得之前寫 Ruby 可以啊(?)，最後只好讓前端去幫我把使用者導出去，這邊就帶大家做到這嚕！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1206,7 +1207,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">241</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1219,7 +1220,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">322</span>
+        <span class="site-state-item-count">324</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1260,7 +1261,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
