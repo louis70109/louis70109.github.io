@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言近期在開發 LLM 應用時，常需要讓模型與網頁進行互動，無論是自動填寫表單、爬取資料或執行測試。過去這類任務往往依賴於截圖或視覺模型，不僅效率低下且易出錯。今天要介紹的 Playwright Model Context Protocol (MCP) 提供了一個全新的解決方案，讓 LLM 能夠直接透過結構化的方式與瀏覽器互動，大幅提升自動化效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Playwright】打造更聰明瀏覽器自動化測試 | Model Context Protocol 入門">
+<meta property="og:url" content="https://nijialin.com/2025/04/22/playwright-mcp-testing/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言近期在開發 LLM 應用時，常需要讓模型與網頁進行互動，無論是自動填寫表單、爬取資料或執行測試。過去這類任務往往依賴於截圖或視覺模型，不僅效率低下且易出錯。今天要介紹的 Playwright Model Context Protocol (MCP) 提供了一個全新的解決方案，讓 LLM 能夠直接透過結構化的方式與瀏覽器互動，大幅提升自動化效率。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/common.jpeg">
+<meta property="og:image" content="https://nijialin.com/images/2024/playwright/mcp.png">
+<meta property="article:published_time" content="2025-04-22T14:30:01.000Z">
+<meta property="article:modified_time" content="2025-04-22T06:30:32.160Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Playwright">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="自動化測試">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="瀏覽器自動化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/common.jpeg">
+
+<link rel="canonical" href="https://nijialin.com/2025/04/22/playwright-mcp-testing/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>【Playwright】打造更聰明瀏覽器自動化測試 | Model Context Protocol 入門 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2025/04/22/playwright-mcp-testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Playwright】打造更聰明瀏覽器自動化測試 | Model Context Protocol 入門
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2025-04-22 14:30:01 / 修改時間：06:30:32" itemprop="dateCreated datePublished" datetime="2025-04-22T14:30:01+00:00">2025-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">學習紀錄</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期在開發 LLM 應用時，常需要讓模型與網頁進行互動，無論是自動填寫表單、爬取資料或執行測試。過去這類任務往往依賴於截圖或視覺模型，不僅效率低下且易出錯。今天要介紹的 Playwright Model Context Protocol (MCP) 提供了一個全新的解決方案，讓 LLM 能夠直接透過結構化的方式與瀏覽器互動，大幅提升自動化效率。</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="什麼是-Playwright-MCP？"><a href="#什麼是-Playwright-MCP？" class="headerlink" title="什麼是 Playwright MCP？"></a>什麼是 Playwright MCP？</h2><p>Playwright MCP 是一個提供瀏覽器自動化功能的協議伺服器，它基於 Microsoft 的 <a target="_blank" rel="noopener" href="https://playwright.dev/">Playwright</a> 開發。與傳統的瀏覽器自動化方法不同，MCP 不依賴截圖或視覺模型，而是透過結構化的 accessibility tree 讓 LLM 能夠理解和操作網頁內容。</p>
+<p><img src="https://nijialin.com/images/2024/playwright/mcp.png"></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoft/playwright-mcp">參考來自 GitHub</a></p>
+</blockquote>
+<h2 id="核心優勢"><a href="#核心優勢" class="headerlink" title="核心優勢"></a>核心優勢</h2><ol>
+<li><strong>高效輕量</strong>：利用 Playwright 的 accessibility tree，而非像素級輸入，大幅降低資源消耗</li>
+<li><strong>對 LLM 友好</strong>：不需要視覺模型，純粹基於結構化資料運作</li>
+<li><strong>確定性工具應用</strong>：避免截圖方法常見的模糊性問題</li>
+<li><strong>易於整合</strong>：與各種 LLM 和開發環境相容</li>
+</ol>
+<h2 id="安裝-Playwright-MCP"><a href="#安裝-Playwright-MCP" class="headerlink" title="安裝 Playwright MCP"></a>安裝 Playwright MCP</h2><p>在 VS Code 中安裝 Playwright MCP 非常簡單，只需在終端機中執行以下指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code --add-mcp <span class="string">&#x27;&#123;&quot;name&quot;:&quot;playwright&quot;,&quot;command&quot;:&quot;npx&quot;,&quot;args&quot;:[&quot;@playwright/mcp@latest&quot;]&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h2><p>Playwright MCP 能夠幫助我們在以下場景中提升效率：</p>
+<ol>
+<li><strong>網頁導航與表單填寫</strong>：自動化登入流程、問卷填寫等</li>
+<li><strong>結構化內容的資料擷取</strong>：從網頁中擷取特定資訊</li>
+<li><strong>LLM 驅動的自動化測試</strong>：讓 AI 協助執行 UI 測試</li>
+<li><strong>為 AI 代理提供瀏覽器互動能力</strong>：使 AI 助手能夠執行網頁操作</li>
+</ol>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>Playwright MCP 的工作原理主要基於以下步驟：</p>
+<ol>
+<li><strong>啟動伺服器</strong>：MCP 啟動一個本地伺服器，與 Playwright 通訊</li>
+<li><strong>建立會話</strong>：建立一個瀏覽器會話，用於網頁互動</li>
+<li><strong>取得結構化快照</strong>：從頁面取得 accessibility tree，包含網頁的結構化資訊</li>
+<li><strong>LLM 分析</strong>：將結構化資訊發送給 LLM 進行分析</li>
+<li><strong>執行操作</strong>：根據 LLM 的建議透過 MCP 執行瀏覽器操作</li>
+<li><strong>收集回饋</strong>：取得操作後的頁面狀態，繼續與 LLM 互動</li>
+</ol>
+<h2 id="與傳統截圖方法的比較"><a href="#與傳統截圖方法的比較" class="headerlink" title="與傳統截圖方法的比較"></a>與傳統截圖方法的比較</h2><p>傳統的基於截圖的自動化方法存在幾個問題：</p>
+<ol>
+<li><strong>資源消耗大</strong>：處理圖像需要更多計算資源</li>
+<li><strong>精確度問題</strong>：視覺模型可能誤解UI元素</li>
+<li><strong>延遲高</strong>：圖像處理通常需要更長時間</li>
+</ol>
+<p>Playwright MCP 透過直接提供結構化資料解決了這些問題：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>基於截圖方法</th>
+<th>Playwright MCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>資源消耗</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>精確度</td>
+<td>受限於視覺模型</td>
+<td>高（結構化資料）</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>慢</td>
+<td>快</td>
+</tr>
+<tr>
+<td>依賴視覺模型</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>結構化資料</td>
+<td>無</td>
+<td>有</td>
+</tr>
+</tbody></table>
+<h1 id="實際應用"><a href="#實際應用" class="headerlink" title="實際應用"></a>實際應用</h1><h2 id="自動化測試"><a href="#自動化測試" class="headerlink" title="自動化測試"></a>自動化測試</h2><p>在自動化測試中，Playwright MCP 可以讓 LLM 理解頁面結構並產生測試案例，甚至可以自動驗證 UI 元素的正確性與可訪問性。</p>
+<h2 id="資料擷取"><a href="#資料擷取" class="headerlink" title="資料擷取"></a>資料擷取</h2><p>對於資料擷取任務，Playwright MCP 能夠幫助 LLM 精確定位需要的資訊，並以結構化的方式擷取，無需複雜的 CSS 選擇器或 XPath。</p>
+<h2 id="AI-助手增強"><a href="#AI-助手增強" class="headerlink" title="AI 助手增強"></a>AI 助手增強</h2><p>將 Playwright MCP 與 AI 助手結合，可以讓助手直接與網頁互動，幫助使用者完成表單填寫、訂票、預約等任務。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>Playwright MCP 為 LLM 與瀏覽器的互動提供了一種全新的範式，不再依賴截圖或視覺模型，而是透過結構化的 accessibility tree 實現更高效、更準確的自動化。無論是進行網頁爬取、表單填寫、自動化測試還是建構智能代理，Playwright MCP 都提供了強大而靈活的工具。</p>
+<p>透過以上的內容為一些範例，在完成之後接可以請 Agent 幫忙把 playwright script 寫出來，如此一來只要靠打字就可以做自動測試，然後等測試完成之後再請 AI 幫忙寫出來，如此一來真的很方便！</p>
+<p>而隨著 LLM 在軟體開發和測試中的應用日益廣泛，Playwright MCP 這類工具將成為連接 AI 與網頁世界的重要橋樑。我期待看到更多創新的應用案例出現，也歡迎大家分享使用 Playwright MCP 的經驗與心得！</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Playwright/" rel="tag"><i class="fa fa-tag"></i> Playwright</a>
+              <a href="/tags/MCP/" rel="tag"><i class="fa fa-tag"></i> MCP</a>
+              <a href="/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6/" rel="tag"><i class="fa fa-tag"></i> 自動化測試</a>
+              <a href="/tags/LLM/" rel="tag"><i class="fa fa-tag"></i> LLM</a>
+              <a href="/tags/%E7%80%8F%E8%A6%BD%E5%99%A8%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 瀏覽器自動化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/03/25/2025-03-snowboarding-at-hokkaido/" rel="prev" title="【札幌】滑雪紀錄, 一天一雪場復健之旅">
+      <i class="fa fa-chevron-left"></i> 【札幌】滑雪紀錄, 一天一雪場復健之旅
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-Playwright-MCP%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什麼是 Playwright MCP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%84%AA%E5%8B%A2"><span class="nav-number">2.2.</span> <span class="nav-text">核心優勢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-Playwright-MCP"><span class="nav-number">2.3.</span> <span class="nav-text">安裝 Playwright MCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">2.5.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%87%E5%82%B3%E7%B5%B1%E6%88%AA%E5%9C%96%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BC%83"><span class="nav-number">2.6.</span> <span class="nav-text">與傳統截圖方法的比較</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E6%87%89%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">實際應用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.1.</span> <span class="nav-text">自動化測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%93%B7%E5%8F%96"><span class="nav-number">3.2.</span> <span class="nav-text">資料擷取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AI-%E5%8A%A9%E6%89%8B%E5%A2%9E%E5%BC%B7"><span class="nav-number">3.3.</span> <span class="nav-text">AI 助手增強</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">329</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
