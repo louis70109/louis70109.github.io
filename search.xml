@@ -17849,52 +17849,6 @@ img[alt~="center"] {
       </categories>
   </entry>
   <entry>
-    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
-    <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
-<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>此次使用的是 <a href="https://github.com/louislam/uptime-kuma/tree/master">uptime-kuma</a>，本來想說可以直接上到 Google Cloud Run 上，除了自己弄不上去以外，也發現 uptime kuma 是使用 SQLite 來儲存資訊，這邊很有可能被 <a href="https://nijialin.com/2020/02/15/serverless-cold-start/">Cold Start 的問題</a>打到，因此這次使用 fly.io 來部署(<a href="https://github.com/louis70109/uptime-kuma-fly/blob/main/fly.toml">民間版本.toml</a>)</p>
-<ol>
-<li>有許多的 notification 可以串接，有支援 LINE Bot &amp; Notify</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/kuma/notification.png"></p>
-<ol start="2">
-<li><p>初次進去就可以設帳密，但帳號只能一個還改不了 🫣</p>
-</li>
-<li><p>可設定群組，統一設定 notification 而不用各別弄</p>
-</li>
-<li><p>還沒研究怎麼把 SQLite 拔出來，看來有支援 MySQL</p>
-</li>
-<li><p>備份不求人，直接 Export 就可以了</p>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/kuma/backup.png"></p>
-<ol start="6">
-<li>如何部署到 fly.io</li>
-</ol>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Clone 專案到本地</span></span><br><span class="line">git clone https:<span class="string">//github.com/louis70109/uptime-kuma-fly.git</span></span><br><span class="line"><span class="comment"># 進入資料夾</span></span><br><span class="line"><span class="keyword">cd</span> uptime-kume-fly/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署，原先指令是 flyctl</span></span><br><span class="line">fly launch \</span><br><span class="line">  <span class="params">--copy-config</span> \</span><br><span class="line">  <span class="params">--auto-confirm</span> \</span><br><span class="line">  <span class="params">--ha=false</span> \</span><br><span class="line">  <span class="params">--name</span> uptime-kuma-nijia \</span><br><span class="line">  <span class="params">--now</span></span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>如果想要在 fly.io 上客製化 domain，例如：<code>status.YOURDOMAIN.com</code></li>
-</ol>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">fly certs <span class="built_in">create</span> <span class="built_in">status</span>.YOURDOMAIN.com</span><br><span class="line">fly certs <span class="built_in">create</span> <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br><span class="line">fly certs show <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
-]]></content>
-      <categories>
-        <category>Serverless</category>
-      </categories>
-      <tags>
-        <tag>Serverless</tag>
-        <tag>Monitor</tag>
-        <tag>Fly.io</tag>
-        <tag>Uptime Kuma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何建立 fly.toml 並快速佈署至 Fly.io</title>
     <url>/2024/04/04/flyio-quick-deploy-your-service/</url>
     <content><![CDATA[<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>最近因為有些專案需要有 local Volume，但在 Serverless 上要用偏麻煩，除機器上的本身功能以外，還需要另外開 VM 讓 Container 能夠 mount volume，因此需要類似 Heroku、Fly.io 這類的 SaaS 的服務，可以用很少量的費用去使用到 Database&#x2F;Volume 的功能…</p>
@@ -18307,230 +18261,49 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
-    <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
+    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
+    <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
+<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
 <span id="more"></span>
 
-<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
-<ul>
-<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
-<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
-<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
-<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
-<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a></li>
-</ul>
-<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
-<blockquote>
-<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
-</blockquote>
-<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
-
-<h1 id="先部署-從-Cloud-Run-介面來連結-GitHub-持續部署"><a href="#先部署-從-Cloud-Run-介面來連結-GitHub-持續部署" class="headerlink" title="先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署"></a>先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署</h1><ol>
-<li>首先先 fork 專案 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，方便後續操作</li>
-<li>接著到 <a href="https://console.cloud.google.com/run?referrer=search&hl=zh-tw">Cloud Run 首頁</a>，點選上方的<code>建立服務</code></li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/select.jpeg"></p>
-<ol start="3">
-<li>選擇外部資源(GitHub)，從專案中來偵測部署，此步驟後續會連動 GitHub</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/detail.jpeg"></p>
-<ol start="4">
-<li>此步驟需要確保<code>認證</code>以及<code>Ingress control</code> 的部分，因為從 LINE 伺服器打來的流量對 Google Cloud 來說都是外來的，因此需要確定選項</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/env_setting.png"></p>
-<ol start="5">
-<li>在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入<ol>
-<li>環境變數清單請看 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample">GitHub URL</a></li>
-<li>LINE bot &#x2F; GEMINI pro &#x2F; Firebase 的取得詳細請往前看 <code>事前準備</code></li>
-<li>API_ENV 需要為 <code>production</code>，否則會找 .env 檔案位置</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg"></p>
-<ol start="6">
-<li>在部署的同時可以到 GitHub 專案上看看部署的連動狀態，如此一來只要 GitHub 專案只要有更改，就會自動部署過去 Cloud Run</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/complete.jpeg"></p>
-<p>完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去</p>
-<h1 id="摘要王-v2"><a href="#摘要王-v2" class="headerlink" title="摘要王 v2"></a>摘要王 v2</h1><p>在 2022 年底，Evan 寫了一篇如何透過 ChatGPT + LINE Bot 的<a href="https://engineering.linecorp.com/zh-hant/blog/linebot-chatgpt">群組摘要王文章</a>，如今用 Gemini Pro 再做一次效果也會差不多，當時的作法是用 Golang 的 queue 方式去處理，以下介紹另一個作法 - 用 Firebase 當作對話 session 的儲存位置，實現記憶這件事</p>
-<p><a href="https://line-tw-official.weblog.to/archives/25515573.html">2023&#x2F;11&#x2F;06 訊息摘要功能上線！用 AI 總結社群聊天室訊息！</a></p>
-<p>這次做的摘要王主要用以下技術，設定細節請參考「<a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a>」：</p>
-<ul>
-<li>Firebase<ul>
-<li>儲存對話歷史</li>
-</ul>
-</li>
-<li>Gemini Pro<ul>
-<li>透過 Firebase 的歷史對話，協助判斷</li>
-</ul>
-</li>
-<li>以下選填<ul>
-<li>Cloud Run: 部署用</li>
-<li>Python: 快速開發</li>
-</ul>
-</li>
-</ul>
-<p>接著建立一個群組，並將剛剛建立的官方帳號邀請進去，此步驟需要到 LINE Dev Console 設定，否則會邀請不進去。</p>
-<p>邀請進去後，群組內從 <a href="https://today.line.me/tw/v3/tab">LINE TODAY</a> 中抓取新聞片段貼貼至群組中，接著打上 <code>!摘要</code> 讓 LINE Bot 幫你整理！</p>
-<blockquote>
-<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115">Sample code</a><br>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</p>
-</blockquote>
-<h3 id="結果截圖"><a href="#結果截圖" class="headerlink" title="結果截圖"></a>結果截圖</h3><p><img src="https://nijialin.com/images/2024/gemini-workshop/result.jpg"></p>
-<h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
-<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
-<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
-<li><code>需要註冊</code>且拿到<code>授權碼</code></li>
-</ul>
-<blockquote>
-<p>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt<br>抓取天氣 API 的 <a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/weather.py#L7">Python code</a></p>
-</blockquote>
-<h2 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
-<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
-<ul>
-<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
-<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
-<li>可以試著用時間套件+判斷式來檢測</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
-
-<h2 id="地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像"><a href="#地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像" class="headerlink" title="地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)"></a>地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
-<blockquote>
-<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/common.py#L30">SkatePark code</a></p>
-</blockquote>
-<blockquote>
-<p>以下的 code 的網址為範例，可以抓任何網址為 <code>.jpg</code> 結尾的丟進去試試看。<br>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt</p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/1c8f104eae54a3bcb23aad2347211064.js"></script>
-
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Cloud Run</tag>
-        <tag>Open Data</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>只有 Status page 還不夠！講人話才知道 Infra 發生什麼事</title>
-    <url>/2024/08/05/line-bot-gemini-for-status-page-analyze/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，以下是我在 <a href="https://coscup.org/2024/zh-TW/session/AEJHAC">COSCUP 2024</a> 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！</p>
-<span id="more"></span>
-
-<h1 id="什麼是-Status-Page"><a href="#什麼是-Status-Page" class="headerlink" title="什麼是 Status Page?"></a>什麼是 Status Page?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=17" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>Status Page 是一個專門用來確認與查看系統、服務或是各種應用程式執行狀態的網頁。除了監測狀態，大部分也都能接上各家通知系統，當服務出現狀況時，可以即時通知服務開發者，通常 Status Page 的功能包括：</p>
-<ul>
-<li>即時狀態：顯示當前服務的執行狀態，大致份為「正常」、「部分中斷」、「完全中斷」…etc</li>
-<li>歷史記錄：記錄過去的服務中斷事件、維護活動和其他相關事件，更多可以往後推算 SLA、SLO…etc</li>
-<li>通知：讓用戶訂閱狀態更新通知，透過電子郵件、通訊軟體或其他方式接收通知</li>
-</ul>
-<h2 id="使用-Status-Page-的優點"><a href="#使用-Status-Page-的優點" class="headerlink" title="使用 Status Page 的優點"></a>使用 Status Page 的優點</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
-
-<ul>
-<li>對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴</li>
-</ul>
-<blockquote>
-<p>每當服務越來越多時，很多時候都分身乏術，或許大家可以考慮架設一個 Status Page 來監控自家服務，幫忙分攤一些 effort</p>
-</blockquote>
-<h2 id="為什麼要自架-Uptime-Kuma？他又是什麼？"><a href="#為什麼要自架-Uptime-Kuma？他又是什麼？" class="headerlink" title="為什麼要自架 Uptime Kuma？他又是什麼？"></a>為什麼要自架 Uptime Kuma？他又是什麼？</h2><p>Uptime Kuma 是一個開源且能夠自行管理的監控工具，專門用來監控各種網站和服務的可用性。以下簡單列出一些使用 Uptime Kuma 的優點：</p>
-<ul>
-<li>開源和免費：開源的監控系統，任何人都可以根據自家需求免費使用和調整</li>
-<li>自主管理：你可以在自己的伺服器上運行 Uptime Kuma，完全掌控數據和配置，確保數據隱私和安全。</li>
-<li>簡單易用：Uptime Kuma 提供直觀的用戶界面，易於設置和使用，適合各種技術水平的用戶。</li>
-<li>多種監控選項：支援多種監控類型，包括 HTTP(s)、TCP、Ping、DNS、Push 等，滿足不同的監控需求</li>
-<li>各種通知管道：如電子郵件、Slack、LINE Messaging API、Webhook…etc，確保重要的狀態變更能夠及時傳達</li>
-<li>歷史數據和報告：提供詳細的歷史數據和報告，幫助你分析服務性能和可用性</li>
-</ul>
-<h2 id="架設建議"><a href="#架設建議" class="headerlink" title="架設建議"></a>架設建議</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=27" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>很多時候服務都會放在同一家的雲上(ex: Verda, GCP, AWS..)，但很多時候發生問題時都會是在不同的網路下發生，為了讓監控上能夠更有說服力，會建議將 Status Page 架設在不同的雲上，即便今天雲發生了任何事件，都不會影響到監控系統。</p>
-<blockquote>
-<p>以我自己來說，個人的 Side Project 都放在 GCP 上，而 Status Page 則是放在 fly.io 上面，如果想試看看可以參考<a href="https://github.com/louis70109/uptime-kuma-fly">我的 GitHub</a></p>
-</blockquote>
-<h1 id="如何整合？怎麼讓他人聽懂工程師的語言？"><a href="#如何整合？怎麼讓他人聽懂工程師的語言？" class="headerlink" title="如何整合？怎麼讓他人聽懂工程師的語言？"></a>如何整合？怎麼讓他人聽懂工程師的語言？</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=34" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>對比我工作經驗，以及周遭朋友的工作上，很多時候工作內容都會透過 LINE 傳來傳去，很多時候除了公司最大的群組之外，另外都會有各式小群組去討論不一樣的事情，因此很多時候需要有個 LINE Bot 自動化消化一些錯誤處理，讓第一線工程師可以趕快滅火，以下快速說明可以如何整合</p>
-<h2 id="想像中-Status-Page-能幫到的地方"><a href="#想像中-Status-Page-能幫到的地方" class="headerlink" title="想像中 Status Page 能幫到的地方"></a>想像中 Status Page 能幫到的地方</h2><p><img src="https://nijialin.com/images/2024/status-page/1.png"></p>
-<p>當服務遇到任何問題時</p>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>此次使用的是 <a href="https://github.com/louislam/uptime-kuma/tree/master">uptime-kuma</a>，本來想說可以直接上到 Google Cloud Run 上，除了自己弄不上去以外，也發現 uptime kuma 是使用 SQLite 來儲存資訊，這邊很有可能被 <a href="https://nijialin.com/2020/02/15/serverless-cold-start/">Cold Start 的問題</a>打到，因此這次使用 fly.io 來部署(<a href="https://github.com/louis70109/uptime-kuma-fly/blob/main/fly.toml">民間版本.toml</a>)</p>
 <ol>
-<li>先透過 webhook 傳進 LINE Bot Server</li>
-<li>Server 依照相關 log 查詢服務的倉庫裡面是否有囤放其他 log (prometheus, loki, SQL…etc)</li>
-<li>將相關資料傳送給 Server 去分析 (<a href="https://github.com/louis70109/line-bot-status-analyze/blob/main/controller/kuma_controller.py#L37">prompt URL</a>) 並傳到 LINE 群組裡</li>
-<li>依照嚴重程度決定要轉發到哪個群組<ol>
-<li>分享案例：Error Log 也可以依照嚴重程度決定讓 Bot 自動發到指定群組，普遍會有 1~3 個群組，大的服務有機會到 5 個</li>
-<li>適時的接上 oncall 系統也是不錯</li>
+<li>有許多的 notification 可以串接，有支援 LINE Bot &amp; Notify</li>
 </ol>
+<p><img src="https://nijialin.com/images/2024/kuma/notification.png"></p>
+<ol start="2">
+<li><p>初次進去就可以設帳密，但帳號只能一個還改不了 🫣</p>
 </li>
-<li>人手一個 LINE，透過 LINE Bot 來推送訊息可以做更多客製化的內容</li>
+<li><p>可設定群組，統一設定 notification 而不用各別弄</p>
+</li>
+<li><p>還沒研究怎麼把 SQLite 拔出來，看來有支援 MySQL</p>
+</li>
+<li><p>備份不求人，直接 Export 就可以了</p>
+</li>
 </ol>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>普遍的 Error log 在網路上通常都會有解法，同等來說 AI 在訓練時應該也都有放入相關的材料，因此依照這些日常系統出現的錯誤來說，都可以透過 AI 有條理的幫忙分析，更直接點可以幫忙 Senior 去教育 Junior 對於錯誤分析的體感，讓團隊對於系統的熟悉程度能夠更快 ✍️</p>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=38" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+<p><img src="https://nijialin.com/images/2024/kuma/backup.png"></p>
+<ol start="6">
+<li>如何部署到 fly.io</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Clone 專案到本地</span></span><br><span class="line">git clone https:<span class="string">//github.com/louis70109/uptime-kuma-fly.git</span></span><br><span class="line"><span class="comment"># 進入資料夾</span></span><br><span class="line"><span class="keyword">cd</span> uptime-kume-fly/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署，原先指令是 flyctl</span></span><br><span class="line">fly launch \</span><br><span class="line">  <span class="params">--copy-config</span> \</span><br><span class="line">  <span class="params">--auto-confirm</span> \</span><br><span class="line">  <span class="params">--ha=false</span> \</span><br><span class="line">  <span class="params">--name</span> uptime-kuma-nijia \</span><br><span class="line">  <span class="params">--now</span></span><br></pre></td></tr></table></figure>
 
-<p>有鑒於最近許多 Vision 的 AI 分析越來越多，個人用起來的體感真的滿不錯，雖然費用不便宜，但各家 AI 也應該都還有免費方案可以用</p>
-<p>最後，有些跟資安或是個資的東西其實不適合透過 API 打給雲端廠商，有些開發者應該會被要求要自架 AI model(<a href="https://ai.google.dev/gemma?hl=zh-tw">Gemma</a> || <a href="https://llama.meta.com/">Llama</a>)，這時可以透過 <a href="https://groq.com/">GROQ</a> 這個服務測試看看，雖然在串接上還是透過 API 實驗，但至少可以先測測 model 帶來的火力，再決定要不要花時間架起來～</p>
-<p>如果以上的內容對你有幫助，歡迎各位分享出去！</p>
-<p><a href="https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+<ol start="7">
+<li>如果想要在 fly.io 上客製化 domain，例如：<code>status.YOURDOMAIN.com</code></li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">fly certs <span class="built_in">create</span> <span class="built_in">status</span>.YOURDOMAIN.com</span><br><span class="line">fly certs <span class="built_in">create</span> <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br><span class="line">fly certs show <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
 ]]></content>
       <categories>
-        <category>研討會</category>
+        <category>Serverless</category>
       </categories>
       <tags>
-        <tag>LINE Bot</tag>
+        <tag>Serverless</tag>
+        <tag>Fly.io</tag>
+        <tag>Monitor</tag>
         <tag>Uptime Kuma</tag>
-        <tag>Gemini</tag>
-        <tag>AI</tag>
-        <tag>Status Page</tag>
       </tags>
   </entry>
   <entry>
@@ -19209,6 +18982,233 @@ img[alt~="center"] {
         <tag>Manico</tag>
         <tag>Chrome</tag>
         <tag>翻譯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
+    <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
+<span id="more"></span>
+
+<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<ul>
+<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
+<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
+<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
+<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
+<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a></li>
+</ul>
+<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
+<blockquote>
+<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
+</blockquote>
+<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
+
+<h1 id="先部署-從-Cloud-Run-介面來連結-GitHub-持續部署"><a href="#先部署-從-Cloud-Run-介面來連結-GitHub-持續部署" class="headerlink" title="先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署"></a>先部署 - 從 Cloud Run 介面來連結 GitHub 持續部署</h1><ol>
+<li>首先先 fork 專案 - <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，方便後續操作</li>
+<li>接著到 <a href="https://console.cloud.google.com/run?referrer=search&hl=zh-tw">Cloud Run 首頁</a>，點選上方的<code>建立服務</code></li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/select.jpeg"></p>
+<ol start="3">
+<li>選擇外部資源(GitHub)，從專案中來偵測部署，此步驟後續會連動 GitHub</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/detail.jpeg"></p>
+<ol start="4">
+<li>此步驟需要確保<code>認證</code>以及<code>Ingress control</code> 的部分，因為從 LINE 伺服器打來的流量對 Google Cloud 來說都是外來的，因此需要確定選項</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/env_setting.png"></p>
+<ol start="5">
+<li>在部署之前，需要先設定環境變數，避免後續部署失敗；把該放入的環境變數放入<ol>
+<li>環境變數清單請看 <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/.env.sample">GitHub URL</a></li>
+<li>LINE bot &#x2F; GEMINI pro &#x2F; Firebase 的取得詳細請往前看 <code>事前準備</code></li>
+<li>API_ENV 需要為 <code>production</code>，否則會找 .env 檔案位置</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/github_ci.jpeg"></p>
+<ol start="6">
+<li>在部署的同時可以到 GitHub 專案上看看部署的連動狀態，如此一來只要 GitHub 專案只要有更改，就會自動部署過去 Cloud Run</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/complete.jpeg"></p>
+<p>完成之後就可以在 Cloud Run 介面上看到 Container 建立完成也部署上去</p>
+<h1 id="摘要王-v2"><a href="#摘要王-v2" class="headerlink" title="摘要王 v2"></a>摘要王 v2</h1><p>在 2022 年底，Evan 寫了一篇如何透過 ChatGPT + LINE Bot 的<a href="https://engineering.linecorp.com/zh-hant/blog/linebot-chatgpt">群組摘要王文章</a>，如今用 Gemini Pro 再做一次效果也會差不多，當時的作法是用 Golang 的 queue 方式去處理，以下介紹另一個作法 - 用 Firebase 當作對話 session 的儲存位置，實現記憶這件事</p>
+<p><a href="https://line-tw-official.weblog.to/archives/25515573.html">2023&#x2F;11&#x2F;06 訊息摘要功能上線！用 AI 總結社群聊天室訊息！</a></p>
+<p>這次做的摘要王主要用以下技術，設定細節請參考「<a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a>」：</p>
+<ul>
+<li>Firebase<ul>
+<li>儲存對話歷史</li>
+</ul>
+</li>
+<li>Gemini Pro<ul>
+<li>透過 Firebase 的歷史對話，協助判斷</li>
+</ul>
+</li>
+<li>以下選填<ul>
+<li>Cloud Run: 部署用</li>
+<li>Python: 快速開發</li>
+</ul>
+</li>
+</ul>
+<p>接著建立一個群組，並將剛剛建立的官方帳號邀請進去，此步驟需要到 LINE Dev Console 設定，否則會邀請不進去。</p>
+<p>邀請進去後，群組內從 <a href="https://today.line.me/tw/v3/tab">LINE TODAY</a> 中抓取新聞片段貼貼至群組中，接著打上 <code>!摘要</code> 讓 LINE Bot 幫你整理！</p>
+<blockquote>
+<p>摘要王 v2 - <a href="https://github.com/louis70109/linebot-gemini-summarize/blob/main/main.py#L115">Sample code</a><br>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</p>
+</blockquote>
+<h3 id="結果截圖"><a href="#結果截圖" class="headerlink" title="結果截圖"></a>結果截圖</h3><p><img src="https://nijialin.com/images/2024/gemini-workshop/result.jpg"></p>
+<h1 id="整合天氣模組"><a href="#整合天氣模組" class="headerlink" title="整合天氣模組"></a>整合天氣模組</h1><ul>
+<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
+<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
+<li><code>需要註冊</code>且拿到<code>授權碼</code></li>
+</ul>
+<blockquote>
+<p>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt<br>抓取天氣 API 的 <a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/weather.py#L7">Python code</a></p>
+</blockquote>
+<h2 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
+<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
+<ul>
+<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
+<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
+<li>可以試著用時間套件+判斷式來檢測</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
+
+<h2 id="地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像"><a href="#地板是否為濕的？-Extra，需要透過爬蟲抓取-CCTV-影像" class="headerlink" title="地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)"></a>地板是否為濕的？ (Extra，需要透過爬蟲抓取 CCTV 影像)</h2><p>如果你有常常需要外出的活動(跑步、滑板、打球…etc)，在台北經常需要確認天氣，除了看中央氣象局，可以透過 Gemini Vision 當作 OCR 用，判斷地板是不是濕的</p>
+<blockquote>
+<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/utils/common.py#L30">SkatePark code</a></p>
+</blockquote>
+<blockquote>
+<p>以下的 code 的網址為範例，可以抓任何網址為 <code>.jpg</code> 結尾的丟進去試試看。<br>請在專案中的 chatbot 判斷式中加入程式 &amp; 套件放入 requirements.txt</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/1c8f104eae54a3bcb23aad2347211064.js"></script>
+
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Cloud Run</tag>
+        <tag>Open Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>只有 Status page 還不夠！講人話才知道 Infra 發生什麼事</title>
+    <url>/2024/08/05/line-bot-gemini-for-status-page-analyze/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，以下是我在 <a href="https://coscup.org/2024/zh-TW/session/AEJHAC">COSCUP 2024</a> 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！</p>
+<span id="more"></span>
+
+<h1 id="什麼是-Status-Page"><a href="#什麼是-Status-Page" class="headerlink" title="什麼是 Status Page?"></a>什麼是 Status Page?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=17" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>Status Page 是一個專門用來確認與查看系統、服務或是各種應用程式執行狀態的網頁。除了監測狀態，大部分也都能接上各家通知系統，當服務出現狀況時，可以即時通知服務開發者，通常 Status Page 的功能包括：</p>
+<ul>
+<li>即時狀態：顯示當前服務的執行狀態，大致份為「正常」、「部分中斷」、「完全中斷」…etc</li>
+<li>歷史記錄：記錄過去的服務中斷事件、維護活動和其他相關事件，更多可以往後推算 SLA、SLO…etc</li>
+<li>通知：讓用戶訂閱狀態更新通知，透過電子郵件、通訊軟體或其他方式接收通知</li>
+</ul>
+<h2 id="使用-Status-Page-的優點"><a href="#使用-Status-Page-的優點" class="headerlink" title="使用 Status Page 的優點"></a>使用 Status Page 的優點</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
+
+<ul>
+<li>對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴</li>
+</ul>
+<blockquote>
+<p>每當服務越來越多時，很多時候都分身乏術，或許大家可以考慮架設一個 Status Page 來監控自家服務，幫忙分攤一些 effort</p>
+</blockquote>
+<h2 id="為什麼要自架-Uptime-Kuma？他又是什麼？"><a href="#為什麼要自架-Uptime-Kuma？他又是什麼？" class="headerlink" title="為什麼要自架 Uptime Kuma？他又是什麼？"></a>為什麼要自架 Uptime Kuma？他又是什麼？</h2><p>Uptime Kuma 是一個開源且能夠自行管理的監控工具，專門用來監控各種網站和服務的可用性。以下簡單列出一些使用 Uptime Kuma 的優點：</p>
+<ul>
+<li>開源和免費：開源的監控系統，任何人都可以根據自家需求免費使用和調整</li>
+<li>自主管理：你可以在自己的伺服器上運行 Uptime Kuma，完全掌控數據和配置，確保數據隱私和安全。</li>
+<li>簡單易用：Uptime Kuma 提供直觀的用戶界面，易於設置和使用，適合各種技術水平的用戶。</li>
+<li>多種監控選項：支援多種監控類型，包括 HTTP(s)、TCP、Ping、DNS、Push 等，滿足不同的監控需求</li>
+<li>各種通知管道：如電子郵件、Slack、LINE Messaging API、Webhook…etc，確保重要的狀態變更能夠及時傳達</li>
+<li>歷史數據和報告：提供詳細的歷史數據和報告，幫助你分析服務性能和可用性</li>
+</ul>
+<h2 id="架設建議"><a href="#架設建議" class="headerlink" title="架設建議"></a>架設建議</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=27" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>很多時候服務都會放在同一家的雲上(ex: Verda, GCP, AWS..)，但很多時候發生問題時都會是在不同的網路下發生，為了讓監控上能夠更有說服力，會建議將 Status Page 架設在不同的雲上，即便今天雲發生了任何事件，都不會影響到監控系統。</p>
+<blockquote>
+<p>以我自己來說，個人的 Side Project 都放在 GCP 上，而 Status Page 則是放在 fly.io 上面，如果想試看看可以參考<a href="https://github.com/louis70109/uptime-kuma-fly">我的 GitHub</a></p>
+</blockquote>
+<h1 id="如何整合？怎麼讓他人聽懂工程師的語言？"><a href="#如何整合？怎麼讓他人聽懂工程師的語言？" class="headerlink" title="如何整合？怎麼讓他人聽懂工程師的語言？"></a>如何整合？怎麼讓他人聽懂工程師的語言？</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=34" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>對比我工作經驗，以及周遭朋友的工作上，很多時候工作內容都會透過 LINE 傳來傳去，很多時候除了公司最大的群組之外，另外都會有各式小群組去討論不一樣的事情，因此很多時候需要有個 LINE Bot 自動化消化一些錯誤處理，讓第一線工程師可以趕快滅火，以下快速說明可以如何整合</p>
+<h2 id="想像中-Status-Page-能幫到的地方"><a href="#想像中-Status-Page-能幫到的地方" class="headerlink" title="想像中 Status Page 能幫到的地方"></a>想像中 Status Page 能幫到的地方</h2><p><img src="https://nijialin.com/images/2024/status-page/1.png"></p>
+<p>當服務遇到任何問題時</p>
+<ol>
+<li>先透過 webhook 傳進 LINE Bot Server</li>
+<li>Server 依照相關 log 查詢服務的倉庫裡面是否有囤放其他 log (prometheus, loki, SQL…etc)</li>
+<li>將相關資料傳送給 Server 去分析 (<a href="https://github.com/louis70109/line-bot-status-analyze/blob/main/controller/kuma_controller.py#L37">prompt URL</a>) 並傳到 LINE 群組裡</li>
+<li>依照嚴重程度決定要轉發到哪個群組<ol>
+<li>分享案例：Error Log 也可以依照嚴重程度決定讓 Bot 自動發到指定群組，普遍會有 1~3 個群組，大的服務有機會到 5 個</li>
+<li>適時的接上 oncall 系統也是不錯</li>
+</ol>
+</li>
+<li>人手一個 LINE，透過 LINE Bot 來推送訊息可以做更多客製化的內容</li>
+</ol>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>普遍的 Error log 在網路上通常都會有解法，同等來說 AI 在訓練時應該也都有放入相關的材料，因此依照這些日常系統出現的錯誤來說，都可以透過 AI 有條理的幫忙分析，更直接點可以幫忙 Senior 去教育 Junior 對於錯誤分析的體感，讓團隊對於系統的熟悉程度能夠更快 ✍️</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=38" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>有鑒於最近許多 Vision 的 AI 分析越來越多，個人用起來的體感真的滿不錯，雖然費用不便宜，但各家 AI 也應該都還有免費方案可以用</p>
+<p>最後，有些跟資安或是個資的東西其實不適合透過 API 打給雲端廠商，有些開發者應該會被要求要自架 AI model(<a href="https://ai.google.dev/gemma?hl=zh-tw">Gemma</a> || <a href="https://llama.meta.com/">Llama</a>)，這時可以透過 <a href="https://groq.com/">GROQ</a> 這個服務測試看看，雖然在串接上還是透過 API 實驗，但至少可以先測測 model 帶來的火力，再決定要不要花時間架起來～</p>
+<p>如果以上的內容對你有幫助，歡迎各位分享出去！</p>
+<p><a href="https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>LINE Bot</tag>
+        <tag>Gemini</tag>
+        <tag>AI</tag>
+        <tag>Uptime Kuma</tag>
+        <tag>Status Page</tag>
       </tags>
   </entry>
 </search>
