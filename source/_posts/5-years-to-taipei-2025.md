@@ -1,5 +1,5 @@
 ---
-title: 【標題】題目
+title: 轉換期的反思
 categories: 學習紀錄
 date: 2025-07-03 12:46:16
 tags:
