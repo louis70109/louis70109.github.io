@@ -17671,52 +17671,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>【標題】題目</title>
-    <url>/2025/07/03/5-years-to-taipei-2025/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>這陣子經歷太多內心上的變化，想說趁著出差期間，回顧並整理來台北後第五年的一些經歷，好好思考一下這些日子來的想法，希望未來在回顧這篇時不會太尷尬 😆</p>
-<span id="more"></span>
-
-<h2 id="Change-Responsibility-from-DevRel-to-Software-Engineer"><a href="#Change-Responsibility-from-DevRel-to-Software-Engineer" class="headerlink" title="Change Responsibility from DevRel to Software Engineer"></a>Change Responsibility from DevRel to Software Engineer</h2><p>2024 時，我參與了公司的 side project，試著從專案管理的角度參與開發項目，雖然專案最後 sunset，但經歷過這次經驗，從前輩們身上學到很多過往的經驗以及技巧，從專案的視野廣闊度到每行 code 的細節都要盡可能掌握</p>
-<p>爾後，除了日常招募與活動之外，也開始跟在資深同事身邊學習系統架構與設計，並在今年組織重整之後，正式被調到內部研發團隊，開始著手系統設計以及服務維運的工作內容</p>
-<p>期間開始了第一個系統設計，公司內設有架構審核的機制，所有專案都得送審，在這流程我也是被徹底的電了一波 😆，也體會到自己在思考架構的細心程度還不透徹，就目前的專案也靠著現在的團隊夥伴幫忙，從開發上給予&amp;討論不同的設計方式，讓系統可以順利開發</p>
-<p>有了這段日子的經驗與反思，才知道當時資深前輩們提醒的東西重要性在哪，日後有其他專案時，要想清楚再做，避免開發後多浪費了其他時間</p>
-<h3 id="Keep-doing-DevRel-things"><a href="#Keep-doing-DevRel-things" class="headerlink" title="Keep doing DevRel things"></a>Keep doing DevRel things</h3><blockquote>
-<p>在 DevRel 新職缺打開之後，沒想到迴響非常大，內外都有許多人來應徵此職缺</p>
-</blockquote>
-<p>去年很可惜因為骨折無法參加 Tech Week，感恩公司今年提供我個工作人員名額可以參加這盛會，這次活動安排期間剛好有現在專案上的東西在燒腦，兩個並行真的是特別燒腦😱，好在 Evan 幫忙了非常多事情，才能讓這次的活動順利出發，然後同事們順利抵達日本並順利執行</p>
-<p>而在這次的 Tech Week 演講期間也獲得到許久不見的成就感，帶著講者同事從休息室到講台，確保整體活動順利外，也在當中幫忙心理建設，提供一些演講上的建議跟注意事項，看著他們能夠順利分享完內容，內心就放下大石鬆一口氣，我就覺得有幫助到特別有成就感。日後要將這重責大任交棒給新人，希望她能夠做出更不一樣風格，而我還是會懷念在每個時刻所獲得的能量！</p>
-<blockquote>
-<p>雖然站了兩天腳都起水泡了，但這樣的負擔是值得的！</p>
-</blockquote>
-<h3 id="Handover-book"><a href="#Handover-book" class="headerlink" title="Handover book"></a>Handover book</h3><p>說到工作上相關事情，近期在公司內開始洋洋灑灑的寫交接日誌，把古今中外 DevRel 要做的事情都寫下來，發現寫的內容是平常做事習慣都沒感覺，寫的當下才發現這些細節，過去在執行上踩了非常多坑，時至今日發現一旦漏了誰，都會讓每次的案子出麻煩…也希望透過文件的方式，讓後續接手的人能基於這些內容，更進一步發揮職能跟個人特色 🏆</p>
-<h3 id="I-have-another-opinions-with-DevRel…"><a href="#I-have-another-opinions-with-DevRel…" class="headerlink" title="I have another opinions with DevRel…"></a>I have another opinions with DevRel…</h3><p>日常在社交過程中，偶爾會有人認為不就只是做做活動，弄得光鮮亮麗就好。其實在這邊的工作過程中，大至跨部門會議小至每次的對談，都會需要事先準備並且要有 take away，我們很把握每次對談的機會，延續每次的對談甚至可以合作，讓未來的專案上不只是個普通活動，而是可以蹦出更多新的作法跟別的公司不一樣</p>
-<p>我也常跟人家分享，其實在對話中是有技巧的，這些方法可不是短時間可以學會，而是要透過大量閱讀、資訊吸收、反思、練習才能學會的技能，雖然很多時候我們都會希望直話直說，但就直話直說也是有技巧的，需要考量當下氣氛跟對方狀態，很多時候即便你無心，話語中都會帶刺，做一個能溫柔對話的人，才能讓人願意幫你在人生這條路上推進一些事情💡</p>
-<blockquote>
-<p>也有可能我從小耳濡目染學會了一些現在能用的對話技巧</p>
-</blockquote>
-<p>DevRel 有別於一般的工程職位，除了要會公關&#x2F;行銷技巧外，更有程式能力來執行一些天馬行空的點子，才能在許多地方脫癮而出，也或許這樣，才造成這麼多迴響？</p>
-<h2 id="About-my-other-working"><a href="#About-my-other-working" class="headerlink" title="About my other working"></a>About my other working</h2><p>當 R&amp;R 開始逐步混合執行到管理層面，許多事情的期待就不會是只有做好那麼簡單，而是要開始思考團隊發展、配合開發治理、系統通用性…等等，雖然在這過程中異常的繁雜以及需要大量的溝通，也是普遍大家都會很討厭這樣的事情，但我想任何一種挑戰來都會是個成長機會，當掌握的資訊越多，對於整體的效率以及團隊的發展就會越有幫助，也期待哪天摸熟了之後能夠讓自己的才能發揮最大化</p>
-<p>另外也常跟公司內剛開始工作的小伙子提到，在本職該做到的事情逐漸上手時，要開始嘗試不同的領域的東西，才不會把自己眼光限縮在一個領域，看得廣才知道自己想要什麼，想學深&#x2F;廣才會有選擇權</p>
-<p><img src="https://nijialin.com/images/2025/important.jpg"></p>
-<p>就像我在加入 LINE 之前，常常會很執著於一些無傷大雅的小事上，經歷過這幾年的洗禮，回頭更能清楚知道這些小細節的重要性以及優先權，日後再做任何事情都需要先冷靜下來，將事情規劃好再執行，可以避免浪費掉太多時間</p>
-<blockquote>
-<p>畢竟我是個單核單頻的生物 😆</p>
-</blockquote>
-<h2 id="Mentality"><a href="#Mentality" class="headerlink" title="Mentality"></a>Mentality</h2><p>在 Threads 上寫過一段話想給新進同事：「不論剛剛工作上發生什麼事情，下一秒都要想盡辦法正向往前看」，作為一個稱職的文化傳遞者除了要非常非常 非 常 外向以外，還要能隨時給予正能量，幫助團隊成員正向看事情，引進不同的想法並試著讓它融入於團隊中，才能養成團隊文化，進而讓所有事情有所變化，甚至在日常作業上能夠更通順</p>
-<p>但在上半年突然心態很容易受影響，不論是工作上或是生活上都會有些小挫折，雖然這些挫折都不是大事，但卻會讓我覺得異常的沮喪，做任何事都會想太多調整不回來，導致很多安排都失衡</p>
-<p>分水嶺應該在開刀日子確定好之後，才逐漸雨過天晴，也許是因為有了明確的目標，讓我能夠有努力的目標，並且開始調整自己的心態並開始走出戶外，讓自己能夠回復狀態來面對生活與工作</p>
-<p>經歷過心態被來回拉扯的狀態實在是很不好受，導致經常半夜嚇醒，這時也會回想去年這時候也是因此過勞狀態。因此花了一些時間，接受自己的情緒，消化負能量，接受胡思亂想的自己，把自己的生活跟感情的知覺重新拉出來，才不會讓自己淪為工作機器，變成一個無知覺的生物</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在工作上作為一個 DevRel 要懂的東西需要很廣，也因為有了這段經歷，才有辦法有條有理的處理掉身邊說有遇到的事情，而且在任何關係上，能同時運用在家族學的經驗，更懂的飲水思源，該報恩的時候就要即時</p>
-<p>其實很多工作上的經驗也是反映到日常生活上的待人處事，如果人品跟品格不夠好，其實很多時候就不小心打壞關係，導致事情非常難做，甚至就接著影響到未來工作&#x2F;任何機會</p>
-<p>既然現在也選擇轉換跑道繼續前進，也要把曾經最沒自信的部分給拉起來，並且帶著過往所學的總總+個人特質繼續前進，不能讓這些年所學的東西被浪費掉！</p>
-<p>最後，這篇不是離職文，只是剛好有空檔時間有感而發🫢，在這份工作當中真的學到太多東西，如果有機會實體遇到我，我可以再來分享更多的歷程❤️‍🔥</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-  </entry>
-  <entry>
     <title>【青森】滑雪紀錄, 從秋田機場出發</title>
     <url>/2024/03/02/aomori-sonwboarding-202402/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/2024/aomori/S__19750974_0.jpg"></p>
@@ -18645,120 +18599,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>Save your time - TECH FRESH 畢業分享會 2024 @ LINE</title>
-    <url>/2024/05/20/line-tech-fresh-graduation-2024/</url>
-    <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689497803877.png?updatedAt=1689497805000"></p>
-<ul>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E4%BB%8B%E7%B4%B9">活動介紹</a><ul>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E8%B3%87%E8%A8%8A">活動資訊</a></li>
-</ul>
-</li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%AD%B7%E5%8F%B2%E5%85%B8%E6%95%85">活動歷史典故</a></li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%B5%81%E7%A8%8B">活動流程</a></li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E7%B5%90%E8%AB%96">結論</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好！我們是 LINE Developer Relations 團隊，很高興向大家介紹一個特別的活動——<strong>2024 年 6 月 18 日</strong>舉行的 <strong>TECH FRESH 畢業分享會</strong>。去年我們首次開放對外的分享會，現場引起了取多迴響，我們在這個活動上學到了很多，因此希望透過今年的舉辦，能與更多同學分享我們 LINE TECH FRESH 的成長和收穫。</p>
-<span id="more"></span>
-
-<h1 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h1><p>在這個分享會中，我們的實習生將站上舞台，分享他們在 LINE 的點滴和成就，不僅能聽到第一手的實習經驗，還能深入了解 LINE 的工作環境與文化。無論你是對軟體生態充滿熱情的學生，還是正在尋找職業發展方向的求職者，我們都誠摯地邀請你來參加這場盛會。讓我們一起在這個活動中學習、交流、成長，為未來創造更多可能。</p>
-<h2 id="活動資訊"><a href="#活動資訊" class="headerlink" title="活動資訊"></a>活動資訊</h2><p>活動：LINE TECH FRESH 畢業分享會<br>時間：<code>2024/06/18 18:00~21:30</code> (17:40 開放入場)<br>地點：LINE 台灣總部<br>報名：<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a></p>
-<h1 id="活動歷史典故"><a href="#活動歷史典故" class="headerlink" title="活動歷史典故"></a>活動歷史典故</h1><p>去年首次對外公開，小小的空間(圖片)，現場人數也來到近百人，有許多同學來了解 LINE TECH FRESH 在軟體領域的耕耘成果，沒參加過的同學可能會很好奇，那畢業分享會到底在做什麼？以下概略地跟讀者介紹，並且可以搭配下文的<code>活動流程</code>搭配使用喔！</p>
-<p>在 2023 年之前，TECH FRESH 會在畢業前夕，與 LINE 內部所有同仁分享整年的戰果，而 Mentor 也會在其中鼓勵同學並且提點未來軟體道路的一些眉眉角角。 (參考以下文)</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
-</ul>
-<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689498034174.jpg?updatedAt=1689498035000"></p>
-<p>而在同學的內容整理當中，我們發現大家的內容都相當有料，思考著如何讓更多人瞭解 TECH FRESH 整年的實習過程究竟對職涯多有幫助，因此在去年我們決定對外展開。現場效果非常棒，將近有** 80 位來自不同學校的同學**參加，並且現場許多同學就直接交流起來，了解 TECH FRESH 們在當時考慮實習的顧慮點，以及後續的規劃，相信這會是一場讓參加的同學們收穫滿滿的活動！</p>
-<p>今年我們一樣邀請應屆畢業生，與大家分享更不同層面的內容，詳細內容跟我們一起參考以下內容：</p>
-<h1 id="活動流程"><a href="#活動流程" class="headerlink" title="活動流程"></a>活動流程</h1><p>這次的活動將會有以下幾個部分：</p>
-<ul>
-<li>Keynote：由 TECH FRESH people manager - Evan 為大家分享東西</li>
-<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
-<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
-<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長姐，讓你更深入地了解我們的實習生們的經驗和感想。</li>
-</ul>
-<blockquote>
-<p>活動僅開放給學生身分參加(現場審核)，同時現場將提供餐飲及小點心，因此歡迎各大專院校同學共襄盛舉 LINE TECH FRESH 畢業分享會！</p>
-</blockquote>
-<ul>
-<li>18:00~18:05 開場</li>
-<li>18:05~18:20 <strong>從實習到專家：LINE TECH FRESH 的成長軌跡</strong> Evan Lin</li>
-<li>18:20~18:40 <strong>蔡 EC：24 歲開發一次成功</strong> Chiu Winnie, Yang Lauren</li>
-<li>18:40~19:00 <strong>QA 蝦米 QA？我的扣超讚的啊</strong> Chen YT, Tsai Lawrence</li>
-<li>19:00~19:20 <strong>這就很玄囉 從粽子看開發的世界</strong> Shin Chris, Chang Young</li>
-<li>19:20~19:40 <strong>從混亂到掌控：使用 Observability 揭開管家的神秘面紗</strong> Wu Tristan, Hu Gary</li>
-<li>19:40~20:00 攤位時間 (EC, Content, Central)</li>
-<li>20:00~20:40 Lightning Talk<ul>
-<li><strong>你在 DevOps 什麼啦，我要趕快上線！</strong> Wu Calista, Lee Ryan</li>
-<li><strong>寫出不管地震怎麼搖，都能確保網站都不會壞的前端測試</strong>  Chen Yu</li>
-<li><strong>一起來跑 TDD，直到完成 User Story 為止</strong> Lu Brandon</li>
-</ul>
-</li>
-<li>20:40 ~ 20:50 大合照 @ 2F &amp; Ending</li>
-<li>20:50 ~ 21:00 Q&amp;A 自由活動空間</li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這麼精彩內容如果錯過就要再等一年囉！趕快按下報名👉<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a>，並邀請週遭同學們一起來參加！更多 TECH FRESH 內容請參考以下清單，那我們就 2024&#x2F;06&#x2F;18 見啦！</p>
-<ol>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/techfresh-2024">LINE 實習筆記：TECH FRESH 的軟體探險之旅</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/line-tech-fresh-2024-summer">LINE TECH FRESH 2024 Summer Class 招募相關說明 (時程, 職缺)</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/frontend-try-exception-sitcon-2024">沒想過的前端錯誤處理 可能比你有做的還多 @ SITCON 2024</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/kubernetes-config-Secret-testing-with-twokey-testing-principles">LINE 旅遊 - How We Conduct Automated Kubernetes Config and Secret Testing with Two Key Testing Principles</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/From-Classroom-to-Data-Team-My-Journey-at-LINE">From Classroom to Data Team: My Journey @ LINE</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/beyond-development-as-a-tech-fresh">Beyond Development: Exploring the Multifaceted World of Engineering at LINE as a TECH FRESH</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-video-creator-to-qa-internship">關於我從拍片仔轉職 QA 的那件事</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/implementation-myself-by-different-department">非本科，又如何？ — 論非本科的自我實踐之路</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/embarking-on-a-machine-learning-internship-nycu-csie-visit">進擊的後端: Chris 實習經驗分享 @ 台大_輔大_北醫 GDSC 企業參訪</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/utopian-journey-my-ideal-internship-experience-at-line">Utopian Journey – My Ideal Internship Experience at LINE (臺師大企業參訪演講)</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-heart-to-software-engineering-intern">從心開始的純軟之路 – 一次解答非本科走進軟體業的迷思 @ 臺師大企業參訪</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/ncku-line-visit-2023">實習經驗分享 @ 成功大學企業參訪</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/nccu-gdsc-visit-line-2023/">政治大學 GDSC 校園參訪 - 資料工程 &amp; LINE TRAVEL工程團隊介紹</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/nycu-visit-line-202304/">陽明交大資工系-企業參訪：資料 &amp; 前端工程團隊介紹</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-internship-erin/">LINE 實習大小事</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/Tackle-the-infodemic-of-misinformation-from-LINE/">Tackle the infodemic of misinformation from LINE</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/tmp-visit-line-2023/">臺北醫學大學企業參訪 - Unleashing the Power of NLP : Innovations from LINE Data Dev</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2023-spring/">加入 LINE TECH FRESH，開啟你的職場新鮮人生！@ Vision 臺大校園徵才</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-sharing-at-APCS">APCS 企業參訪 - What is it like to be a LINE TECH FRESH</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-interview-2022">LINE TECH FRESH 2022 面試分享</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/from-line-tech-fresh-to-liner">LINE TECH FRESH: 從實習到成為正職的經歷</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate/">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/what-is-tech-fresh-interview/">【訪談】TECH FRESH 工作老實說 – 後續花絮與相關資訊整理</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/techpulse-2020-tech-fresh-session/">TECHPULSE 2020 青春主場 – TECH FRESH 議程與攤位介紹</a></li>
-</ol>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>TECH FRESH</tag>
-        <tag>Hiring</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LINE TECH FRESH 2024 畢業分享會精彩回顧</title>
     <url>/2024/06/27/line-techfresh-graduation-2024-result/</url>
     <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2-vcfc68aynwenkh3bno0ixfx8/1719472774665.png?updatedAt=1719472776000"></p>
@@ -18888,6 +18728,120 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>TECH FRESH</tag>
         <tag>Internship</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Save your time - TECH FRESH 畢業分享會 2024 @ LINE</title>
+    <url>/2024/05/20/line-tech-fresh-graduation-2024/</url>
+    <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689497803877.png?updatedAt=1689497805000"></p>
+<ul>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E4%BB%8B%E7%B4%B9">活動介紹</a><ul>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E8%B3%87%E8%A8%8A">活動資訊</a></li>
+</ul>
+</li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%AD%B7%E5%8F%B2%E5%85%B8%E6%95%85">活動歷史典故</a></li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%B5%81%E7%A8%8B">活動流程</a></li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E7%B5%90%E8%AB%96">結論</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好！我們是 LINE Developer Relations 團隊，很高興向大家介紹一個特別的活動——<strong>2024 年 6 月 18 日</strong>舉行的 <strong>TECH FRESH 畢業分享會</strong>。去年我們首次開放對外的分享會，現場引起了取多迴響，我們在這個活動上學到了很多，因此希望透過今年的舉辦，能與更多同學分享我們 LINE TECH FRESH 的成長和收穫。</p>
+<span id="more"></span>
+
+<h1 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h1><p>在這個分享會中，我們的實習生將站上舞台，分享他們在 LINE 的點滴和成就，不僅能聽到第一手的實習經驗，還能深入了解 LINE 的工作環境與文化。無論你是對軟體生態充滿熱情的學生，還是正在尋找職業發展方向的求職者，我們都誠摯地邀請你來參加這場盛會。讓我們一起在這個活動中學習、交流、成長，為未來創造更多可能。</p>
+<h2 id="活動資訊"><a href="#活動資訊" class="headerlink" title="活動資訊"></a>活動資訊</h2><p>活動：LINE TECH FRESH 畢業分享會<br>時間：<code>2024/06/18 18:00~21:30</code> (17:40 開放入場)<br>地點：LINE 台灣總部<br>報名：<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a></p>
+<h1 id="活動歷史典故"><a href="#活動歷史典故" class="headerlink" title="活動歷史典故"></a>活動歷史典故</h1><p>去年首次對外公開，小小的空間(圖片)，現場人數也來到近百人，有許多同學來了解 LINE TECH FRESH 在軟體領域的耕耘成果，沒參加過的同學可能會很好奇，那畢業分享會到底在做什麼？以下概略地跟讀者介紹，並且可以搭配下文的<code>活動流程</code>搭配使用喔！</p>
+<p>在 2023 年之前，TECH FRESH 會在畢業前夕，與 LINE 內部所有同仁分享整年的戰果，而 Mentor 也會在其中鼓勵同學並且提點未來軟體道路的一些眉眉角角。 (參考以下文)</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
+</ul>
+<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689498034174.jpg?updatedAt=1689498035000"></p>
+<p>而在同學的內容整理當中，我們發現大家的內容都相當有料，思考著如何讓更多人瞭解 TECH FRESH 整年的實習過程究竟對職涯多有幫助，因此在去年我們決定對外展開。現場效果非常棒，將近有** 80 位來自不同學校的同學**參加，並且現場許多同學就直接交流起來，了解 TECH FRESH 們在當時考慮實習的顧慮點，以及後續的規劃，相信這會是一場讓參加的同學們收穫滿滿的活動！</p>
+<p>今年我們一樣邀請應屆畢業生，與大家分享更不同層面的內容，詳細內容跟我們一起參考以下內容：</p>
+<h1 id="活動流程"><a href="#活動流程" class="headerlink" title="活動流程"></a>活動流程</h1><p>這次的活動將會有以下幾個部分：</p>
+<ul>
+<li>Keynote：由 TECH FRESH people manager - Evan 為大家分享東西</li>
+<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
+<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
+<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長姐，讓你更深入地了解我們的實習生們的經驗和感想。</li>
+</ul>
+<blockquote>
+<p>活動僅開放給學生身分參加(現場審核)，同時現場將提供餐飲及小點心，因此歡迎各大專院校同學共襄盛舉 LINE TECH FRESH 畢業分享會！</p>
+</blockquote>
+<ul>
+<li>18:00~18:05 開場</li>
+<li>18:05~18:20 <strong>從實習到專家：LINE TECH FRESH 的成長軌跡</strong> Evan Lin</li>
+<li>18:20~18:40 <strong>蔡 EC：24 歲開發一次成功</strong> Chiu Winnie, Yang Lauren</li>
+<li>18:40~19:00 <strong>QA 蝦米 QA？我的扣超讚的啊</strong> Chen YT, Tsai Lawrence</li>
+<li>19:00~19:20 <strong>這就很玄囉 從粽子看開發的世界</strong> Shin Chris, Chang Young</li>
+<li>19:20~19:40 <strong>從混亂到掌控：使用 Observability 揭開管家的神秘面紗</strong> Wu Tristan, Hu Gary</li>
+<li>19:40~20:00 攤位時間 (EC, Content, Central)</li>
+<li>20:00~20:40 Lightning Talk<ul>
+<li><strong>你在 DevOps 什麼啦，我要趕快上線！</strong> Wu Calista, Lee Ryan</li>
+<li><strong>寫出不管地震怎麼搖，都能確保網站都不會壞的前端測試</strong>  Chen Yu</li>
+<li><strong>一起來跑 TDD，直到完成 User Story 為止</strong> Lu Brandon</li>
+</ul>
+</li>
+<li>20:40 ~ 20:50 大合照 @ 2F &amp; Ending</li>
+<li>20:50 ~ 21:00 Q&amp;A 自由活動空間</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這麼精彩內容如果錯過就要再等一年囉！趕快按下報名👉<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a>，並邀請週遭同學們一起來參加！更多 TECH FRESH 內容請參考以下清單，那我們就 2024&#x2F;06&#x2F;18 見啦！</p>
+<ol>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/techfresh-2024">LINE 實習筆記：TECH FRESH 的軟體探險之旅</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/line-tech-fresh-2024-summer">LINE TECH FRESH 2024 Summer Class 招募相關說明 (時程, 職缺)</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/frontend-try-exception-sitcon-2024">沒想過的前端錯誤處理 可能比你有做的還多 @ SITCON 2024</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/kubernetes-config-Secret-testing-with-twokey-testing-principles">LINE 旅遊 - How We Conduct Automated Kubernetes Config and Secret Testing with Two Key Testing Principles</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/From-Classroom-to-Data-Team-My-Journey-at-LINE">From Classroom to Data Team: My Journey @ LINE</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/beyond-development-as-a-tech-fresh">Beyond Development: Exploring the Multifaceted World of Engineering at LINE as a TECH FRESH</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-video-creator-to-qa-internship">關於我從拍片仔轉職 QA 的那件事</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/implementation-myself-by-different-department">非本科，又如何？ — 論非本科的自我實踐之路</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/embarking-on-a-machine-learning-internship-nycu-csie-visit">進擊的後端: Chris 實習經驗分享 @ 台大_輔大_北醫 GDSC 企業參訪</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/utopian-journey-my-ideal-internship-experience-at-line">Utopian Journey – My Ideal Internship Experience at LINE (臺師大企業參訪演講)</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-heart-to-software-engineering-intern">從心開始的純軟之路 – 一次解答非本科走進軟體業的迷思 @ 臺師大企業參訪</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/ncku-line-visit-2023">實習經驗分享 @ 成功大學企業參訪</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/nccu-gdsc-visit-line-2023/">政治大學 GDSC 校園參訪 - 資料工程 &amp; LINE TRAVEL工程團隊介紹</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/nycu-visit-line-202304/">陽明交大資工系-企業參訪：資料 &amp; 前端工程團隊介紹</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-internship-erin/">LINE 實習大小事</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/Tackle-the-infodemic-of-misinformation-from-LINE/">Tackle the infodemic of misinformation from LINE</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/tmp-visit-line-2023/">臺北醫學大學企業參訪 - Unleashing the Power of NLP : Innovations from LINE Data Dev</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2023-spring/">加入 LINE TECH FRESH，開啟你的職場新鮮人生！@ Vision 臺大校園徵才</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-sharing-at-APCS">APCS 企業參訪 - What is it like to be a LINE TECH FRESH</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-interview-2022">LINE TECH FRESH 2022 面試分享</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/from-line-tech-fresh-to-liner">LINE TECH FRESH: 從實習到成為正職的經歷</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate/">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/what-is-tech-fresh-interview/">【訪談】TECH FRESH 工作老實說 – 後續花絮與相關資訊整理</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/techpulse-2020-tech-fresh-session/">TECHPULSE 2020 青春主場 – TECH FRESH 議程與攤位介紹</a></li>
+</ol>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>TECH FRESH</tag>
+        <tag>Hiring</tag>
       </tags>
   </entry>
   <entry>
