@@ -208,6 +208,134 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/" class="post-title-link" itemprop="url">Day5 - 做一個與 LINE Notify 連動的服務</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-09-20 07:46:15" itemprop="dateCreated datePublished" datetime="2019-09-20T07:46:15+00:00">2019-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/" itemprop="url" rel="index"><span itemprop="name">2019鐵人賽</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="建立-LINE-Notify-服務"><a href="#建立-LINE-Notify-服務" class="headerlink" title="建立 LINE Notify 服務"></a>建立 LINE Notify 服務</h2><p>第一步先到 <a target="_blank" rel="noopener" href="https://notify-bot.line.me/zh_TW/">LINE Notify</a> 管力登入服務去建立一個服務<br><img src="https://i.imgur.com/he0csJI.png"><br>接著按下<code>登入服務</code><br><img src="https://i.imgur.com/iZmktaA.png"><br>把該填的填一填，要注意的是 Callback Url 這邊先暫時先打 localhost:5500，等頁面上傳後再回來改 domain<br><img src="https://i.imgur.com/5zzxTcj.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/VfaWKEs.png"></p>
+<p>建立完成之後就到剛剛填的信箱去收信點下網址並啟動服務<br><img src="https://i.imgur.com/jmZSycQ.png"><br>這樣第一步就建立完成嚕！</p>
+<h2 id="動工"><a href="#動工" class="headerlink" title="動工"></a>動工</h2><p>接著上次的透過上次的專案並使用 flask_restful 來改造成 Restful 格式的專案(後面開發會比較輕鬆)<br>因為我們會讓前端呼叫，CORS 設定成＊比較輕鬆，若是有要設定跨域問題的在這邊設定哦 👏<br>加入套件到 requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flask</span>==<span class="number">1</span>.<span class="number">0</span>.<span class="number">2</span></span><br><span class="line"><span class="attribute">Flask</span>-RESTful==<span class="number">0</span>.<span class="number">3</span>.<span class="number">6</span></span><br><span class="line"><span class="attribute">Flask</span>-Cors==<span class="number">3</span>.<span class="number">0</span>.<span class="number">6</span></span><br><span class="line"><span class="attribute">requests</span>==<span class="number">2</span>.<span class="number">22</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>透過使用 flask_restful 幫忙轉發並管理路由<br>將 api.py 改為以下的 code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Api</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> controller.notify_controller <span class="keyword">import</span> NotifyController</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, resources=&#123;<span class="string">r&quot;*&quot;</span>: &#123;<span class="string">&quot;origins&quot;</span>: <span class="string">&quot;*&quot;</span>, <span class="string">&quot;supports_credentials&quot;</span>: <span class="literal">True</span>&#125;&#125;)</span><br><span class="line">api = Api(app)</span><br><span class="line"></span><br><span class="line">api.add_resource(NotifyController, <span class="string">&#x27;/notify&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>這邊我使用 Postgresql，並在專案底下建立一個 lib&#x2F; 的資料夾，裡頭放著名為 db.py (這裡還是要記得建立 <strong>init</strong>.py 哦！)<br>這邊只簡單建立<a target="_blank" rel="noopener" href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/"> Context Manager </a>讓連線可以被我呼叫。<br>db.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> psycopg2</span><br><span class="line"><span class="keyword">import</span> psycopg2.extras</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Database</span>():</span></span><br><span class="line">    conns = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span>(<span class="params">self</span>):</span></span><br><span class="line">        conn = psycopg2.connect(</span><br><span class="line">            database=PG_DB,</span><br><span class="line">            user=PG_USER,</span><br><span class="line">            password=PG_PWD,</span><br><span class="line">            host=PG_HOST,</span><br><span class="line">            port=PG_PORT</span><br><span class="line">        )</span><br><span class="line">        self.conns.append(conn)</span><br><span class="line">        <span class="keyword">return</span> conn</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span>(<span class="params">self, <span class="built_in">type</span>, value, traceback</span>):</span></span><br><span class="line">        <span class="keyword">for</span> conn <span class="keyword">in</span> self.conns:</span><br><span class="line">            conn.close()</span><br><span class="line">        self.conns.clear()</span><br></pre></td></tr></table></figure>
+
+<p>新增一下資料夾名為 controller，建立 <strong>init</strong>.py &amp; notify_controller.py，這邊搭配 with 做資源管理器，<br>DB 部分則見黎一個 notify 表，然後一個 token 的欄位。</p>
+<blockquote>
+<p>在這個 class 類別下方法只要輸入 <code>def get/post/put/patch/delete</code> 的函式就可以對應 CRUD 的功能了！</p>
+</blockquote>
+<p>notify_controller.py code is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Resource, reqparse</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> lib.db <span class="keyword">import</span> Database</span><br><span class="line"><span class="keyword">import</span> psycopg2.extras</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotifyController</span>(<span class="params">Resource</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self</span>):</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(<span class="string">&#x27;code&#x27;</span>, required=<span class="literal">True</span>, <span class="built_in">help</span>=<span class="string">&#x27;code can not be blank!&#x27;</span>)</span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        code = args[<span class="string">&#x27;code&#x27;</span>]</span><br><span class="line">        client = &#123;<span class="string">&#x27;grant_type&#x27;</span>: <span class="string">&#x27;authorization_code&#x27;</span>, <span class="string">&#x27;code&#x27;</span>: code, <span class="string">&#x27;redirect_uri&#x27;</span>: <span class="string">&#x27;YOUR_REDIRECT_URI&#x27;</span>,</span><br><span class="line">                  <span class="string">&#x27;client_id&#x27;</span>: <span class="string">&#x27;YOUR_CLIENT_ID&#x27;</span>, <span class="string">&#x27;client_secret&#x27;</span>: <span class="string">&#x27;YOUR_CLIENT_SECRET&#x27;</span>&#125;</span><br><span class="line">        r = requests.post(</span><br><span class="line">            <span class="string">&#x27;https://notify-bot.line.me/oauth/token&#x27;</span>, data=client)</span><br><span class="line">        req = json.loads(r.text)</span><br><span class="line">        <span class="keyword">if</span> req[<span class="string">&#x27;status&#x27;</span>] == <span class="number">200</span>:</span><br><span class="line">            token = req[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line">            <span class="comment"># Here is use PostgreSQL, you can change your love db</span></span><br><span class="line">            <span class="keyword">with</span> Database() <span class="keyword">as</span> db:</span><br><span class="line">                <span class="keyword">with</span> db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">                    <span class="keyword">with</span> conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) <span class="keyword">as</span> cur:</span><br><span class="line">                        cur.execute(</span><br><span class="line">                            <span class="string">f&quot;INSERT INTO notify(token) VALUES (&#x27;<span class="subst">&#123;token&#125;</span>&#x27;)&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;access_token&#x27;</span>: req[<span class="string">&#x27;access_token&#x27;</span>]&#125;, <span class="number">200</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">&#x27;message&#x27;</span>: r.text&#125;, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>以下這三個要設定成你的當時輸入的字串</p>
+<ul>
+<li>YOUR_REDIRECT_URI</li>
+<li>YOUR_CLIENT_ID</li>
+<li>YOUR_CLIENT_SECRET</li>
+</ul>
+<blockquote>
+<p>若不清楚 Client_id &amp; Client_secret 的話就回到 Notify 頁面並點選剛剛建立的服務就能看到 token 了</p>
+</blockquote>
+<p><img src="https://i.imgur.com/T0nJaGE.png"></p>
+<p>建立一個 views&#x2F; 的資料夾，並建立兩個檔案</p>
+<ul>
+<li>notify_index.html<blockquote>
+<p>這邊需要修改 <code>client_id</code> 以及 <code>redirect_uri</code><br>這個檔案主要功能是讓使用者有個可以按按鈕觸發的地方，當然這只是個範例，實際上線可能就會直接 call API 導向 LINE Notify 頁面等等</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Link Notify&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;button onclick&#x3D;&quot;Auth();&quot;&gt;點選這裡連結到LineNotify&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      function Auth() &#123;</span><br><span class="line">        var URL &#x3D; &quot;https:&#x2F;&#x2F;notify-bot.line.me&#x2F;oauth&#x2F;authorize?&quot;;</span><br><span class="line">        URL +&#x3D; &quot;response_type&#x3D;code&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;client_id&#x3D;YOUR_CLIENT_ID&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;redirect_uri&#x3D;YOUR_REDIRECT_URI&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;scope&#x3D;notify&quot;;</span><br><span class="line">        URL +&#x3D; &quot;&amp;state&#x3D;nostate&quot;;</span><br><span class="line">        window.location.href &#x3D; URL;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>notify_confirm.html<blockquote>
+<p>修改 ajax 裡的 url，將網址換成之前部署的網址，若忘了可以在部署一次 <code>sls deploy</code><br>當導回來的時候透過 ajax 來呼叫 serverless api 讓後端發 requests 給<code>https://notify-bot.line.me/oauth/token</code>來獲取<code>access_token</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><em>因為這個路由有 CORS 的問題，若透過瀏覽器來的話會出錯，這邊則是讓後端去處理</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;message check&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    verify messate:</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;jquery&#x2F;3.4.1&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var urlParams &#x3D; new URLSearchParams(window.location.search);</span><br><span class="line">    var notify_code &#x3D; urlParams.get(&quot;code&quot;);</span><br><span class="line">    var state &#x3D; urlParams.get(&quot;state&quot;);</span><br><span class="line">    $(function() &#123;</span><br><span class="line">      $.ajax(&#123;</span><br><span class="line">        url: &quot;https:&#x2F;&#x2F;SLS_URI.execute-api.us-east-2.amazonaws.com&#x2F;dev&#x2F;notify&quot;,</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">        dataType: &quot;json&quot;,</span><br><span class="line">        data: &#123; code: notify_code &#125;,</span><br><span class="line">        success: function(response) &#123;</span><br><span class="line">          console.log(response);</span><br><span class="line">          $(&quot;.message&quot;).text(response[&quot;access_token&quot;]);</span><br><span class="line">        &#125;,</span><br><span class="line">        error: function(xhr) &#123;</span><br><span class="line">          console.log(xhr);</span><br><span class="line">          alert(&quot;Ajax request 發生錯誤&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接著就是測試程式碼是不是正常的，把這兩個檔案丟到 S3 上面<br><img src="https://i.imgur.com/SYRxzA1.png"></p>
+<hr>
+<p><img src="https://i.imgur.com/N3olwJd.png"></p>
+<p>把 object url 複製到 LINE Notify 上的 callback url 欄位，這樣就可以實機測試了 🤣<br><img src="https://i.imgur.com/i6Y7dK2.png"></p>
+<p>接著按下 index page 的按鈕應該就會看到連動成功(進資料庫應該也會被 insert 一筆)<br><img src="https://i.imgur.com/lEP0AmZ.png"></p>
+<p>到了這邊如果沒問題真的是恭喜你，我踩了好多坑 Orz</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a target="_blank" rel="noopener" href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/">資源管理器</a><br><a target="_blank" rel="noopener" href="https://github.com/corydolphin/flask-cors">flask CORS</a><br><a target="_blank" rel="noopener" href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#enabling-cors">CORS</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2019/09/19/Day4-%E8%AA%8D%E8%AD%98%E8%88%87%E4%BD%BF%E7%94%A8-S3-%E5%AE%B9%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -822,7 +950,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -835,7 +963,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">329</span>
+        <span class="site-state-item-count">333</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
