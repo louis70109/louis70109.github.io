@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.1">
+<meta name="generator" content="Hexo 8.1.1">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -52,10 +52,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="article:published_time" content="2020-09-12T05:44:16.000Z">
 <meta property="article:modified_time" content="2023-03-22T06:04:15.051Z">
 <meta property="article:author" content="NiJia Lin">
-<meta property="article:tag" content="Vue">
-<meta property="article:tag" content="LINE">
 <meta property="article:tag" content="LIFF">
+<meta property="article:tag" content="LINE">
 <meta property="article:tag" content="ShareTargetPicker">
+<meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://nijialin.com/images/2020/vue-use-liff/picker-result.png">
 
@@ -466,7 +466,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#liff-init"><span class="nav-number">2.1.</span> <span class="nav-text">liff.init()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Async-x2F-Await-%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">Async&#x2F;Await 版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%89%88%EF%BC%9A"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">原版：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#liff-ShareTargetPicker"><span class="nav-number">2.2.</span> <span class="nav-text">liff.ShareTargetPicker()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Async-x2F-Await-%E7%89%88%E6%9C%AC%EF%BC%9A-1"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">Async&#x2F;Await 版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%89%88%EF%BC%9A-1"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">原版：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Heroku-%E4%BE%86%E9%83%A8%E7%BD%B2-Vue"><span class="nav-number">2.3.</span> <span class="nav-text">使用 Heroku 來部署 Vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonus"><span class="nav-number">2.4.</span> <span class="nav-text">Bonus</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">參考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#liff-init"><span class="nav-number">2.1.</span> <span class="nav-text">liff.init()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Async-x2F-Await-%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">Async&#x2F;Await 版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%89%88%EF%BC%9A"><span class="nav-number">2.1.2.</span> <span class="nav-text">原版：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#liff-ShareTargetPicker"><span class="nav-number">2.2.</span> <span class="nav-text">liff.ShareTargetPicker()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Async-x2F-Await-%E7%89%88%E6%9C%AC%EF%BC%9A-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">Async&#x2F;Await 版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%89%88%EF%BC%9A-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">原版：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Heroku-%E4%BE%86%E9%83%A8%E7%BD%B2-Vue"><span class="nav-number">2.3.</span> <span class="nav-text">使用 Heroku 來部署 Vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonus"><span class="nav-number">2.4.</span> <span class="nav-text">Bonus</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">參考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

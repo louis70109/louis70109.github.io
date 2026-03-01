@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.1">
+<meta name="generator" content="Hexo 8.1.1">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -47,11 +47,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://nijialin.com/images/2024/threads-sdk/8-app-secret.png">
 <meta property="og:image" content="https://nijialin.com/images/2024/threads-sdk/9-post.png">
 <meta property="article:published_time" content="2024-08-17T23:54:23.000Z">
-<meta property="article:modified_time" content="2026-03-01T10:41:35.205Z">
+<meta property="article:modified_time" content="2026-03-01T10:57:36.724Z">
 <meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Meta">
 <meta property="article:tag" content="SDK">
 <meta property="article:tag" content="Threads">
-<meta property="article:tag" content="Meta">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://nijialin.com/images/common.jpeg">
 
@@ -255,7 +255,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2026-03-01 10:41:35" itemprop="dateModified" datetime="2026-03-01T10:41:35+00:00">2026-03-01</time>
+                <time title="修改時間：2026-03-01 10:57:36" itemprop="dateModified" datetime="2026-03-01T10:57:36+00:00">2026-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -308,7 +308,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <p><img src="https://nijialin.com/images/2024/threads-sdk/9-post.png"></p>
 <p>執行之後就可以發現自己的測試文出去啦！</p>
-<h1 id="結論-amp-注意事項"><a href="#結論-amp-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
+<h1 id="結論-注意事項"><a href="#結論-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
 <li>透過 Graph 拿到的 Token 是 short-live 的，<strong>期限是 24h</strong>，如果想要用比較久，請拿 short-live ACCESS_TOKEN + APP_SECRET 並透過<a target="_blank" rel="noopener" href="https://github.com/louis70109/threads-sdk/blob/main/threads/api.py#L45">這支 API</a>來取得 <strong>long-live ACCESS_TOKEN</strong></li>
 <li>發文需要先建立 Container，後續可以一起推出</li>
 <li>相關的 API 如果不敷使用，歡迎<a target="_blank" rel="noopener" href="https://github.com/louis70109/threads-sdk">透過 Pull Request </a>來更新 SDK 唷！</li>
@@ -410,7 +410,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1. 建立應用程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%81%B8%E6%93%87-Threads"><span class="nav-number">2.2.</span> <span class="nav-text">2. 選擇 Threads</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%96%8B%E5%95%9F-APIs"><span class="nav-number">2.3.</span> <span class="nav-text">3. 開啟 APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8A%A0%E5%85%A5-IG-%E5%B8%B3%E8%99%9F"><span class="nav-number">2.4.</span> <span class="nav-text">4. 加入 IG 帳號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%85%81%E8%A8%B1-Threads-%E8%88%87%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E9%80%A3%E5%8B%95"><span class="nav-number">2.5.</span> <span class="nav-text">5. 允許 Threads 與應用程式連動</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E9%96%8B%E5%A7%8B%E6%B8%AC%E8%A9%A6"><span class="nav-number">2.6.</span> <span class="nav-text">6. 開始測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%8B%BF%E5%8F%96%E5%80%8B%E4%BA%BA%E5%B8%B3%E8%99%9F%E8%B3%87%E8%A8%8A"><span class="nav-number">2.7.</span> <span class="nav-text">7. 拿取個人帳號資訊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%A6%82%E4%BD%95%E9%80%8F%E9%81%8E-SDK-%E4%B8%8A%E5%82%B3%E7%AC%AC%E4%B8%80%E7%AF%87%E8%B2%BC%E6%96%87%EF%BC%9F"><span class="nav-number">2.8.</span> <span class="nav-text">8. 如何透過 SDK 上傳第一篇貼文？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96-amp-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">3.</span> <span class="nav-text">結論 &amp; 注意事項</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">參考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1. 建立應用程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%81%B8%E6%93%87-Threads"><span class="nav-number">2.2.</span> <span class="nav-text">2. 選擇 Threads</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%96%8B%E5%95%9F-APIs"><span class="nav-number">2.3.</span> <span class="nav-text">3. 開啟 APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8A%A0%E5%85%A5-IG-%E5%B8%B3%E8%99%9F"><span class="nav-number">2.4.</span> <span class="nav-text">4. 加入 IG 帳號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%85%81%E8%A8%B1-Threads-%E8%88%87%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E9%80%A3%E5%8B%95"><span class="nav-number">2.5.</span> <span class="nav-text">5. 允許 Threads 與應用程式連動</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E9%96%8B%E5%A7%8B%E6%B8%AC%E8%A9%A6"><span class="nav-number">2.6.</span> <span class="nav-text">6. 開始測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%8B%BF%E5%8F%96%E5%80%8B%E4%BA%BA%E5%B8%B3%E8%99%9F%E8%B3%87%E8%A8%8A"><span class="nav-number">2.7.</span> <span class="nav-text">7. 拿取個人帳號資訊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%A6%82%E4%BD%95%E9%80%8F%E9%81%8E-SDK-%E4%B8%8A%E5%82%B3%E7%AC%AC%E4%B8%80%E7%AF%87%E8%B2%BC%E6%96%87%EF%BC%9F"><span class="nav-number">2.8.</span> <span class="nav-text">8. 如何透過 SDK 上傳第一篇貼文？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">3.</span> <span class="nav-text">結論 &amp; 注意事項</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">參考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

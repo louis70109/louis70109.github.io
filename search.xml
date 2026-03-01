@@ -15174,16 +15174,17 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
 </blockquote>
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
 <li><a href="https://nijialin.com/2021/12/08/clear-image-background-mac/">【MAC】透過內建的預覽程式來去背吧！</a></li>
-<li><a href="https://nijialin.com/2021/10/03/obs-streamlab-youtube-chat/">【OBS】透過 Streamlabs 打造與觀眾互動的聊天室與訂閱資訊 | Youtube</a><style>
-section.compact {
-  font-size: 150%  
-}
-img[alt~="center"] {
-  display: block;
-  margin: 0 auto;
-}
-</style></li>
+<li><a href="https://nijialin.com/2021/10/03/obs-streamlab-youtube-chat/">【OBS】透過 Streamlabs 打造與觀眾互動的聊天室與訂閱資訊 | Youtube</a></li>
 </ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
 ]]></content>
       <categories>
         <category>WFH 戰記</category>
@@ -18094,7 +18095,7 @@ img[alt~="center"] {
 <h1 id="該帶走點什麼-✍️"><a href="#該帶走點什麼-✍️" class="headerlink" title="該帶走點什麼 ✍️"></a>該帶走點什麼 ✍️</h1><script defer class="speakerdeck-embed" data-slide="34" data-id="6b62f16e016244e9a9feca2057078f04" data-ratio="1.7777777777777777" src="//speakerdeck.com/assets/embed.js"></script>
 
 <p>上述介紹了許多，因為是日常需要才使用，也就是有<code>事件</code>才會使用，因此個人認為在事件驅動開發的服務上就會很適合這些 Serverless 的雲服務，當然參數調整好也可以當一般常見的 SPA、CMS…etc</p>
-<h2 id="1st-amp-2nd-Cloud-Function-跟-Cloud-Run-有什麼差嗎？"><a href="#1st-amp-2nd-Cloud-Function-跟-Cloud-Run-有什麼差嗎？" class="headerlink" title="1st &amp; 2nd Cloud Function 跟 Cloud Run 有什麼差嗎？"></a>1st &amp; 2nd Cloud Function 跟 Cloud Run 有什麼差嗎？</h2><script defer class="speakerdeck-embed" data-slide="36" data-id="6b62f16e016244e9a9feca2057078f04" data-ratio="1.7777777777777777" src="//speakerdeck.com/assets/embed.js"></script>
+<h2 id="1st-2nd-Cloud-Function-跟-Cloud-Run-有什麼差嗎？"><a href="#1st-2nd-Cloud-Function-跟-Cloud-Run-有什麼差嗎？" class="headerlink" title="1st &amp; 2nd Cloud Function 跟 Cloud Run 有什麼差嗎？"></a>1st &amp; 2nd Cloud Function 跟 Cloud Run 有什麼差嗎？</h2><script defer class="speakerdeck-embed" data-slide="36" data-id="6b62f16e016244e9a9feca2057078f04" data-ratio="1.7777777777777777" src="//speakerdeck.com/assets/embed.js"></script>
 
 <p>另外在 2023&#x2F;8&#x2F;10 Cloud Functions 也升級了，過往要做許多介接其他 GCP 服務大多都會使用 Cloud Run (Big Query、Cloud Storage、Eventarc..etc)，在這次的升級上讓 Functions 的底層置換成 Cloud Run，也就是說把底層都換成 Knative 的方式執行，如此一來 Google 能夠統一格式，用戶在操作上也不會搞混兩邊的 Container 差異</p>
 <blockquote>
@@ -18230,7 +18231,7 @@ img[alt~="center"] {
 <li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a></li>
 <li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」</a></li>
 </ul>
-<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<h1 id="LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
 <ul>
 <li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
 <li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
@@ -18359,7 +18360,7 @@ img[alt~="center"] {
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
 <span id="more"></span>
 
-<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<h1 id="LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
 <ul>
 <li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
 <li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
@@ -18955,111 +18956,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>首訪 Niseko 滑雪之旅</title>
-    <url>/2026/03/01/niseko-experience-20260301/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2026/niseko/14.niseko-village-moutain.jpg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>早就聽說 Niseko 是亞洲滑雪聖地，每年冬季吸引世界各地的雪友前來朝聖，乾燥的粉雪讓人念念不忘。趁著這次有機會，第一次踏上北海道的雪地，順便測試一下自己的單板到底進步了多少 🏂</p>
-<span id="more"></span>
-
-<blockquote>
-<p>可惜來的這陣子都是大晴(暖)天…😭 只能跟冰塊相處</p>
-</blockquote>
-<hr>
-<h1 id="認識-Niseko-United-—-一山四場"><a href="#認識-Niseko-United-—-一山四場" class="headerlink" title="認識 Niseko United — 一山四場"></a>認識 Niseko United — 一山四場</h1><p><img src="https://nijialin.com/images/2026/niseko/02.niseko-snowboard-guide.JPG"></p>
-<p>Niseko 其實不是單一一個雪場，而是由四個雪場合稱 <strong>Niseko United</strong>：</p>
-<ul>
-<li>Niseko Annupuri</li>
-<li>Niseko Village</li>
-<li>Niseko Grand Hirafu（最大、最熱鬧）</li>
-<li>Niseko Hanazono</li>
-</ul>
-<p>四場聯票可以互通，建議第一天先花時間搞清楚地圖，不然在山上很容易繞迷路 😅</p>
-<hr>
-<h1 id="交通規劃：Niseko-Bus-聯合接駁"><a href="#交通規劃：Niseko-Bus-聯合接駁" class="headerlink" title="交通規劃：Niseko Bus 聯合接駁"></a>交通規劃：Niseko Bus 聯合接駁</h1><p><img src="https://nijialin.com/images/2026/niseko/03.suttle-bus-welcome-center.jpg"></p>
-<p>從新千歲機場到 Niseko 可以搭 <strong>Niseko Bus</strong> 的 UNITED SHUTTLE BUS，班次相當密集，Hirafu 跟 Hanazono 方向都有。建議事先查好時刻表再規劃，冬季旺季人多，有時候需要候補下一班。</p>
-<blockquote>
-<p>官網可以查到最新班次，票價依季節略有不同，建議提早預訂</p>
-</blockquote>
-<hr>
-<h1 id="住宿：Torifito-Hotel-amp-Pod-Niseko"><a href="#住宿：Torifito-Hotel-amp-Pod-Niseko" class="headerlink" title="住宿：Torifito Hotel &amp; Pod Niseko"></a>住宿：Torifito Hotel &amp; Pod Niseko</h1><h2 id="房間"><a href="#房間" class="headerlink" title="房間"></a>房間</h2><p><img src="https://nijialin.com/images/2026/niseko/04.torifito-sleep.jpg"></p>
-<p>這次選擇住 <strong>Torifito Hotel &amp; Pod Niseko</strong>，定位是膠囊旅館，房間空間不大，但設計感很強，木質系的隔板配上溫暖的燈光，一個人住剛好。行李箱塞進去有點緊，但整體很乾淨整潔，性價比還不錯。</p>
-<h2 id="乾燥室一人一櫃"><a href="#乾燥室一人一櫃" class="headerlink" title="乾燥室一人一櫃"></a>乾燥室一人一櫃</h2><p><img src="https://nijialin.com/images/2026/niseko/08.torifito-snowboard-store.jpg"></p>
-<p>Torifito 有提供雪具置物櫃，可以把板子、雪靴等大型裝備鎖在裡面，不用每天抱著一堆東西進房間，真的很方便，但東西記得放開一點，像我遇到下雨天隔天手套就還有點濕。</p>
-<blockquote>
-<p>旁邊還有洗脫烘+付費置物櫃，也有公共溫泉</p>
-</blockquote>
-<h2 id="免費接駁車：Torifito-最大亮點"><a href="#免費接駁車：Torifito-最大亮點" class="headerlink" title="免費接駁車：Torifito 最大亮點"></a>免費接駁車：Torifito 最大亮點</h2><p><img src="https://nijialin.com/images/2026/niseko/05.torifito-free-bus.JPG"></p>
-<p>住 Torifito 最大的好處就是有<strong>免費接駁車</strong>！每天提供往返 Hirafu Welcome Center 跟 Hanazono 雪場的班次，省下不少交通費。</p>
-<p>Welcome Center 看起來應該是這四個點的中心，如果想前往吉他地方也可以在這邊等 free shuttle bus 前往，我自己是選擇買全山票直接滑過去 😆</p>
-<h3 id="往-Hirafu-方向"><a href="#往-Hirafu-方向" class="headerlink" title="往 Hirafu 方向"></a>往 Hirafu 方向</h3><p><img src="https://nijialin.com/images/2026/niseko/06.torifito-free-bus-hirafu.jpg"></p>
-<p>早上最早班是 7:30，下午最晚回程 18:30，班次算是相當充足，基本上可以玩一整天再搭回來。</p>
-<h3 id="往-Hanazono-方向"><a href="#往-Hanazono-方向" class="headerlink" title="往 Hanazono 方向"></a>往 Hanazono 方向</h3><p><img src="https://nijialin.com/images/2026/niseko/07.torifito-free-bus-hanazono.jpg"></p>
-<p>Hanazono 的班次相對少一點，建議出發前先確認好時刻，避免下山後等太久。</p>
-<blockquote>
-<p>有免費接駁車這點真的很值！Niseko 周邊計程車不便宜，能省則省 💰</p>
-</blockquote>
-<hr>
-<h1 id="上山！Hirafu-的滑雪日"><a href="#上山！Hirafu-的滑雪日" class="headerlink" title="上山！Hirafu 的滑雪日"></a>上山！Hirafu 的滑雪日</h1><h2 id="Hirafu-山腳：熱鬧滾滾"><a href="#Hirafu-山腳：熱鬧滾滾" class="headerlink" title="Hirafu 山腳：熱鬧滾滾"></a>Hirafu 山腳：熱鬧滾滾</h2><p><img src="https://nijialin.com/images/2026/niseko/10.hirafu-people.jpg"></p>
-<p>搭接駁車抵達 Grand Hirafu，一出車門就感受到那股人潮，一堆語言交錯在一起然後東西超級貴。</p>
-<p>Hirafu 應該是是四個雪場裡最熱鬧的，車子都會先到這邊，纜車站周邊設施也最齊全，連初學者都能找到適合的雪道，甚至旁邊的 king 還有道具賽，可惜因為開始時間晚沒車，不然就留下來看。</p>
-<h2 id="搭纜車往上：山景揭幕"><a href="#搭纜車往上：山景揭幕" class="headerlink" title="搭纜車往上：山景揭幕"></a>搭纜車往上：山景揭幕</h2><p><img src="https://nijialin.com/images/2026/niseko/11.niseko-village.jpg"></p>
-<p>搭上 Gondola 往山上衝，窗外是一片白色大地，羊蹄山的輪廓慢慢從雲霧中清晰起來，這畫面值回票價 🏔️</p>
-<h2 id="中段停留：藍天配羊蹄山"><a href="#中段停留：藍天配羊蹄山" class="headerlink" title="中段停留：藍天配羊蹄山"></a>中段停留：藍天配羊蹄山</h2><p><img src="https://nijialin.com/images/2026/niseko/12.hirafu-mid.jpg"></p>
-<p>在中段雪道停下來喘口氣，抬頭看到這個景，整個人都醒了。羊蹄山的錐形山頭在萬里晴空下就這樣矗著，有種「值得」的感動。</p>
-<h2 id="登頂：一覽無邊雪原"><a href="#登頂：一覽無邊雪原" class="headerlink" title="登頂：一覽無邊雪原"></a>登頂：一覽無邊雪原</h2><p><img src="https://nijialin.com/images/2026/niseko/13.hirafu-top.jpg"></p>
-<p>爬到頂點後，往外望是完全開闊的雪原，羊蹄山遠遠地佇立在天際線上，山頂的風有點大但沒關係，景色彌補一切 😤</p>
-<hr>
-<h1 id="Niseko-Village：發揮點全山票的優勢"><a href="#Niseko-Village：發揮點全山票的優勢" class="headerlink" title="Niseko Village：發揮點全山票的優勢"></a>Niseko Village：發揮點全山票的優勢</h1><p><img src="https://nijialin.com/images/2026/niseko/14.niseko-village-moutain.jpg"></p>
-<p>其中一天跑到 Niseko Village 雪場留個紀念，感謝有日本女孩幫拍，果然禮讓給他們先拍還是有點好處 😂</p>
-<hr>
-<h1 id="番外"><a href="#番外" class="headerlink" title="番外"></a>番外</h1><h2 id="休息日-前往手稻神社"><a href="#休息日-前往手稻神社" class="headerlink" title="休息日 - 前往手稻神社"></a>休息日 - 前往手稻神社</h2><p><img src="https://nijialin.com/images/2026/niseko/01.IMG_1519.jpg"></p>
-<p>去年三月到札幌附近滑雪，神社這邊的御守都被”其他遊客”清空，過了一年來終於買到了！</p>
-<p>路程(<a href="https://maps.app.goo.gl/VKnGbKqiwucZ4Bxc7">Google Map</a>)：</p>
-<ul>
-<li>Lawson 外的公車站牌等 <strong>Lerch Koen mae</strong> bus</li>
-<li>俱知安町：機器上買到手稻的車票(2200 日幣)，然後是人工打卡</li>
-<li>下車後直接到對面接著<strong>快速機場</strong>線</li>
-<li>到手稻站下車，這邊我就是全憑去年記憶走 😆</li>
-</ul>
-<h2 id="數據"><a href="#數據" class="headerlink" title="數據"></a>數據</h2><p><img src="https://nijialin.com/images/2026/niseko/15.my-record.PNG"></p>
-<p>用 <strong>Slopes App</strong> 記錄了當天的數據，這次來的目標就是要跟好阿毛(想學滑雪請指名)不能一直跌倒，對於我這在滑雪之前只有重訓的人來說真的是超級吃力，這次滑完應該可以休兵個一兩個月</p>
-<h2 id="北海道限定補給"><a href="#北海道限定補給" class="headerlink" title="北海道限定補給"></a>北海道限定補給</h2><p><img src="https://nijialin.com/images/2026/niseko/16.drink.JPG"></p>
-<p>阿毛推薦這個高橋牧場的優洛乳，真的是滿好喝的，只是千萬別再滑雪前喝，那個肚子真的是滾到不能再滾…</p>
-<h2 id="臨時補買：Yonex-3D-雪襪"><a href="#臨時補買：Yonex-3D-雪襪" class="headerlink" title="臨時補買：Yonex 3D 雪襪"></a>臨時補買：Yonex 3D 雪襪</h2><p><img src="https://nijialin.com/images/2026/niseko/09.yonex-sock.JPG"></p>
-<p>到了雪具店才發現忘記帶夠厚的雪襪，就臨時敗了一雙 <strong>Yonex 3D FIT 冬季運動襪</strong>。HEAT CAPSULE 科技、抗菌防臭，穿起來腳踝包覆感真的不一樣，後悔沒早點買 😂</p>
-<hr>
-<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>第一次 Niseko，整體而言超過預期！幾個心得分享：</p>
-<ul>
-<li><strong>住 Torifito 超值</strong>：免費接駁車省去大量交通成本，位置離 Hirafu 也近</li>
-<li><strong>Niseko United 地圖要先研究</strong>：四個雪場各有特色，別浪費時間在山上迷路</li>
-<li><strong>Slopes App</strong>： 我的 iphone 16 pro 可以開一整天+輕度滑手機&#x3D;45% 的電池<ul>
-<li>也有可能是不夠冷所以還有很多電</li>
-</ul>
-</li>
-</ul>
-<p>小可惜這次只體驗春滑，下次有機會一定要在旺季來體驗傳說中的 Niseko 粉雪，但留點小遺憾讓我更期待下一趟！🏂</p>
-<style>
-  section.compact {
-    font-size: 150%
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>旅遊</category>
-      </categories>
-      <tags>
-        <tag>滑雪</tag>
-        <tag>北海道</tag>
-        <tag>Niseko</tag>
-        <tag>單板</tag>
-        <tag>Torifito</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>透過圖片或網址，讓 LINE Bot 產生行事曆來成為活動達人</title>
     <url>/2024/09/06/linebot-image-to-google-calendar/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -19139,6 +19035,111 @@ img[alt~="center"] {
         <tag>LINE Bot</tag>
         <tag>Google Calendar</tag>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>首訪 Niseko 滑雪之旅</title>
+    <url>/2026/03/01/niseko-experience-20260301/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2026/niseko/14.niseko-village-moutain.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>早就聽說 Niseko 是亞洲滑雪聖地，每年冬季吸引世界各地的雪友前來朝聖，乾燥的粉雪讓人念念不忘。趁著這次有機會，第一次踏上北海道的雪地，順便測試一下自己的單板到底進步了多少 🏂</p>
+<span id="more"></span>
+
+<blockquote>
+<p>可惜來的這陣子都是大晴(暖)天…😭 只能跟冰塊相處</p>
+</blockquote>
+<hr>
+<h1 id="認識-Niseko-United-—-一山四場"><a href="#認識-Niseko-United-—-一山四場" class="headerlink" title="認識 Niseko United — 一山四場"></a>認識 Niseko United — 一山四場</h1><p><img src="https://nijialin.com/images/2026/niseko/02.niseko-snowboard-guide.JPG"></p>
+<p>Niseko 其實不是單一一個雪場，而是由四個雪場合稱 <strong>Niseko United</strong>：</p>
+<ul>
+<li>Niseko Annupuri</li>
+<li>Niseko Village</li>
+<li>Niseko Grand Hirafu（最大、最熱鬧）</li>
+<li>Niseko Hanazono</li>
+</ul>
+<p>四場聯票可以互通，建議第一天先花時間搞清楚地圖，不然在山上很容易繞迷路 😅</p>
+<hr>
+<h1 id="交通規劃：Niseko-Bus-聯合接駁"><a href="#交通規劃：Niseko-Bus-聯合接駁" class="headerlink" title="交通規劃：Niseko Bus 聯合接駁"></a>交通規劃：Niseko Bus 聯合接駁</h1><p><img src="https://nijialin.com/images/2026/niseko/03.suttle-bus-welcome-center.jpg"></p>
+<p>從新千歲機場到 Niseko 可以搭 <strong>Niseko Bus</strong> 的 UNITED SHUTTLE BUS，班次相當密集，Hirafu 跟 Hanazono 方向都有。建議事先查好時刻表再規劃，冬季旺季人多，有時候需要候補下一班。</p>
+<blockquote>
+<p>官網可以查到最新班次，票價依季節略有不同，建議提早預訂</p>
+</blockquote>
+<hr>
+<h1 id="住宿：Torifito-Hotel-Pod-Niseko"><a href="#住宿：Torifito-Hotel-Pod-Niseko" class="headerlink" title="住宿：Torifito Hotel &amp; Pod Niseko"></a>住宿：Torifito Hotel &amp; Pod Niseko</h1><h2 id="房間"><a href="#房間" class="headerlink" title="房間"></a>房間</h2><p><img src="https://nijialin.com/images/2026/niseko/04.torifito-sleep.jpg"></p>
+<p>這次選擇住 <strong>Torifito Hotel &amp; Pod Niseko</strong>，定位是膠囊旅館，房間空間不大，但設計感很強，木質系的隔板配上溫暖的燈光，一個人住剛好。行李箱塞進去有點緊，但整體很乾淨整潔，性價比還不錯。</p>
+<h2 id="乾燥室一人一櫃"><a href="#乾燥室一人一櫃" class="headerlink" title="乾燥室一人一櫃"></a>乾燥室一人一櫃</h2><p><img src="https://nijialin.com/images/2026/niseko/08.torifito-snowboard-store.jpg"></p>
+<p>Torifito 有提供雪具置物櫃，可以把板子、雪靴等大型裝備鎖在裡面，不用每天抱著一堆東西進房間，真的很方便，但東西記得放開一點，像我遇到下雨天隔天手套就還有點濕。</p>
+<blockquote>
+<p>旁邊還有洗脫烘+付費置物櫃，也有公共溫泉</p>
+</blockquote>
+<h2 id="免費接駁車：Torifito-最大亮點"><a href="#免費接駁車：Torifito-最大亮點" class="headerlink" title="免費接駁車：Torifito 最大亮點"></a>免費接駁車：Torifito 最大亮點</h2><p><img src="https://nijialin.com/images/2026/niseko/05.torifito-free-bus.JPG"></p>
+<p>住 Torifito 最大的好處就是有<strong>免費接駁車</strong>！每天提供往返 Hirafu Welcome Center 跟 Hanazono 雪場的班次，省下不少交通費。</p>
+<p>Welcome Center 看起來應該是這四個點的中心，如果想前往吉他地方也可以在這邊等 free shuttle bus 前往，我自己是選擇買全山票直接滑過去 😆</p>
+<h3 id="往-Hirafu-方向"><a href="#往-Hirafu-方向" class="headerlink" title="往 Hirafu 方向"></a>往 Hirafu 方向</h3><p><img src="https://nijialin.com/images/2026/niseko/06.torifito-free-bus-hirafu.jpg"></p>
+<p>早上最早班是 7:30，下午最晚回程 18:30，班次算是相當充足，基本上可以玩一整天再搭回來。</p>
+<h3 id="往-Hanazono-方向"><a href="#往-Hanazono-方向" class="headerlink" title="往 Hanazono 方向"></a>往 Hanazono 方向</h3><p><img src="https://nijialin.com/images/2026/niseko/07.torifito-free-bus-hanazono.jpg"></p>
+<p>Hanazono 的班次相對少一點，建議出發前先確認好時刻，避免下山後等太久。</p>
+<blockquote>
+<p>有免費接駁車這點真的很值！Niseko 周邊計程車不便宜，能省則省 💰</p>
+</blockquote>
+<hr>
+<h1 id="上山！Hirafu-的滑雪日"><a href="#上山！Hirafu-的滑雪日" class="headerlink" title="上山！Hirafu 的滑雪日"></a>上山！Hirafu 的滑雪日</h1><h2 id="Hirafu-山腳：熱鬧滾滾"><a href="#Hirafu-山腳：熱鬧滾滾" class="headerlink" title="Hirafu 山腳：熱鬧滾滾"></a>Hirafu 山腳：熱鬧滾滾</h2><p><img src="https://nijialin.com/images/2026/niseko/10.hirafu-people.jpg"></p>
+<p>搭接駁車抵達 Grand Hirafu，一出車門就感受到那股人潮，一堆語言交錯在一起然後東西超級貴。</p>
+<p>Hirafu 應該是是四個雪場裡最熱鬧的，車子都會先到這邊，纜車站周邊設施也最齊全，連初學者都能找到適合的雪道，甚至旁邊的 king 還有道具賽，可惜因為開始時間晚沒車，不然就留下來看。</p>
+<h2 id="搭纜車往上：山景揭幕"><a href="#搭纜車往上：山景揭幕" class="headerlink" title="搭纜車往上：山景揭幕"></a>搭纜車往上：山景揭幕</h2><p><img src="https://nijialin.com/images/2026/niseko/11.niseko-village.jpg"></p>
+<p>搭上 Gondola 往山上衝，窗外是一片白色大地，羊蹄山的輪廓慢慢從雲霧中清晰起來，這畫面值回票價 🏔️</p>
+<h2 id="中段停留：藍天配羊蹄山"><a href="#中段停留：藍天配羊蹄山" class="headerlink" title="中段停留：藍天配羊蹄山"></a>中段停留：藍天配羊蹄山</h2><p><img src="https://nijialin.com/images/2026/niseko/12.hirafu-mid.jpg"></p>
+<p>在中段雪道停下來喘口氣，抬頭看到這個景，整個人都醒了。羊蹄山的錐形山頭在萬里晴空下就這樣矗著，有種「值得」的感動。</p>
+<h2 id="登頂：一覽無邊雪原"><a href="#登頂：一覽無邊雪原" class="headerlink" title="登頂：一覽無邊雪原"></a>登頂：一覽無邊雪原</h2><p><img src="https://nijialin.com/images/2026/niseko/13.hirafu-top.jpg"></p>
+<p>爬到頂點後，往外望是完全開闊的雪原，羊蹄山遠遠地佇立在天際線上，山頂的風有點大但沒關係，景色彌補一切 😤</p>
+<hr>
+<h1 id="Niseko-Village：發揮點全山票的優勢"><a href="#Niseko-Village：發揮點全山票的優勢" class="headerlink" title="Niseko Village：發揮點全山票的優勢"></a>Niseko Village：發揮點全山票的優勢</h1><p><img src="https://nijialin.com/images/2026/niseko/14.niseko-village-moutain.jpg"></p>
+<p>其中一天跑到 Niseko Village 雪場留個紀念，感謝有日本女孩幫拍，果然禮讓給他們先拍還是有點好處 😂</p>
+<hr>
+<h1 id="番外"><a href="#番外" class="headerlink" title="番外"></a>番外</h1><h2 id="休息日-前往手稻神社"><a href="#休息日-前往手稻神社" class="headerlink" title="休息日 - 前往手稻神社"></a>休息日 - 前往手稻神社</h2><p><img src="https://nijialin.com/images/2026/niseko/01.IMG_1519.jpg"></p>
+<p>去年三月到札幌附近滑雪，神社這邊的御守都被”其他遊客”清空，過了一年來終於買到了！</p>
+<p>路程(<a href="https://maps.app.goo.gl/VKnGbKqiwucZ4Bxc7">Google Map</a>)：</p>
+<ul>
+<li>Lawson 外的公車站牌等 <strong>Lerch Koen mae</strong> bus</li>
+<li>俱知安町：機器上買到手稻的車票(2200 日幣)，然後是人工打卡</li>
+<li>下車後直接到對面接著<strong>快速機場</strong>線</li>
+<li>到手稻站下車，這邊我就是全憑去年記憶走 😆</li>
+</ul>
+<h2 id="數據"><a href="#數據" class="headerlink" title="數據"></a>數據</h2><p><img src="https://nijialin.com/images/2026/niseko/15.my-record.PNG"></p>
+<p>用 <strong>Slopes App</strong> 記錄了當天的數據，這次來的目標就是要跟好阿毛(想學滑雪請指名)不能一直跌倒，對於我這在滑雪之前只有重訓的人來說真的是超級吃力，這次滑完應該可以休兵個一兩個月</p>
+<h2 id="北海道限定補給"><a href="#北海道限定補給" class="headerlink" title="北海道限定補給"></a>北海道限定補給</h2><p><img src="https://nijialin.com/images/2026/niseko/16.drink.JPG"></p>
+<p>阿毛推薦這個高橋牧場的優洛乳，真的是滿好喝的，只是千萬別再滑雪前喝，那個肚子真的是滾到不能再滾…</p>
+<h2 id="臨時補買：Yonex-3D-雪襪"><a href="#臨時補買：Yonex-3D-雪襪" class="headerlink" title="臨時補買：Yonex 3D 雪襪"></a>臨時補買：Yonex 3D 雪襪</h2><p><img src="https://nijialin.com/images/2026/niseko/09.yonex-sock.JPG"></p>
+<p>到了雪具店才發現忘記帶夠厚的雪襪，就臨時敗了一雙 <strong>Yonex 3D FIT 冬季運動襪</strong>。HEAT CAPSULE 科技、抗菌防臭，穿起來腳踝包覆感真的不一樣，後悔沒早點買 😂</p>
+<hr>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>第一次 Niseko，整體而言超過預期！幾個心得分享：</p>
+<ul>
+<li><strong>住 Torifito 超值</strong>：免費接駁車省去大量交通成本，位置離 Hirafu 也近</li>
+<li><strong>Niseko United 地圖要先研究</strong>：四個雪場各有特色，別浪費時間在山上迷路</li>
+<li><strong>Slopes App</strong>： 我的 iphone 16 pro 可以開一整天+輕度滑手機&#x3D;45% 的電池<ul>
+<li>也有可能是不夠冷所以還有很多電</li>
+</ul>
+</li>
+</ul>
+<p>小可惜這次只體驗春滑，下次有機會一定要在旺季來體驗傳說中的 Niseko 粉雪，但留點小遺憾讓我更期待下一趟！🏂</p>
+<style>
+  section.compact {
+    font-size: 150%
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>旅遊</category>
+      </categories>
+      <tags>
+        <tag>滑雪</tag>
+        <tag>北海道</tag>
+        <tag>Niseko</tag>
+        <tag>單板</tag>
+        <tag>Torifito</tag>
       </tags>
   </entry>
   <entry>
@@ -19278,7 +19279,7 @@ img[alt~="center"] {
 
 <p><img src="https://nijialin.com/images/2024/threads-sdk/9-post.png"></p>
 <p>執行之後就可以發現自己的測試文出去啦！</p>
-<h1 id="結論-amp-注意事項"><a href="#結論-amp-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
+<h1 id="結論-注意事項"><a href="#結論-注意事項" class="headerlink" title="結論 &amp; 注意事項"></a>結論 &amp; 注意事項</h1><ul>
 <li>透過 Graph 拿到的 Token 是 short-live 的，<strong>期限是 24h</strong>，如果想要用比較久，請拿 short-live ACCESS_TOKEN + APP_SECRET 並透過<a href="https://github.com/louis70109/threads-sdk/blob/main/threads/api.py#L45">這支 API</a>來取得 <strong>long-live ACCESS_TOKEN</strong></li>
 <li>發文需要先建立 Container，後續可以一起推出</li>
 <li>相關的 API 如果不敷使用，歡迎<a href="https://github.com/louis70109/threads-sdk">透過 Pull Request </a>來更新 SDK 唷！</li>

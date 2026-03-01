@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.1">
+<meta name="generator" content="Hexo 8.1.1">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,13 +48,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png">
 <meta property="og:image" content="https://qr-official.line.me/gs/M_908lugfe_BW.png">
 <meta property="article:published_time" content="2024-05-03T12:50:07.000Z">
-<meta property="article:modified_time" content="2026-03-01T10:41:35.200Z">
+<meta property="article:modified_time" content="2026-03-01T10:57:36.719Z">
 <meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Cloud Function">
+<meta property="article:tag" content="GCP">
+<meta property="article:tag" content="Google">
 <meta property="article:tag" content="LINE">
 <meta property="article:tag" content="Serverless">
-<meta property="article:tag" content="Google">
-<meta property="article:tag" content="GCP">
-<meta property="article:tag" content="Cloud Function">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://nijialin.com/images/common.jpeg">
 
@@ -258,7 +258,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2026-03-01 10:41:35" itemprop="dateModified" datetime="2026-03-01T10:41:35+00:00">2026-03-01</time>
+                <time title="修改時間：2026-03-01 10:57:36" itemprop="dateModified" datetime="2026-03-01T10:57:36+00:00">2026-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,7 +306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a target="_blank" rel="noopener" href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」</a></li>
 </ul>
-<h1 id="LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-amp-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a target="_blank" rel="noopener" href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<h1 id="LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a target="_blank" rel="noopener" href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
 <li><a target="_blank" rel="noopener" href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
@@ -512,7 +512,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LINE-Bot-amp-Gemini-Pro-%E8%A8%AD%E5%AE%9A%E7%B4%B0%E7%AF%80%E8%AB%8B%E5%8F%83%E8%80%83-%E6%97%85%E8%A1%8C%E5%B0%8F%E5%B9%AB%E6%89%8B-LINE-Bot-%E6%96%87%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text">LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><span class="nav-number">2.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%96%BC-Gemini-API-Price"><span class="nav-number">2.2.</span> <span class="nav-text">關於 Gemini API Price</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9C%96"><span class="nav-number">2.3.</span> <span class="nav-text">流程圖</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A9%A6%E9%A1%8C%EF%BC%9A%E7%AF%84%E4%BE%8B%E7%82%BA%E5%88%97%E5%87%BA%E4%BA%94%E5%80%8B%E9%A0%85%E7%9B%AE%EF%BC%8C%E4%BF%AE%E6%94%B9-prompt-%E6%89%BE%E5%87%BA%E7%BE%A4%E7%B5%84%E7%9A%84%E5%A4%A7%E5%AE%B6%E6%9C%80%E8%BF%91%E9%97%9C%E6%B3%A8%E7%9A%84%E4%BA%8B%E9%A0%85"><span class="nav-number">3.1.</span> <span class="nav-text">試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E5%A4%A9%E6%B0%A3-Open-Data-%E5%8A%9F%E8%83%BD"><span class="nav-number">4.</span> <span class="nav-text">增加天氣 Open Data 功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%9B%E6%98%9F%E9%9B%B2%E5%9C%96-%E6%98%AF%E5%90%A6%E6%9C%89%E9%9B%B2%E5%B1%A4"><span class="nav-number">5.</span> <span class="nav-text">衛星雲圖 - 是否有雲層</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">7.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LINE-Bot-Gemini-Pro-%E8%A8%AD%E5%AE%9A%E7%B4%B0%E7%AF%80%E8%AB%8B%E5%8F%83%E8%80%83-%E6%97%85%E8%A1%8C%E5%B0%8F%E5%B9%AB%E6%89%8B-LINE-Bot-%E6%96%87%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text">LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><span class="nav-number">2.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%96%BC-Gemini-API-Price"><span class="nav-number">2.2.</span> <span class="nav-text">關於 Gemini API Price</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9C%96"><span class="nav-number">2.3.</span> <span class="nav-text">流程圖</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A9%A6%E9%A1%8C%EF%BC%9A%E7%AF%84%E4%BE%8B%E7%82%BA%E5%88%97%E5%87%BA%E4%BA%94%E5%80%8B%E9%A0%85%E7%9B%AE%EF%BC%8C%E4%BF%AE%E6%94%B9-prompt-%E6%89%BE%E5%87%BA%E7%BE%A4%E7%B5%84%E7%9A%84%E5%A4%A7%E5%AE%B6%E6%9C%80%E8%BF%91%E9%97%9C%E6%B3%A8%E7%9A%84%E4%BA%8B%E9%A0%85"><span class="nav-number">3.1.</span> <span class="nav-text">試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E5%A4%A9%E6%B0%A3-Open-Data-%E5%8A%9F%E8%83%BD"><span class="nav-number">4.</span> <span class="nav-text">增加天氣 Open Data 功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%9B%E6%98%9F%E9%9B%B2%E5%9C%96-%E6%98%AF%E5%90%A6%E6%9C%89%E9%9B%B2%E5%B1%A4"><span class="nav-number">5.</span> <span class="nav-text">衛星雲圖 - 是否有雲層</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">活動小結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E3%80%8CLINE-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB%E3%80%8D"><span class="nav-number">7.</span> <span class="nav-text">關於「LINE 開發社群計畫」</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
