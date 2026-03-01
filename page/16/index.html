@@ -208,6 +208,110 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/01/19/liff-replace-migrate-concat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/19/liff-replace-migrate-concat/" class="post-title-link" itemprop="url">LIFF migration: from Replace to Concatenate mode</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-19 08:50:13" itemprop="dateCreated datePublished" datetime="2021-01-19T08:50:13+00:00">2021-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-03-22 06:04:14" itemprop="dateModified" datetime="2023-03-22T06:04:14+00:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINE/" itemprop="url" rel="index"><span itemprop="name">LINE</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>於 <code>1/18</code> 釋出了一篇新聞 <a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2021/01/18/remind-discontinue-replace-mode-announcement/">Reminder: On March 1, 2021, “Replace (Backward compatibility mode)” will be removed from the permanent link redirection settings for LIFF app and LINE MINI App</a>，在這個新聞中提到將會在 <code>3/1</code> 移除 LIFF 的 <code>Replace</code> 模式:</p>
+<p><img src="https://nijialin.com/images/2021/migrate-liff/news.png"></p>
+<p>移除後若尚未更新 LIFF SDK 的話可能會遇到以下問題：</p>
+<ul>
+<li>LIFF 打不開</li>
+<li>空白頁面</li>
+<li>打開了但出現許多錯誤訊息</li>
+<li>…</li>
+</ul>
+<p>於 2020&#x2F;11&#x2F;20 有發過即將移除的<a target="_blank" rel="noopener" href="https://developers.line.biz/en/news/2020/11/20/discontinue-replace-mode-announcement/">新聞</a>，隨後也有相關文章敘述這件事，許多更改內容可以參閱：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://engineering.linecorp.com/zh-hant/blog/new-liff-url-infomation/">您需要了解有關新 LIFF URL 的所有資訊</a></li>
+<li>LAE 戴均民 - <a target="_blank" rel="noopener" href="https://taichunmin.idv.tw/blog/2021-01-19-line-liff-v2-replace-deprecated.html">LINE LIFF v2 的 replace 模式即將被移除及建議程式寫法</a></li>
+<li>LAE 卡米哥 - <a target="_blank" rel="noopener" href="https://etrexkuo.medium.com/the-best-practice-of-liff-fd89f2e612fc">The Best Practice Of LIFF</a>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/19/liff-replace-migrate-concat/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://nijialin.com/2021/01/11/line-techpulse-2020-review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1037,97 +1141,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2020/09/26/javascript-skills-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/26/javascript-skills-1/" class="post-title-link" itemprop="url">【JavaScript】Function 呈現方式、修改 Array 長度、型態轉換、Unique Array value</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-09-26 14:28:16" itemprop="dateCreated datePublished" datetime="2020-09-26T14:28:16+00:00">2020-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在各個地方學到到一些 JavaScript 的小技巧，練習過後快速寫一篇小文章記錄下來 📖，也把一些實際上有用到的小技巧一併記錄下來分享給大家。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/26/javascript-skills-1/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1199,20 +1212,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">247</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">337</span>
+        <span class="site-state-item-count">340</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -17618,52 +17618,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>一轉眼北漂五年的紀錄</title>
-    <url>/2025/07/03/5-years-to-taipei-2025/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>這陣子經歷太多內心上的變化，想說趁著出差期間，回顧並整理來台北後第五年的一些經歷，好好思考一下這些日子來的想法，希望未來在回顧這篇時不會太尷尬 😆</p>
-<span id="more"></span>
-
-<h2 id="Change-Responsibility-from-DevRel-to-Software-Engineer"><a href="#Change-Responsibility-from-DevRel-to-Software-Engineer" class="headerlink" title="Change Responsibility from DevRel to Software Engineer"></a>Change Responsibility from DevRel to Software Engineer</h2><p>2024 時，我參與了公司的 side project，試著從專案管理的角度參與開發項目，雖然專案最後 sunset，但經歷過這次經驗，從前輩們身上學到很多過往的經驗以及技巧，從專案的視野廣闊度到每行 code 的細節都要盡可能掌握</p>
-<p>爾後，除了日常招募與活動之外，也開始跟在資深同事身邊學習系統架構與設計，並在今年組織重整之後，正式被調到內部研發團隊，開始著手系統設計以及服務維運的工作內容</p>
-<p>期間開始了第一個系統設計，公司內設有架構審核的機制，所有專案都得送審，在這流程我也是被徹底的電了一波 😆，也體會到自己在思考架構的細心程度還不透徹，就目前的專案也靠著現在的團隊夥伴幫忙，從開發上給予&amp;討論不同的設計方式，讓系統可以順利開發</p>
-<p>有了這段日子的經驗與反思，才知道當時資深前輩們提醒的東西重要性在哪，日後有其他專案時，要想清楚再做，避免開發後多浪費了其他時間</p>
-<h3 id="Keep-doing-DevRel-things"><a href="#Keep-doing-DevRel-things" class="headerlink" title="Keep doing DevRel things"></a>Keep doing DevRel things</h3><blockquote>
-<p>在 DevRel 新職缺打開之後，沒想到迴響非常大，內外都有許多人來應徵此職缺</p>
-</blockquote>
-<p>去年很可惜因為骨折無法參加 Tech Week，感恩公司今年提供我個工作人員名額可以參加這盛會，這次活動安排期間剛好有現在專案上的東西在燒腦，兩個並行真的是特別燒腦😱，好在 Evan 幫忙了非常多事情，才能讓這次的活動順利出發，然後同事們順利抵達日本並順利執行</p>
-<p>而在這次的 Tech Week 演講期間也獲得到許久不見的成就感，帶著講者同事從休息室到講台，確保整體活動順利外，也在當中幫忙心理建設，提供一些演講上的建議跟注意事項，看著他們能夠順利分享完內容，內心就放下大石鬆一口氣，我就覺得有幫助到特別有成就感。日後要將這重責大任交棒給新人，希望她能夠做出更不一樣風格，而我還是會懷念在每個時刻所獲得的能量！</p>
-<blockquote>
-<p>雖然站了兩天腳都起水泡了，但這樣的負擔是值得的！</p>
-</blockquote>
-<h3 id="Handover-book"><a href="#Handover-book" class="headerlink" title="Handover book"></a>Handover book</h3><p>說到工作上相關事情，近期在公司內開始洋洋灑灑的寫交接日誌，把古今中外 DevRel 要做的事情都寫下來，發現寫的內容是平常做事習慣都沒感覺，寫的當下才發現這些細節，過去在執行上踩了非常多坑，時至今日發現一旦漏了誰，都會讓每次的案子出麻煩…也希望透過文件的方式，讓後續接手的人能基於這些內容，更進一步發揮職能跟個人特色 🏆</p>
-<h3 id="I-have-another-opinions-with-DevRel…"><a href="#I-have-another-opinions-with-DevRel…" class="headerlink" title="I have another opinions with DevRel…"></a>I have another opinions with DevRel…</h3><p>日常在社交過程中，偶爾會有人認為不就只是做做活動，弄得光鮮亮麗就好。其實在這邊的工作過程中，大至跨部門會議小至每次的對談，都會需要事先準備並且要有 take away，我們很把握每次對談的機會，延續每次的對談甚至可以合作，讓未來的專案上不只是個普通活動，而是可以蹦出更多新的作法跟別的公司不一樣</p>
-<p>我也常跟人家分享，其實在對話中是有技巧的，這些方法可不是短時間可以學會，而是要透過大量閱讀、資訊吸收、反思、練習才能學會的技能，雖然很多時候我們都會希望直話直說，但就直話直說也是有技巧的，需要考量當下氣氛跟對方狀態，很多時候即便你無心，話語中都會帶刺，做一個能溫柔對話的人，才能讓人願意幫你在人生這條路上推進一些事情💡</p>
-<blockquote>
-<p>也有可能我從小耳濡目染學會了一些現在能用的對話技巧</p>
-</blockquote>
-<p>DevRel 有別於一般的工程職位，除了要會公關&#x2F;行銷技巧外，更有程式能力來執行一些天馬行空的點子，才能在許多地方脫癮而出，也或許這樣，才造成這麼多迴響？</p>
-<h2 id="About-my-other-working"><a href="#About-my-other-working" class="headerlink" title="About my other working"></a>About my other working</h2><p>當 R&amp;R 開始逐步混合執行到管理層面，許多事情的期待就不會是只有做好那麼簡單，而是要開始思考團隊發展、配合開發治理、系統通用性…等等，雖然在這過程中異常的繁雜以及需要大量的溝通，也是普遍大家都會很討厭這樣的事情，但我想任何一種挑戰來都會是個成長機會，當掌握的資訊越多，對於整體的效率以及團隊的發展就會越有幫助，也期待哪天摸熟了之後能夠讓自己的才能發揮最大化</p>
-<p>另外也常跟公司內剛開始工作的小伙子提到，在本職該做到的事情逐漸上手時，要開始嘗試不同的領域的東西，才不會把自己眼光限縮在一個領域，看得廣才知道自己想要什麼，想學深&#x2F;廣才會有選擇權</p>
-<p><img src="https://nijialin.com/images/2025/important.png"></p>
-<p>就像我在加入 LINE 之前，常常會很執著於一些無傷大雅的小事上，經歷過這幾年的洗禮，回頭更能清楚知道這些小細節的重要性以及優先權，日後再做任何事情都需要先冷靜下來，將事情規劃好再執行，可以避免浪費掉太多時間</p>
-<blockquote>
-<p>畢竟我是個單核單頻的生物 😆</p>
-</blockquote>
-<h2 id="Mentality"><a href="#Mentality" class="headerlink" title="Mentality"></a>Mentality</h2><p>在 Threads 上寫過一段話想給新進同事：「不論剛剛工作上發生什麼事情，下一秒都要想盡辦法正向往前看」，作為一個稱職的文化傳遞者除了要非常非常 非 常 外向以外，還要能隨時給予正能量，幫助團隊成員正向看事情，引進不同的想法並試著讓它融入於團隊中，才能養成團隊文化，進而讓所有事情有所變化，甚至在日常作業上能夠更通順</p>
-<p>但在上半年突然心態很容易受影響，不論是工作上或是生活上都會有些小挫折，雖然這些挫折都不是大事，但卻會讓我覺得異常的沮喪，做任何事都會想太多調整不回來，導致很多安排都失衡</p>
-<p>分水嶺應該在開刀日子確定好之後，才逐漸雨過天晴，也許是因為有了明確的目標，讓我能夠有努力的目標，並且開始調整自己的心態並開始走出戶外，讓自己能夠回復狀態來面對生活與工作</p>
-<p>經歷過心態被來回拉扯的狀態實在是很不好受，導致經常半夜嚇醒，這時也會回想去年這時候也是因此過勞狀態。因此花了一些時間，接受自己的情緒，消化負能量，接受胡思亂想的自己，把自己的生活跟感情的知覺重新拉出來，才不會讓自己淪為工作機器，變成一個無知覺的生物</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在工作上作為一個 DevRel 要懂的東西需要很廣，也因為有了這段經歷，才有辦法有條有理的處理掉身邊說有遇到的事情，而且在任何關係上，能同時運用在家族學的經驗，更懂的飲水思源，該報恩的時候就要即時</p>
-<p>其實很多工作上的經驗也是反映到日常生活上的待人處事，如果人品跟品格不夠好，其實很多時候就不小心打壞關係，導致事情非常難做，甚至就接著影響到未來工作&#x2F;任何機會</p>
-<p>既然現在也選擇轉換跑道繼續前進，也要把曾經最沒自信的部分給拉起來，並且帶著過往所學的總總+個人特質繼續前進，不能讓這些年所學的東西被浪費掉！</p>
-<p>最後，這篇不是離職文，只是剛好有空檔時間有感而發🫢，在這份工作當中真的學到太多東西，如果有機會實體遇到我，我可以再來分享更多的歷程❤️‍🔥</p>
-]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-  </entry>
-  <entry>
     <title>【札幌】滑雪紀錄, 一天一雪場復健之旅</title>
     <url>/2025/03/25/2025-03-snowboarding-at-hokkaido/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://nijialin.com/images/2025/snowboard/bird.jpg"></p>
@@ -17715,6 +17669,52 @@ img[alt~="center"] {
         <tag>Snowboarding</tag>
         <tag>北海道</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>一轉眼北漂五年的紀錄</title>
+    <url>/2025/07/03/5-years-to-taipei-2025/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>這陣子經歷太多內心上的變化，想說趁著出差期間，回顧並整理來台北後第五年的一些經歷，好好思考一下這些日子來的想法，希望未來在回顧這篇時不會太尷尬 😆</p>
+<span id="more"></span>
+
+<h2 id="Change-Responsibility-from-DevRel-to-Software-Engineer"><a href="#Change-Responsibility-from-DevRel-to-Software-Engineer" class="headerlink" title="Change Responsibility from DevRel to Software Engineer"></a>Change Responsibility from DevRel to Software Engineer</h2><p>2024 時，我參與了公司的 side project，試著從專案管理的角度參與開發項目，雖然專案最後 sunset，但經歷過這次經驗，從前輩們身上學到很多過往的經驗以及技巧，從專案的視野廣闊度到每行 code 的細節都要盡可能掌握</p>
+<p>爾後，除了日常招募與活動之外，也開始跟在資深同事身邊學習系統架構與設計，並在今年組織重整之後，正式被調到內部研發團隊，開始著手系統設計以及服務維運的工作內容</p>
+<p>期間開始了第一個系統設計，公司內設有架構審核的機制，所有專案都得送審，在這流程我也是被徹底的電了一波 😆，也體會到自己在思考架構的細心程度還不透徹，就目前的專案也靠著現在的團隊夥伴幫忙，從開發上給予&amp;討論不同的設計方式，讓系統可以順利開發</p>
+<p>有了這段日子的經驗與反思，才知道當時資深前輩們提醒的東西重要性在哪，日後有其他專案時，要想清楚再做，避免開發後多浪費了其他時間</p>
+<h3 id="Keep-doing-DevRel-things"><a href="#Keep-doing-DevRel-things" class="headerlink" title="Keep doing DevRel things"></a>Keep doing DevRel things</h3><blockquote>
+<p>在 DevRel 新職缺打開之後，沒想到迴響非常大，內外都有許多人來應徵此職缺</p>
+</blockquote>
+<p>去年很可惜因為骨折無法參加 Tech Week，感恩公司今年提供我個工作人員名額可以參加這盛會，這次活動安排期間剛好有現在專案上的東西在燒腦，兩個並行真的是特別燒腦😱，好在 Evan 幫忙了非常多事情，才能讓這次的活動順利出發，然後同事們順利抵達日本並順利執行</p>
+<p>而在這次的 Tech Week 演講期間也獲得到許久不見的成就感，帶著講者同事從休息室到講台，確保整體活動順利外，也在當中幫忙心理建設，提供一些演講上的建議跟注意事項，看著他們能夠順利分享完內容，內心就放下大石鬆一口氣，我就覺得有幫助到特別有成就感。日後要將這重責大任交棒給新人，希望她能夠做出更不一樣風格，而我還是會懷念在每個時刻所獲得的能量！</p>
+<blockquote>
+<p>雖然站了兩天腳都起水泡了，但這樣的負擔是值得的！</p>
+</blockquote>
+<h3 id="Handover-book"><a href="#Handover-book" class="headerlink" title="Handover book"></a>Handover book</h3><p>說到工作上相關事情，近期在公司內開始洋洋灑灑的寫交接日誌，把古今中外 DevRel 要做的事情都寫下來，發現寫的內容是平常做事習慣都沒感覺，寫的當下才發現這些細節，過去在執行上踩了非常多坑，時至今日發現一旦漏了誰，都會讓每次的案子出麻煩…也希望透過文件的方式，讓後續接手的人能基於這些內容，更進一步發揮職能跟個人特色 🏆</p>
+<h3 id="I-have-another-opinions-with-DevRel…"><a href="#I-have-another-opinions-with-DevRel…" class="headerlink" title="I have another opinions with DevRel…"></a>I have another opinions with DevRel…</h3><p>日常在社交過程中，偶爾會有人認為不就只是做做活動，弄得光鮮亮麗就好。其實在這邊的工作過程中，大至跨部門會議小至每次的對談，都會需要事先準備並且要有 take away，我們很把握每次對談的機會，延續每次的對談甚至可以合作，讓未來的專案上不只是個普通活動，而是可以蹦出更多新的作法跟別的公司不一樣</p>
+<p>我也常跟人家分享，其實在對話中是有技巧的，這些方法可不是短時間可以學會，而是要透過大量閱讀、資訊吸收、反思、練習才能學會的技能，雖然很多時候我們都會希望直話直說，但就直話直說也是有技巧的，需要考量當下氣氛跟對方狀態，很多時候即便你無心，話語中都會帶刺，做一個能溫柔對話的人，才能讓人願意幫你在人生這條路上推進一些事情💡</p>
+<blockquote>
+<p>也有可能我從小耳濡目染學會了一些現在能用的對話技巧</p>
+</blockquote>
+<p>DevRel 有別於一般的工程職位，除了要會公關&#x2F;行銷技巧外，更有程式能力來執行一些天馬行空的點子，才能在許多地方脫癮而出，也或許這樣，才造成這麼多迴響？</p>
+<h2 id="About-my-other-working"><a href="#About-my-other-working" class="headerlink" title="About my other working"></a>About my other working</h2><p>當 R&amp;R 開始逐步混合執行到管理層面，許多事情的期待就不會是只有做好那麼簡單，而是要開始思考團隊發展、配合開發治理、系統通用性…等等，雖然在這過程中異常的繁雜以及需要大量的溝通，也是普遍大家都會很討厭這樣的事情，但我想任何一種挑戰來都會是個成長機會，當掌握的資訊越多，對於整體的效率以及團隊的發展就會越有幫助，也期待哪天摸熟了之後能夠讓自己的才能發揮最大化</p>
+<p>另外也常跟公司內剛開始工作的小伙子提到，在本職該做到的事情逐漸上手時，要開始嘗試不同的領域的東西，才不會把自己眼光限縮在一個領域，看得廣才知道自己想要什麼，想學深&#x2F;廣才會有選擇權</p>
+<p><img src="https://nijialin.com/images/2025/important.png"></p>
+<p>就像我在加入 LINE 之前，常常會很執著於一些無傷大雅的小事上，經歷過這幾年的洗禮，回頭更能清楚知道這些小細節的重要性以及優先權，日後再做任何事情都需要先冷靜下來，將事情規劃好再執行，可以避免浪費掉太多時間</p>
+<blockquote>
+<p>畢竟我是個單核單頻的生物 😆</p>
+</blockquote>
+<h2 id="Mentality"><a href="#Mentality" class="headerlink" title="Mentality"></a>Mentality</h2><p>在 Threads 上寫過一段話想給新進同事：「不論剛剛工作上發生什麼事情，下一秒都要想盡辦法正向往前看」，作為一個稱職的文化傳遞者除了要非常非常 非 常 外向以外，還要能隨時給予正能量，幫助團隊成員正向看事情，引進不同的想法並試著讓它融入於團隊中，才能養成團隊文化，進而讓所有事情有所變化，甚至在日常作業上能夠更通順</p>
+<p>但在上半年突然心態很容易受影響，不論是工作上或是生活上都會有些小挫折，雖然這些挫折都不是大事，但卻會讓我覺得異常的沮喪，做任何事都會想太多調整不回來，導致很多安排都失衡</p>
+<p>分水嶺應該在開刀日子確定好之後，才逐漸雨過天晴，也許是因為有了明確的目標，讓我能夠有努力的目標，並且開始調整自己的心態並開始走出戶外，讓自己能夠回復狀態來面對生活與工作</p>
+<p>經歷過心態被來回拉扯的狀態實在是很不好受，導致經常半夜嚇醒，這時也會回想去年這時候也是因此過勞狀態。因此花了一些時間，接受自己的情緒，消化負能量，接受胡思亂想的自己，把自己的生活跟感情的知覺重新拉出來，才不會讓自己淪為工作機器，變成一個無知覺的生物</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在工作上作為一個 DevRel 要懂的東西需要很廣，也因為有了這段經歷，才有辦法有條有理的處理掉身邊說有遇到的事情，而且在任何關係上，能同時運用在家族學的經驗，更懂的飲水思源，該報恩的時候就要即時</p>
+<p>其實很多工作上的經驗也是反映到日常生活上的待人處事，如果人品跟品格不夠好，其實很多時候就不小心打壞關係，導致事情非常難做，甚至就接著影響到未來工作&#x2F;任何機會</p>
+<p>既然現在也選擇轉換跑道繼續前進，也要把曾經最沒自信的部分給拉起來，並且帶著過往所學的總總+個人特質繼續前進，不能讓這些年所學的東西被浪費掉！</p>
+<p>最後，這篇不是離職文，只是剛好有空檔時間有感而發🫢，在這份工作當中真的學到太多東西，如果有機會實體遇到我，我可以再來分享更多的歷程❤️‍🔥</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
   </entry>
   <entry>
     <title>【青森】滑雪紀錄, 從秋田機場出發</title>
@@ -18353,99 +18353,6 @@ img[alt~="center"] {
       </tags>
   </entry>
   <entry>
-    <title>只有 Status page 還不夠！講人話才知道 Infra 發生什麼事</title>
-    <url>/2024/08/05/line-bot-gemini-for-status-page-analyze/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，以下是我在 <a href="https://coscup.org/2024/zh-TW/session/AEJHAC">COSCUP 2024</a> 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！</p>
-<span id="more"></span>
-
-<h1 id="什麼是-Status-Page"><a href="#什麼是-Status-Page" class="headerlink" title="什麼是 Status Page?"></a>什麼是 Status Page?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=17" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>Status Page 是一個專門用來確認與查看系統、服務或是各種應用程式執行狀態的網頁。除了監測狀態，大部分也都能接上各家通知系統，當服務出現狀況時，可以即時通知服務開發者，通常 Status Page 的功能包括：</p>
-<ul>
-<li>即時狀態：顯示當前服務的執行狀態，大致份為「正常」、「部分中斷」、「完全中斷」…etc</li>
-<li>歷史記錄：記錄過去的服務中斷事件、維護活動和其他相關事件，更多可以往後推算 SLA、SLO…etc</li>
-<li>通知：讓用戶訂閱狀態更新通知，透過電子郵件、通訊軟體或其他方式接收通知</li>
-</ul>
-<h2 id="使用-Status-Page-的優點"><a href="#使用-Status-Page-的優點" class="headerlink" title="使用 Status Page 的優點"></a>使用 Status Page 的優點</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
-
-<ul>
-<li>對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴</li>
-</ul>
-<blockquote>
-<p>每當服務越來越多時，很多時候都分身乏術，或許大家可以考慮架設一個 Status Page 來監控自家服務，幫忙分攤一些 effort</p>
-</blockquote>
-<h2 id="為什麼要自架-Uptime-Kuma？他又是什麼？"><a href="#為什麼要自架-Uptime-Kuma？他又是什麼？" class="headerlink" title="為什麼要自架 Uptime Kuma？他又是什麼？"></a>為什麼要自架 Uptime Kuma？他又是什麼？</h2><p>Uptime Kuma 是一個開源且能夠自行管理的監控工具，專門用來監控各種網站和服務的可用性。以下簡單列出一些使用 Uptime Kuma 的優點：</p>
-<ul>
-<li>開源和免費：開源的監控系統，任何人都可以根據自家需求免費使用和調整</li>
-<li>自主管理：你可以在自己的伺服器上運行 Uptime Kuma，完全掌控數據和配置，確保數據隱私和安全。</li>
-<li>簡單易用：Uptime Kuma 提供直觀的用戶界面，易於設置和使用，適合各種技術水平的用戶。</li>
-<li>多種監控選項：支援多種監控類型，包括 HTTP(s)、TCP、Ping、DNS、Push 等，滿足不同的監控需求</li>
-<li>各種通知管道：如電子郵件、Slack、LINE Messaging API、Webhook…etc，確保重要的狀態變更能夠及時傳達</li>
-<li>歷史數據和報告：提供詳細的歷史數據和報告，幫助你分析服務性能和可用性</li>
-</ul>
-<h2 id="架設建議"><a href="#架設建議" class="headerlink" title="架設建議"></a>架設建議</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=27" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>很多時候服務都會放在同一家的雲上(ex: Verda, GCP, AWS..)，但很多時候發生問題時都會是在不同的網路下發生，為了讓監控上能夠更有說服力，會建議將 Status Page 架設在不同的雲上，即便今天雲發生了任何事件，都不會影響到監控系統。</p>
-<blockquote>
-<p>以我自己來說，個人的 Side Project 都放在 GCP 上，而 Status Page 則是放在 fly.io 上面，如果想試看看可以參考<a href="https://github.com/louis70109/uptime-kuma-fly">我的 GitHub</a></p>
-</blockquote>
-<h1 id="如何整合？怎麼讓他人聽懂工程師的語言？"><a href="#如何整合？怎麼讓他人聽懂工程師的語言？" class="headerlink" title="如何整合？怎麼讓他人聽懂工程師的語言？"></a>如何整合？怎麼讓他人聽懂工程師的語言？</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=34" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>對比我工作經驗，以及周遭朋友的工作上，很多時候工作內容都會透過 LINE 傳來傳去，很多時候除了公司最大的群組之外，另外都會有各式小群組去討論不一樣的事情，因此很多時候需要有個 LINE Bot 自動化消化一些錯誤處理，讓第一線工程師可以趕快滅火，以下快速說明可以如何整合</p>
-<h2 id="想像中-Status-Page-能幫到的地方"><a href="#想像中-Status-Page-能幫到的地方" class="headerlink" title="想像中 Status Page 能幫到的地方"></a>想像中 Status Page 能幫到的地方</h2><p><img src="https://nijialin.com/images/2024/status-page/1.png"></p>
-<p>當服務遇到任何問題時</p>
-<ol>
-<li>先透過 webhook 傳進 LINE Bot Server</li>
-<li>Server 依照相關 log 查詢服務的倉庫裡面是否有囤放其他 log (prometheus, loki, SQL…etc)</li>
-<li>將相關資料傳送給 Server 去分析 (<a href="https://github.com/louis70109/line-bot-status-analyze/blob/main/controller/kuma_controller.py#L37">prompt URL</a>) 並傳到 LINE 群組裡</li>
-<li>依照嚴重程度決定要轉發到哪個群組<ol>
-<li>分享案例：Error Log 也可以依照嚴重程度決定讓 Bot 自動發到指定群組，普遍會有 1~3 個群組，大的服務有機會到 5 個</li>
-<li>適時的接上 oncall 系統也是不錯</li>
-</ol>
-</li>
-<li>人手一個 LINE，透過 LINE Bot 來推送訊息可以做更多客製化的內容</li>
-</ol>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>普遍的 Error log 在網路上通常都會有解法，同等來說 AI 在訓練時應該也都有放入相關的材料，因此依照這些日常系統出現的錯誤來說，都可以透過 AI 有條理的幫忙分析，更直接點可以幫忙 Senior 去教育 Junior 對於錯誤分析的體感，讓團隊對於系統的熟悉程度能夠更快 ✍️</p>
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=38" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-
-<p>有鑒於最近許多 Vision 的 AI 分析越來越多，個人用起來的體感真的滿不錯，雖然費用不便宜，但各家 AI 也應該都還有免費方案可以用</p>
-<p>最後，有些跟資安或是個資的東西其實不適合透過 API 打給雲端廠商，有些開發者應該會被要求要自架 AI model(<a href="https://ai.google.dev/gemma?hl=zh-tw">Gemma</a> || <a href="https://llama.meta.com/">Llama</a>)，這時可以透過 <a href="https://groq.com/">GROQ</a> 這個服務測試看看，雖然在串接上還是透過 API 實驗，但至少可以先測測 model 帶來的火力，再決定要不要花時間架起來～</p>
-<p>如果以上的內容對你有幫助，歡迎各位分享出去！</p>
-<p><a href="https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>研討會</category>
-      </categories>
-      <tags>
-        <tag>LINE Bot</tag>
-        <tag>Uptime Kuma</tag>
-        <tag>Gemini</tag>
-        <tag>AI</tag>
-        <tag>Status Page</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
     <url>/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -18577,6 +18484,99 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>Cloud Run</tag>
         <tag>Open Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>只有 Status page 還不夠！講人話才知道 Infra 發生什麼事</title>
+    <url>/2024/08/05/line-bot-gemini-for-status-page-analyze/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好，以下是我在 <a href="https://coscup.org/2024/zh-TW/session/AEJHAC">COSCUP 2024</a> 所分享的內容，帶大家了解在日常開發之餘，Side Project 也能夠透過 Status Page 來了解監控的重要性，以及如何透過 AI 來初步分析錯誤的發生原因，接著就一起往下看吧！</p>
+<span id="more"></span>
+
+<h1 id="什麼是-Status-Page"><a href="#什麼是-Status-Page" class="headerlink" title="什麼是 Status Page?"></a>什麼是 Status Page?</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=17" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>Status Page 是一個專門用來確認與查看系統、服務或是各種應用程式執行狀態的網頁。除了監測狀態，大部分也都能接上各家通知系統，當服務出現狀況時，可以即時通知服務開發者，通常 Status Page 的功能包括：</p>
+<ul>
+<li>即時狀態：顯示當前服務的執行狀態，大致份為「正常」、「部分中斷」、「完全中斷」…etc</li>
+<li>歷史記錄：記錄過去的服務中斷事件、維護活動和其他相關事件，更多可以往後推算 SLA、SLO…etc</li>
+<li>通知：讓用戶訂閱狀態更新通知，透過電子郵件、通訊軟體或其他方式接收通知</li>
+</ul>
+<h2 id="使用-Status-Page-的優點"><a href="#使用-Status-Page-的優點" class="headerlink" title="使用 Status Page 的優點"></a>使用 Status Page 的優點</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=21" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+- 對內部開發團隊來說，它能即時更新狀態、防止問題擴大、降低維護成本、提高跨團隊的資訊共享和透明度，並節省溝通時間
+
+<ul>
+<li>對外部客戶來說，狀態頁面能幫助他們確認問題來源、提高對服務的信任度、提供透明度和可追溯性，並減少對客服的依賴</li>
+</ul>
+<blockquote>
+<p>每當服務越來越多時，很多時候都分身乏術，或許大家可以考慮架設一個 Status Page 來監控自家服務，幫忙分攤一些 effort</p>
+</blockquote>
+<h2 id="為什麼要自架-Uptime-Kuma？他又是什麼？"><a href="#為什麼要自架-Uptime-Kuma？他又是什麼？" class="headerlink" title="為什麼要自架 Uptime Kuma？他又是什麼？"></a>為什麼要自架 Uptime Kuma？他又是什麼？</h2><p>Uptime Kuma 是一個開源且能夠自行管理的監控工具，專門用來監控各種網站和服務的可用性。以下簡單列出一些使用 Uptime Kuma 的優點：</p>
+<ul>
+<li>開源和免費：開源的監控系統，任何人都可以根據自家需求免費使用和調整</li>
+<li>自主管理：你可以在自己的伺服器上運行 Uptime Kuma，完全掌控數據和配置，確保數據隱私和安全。</li>
+<li>簡單易用：Uptime Kuma 提供直觀的用戶界面，易於設置和使用，適合各種技術水平的用戶。</li>
+<li>多種監控選項：支援多種監控類型，包括 HTTP(s)、TCP、Ping、DNS、Push 等，滿足不同的監控需求</li>
+<li>各種通知管道：如電子郵件、Slack、LINE Messaging API、Webhook…etc，確保重要的狀態變更能夠及時傳達</li>
+<li>歷史數據和報告：提供詳細的歷史數據和報告，幫助你分析服務性能和可用性</li>
+</ul>
+<h2 id="架設建議"><a href="#架設建議" class="headerlink" title="架設建議"></a>架設建議</h2><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=27" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>很多時候服務都會放在同一家的雲上(ex: Verda, GCP, AWS..)，但很多時候發生問題時都會是在不同的網路下發生，為了讓監控上能夠更有說服力，會建議將 Status Page 架設在不同的雲上，即便今天雲發生了任何事件，都不會影響到監控系統。</p>
+<blockquote>
+<p>以我自己來說，個人的 Side Project 都放在 GCP 上，而 Status Page 則是放在 fly.io 上面，如果想試看看可以參考<a href="https://github.com/louis70109/uptime-kuma-fly">我的 GitHub</a></p>
+</blockquote>
+<h1 id="如何整合？怎麼讓他人聽懂工程師的語言？"><a href="#如何整合？怎麼讓他人聽懂工程師的語言？" class="headerlink" title="如何整合？怎麼讓他人聽懂工程師的語言？"></a>如何整合？怎麼讓他人聽懂工程師的語言？</h1><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=34" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>對比我工作經驗，以及周遭朋友的工作上，很多時候工作內容都會透過 LINE 傳來傳去，很多時候除了公司最大的群組之外，另外都會有各式小群組去討論不一樣的事情，因此很多時候需要有個 LINE Bot 自動化消化一些錯誤處理，讓第一線工程師可以趕快滅火，以下快速說明可以如何整合</p>
+<h2 id="想像中-Status-Page-能幫到的地方"><a href="#想像中-Status-Page-能幫到的地方" class="headerlink" title="想像中 Status Page 能幫到的地方"></a>想像中 Status Page 能幫到的地方</h2><p><img src="https://nijialin.com/images/2024/status-page/1.png"></p>
+<p>當服務遇到任何問題時</p>
+<ol>
+<li>先透過 webhook 傳進 LINE Bot Server</li>
+<li>Server 依照相關 log 查詢服務的倉庫裡面是否有囤放其他 log (prometheus, loki, SQL…etc)</li>
+<li>將相關資料傳送給 Server 去分析 (<a href="https://github.com/louis70109/line-bot-status-analyze/blob/main/controller/kuma_controller.py#L37">prompt URL</a>) 並傳到 LINE 群組裡</li>
+<li>依照嚴重程度決定要轉發到哪個群組<ol>
+<li>分享案例：Error Log 也可以依照嚴重程度決定讓 Bot 自動發到指定群組，普遍會有 1~3 個群組，大的服務有機會到 5 個</li>
+<li>適時的接上 oncall 系統也是不錯</li>
+</ol>
+</li>
+<li>人手一個 LINE，透過 LINE Bot 來推送訊息可以做更多客製化的內容</li>
+</ol>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>普遍的 Error log 在網路上通常都會有解法，同等來說 AI 在訓練時應該也都有放入相關的材料，因此依照這些日常系統出現的錯誤來說，都可以透過 AI 有條理的幫忙分析，更直接點可以幫忙 Senior 去教育 Junior 對於錯誤分析的體感，讓團隊對於系統的熟悉程度能夠更快 ✍️</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/09271d7b0369482d8046a13ff93550a0?slide=38" title="只有 Status page 還不夠！講人話才知道 Infra 發生什麼事" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
+
+<p>有鑒於最近許多 Vision 的 AI 分析越來越多，個人用起來的體感真的滿不錯，雖然費用不便宜，但各家 AI 也應該都還有免費方案可以用</p>
+<p>最後，有些跟資安或是個資的東西其實不適合透過 API 打給雲端廠商，有些開發者應該會被要求要自架 AI model(<a href="https://ai.google.dev/gemma?hl=zh-tw">Gemma</a> || <a href="https://llama.meta.com/">Llama</a>)，這時可以透過 <a href="https://groq.com/">GROQ</a> 這個服務測試看看，雖然在串接上還是透過 API 實驗，但至少可以先測測 model 帶來的火力，再決定要不要花時間架起來～</p>
+<p>如果以上的內容對你有幫助，歡迎各位分享出去！</p>
+<p><a href="https://nijialin.com/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>研討會</category>
+      </categories>
+      <tags>
+        <tag>LINE Bot</tag>
+        <tag>Uptime Kuma</tag>
+        <tag>Gemini</tag>
+        <tag>AI</tag>
+        <tag>Status Page</tag>
       </tags>
   </entry>
   <entry>
@@ -18952,6 +18952,111 @@ img[alt~="center"] {
         <tag>LINE</tag>
         <tag>LINE Bot</tag>
         <tag>Backend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>首訪 Niseko 滑雪之旅</title>
+    <url>/2026/03/01/niseko-experience-20260301/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2026/niseko/14.niseko-village-moutain.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>早就聽說 Niseko 是亞洲滑雪聖地，每年冬季吸引世界各地的雪友前來朝聖，乾燥的粉雪讓人念念不忘。趁著這次有機會，第一次踏上北海道的雪地，順便測試一下自己的單板到底進步了多少 🏂</p>
+<span id="more"></span>
+
+<blockquote>
+<p>可惜來的這陣子都是大晴(暖)天…😭 只能跟冰塊相處</p>
+</blockquote>
+<hr>
+<h1 id="認識-Niseko-United-—-一山四場"><a href="#認識-Niseko-United-—-一山四場" class="headerlink" title="認識 Niseko United — 一山四場"></a>認識 Niseko United — 一山四場</h1><p><img src="https://nijialin.com/images/2026/niseko/02.niseko-snowboard-guide.JPG"></p>
+<p>Niseko 其實不是單一一個雪場，而是由四個雪場合稱 <strong>Niseko United</strong>：</p>
+<ul>
+<li>Niseko Annupuri</li>
+<li>Niseko Village</li>
+<li>Niseko Grand Hirafu（最大、最熱鬧）</li>
+<li>Niseko Hanazono</li>
+</ul>
+<p>四場聯票可以互通，建議第一天先花時間搞清楚地圖，不然在山上很容易繞迷路 😅</p>
+<hr>
+<h1 id="交通規劃：Niseko-Bus-聯合接駁"><a href="#交通規劃：Niseko-Bus-聯合接駁" class="headerlink" title="交通規劃：Niseko Bus 聯合接駁"></a>交通規劃：Niseko Bus 聯合接駁</h1><p><img src="https://nijialin.com/images/2026/niseko/03.suttle-bus-welcome-center.jpg"></p>
+<p>從新千歲機場到 Niseko 可以搭 <strong>Niseko Bus</strong> 的 UNITED SHUTTLE BUS，班次相當密集，Hirafu 跟 Hanazono 方向都有。建議事先查好時刻表再規劃，冬季旺季人多，有時候需要候補下一班。</p>
+<blockquote>
+<p>官網可以查到最新班次，票價依季節略有不同，建議提早預訂</p>
+</blockquote>
+<hr>
+<h1 id="住宿：Torifito-Hotel-amp-Pod-Niseko"><a href="#住宿：Torifito-Hotel-amp-Pod-Niseko" class="headerlink" title="住宿：Torifito Hotel &amp; Pod Niseko"></a>住宿：Torifito Hotel &amp; Pod Niseko</h1><h2 id="房間"><a href="#房間" class="headerlink" title="房間"></a>房間</h2><p><img src="https://nijialin.com/images/2026/niseko/04.torifito-sleep.jpg"></p>
+<p>這次選擇住 <strong>Torifito Hotel &amp; Pod Niseko</strong>，定位是膠囊旅館，房間空間不大，但設計感很強，木質系的隔板配上溫暖的燈光，一個人住剛好。行李箱塞進去有點緊，但整體很乾淨整潔，性價比還不錯。</p>
+<h2 id="乾燥室一人一櫃"><a href="#乾燥室一人一櫃" class="headerlink" title="乾燥室一人一櫃"></a>乾燥室一人一櫃</h2><p><img src="https://nijialin.com/images/2026/niseko/08.torifito-snowboard-store.jpg"></p>
+<p>Torifito 有提供雪具置物櫃，可以把板子、雪靴等大型裝備鎖在裡面，不用每天抱著一堆東西進房間，真的很方便，但東西記得放開一點，像我遇到下雨天隔天手套就還有點濕。</p>
+<blockquote>
+<p>旁邊還有洗脫烘+付費置物櫃，也有公共溫泉</p>
+</blockquote>
+<h2 id="免費接駁車：Torifito-最大亮點"><a href="#免費接駁車：Torifito-最大亮點" class="headerlink" title="免費接駁車：Torifito 最大亮點"></a>免費接駁車：Torifito 最大亮點</h2><p><img src="https://nijialin.com/images/2026/niseko/05.torifito-free-bus.JPG"></p>
+<p>住 Torifito 最大的好處就是有<strong>免費接駁車</strong>！每天提供往返 Hirafu Welcome Center 跟 Hanazono 雪場的班次，省下不少交通費。</p>
+<p>Welcome Center 看起來應該是這四個點的中心，如果想前往吉他地方也可以在這邊等 free shuttle bus 前往，我自己是選擇買全山票直接滑過去 😆</p>
+<h3 id="往-Hirafu-方向"><a href="#往-Hirafu-方向" class="headerlink" title="往 Hirafu 方向"></a>往 Hirafu 方向</h3><p><img src="https://nijialin.com/images/2026/niseko/06.torifito-free-bus-hirafu.jpg"></p>
+<p>早上最早班是 7:30，下午最晚回程 18:30，班次算是相當充足，基本上可以玩一整天再搭回來。</p>
+<h3 id="往-Hanazono-方向"><a href="#往-Hanazono-方向" class="headerlink" title="往 Hanazono 方向"></a>往 Hanazono 方向</h3><p><img src="https://nijialin.com/images/2026/niseko/07.torifito-free-bus-hanazono.jpg"></p>
+<p>Hanazono 的班次相對少一點，建議出發前先確認好時刻，避免下山後等太久。</p>
+<blockquote>
+<p>有免費接駁車這點真的很值！Niseko 周邊計程車不便宜，能省則省 💰</p>
+</blockquote>
+<hr>
+<h1 id="上山！Hirafu-的滑雪日"><a href="#上山！Hirafu-的滑雪日" class="headerlink" title="上山！Hirafu 的滑雪日"></a>上山！Hirafu 的滑雪日</h1><h2 id="Hirafu-山腳：熱鬧滾滾"><a href="#Hirafu-山腳：熱鬧滾滾" class="headerlink" title="Hirafu 山腳：熱鬧滾滾"></a>Hirafu 山腳：熱鬧滾滾</h2><p><img src="https://nijialin.com/images/2026/niseko/10.hirafu-people.jpg"></p>
+<p>搭接駁車抵達 Grand Hirafu，一出車門就感受到那股人潮，一堆語言交錯在一起然後東西超級貴。</p>
+<p>Hirafu 應該是是四個雪場裡最熱鬧的，車子都會先到這邊，纜車站周邊設施也最齊全，連初學者都能找到適合的雪道，甚至旁邊的 king 還有道具賽，可惜因為開始時間晚沒車，不然就留下來看。</p>
+<h2 id="搭纜車往上：山景揭幕"><a href="#搭纜車往上：山景揭幕" class="headerlink" title="搭纜車往上：山景揭幕"></a>搭纜車往上：山景揭幕</h2><p><img src="https://nijialin.com/images/2026/niseko/11.niseko-village.jpg"></p>
+<p>搭上 Gondola 往山上衝，窗外是一片白色大地，羊蹄山的輪廓慢慢從雲霧中清晰起來，這畫面值回票價 🏔️</p>
+<h2 id="中段停留：藍天配羊蹄山"><a href="#中段停留：藍天配羊蹄山" class="headerlink" title="中段停留：藍天配羊蹄山"></a>中段停留：藍天配羊蹄山</h2><p><img src="https://nijialin.com/images/2026/niseko/12.hirafu-mid.jpg"></p>
+<p>在中段雪道停下來喘口氣，抬頭看到這個景，整個人都醒了。羊蹄山的錐形山頭在萬里晴空下就這樣矗著，有種「值得」的感動。</p>
+<h2 id="登頂：一覽無邊雪原"><a href="#登頂：一覽無邊雪原" class="headerlink" title="登頂：一覽無邊雪原"></a>登頂：一覽無邊雪原</h2><p><img src="https://nijialin.com/images/2026/niseko/13.hirafu-top.jpg"></p>
+<p>爬到頂點後，往外望是完全開闊的雪原，羊蹄山遠遠地佇立在天際線上，山頂的風有點大但沒關係，景色彌補一切 😤</p>
+<hr>
+<h1 id="Niseko-Village：發揮點全山票的優勢"><a href="#Niseko-Village：發揮點全山票的優勢" class="headerlink" title="Niseko Village：發揮點全山票的優勢"></a>Niseko Village：發揮點全山票的優勢</h1><p><img src="https://nijialin.com/images/2026/niseko/14.niseko-village-moutain.jpg"></p>
+<p>其中一天跑到 Niseko Village 雪場留個紀念，感謝有日本女孩幫拍，果然禮讓給他們先拍還是有點好處 😂</p>
+<hr>
+<h1 id="番外"><a href="#番外" class="headerlink" title="番外"></a>番外</h1><h2 id="休息日-前往手稻神社"><a href="#休息日-前往手稻神社" class="headerlink" title="休息日 - 前往手稻神社"></a>休息日 - 前往手稻神社</h2><p><img src="https://nijialin.com/images/2026/niseko/01.IMG_1519.jpg"></p>
+<p>去年三月到札幌附近滑雪，神社這邊的御守都被”其他遊客”清空，過了一年來終於買到了！</p>
+<p>路程(<a href="https://maps.app.goo.gl/VKnGbKqiwucZ4Bxc7">Google Map</a>)：</p>
+<ul>
+<li>Lawson 外的公車站牌等 <strong>Lerch Koen mae</strong> bus</li>
+<li>俱知安町：機器上買到手稻的車票(2200 日幣)，然後是人工打卡</li>
+<li>下車後直接到對面接著<strong>快速機場</strong>線</li>
+<li>到手稻站下車，這邊我就是全憑去年記憶走 😆</li>
+</ul>
+<h2 id="數據"><a href="#數據" class="headerlink" title="數據"></a>數據</h2><p><img src="https://nijialin.com/images/2026/niseko/15.my-record.PNG"></p>
+<p>用 <strong>Slopes App</strong> 記錄了當天的數據，這次來的目標就是要跟好阿毛(想學滑雪請指名)不能一直跌倒，對於我這在滑雪之前只有重訓的人來說真的是超級吃力，這次滑完應該可以休兵個一兩個月</p>
+<h2 id="北海道限定補給"><a href="#北海道限定補給" class="headerlink" title="北海道限定補給"></a>北海道限定補給</h2><p><img src="https://nijialin.com/images/2026/niseko/16.drink.JPG"></p>
+<p>阿毛推薦這個高橋牧場的優洛乳，真的是滿好喝的，只是千萬別再滑雪前喝，那個肚子真的是滾到不能再滾…</p>
+<h2 id="臨時補買：Yonex-3D-雪襪"><a href="#臨時補買：Yonex-3D-雪襪" class="headerlink" title="臨時補買：Yonex 3D 雪襪"></a>臨時補買：Yonex 3D 雪襪</h2><p><img src="https://nijialin.com/images/2026/niseko/09.yonex-sock.JPG"></p>
+<p>到了雪具店才發現忘記帶夠厚的雪襪，就臨時敗了一雙 <strong>Yonex 3D FIT 冬季運動襪</strong>。HEAT CAPSULE 科技、抗菌防臭，穿起來腳踝包覆感真的不一樣，後悔沒早點買 😂</p>
+<hr>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>第一次 Niseko，整體而言超過預期！幾個心得分享：</p>
+<ul>
+<li><strong>住 Torifito 超值</strong>：免費接駁車省去大量交通成本，位置離 Hirafu 也近</li>
+<li><strong>Niseko United 地圖要先研究</strong>：四個雪場各有特色，別浪費時間在山上迷路</li>
+<li><strong>Slopes App</strong>： 我的 iphone 16 pro 可以開一整天+輕度滑手機&#x3D;45% 的電池<ul>
+<li>也有可能是不夠冷所以還有很多電</li>
+</ul>
+</li>
+</ul>
+<p>小可惜這次只體驗春滑，下次有機會一定要在旺季來體驗傳說中的 Niseko 粉雪，但留點小遺憾讓我更期待下一趟！🏂</p>
+<style>
+  section.compact {
+    font-size: 150%
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>旅遊</category>
+      </categories>
+      <tags>
+        <tag>滑雪</tag>
+        <tag>北海道</tag>
+        <tag>Niseko</tag>
+        <tag>單板</tag>
+        <tag>Torifito</tag>
       </tags>
   </entry>
   <entry>
