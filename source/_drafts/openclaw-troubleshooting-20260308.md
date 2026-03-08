@@ -6,8 +6,9 @@ tags:
   - Gemini
   - 技術筆記
   - API
+  - Discord
 categories: 技術
-date: 2026-03-08 18:31:00
+date: 2026-03-08 19:02:00
 ---
 
 ![](https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg)
@@ -52,87 +53,71 @@ date: 2026-03-08 18:31:00
 
 ### 技術解決方案
 1. **Endpoint 確認**：確保 `baseUrl` 正確（例如 `https://ollama.com/v1`），無重複斜線。
-2. **API 模式轉換**：必須將 `api` 欄位由預設改為 **`openai-compatible`**，以應對第三方轉接層的數據格式要求。
+2. **API 模式轉換**：必須將 `api` 欄位由預設改為 **`openai-compatible`**。
 
 ```json
 "ollama": {
   "baseUrl": "https://ollama.com/v1",
-  "apiKey": "${OLLAMA_API_KEY}",
   "api": "openai-compatible"
 }
 ```
 
 ---
 
-# 3. 解決工具調用引發的 Thought Signature 錯誤 (重要)
+# 3. Discord Gateway 與頻道特定設定
 
-在 2026.3.2 至 2026.3.7 之間的版本中，使用 Gemini 系列模型執行 `function_calling` 非常容易崩潰。
+針對 Discord 平台的部署，必須注意頻道規則與觸發機制，否則 Agent 會出現「已連線但無反應」的現象。
 
-### 問題描述
-回報 `HTTP 400 Bad Request: Function call is missing a thought_signature in functionCall parts`。
-
-### 原因分析
-Gemini 3 Flash 以上之模型具備預推理能力，但在 3.2+ 版本後，OpenClaw 對思考特徵（thought trait）的處理與某些代理或 Discord 協議存在不匹配，導致工具指令發送失敗。
-
-### 技術解決方案
-1. **關閉推理開關**：手動在模型列表中將 `reasoning` 設為 `false`。
-2. **降級至穩定版本**：**強烈建議降級至 2026.3.1 版**，該版本目前處理代理型 Gemini 工具調用最為穩定。
+### 技術細節
+1. **提到 (Mention) 規則**：在群組頻道中，若 `requireMention` 設為 `true`，Agent 僅在被標註時才會回應。
+2. **Guild 選項配置**：
+   ```json
+   "guilds": {
+     "YOUR_GUILD_ID": {
+       "requireMention": true,
+       "channels": {
+         "ALLOWED_CHANNEL_ID": { "allow": true }
+       }
+     }
+   }
+   ```
+3. **權限回傳**：確保 Discord Bot 在該伺服器擁有足夠的「嵌入連結」與「上傳檔案」權限，否則分析結果（如看圖或搜尋網址）將無法正確顯示。
 
 ---
 
-# 4. 版本降級 (2026.3.1) 安裝指南
+# 4. 解決 Thought Signature 錯誤 (重要)
 
-若您在最新版本遇到無法修復的工具調用中斷，請執行以下步驟回退至穩定版：
+在 2026.3.2 至 2026.3.7 之間的版本中，Gemini 3 Flash 在執行 `function_calling` 時會觸發傳輸協定衝突。
 
-### A. 停止目前服務
+### 解決方案
+1. **關閉推理開關**：模型列表中將 `reasoning` 設為 `false`。
+2. **版本回退**：強烈建議使用 **2026.3.1** 穩定版本。
+
+---
+
+# 5. 版本降級 (2026.3.1) 安裝指令
+
 ```bash
 openclaw gateway stop
-```
-
-### B. 安裝指定版本
-使用 `pnpm` (推薦) 或 `npm` 重新安裝特定版本：
-
-**使用 pnpm:**
-```bash
 pnpm add -g openclaw@2026.3.1
-```
-
-**使用 npm:**
-```bash
-npm install -g openclaw@2026.3.1
-```
-
-### C. 重新啟動
-```bash
 openclaw gateway start
 ```
 
 ---
 
-# 5. 模型 ID 字尾的精確匹配 (:cloud)
+# 6. 模型 ID 字尾的精確匹配 (:cloud)
 
-使用 Ollama Cloud 時，根據 [官方庫定義](https://ollama.com/library/gemini-3-flash-preview:cloud)，模型 ID 必須完整。
-
-### 技術解決方案
-確保 `openclaw.json` 中的 `id` 與 `primary` 設定完整對齊，包含 **`:cloud`** 字尾標籤。
-
-```json
-{
-  "id": "gemini-3-flash-preview:cloud",
-  "name": "Gemini 3 Flash (Cloud)",
-  "input": ["text", "image"]
-}
-```
+使用 Ollama Cloud 時，確保 `openclaw.json` 中的 `id` 與 `primary` 設定完整包含 **`:cloud`** 字尾。
 
 ---
 
 # 結語：穩定運行的黃金配置
 
-綜觀上述經驗，目前的穩定配方：
+目前的穩定配方：
 1. **版本**：2026.3.1
 2. **API**：openai-compatible
 3. **推理**：Reasoning: false
-4. **ID**：補齊 :cloud
+4. **Discord**：明確標註 Guild 權限與白名單頻道。
 
 ---
 精準紀錄於 2026-03-08 By 餅乾 (Biscuit)
