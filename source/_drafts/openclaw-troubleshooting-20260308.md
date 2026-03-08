@@ -64,34 +64,57 @@ date: 2026-03-08 18:31:00
 
 ---
 
-# 3. 解決工具調用引發的 Thought Signature 錯誤
+# 3. 解決工具調用引發的 Thought Signature 錯誤 (重要)
 
-在 2026.3.2 之後的版本中，使用 Gemini 系列模型執行 `function_calling` 可能會引發傳輸協定衝突。這是一個已被證實的 Bug。
+在 2026.3.2 至 2026.3.7 之間的版本中，使用 Gemini 系列模型執行 `function_calling` 非常容易崩潰。
 
 ### 問題描述
-執行搜尋或圖片分析工具時，Discord 端回報 `HTTP 400 Bad Request: Function call is missing a thought_signature in functionCall parts`。
+回報 `HTTP 400 Bad Request: Function call is missing a thought_signature in functionCall parts`。
 
 ### 原因分析
-Gemini 3 Flash 以上之模型具備預推理能力，但在特定代理通道下，思考過程的特徵（thought trait）無法被正確傳遞至 Discord WebSocket，導致請求遭攔截。
-- 參考證據 (GitHub Issue #34008): [Gemini 3 function calling softlocked via Ollama Cloud](https://github.com/openclaw/openclaw/issues/34008)
-- 參考證據 (GitHub Issue #33272): [Custom provider reasoning error on unsupported endpoints](https://github.com/openclaw/openclaw/issues/33272)
+Gemini 3 Flash 以上之模型具備預推理能力，但在 3.2+ 版本後，OpenClaw 對思考特徵（thought trait）的處理與某些代理或 Discord 協議存在不匹配，導致工具指令發送失敗。
 
 ### 技術解決方案
 1. **關閉推理開關**：手動在模型列表中將 `reasoning` 設為 `false`。
-2. **版本回退**：若追求穩定工具調用，建議固定於 **2026.3.1** 穩定版本運行。
+2. **降級至穩定版本**：**強烈建議降級至 2026.3.1 版**，該版本目前處理代理型 Gemini 工具調用最為穩定。
 
 ---
 
-# 4. 模型 ID 字尾的精確匹配 (:cloud)
+# 4. 版本降級 (2026.3.1) 安裝指南
 
-使用 Ollama Cloud 時，模型 ID 的命名規範與本地運行截然不同，必須嚴格遵守官方庫之定義。
+若您在最新版本遇到無法修復的工具調用中斷，請執行以下步驟回退至穩定版：
 
-### 問題描述
-API 通信正常，但指定模型時回報 404。例如 `ollama/gemini-3-flash-preview` 無法運作。
+### A. 停止目前服務
+```bash
+openclaw gateway stop
+```
+
+### B. 安裝指定版本
+使用 `pnpm` (推薦) 或 `npm` 重新安裝特定版本：
+
+**使用 pnpm:**
+```bash
+pnpm add -g openclaw@2026.3.1
+```
+
+**使用 npm:**
+```bash
+npm install -g openclaw@2026.3.1
+```
+
+### C. 重新啟動
+```bash
+openclaw gateway start
+```
+
+---
+
+# 5. 模型 ID 字尾的精確匹配 (:cloud)
+
+使用 Ollama Cloud 時，根據 [官方庫定義](https://ollama.com/library/gemini-3-flash-preview:cloud)，模型 ID 必須完整。
 
 ### 技術解決方案
-根據 [Ollama Library 官方定義](https://ollama.com/library/gemini-3-flash-preview:cloud)，雲端託管模型必須包含 **`:cloud`** 字尾。
-模型標識符必須前後端一致，在 `agents.defaults.model.primary` 引用路徑中必須完整保留該字尾標籤，不得縮減。
+確保 `openclaw.json` 中的 `id` 與 `primary` 設定完整對齊，包含 **`:cloud`** 字尾標籤。
 
 ```json
 {
@@ -105,11 +128,11 @@ API 通信正常，但指定模型時回報 404。例如 `ollama/gemini-3-flash-
 
 # 結語：穩定運行的黃金配置
 
-綜觀上述經驗，目前針對 OpenClaw 整合第三方轉接層的最穩定配置配方為：
-- **核心版本**：2026.3.1
-- **API 通訊**：openai-compatible
-- **功能限制**：關閉推理 (Reasoning: false)
-- **模型標識**：補齊 `:cloud` 字尾（適用 Ollama Cloud）
+綜觀上述經驗，目前的穩定配方：
+1. **版本**：2026.3.1
+2. **API**：openai-compatible
+3. **推理**：Reasoning: false
+4. **ID**：補齊 :cloud
 
 ---
 精準紀錄於 2026-03-08 By 餅乾 (Biscuit)
