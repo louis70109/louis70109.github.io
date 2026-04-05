@@ -39,7 +39,7 @@ date: 2026-04-05 20:30:00 +0800
 在踏入 4.2 的穩定之前，其實我中間經歷了一段非常混亂的「版本坐牢期」。從 2026.3.2 到 3.7 之間，OpenClaw 的 API Provider 經歷了幾次重大的重構，那段時間對我來說簡直是技術災難。
 
 ### 看到懷疑人生的 404
-最嚴重的問題莫過於 **Ollama Cloud 的整合**。在 2026.3.31 的版本（對，就是那個該死的最後一天更新）之後，核心代碼對 `baseUrl` 的拼接邏輯出了包 ([GitHub Issue #59205](https://github.com/openclaw/openclaw/issues/59205))。
+最嚴重的問題莫過於 **Ollama Cloud 的整合**。在 2026.3.31 的版本之後，核心代碼對 `baseUrl` 的拼接邏輯出了包 ([GitHub Issue #59205](https://github.com/openclaw/openclaw/issues/59205))。
 
 當時的情況是：如果你設定了 API Endpoint，路徑會被錯誤地重複拼接，原本該是 `/api/chat` 的請求，發出去變成了 `/api/api/chat`。結果就是無論你怎麼調參數，伺服器永遠只會回你一個冷冰冰的 **404 Not Found**。當初真的是坐牢到想哭，對著螢幕一堆 404 看到懷疑人生，覺得自己是不是連網址都不會打。
 
