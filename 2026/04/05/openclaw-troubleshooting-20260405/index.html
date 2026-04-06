@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言最近把身邊幾台 OpenClaw 從穩定（但已經快變遺產？）的 2026.3.1 升級到 2026.4.2。本來以為是個 pnpm install 就能解決的小事，沒想到這中間的配置變更跟環境限制，還是讓我小坐了一下牢。 特別是我的主力戰友——那台 MacBook Air 2010 款。雖然它年紀比很多讀者的貓還大，但我已經把它加爆到 16GB RAM 了！老兵不死，只是需要在升級時多給它一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南">
+<meta property="og:url" content="https://nijialin.com/2026/04/05/openclaw-troubleshooting-20260405/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="前言最近把身邊幾台 OpenClaw 從穩定（但已經快變遺產？）的 2026.3.1 升級到 2026.4.2。本來以為是個 pnpm install 就能解決的小事，沒想到這中間的配置變更跟環境限制，還是讓我小坐了一下牢。 特別是我的主力戰友——那台 MacBook Air 2010 款。雖然它年紀比很多讀者的貓還大，但我已經把它加爆到 16GB RAM 了！老兵不死，只是需要在升級時多給它一">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg">
+<meta property="article:published_time" content="2026-04-05T20:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-06T09:21:52.959Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="Discord">
+<meta property="article:tag" content="Gemini">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="Ollama">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="升級指南">
+<meta property="article:tag" content="技術筆記">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg">
+
+<link rel="canonical" href="https://nijialin.com/2026/04/05/openclaw-troubleshooting-20260405/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2026/04/05/openclaw-troubleshooting-20260405/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2026-04-05 20:30:00" itemprop="dateCreated datePublished" datetime="2026-04-05T20:30:00+00:00">2026-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2026-04-06 09:21:52" itemprop="dateModified" datetime="2026-04-06T09:21:52+00:00">2026-04-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">技術</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近把身邊幾台 OpenClaw 從穩定（但已經快變遺產？）的 2026.3.1 升級到 2026.4.2。本來以為是個 <code>pnpm install</code> 就能解決的小事，沒想到這中間的配置變更跟環境限制，還是讓我小坐了一下牢。</p>
+<p>特別是我的主力戰友——那台 <strong>MacBook Air 2010 款</strong>。雖然它年紀比很多讀者的貓還大，但我已經把它加爆到 <strong>16GB RAM</strong> 了！老兵不死，只是需要在升級時多給它一點關愛。寫這篇主要就是想把這些踩坑經驗留下來，給同樣擁抱老設備或追求極致省錢（守護荷包）的大家一個參考。</p>
+<p>或是說，先把信用卡準備好就好(?)。</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="為什麼要升級？（硬體背景）"><a href="#為什麼要升級？（硬體背景）" class="headerlink" title="為什麼要升級？（硬體背景）"></a>為什麼要升級？（硬體背景）</h1><p>其實 3.1 真的跑得挺穩的，但在這台 2010 年的 MBA 上，我們追求的是一種「低功耗、高效能」的微妙平衡。隨著 OpenClaw 支援的雲端模型（尤其是 Ollama Cloud）跟新的 Provider 機制出現，如果想用上最新的 Gemini 3 Flash 或更強大的推理功能，4.2 是必須要跨過去的一個門檻。</p>
+<p>別看這台 MBA 老，16GB RAM 餵下去後，跑起 OpenClaw 調度還是挺順的。不過在升級的過程中，我發現了不少關於 API 命名與計費邏輯的有趣變動。</p>
+<hr>
+<h1 id="1-遺留的-404-惡夢：為什麼-3-1-曾是唯一的救贖？"><a href="#1-遺留的-404-惡夢：為什麼-3-1-曾是唯一的救贖？" class="headerlink" title="1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？"></a>1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？</h1><p>在踏入 4.2 的穩定之前，其實我中間經歷了一段非常混亂的「版本坐牢期」。從 2026.3.2 到 3.7 之間，OpenClaw 的 API Provider 經歷了幾次重大的重構，那段時間對我來說簡直是技術災難。</p>
+<h3 id="看到懷疑人生的-404"><a href="#看到懷疑人生的-404" class="headerlink" title="看到懷疑人生的 404"></a>看到懷疑人生的 404</h3><p>最嚴重的問題莫過於 <strong>Ollama Cloud 的整合</strong>。在 2026.3.31 的版本之後，核心代碼對 <code>baseUrl</code> 的拼接邏輯出了包 (<a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw/issues/59205">GitHub Issue #59205</a>)。</p>
+<p>當時的情況是：如果你設定了 API Endpoint，路徑會被錯誤地重複拼接，原本該是 <code>/api/chat</code> 的請求，發出去變成了 <code>/api/api/chat</code>。結果就是無論你怎麼調參數，伺服器永遠只會回你一個冷冰冰的 <strong>404 Not Found</strong>。當初真的是坐牢到想哭，對著螢幕一堆 404 看到懷疑人生，覺得自己是不是連網址都不會打。</p>
+<h3 id="當-Native-“api-ollama”-罷工時"><a href="#當-Native-“api-ollama”-罷工時" class="headerlink" title="當 Native “api: ollama” 罷工時"></a>當 Native “api: ollama” 罷工時</h3><p>除了路徑衝突，還有另一個坑：原生 Ollama Provider 的不穩定。<br>根據 <a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw/issues/25669">Issue #25669</a>，當時雖然名義上支援了原生 Ollama API，但在執行某些後台任務（例如 <code>/compact</code> 進行對話壓縮）時，內建的 Provider 會莫名其妙失效或找不到。</p>
+<h3 id="降級-Downgrade-是為了更好的前進"><a href="#降級-Downgrade-是為了更好的前進" class="headerlink" title="降級 (Downgrade) 是為了更好的前進"></a>降級 (Downgrade) 是為了更好的前進</h3><p>這就是為什麼當時我決定毅然決然跑回 <strong>2026.3.1</strong>。<br>在那個混亂的版本過渡期，只有 3.1 的 <code>openai-compatible</code> 模式最穩健，它沒有路徑自動補齊的邏輯錯誤，能精準地打到 Ollama Cloud 的接口。</p>
+<p>這篇文章不只是一份指南，更是紀錄那段「與 API 搏鬥」的血淚史。每一個穩定的背後，都是幾十個 404 堆疊出來的。</p>
+<hr>
+<h1 id="2-Ollama-Cloud-的動機：這是在守護荷包"><a href="#2-Ollama-Cloud-的動機：這是在守護荷包" class="headerlink" title="2. Ollama Cloud 的動機：這是在守護荷包"></a>2. Ollama Cloud 的動機：這是在守護荷包</h1><p>在 4.2 之後，模型命名規則做了一個重大的「回歸標準」。原本我們習慣在模型 ID 後面加上 <code>:cloud</code>，但現在統一改用 <strong><code>:latest</code></strong> 了。</p>
+<p>更重要的是，為什麼我要堅持配置 <strong>Ollama Cloud</strong>？</p>
+<h3 id="為什麼選-Ollama-Cloud？"><a href="#為什麼選-Ollama-Cloud？" class="headerlink" title="為什麼選 Ollama Cloud？"></a>為什麼選 Ollama Cloud？</h3><p>這絕對不是因為它名字比較帥，而是因為**「訂閱方案」(Subscription Plan)** 的重要性！</p>
+<p>市面上大多數的 AI 模型都是採用 <strong>Pay-as-you-go (按量計費)</strong>，也就是你每問一個問題、每讓 Agent 爬一次網頁，你的信用卡就在滴血。對於像我這種喜歡讓 Agent 24 小時待命（或是讓它幫我寫這篇長文）的人來說，如果不選用定額訂閱的方案，<strong>荷包可能已經失守了</strong>。</p>
+<p>透過 Ollama Cloud 的定額模式，我可以放心地讓我的 2010 MBA 老戰友拼命跑，不用擔心月底看到帳單會想哭。</p>
+<p><strong>配置範例：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;ollama-cloud&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gemini-3-flash-preview:latest&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-compatible&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><em>就把後綴改成 <code>:latest</code> 就好，超簡單對吧(?)。</em></p>
+<hr>
+<h1 id="3-Agent-權限配置-alsoAllow"><a href="#3-Agent-權限配置-alsoAllow" class="headerlink" title="3. Agent 權限配置 (alsoAllow)"></a>3. Agent 權限配置 (alsoAllow)</h1><p>在 <code>openclaw.json</code> 設定裡，就算你全局開了 <code>full</code> 模式，如果具體的 Agent 沒在 <code>alsoAllow</code> 裡明確列出權限，它還是會跟你說 <code>Tool not found</code>。</p>
+<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>這就像你跟老闆說你可以全權負責，但進機房時警衛還是要看你的識別證一樣煩人。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;personal&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;alsoAllow&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;exec&quot;</span><span class="punctuation">,</span> <span class="string">&quot;read&quot;</span><span class="punctuation">,</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span> <span class="string">&quot;web_search&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="4-Discord-的各種小門檻"><a href="#4-Discord-的各種小門檻" class="headerlink" title="4. Discord 的各種小門檻"></a>4. Discord 的各種小門檻</h1><p>如果你是用 Discord 當 Gateway 的話，記得這兩件事：</p>
+<ol>
+<li><strong>Mention 規則</strong>：如果 <code>requireMention</code> 設為 <code>true</code>，你不標註它，它就裝死給你看。</li>
+<li><strong>權限回傳</strong>：Bot 記得要給「嵌入連結」跟「上傳檔案」的權限，不然它就算找到了正妹（誤）或圖表也傳不出來。</li>
+</ol>
+<hr>
+<h1 id="5-解決-Thought-Signature-錯誤"><a href="#5-解決-Thought-Signature-錯誤" class="headerlink" title="5. 解決 Thought Signature 錯誤"></a>5. 解決 Thought Signature 錯誤</h1><p>Gemini 3 Flash 在某些舊版本（如 2026.3.2）會跟傳輸協定打架。<br><strong>解法：</strong></p>
+<ol>
+<li>將 <code>reasoning</code> 設為 <code>false</code>。</li>
+<li>或是乖乖升級到 4.2。</li>
+</ol>
+<hr>
+<h1 id="🚀-2026-4-2-建議配置配方"><a href="#🚀-2026-4-2-建議配置配方" class="headerlink" title="🚀 2026.4.2 建議配置配方"></a>🚀 2026.4.2 建議配置配方</h1><p>目前實測最香的配置組合：</p>
+<ul>
+<li><strong>版本</strong>：<code>2026.4.2</code></li>
+<li><strong>提供商 (Provider)</strong>：使用 <code>ollama-cloud</code></li>
+<li><strong>模型 (Model)</strong>：<code>gemini-3-flash-preview:latest</code></li>
+<li><strong>API 模式</strong>：一定要用 <code>openai-compatible</code></li>
+<li><strong>推理 (Reasoning)</strong>：建議先關掉，穩定第一！</li>
+</ul>
+<hr>
+<h1 id="結語：繼續折騰吧！"><a href="#結語：繼續折騰吧！" class="headerlink" title="結語：繼續折騰吧！"></a>結語：繼續折騰吧！</h1><p>不管是留在穩定的 3.1 還是衝刺 4.2，找到適合自己的配置才是最重要的。希望這篇筆記能幫大家少走一點彎路，早點享受 AI 的便利。</p>
+<p>溫馨提醒：升級前記得備份設定檔，不然坐牢時間會加倍喔 ❤️<br>推薦大家到 GitHub 給 <a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw">OpenClaw</a> 一個 Star 🌟 支持一下這個超酷的專案！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+              <a href="/tags/Gemini/" rel="tag"><i class="fa fa-tag"></i> Gemini</a>
+              <a href="/tags/OpenClaw/" rel="tag"><i class="fa fa-tag"></i> OpenClaw</a>
+              <a href="/tags/Ollama/" rel="tag"><i class="fa fa-tag"></i> Ollama</a>
+              <a href="/tags/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/" rel="tag"><i class="fa fa-tag"></i> 技術筆記</a>
+              <a href="/tags/%E5%8D%87%E7%B4%9A%E6%8C%87%E5%8D%97/" rel="tag"><i class="fa fa-tag"></i> 升級指南</a>
+              <a href="/tags/Discord/" rel="tag"><i class="fa fa-tag"></i> Discord</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/03/01/niseko-experience-20260301/" rel="prev" title="首訪 Niseko 滑雪之旅">
+      <i class="fa fa-chevron-left"></i> 首訪 Niseko 滑雪之旅
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%8D%87%E7%B4%9A%EF%BC%9F%EF%BC%88%E7%A1%AC%E9%AB%94%E8%83%8C%E6%99%AF%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">為什麼要升級？（硬體背景）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E9%81%BA%E7%95%99%E7%9A%84-404-%E6%83%A1%E5%A4%A2%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC-3-1-%E6%9B%BE%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84%E6%95%91%E8%B4%96%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%8B%E5%88%B0%E6%87%B7%E7%96%91%E4%BA%BA%E7%94%9F%E7%9A%84-404"><span class="nav-number">3.1.</span> <span class="nav-text">看到懷疑人生的 404</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%B6-Native-%E2%80%9Capi-ollama%E2%80%9D-%E7%BD%B7%E5%B7%A5%E6%99%82"><span class="nav-number">3.2.</span> <span class="nav-text">當 Native “api: ollama” 罷工時</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%8D%E7%B4%9A-Downgrade-%E6%98%AF%E7%82%BA%E4%BA%86%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%89%8D%E9%80%B2"><span class="nav-number">3.3.</span> <span class="nav-text">降級 (Downgrade) 是為了更好的前進</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Ollama-Cloud-%E7%9A%84%E5%8B%95%E6%A9%9F%EF%BC%9A%E9%80%99%E6%98%AF%E5%9C%A8%E5%AE%88%E8%AD%B7%E8%8D%B7%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">2. Ollama Cloud 的動機：這是在守護荷包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8-Ollama-Cloud%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">為什麼選 Ollama Cloud？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Agent-%E6%AC%8A%E9%99%90%E9%85%8D%E7%BD%AE-alsoAllow"><span class="nav-number">5.</span> <span class="nav-text">3. Agent 權限配置 (alsoAllow)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="nav-number">5.1.</span> <span class="nav-text">碎碎念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Discord-%E7%9A%84%E5%90%84%E7%A8%AE%E5%B0%8F%E9%96%80%E6%AA%BB"><span class="nav-number">6.</span> <span class="nav-text">4. Discord 的各種小門檻</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E8%A7%A3%E6%B1%BA-Thought-Signature-%E9%8C%AF%E8%AA%A4"><span class="nav-number">7.</span> <span class="nav-text">5. 解決 Thought Signature 錯誤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%9A%80-2026-4-2-%E5%BB%BA%E8%AD%B0%E9%85%8D%E7%BD%AE%E9%85%8D%E6%96%B9"><span class="nav-number">8.</span> <span class="nav-text">🚀 2026.4.2 建議配置配方</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E7%B9%BC%E7%BA%8C%E6%8A%98%E9%A8%B0%E5%90%A7%EF%BC%81"><span class="nav-number">9.</span> <span class="nav-text">結語：繼續折騰吧！</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">249</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">345</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
