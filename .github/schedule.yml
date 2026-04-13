@@ -1,0 +1,184 @@
+name: Hexo Schedule Build and Deploy
+
+# on:
+#   schedule:
+#     - cron: '0 13 * * *'
+
+jobs:
+  Install-Node-package:
+      name: Install Node package
+      runs-on: macos-latest
+      timeout-minutes: 3
+      steps:
+        - uses: actions/checkout@v3
+        - name: Cache node modules
+          uses: actions/cache@v3
+          with:
+            path: node_modules
+            key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
+
+  build-Hexo:
+    name: Build blog
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: yrpang/github-actions-hexo@v1.3
+        with:
+          deploykey: ${{ secrets.BLOG_DEPLOY_TOKEN }}
+          username: nijia-blog[bot]
+          email: nijia-blog-backup@example.com
+      - run: echo 'Push Hexo BLOG deploy Flex Message to Admin'
+      - name: ⏰✅ Schedule success deploy
+        if: ${{ success() }}
+        run: |
+          curl -v -X POST https://api.line.me/v2/bot/message/push \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.LINE_BOT_TOKEN }}" \
+            -d '{
+                    "to": "${{ secrets.ADMIN_LINE_ID }}",
+                    "messages":[{
+                      "type": "flex",
+                      "altText": "✅ Schedule Blog",
+                      "contents": {
+                      "type": "bubble",
+                      "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                      },
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "${{ github.repository }}",
+                            "weight": "bold",
+                            "size": "xl",
+                            "wrap": true
+                          }
+                        ]
+                      },
+                      "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "📝 Draft",
+                              "uri": "https://github.com/louis70109/nijia-blog-backup/tree/master/source/_drafts"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "🌻 Blog",
+                              "uri": "https://nijialin.com/"
+                            }
+                          }
+                        ],
+                        "flex": 0
+                      }
+                    }
+                  }]
+                }'
+      - name: ⏰🔥 Schedule failure message
+        if: ${{ failure() }}
+        uses: louis70109/line-notify-action@master
+        with:
+          token: ${{ secrets.LINE_NOTIFY_TOKEN }}
+          message: '🔥 Blog deploy failure. Check Action: https://github.com/louis70109/nijia-blog-backup/actions'
+      - name: schedule fail deploy
+        if: ${{ failure() }}
+        run: |
+          curl -v -X POST https://api.line.me/v2/bot/message/push \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.LINE_BOT_TOKEN }}" \
+            -d '{
+                    "to": "${{ secrets.ADMIN_LINE_ID }}",
+                    "messages":[{
+                      "type": "flex",
+                      "altText": "🔥 Schedule Blog",
+                      "contents": {
+                      "type": "bubble",
+                      "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                      },
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "${{ github.repository }}",
+                            "weight": "bold",
+                            "size": "xl",
+                            "wrap": true
+                          }
+                        ]
+                      },
+                      "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "📝 Draft",
+                              "uri": "https://github.com/louis70109/nijia-blog-backup/tree/master/source/_drafts"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "🌻 Blog",
+                              "uri": "https://nijialin.com/"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "⛅️ Actions",
+                              "uri": "https://github.com/louis70109/nijia-blog-backup/actions"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "message",
+                              "label": "⏰ Deploy",
+                              "text": "ReRun ${{ github.repository }} ${{ github.run_id }}"
+                            }
+                          }
+                        ],
+                        "flex": 0
+                      }
+                    }
+                  }]
+                }'

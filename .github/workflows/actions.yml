@@ -1,0 +1,188 @@
+name: Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Use Node.js 20
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: yarn
+      - name: Build
+        run: npx hexo generate
+      - name: algolia
+        run: npx hexo algolia
+        # env:
+        #   HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+      - run: echo 'Push Hexo BLOG deploy Flex Message to Admin'
+      - name: ⏰✅ Schedule success deploy
+        if: ${{ success() }}
+        run: |
+          curl -v -X POST https://api.line.me/v2/bot/message/push \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.LINE_BOT_TOKEN }}" \
+            -d '{
+                    "to": "${{ secrets.ADMIN_LINE_ID }}",
+                    "messages":[{
+                      "type": "flex",
+                      "altText": "✅ Schedule Blog",
+                      "contents": {
+                      "type": "bubble",
+                      "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                      },
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "${{ github.repository }}",
+                            "weight": "bold",
+                            "size": "xl",
+                            "wrap": true
+                          }
+                        ]
+                      },
+                      "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "📝 Draft",
+                              "uri": "https://github.com/louis70109/louis70109.github.io/tree/master/source/_drafts"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "🌻 Blog",
+                              "uri": "https://nijialin.com/"
+                            }
+                          }
+                        ],
+                        "flex": 0
+                      }
+                    }
+                  }]
+                }'
+      - name: Deploy fail.
+        if: ${{ failure() }}
+        run: |
+          curl -v -X POST https://api.line.me/v2/bot/message/push \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.LINE_BOT_TOKEN }}" \
+            -d '{
+                    "to": "${{ secrets.ADMIN_LINE_ID }}",
+                    "messages":[{
+                      "type": "flex",
+                      "altText": "🔥 Schedule Blog",
+                      "contents": {
+                      "type": "bubble",
+                      "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                      },
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "${{ github.repository }}",
+                            "weight": "bold",
+                            "size": "xl",
+                            "wrap": true
+                          }
+                        ]
+                      },
+                      "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "📝 Draft",
+                              "uri": "https://github.com/louis70109/louis70109.github.io/tree/master/source/_drafts"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "🌻 Blog",
+                              "uri": "https://nijialin.com/"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "uri",
+                              "label": "⛅️ Actions",
+                              "uri": "https://github.com/louis70109/louis70109.github.io/actions"
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                              "type": "message",
+                              "label": "⏰ Deploy",
+                              "text": "ReRun ${{ github.repository }} ${{ github.run_id }}"
+                            }
+                          }
+                        ],
+                        "flex": 0
+                      }
+                    }
+                  }]
+                }'

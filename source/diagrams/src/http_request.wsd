@@ -1,0 +1,27 @@
+@startuml
+start
+switch (進入 LINE Bot 介面)
+
+case (輸入寶可夢名字「快龍」)
+  if (SQLite查詢「快龍」) then (yes)
+    :寶可夢個體值;
+    :回傳 Flex Message;
+  else (no)
+    :OpenAI產生3D圖片;
+  endif
+case (輸入「屬性」)
+  :回傳官方屬性表圖片;
+case (輸入「VGC」)
+  :回傳 Google Sheet 大表\n;
+case (輸入「TOP」)
+  :抓取 Pokelytic 對戰資訊;
+  :回傳最多人使用的列表;
+  :點選「寶可夢名字」查詢個體;
+case (輸入「find 英文名字」)
+  :搜尋 Pikalytic 賽季排行;
+  :對照 簡體-英文-中文;
+  :產生 Flex Message;
+endswitch
+stop
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+User->CloudStorage: 上傳 MP3 檔案
+CloudStorage->User: 上傳完成
+
+Eventarc->CloudStorage: 持續監聽
+CloudStorage->Eventarc: 上傳完觸發訊號
+Eventarc->CloudRun: 發送訊號觸發相關運作流程
+CloudRun->SpeechToText: 呼叫語音辨識 API
+SpeechToText->CloudRun: 回傳辨識結果
+CloudRun->CloudStorage: 建立成 CC 字幕並上傳
+User->CloudStorage: Download CC 字幕！
+note over CloudStorage, SpeechToText #ADFF2F: GCP
+
+User->Youtube: 上傳CC字幕，開始修正
+Youtube->User: 上傳完成
+@enduml
