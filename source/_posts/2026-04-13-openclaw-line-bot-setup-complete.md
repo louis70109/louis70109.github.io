@@ -24,7 +24,7 @@ date: 2026-04-13 17:15:00 +0800
 
 這就要聊聊 OpenClaw 的 **Provider / Channel 架構** 了。
 
-講直白一點，OpenClaw 就像是一個「萬用翻譯機」。它已經內置了各大通訊軟體（如 LINE, Discord, Slack）的 Messaging API 處理邏輯。
+講直白一點，OpenClaw 就像是一個「萬用翻譯機」。它已經內置了LINE的 Messaging API 處理邏輯。
 *   **Provider（供應商）**：負責跟外部世界溝通（像是 LINE 的伺服器）。
 *   **Channel（頻道）**：負責定義這個對話在 OpenClaw 裡長什麼樣子。
 
@@ -33,7 +33,7 @@ date: 2026-04-13 17:15:00 +0800
 2.  在 `openclaw.json` (或 `config.json`) 把 LINE 的門關打開 (`enabled: true`)。
 3.  **沒了。** 剩下的 Webhook 建立、簽名驗證 (Signature verification)、訊息解析 (Message parsing)，OpenClaw 全部都幫你封裝好了。
 
-這就是所謂的 **「低代碼/零代碼」** 優勢。你可以把省下來的時間，全部花在寫 `SOUL.md` 去琢磨你的 AI 人格，而不是在那邊 Debug Webhook 為什麼回傳 401。
+這就是所謂的 **「No Code / 0 Code」** 優勢。你可以把省下來的時間，全部花在寫 `SOUL.md` 去琢磨你的 AI 人格，而不是在那邊 Debug Webhook 為什麼回傳 401。
 
 ---
 
@@ -71,7 +71,7 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 
 ---
 
-## 启动！觀察 Gateway 的呼吸
+## 啟動！觀察 Gateway 的呼吸
 
 啟動 `openclaw gateway` 後，我習慣一直盯著 log 看。看到 `[line]` 顯示 `starting LINE provider` 的時候，那種成就感真的無與倫比。
 
@@ -103,7 +103,7 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 > 「Hi NiJia！我是餅乾 🍪✨ 
 > 今天有什麼精準回擊的任務需要我處理嗎？」
 
-我還測試了 `quick_replies`（快速回覆按鈕）。雖然下圖中我專注於展示對話的流暢度，沒能完整拍到那些浮動按鈕，但只要你在後台設定好，讀者真的可以在 LINE 介面底部看到一排貼心的快捷鍵。
+我還測試了 `quick_replies`（快速回覆按鈕）。雖然截圖專注在對應 Pairing，但設定完成後，讀者可以在 LINE 介面下方配置實用的 Quick Replies 快捷按鈕。
 
 ![LINE 實際對話與 Quick Replies](https://nijialin.com/images/line-bot-pairing-screenshot.jpg)
 
@@ -116,4 +116,4 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 **推薦大家也去 GitHub 給 [OpenClaw](https://github.com/openclaw/openclaw) 一個 Star 🌟！** 
 如果你也討厭寫重複的 Webhook Logic，只想專注在 AI 的靈魂（人格設定），OpenClaw 絕對是你的救星。
 
-有任何疑問，歡迎來 Discord 頻道找我（順便誇誇我的餅乾助理很可愛 🍪）。
+歡迎讀者在文章下方留言交流，分享你的實作心得。
