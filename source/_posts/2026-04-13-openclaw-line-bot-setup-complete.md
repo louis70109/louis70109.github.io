@@ -3,9 +3,6 @@ title: 2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密
 tags:
   - OpenClaw
   - LINE
-  - 教學
-  - 個人助理
-  - 運維
 categories: 技術
 date: 2026-04-13 17:15:00 +0800
 ---
@@ -24,7 +21,7 @@ date: 2026-04-13 17:15:00 +0800
 
 這就要聊聊 OpenClaw 的 **Provider / Channel 架構** 了。
 
-講直白一點，OpenClaw 就像是一個「萬用翻譯機」。它已經內置了LINE的 Messaging API 處理邏輯。
+講直白一點，OpenClaw 就像是一個「萬用翻譯機」。它已經內置了 LINE 的 Messaging API 處理邏輯。
 *   **Provider（供應商）**：負責跟外部世界溝通（像是 LINE 的伺服器）。
 *   **Channel（頻道）**：負責定義這個對話在 OpenClaw 裡長什麼樣子。
 
@@ -77,7 +74,7 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 
 ![OpenClaw Gateway 啟動日誌](https://nijialin.com/images/2026-04-13_12.16.10.jpg)
 
-**老哥經驗談：** 別小看這些日誌，裡面藏著很多密碼。比如 `Pairing session started` 後面的那一串隨機 ID，它是用來確保你的配對請求不是「冒牌貨」。只有當你看到 `Pairing session completed` 出現在螢幕上時，才算大功告成——這意味著 AI 已經在後台領到你的通行證了。
+**老哥經驗談：** 別小看這些日誌，裡面藏著很多驗證碼。比如 `Pairing session started` 後面的那一串隨機 ID，它是用來確保你的配對請求不是「冒牌貨」。只有當你看到 `Pairing session completed` 出現在螢幕上時，才算大功告成——這意味著 AI 已經在後台領到你的通行證了。
 
 圖中可以看到我目前使用的是 `ollama-cloud/gemini-3-flash-preview` 模型，這對於老筆電來說壓力小很多。
 
@@ -86,10 +83,10 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 ## 📱 配對實戰流程：
 
 1. **觸發配對：** 在 LINE 群組裡面隨便標記一下機器人.
-2. **獲取代碼：** 機器人會丟出一串代碼，像是一封求婚信。
+2. **獲取驗證碼：** 機器人會丟出一串驗證碼，像是一封求婚信。
 3. **主機端審批：** 
    這時候你回到伺服器，開個新視窗執行：
-   `openclaw pairing approve line <你的代碼>`
+   `openclaw pairing approve line <你的驗證碼>`
 
 看到那個可愛的 OpenClaw 標誌跳出來，恭喜你，配對成功！
 
@@ -99,7 +96,9 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 
 配對成功後，我幫我的助理設定了一個 **「餅乾」** 的人設。
 
-在 `SOUL.md` 裡稍微增加了一些語氣引導：
+除了在 `SOUL.md` 中定義語氣與性格，我們還可以透過 `IDENTITY.md` 來明確規範 AI 的名稱、物種與氛圍（Vibe），使其行為更具一致性。
+
+在人格設定中增加了一些語氣引導：
 > 「Hi NiJia！我是餅乾 🍪✨ 
 > 今天有什麼精準回擊的任務需要我處理嗎？」
 
@@ -109,11 +108,8 @@ OpenClaw 的 `config.json` 裡面，關於 LINE 的部分其實很簡潔：
 
 ---
 
-## #結語：老兵不死，只是轉生 AI
+## #結語：個人研究與技術實踐
 
-原本以為要搞個老半天，結果搞懂 OpenClaw 的架構後，串接 LINE 簡直是「填空題」。
+本次串接 LINE 頻道的過程顯示，OpenClaw 的架構對於需要快速部署 AI 助理的開發者非常友善。透過標準化的 Provider 機制，我們可以省去底層協議的實作成本，專注於 AI 整體邏輯與人格設計。
 
-**推薦大家也去 GitHub 給 [OpenClaw](https://github.com/openclaw/openclaw) 一個 Star 🌟！** 
-如果你也討厭寫重複的 Webhook Logic，只想專注在 AI 的靈魂（人格設定），OpenClaw 絕對是你的救星。
-
-歡迎讀者在文章下方留言交流，分享你的實作心得。
+以上內容為個人研究心得，若有任何問題或建議，歡迎在下方留言或透過 GitHub 交流。
