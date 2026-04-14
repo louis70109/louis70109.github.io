@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
+<!-- End Google Tag Manager -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密這幾天在測試 OpenClaw 的 LINE 頻道整合。說實話，我是在這台 MacBook Air 2010（我的老戰友，現在只能拿來當伺服器跑）上面測試的。雖然硬體已經是「古董」級別，但 OpenClaw 的反應速度真的驚豔到我。 不過，身為一個技術宅，我原本以為串接 LINE Bot 至少要寫個幾百行 Node.js 或 P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密">
+<meta property="og:url" content="https://nijialin.com/2026/04/13/2026-04-13-openclaw-line-bot-setup-complete/index.html">
+<meta property="og:site_name" content="忍者工坊">
+<meta property="og:description" content="2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密這幾天在測試 OpenClaw 的 LINE 頻道整合。說實話，我是在這台 MacBook Air 2010（我的老戰友，現在只能拿來當伺服器跑）上面測試的。雖然硬體已經是「古董」級別，但 OpenClaw 的反應速度真的驚豔到我。 不過，身為一個技術宅，我原本以為串接 LINE Bot 至少要寫個幾百行 Node.js 或 P">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nijialin.com/images/2026-04-13_4.51.11.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2026-04-13_3.38.00.jpg">
+<meta property="og:image" content="https://nijialin.com/images/2026-04-13_12.16.10.jpg">
+<meta property="og:image" content="https://nijialin.com/images/line-bot-pairing-screenshot.jpg">
+<meta property="article:published_time" content="2026-04-13T09:15:00.000Z">
+<meta property="article:modified_time" content="2026-04-14T04:31:00.299Z">
+<meta property="article:author" content="NiJia Lin">
+<meta property="article:tag" content="LINE">
+<meta property="article:tag" content="OpenClaw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nijialin.com/images/2026-04-13_4.51.11.jpg">
+
+<link rel="canonical" href="https://nijialin.com/2026/04/13/2026-04-13-openclaw-line-bot-setup-complete/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密 | 忍者工坊</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYPR3Z2K3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">忍者工坊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2026/04/13/2026-04-13-openclaw-line-bot-setup-complete/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="NiJia Lin">
+      <meta itemprop="description" content="You are what you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忍者工坊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2026-04-13 09:15:00" itemprop="dateCreated datePublished" datetime="2026-04-13T09:15:00+00:00">2026-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2026-04-14 04:31:00" itemprop="dateModified" datetime="2026-04-14T04:31:00+00:00">2026-04-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">技術</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="2010-年老筆電復活！OpenClaw-LINE-頻道配對實戰與解密"><a href="#2010-年老筆電復活！OpenClaw-LINE-頻道配對實戰與解密" class="headerlink" title="2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密"></a>2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密</h1><p>這幾天在測試 <a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw">OpenClaw</a> 的 LINE 頻道整合。說實話，我是在這台 MacBook Air 2010（我的老戰友，現在只能拿來當伺服器跑）上面測試的。雖然硬體已經是「古董」級別，但 OpenClaw 的反應速度真的驚豔到我。</p>
+<p>不過，身為一個技術宅，我原本以為串接 LINE Bot 至少要寫個幾百行 Node.js 或 Python，處理那些煩人的 Webhook、什麼加密驗證之類的。結果… 我發現我根本是在「填空」。</p>
+<hr>
+<h2 id="🏗-解密-OpenClaw：為什麼不用寫程式就能動？"><a href="#🏗-解密-OpenClaw：為什麼不用寫程式就能動？" class="headerlink" title="🏗 解密 OpenClaw：為什麼不用寫程式就能動？"></a>🏗 解密 OpenClaw：為什麼不用寫程式就能動？</h2><p>很多人（包括我一開始）都會好奇：『我什麼 Code 都沒寫，為什麼 LINE 訊息傳過去，OpenClaw 就會回我？』</p>
+<p>這就要聊聊 OpenClaw 的 <strong>Provider &#x2F; Channel 架構</strong> 了。</p>
+<p>講直白一點，OpenClaw 就像是一個「萬用翻譯機」。它已經內置了 LINE 的 Messaging API 處理邏輯。</p>
+<ul>
+<li><strong>Provider（供應商）</strong>：負責跟外部世界溝通（像是 LINE 的伺服器）。</li>
+<li><strong>Channel（頻道）</strong>：負責定義這個對話在 OpenClaw 裡長什麼樣子。</li>
+</ul>
+<p>所以，開發者（也就是我們）的事情變得很簡單：</p>
+<ol>
+<li>在 <code>.env</code> 填入 LINE Developer Console 給你的 <code>CHANNEL_SECRET</code> 和 <code>CHANNEL_ACCESS_TOKEN</code>。</li>
+<li>在 <code>openclaw.json</code> (或 <code>config.json</code>) 把 LINE 的門關打開 (<code>enabled: true</code>)。</li>
+<li><strong>沒了。</strong> 剩下的 Webhook 建立、簽名驗證 (Signature verification)、訊息解析 (Message parsing)，OpenClaw 全部都幫你封裝好了。</li>
+</ol>
+<p>這就是所謂的 <strong>「No Code &#x2F; 0 Code」</strong> 優勢。你可以把省下來的時間，全部花在寫 <code>SOUL.md</code> 去琢磨你的 AI 人格，而不是在那邊 Debug Webhook 為什麼回傳 401。</p>
+<hr>
+<h2 id="🛡-為什麼配對這麼「麻煩」？（關於-Pairing-的安全感）"><a href="#🛡-為什麼配對這麼「麻煩」？（關於-Pairing-的安全感）" class="headerlink" title="🛡 為什麼配對這麼「麻煩」？（關於 Pairing 的安全感）"></a>🛡 為什麼配對這麼「麻煩」？（關於 Pairing 的安全感）</h2><p>在實戰中，你會發現 OpenClaw 沒辦法「掃個碼就直接用」，它需要一個 <strong>Pairing（配對）</strong> 的過程。</p>
+<p>你可能會碎碎念：『啊我就直接標記它，它回我就好啦，幹嘛還要我回 server 下指令？』</p>
+<p><strong>拜託，這是為了保命（和保錢）！</strong><br>傳統的 LINE Bot 只要 Webhook 通了，誰傳訊息它都會回。但 OpenClaw 的定位是「個人助理」，它擁有的權限很高（可以讀你的文件、執行你的指令）。如果隨便一個路人甲加了你的 Bot，然後開始問它：『幫我列出這台主機上的所有密碼』，那還得了？</p>
+<p><strong>Pairing 機制的核心意義：將『LINE 帳號身分』與『AI 代理權限』綁定。</strong><br>只有經過你手動 <code>openclaw pairing approve</code> 授權的人，AI 才會服務他。這種「只為授權者服務」的設計，才是真正的私有化 AI 安全感。</p>
+<hr>
+<h2 id="🛠-前置作業：Webhook-與環境變數"><a href="#🛠-前置作業：Webhook-與環境變數" class="headerlink" title="🛠 前置作業：Webhook 與環境變數"></a>🛠 前置作業：Webhook 與環境變數</h2><p>雖然不用寫程式，但基礎建設還是要搞好。老哥我在這行打滾這麼久，最怕的就是這種「看似簡單」的基礎設定卡死人。</p>
+<h3 id="1-設定-JSON-與環境變數"><a href="#1-設定-JSON-與環境變數" class="headerlink" title="1. 設定 JSON 與環境變數"></a>1. 設定 JSON 與環境變數</h3><p>OpenClaw 的 <code>config.json</code> 裡面，關於 LINE 的部分其實很簡潔：</p>
+<p><img src="https://nijialin.com/images/2026-04-13_4.51.11.jpg" alt="OpenClaw LINE 設定片段"></p>
+<p><strong>老哥經驗談：</strong> 這裡有個關鍵，看到圖中那行 <code>&quot;bind&quot;: &quot;process.env.GATEWAY_BIND&quot;</code> 了嗎？這不是隨便寫寫。OpenClaw 允許你引用系統環境變數，這樣你就不必把敏感的 IP 或 Port 寫死在 JSON 裡。<code>gateway.bind</code> 決定了你的服務要在那一個網址「紮營」，對於容器化部署來說，這行代碼縮短了你修改配置的時間。記得把 Token 放到 <code>.env</code> 裡，保護好你的密鑰，別讓它在 GitHub 上裸奔。</p>
+<h3 id="2-ngrok-的神救援"><a href="#2-ngrok-的神救援" class="headerlink" title="2. ngrok 的神救援"></a>2. ngrok 的神救援</h3><p>因為我在家裡跑，沒有固定 IP，這時候 <strong>ngrok</strong> 就是救星。</p>
+<p><img src="https://nijialin.com/images/2026-04-13_3.38.00.jpg" alt="ngrok 轉發介面"></p>
+<p><strong>老哥經驗談：</strong> 很多人看到畫面上那串隨機生成的 <code>.ngrok-free.app</code> 網址會覺得心煩，但這可是 Webhook 的生命線！它就像是在你的老筆電與外面的 LINE 伺服器之間炸開了一個「蟲洞」。你把這個網址填到 LINE Developer Console，LINE 的訊息就能躲過你家路由器的防火牆，直接精準打到你的 OpenClaw 身上。</p>
+<hr>
+<h2 id="啟動！觀察-Gateway-的呼吸"><a href="#啟動！觀察-Gateway-的呼吸" class="headerlink" title="啟動！觀察 Gateway 的呼吸"></a>啟動！觀察 Gateway 的呼吸</h2><p>啟動 <code>openclaw gateway</code> 後，我習慣一直盯著 log 看。看到 <code>[line]</code> 顯示 <code>starting LINE provider</code> 的時候，那種成就感真的無與倫比。</p>
+<p><img src="https://nijialin.com/images/2026-04-13_12.16.10.jpg" alt="OpenClaw Gateway 啟動日誌"></p>
+<p><strong>老哥經驗談：</strong> 別小看這些日誌，裡面藏著很多驗證碼。比如 <code>Pairing session started</code> 後面的那一串隨機 ID，它是用來確保你的配對請求不是「冒牌貨」。只有當你看到 <code>Pairing session completed</code> 出現在螢幕上時，才算大功告成——這意味著 AI 已經在後台領到你的通行證了。</p>
+<p>圖中可以看到我目前使用的是 <code>ollama-cloud/gemini-3-flash-preview</code> 模型，這對於老筆電來說壓力小很多。</p>
+<hr>
+<h2 id="📱-配對實戰流程："><a href="#📱-配對實戰流程：" class="headerlink" title="📱 配對實戰流程："></a>📱 配對實戰流程：</h2><ol>
+<li><strong>觸發配對：</strong> 在 LINE 群組裡面隨便標記一下機器人.</li>
+<li><strong>獲取驗證碼：</strong> 機器人會丟出一串驗證碼，像是一封求婚信。</li>
+<li><strong>主機端審批：</strong><br>這時候你回到伺服器，開個新視窗執行：<br><code>openclaw pairing approve line &lt;你的驗證碼&gt;</code></li>
+</ol>
+<p>看到那個可愛的 OpenClaw 標誌跳出來，恭喜你，配對成功！</p>
+<hr>
+<h2 id="🍪-助理人格：餅乾-🍪-現身"><a href="#🍪-助理人格：餅乾-🍪-現身" class="headerlink" title="🍪 助理人格：餅乾 🍪 現身"></a>🍪 助理人格：餅乾 🍪 現身</h2><p>配對成功後，我幫我的助理設定了一個 <strong>「餅乾」</strong> 的人設。</p>
+<p>除了在 <code>SOUL.md</code> 中定義語氣與性格，我們還可以透過 <code>IDENTITY.md</code> 來明確規範 AI 的名稱、物種與氛圍（Vibe），使其行為更具一致性。</p>
+<p>在人格設定中增加了一些語氣引導：</p>
+<blockquote>
+<p>「Hi NiJia！我是餅乾 🍪✨<br>今天有什麼精準回擊的任務需要我處理嗎？」</p>
+</blockquote>
+<p>我還測試了 <code>quick_replies</code>（快速回覆按鈕）。雖然截圖專注在對應 Pairing，但設定完成後，讀者可以在 LINE 介面下方配置實用的 Quick Replies 快捷按鈕。</p>
+<p><img src="https://nijialin.com/images/line-bot-pairing-screenshot.jpg" alt="LINE 實際對話與 Quick Replies"></p>
+<hr>
+<h2 id="結語：個人研究與技術實踐"><a href="#結語：個人研究與技術實踐" class="headerlink" title="#結語：個人研究與技術實踐"></a>#結語：個人研究與技術實踐</h2><p>本次串接 LINE 頻道的過程顯示，OpenClaw 的架構對於需要快速部署 AI 助理的開發者非常友善。透過標準化的 Provider 機制，我們可以省去底層協議的實作成本，專注於 AI 整體邏輯與人格設計。</p>
+<p>以上內容為個人研究心得，若有任何問題或建議，歡迎在下方留言或透過 GitHub 交流。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/LINE/" rel="tag"><i class="fa fa-tag"></i> LINE</a>
+              <a href="/tags/OpenClaw/" rel="tag"><i class="fa fa-tag"></i> OpenClaw</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/04/05/openclaw-troubleshooting-20260405/" rel="prev" title="OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南">
+      <i class="fa fa-chevron-left"></i> OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+  <script src="https://utteranc.es/client.js"
+          repo="louis70109/louis70109.github.io"
+          issue-term="title"
+          label="💬 Comment ✨"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2010-%E5%B9%B4%E8%80%81%E7%AD%86%E9%9B%BB%E5%BE%A9%E6%B4%BB%EF%BC%81OpenClaw-LINE-%E9%A0%BB%E9%81%93%E9%85%8D%E5%B0%8D%E5%AF%A6%E6%88%B0%E8%88%87%E8%A7%A3%E5%AF%86"><span class="nav-number">1.</span> <span class="nav-text">2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8F%97-%E8%A7%A3%E5%AF%86-OpenClaw%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E7%94%A8%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%B0%B1%E8%83%BD%E5%8B%95%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">🏗 解密 OpenClaw：為什麼不用寫程式就能動？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A1-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%85%8D%E5%B0%8D%E9%80%99%E9%BA%BC%E3%80%8C%E9%BA%BB%E7%85%A9%E3%80%8D%EF%BC%9F%EF%BC%88%E9%97%9C%E6%96%BC-Pairing-%E7%9A%84%E5%AE%89%E5%85%A8%E6%84%9F%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">🛡 為什麼配對這麼「麻煩」？（關於 Pairing 的安全感）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A0-%E5%89%8D%E7%BD%AE%E4%BD%9C%E6%A5%AD%EF%BC%9AWebhook-%E8%88%87%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="nav-number">1.3.</span> <span class="nav-text">🛠 前置作業：Webhook 與環境變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%A8%AD%E5%AE%9A-JSON-%E8%88%87%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 設定 JSON 與環境變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ngrok-%E7%9A%84%E7%A5%9E%E6%95%91%E6%8F%B4"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. ngrok 的神救援</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%9F%E5%8B%95%EF%BC%81%E8%A7%80%E5%AF%9F-Gateway-%E7%9A%84%E5%91%BC%E5%90%B8"><span class="nav-number">1.4.</span> <span class="nav-text">啟動！觀察 Gateway 的呼吸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%B1-%E9%85%8D%E5%B0%8D%E5%AF%A6%E6%88%B0%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">1.5.</span> <span class="nav-text">📱 配對實戰流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8D%AA-%E5%8A%A9%E7%90%86%E4%BA%BA%E6%A0%BC%EF%BC%9A%E9%A4%85%E4%B9%BE-%F0%9F%8D%AA-%E7%8F%BE%E8%BA%AB"><span class="nav-number">1.6.</span> <span class="nav-text">🍪 助理人格：餅乾 🍪 現身</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E%EF%BC%9A%E5%80%8B%E4%BA%BA%E7%A0%94%E7%A9%B6%E8%88%87%E6%8A%80%E8%A1%93%E5%AF%A6%E8%B8%90"><span class="nav-number">1.7.</span> <span class="nav-text">#結語：個人研究與技術實踐</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">NiJia Lin</p>
+  <div class="site-description" itemprop="description">You are what you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">345</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

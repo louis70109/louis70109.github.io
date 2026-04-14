@@ -17672,6 +17672,72 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
+    <title>2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密</title>
+    <url>/2026/04/13/2026-04-13-openclaw-line-bot-setup-complete/</url>
+    <content><![CDATA[<h1 id="2010-年老筆電復活！OpenClaw-LINE-頻道配對實戰與解密"><a href="#2010-年老筆電復活！OpenClaw-LINE-頻道配對實戰與解密" class="headerlink" title="2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密"></a>2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密</h1><p>這幾天在測試 <a href="https://github.com/openclaw/openclaw">OpenClaw</a> 的 LINE 頻道整合。說實話，我是在這台 MacBook Air 2010（我的老戰友，現在只能拿來當伺服器跑）上面測試的。雖然硬體已經是「古董」級別，但 OpenClaw 的反應速度真的驚豔到我。</p>
+<p>不過，身為一個技術宅，我原本以為串接 LINE Bot 至少要寫個幾百行 Node.js 或 Python，處理那些煩人的 Webhook、什麼加密驗證之類的。結果… 我發現我根本是在「填空」。</p>
+<hr>
+<h2 id="🏗-解密-OpenClaw：為什麼不用寫程式就能動？"><a href="#🏗-解密-OpenClaw：為什麼不用寫程式就能動？" class="headerlink" title="🏗 解密 OpenClaw：為什麼不用寫程式就能動？"></a>🏗 解密 OpenClaw：為什麼不用寫程式就能動？</h2><p>很多人（包括我一開始）都會好奇：『我什麼 Code 都沒寫，為什麼 LINE 訊息傳過去，OpenClaw 就會回我？』</p>
+<p>這就要聊聊 OpenClaw 的 <strong>Provider &#x2F; Channel 架構</strong> 了。</p>
+<p>講直白一點，OpenClaw 就像是一個「萬用翻譯機」。它已經內置了 LINE 的 Messaging API 處理邏輯。</p>
+<ul>
+<li><strong>Provider（供應商）</strong>：負責跟外部世界溝通（像是 LINE 的伺服器）。</li>
+<li><strong>Channel（頻道）</strong>：負責定義這個對話在 OpenClaw 裡長什麼樣子。</li>
+</ul>
+<p>所以，開發者（也就是我們）的事情變得很簡單：</p>
+<ol>
+<li>在 <code>.env</code> 填入 LINE Developer Console 給你的 <code>CHANNEL_SECRET</code> 和 <code>CHANNEL_ACCESS_TOKEN</code>。</li>
+<li>在 <code>openclaw.json</code> (或 <code>config.json</code>) 把 LINE 的門關打開 (<code>enabled: true</code>)。</li>
+<li><strong>沒了。</strong> 剩下的 Webhook 建立、簽名驗證 (Signature verification)、訊息解析 (Message parsing)，OpenClaw 全部都幫你封裝好了。</li>
+</ol>
+<p>這就是所謂的 <strong>「No Code &#x2F; 0 Code」</strong> 優勢。你可以把省下來的時間，全部花在寫 <code>SOUL.md</code> 去琢磨你的 AI 人格，而不是在那邊 Debug Webhook 為什麼回傳 401。</p>
+<hr>
+<h2 id="🛡-為什麼配對這麼「麻煩」？（關於-Pairing-的安全感）"><a href="#🛡-為什麼配對這麼「麻煩」？（關於-Pairing-的安全感）" class="headerlink" title="🛡 為什麼配對這麼「麻煩」？（關於 Pairing 的安全感）"></a>🛡 為什麼配對這麼「麻煩」？（關於 Pairing 的安全感）</h2><p>在實戰中，你會發現 OpenClaw 沒辦法「掃個碼就直接用」，它需要一個 <strong>Pairing（配對）</strong> 的過程。</p>
+<p>你可能會碎碎念：『啊我就直接標記它，它回我就好啦，幹嘛還要我回 server 下指令？』</p>
+<p><strong>拜託，這是為了保命（和保錢）！</strong><br>傳統的 LINE Bot 只要 Webhook 通了，誰傳訊息它都會回。但 OpenClaw 的定位是「個人助理」，它擁有的權限很高（可以讀你的文件、執行你的指令）。如果隨便一個路人甲加了你的 Bot，然後開始問它：『幫我列出這台主機上的所有密碼』，那還得了？</p>
+<p><strong>Pairing 機制的核心意義：將『LINE 帳號身分』與『AI 代理權限』綁定。</strong><br>只有經過你手動 <code>openclaw pairing approve</code> 授權的人，AI 才會服務他。這種「只為授權者服務」的設計，才是真正的私有化 AI 安全感。</p>
+<hr>
+<h2 id="🛠-前置作業：Webhook-與環境變數"><a href="#🛠-前置作業：Webhook-與環境變數" class="headerlink" title="🛠 前置作業：Webhook 與環境變數"></a>🛠 前置作業：Webhook 與環境變數</h2><p>雖然不用寫程式，但基礎建設還是要搞好。老哥我在這行打滾這麼久，最怕的就是這種「看似簡單」的基礎設定卡死人。</p>
+<h3 id="1-設定-JSON-與環境變數"><a href="#1-設定-JSON-與環境變數" class="headerlink" title="1. 設定 JSON 與環境變數"></a>1. 設定 JSON 與環境變數</h3><p>OpenClaw 的 <code>config.json</code> 裡面，關於 LINE 的部分其實很簡潔：</p>
+<p><img src="https://nijialin.com/images/2026-04-13_4.51.11.jpg" alt="OpenClaw LINE 設定片段"></p>
+<p><strong>老哥經驗談：</strong> 這裡有個關鍵，看到圖中那行 <code>&quot;bind&quot;: &quot;process.env.GATEWAY_BIND&quot;</code> 了嗎？這不是隨便寫寫。OpenClaw 允許你引用系統環境變數，這樣你就不必把敏感的 IP 或 Port 寫死在 JSON 裡。<code>gateway.bind</code> 決定了你的服務要在那一個網址「紮營」，對於容器化部署來說，這行代碼縮短了你修改配置的時間。記得把 Token 放到 <code>.env</code> 裡，保護好你的密鑰，別讓它在 GitHub 上裸奔。</p>
+<h3 id="2-ngrok-的神救援"><a href="#2-ngrok-的神救援" class="headerlink" title="2. ngrok 的神救援"></a>2. ngrok 的神救援</h3><p>因為我在家裡跑，沒有固定 IP，這時候 <strong>ngrok</strong> 就是救星。</p>
+<p><img src="https://nijialin.com/images/2026-04-13_3.38.00.jpg" alt="ngrok 轉發介面"></p>
+<p><strong>老哥經驗談：</strong> 很多人看到畫面上那串隨機生成的 <code>.ngrok-free.app</code> 網址會覺得心煩，但這可是 Webhook 的生命線！它就像是在你的老筆電與外面的 LINE 伺服器之間炸開了一個「蟲洞」。你把這個網址填到 LINE Developer Console，LINE 的訊息就能躲過你家路由器的防火牆，直接精準打到你的 OpenClaw 身上。</p>
+<hr>
+<h2 id="啟動！觀察-Gateway-的呼吸"><a href="#啟動！觀察-Gateway-的呼吸" class="headerlink" title="啟動！觀察 Gateway 的呼吸"></a>啟動！觀察 Gateway 的呼吸</h2><p>啟動 <code>openclaw gateway</code> 後，我習慣一直盯著 log 看。看到 <code>[line]</code> 顯示 <code>starting LINE provider</code> 的時候，那種成就感真的無與倫比。</p>
+<p><img src="https://nijialin.com/images/2026-04-13_12.16.10.jpg" alt="OpenClaw Gateway 啟動日誌"></p>
+<p><strong>老哥經驗談：</strong> 別小看這些日誌，裡面藏著很多驗證碼。比如 <code>Pairing session started</code> 後面的那一串隨機 ID，它是用來確保你的配對請求不是「冒牌貨」。只有當你看到 <code>Pairing session completed</code> 出現在螢幕上時，才算大功告成——這意味著 AI 已經在後台領到你的通行證了。</p>
+<p>圖中可以看到我目前使用的是 <code>ollama-cloud/gemini-3-flash-preview</code> 模型，這對於老筆電來說壓力小很多。</p>
+<hr>
+<h2 id="📱-配對實戰流程："><a href="#📱-配對實戰流程：" class="headerlink" title="📱 配對實戰流程："></a>📱 配對實戰流程：</h2><ol>
+<li><strong>觸發配對：</strong> 在 LINE 群組裡面隨便標記一下機器人.</li>
+<li><strong>獲取驗證碼：</strong> 機器人會丟出一串驗證碼，像是一封求婚信。</li>
+<li><strong>主機端審批：</strong><br>這時候你回到伺服器，開個新視窗執行：<br><code>openclaw pairing approve line &lt;你的驗證碼&gt;</code></li>
+</ol>
+<p>看到那個可愛的 OpenClaw 標誌跳出來，恭喜你，配對成功！</p>
+<hr>
+<h2 id="🍪-助理人格：餅乾-🍪-現身"><a href="#🍪-助理人格：餅乾-🍪-現身" class="headerlink" title="🍪 助理人格：餅乾 🍪 現身"></a>🍪 助理人格：餅乾 🍪 現身</h2><p>配對成功後，我幫我的助理設定了一個 <strong>「餅乾」</strong> 的人設。</p>
+<p>除了在 <code>SOUL.md</code> 中定義語氣與性格，我們還可以透過 <code>IDENTITY.md</code> 來明確規範 AI 的名稱、物種與氛圍（Vibe），使其行為更具一致性。</p>
+<p>在人格設定中增加了一些語氣引導：</p>
+<blockquote>
+<p>「Hi NiJia！我是餅乾 🍪✨<br>今天有什麼精準回擊的任務需要我處理嗎？」</p>
+</blockquote>
+<p>我還測試了 <code>quick_replies</code>（快速回覆按鈕）。雖然截圖專注在對應 Pairing，但設定完成後，讀者可以在 LINE 介面下方配置實用的 Quick Replies 快捷按鈕。</p>
+<p><img src="https://nijialin.com/images/line-bot-pairing-screenshot.jpg" alt="LINE 實際對話與 Quick Replies"></p>
+<hr>
+<h2 id="結語：個人研究與技術實踐"><a href="#結語：個人研究與技術實踐" class="headerlink" title="#結語：個人研究與技術實踐"></a>#結語：個人研究與技術實踐</h2><p>本次串接 LINE 頻道的過程顯示，OpenClaw 的架構對於需要快速部署 AI 助理的開發者非常友善。透過標準化的 Provider 機制，我們可以省去底層協議的實作成本，專注於 AI 整體邏輯與人格設計。</p>
+<p>以上內容為個人研究心得，若有任何問題或建議，歡迎在下方留言或透過 GitHub 交流。</p>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>OpenClaw</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一轉眼北漂五年的紀錄</title>
     <url>/2025/07/03/5-years-to-taipei-2025/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -17896,6 +17962,52 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </categories>
   </entry>
   <entry>
+    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
+    <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
+<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
+<span id="more"></span>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>此次使用的是 <a href="https://github.com/louislam/uptime-kuma/tree/master">uptime-kuma</a>，本來想說可以直接上到 Google Cloud Run 上，除了自己弄不上去以外，也發現 uptime kuma 是使用 SQLite 來儲存資訊，這邊很有可能被 <a href="https://nijialin.com/2020/02/15/serverless-cold-start/">Cold Start 的問題</a>打到，因此這次使用 fly.io 來部署(<a href="https://github.com/louis70109/uptime-kuma-fly/blob/main/fly.toml">民間版本.toml</a>)</p>
+<ol>
+<li>有許多的 notification 可以串接，有支援 LINE Bot &amp; Notify</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/kuma/notification.png"></p>
+<ol start="2">
+<li><p>初次進去就可以設帳密，但帳號只能一個還改不了 🫣</p>
+</li>
+<li><p>可設定群組，統一設定 notification 而不用各別弄</p>
+</li>
+<li><p>還沒研究怎麼把 SQLite 拔出來，看來有支援 MySQL</p>
+</li>
+<li><p>備份不求人，直接 Export 就可以了</p>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/kuma/backup.png"></p>
+<ol start="6">
+<li>如何部署到 fly.io</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Clone 專案到本地</span></span><br><span class="line">git clone https:<span class="string">//github.com/louis70109/uptime-kuma-fly.git</span></span><br><span class="line"><span class="comment"># 進入資料夾</span></span><br><span class="line"><span class="keyword">cd</span> uptime-kume-fly/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署，原先指令是 flyctl</span></span><br><span class="line">fly launch \</span><br><span class="line">  <span class="params">--copy-config</span> \</span><br><span class="line">  <span class="params">--auto-confirm</span> \</span><br><span class="line">  <span class="params">--ha=false</span> \</span><br><span class="line">  <span class="params">--name</span> uptime-kuma-nijia \</span><br><span class="line">  <span class="params">--now</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>如果想要在 fly.io 上客製化 domain，例如：<code>status.YOURDOMAIN.com</code></li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">fly certs <span class="built_in">create</span> <span class="built_in">status</span>.YOURDOMAIN.com</span><br><span class="line">fly certs <span class="built_in">create</span> <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br><span class="line">fly certs show <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
+]]></content>
+      <categories>
+        <category>Serverless</category>
+      </categories>
+      <tags>
+        <tag>Serverless</tag>
+        <tag>Monitor</tag>
+        <tag>Fly.io</tag>
+        <tag>Uptime Kuma</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何建立 fly.toml 並快速佈署至 Fly.io</title>
     <url>/2024/04/04/flyio-quick-deploy-your-service/</url>
     <content><![CDATA[<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>最近因為有些專案需要有 local Volume，但在 Serverless 上要用偏麻煩，除機器上的本身功能以外，還需要另外開 VM 讓 Container 能夠 mount volume，因此需要類似 Heroku、Fly.io 這類的 SaaS 的服務，可以用很少量的費用去使用到 Database&#x2F;Volume 的功能…</p>
@@ -17947,52 +18059,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       <tags>
         <tag>Serverless</tag>
         <tag>Fly.io</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Fly.io 上架設 Uptime Kuma 監控 Side Project</title>
-    <url>/2024/03/24/flyio-deploy-uptime-kuma/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/kuma/1.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪…</p>
-<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>此次使用的是 <a href="https://github.com/louislam/uptime-kuma/tree/master">uptime-kuma</a>，本來想說可以直接上到 Google Cloud Run 上，除了自己弄不上去以外，也發現 uptime kuma 是使用 SQLite 來儲存資訊，這邊很有可能被 <a href="https://nijialin.com/2020/02/15/serverless-cold-start/">Cold Start 的問題</a>打到，因此這次使用 fly.io 來部署(<a href="https://github.com/louis70109/uptime-kuma-fly/blob/main/fly.toml">民間版本.toml</a>)</p>
-<ol>
-<li>有許多的 notification 可以串接，有支援 LINE Bot &amp; Notify</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/kuma/notification.png"></p>
-<ol start="2">
-<li><p>初次進去就可以設帳密，但帳號只能一個還改不了 🫣</p>
-</li>
-<li><p>可設定群組，統一設定 notification 而不用各別弄</p>
-</li>
-<li><p>還沒研究怎麼把 SQLite 拔出來，看來有支援 MySQL</p>
-</li>
-<li><p>備份不求人，直接 Export 就可以了</p>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/kuma/backup.png"></p>
-<ol start="6">
-<li>如何部署到 fly.io</li>
-</ol>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Clone 專案到本地</span></span><br><span class="line">git clone https:<span class="string">//github.com/louis70109/uptime-kuma-fly.git</span></span><br><span class="line"><span class="comment"># 進入資料夾</span></span><br><span class="line"><span class="keyword">cd</span> uptime-kume-fly/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署，原先指令是 flyctl</span></span><br><span class="line">fly launch \</span><br><span class="line">  <span class="params">--copy-config</span> \</span><br><span class="line">  <span class="params">--auto-confirm</span> \</span><br><span class="line">  <span class="params">--ha=false</span> \</span><br><span class="line">  <span class="params">--name</span> uptime-kuma-nijia \</span><br><span class="line">  <span class="params">--now</span></span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>如果想要在 fly.io 上客製化 domain，例如：<code>status.YOURDOMAIN.com</code></li>
-</ol>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">fly certs <span class="built_in">create</span> <span class="built_in">status</span>.YOURDOMAIN.com</span><br><span class="line">fly certs <span class="built_in">create</span> <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br><span class="line">fly certs show <span class="string">&quot;*.YOURDOMAIN.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看 Fly.io 一個月租金寫 5 美元，但因為只有一個服務應該不會用到這麼多流量，這次除了架設 status page 以外，也來看看這邊租金是怎樣，如果 &lt; 100 台幣的話或許可以考慮繼續使用，畢竟人家提供方便的服務來使用也是挺棒的！</p>
-]]></content>
-      <categories>
-        <category>Serverless</category>
-      </categories>
-      <tags>
-        <tag>Serverless</tag>
-        <tag>Fly.io</tag>
-        <tag>Monitor</tag>
-        <tag>Uptime Kuma</tag>
       </tags>
   </entry>
   <entry>
@@ -18201,6 +18267,156 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
         <tag>GCP</tag>
         <tag>Gemini</tag>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
+    <url>/2024/05/03/line-bot-cloud-functions-workshop/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<ul>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#line-bot--gemini-pro-%E8%A8%AD%E5%AE%9A%E7%B4%B0%E7%AF%80%E8%AB%8B%E5%8F%83%E8%80%83-%E6%97%85%E8%A1%8C%E5%B0%8F%E5%B9%AB%E6%89%8B-line-bot-%E6%96%87%E7%AB%A0">LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章</a><ul>
+<li><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99">事前準備</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E9%97%9C%E6%96%BC-gemini-api-price">關於 Gemini API Price</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B5%81%E7%A8%8B%E5%9C%96">流程圖</a></li>
+</ul>
+</li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A9%A6%E9%A1%8C%E7%AF%84%E4%BE%8B%E7%82%BA%E5%88%97%E5%87%BA%E4%BA%94%E5%80%8B%E9%A0%85%E7%9B%AE%E4%BF%AE%E6%94%B9-prompt-%E6%89%BE%E5%87%BA%E7%BE%A4%E7%B5%84%E7%9A%84%E5%A4%A7%E5%AE%B6%E6%9C%80%E8%BF%91%E9%97%9C%E6%B3%A8%E7%9A%84%E4%BA%8B%E9%A0%85">試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</a></li>
+</ul>
+</li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%A2%9E%E5%8A%A0%E5%A4%A9%E6%B0%A3-open-data-%E5%8A%9F%E8%83%BD">增加天氣 Open Data 功能</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A1%9B%E6%98%9F%E9%9B%B2%E5%9C%96---%E6%98%AF%E5%90%A6%E6%9C%89%E9%9B%B2%E5%B1%A4">衛星雲圖 - 是否有雲層</a></li>
+<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章為延續與政治大學 &amp; 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！</p>
+<span id="more"></span>
+
+<ul>
+<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(1)： 景色辨識小幫手</a></li>
+<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a></li>
+<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」</a></li>
+</ul>
+<h1 id="LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
+<ul>
+<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
+<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
+<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
+<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
+<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a></li>
+</ul>
+<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
+<blockquote>
+<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
+</blockquote>
+<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
+
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><ol>
+<li>首先到 GitHub 上 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-summarize-cloud-functions-gemini</a></li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/1.png"></p>
+<ol start="2">
+<li>將 Code 轉貼到 Cloud Functions 上的介面，這邊使用 1st Gen || 2nd Gen 都不影響，如果有舊的也可以複製一個 functions 出來<ol>
+<li>Function name 小雷：如果先建立了一個 <code>function-1</code> 的，然後砍掉之後，再建立一個名字一樣 <code>function-1</code> 的，LINE bot 這邊會打不到新的 webhook</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/2.png"></p>
+<ol start="3">
+<li>加入以下的環境變數，並放上對應的參數，如果有找不到的 Key，請參考過往的系列文<ol>
+<li>需要注意：因為使用 Python 關係，且之後圖片判斷功能，因此 Memory 會需要設定 <code>1GB</code></li>
+</ol>
+</li>
+</ol>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">ChannelSecret</span><br><span class="line">ChannelAccessToken</span><br><span class="line">GOOGLE<span class="emphasis">_GEMINI_API_KEY</span></span><br><span class="line"><span class="emphasis">FIREBASE_</span>URL</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/3.png"></p>
+<ol start="4">
+<li>來到 GitHub 專案 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a> 的 main.py，點選畫面上的按鈕複製程式碼</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/4.png"></p>
+<ol start="5">
+<li>轉貼到 Cloud Functions 上，需要注意的地方是，預設為 JavaScript，因此這邊要先選擇 <code>Python 3.11</code>，接著<strong>進入點</strong>需要換成 <code>linebot</code>，main.py 以及 requirements.txt 裡面的內容都需要置換，後續才能部署</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/5.png"></p>
+<ol start="6">
+<li>在 build 的過程，找到觸發網址的地方，將他複製起來</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/6.png"></p>
+<ol start="7">
+<li>複製到 LINE Developer Console 的 webhook 地方，不用加任何的 sub-path</li>
+</ol>
+<p><img src="https://nijialin.com/images/2024/gemini-workshop/7.png"></p>
+<ol start="8">
+<li>接著可以來到<a href="https://today.line.me/tw/v3/tab"> LINE TODAY </a>當中，假設現在有個爬蟲想做，模擬抓下來的動作，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通</li>
+</ol>
+<h2 id="試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項"><a href="#試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項" class="headerlink" title="試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項"></a>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</h2><p>假設你是一位喜歡音樂的人，但今天想關注籃球圈的群組，你會怎麼請 AI Bot 幫忙呢？試試看把 prompt 改掉吧！</p>
+<h1 id="增加天氣-Open-Data-功能"><a href="#增加天氣-Open-Data-功能" class="headerlink" title="增加天氣 Open Data 功能"></a>增加天氣 Open Data 功能</h1><blockquote>
+<p>這部分範例參考 - <a href="https://nijialin.com/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/">在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</a> 文章上的內容</p>
+</blockquote>
+<p><a href="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e">範例 code 在此</a>，這邊需要準備的部分:</p>
+<ul>
+<li>要到中央氣象局申請 API Key (<code>需要註冊</code>且拿到<code>授權碼</code>)<ul>
+<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
+<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
+</ul>
+</li>
+<li>requirements.txt 裡面的套件需要加入 requests</li>
+<li>將 API Key 放入環境變數 <code>OPEN_API</code> 當中</li>
+<li>將相關的 code 貼上</li>
+<li>在 Chatbot 中加入判斷式測試</li>
+<li>再次部署 Cloud Functions</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/main.py#L113">參考作法</a></p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e.js"></script>
+
+<h1 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h1><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
+<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
+<ul>
+<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
+<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
+<li>可以試著用時間套件+判斷式來檢測</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
+</blockquote>
+<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
+
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>GCP</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>Serverless</tag>
+        <tag>Google</tag>
+        <tag>GCP</tag>
+        <tag>Cloud Function</tag>
       </tags>
   </entry>
   <entry>
@@ -18431,6 +18647,120 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
+    <title>Save your time - TECH FRESH 畢業分享會 2024 @ LINE</title>
+    <url>/2024/05/20/line-tech-fresh-graduation-2024/</url>
+    <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689497803877.png?updatedAt=1689497805000"></p>
+<ul>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E4%BB%8B%E7%B4%B9">活動介紹</a><ul>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E8%B3%87%E8%A8%8A">活動資訊</a></li>
+</ul>
+</li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%AD%B7%E5%8F%B2%E5%85%B8%E6%95%85">活動歷史典故</a></li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%B5%81%E7%A8%8B">活動流程</a></li>
+<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E7%B5%90%E8%AB%96">結論</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好！我們是 LINE Developer Relations 團隊，很高興向大家介紹一個特別的活動——<strong>2024 年 6 月 18 日</strong>舉行的 <strong>TECH FRESH 畢業分享會</strong>。去年我們首次開放對外的分享會，現場引起了取多迴響，我們在這個活動上學到了很多，因此希望透過今年的舉辦，能與更多同學分享我們 LINE TECH FRESH 的成長和收穫。</p>
+<span id="more"></span>
+
+<h1 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h1><p>在這個分享會中，我們的實習生將站上舞台，分享他們在 LINE 的點滴和成就，不僅能聽到第一手的實習經驗，還能深入了解 LINE 的工作環境與文化。無論你是對軟體生態充滿熱情的學生，還是正在尋找職業發展方向的求職者，我們都誠摯地邀請你來參加這場盛會。讓我們一起在這個活動中學習、交流、成長，為未來創造更多可能。</p>
+<h2 id="活動資訊"><a href="#活動資訊" class="headerlink" title="活動資訊"></a>活動資訊</h2><p>活動：LINE TECH FRESH 畢業分享會<br>時間：<code>2024/06/18 18:00~21:30</code> (17:40 開放入場)<br>地點：LINE 台灣總部<br>報名：<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a></p>
+<h1 id="活動歷史典故"><a href="#活動歷史典故" class="headerlink" title="活動歷史典故"></a>活動歷史典故</h1><p>去年首次對外公開，小小的空間(圖片)，現場人數也來到近百人，有許多同學來了解 LINE TECH FRESH 在軟體領域的耕耘成果，沒參加過的同學可能會很好奇，那畢業分享會到底在做什麼？以下概略地跟讀者介紹，並且可以搭配下文的<code>活動流程</code>搭配使用喔！</p>
+<p>在 2023 年之前，TECH FRESH 會在畢業前夕，與 LINE 內部所有同仁分享整年的戰果，而 Mentor 也會在其中鼓勵同學並且提點未來軟體道路的一些眉眉角角。 (參考以下文)</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
+</ul>
+<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689498034174.jpg?updatedAt=1689498035000"></p>
+<p>而在同學的內容整理當中，我們發現大家的內容都相當有料，思考著如何讓更多人瞭解 TECH FRESH 整年的實習過程究竟對職涯多有幫助，因此在去年我們決定對外展開。現場效果非常棒，將近有** 80 位來自不同學校的同學**參加，並且現場許多同學就直接交流起來，了解 TECH FRESH 們在當時考慮實習的顧慮點，以及後續的規劃，相信這會是一場讓參加的同學們收穫滿滿的活動！</p>
+<p>今年我們一樣邀請應屆畢業生，與大家分享更不同層面的內容，詳細內容跟我們一起參考以下內容：</p>
+<h1 id="活動流程"><a href="#活動流程" class="headerlink" title="活動流程"></a>活動流程</h1><p>這次的活動將會有以下幾個部分：</p>
+<ul>
+<li>Keynote：由 TECH FRESH people manager - Evan 為大家分享東西</li>
+<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
+<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
+<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長姐，讓你更深入地了解我們的實習生們的經驗和感想。</li>
+</ul>
+<blockquote>
+<p>活動僅開放給學生身分參加(現場審核)，同時現場將提供餐飲及小點心，因此歡迎各大專院校同學共襄盛舉 LINE TECH FRESH 畢業分享會！</p>
+</blockquote>
+<ul>
+<li>18:00~18:05 開場</li>
+<li>18:05~18:20 <strong>從實習到專家：LINE TECH FRESH 的成長軌跡</strong> Evan Lin</li>
+<li>18:20~18:40 <strong>蔡 EC：24 歲開發一次成功</strong> Chiu Winnie, Yang Lauren</li>
+<li>18:40~19:00 <strong>QA 蝦米 QA？我的扣超讚的啊</strong> Chen YT, Tsai Lawrence</li>
+<li>19:00~19:20 <strong>這就很玄囉 從粽子看開發的世界</strong> Shin Chris, Chang Young</li>
+<li>19:20~19:40 <strong>從混亂到掌控：使用 Observability 揭開管家的神秘面紗</strong> Wu Tristan, Hu Gary</li>
+<li>19:40~20:00 攤位時間 (EC, Content, Central)</li>
+<li>20:00~20:40 Lightning Talk<ul>
+<li><strong>你在 DevOps 什麼啦，我要趕快上線！</strong> Wu Calista, Lee Ryan</li>
+<li><strong>寫出不管地震怎麼搖，都能確保網站都不會壞的前端測試</strong>  Chen Yu</li>
+<li><strong>一起來跑 TDD，直到完成 User Story 為止</strong> Lu Brandon</li>
+</ul>
+</li>
+<li>20:40 ~ 20:50 大合照 @ 2F &amp; Ending</li>
+<li>20:50 ~ 21:00 Q&amp;A 自由活動空間</li>
+</ul>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這麼精彩內容如果錯過就要再等一年囉！趕快按下報名👉<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a>，並邀請週遭同學們一起來參加！更多 TECH FRESH 內容請參考以下清單，那我們就 2024&#x2F;06&#x2F;18 見啦！</p>
+<ol>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/techfresh-2024">LINE 實習筆記：TECH FRESH 的軟體探險之旅</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/line-tech-fresh-2024-summer">LINE TECH FRESH 2024 Summer Class 招募相關說明 (時程, 職缺)</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/frontend-try-exception-sitcon-2024">沒想過的前端錯誤處理 可能比你有做的還多 @ SITCON 2024</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/kubernetes-config-Secret-testing-with-twokey-testing-principles">LINE 旅遊 - How We Conduct Automated Kubernetes Config and Secret Testing with Two Key Testing Principles</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/From-Classroom-to-Data-Team-My-Journey-at-LINE">From Classroom to Data Team: My Journey @ LINE</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/beyond-development-as-a-tech-fresh">Beyond Development: Exploring the Multifaceted World of Engineering at LINE as a TECH FRESH</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-video-creator-to-qa-internship">關於我從拍片仔轉職 QA 的那件事</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/implementation-myself-by-different-department">非本科，又如何？ — 論非本科的自我實踐之路</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/embarking-on-a-machine-learning-internship-nycu-csie-visit">進擊的後端: Chris 實習經驗分享 @ 台大_輔大_北醫 GDSC 企業參訪</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/utopian-journey-my-ideal-internship-experience-at-line">Utopian Journey – My Ideal Internship Experience at LINE (臺師大企業參訪演講)</a></li>
+<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-heart-to-software-engineering-intern">從心開始的純軟之路 – 一次解答非本科走進軟體業的迷思 @ 臺師大企業參訪</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/ncku-line-visit-2023">實習經驗分享 @ 成功大學企業參訪</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/nccu-gdsc-visit-line-2023/">政治大學 GDSC 校園參訪 - 資料工程 &amp; LINE TRAVEL工程團隊介紹</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/nycu-visit-line-202304/">陽明交大資工系-企業參訪：資料 &amp; 前端工程團隊介紹</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-internship-erin/">LINE 實習大小事</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/Tackle-the-infodemic-of-misinformation-from-LINE/">Tackle the infodemic of misinformation from LINE</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/tmp-visit-line-2023/">臺北醫學大學企業參訪 - Unleashing the Power of NLP : Innovations from LINE Data Dev</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2023-spring/">加入 LINE TECH FRESH，開啟你的職場新鮮人生！@ Vision 臺大校園徵才</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-sharing-at-APCS">APCS 企業參訪 - What is it like to be a LINE TECH FRESH</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-interview-2022">LINE TECH FRESH 2022 面試分享</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/from-line-tech-fresh-to-liner">LINE TECH FRESH: 從實習到成為正職的經歷</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate/">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/what-is-tech-fresh-interview/">【訪談】TECH FRESH 工作老實說 – 後續花絮與相關資訊整理</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/techpulse-2020-tech-fresh-session/">TECHPULSE 2020 青春主場 – TECH FRESH 議程與攤位介紹</a></li>
+</ol>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>TECH FRESH</tag>
+        <tag>Hiring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>幫 LINE Bot 加點回覆動畫魔法：Loading Animation 功能解析</title>
     <url>/2024/04/18/line-bot-loading-animation-python/</url>
     <content><![CDATA[<p><img src="https://developers.line.biz/assets/img/loading-animation.7aad3d6c.gif"></p>
@@ -18628,6 +18958,70 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
+    <title>如何透過新的建立方式，開啟你第一隻 LINE Bot 【2024/09/04】</title>
+    <url>/2024/09/04/linebot-create-steps-2024/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 2024&#x2F;09&#x2F;04 發布關於 Messaging API 的建立方式有<a href="https://developers.line.biz/en/news/2024/09/04/no-longer-possible-to-create-messaging-api-channels-from-console/">所變更的新聞</a>，過去因為 LINE Developer Console 與 Official Account Manager 皆可以建立官方帳號(LINE Bot, OA…etc)，導致大家很容易搞混。</p>
+<p>而這次的更新當中，透過統一介面，讓大家可以可以在一樣的介面中建立官方帳號，至於詳細操作步驟請見下文 ✨</p>
+<span id="more"></span>
+
+<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><p>1️⃣ 前往 <a href="https://entry.line.biz/form/entry/unverified">https://entry.line.biz/form/entry/unverified</a><br>2️⃣ 簡訊 📱 驗證<br>3️⃣ 輸入 Channel 相關資訊<br>4️⃣ 前往 Official Account Manager 啟動 Messaging API<br>🏆 透過 Webhook 開始開發 👨‍💻<br>以上步驟，你學會了嗎？<br>Messaging API Channel 將在 2024 年 9 月 4 日 起正式變更！</p>
+<p>📖 詳情請見：<a href="https://lin.ee/RSw9UxH/yltz">https://lin.ee/RSw9UxH/yltz</a></p>
+<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="1-前往我們熟悉的-LINE-Developer-Console"><a href="#1-前往我們熟悉的-LINE-Developer-Console" class="headerlink" title="1. 前往我們熟悉的 LINE Developer Console"></a>1. 前往我們熟悉的 <a href="https://developers.line.biz/console/">LINE Developer Console</a></h2><p><img src="https://nijialin.com/images/2024/linebot-create/1.png"></p>
+<p>這邊先預設各位已經有建立過 Provider，然後選擇 <strong>Create a Messaging API Channel</strong></p>
+<blockquote>
+<p>如果對於 Provider 以及官方帳號之間的關係，歡迎參考這篇 - <a href="https://tw.linebiz.com/manual/line-official-account/line-porvider-and-channel-intro/">【LINE Developers】 Provider 及 Channel 設定說明</a></p>
+</blockquote>
+<h2 id="2-引導至新的建立入口"><a href="#2-引導至新的建立入口" class="headerlink" title="2. 引導至新的建立入口"></a>2. 引導至<a href="https://entry.line.biz/form/entry/unverified">新的建立入口</a></h2><p><img src="https://nijialin.com/images/2024/linebot-create/2.png"></p>
+<p>由於統一入口的關係，這邊新增了一段敘述文字以及<strong>建立按鈕</strong>，讓大家可以到<a href="https://entry.line.biz/form/entry/unverified">新的建立入口</a>去填寫相關資訊</p>
+<h2 id="3-建立屬於你的官方帳號"><a href="#3-建立屬於你的官方帳號" class="headerlink" title="3. 建立屬於你的官方帳號"></a>3. 建立屬於你的官方帳號</h2><p><img src="https://nijialin.com/images/2024/linebot-create/3.png"></p>
+<p>接著這步驟跟往常一樣，把該填的資訊填寫清楚，如果是測試帳號的話建議加入<strong>前綴符號</strong>(prefix)，避免與正式環境的官方帳號搞混喔！</p>
+<h2 id="4-確認資訊是否有誤"><a href="#4-確認資訊是否有誤" class="headerlink" title="4. 確認資訊是否有誤"></a>4. 確認資訊是否有誤</h2><p><img src="https://nijialin.com/images/2024/linebot-create/4.png"></p>
+<h2 id="5-建立完成！"><a href="#5-建立完成！" class="headerlink" title="5. 建立完成！"></a>5. 建立完成！</h2><p><img src="https://nijialin.com/images/2024/linebot-create/5.png"></p>
+<p>過往想升級官方帳號時都會找老半天，這次在這步驟可以選擇是否要升級官方帳號，減少操作人員的步驟～</p>
+<p>若是想先開發測試的話，可以點選<strong>稍後驗證</strong>，前往 Official Account Manager</p>
+<h2 id="6-同意條款"><a href="#6-同意條款" class="headerlink" title="6. 同意條款"></a>6. 同意條款</h2><p><img src="https://nijialin.com/images/2024/linebot-create/6.png"></p>
+<p>由於 LINE 非常重視大家的使用權益，請大家在操作時務必閱讀相關條款喔</p>
+<h2 id="7-如何啟用官方帳號的-Webhook"><a href="#7-如何啟用官方帳號的-Webhook" class="headerlink" title="7. 如何啟用官方帳號的 Webhook?"></a>7. 如何啟用官方帳號的 Webhook?</h2><p><img src="https://nijialin.com/images/2024/linebot-create/7.png"></p>
+<p>首先先來到<a href="https://manager.line.biz/">Official Account Manager</a>，點選右方的<strong>設定</strong>，找到左邊的 <strong>Messaging API</strong> 選項，就會看到<strong>啟用 Messaging API</strong>的按鈕囉！</p>
+<h2 id="8-選擇欲綁定的-Provider"><a href="#8-選擇欲綁定的-Provider" class="headerlink" title="8. 選擇欲綁定的 Provider"></a>8. 選擇欲綁定的 Provider</h2><p><img src="https://nijialin.com/images/2024/linebot-create/8.png"></p>
+<p>這邊可能操作人員會有點疑惑，剛剛不是已經在 Provider 裡面選了，怎麼沒有自動綁定？</p>
+<p>因為好多時候一開始 Provider 大家還沒確定好就建立，透過這樣的設計，或許可以讓大家在啟用 Messaging API 時，可以想想要放那個 Provider 比較好～</p>
+<h2 id="9-建立完成！"><a href="#9-建立完成！" class="headerlink" title="9. 建立完成！"></a>9. 建立完成！</h2><p><img src="https://nijialin.com/images/2024/linebot-create/9.png"></p>
+<p>這邊看到 Webhook 相關資訊之後，就代表可以開始開發囉！</p>
+<h2 id="10-回-Developer-Console-確認"><a href="#10-回-Developer-Console-確認" class="headerlink" title="10. 回 Developer Console 確認"></a>10. 回 Developer Console 確認</h2><p><img src="https://nijialin.com/images/2024/linebot-create/10.png"></p>
+<p>除了 Official Account Manager 那邊確定之外，也要記得回 Developer Console 確認一下官方帳號是否有建立完成，然後就可以拿 Channel Secret &amp; Access Token 開始做事囉！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>透過本文的介紹，你已經學會了在 2024 年 9 月 4 日之後建立 Messaging API Channel 的步驟。你已經賣出了開發 LINE Bot 的第一步。現在你可以開始使用 Webhook 開發你的 LINE Bot 了！</p>
+<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
+<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
+<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
+
+<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
+<ul>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
+<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
+</ul>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+]]></content>
+      <categories>
+        <category>LINE</category>
+      </categories>
+      <tags>
+        <tag>LINE</tag>
+        <tag>LINE Bot</tag>
+        <tag>Backend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>透過圖片或網址，讓 LINE Bot 產生行事曆來成為活動達人</title>
     <url>/2024/09/06/linebot-image-to-google-calendar/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -18707,334 +19101,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
         <tag>LINE Bot</tag>
         <tag>Google Calendar</tag>
         <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Cloud Functions 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</title>
-    <url>/2024/05/03/line-bot-cloud-functions-workshop/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<ul>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#line-bot--gemini-pro-%E8%A8%AD%E5%AE%9A%E7%B4%B0%E7%AF%80%E8%AB%8B%E5%8F%83%E8%80%83-%E6%97%85%E8%A1%8C%E5%B0%8F%E5%B9%AB%E6%89%8B-line-bot-%E6%96%87%E7%AB%A0">LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章</a><ul>
-<li><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99">事前準備</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E9%97%9C%E6%96%BC-gemini-api-price">關於 Gemini API Price</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B5%81%E7%A8%8B%E5%9C%96">流程圖</a></li>
-</ul>
-</li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A9%A6%E9%A1%8C%E7%AF%84%E4%BE%8B%E7%82%BA%E5%88%97%E5%87%BA%E4%BA%94%E5%80%8B%E9%A0%85%E7%9B%AE%E4%BF%AE%E6%94%B9-prompt-%E6%89%BE%E5%87%BA%E7%BE%A4%E7%B5%84%E7%9A%84%E5%A4%A7%E5%AE%B6%E6%9C%80%E8%BF%91%E9%97%9C%E6%B3%A8%E7%9A%84%E4%BA%8B%E9%A0%85">試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</a></li>
-</ul>
-</li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E5%A2%9E%E5%8A%A0%E5%A4%A9%E6%B0%A3-open-data-%E5%8A%9F%E8%83%BD">增加天氣 Open Data 功能</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E8%A1%9B%E6%98%9F%E9%9B%B2%E5%9C%96---%E6%98%AF%E5%90%A6%E6%9C%89%E9%9B%B2%E5%B1%A4">衛星雲圖 - 是否有雲層</a></li>
-<li><a href="https://nijialin.com/2024/05/03/line-bot-cloud-functions-workshop/#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章為延續與政治大學 &amp; 臺北大學 GDSC 工作坊的文章，如果對於整合 LINE 官方帳號的相關資訊，可以參考本篇喔！</p>
-<span id="more"></span>
-
-<ul>
-<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(1)： 景色辨識小幫手</a></li>
-<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop2/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(2)： Firebase Database 讓 LINEBot 有個超長記憶</a></li>
-<li><a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop3/">[BwAI workshop][Golang] LINE OA + CloudFunction + GeminiPro + Firebase &#x3D; 旅行小幫手 LINE 聊天機器人(3)： 導入「名片小幫手」跟「收據小幫手」</a></li>
-</ul>
-<h1 id="LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章"><a href="#LINE-Bot-Gemini-Pro-設定細節請參考-旅行小幫手-LINE-Bot-文章" class="headerlink" title="LINE Bot &amp; Gemini Pro 設定細節請參考: 旅行小幫手 LINE Bot 文章"></a>LINE Bot &amp; Gemini Pro 設定細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240410165104899.png"></p>
-<ul>
-<li><a href="https://developers.line.biz/en/">LINE Developer Account</a>: 你只需要有 LINE 帳號就可以申請開發者帳號</li>
-<li><a href="https://cloud.google.com/run?hl=zh-TW">Google Cloud Run</a>： Python 程式碼的部署平台，生成供 LINE Bot 使用的 webhook URL</li>
-<li><a href="https://firebase.google.com/">Firebase</a>：建立 Realtime database，LINE Bot 可以記得你之前的對話，甚至可以回答許多有趣的問題</li>
-<li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a>: 可以透過這裡取得 Gemini Key</li>
-<li>GitHub: Clone 專案部署的地方 - <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a></li>
-</ul>
-<h2 id="關於-Gemini-API-Price"><a href="#關於-Gemini-API-Price" class="headerlink" title="關於 Gemini API Price"></a>關於 Gemini API Price</h2><p>根據官方網站： <a href="https://ai.google.dev/pricing?hl=zh-tw">https://ai.google.dev/pricing?hl=zh-tw</a></p>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/image-20240412195805278.png"></p>
-<blockquote>
-<p>細節請參考: <a href="https://www.evanlin.com/linebot-cloudfunc-firebase-gemini-workshop/">旅行小幫手 LINE Bot 文章</a></p>
-</blockquote>
-<h2 id="流程圖"><a href="#流程圖" class="headerlink" title="流程圖"></a>流程圖</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"> ┌─┐</span><br><span class="line"> ║<span class="string">&quot;│</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │            ┌─────┐          ┌──────────────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌┴┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line">User           └─────┘          └──────┬───────┘               └────────┘          └──────┘</span><br><span class="line"> │    傳送文章訊息  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │   儲存聊天狀態在 Realtime DB│                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                 │</span></span><br><span class="line"> │                │                    │           儲存完畢         │                  │</span><br><span class="line"> │                │                    │ &lt;──────────────────────── <span class="string">|                  │</span></span><br><span class="line"> │                │    回傳已完成文字    │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line"> │   輸入 <span class="string">&quot;!摘要&quot;</span>  │                    │                           │                  │</span><br><span class="line"> │ ──────────────&gt;│                    │                           │                  │</span><br><span class="line"> │                │     傳送用戶指令     │                           │                  │</span><br><span class="line"> │                │───────────────────&gt;│                           │                  │</span><br><span class="line"> │                │                    │          抓取聊天記錄       │                  │</span><br><span class="line"> │                │                    │ ────────────────────────&gt; <span class="string">|                  │</span></span><br><span class="line"> │                │                    │           回傳清單         │                  │</span><br><span class="line"> │                │                    │ &lt;─────────────────────────<span class="string">|                  │</span></span><br><span class="line"> │                │                    │               下prompt 進行摘要運算            │</span><br><span class="line"> │                │                    │ ────────────────────────────────────────────&gt;<span class="string">|</span></span><br><span class="line"> │                │                    │                   回傳摘要清單                 │</span><br><span class="line"> │                │                    │ &lt;────────────────────────────────────────────<span class="string">|</span></span><br><span class="line"> │                │   回傳摘要資訊至群組  │                           │                  │</span><br><span class="line"> │                │&lt;───────────────────│                           │                  │</span><br><span class="line">User           ┌─────┐          ┌──────┴───────┐               ┌────────┐          ┌──────┐</span><br><span class="line"> ┌─┐           │Group│          │Webhook_Server│               │Firebase│          │Gemini│</span><br><span class="line"> ║<span class="string">&quot;│           └─────┘          └──────────────┘               └────────┘          └──────┘</span></span><br><span class="line"> └┬┘</span><br><span class="line"> ┌┼┐</span><br><span class="line">  │</span><br><span class="line"> ┌┴┐</span><br></pre></td></tr></table></figure>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><ol>
-<li>首先到 GitHub 上 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-summarize-cloud-functions-gemini</a></li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/1.png"></p>
-<ol start="2">
-<li>將 Code 轉貼到 Cloud Functions 上的介面，這邊使用 1st Gen || 2nd Gen 都不影響，如果有舊的也可以複製一個 functions 出來<ol>
-<li>Function name 小雷：如果先建立了一個 <code>function-1</code> 的，然後砍掉之後，再建立一個名字一樣 <code>function-1</code> 的，LINE bot 這邊會打不到新的 webhook</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/2.png"></p>
-<ol start="3">
-<li>加入以下的環境變數，並放上對應的參數，如果有找不到的 Key，請參考過往的系列文<ol>
-<li>需要注意：因為使用 Python 關係，且之後圖片判斷功能，因此 Memory 會需要設定 <code>1GB</code></li>
-</ol>
-</li>
-</ol>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">ChannelSecret</span><br><span class="line">ChannelAccessToken</span><br><span class="line">GOOGLE<span class="emphasis">_GEMINI_API_KEY</span></span><br><span class="line"><span class="emphasis">FIREBASE_</span>URL</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/3.png"></p>
-<ol start="4">
-<li>來到 GitHub 專案 <a href="https://github.com/louis70109/linebot-summarize-cloud-functions-gemini">linebot-gemini-summarize</a> 的 main.py，點選畫面上的按鈕複製程式碼</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/4.png"></p>
-<ol start="5">
-<li>轉貼到 Cloud Functions 上，需要注意的地方是，預設為 JavaScript，因此這邊要先選擇 <code>Python 3.11</code>，接著<strong>進入點</strong>需要換成 <code>linebot</code>，main.py 以及 requirements.txt 裡面的內容都需要置換，後續才能部署</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/5.png"></p>
-<ol start="6">
-<li>在 build 的過程，找到觸發網址的地方，將他複製起來</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/6.png"></p>
-<ol start="7">
-<li>複製到 LINE Developer Console 的 webhook 地方，不用加任何的 sub-path</li>
-</ol>
-<p><img src="https://nijialin.com/images/2024/gemini-workshop/7.png"></p>
-<ol start="8">
-<li>接著可以來到<a href="https://today.line.me/tw/v3/tab"> LINE TODAY </a>當中，假設現在有個爬蟲想做，模擬抓下來的動作，選擇自己喜歡的分類貼上，測試一樣 Gemini Pro 是否有通</li>
-</ol>
-<h2 id="試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項"><a href="#試題：範例為列出五個項目，修改-prompt-找出群組的大家最近關注的事項" class="headerlink" title="試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項"></a>試題：範例為列出五個項目，修改 prompt 找出群組的大家最近關注的事項</h2><p>假設你是一位喜歡音樂的人，但今天想關注籃球圈的群組，你會怎麼請 AI Bot 幫忙呢？試試看把 prompt 改掉吧！</p>
-<h1 id="增加天氣-Open-Data-功能"><a href="#增加天氣-Open-Data-功能" class="headerlink" title="增加天氣 Open Data 功能"></a>增加天氣 Open Data 功能</h1><blockquote>
-<p>這部分範例參考 - <a href="https://nijialin.com/2024/04/30/line-bot-cloudfunction-firebase-gemini-workshop-weather/">在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</a> 文章上的內容</p>
-</blockquote>
-<p><a href="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e">範例 code 在此</a>，這邊需要準備的部分:</p>
-<ul>
-<li>要到中央氣象局申請 API Key (<code>需要註冊</code>且拿到<code>授權碼</code>)<ul>
-<li>天氣 Open Data json 下載位置：<a href="https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001">https://opendata.cwa.gov.tw/dataset/forecast/F-A0010-001</a></li>
-<li>API 位置：<a href="https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001">https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001</a></li>
-</ul>
-</li>
-<li>requirements.txt 裡面的套件需要加入 requests</li>
-<li>將 API Key 放入環境變數 <code>OPEN_API</code> 當中</li>
-<li>將相關的 code 貼上</li>
-<li>在 Chatbot 中加入判斷式測試</li>
-<li>再次部署 Cloud Functions</li>
-</ul>
-<blockquote>
-<p><a href="https://github.com/louis70109/skatepark-CCTV-line/blob/main/main.py#L113">參考作法</a></p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/d165be10be06d71708804e89410c969e.js"></script>
-
-<h1 id="衛星雲圖-是否有雲層"><a href="#衛星雲圖-是否有雲層" class="headerlink" title="衛星雲圖 - 是否有雲層"></a>衛星雲圖 - 是否有雲層</h1><p><img src="https://nijialin.com/images/2024/gemini-workshop/cloud-on-taiwan.png"></p>
-<p>有時候光看氣象根本不準，外面雨到底要不要下呢？ 請 Gemini vision 來幫忙看看台灣上方是否有大量雲層經過</p>
-<ul>
-<li>先天限制：兩個小時內會有圖片，當前時間的前十分鐘不會有照片<ul>
-<li>ex: 當前是 14:30，14:20~14:30 都不會有照片</li>
-<li>可以試著用時間套件+判斷式來檢測</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>參考以下 code，請在專案中的 chatbot 判斷式中加入程式 &amp;套件放入 <code>requirements.txt</code>:</p>
-</blockquote>
-<script src="https://gist.github.com/louis70109/696d064f3d40a676d6326e921c20843e.js"></script>
-
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>GCP</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>Serverless</tag>
-        <tag>Google</tag>
-        <tag>GCP</tag>
-        <tag>Cloud Function</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何透過新的建立方式，開啟你第一隻 LINE Bot 【2024/09/04】</title>
-    <url>/2024/09/04/linebot-create-steps-2024/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 2024&#x2F;09&#x2F;04 發布關於 Messaging API 的建立方式有<a href="https://developers.line.biz/en/news/2024/09/04/no-longer-possible-to-create-messaging-api-channels-from-console/">所變更的新聞</a>，過去因為 LINE Developer Console 與 Official Account Manager 皆可以建立官方帳號(LINE Bot, OA…etc)，導致大家很容易搞混。</p>
-<p>而這次的更新當中，透過統一介面，讓大家可以可以在一樣的介面中建立官方帳號，至於詳細操作步驟請見下文 ✨</p>
-<span id="more"></span>
-
-<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><p>1️⃣ 前往 <a href="https://entry.line.biz/form/entry/unverified">https://entry.line.biz/form/entry/unverified</a><br>2️⃣ 簡訊 📱 驗證<br>3️⃣ 輸入 Channel 相關資訊<br>4️⃣ 前往 Official Account Manager 啟動 Messaging API<br>🏆 透過 Webhook 開始開發 👨‍💻<br>以上步驟，你學會了嗎？<br>Messaging API Channel 將在 2024 年 9 月 4 日 起正式變更！</p>
-<p>📖 詳情請見：<a href="https://lin.ee/RSw9UxH/yltz">https://lin.ee/RSw9UxH/yltz</a></p>
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="1-前往我們熟悉的-LINE-Developer-Console"><a href="#1-前往我們熟悉的-LINE-Developer-Console" class="headerlink" title="1. 前往我們熟悉的 LINE Developer Console"></a>1. 前往我們熟悉的 <a href="https://developers.line.biz/console/">LINE Developer Console</a></h2><p><img src="https://nijialin.com/images/2024/linebot-create/1.png"></p>
-<p>這邊先預設各位已經有建立過 Provider，然後選擇 <strong>Create a Messaging API Channel</strong></p>
-<blockquote>
-<p>如果對於 Provider 以及官方帳號之間的關係，歡迎參考這篇 - <a href="https://tw.linebiz.com/manual/line-official-account/line-porvider-and-channel-intro/">【LINE Developers】 Provider 及 Channel 設定說明</a></p>
-</blockquote>
-<h2 id="2-引導至新的建立入口"><a href="#2-引導至新的建立入口" class="headerlink" title="2. 引導至新的建立入口"></a>2. 引導至<a href="https://entry.line.biz/form/entry/unverified">新的建立入口</a></h2><p><img src="https://nijialin.com/images/2024/linebot-create/2.png"></p>
-<p>由於統一入口的關係，這邊新增了一段敘述文字以及<strong>建立按鈕</strong>，讓大家可以到<a href="https://entry.line.biz/form/entry/unverified">新的建立入口</a>去填寫相關資訊</p>
-<h2 id="3-建立屬於你的官方帳號"><a href="#3-建立屬於你的官方帳號" class="headerlink" title="3. 建立屬於你的官方帳號"></a>3. 建立屬於你的官方帳號</h2><p><img src="https://nijialin.com/images/2024/linebot-create/3.png"></p>
-<p>接著這步驟跟往常一樣，把該填的資訊填寫清楚，如果是測試帳號的話建議加入<strong>前綴符號</strong>(prefix)，避免與正式環境的官方帳號搞混喔！</p>
-<h2 id="4-確認資訊是否有誤"><a href="#4-確認資訊是否有誤" class="headerlink" title="4. 確認資訊是否有誤"></a>4. 確認資訊是否有誤</h2><p><img src="https://nijialin.com/images/2024/linebot-create/4.png"></p>
-<h2 id="5-建立完成！"><a href="#5-建立完成！" class="headerlink" title="5. 建立完成！"></a>5. 建立完成！</h2><p><img src="https://nijialin.com/images/2024/linebot-create/5.png"></p>
-<p>過往想升級官方帳號時都會找老半天，這次在這步驟可以選擇是否要升級官方帳號，減少操作人員的步驟～</p>
-<p>若是想先開發測試的話，可以點選<strong>稍後驗證</strong>，前往 Official Account Manager</p>
-<h2 id="6-同意條款"><a href="#6-同意條款" class="headerlink" title="6. 同意條款"></a>6. 同意條款</h2><p><img src="https://nijialin.com/images/2024/linebot-create/6.png"></p>
-<p>由於 LINE 非常重視大家的使用權益，請大家在操作時務必閱讀相關條款喔</p>
-<h2 id="7-如何啟用官方帳號的-Webhook"><a href="#7-如何啟用官方帳號的-Webhook" class="headerlink" title="7. 如何啟用官方帳號的 Webhook?"></a>7. 如何啟用官方帳號的 Webhook?</h2><p><img src="https://nijialin.com/images/2024/linebot-create/7.png"></p>
-<p>首先先來到<a href="https://manager.line.biz/">Official Account Manager</a>，點選右方的<strong>設定</strong>，找到左邊的 <strong>Messaging API</strong> 選項，就會看到<strong>啟用 Messaging API</strong>的按鈕囉！</p>
-<h2 id="8-選擇欲綁定的-Provider"><a href="#8-選擇欲綁定的-Provider" class="headerlink" title="8. 選擇欲綁定的 Provider"></a>8. 選擇欲綁定的 Provider</h2><p><img src="https://nijialin.com/images/2024/linebot-create/8.png"></p>
-<p>這邊可能操作人員會有點疑惑，剛剛不是已經在 Provider 裡面選了，怎麼沒有自動綁定？</p>
-<p>因為好多時候一開始 Provider 大家還沒確定好就建立，透過這樣的設計，或許可以讓大家在啟用 Messaging API 時，可以想想要放那個 Provider 比較好～</p>
-<h2 id="9-建立完成！"><a href="#9-建立完成！" class="headerlink" title="9. 建立完成！"></a>9. 建立完成！</h2><p><img src="https://nijialin.com/images/2024/linebot-create/9.png"></p>
-<p>這邊看到 Webhook 相關資訊之後，就代表可以開始開發囉！</p>
-<h2 id="10-回-Developer-Console-確認"><a href="#10-回-Developer-Console-確認" class="headerlink" title="10. 回 Developer Console 確認"></a>10. 回 Developer Console 確認</h2><p><img src="https://nijialin.com/images/2024/linebot-create/10.png"></p>
-<p>除了 Official Account Manager 那邊確定之外，也要記得回 Developer Console 確認一下官方帳號是否有建立完成，然後就可以拿 Channel Secret &amp; Access Token 開始做事囉！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>透過本文的介紹，你已經學會了在 2024 年 9 月 4 日之後建立 Messaging API Channel 的步驟。你已經賣出了開發 LINE Bot 的第一步。現在你可以開始使用 Webhook 開發你的 LINE Bot 了！</p>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>LINE Bot</tag>
-        <tag>Backend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Save your time - TECH FRESH 畢業分享會 2024 @ LINE</title>
-    <url>/2024/05/20/line-tech-fresh-graduation-2024/</url>
-    <content><![CDATA[<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689497803877.png?updatedAt=1689497805000"></p>
-<ul>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E4%BB%8B%E7%B4%B9">活動介紹</a><ul>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E8%B3%87%E8%A8%8A">活動資訊</a></li>
-</ul>
-</li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%AD%B7%E5%8F%B2%E5%85%B8%E6%95%85">活動歷史典故</a></li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E6%B4%BB%E5%8B%95%E6%B5%81%E7%A8%8B">活動流程</a></li>
-<li><a href="https://nijialin.com/2024/05/20/line-tech-fresh-graduation-2024/#%E7%B5%90%E8%AB%96">結論</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家好！我們是 LINE Developer Relations 團隊，很高興向大家介紹一個特別的活動——<strong>2024 年 6 月 18 日</strong>舉行的 <strong>TECH FRESH 畢業分享會</strong>。去年我們首次開放對外的分享會，現場引起了取多迴響，我們在這個活動上學到了很多，因此希望透過今年的舉辦，能與更多同學分享我們 LINE TECH FRESH 的成長和收穫。</p>
-<span id="more"></span>
-
-<h1 id="活動介紹"><a href="#活動介紹" class="headerlink" title="活動介紹"></a>活動介紹</h1><p>在這個分享會中，我們的實習生將站上舞台，分享他們在 LINE 的點滴和成就，不僅能聽到第一手的實習經驗，還能深入了解 LINE 的工作環境與文化。無論你是對軟體生態充滿熱情的學生，還是正在尋找職業發展方向的求職者，我們都誠摯地邀請你來參加這場盛會。讓我們一起在這個活動中學習、交流、成長，為未來創造更多可能。</p>
-<h2 id="活動資訊"><a href="#活動資訊" class="headerlink" title="活動資訊"></a>活動資訊</h2><p>活動：LINE TECH FRESH 畢業分享會<br>時間：<code>2024/06/18 18:00~21:30</code> (17:40 開放入場)<br>地點：LINE 台灣總部<br>報名：<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a></p>
-<h1 id="活動歷史典故"><a href="#活動歷史典故" class="headerlink" title="活動歷史典故"></a>活動歷史典故</h1><p>去年首次對外公開，小小的空間(圖片)，現場人數也來到近百人，有許多同學來了解 LINE TECH FRESH 在軟體領域的耕耘成果，沒參加過的同學可能會很好奇，那畢業分享會到底在做什麼？以下概略地跟讀者介紹，並且可以搭配下文的<code>活動流程</code>搭配使用喔！</p>
-<p>在 2023 年之前，TECH FRESH 會在畢業前夕，與 LINE 內部所有同仁分享整年的戰果，而 Mentor 也會在其中鼓勵同學並且提點未來軟體道路的一些眉眉角角。 (參考以下文)</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2021-gradute">【LINE TECH FRESH】2021 屆畢業囉！這一年來又有什麼新鮮事呢？</a></li>
-</ul>
-<p><img src="https://vos.line-scdn.net/landpress-content-v2_1761/1689498034174.jpg?updatedAt=1689498035000"></p>
-<p>而在同學的內容整理當中，我們發現大家的內容都相當有料，思考著如何讓更多人瞭解 TECH FRESH 整年的實習過程究竟對職涯多有幫助，因此在去年我們決定對外展開。現場效果非常棒，將近有** 80 位來自不同學校的同學**參加，並且現場許多同學就直接交流起來，了解 TECH FRESH 們在當時考慮實習的顧慮點，以及後續的規劃，相信這會是一場讓參加的同學們收穫滿滿的活動！</p>
-<p>今年我們一樣邀請應屆畢業生，與大家分享更不同層面的內容，詳細內容跟我們一起參考以下內容：</p>
-<h1 id="活動流程"><a href="#活動流程" class="headerlink" title="活動流程"></a>活動流程</h1><p>這次的活動將會有以下幾個部分：</p>
-<ul>
-<li>Keynote：由 TECH FRESH people manager - Evan 為大家分享東西</li>
-<li>實習生分享：我們有四組實習生將會上台分享他們在 LINE 的實習經驗，包括他們的學習過程，以及他們如何將學術理論應用到實際工作中。</li>
-<li>Lightning Talk：我們還有四位現役 TECH FRESH 將進行快速的演講，分享他們在 LINE 的工作和學習經驗。</li>
-<li>訪談環節：我們將進行一場訪談，邀請曾為 TECH FRESH 的學長姐，讓你更深入地了解我們的實習生們的經驗和感想。</li>
-</ul>
-<blockquote>
-<p>活動僅開放給學生身分參加(現場審核)，同時現場將提供餐飲及小點心，因此歡迎各大專院校同學共襄盛舉 LINE TECH FRESH 畢業分享會！</p>
-</blockquote>
-<ul>
-<li>18:00~18:05 開場</li>
-<li>18:05~18:20 <strong>從實習到專家：LINE TECH FRESH 的成長軌跡</strong> Evan Lin</li>
-<li>18:20~18:40 <strong>蔡 EC：24 歲開發一次成功</strong> Chiu Winnie, Yang Lauren</li>
-<li>18:40~19:00 <strong>QA 蝦米 QA？我的扣超讚的啊</strong> Chen YT, Tsai Lawrence</li>
-<li>19:00~19:20 <strong>這就很玄囉 從粽子看開發的世界</strong> Shin Chris, Chang Young</li>
-<li>19:20~19:40 <strong>從混亂到掌控：使用 Observability 揭開管家的神秘面紗</strong> Wu Tristan, Hu Gary</li>
-<li>19:40~20:00 攤位時間 (EC, Content, Central)</li>
-<li>20:00~20:40 Lightning Talk<ul>
-<li><strong>你在 DevOps 什麼啦，我要趕快上線！</strong> Wu Calista, Lee Ryan</li>
-<li><strong>寫出不管地震怎麼搖，都能確保網站都不會壞的前端測試</strong>  Chen Yu</li>
-<li><strong>一起來跑 TDD，直到完成 User Story 為止</strong> Lu Brandon</li>
-</ul>
-</li>
-<li>20:40 ~ 20:50 大合照 @ 2F &amp; Ending</li>
-<li>20:50 ~ 21:00 Q&amp;A 自由活動空間</li>
-</ul>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這麼精彩內容如果錯過就要再等一年囉！趕快按下報名👉<a href="https://lin.ee/GqZLv2m/yltz">https://lin.ee/GqZLv2m/yltz</a>，並邀請週遭同學們一起來參加！更多 TECH FRESH 內容請參考以下清單，那我們就 2024&#x2F;06&#x2F;18 見啦！</p>
-<ol>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/techfresh-2024">LINE 實習筆記：TECH FRESH 的軟體探險之旅</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/line-tech-fresh-2024-summer">LINE TECH FRESH 2024 Summer Class 招募相關說明 (時程, 職缺)</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/frontend-try-exception-sitcon-2024">沒想過的前端錯誤處理 可能比你有做的還多 @ SITCON 2024</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/kubernetes-config-Secret-testing-with-twokey-testing-principles">LINE 旅遊 - How We Conduct Automated Kubernetes Config and Secret Testing with Two Key Testing Principles</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/From-Classroom-to-Data-Team-My-Journey-at-LINE">From Classroom to Data Team: My Journey @ LINE</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/beyond-development-as-a-tech-fresh">Beyond Development: Exploring the Multifaceted World of Engineering at LINE as a TECH FRESH</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-video-creator-to-qa-internship">關於我從拍片仔轉職 QA 的那件事</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/implementation-myself-by-different-department">非本科，又如何？ — 論非本科的自我實踐之路</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/embarking-on-a-machine-learning-internship-nycu-csie-visit">進擊的後端: Chris 實習經驗分享 @ 台大_輔大_北醫 GDSC 企業參訪</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/utopian-journey-my-ideal-internship-experience-at-line">Utopian Journey – My Ideal Internship Experience at LINE (臺師大企業參訪演講)</a></li>
-<li><a href="https://techblog.lycorp.co.jp/zh-hant/from-heart-to-software-engineering-intern">從心開始的純軟之路 – 一次解答非本科走進軟體業的迷思 @ 臺師大企業參訪</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/ncku-line-visit-2023">實習經驗分享 @ 成功大學企業參訪</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2022-graduation">【TECH FRESH 畢業分享會】原來實習有這些眉角？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/nccu-gdsc-visit-line-2023/">政治大學 GDSC 校園參訪 - 資料工程 &amp; LINE TRAVEL工程團隊介紹</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/nycu-visit-line-202304/">陽明交大資工系-企業參訪：資料 &amp; 前端工程團隊介紹</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-internship-erin/">LINE 實習大小事</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/Tackle-the-infodemic-of-misinformation-from-LINE/">Tackle the infodemic of misinformation from LINE</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/tmp-visit-line-2023/">臺北醫學大學企業參訪 - Unleashing the Power of NLP : Innovations from LINE Data Dev</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2023-spring/">加入 LINE TECH FRESH，開啟你的職場新鮮人生！@ Vision 臺大校園徵才</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/tech-fresh-sharing-at-APCS">APCS 企業參訪 - What is it like to be a LINE TECH FRESH</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-interview-2022">LINE TECH FRESH 2022 面試分享</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/from-line-tech-fresh-to-liner">LINE TECH FRESH: 從實習到成為正職的經歷</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-tech-fresh-2020-graduate/">TECH FRESH 實習的一年間，除了開發還有什麼內部活動呢？</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/what-is-tech-fresh-interview/">【訪談】TECH FRESH 工作老實說 – 後續花絮與相關資訊整理</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/life-in-line-tech-fresh-sharing/">Life in LINE – 直擊 TECH FRESH 實習內容！</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/techpulse-2020-tech-fresh-session/">TECHPULSE 2020 青春主場 – TECH FRESH 議程與攤位介紹</a></li>
-</ol>
-<h1 id="活動小結"><a href="#活動小結" class="headerlink" title="活動小結"></a>活動小結</h1><p>立即加入「LINE 開發者官方社群」官方帳號，就能收到第一手 Meetup 活動，或與開發者計畫有關的最新消息的推播通知。▼</p>
-<p>「LINE 開發者官方社群」官方帳號 ID：<a href="https://qr-official.line.me/gs/M_908lugfe_BW.png">@line_tw_dev</a></p>
-<img src="https://qr-official.line.me/gs/M_908lugfe_BW.png" width="200" height="200">
-
-<h1 id="關於「LINE-開發社群計畫」"><a href="#關於「LINE-開發社群計畫」" class="headerlink" title="關於「LINE 開發社群計畫」"></a>關於「LINE 開發社群計畫」</h1><p>LINE 於 2019 年開始在台灣啟動「LINE 開發社群計畫」，將長期投入人力與資源在台灣舉辦對內對外、線上線下的開發者社群聚會、徵才日、開發者大會等，已經舉辦 30 場以上的活動。歡迎讀者們能夠持續回來查看最新的狀況。詳情請看:</p>
-<ul>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2021-line-tw-devrel/">2021 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/2020-line-tw-devrel/">2020 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019-plan/">2019 年 LINE 開發社群計畫活動時程表</a></li>
-<li><a href="https://engineering.linecorp.com/zh-hant/blog/line-taiwan-developer-relations-2019/">LINE Taiwan Developer Relations 2019 回顧與 2019 開發社群計畫報告</a></li>
-</ul>
-<style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-]]></content>
-      <categories>
-        <category>LINE</category>
-      </categories>
-      <tags>
-        <tag>LINE</tag>
-        <tag>TECH FRESH</tag>
-        <tag>Hiring</tag>
       </tags>
   </entry>
   <entry>
@@ -19143,77 +19209,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
-    <title>OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南</title>
-    <url>/2026/04/05/openclaw-troubleshooting-20260405/</url>
-    <content><![CDATA[<p><img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近把身邊幾台 OpenClaw 從穩定（但已經快變遺產？）的 2026.3.1 升級到 2026.4.2。本來以為是個 <code>pnpm install</code> 就能解決的小事，沒想到這中間的配置變更跟環境限制，還是讓我小坐了一下牢。</p>
-<p>特別是我的主力戰友——那台 <strong>MacBook Air 2010 款</strong>。雖然它年紀比很多讀者的貓還大，但我已經把它加爆到 <strong>16GB RAM</strong> 了！老兵不死，只是需要在升級時多給它一點關愛。寫這篇主要就是想把這些踩坑經驗留下來，給同樣擁抱老設備或追求極致省錢（守護荷包）的大家一個參考。</p>
-<p>或是說，先把信用卡準備好就好(?)。</p>
-<span id="more"></span>
-
-<hr>
-<h1 id="為什麼要升級？（硬體背景）"><a href="#為什麼要升級？（硬體背景）" class="headerlink" title="為什麼要升級？（硬體背景）"></a>為什麼要升級？（硬體背景）</h1><p>其實 3.1 真的跑得挺穩的，但在這台 2010 年的 MBA 上，我們追求的是一種「低功耗、高效能」的微妙平衡。隨著 OpenClaw 支援的雲端模型（尤其是 Ollama Cloud）跟新的 Provider 機制出現，如果想用上最新的 Gemini 3 Flash 或更強大的推理功能，4.2 是必須要跨過去的一個門檻。</p>
-<p>別看這台 MBA 老，16GB RAM 餵下去後，跑起 OpenClaw 調度還是挺順的。不過在升級的過程中，我發現了不少關於 API 命名與計費邏輯的有趣變動。</p>
-<hr>
-<h1 id="1-遺留的-404-惡夢：為什麼-3-1-曾是唯一的救贖？"><a href="#1-遺留的-404-惡夢：為什麼-3-1-曾是唯一的救贖？" class="headerlink" title="1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？"></a>1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？</h1><p>在踏入 4.2 的穩定之前，其實我中間經歷了一段非常混亂的「版本坐牢期」。從 2026.3.2 到 3.7 之間，OpenClaw 的 API Provider 經歷了幾次重大的重構，那段時間對我來說簡直是技術災難。</p>
-<h3 id="看到懷疑人生的-404"><a href="#看到懷疑人生的-404" class="headerlink" title="看到懷疑人生的 404"></a>看到懷疑人生的 404</h3><p>最嚴重的問題莫過於 <strong>Ollama Cloud 的整合</strong>。在 2026.3.31 的版本之後，核心代碼對 <code>baseUrl</code> 的拼接邏輯出了包 (<a href="https://github.com/openclaw/openclaw/issues/59205">GitHub Issue #59205</a>)。</p>
-<p>當時的情況是：如果你設定了 API Endpoint，路徑會被錯誤地重複拼接，原本該是 <code>/api/chat</code> 的請求，發出去變成了 <code>/api/api/chat</code>。結果就是無論你怎麼調參數，伺服器永遠只會回你一個冷冰冰的 <strong>404 Not Found</strong>。當初真的是坐牢到想哭，對著螢幕一堆 404 看到懷疑人生，覺得自己是不是連網址都不會打。</p>
-<h3 id="當-Native-“api-ollama”-罷工時"><a href="#當-Native-“api-ollama”-罷工時" class="headerlink" title="當 Native “api: ollama” 罷工時"></a>當 Native “api: ollama” 罷工時</h3><p>除了路徑衝突，還有另一個坑：原生 Ollama Provider 的不穩定。<br>根據 <a href="https://github.com/openclaw/openclaw/issues/25669">Issue #25669</a>，當時雖然名義上支援了原生 Ollama API，但在執行某些後台任務（例如 <code>/compact</code> 進行對話壓縮）時，內建的 Provider 會莫名其妙失效或找不到。</p>
-<h3 id="降級-Downgrade-是為了更好的前進"><a href="#降級-Downgrade-是為了更好的前進" class="headerlink" title="降級 (Downgrade) 是為了更好的前進"></a>降級 (Downgrade) 是為了更好的前進</h3><p>這就是為什麼當時我決定毅然決然跑回 <strong>2026.3.1</strong>。<br>在那個混亂的版本過渡期，只有 3.1 的 <code>openai-compatible</code> 模式最穩健，它沒有路徑自動補齊的邏輯錯誤，能精準地打到 Ollama Cloud 的接口。</p>
-<p>這篇文章不只是一份指南，更是紀錄那段「與 API 搏鬥」的血淚史。每一個穩定的背後，都是幾十個 404 堆疊出來的。</p>
-<hr>
-<h1 id="2-Ollama-Cloud-的動機：這是在守護荷包"><a href="#2-Ollama-Cloud-的動機：這是在守護荷包" class="headerlink" title="2. Ollama Cloud 的動機：這是在守護荷包"></a>2. Ollama Cloud 的動機：這是在守護荷包</h1><p>在 4.2 之後，模型命名規則做了一個重大的「回歸標準」。原本我們習慣在模型 ID 後面加上 <code>:cloud</code>，但現在統一改用 <strong><code>:latest</code></strong> 了。</p>
-<p>更重要的是，為什麼我要堅持配置 <strong>Ollama Cloud</strong>？</p>
-<h3 id="為什麼選-Ollama-Cloud？"><a href="#為什麼選-Ollama-Cloud？" class="headerlink" title="為什麼選 Ollama Cloud？"></a>為什麼選 Ollama Cloud？</h3><p>這絕對不是因為它名字比較帥，而是因為**「訂閱方案」(Subscription Plan)** 的重要性！</p>
-<p>市面上大多數的 AI 模型都是採用 <strong>Pay-as-you-go (按量計費)</strong>，也就是你每問一個問題、每讓 Agent 爬一次網頁，你的信用卡就在滴血。對於像我這種喜歡讓 Agent 24 小時待命（或是讓它幫我寫這篇長文）的人來說，如果不選用定額訂閱的方案，<strong>荷包可能已經失守了</strong>。</p>
-<p>透過 Ollama Cloud 的定額模式，我可以放心地讓我的 2010 MBA 老戰友拼命跑，不用擔心月底看到帳單會想哭。</p>
-<p><strong>配置範例：</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;ollama-cloud&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gemini-3-flash-preview:latest&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-compatible&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p><em>就把後綴改成 <code>:latest</code> 就好，超簡單對吧(?)。</em></p>
-<hr>
-<h1 id="3-Agent-權限配置-alsoAllow"><a href="#3-Agent-權限配置-alsoAllow" class="headerlink" title="3. Agent 權限配置 (alsoAllow)"></a>3. Agent 權限配置 (alsoAllow)</h1><p>在 <code>openclaw.json</code> 設定裡，就算你全局開了 <code>full</code> 模式，如果具體的 Agent 沒在 <code>alsoAllow</code> 裡明確列出權限，它還是會跟你說 <code>Tool not found</code>。</p>
-<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>這就像你跟老闆說你可以全權負責，但進機房時警衛還是要看你的識別證一樣煩人。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;personal&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;alsoAllow&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;exec&quot;</span><span class="punctuation">,</span> <span class="string">&quot;read&quot;</span><span class="punctuation">,</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span> <span class="string">&quot;web_search&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="4-Discord-的各種小門檻"><a href="#4-Discord-的各種小門檻" class="headerlink" title="4. Discord 的各種小門檻"></a>4. Discord 的各種小門檻</h1><p>如果你是用 Discord 當 Gateway 的話，記得這兩件事：</p>
-<ol>
-<li><strong>Mention 規則</strong>：如果 <code>requireMention</code> 設為 <code>true</code>，你不標註它，它就裝死給你看。</li>
-<li><strong>權限回傳</strong>：Bot 記得要給「嵌入連結」跟「上傳檔案」的權限，不然它就算找到了正妹（誤）或圖表也傳不出來。</li>
-</ol>
-<hr>
-<h1 id="5-解決-Thought-Signature-錯誤"><a href="#5-解決-Thought-Signature-錯誤" class="headerlink" title="5. 解決 Thought Signature 錯誤"></a>5. 解決 Thought Signature 錯誤</h1><p>Gemini 3 Flash 在某些舊版本（如 2026.3.2）會跟傳輸協定打架。<br><strong>解法：</strong></p>
-<ol>
-<li>將 <code>reasoning</code> 設為 <code>false</code>。</li>
-<li>或是乖乖升級到 4.2。</li>
-</ol>
-<hr>
-<h1 id="🚀-2026-4-2-建議配置配方"><a href="#🚀-2026-4-2-建議配置配方" class="headerlink" title="🚀 2026.4.2 建議配置配方"></a>🚀 2026.4.2 建議配置配方</h1><p>目前實測最香的配置組合：</p>
-<ul>
-<li><strong>版本</strong>：<code>2026.4.2</code></li>
-<li><strong>提供商 (Provider)</strong>：使用 <code>ollama-cloud</code></li>
-<li><strong>模型 (Model)</strong>：<code>gemini-3-flash-preview:latest</code></li>
-<li><strong>API 模式</strong>：一定要用 <code>openai-compatible</code></li>
-<li><strong>推理 (Reasoning)</strong>：建議先關掉，穩定第一！</li>
-</ul>
-<hr>
-<h1 id="結語：繼續折騰吧！"><a href="#結語：繼續折騰吧！" class="headerlink" title="結語：繼續折騰吧！"></a>結語：繼續折騰吧！</h1><p>不管是留在穩定的 3.1 還是衝刺 4.2，找到適合自己的配置才是最重要的。希望這篇筆記能幫大家少走一點彎路，早點享受 AI 的便利。</p>
-<p>溫馨提醒：升級前記得備份設定檔，不然坐牢時間會加倍喔 ❤️<br>推薦大家到 GitHub 給 <a href="https://github.com/openclaw/openclaw">OpenClaw</a> 一個 Star 🌟 支持一下這個超酷的專案！</p>
-]]></content>
-      <categories>
-        <category>技術</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
-        <tag>Gemini</tag>
-        <tag>OpenClaw</tag>
-        <tag>Ollama</tag>
-        <tag>技術筆記</tag>
-        <tag>升級指南</tag>
-        <tag>Discord</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Playwright】打造更聰明瀏覽器自動化測試 | Model Context Protocol 入門</title>
     <url>/2025/04/22/playwright-mcp-testing/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -19318,6 +19313,77 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
+    <title>OpenClaw 部署最佳實踐：從 3.1 邁向 4.2 的老戰友指南</title>
+    <url>/2026/04/05/openclaw-troubleshooting-20260405/</url>
+    <content><![CDATA[<p><img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近把身邊幾台 OpenClaw 從穩定（但已經快變遺產？）的 2026.3.1 升級到 2026.4.2。本來以為是個 <code>pnpm install</code> 就能解決的小事，沒想到這中間的配置變更跟環境限制，還是讓我小坐了一下牢。</p>
+<p>特別是我的主力戰友——那台 <strong>MacBook Air 2010 款</strong>。雖然它年紀比很多讀者的貓還大，但我已經把它加爆到 <strong>16GB RAM</strong> 了！老兵不死，只是需要在升級時多給它一點關愛。寫這篇主要就是想把這些踩坑經驗留下來，給同樣擁抱老設備或追求極致省錢（守護荷包）的大家一個參考。</p>
+<p>或是說，先把信用卡準備好就好(?)。</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="為什麼要升級？（硬體背景）"><a href="#為什麼要升級？（硬體背景）" class="headerlink" title="為什麼要升級？（硬體背景）"></a>為什麼要升級？（硬體背景）</h1><p>其實 3.1 真的跑得挺穩的，但在這台 2010 年的 MBA 上，我們追求的是一種「低功耗、高效能」的微妙平衡。隨著 OpenClaw 支援的雲端模型（尤其是 Ollama Cloud）跟新的 Provider 機制出現，如果想用上最新的 Gemini 3 Flash 或更強大的推理功能，4.2 是必須要跨過去的一個門檻。</p>
+<p>別看這台 MBA 老，16GB RAM 餵下去後，跑起 OpenClaw 調度還是挺順的。不過在升級的過程中，我發現了不少關於 API 命名與計費邏輯的有趣變動。</p>
+<hr>
+<h1 id="1-遺留的-404-惡夢：為什麼-3-1-曾是唯一的救贖？"><a href="#1-遺留的-404-惡夢：為什麼-3-1-曾是唯一的救贖？" class="headerlink" title="1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？"></a>1. 遺留的 404 惡夢：為什麼 3.1 曾是唯一的救贖？</h1><p>在踏入 4.2 的穩定之前，其實我中間經歷了一段非常混亂的「版本坐牢期」。從 2026.3.2 到 3.7 之間，OpenClaw 的 API Provider 經歷了幾次重大的重構，那段時間對我來說簡直是技術災難。</p>
+<h3 id="看到懷疑人生的-404"><a href="#看到懷疑人生的-404" class="headerlink" title="看到懷疑人生的 404"></a>看到懷疑人生的 404</h3><p>最嚴重的問題莫過於 <strong>Ollama Cloud 的整合</strong>。在 2026.3.31 的版本之後，核心代碼對 <code>baseUrl</code> 的拼接邏輯出了包 (<a href="https://github.com/openclaw/openclaw/issues/59205">GitHub Issue #59205</a>)。</p>
+<p>當時的情況是：如果你設定了 API Endpoint，路徑會被錯誤地重複拼接，原本該是 <code>/api/chat</code> 的請求，發出去變成了 <code>/api/api/chat</code>。結果就是無論你怎麼調參數，伺服器永遠只會回你一個冷冰冰的 <strong>404 Not Found</strong>。當初真的是坐牢到想哭，對著螢幕一堆 404 看到懷疑人生，覺得自己是不是連網址都不會打。</p>
+<h3 id="當-Native-“api-ollama”-罷工時"><a href="#當-Native-“api-ollama”-罷工時" class="headerlink" title="當 Native “api: ollama” 罷工時"></a>當 Native “api: ollama” 罷工時</h3><p>除了路徑衝突，還有另一個坑：原生 Ollama Provider 的不穩定。<br>根據 <a href="https://github.com/openclaw/openclaw/issues/25669">Issue #25669</a>，當時雖然名義上支援了原生 Ollama API，但在執行某些後台任務（例如 <code>/compact</code> 進行對話壓縮）時，內建的 Provider 會莫名其妙失效或找不到。</p>
+<h3 id="降級-Downgrade-是為了更好的前進"><a href="#降級-Downgrade-是為了更好的前進" class="headerlink" title="降級 (Downgrade) 是為了更好的前進"></a>降級 (Downgrade) 是為了更好的前進</h3><p>這就是為什麼當時我決定毅然決然跑回 <strong>2026.3.1</strong>。<br>在那個混亂的版本過渡期，只有 3.1 的 <code>openai-compatible</code> 模式最穩健，它沒有路徑自動補齊的邏輯錯誤，能精準地打到 Ollama Cloud 的接口。</p>
+<p>這篇文章不只是一份指南，更是紀錄那段「與 API 搏鬥」的血淚史。每一個穩定的背後，都是幾十個 404 堆疊出來的。</p>
+<hr>
+<h1 id="2-Ollama-Cloud-的動機：這是在守護荷包"><a href="#2-Ollama-Cloud-的動機：這是在守護荷包" class="headerlink" title="2. Ollama Cloud 的動機：這是在守護荷包"></a>2. Ollama Cloud 的動機：這是在守護荷包</h1><p>在 4.2 之後，模型命名規則做了一個重大的「回歸標準」。原本我們習慣在模型 ID 後面加上 <code>:cloud</code>，但現在統一改用 <strong><code>:latest</code></strong> 了。</p>
+<p>更重要的是，為什麼我要堅持配置 <strong>Ollama Cloud</strong>？</p>
+<h3 id="為什麼選-Ollama-Cloud？"><a href="#為什麼選-Ollama-Cloud？" class="headerlink" title="為什麼選 Ollama Cloud？"></a>為什麼選 Ollama Cloud？</h3><p>這絕對不是因為它名字比較帥，而是因為**「訂閱方案」(Subscription Plan)** 的重要性！</p>
+<p>市面上大多數的 AI 模型都是採用 <strong>Pay-as-you-go (按量計費)</strong>，也就是你每問一個問題、每讓 Agent 爬一次網頁，你的信用卡就在滴血。對於像我這種喜歡讓 Agent 24 小時待命（或是讓它幫我寫這篇長文）的人來說，如果不選用定額訂閱的方案，<strong>荷包可能已經失守了</strong>。</p>
+<p>透過 Ollama Cloud 的定額模式，我可以放心地讓我的 2010 MBA 老戰友拼命跑，不用擔心月底看到帳單會想哭。</p>
+<p><strong>配置範例：</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;ollama-cloud&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gemini-3-flash-preview:latest&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-compatible&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><em>就把後綴改成 <code>:latest</code> 就好，超簡單對吧(?)。</em></p>
+<hr>
+<h1 id="3-Agent-權限配置-alsoAllow"><a href="#3-Agent-權限配置-alsoAllow" class="headerlink" title="3. Agent 權限配置 (alsoAllow)"></a>3. Agent 權限配置 (alsoAllow)</h1><p>在 <code>openclaw.json</code> 設定裡，就算你全局開了 <code>full</code> 模式，如果具體的 Agent 沒在 <code>alsoAllow</code> 裡明確列出權限，它還是會跟你說 <code>Tool not found</code>。</p>
+<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>這就像你跟老闆說你可以全權負責，但進機房時警衛還是要看你的識別證一樣煩人。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;personal&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;alsoAllow&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;exec&quot;</span><span class="punctuation">,</span> <span class="string">&quot;read&quot;</span><span class="punctuation">,</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span> <span class="string">&quot;web_search&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="4-Discord-的各種小門檻"><a href="#4-Discord-的各種小門檻" class="headerlink" title="4. Discord 的各種小門檻"></a>4. Discord 的各種小門檻</h1><p>如果你是用 Discord 當 Gateway 的話，記得這兩件事：</p>
+<ol>
+<li><strong>Mention 規則</strong>：如果 <code>requireMention</code> 設為 <code>true</code>，你不標註它，它就裝死給你看。</li>
+<li><strong>權限回傳</strong>：Bot 記得要給「嵌入連結」跟「上傳檔案」的權限，不然它就算找到了正妹（誤）或圖表也傳不出來。</li>
+</ol>
+<hr>
+<h1 id="5-解決-Thought-Signature-錯誤"><a href="#5-解決-Thought-Signature-錯誤" class="headerlink" title="5. 解決 Thought Signature 錯誤"></a>5. 解決 Thought Signature 錯誤</h1><p>Gemini 3 Flash 在某些舊版本（如 2026.3.2）會跟傳輸協定打架。<br><strong>解法：</strong></p>
+<ol>
+<li>將 <code>reasoning</code> 設為 <code>false</code>。</li>
+<li>或是乖乖升級到 4.2。</li>
+</ol>
+<hr>
+<h1 id="🚀-2026-4-2-建議配置配方"><a href="#🚀-2026-4-2-建議配置配方" class="headerlink" title="🚀 2026.4.2 建議配置配方"></a>🚀 2026.4.2 建議配置配方</h1><p>目前實測最香的配置組合：</p>
+<ul>
+<li><strong>版本</strong>：<code>2026.4.2</code></li>
+<li><strong>提供商 (Provider)</strong>：使用 <code>ollama-cloud</code></li>
+<li><strong>模型 (Model)</strong>：<code>gemini-3-flash-preview:latest</code></li>
+<li><strong>API 模式</strong>：一定要用 <code>openai-compatible</code></li>
+<li><strong>推理 (Reasoning)</strong>：建議先關掉，穩定第一！</li>
+</ul>
+<hr>
+<h1 id="結語：繼續折騰吧！"><a href="#結語：繼續折騰吧！" class="headerlink" title="結語：繼續折騰吧！"></a>結語：繼續折騰吧！</h1><p>不管是留在穩定的 3.1 還是衝刺 4.2，找到適合自己的配置才是最重要的。希望這篇筆記能幫大家少走一點彎路，早點享受 AI 的便利。</p>
+<p>溫馨提醒：升級前記得備份設定檔，不然坐牢時間會加倍喔 ❤️<br>推薦大家到 GitHub 給 <a href="https://github.com/openclaw/openclaw">OpenClaw</a> 一個 Star 🌟 支持一下這個超酷的專案！</p>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+        <tag>OpenClaw</tag>
+        <tag>Gemini</tag>
+        <tag>Ollama</tag>
+        <tag>技術筆記</tag>
+        <tag>升級指南</tag>
+        <tag>Discord</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Threads SDK】透過程式發送你的第一篇 Threads 貼文</title>
     <url>/2024/08/17/python-threads-sdk-introduction/</url>
     <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
@@ -19366,6 +19432,36 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
         <tag>SDK</tag>
         <tag>Threads</tag>
         <tag>Meta</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何復原 Steam 遊戲紀錄檔 | 黑神話悟空</title>
+    <url>/2024/09/14/steam-recover-by-backup-windows/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/steam-backup/1.png"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣的，由於我跟家人個別有一台 PC，參考了巴哈上面的說法(<a href="https://forum.gamer.com.tw/C.php?bsn=60599&snA=31999">URL</a>)，為了省錢登入同樣的帳號，想說用<strong>離線模式</strong>就可以一起玩，但殊不知…操作上出了點失誤，結果我從 9&#x2F;9 ~ 9&#x2F;14 的記錄都消失(被覆蓋)，找了一下網路上的做法，看了檔案路徑中發現 Steam 居然有備份(超感動)，以下介紹一下如何救回來～</p>
+<span id="more"></span>
+
+<h1 id="步驟-1：打開-Steam-並找到你的遊戲"><a href="#步驟-1：打開-Steam-並找到你的遊戲" class="headerlink" title="步驟 1：打開 Steam 並找到你的遊戲"></a>步驟 1：打開 Steam 並找到你的遊戲</h1><p><img src="https://nijialin.com/images/2024/steam-backup/2.png"></p>
+<p>首先來到最傷心的地方 😣，這就是我被覆蓋回去的版本…打開 Steam 客戶端，在左側的遊戲列表中找到《黑神話：悟空》，右鍵點擊遊戲名稱，選擇「管理」。</p>
+<h1 id="步驟-2：瀏覽本機檔案"><a href="#步驟-2：瀏覽本機檔案" class="headerlink" title="步驟 2：瀏覽本機檔案"></a>步驟 2：瀏覽本機檔案</h1><p><img src="https://nijialin.com/images/2024/steam-backup/3.png"></p>
+<p>在「管理」選單中，選擇「瀏覽本機檔案」，這會打開 Windows 檔案總管並顯示該遊戲的安裝目錄，開啟的樣子如下圖，找到 <code>b1/</code> 的資料夾。</p>
+<p><img src="https://nijialin.com/images/2024/steam-backup/4.png"></p>
+<h1 id="步驟-3：找到存檔資料夾"><a href="#步驟-3：找到存檔資料夾" class="headerlink" title="步驟 3：找到存檔資料夾"></a>步驟 3：找到存檔資料夾</h1><p><img src="https://nijialin.com/images/2024/steam-backup/5.png"></p>
+<p>在遊戲的安裝目錄中，找到名為 Saved 的資料夾。存檔通常位於 Saved 資料夾內的 SaveGames 或 SaveGamesBackup 資料夾中。</p>
+<p><img src="https://nijialin.com/images/2024/steam-backup/6.png"></p>
+<h1 id="步驟-4：備份存檔位置"><a href="#步驟-4：備份存檔位置" class="headerlink" title="步驟 4：備份存檔位置"></a>步驟 4：備份存檔位置</h1><p><img src="https://nijialin.com/images/2024/steam-backup/7.png"></p>
+<p>點進 <code>SaveGamesBackup</code>資料夾當中，這些都是 Steam 會定期幫忙備份的檔案，有分 即時、小時、每日。</p>
+<h1 id="步驟-5：恢復存檔"><a href="#步驟-5：恢復存檔" class="headerlink" title="步驟 5：恢復存檔"></a>步驟 5：恢復存檔</h1><p><img src="https://nijialin.com/images/2024/steam-backup/8.png"></p>
+<p>如果需要恢復存檔，這邊我選擇 01ReamtimeBackup，備份檔案裡面因為我的黑神話悟空裡面有兩個存檔，所以會看到 ArchiveSaveFile.1.sav 以及 ArchiveSaveFile.2.sav，這邊檔案比較大的就是我玩比較前面的進度，因此就把他複製起來來放到<strong>步驟三</strong> SaveGames 資料夾當中，會先看到有一串數字的資料夾，再點進去之後就會看到以下圖片的樣子，把檔案複製進去即可。<br><img src="https://nijialin.com/images/2024/steam-backup/9.png"></p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過這次才發現原來 Steam 做得這麼棒，都有即時在 local 幫玩家去備份，讓紀錄不小心被覆蓋的玩家可以輕鬆地在 Windows 上備份和恢復 Steam 遊戲的存檔，確保你的遊戲進度不會丟失，這次真的是有驚無險，紀錄起來下次發生時才不會手足無措～ 👀️</p>
+]]></content>
+      <categories>
+        <category>學習紀錄</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Steam</tag>
+        <tag>Backup</tag>
       </tags>
   </entry>
   <entry>
@@ -19480,33 +19576,39 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
       </tags>
   </entry>
   <entry>
-    <title>如何復原 Steam 遊戲紀錄檔 | 黑神話悟空</title>
-    <url>/2024/09/14/steam-recover-by-backup-windows/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/2024/steam-backup/1.png"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣的，由於我跟家人個別有一台 PC，參考了巴哈上面的說法(<a href="https://forum.gamer.com.tw/C.php?bsn=60599&snA=31999">URL</a>)，為了省錢登入同樣的帳號，想說用<strong>離線模式</strong>就可以一起玩，但殊不知…操作上出了點失誤，結果我從 9&#x2F;9 ~ 9&#x2F;14 的記錄都消失(被覆蓋)，找了一下網路上的做法，看了檔案路徑中發現 Steam 居然有備份(超感動)，以下介紹一下如何救回來～</p>
+    <title>日常快捷鍵 &amp; 小工具分享 | 沉浸翻譯, 切割視窗</title>
+    <url>/2024/04/18/upgrade-your-working/</url>
+    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作為一位需要在電腦前面待上 8 小時以上的現代人，很多時候都需要花很多時間消化日常的資訊，以下快速分享近期經常使用的快捷鍵跟小工具，加速我日常作業的時間，把時間花在其他更有興趣的地方～</p>
 <span id="more"></span>
 
-<h1 id="步驟-1：打開-Steam-並找到你的遊戲"><a href="#步驟-1：打開-Steam-並找到你的遊戲" class="headerlink" title="步驟 1：打開 Steam 並找到你的遊戲"></a>步驟 1：打開 Steam 並找到你的遊戲</h1><p><img src="https://nijialin.com/images/2024/steam-backup/2.png"></p>
-<p>首先來到最傷心的地方 😣，這就是我被覆蓋回去的版本…打開 Steam 客戶端，在左側的遊戲列表中找到《黑神話：悟空》，右鍵點擊遊戲名稱，選擇「管理」。</p>
-<h1 id="步驟-2：瀏覽本機檔案"><a href="#步驟-2：瀏覽本機檔案" class="headerlink" title="步驟 2：瀏覽本機檔案"></a>步驟 2：瀏覽本機檔案</h1><p><img src="https://nijialin.com/images/2024/steam-backup/3.png"></p>
-<p>在「管理」選單中，選擇「瀏覽本機檔案」，這會打開 Windows 檔案總管並顯示該遊戲的安裝目錄，開啟的樣子如下圖，找到 <code>b1/</code> 的資料夾。</p>
-<p><img src="https://nijialin.com/images/2024/steam-backup/4.png"></p>
-<h1 id="步驟-3：找到存檔資料夾"><a href="#步驟-3：找到存檔資料夾" class="headerlink" title="步驟 3：找到存檔資料夾"></a>步驟 3：找到存檔資料夾</h1><p><img src="https://nijialin.com/images/2024/steam-backup/5.png"></p>
-<p>在遊戲的安裝目錄中，找到名為 Saved 的資料夾。存檔通常位於 Saved 資料夾內的 SaveGames 或 SaveGamesBackup 資料夾中。</p>
-<p><img src="https://nijialin.com/images/2024/steam-backup/6.png"></p>
-<h1 id="步驟-4：備份存檔位置"><a href="#步驟-4：備份存檔位置" class="headerlink" title="步驟 4：備份存檔位置"></a>步驟 4：備份存檔位置</h1><p><img src="https://nijialin.com/images/2024/steam-backup/7.png"></p>
-<p>點進 <code>SaveGamesBackup</code>資料夾當中，這些都是 Steam 會定期幫忙備份的檔案，有分 即時、小時、每日。</p>
-<h1 id="步驟-5：恢復存檔"><a href="#步驟-5：恢復存檔" class="headerlink" title="步驟 5：恢復存檔"></a>步驟 5：恢復存檔</h1><p><img src="https://nijialin.com/images/2024/steam-backup/8.png"></p>
-<p>如果需要恢復存檔，這邊我選擇 01ReamtimeBackup，備份檔案裡面因為我的黑神話悟空裡面有兩個存檔，所以會看到 ArchiveSaveFile.1.sav 以及 ArchiveSaveFile.2.sav，這邊檔案比較大的就是我玩比較前面的進度，因此就把他複製起來來放到<strong>步驟三</strong> SaveGames 資料夾當中，會先看到有一串數字的資料夾，再點進去之後就會看到以下圖片的樣子，把檔案複製進去即可。<br><img src="https://nijialin.com/images/2024/steam-backup/9.png"></p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>經過這次才發現原來 Steam 做得這麼棒，都有即時在 local 幫玩家去備份，讓紀錄不小心被覆蓋的玩家可以輕鬆地在 Windows 上備份和恢復 Steam 遊戲的存檔，確保你的遊戲進度不會丟失，這次真的是有驚無險，紀錄起來下次發生時才不會手足無措～ 👀️</p>
-]]></content>
+<h1 id="日常快捷鍵"><a href="#日常快捷鍵" class="headerlink" title="日常快捷鍵"></a>日常快捷鍵</h1><p>以下這幾個快捷鍵基本上在<code>網頁</code>&amp;<code>編輯器</code>通常都共用，記下來練習下有助於日常工作</p>
+<ul>
+<li><code>CMD+W</code>: 關閉當前視窗</li>
+<li><code>CMD+T</code>: 開新分頁</li>
+<li><code>CMD+K</code>: attach url</li>
+<li><code>CMD+L</code>: 跳至網址列並全選，通常會搭配 CMD+C，也可搭配後文的 Manico</li>
+<li><code>CMD+SHIFT+[</code>: 往左，<code>]</code> 往右</li>
+<li><code>CMD+P</code>: 列印，office 也共用</li>
+<li><code>CMD+Q</code>: 關閉當前應用程式，緊急用</li>
+</ul>
+<p>因為使用了 HHKB，其中他的 Control 的位置跟一般鍵盤比較不同，但因為工作需要拿著電腦到處跑，因此我也把 Mac 的 Control 改到 caps 位置，換語言轉用 <code>control+空白鍵</code>，如此一來就比較少在切換語系時轉不太過去，導致無意間惱怒 caps 的功能 🤣</p>
+<blockquote>
+<p><a href="https://nijialin.com/2022/08/20/why-you-need-hhkb/">【HHKB】為什麼要它？怎麼在二手市集挑？</a></p>
+</blockquote>
+<h1 id="利用-Edge-的分隔畫面"><a href="#利用-Edge-的分隔畫面" class="headerlink" title="利用 Edge 的分隔畫面"></a>利用 Edge 的分隔畫面</h1><p><img src="https://nijialin.com/images/2024/working/split.png"></p>
+<p>很多時候需要比對文件、翻譯結果、Code Review…etc，都需要切割視窗來輔助，這時候就可以直接用 Edge 內建的功能使用，方便又快速</p>
+<h1 id="Manico-設定自己的快捷建"><a href="#Manico-設定自己的快捷建" class="headerlink" title="Manico - 設定自己的快捷建"></a><a href="https://apps.apple.com/tw/app/manico/id724472954?mt=12">Manico</a> - 設定自己的快捷建</h1><p><a href="https://apps.apple.com/tw/app/manico/id724472954?mt=12">Manico</a> 是一個 MacOS 的工具，專門來制定客製化的快捷鍵，像我都習慣使用左邊鍵盤的組合鍵來搭配，也配合 CMD+C CMD+V 這樣的手法用，這樣找個操作直覺比較一致</p>
+<h1 id="沉浸翻譯-Chrome-套件"><a href="#沉浸翻譯-Chrome-套件" class="headerlink" title="沉浸翻譯 - Chrome 套件"></a><a href="https://chromewebstore.google.com/detail/%E6%B2%88%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AD%AF-%E7%B6%B2%E9%A0%81%E7%BF%BB%E8%AD%AF%E6%93%B4%E5%85%85-pdf%E7%BF%BB%E8%AD%AF-%E5%85%8D%E8%B2%BB/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-TW">沉浸翻譯</a> - Chrome 套件</h1><p><img src="https://nijialin.com/images/2024/working/translate.png"></p>
+<p>不論是專案管理或擔任工程師，經常都需要看各種英文文件，或是各國語系的東西，過去都需要費工複製起來貼在 Google 翻譯，這時候可以使用 Chrome 套件 - <a href="https://chromewebstore.google.com/detail/%E6%B2%88%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AD%AF-%E7%B6%B2%E9%A0%81%E7%BF%BB%E8%AD%AF%E6%93%B4%E5%85%85-pdf%E7%BF%BB%E8%AD%AF-%E5%85%8D%E8%B2%BB/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-TW">沉浸翻譯</a> 來把頁面上的內容全部翻譯，不論現在是什麼語系都可以快速翻譯，幫助日常作業可以更快理解裡面內容，當然若想要翻譯更精準，裡面也可以放入各家 AI 或企業版的功能喔！</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1>]]></content>
       <categories>
         <category>學習紀錄</category>
       </categories>
       <tags>
-        <tag>Windows</tag>
-        <tag>Steam</tag>
-        <tag>Backup</tag>
+        <tag>Manico</tag>
+        <tag>Chrome</tag>
+        <tag>翻譯</tag>
       </tags>
   </entry>
   <entry>
@@ -19720,42 +19822,6 @@ LINE->User: reply</textarea><textarea id="sequence-0-options" style="display: no
         <tag>superpowers</tag>
         <tag>spec-kit</tag>
         <tag>開發工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日常快捷鍵 &amp; 小工具分享 | 沉浸翻譯, 切割視窗</title>
-    <url>/2024/04/18/upgrade-your-working/</url>
-    <content><![CDATA[<p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作為一位需要在電腦前面待上 8 小時以上的現代人，很多時候都需要花很多時間消化日常的資訊，以下快速分享近期經常使用的快捷鍵跟小工具，加速我日常作業的時間，把時間花在其他更有興趣的地方～</p>
-<span id="more"></span>
-
-<h1 id="日常快捷鍵"><a href="#日常快捷鍵" class="headerlink" title="日常快捷鍵"></a>日常快捷鍵</h1><p>以下這幾個快捷鍵基本上在<code>網頁</code>&amp;<code>編輯器</code>通常都共用，記下來練習下有助於日常工作</p>
-<ul>
-<li><code>CMD+W</code>: 關閉當前視窗</li>
-<li><code>CMD+T</code>: 開新分頁</li>
-<li><code>CMD+K</code>: attach url</li>
-<li><code>CMD+L</code>: 跳至網址列並全選，通常會搭配 CMD+C，也可搭配後文的 Manico</li>
-<li><code>CMD+SHIFT+[</code>: 往左，<code>]</code> 往右</li>
-<li><code>CMD+P</code>: 列印，office 也共用</li>
-<li><code>CMD+Q</code>: 關閉當前應用程式，緊急用</li>
-</ul>
-<p>因為使用了 HHKB，其中他的 Control 的位置跟一般鍵盤比較不同，但因為工作需要拿著電腦到處跑，因此我也把 Mac 的 Control 改到 caps 位置，換語言轉用 <code>control+空白鍵</code>，如此一來就比較少在切換語系時轉不太過去，導致無意間惱怒 caps 的功能 🤣</p>
-<blockquote>
-<p><a href="https://nijialin.com/2022/08/20/why-you-need-hhkb/">【HHKB】為什麼要它？怎麼在二手市集挑？</a></p>
-</blockquote>
-<h1 id="利用-Edge-的分隔畫面"><a href="#利用-Edge-的分隔畫面" class="headerlink" title="利用 Edge 的分隔畫面"></a>利用 Edge 的分隔畫面</h1><p><img src="https://nijialin.com/images/2024/working/split.png"></p>
-<p>很多時候需要比對文件、翻譯結果、Code Review…etc，都需要切割視窗來輔助，這時候就可以直接用 Edge 內建的功能使用，方便又快速</p>
-<h1 id="Manico-設定自己的快捷建"><a href="#Manico-設定自己的快捷建" class="headerlink" title="Manico - 設定自己的快捷建"></a><a href="https://apps.apple.com/tw/app/manico/id724472954?mt=12">Manico</a> - 設定自己的快捷建</h1><p><a href="https://apps.apple.com/tw/app/manico/id724472954?mt=12">Manico</a> 是一個 MacOS 的工具，專門來制定客製化的快捷鍵，像我都習慣使用左邊鍵盤的組合鍵來搭配，也配合 CMD+C CMD+V 這樣的手法用，這樣找個操作直覺比較一致</p>
-<h1 id="沉浸翻譯-Chrome-套件"><a href="#沉浸翻譯-Chrome-套件" class="headerlink" title="沉浸翻譯 - Chrome 套件"></a><a href="https://chromewebstore.google.com/detail/%E6%B2%88%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AD%AF-%E7%B6%B2%E9%A0%81%E7%BF%BB%E8%AD%AF%E6%93%B4%E5%85%85-pdf%E7%BF%BB%E8%AD%AF-%E5%85%8D%E8%B2%BB/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-TW">沉浸翻譯</a> - Chrome 套件</h1><p><img src="https://nijialin.com/images/2024/working/translate.png"></p>
-<p>不論是專案管理或擔任工程師，經常都需要看各種英文文件，或是各國語系的東西，過去都需要費工複製起來貼在 Google 翻譯，這時候可以使用 Chrome 套件 - <a href="https://chromewebstore.google.com/detail/%E6%B2%88%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AD%AF-%E7%B6%B2%E9%A0%81%E7%BF%BB%E8%AD%AF%E6%93%B4%E5%85%85-pdf%E7%BF%BB%E8%AD%AF-%E5%85%8D%E8%B2%BB/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-TW">沉浸翻譯</a> 來把頁面上的內容全部翻譯，不論現在是什麼語系都可以快速翻譯，幫助日常作業可以更快理解裡面內容，當然若想要翻譯更精準，裡面也可以放入各家 AI 或企業版的功能喔！</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1>]]></content>
-      <categories>
-        <category>學習紀錄</category>
-      </categories>
-      <tags>
-        <tag>Manico</tag>
-        <tag>Chrome</tag>
-        <tag>翻譯</tag>
       </tags>
   </entry>
 </search>
