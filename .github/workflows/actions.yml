@@ -5,43 +5,36 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
+      - uses: actions/checkout@v4
       - name: Use Node.js 20
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
+          cache: npm
       - name: Install Dependencies
-        run: yarn
+        run: npm ci
+      - name: Test
+        run: npm test
       - name: Build
-        run: npx hexo generate
-      - name: algolia
-        run: npx hexo algolia
-        # env:
-        #   HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
+        run: npm run build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-      - run: echo 'Push Hexo BLOG deploy Flex Message to Admin'
+      - run: echo 'Push blog deploy Flex Message to Admin'
       - name: ⏰✅ Schedule success deploy
         if: ${{ success() }}
         run: |
-          curl -v -X POST https://api.line.me/v2/bot/message/push \
+          curl -X POST https://api.line.me/v2/bot/message/push \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.LINE_BOT_TOKEN }}" \
             -d '{
@@ -83,7 +76,7 @@ jobs:
                             "action": {
                               "type": "uri",
                               "label": "📝 Draft",
-                              "uri": "https://github.com/louis70109/louis70109.github.io/tree/master/source/_drafts"
+                              "uri": "https://github.com/louis70109/louis70109.github.io/tree/main/source/_drafts"
                             }
                           },
                           {
@@ -105,7 +98,7 @@ jobs:
       - name: Deploy fail.
         if: ${{ failure() }}
         run: |
-          curl -v -X POST https://api.line.me/v2/bot/message/push \
+          curl -X POST https://api.line.me/v2/bot/message/push \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.LINE_BOT_TOKEN }}" \
             -d '{
@@ -147,7 +140,7 @@ jobs:
                             "action": {
                               "type": "uri",
                               "label": "📝 Draft",
-                              "uri": "https://github.com/louis70109/louis70109.github.io/tree/master/source/_drafts"
+                              "uri": "https://github.com/louis70109/louis70109.github.io/tree/main/source/_drafts"
                             }
                           },
                           {

@@ -7,11 +7,11 @@ categories: 技術
 date: 2026-04-13 17:15:00 +0800
 ---
 
-# 2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密
-
 這幾天在測試 [OpenClaw](https://github.com/openclaw/openclaw) 的 LINE 頻道整合。說實話，我是在這台 MacBook Air 2010（我的老戰友，現在只能拿來當伺服器跑）上面測試的。雖然硬體已經是「古董」級別，但 OpenClaw 的反應速度真的驚豔到我。
 
 不過，身為一個技術宅，我原本以為串接 LINE Bot 至少要寫個幾百行 Node.js 或 Python，處理那些煩人的 Webhook、什麼加密驗證之類的。結果... 我發現我根本是在「填空」。
+
+<!-- more -->
 
 ---
 
