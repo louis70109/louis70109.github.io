@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 平常在寫 PoC 時，是否會像筆者一樣很困擾，每個東西都需要一個 DB，都要重新 create table、塞資料，像是每次寫 LINE Bot，一定都會綁用戶資訊(userId, name, email...)，如果範例專案共用的資料能放在一起，是不是就能更快上線呢？透過部署 Parse Server，讓許多的">
+  <title>如何部署 Parse Server 與 Dashboard 於 Heroku 上使用 | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2022/08/03/parse-server-heroku-note/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2022-08-03T00:19:59">2022-08-03</time> · <a href="/categories/%E6%87%89%E7%94%A8/">應用</a></p><h1>如何部署 Parse Server 與 Dashboard 於 Heroku 上使用</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/header.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>平常在寫 PoC 時，是否會像筆者一樣很困擾，每個東西都需要一個 DB，都要重新 create table、塞資料，像是每次寫 LINE Bot，一定都會綁用戶資訊(userId, name, email...)，如果範例專案共用的資料能放在一起，是不是就能更快上線呢？透過部署 Parse Server，讓許多的 CRUD 工作都可以省下來，避免許多東西重工的時間。因此這次就來介紹一下 Parse Server 這個開源莊案究竟有多好用吧！</p>
+<blockquote>
+<p>以下都是建立在 Heroku 上，若需要搭建在自家，請參考使用 Dockerfile。</p>
+</blockquote>
+<ul>
+<li>Parse Server Dashboard 部署範例：<a href="https://github.com/louis70109/parse-dashboard-example">連結</a><ul>
+<li>Fork 來自名間版本，目前由我會手動來改 package.json 裡面的版本。</li>
+</ul>
+</li>
+<li><a href="https://parseplatform.org/">官網</a></li>
+<li>Parse Server 專案：<a href="https://github.com/parse-community/parse-server">連結</a></li>
+</ul>
+<h1 id="parse-server-部署">Parse Server 部署</h1>
+<p>參考 Parse Server 部署範例： <a href="https://github.com/louis70109/parse-server-example">連結</a></p>
+<p>GitHub 下方有個 Heroku 部署的按鈕，按下去後會導向<code>部署畫面</code>，如下：</p>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/2.png" alt=""></p>
+<blockquote>
+<p>這 fork 的版本是由官方維護的，因此使用上不太需要擔心。</p>
+</blockquote>
+<h2 id="parse-server-環境變數">Parse Server 環境變數</h2>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/1.png" alt=""></p>
+<p>在讀 parse-server 文件以及 Getting Start 可能會很疑惑現在到底要用什麼樣的環境變數，需要 prefix？那要加什麼？其實會看不太懂，以下透過 parse-server-example 做範例
+以 parse-server-example 裡面的範例來說</p>
+<ul>
+<li>PARSE_MOUNT<ul>
+<li>預設： /parse，可自行調整</li>
+</ul>
+</li>
+<li>APP_ID<ul>
+<li>整個服務的名稱，官網範例都會用：myAppId</li>
+</ul>
+</li>
+<li>MASTER_KEY<ul>
+<li>&quot;myMasterKey&quot;</li>
+</ul>
+</li>
+<li>DATABASE_URL<ul>
+<li>設定 PostgreSQL || MongoDB 的網址，這邊網址設定請參考下個章節</li>
+</ul>
+</li>
+<li>SERVER_URL&quot;:<ul>
+<li>放上 Domain+PARSE_MOUNT 的數值<ul>
+<li><a href="http://yourappname.herokuapp.com/parse">http://yourappname.herokuapp.com/parse</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="資料庫設定---postgresql">資料庫設定 - <a href="http://docs.parseplatform.org/parse-server/guide/#postgres">PostgreSQL</a></h2>
+<p>官方文件會主推 MongoDB 來做，但因為 Heroku 現在已經不支援 mLab 的 MongoDB，因此在這環境下就得使用 PostgreSQL，但這邊有些需要注意的東西</p>
+<ul>
+<li>Heroku PostgreSQL -&gt; Hobby Dev<ul>
+<li>會幫忙建立一個 <code>DATABASE_URL</code>，要另外建立環境變數 <code>DATABASE_URI</code> 給 parse server 使用</li>
+</ul>
+</li>
+</ul>
+<p>但原本的網址只換乘 DATABASE_URI 會無法使用，需要參考 parse server 官方文件下的 PostgreSQL 說明</p>
+<blockquote>
+<ol>
+<li>SSL with verification - postgres://localhost:5432/db?ca=/path/to/file</li>
+<li>SSL with no verification - postgres://localhost:5432/db?ssl=true&amp;rejectUnauthorized=false</li>
+</ol>
+</blockquote>
+<p>如果你的 DB 是需要簽證(CA)以確保安全，就使用第一行；而這次因為求快速部署，因此選擇第二行先不執行認證(但有 SSL)。</p>
+<h2 id="健康檢查路徑">健康檢查路徑</h2>
+<p>設定完所有東西之後，會不知道東西究竟有沒有正常啟動，可以參考以下的路徑打 API 測試看看，成功之後才繼續往下個章節移動 ✨</p>
+<ul>
+<li>API 路徑組成：<code>Domain</code>+<code>PARSE_MOUNT</code>+<code>/health</code></li>
+</ul>
+<p>使用以下指令測試看看是否有出錯：</p>
+<pre><code>curl https://DOMAIN.herokuapp.com/parse/health
+</code></pre>
+<pre><code>{&quot;status&quot;: &quot;ok&quot;}
+</code></pre>
+<h1 id="parse-server-dashboard">Parse Server Dashboard</h1>
+<p>上述的健康檢查完之後，接下來可以開始部署 Dashboard，讓接下來對後端的操作可以更方便些。</p>
+<blockquote>
+<p>範例專案：<a href="https://github.com/louis70109/parse-dashboard-example">https://github.com/louis70109/parse-dashboard-example</a></p>
+</blockquote>
+<h2 id="如何部署">如何部署</h2>
+<p>這邊透過 Heroku 來協助部屬測試環境，如果有需要部署到其他地方可以參考 Dockerfile。</p>
+<pre><code>git clone https://github.com/louis70109/parse-dashboard-example.git
+cd parse-dashboard-example
+heroku create
+git push heroku master
+</code></pre>
+<p>部署好之後需要進去環境變數設定：</p>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/heroku-env.png" alt=""></p>
+<p>主要對接 Parse Server 的六個參數需放入環境變數，做些最基本的權限控管(<a href="https://github.com/louis70109/parse-dashboard-example/blob/master/app.json">參考 app.json</a>):</p>
+<ul>
+<li>APP_ID<ul>
+<li>對應剛剛 parse-server 設定的 ID，訪問 API 會使用。</li>
+</ul>
+</li>
+<li>MASTER_KEY<ul>
+<li>要訪問的 parse-server 金鑰，對資料庫操作時要使用。</li>
+</ul>
+</li>
+<li>SERVER_URL<ul>
+<li>parse-server 的網址 <a href="http://yourappname.herokuapp.com/parse">http://yourappname.herokuapp.com/parse</a></li>
+</ul>
+</li>
+<li>APP_NAME<ul>
+<li>UI 上顯示的名稱。</li>
+</ul>
+</li>
+<li>USERNAME<ul>
+<li>登入 Dashboard 的帳號</li>
+</ul>
+</li>
+<li>PASSWORD<ul>
+<li>登入 Dashboard 的密碼</li>
+</ul>
+</li>
+</ul>
+<h2 id="登入">登入</h2>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/pd1.png" alt=""></p>
+<p>輸入剛剛環境變數上的 <code>USERNAME</code> 以及 <code>PASSWORD</code>。</p>
+<h2 id="欄位操作">欄位操作</h2>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/pd2.png" alt=""></p>
+<p>在 parse-server 裡面一個表(table)稱為 class，這邊先透過[1]去點選建立，接著在[2]的地方輸入這張表的名稱，按下建立後就可以開始操作表了。</p>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/pd3.png" alt=""></p>
+<p>建立完之後也可以在這邊新增欄位，如果要新增資料，也可以在裡面找到地方去新增一藍，裡面俗稱 Object。</p>
+<h2 id="測試資料">測試資料</h2>
+<p>Dashboard 方便點在於除了可以像 Firebase 一樣在網頁上放資料，另外還能有個介面直接測試 API，只要把該有的條件放好按下 <code>Send Query</code>，就能看測試資料如何囉！</p>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/pd4-test.png" alt=""></p>
+<hr>
+<p>如果你是 command line 愛好者，也可以參考 <a href="https://github.com/parse-community/parse-server#saving-an-object">parse-server 的範例</a>去找：</p>
+<pre><code class="language-bash">$ curl -X GET \
+  -H &quot;X-Parse-Application-Id: APPLICATION_ID&quot; \
+  http://localhost:1337/parse/classes/Items
+</code></pre>
+<blockquote>
+<p>objectId, createdAt, updatedAt, ACL 皆是 parse-server 預設管理欄位，看到他們別覺得驚訝，把你需要的欄位新增放在後面即可喔！</p>
+</blockquote>
+<h2 id="測試資料想刪除怎麼辦">測試資料想刪除怎麼辦</h2>
+<p>在 Dashboard 的右上角有個 <code>Edit</code>，點下去之後可以需要先刪掉所有資料(Row)，才可以刪 Class，此舉動是保護機制，避免管理者手誤亂刪到表，導致悲劇產生...XD (真貼心)</p>
+<h1 id="結論">結論</h1>
+<p>這次部署完終於有久違的成就感了～～(感動)，官方也貼心的提供了許多前端 SDK 讓開發者們可以用，接下來就能開始建立服務來把資料集中儲存，後面 Parse Server 也有許多其他的功能(Webhook, GraphQL...)，後續玩完之後再來與大家分享！</p>
+</div>
+      <footer class="post-tags"><a href="/tags/Parse%20Server/">Parse Server</a><a href="/tags/Dashboard/">Dashboard</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

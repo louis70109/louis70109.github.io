@@ -1,283 +1,37 @@
-<!DOCTYPE html>
-<html lang="zh-tw">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 8.1.1">
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
-<!-- End Google Tag Manager -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="前言近年來，隨著雲端計算的普及和發展，越來越多的企業和開發者正在尋找一種更簡單、更高效的方式來佈署和運營應用程式。而 Severless 技術正是一種流行的解決方案。Google Cloud Run 是一個強大的 Severless 平台，可以幫助開發人員快速地佈署和運營。接著，本文將介紹 Google Cloud Run 的優點和如何在其中佈署。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="【GCP】將 FastAPI 佈署上 Cloud Run">
-<meta property="og:url" content="https://nijialin.com/2023/03/19/gcp-why-need-cloudrun-as-serverless/index.html">
-<meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="前言近年來，隨著雲端計算的普及和發展，越來越多的企業和開發者正在尋找一種更簡單、更高效的方式來佈署和運營應用程式。而 Severless 技術正是一種流行的解決方案。Google Cloud Run 是一個強大的 Severless 平台，可以幫助開發人員快速地佈署和運營。接著，本文將介紹 Google Cloud Run 的優點和如何在其中佈署。">
-<meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://nijialin.com/images/common.jpeg">
-<meta property="og:image" content="https://nijialin.com/images/2023/gcp/1.png">
-<meta property="article:published_time" content="2023-03-19T08:32:23.000Z">
-<meta property="article:modified_time" content="2023-03-22T06:17:50.981Z">
-<meta property="article:author" content="NiJia Lin">
-<meta property="article:tag" content="ChatGPT">
-<meta property="article:tag" content="Cloud Run">
-<meta property="article:tag" content="GCP">
-<meta property="article:tag" content="Serverless">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nijialin.com/images/common.jpeg">
-
-<link rel="canonical" href="https://nijialin.com/2023/03/19/gcp-why-need-cloudrun-as-serverless/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-tw'
-  };
-</script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 近年來，隨著雲端計算的普及和發展，越來越多的企業和開發者正在尋找一種更簡單、更高效的方式來佈署和運營應用程式。而 Severless 技術正是一種流行的解決方案。Google Cloud Run 是一個強大的 Severless 平台，可以幫助開發人員快速地佈署和運營。接著，本文將介紹 Google Cloud ">
   <title>【GCP】將 FastAPI 佈署上 Cloud Run | 忍者工坊</title>
-  
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FYYPR3Z2K3');
-      }
-    </script>
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+  <link rel="canonical" href="https://nijialin.com/2023/03/19/gcp-why-need-cloudrun-as-serverless/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">忍者工坊</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container"></div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
-</div>
-
-      
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://nijialin.com/2023/03/19/gcp-why-need-cloudrun-as-serverless/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="NiJia Lin">
-      <meta itemprop="description" content="You are what you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="忍者工坊">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          【GCP】將 FastAPI 佈署上 Cloud Run
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2023-03-19 08:32:23" itemprop="dateCreated datePublished" datetime="2023-03-19T08:32:23+00:00">2023-03-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-03-22 06:17:50" itemprop="dateModified" datetime="2023-03-22T06:17:50+00:00">2023-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/GCP/" itemprop="url" rel="index"><span itemprop="name">GCP</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p><img src="https://nijialin.com/images/common.jpeg"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近年來，隨著雲端計算的普及和發展，越來越多的企業和開發者正在尋找一種更簡單、更高效的方式來佈署和運營應用程式。而 Severless 技術正是一種流行的解決方案。Google Cloud Run 是一個強大的 Severless 平台，可以幫助開發人員快速地佈署和運營。接著，本文將介紹 Google Cloud Run 的優點和如何在其中佈署。</p>
-<span id="more"></span>
-
-<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><h2 id="為什麼我們需要使用-Severless-佈署我們的應用程式呢？"><a href="#為什麼我們需要使用-Severless-佈署我們的應用程式呢？" class="headerlink" title="為什麼我們需要使用 Severless 佈署我們的應用程式呢？"></a>為什麼我們需要使用 Severless 佈署我們的應用程式呢？</h2><p>傳統的佈署方式需要管理和維護運行應用程式的基礎架構，包括服務器、網絡、資料庫等。這需要耗費大量時間和資源，並且需要購買硬體和安裝軟體環境。此外，當應用程式的流量遇到高峰時，需要擴展基礎架構以處理更多的請求，這也需要額外的投資人力和支援來完成。</p>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2023-03-19T16:32:23">2023-03-19</time> · <a href="/categories/GCP/">GCP</a></p><h1>【GCP】將 FastAPI 佈署上 Cloud Run</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>近年來，隨著雲端計算的普及和發展，越來越多的企業和開發者正在尋找一種更簡單、更高效的方式來佈署和運營應用程式。而 Severless 技術正是一種流行的解決方案。Google Cloud Run 是一個強大的 Severless 平台，可以幫助開發人員快速地佈署和運營。接著，本文將介紹 Google Cloud Run 的優點和如何在其中佈署。</p>
+<h1 id="介紹">介紹</h1>
+<h2 id="為什麼我們需要使用-severless-佈署我們的應用程式呢？">為什麼我們需要使用 Severless 佈署我們的應用程式呢？</h2>
+<p>傳統的佈署方式需要管理和維護運行應用程式的基礎架構，包括服務器、網絡、資料庫等。這需要耗費大量時間和資源，並且需要購買硬體和安裝軟體環境。此外，當應用程式的流量遇到高峰時，需要擴展基礎架構以處理更多的請求，這也需要額外的投資人力和支援來完成。</p>
 <p>而使用 Severless 佈署，開發者可以完全不必考慮基礎架構的維護和擴展，只需專注於撰寫應用程式。當使用者發送請求時，Severless 會自動處理應用程式的擴展性和可用性，以應對流量高峰。因此，Severless 佈署不僅更省時、省力，也更加彈性和可靠度。</p>
 <p>由於 Severless 僅計費實際使用的計算資源和服務，因此在閒置時不會產生額外的成本，這對開發者和企業而言都是非常有利的。</p>
-<h3 id="御三家比較"><a href="#御三家比較" class="headerlink" title="御三家比較"></a>御三家比較</h3><p>以下是 GCP、AWS、Azure 三家 Severless 服務的比較表。這裡僅列舉了一些常見的計算資源和服務。</p>
+<h3 id="御三家比較">御三家比較</h3>
+<p>以下是 GCP、AWS、Azure 三家 Severless 服務的比較表。這裡僅列舉了一些常見的計算資源和服務。</p>
 <table>
 <thead>
 <tr>
@@ -300,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td align="center">Memory</td>
 <td align="center">每 GB 秒</td>
 <td align="center">0.0000028</td>
-<td align="center">Pub&#x2F;Sub, Firestore, BigQuery</td>
+<td align="center">Pub/Sub, Firestore, BigQuery</td>
 </tr>
 <tr>
 <td align="center"></td>
@@ -397,10 +151,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <p>以上價格僅供參考，具體的費用和條件可能會因各家雲服務商而有所不同。建議使用者在選擇之前，要詳細閱讀各家雲服務商的條款和費用，選擇最適合自己的服務。</p>
 </blockquote>
-<h2 id="GCP-介紹"><a href="#GCP-介紹" class="headerlink" title="GCP 介紹"></a>GCP 介紹</h2><p>Google Cloud Run 是 Google Cloud Platform (GCP) 的一個 Severless 平台，可讓開發人員在無需管理基礎設施的情況下輕鬆地佈署容器化應用程式。它支援多種程式語言和框架，包括 Node.js、Python、Go、Ruby、Java 和 .NET 等，因此開發人員可以選擇他們最熟悉的工具和框架來構建應用程式。</p>
+<h2 id="gcp-介紹">GCP 介紹</h2>
+<p>Google Cloud Run 是 Google Cloud Platform (GCP) 的一個 Severless 平台，可讓開發人員在無需管理基礎設施的情況下輕鬆地佈署容器化應用程式。它支援多種程式語言和框架，包括 Node.js、Python、Go、Ruby、Java 和 .NET 等，因此開發人員可以選擇他們最熟悉的工具和框架來構建應用程式。</p>
 <p>Google Cloud Run 的一個主要優點是它的彈性和可擴展性。它可以自動擴展 Instance，以滿足尖峰期流量需求；而在低流量時自動縮小 Instance，以節省資源和成本。此外，Google Cloud Run 支援快速啟動和停止容器，以縮短應用程式啟動時間和降低成本。</p>
 <p>Google Cloud Run 還具有高可用性和可靠性。它使用 Google 的基礎設施和負載平衡，可以輕鬆地將流量轉發到全球各地的 Instance，從而實現全球性的高可用性和可靠性。此外，Google Cloud Run 提供了多種安全機制，包括網路隔離、身份驗證和授權等，可以幫助開發人員保護其應用程式免受攻擊和潛在漏洞的影響。</p>
-<h2 id="為什麼要使用-Google-Cloud-Run-作為-Severless-的優先選擇？"><a href="#為什麼要使用-Google-Cloud-Run-作為-Severless-的優先選擇？" class="headerlink" title="為什麼要使用 Google Cloud Run 作為 Severless 的優先選擇？"></a>為什麼要使用 Google Cloud Run 作為 Severless 的優先選擇？</h2><p>Google Cloud Run 具有以下優點，使其成為開發人員選擇 Severless 技術的優先選擇：</p>
+<h2 id="為什麼要使用-google-cloud-run-作為-severless-的優先選擇？">為什麼要使用 Google Cloud Run 作為 Severless 的優先選擇？</h2>
+<p>Google Cloud Run 具有以下優點，使其成為開發人員選擇 Severless 技術的優先選擇：</p>
 <ol>
 <li>自動擴展和縮小容器 Instance，以適應流量需求。</li>
 <li>快速啟動和停止容器，縮短應用程式啟動時間和降低成本。</li>
@@ -412,29 +168,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <p>Serverless 都會有 Cold start 的問題，請參考我過去寫的文章 <a href="https://nijialin.com/2020/02/16/serverless-cold-start/">這篇文章</a></p>
 </blockquote>
-<h2 id="如何佈署到-Cloud-Run-上"><a href="#如何佈署到-Cloud-Run-上" class="headerlink" title="如何佈署到 Cloud Run 上"></a>如何佈署到 Cloud Run 上</h2><p>以下是將 FastAPI 佈署到 Google Cloud Run 上的執行指令的步驟：</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my_fastapi/</span><br><span class="line"><span class="built_in">cd</span> my_fastapi/</span><br></pre></td></tr></table></figure>
+<h2 id="如何佈署到-cloud-run-上">如何佈署到 Cloud Run 上</h2>
+<p>以下是將 FastAPI 佈署到 Google Cloud Run 上的執行指令的步驟：</p>
+<pre><code>mkdir my_fastapi/
+cd my_fastapi/
+</code></pre>
+<h3 id="0-建立-mainpy">0. 建立 main.py</h3>
+<pre><code>from fastapi import FastAPI
 
-<h3 id="0-建立-main-py"><a href="#0-建立-main-py" class="headerlink" title="0. 建立 main.py"></a>0. 建立 main.py</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi import FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">@app.<span class="builtin-name">get</span>(<span class="string">&quot;/&quot;</span>)</span><br><span class="line">def read_root():</span><br><span class="line">    return &#123;<span class="string">&quot;Hello&quot;</span>: <span class="string">&quot;World&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    import uvicorn</span><br><span class="line">    uvicorn.<span class="builtin-name">run</span>(app, <span class="attribute">host</span>=<span class="string">&quot;0.0.0.0&quot;</span>, <span class="attribute">port</span>=8000)</span><br></pre></td></tr></table></figure>
+app = FastAPI()
 
-<h3 id="1-建立-requirements-txt-並放入以下內容"><a href="#1-建立-requirements-txt-並放入以下內容" class="headerlink" title="1. 建立 requirements.txt 並放入以下內容"></a>1. 建立 requirements.txt 並放入以下內容</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fastapi</span></span><br><span class="line"><span class="attribute">uvicorn</span></span><br></pre></td></tr></table></figure>
+@app.get(&quot;/&quot;)
+def read_root():
+    return {&quot;Hello&quot;: &quot;World&quot;}
 
-<h4 id="安裝相依套件"><a href="#安裝相依套件" class="headerlink" title="安裝相依套件"></a>安裝相依套件</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt</span><br></pre></td></tr></table></figure>
+if __name__ == &quot;__main__&quot;:
+    import uvicorn
+    uvicorn.run(app, host=&quot;0.0.0.0&quot;, port=8000)
+</code></pre>
+<h3 id="1-建立-requirementstxt-並放入以下內容">1. 建立 requirements.txt 並放入以下內容</h3>
+<pre><code>fastapi
+uvicorn
+</code></pre>
+<h4 id="安裝相依套件">安裝相依套件</h4>
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<h4 id="測試一下">測試一下</h4>
+<pre><code>python main.py
+curl http://localhost:8000/
+</code></pre>
+<h3 id="2-建立-dockerfile">2. 建立 Dockerfile</h3>
+<p>當你需要在不同的環境中運行 FastAPI 應用程式時，Docker 提供了一種簡單而有效的方式。以下是一個基於 Python 3.9、使用 Uvicorn 和 Gunicorn 作為伺服器的 FastAPI Dockerfile 範例：</p>
+<pre><code>FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-<h4 id="測試一下"><a href="#測試一下" class="headerlink" title="測試一下"></a>測試一下</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> main.<span class="keyword">py</span></span><br><span class="line">curl http://localhos<span class="variable">t:8000</span>/</span><br></pre></td></tr></table></figure>
+# 將專案複製到容器中
+COPY . /app
 
-<h3 id="2-建立-Dockerfile"><a href="#2-建立-Dockerfile" class="headerlink" title="2. 建立 Dockerfile"></a>2. 建立 Dockerfile</h3><p>當你需要在不同的環境中運行 FastAPI 應用程式時，Docker 提供了一種簡單而有效的方式。以下是一個基於 Python 3.9、使用 Uvicorn 和 Gunicorn 作為伺服器的 FastAPI Dockerfile 範例：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> tiangolo/uvicorn-gunicorn-fastapi:python3.<span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將專案複製到容器中</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安裝必要的套件</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install --upgrade pip</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> requirements.txt .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -r requirements.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 開放指定的埠號，讓容器外的系統能夠訪問應用程式</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 啟動 FastAPI 應用程式</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;uvicorn&quot;</span>, <span class="string">&quot;main:app&quot;</span>, <span class="string">&quot;--host&quot;</span>, <span class="string">&quot;0.0.0.0&quot;</span>, <span class="string">&quot;--port&quot;</span>, <span class="string">&quot;8000&quot;</span>]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+# 安裝必要的套件
+RUN pip install --upgrade pip
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
+# 開放指定的埠號，讓容器外的系統能夠訪問應用程式
+EXPOSE 8000
+
+# 啟動 FastAPI 應用程式
+CMD [&quot;uvicorn&quot;, &quot;main:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;8000&quot;]
+</code></pre>
 <p>這個 Dockerfile 使用 <code>tiangolo/uvicorn-gunicorn-fastapi</code> 映像檔作為基底，並將應用程式碼複製到容器中，並安裝必要的套件。最後，使用 CMD 指令啟動 FastAPI 應用程式。</p>
 <blockquote>
 <p>請注意，上述的 Dockerfile 需要依照您實際上的程式進行修改，以符合您的需求和環境。</p>
 </blockquote>
-<h3 id="5-佈署到-Google-Cloud-Run"><a href="#5-佈署到-Google-Cloud-Run" class="headerlink" title="5. 佈署到 Google Cloud Run"></a>5. 佈署到 Google Cloud Run</h3><h4 id="安裝-gcloud-command-line"><a href="#安裝-gcloud-command-line" class="headerlink" title="安裝 gcloud command line"></a>安裝 gcloud command line</h4><p>gcloud 是 Google Cloud Platform 的命令行工具，它提供了一個簡單的方法來管理您在 GCP 上的資源。以下是安裝和使用 gcloud 的基本步驟：</p>
-<p>前往 <a target="_blank" rel="noopener" href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK 官方網站</a> 下載對應作業系統的安裝檔案。</p>
+<h3 id="5-佈署到-google-cloud-run">5. 佈署到 Google Cloud Run</h3>
+<h4 id="安裝-gcloud-command-line">安裝 gcloud command line</h4>
+<p>gcloud 是 Google Cloud Platform 的命令行工具，它提供了一個簡單的方法來管理您在 GCP 上的資源。以下是安裝和使用 gcloud 的基本步驟：</p>
+<p>前往 <a href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK 官方網站</a> 下載對應作業系統的安裝檔案。</p>
 <p>安裝 Cloud SDK，按照安裝提示進行操作，並選擇您需要安裝的元件。您可以在安裝過程中選擇安裝 gcloud CLI。</p>
 <p>安裝完成後，在終端或命令提示字元中輸入 <code>gcloud --version</code> 檢查安裝是否成功。</p>
-<h4 id="gcloud-基礎設定"><a href="#gcloud-基礎設定" class="headerlink" title="gcloud 基礎設定"></a>gcloud 基礎設定</h4><ul>
+<h4 id="gcloud-基礎設定">gcloud 基礎設定</h4>
+<ul>
 <li><p><code>gcloud init</code>：初始化 gcloud CLI，該指令會提示登錄 Google 帳戶，並選擇您要使用的 GCP 項目。</p>
 </li>
 <li><p><code>gcloud config set project PROJECT_ID</code>：設定 GCP Project ID，以便 gcloud CLI 與該項目交互使用。</p>
@@ -442,275 +234,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><code>gcloud auth login</code>：登錄 Google 帳戶。</p>
 </li>
 </ul>
-<h4 id="透過-gcloud-佈署"><a href="#透過-gcloud-佈署" class="headerlink" title="透過 gcloud 佈署"></a>透過 gcloud 佈署</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud <span class="built_in">run</span> deploy <span class="keyword">my</span>-fastapi-app <span class="comment">--source .</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="透過-gcloud-佈署">透過 gcloud 佈署</h4>
+<pre><code>gcloud run deploy my-fastapi-app --source .
+</code></pre>
 <p>選擇佈署區域與允許部署：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Please enter numeric choice <span class="keyword">or</span> <span class="built_in">text</span> value (must exactly match <span class="built_in">list</span></span><br><span class="line"><span class="built_in">item</span>):  <span class="number">22</span></span><br><span class="line"></span><br><span class="line">To make this <span class="keyword">the</span> default region, <span class="built_in">run</span> `gcloud config <span class="keyword">set</span> <span class="built_in">run</span>/region <span class="keyword">me</span>-west1`.</span><br><span class="line"></span><br><span class="line">This command <span class="keyword">is</span> equivalent <span class="keyword">to</span> <span class="built_in">running</span> `gcloud builds submit <span class="comment">--tag [IMAGE] .` and `gcloud run deploy my-fastapi-app --image [IMAGE]`</span></span><br><span class="line"></span><br><span class="line">Allow unauthenticated invocations <span class="keyword">to</span> [<span class="keyword">my</span>-fastapi-app] (y/N)?  y</span><br></pre></td></tr></table></figure>
+<pre><code>Please enter numeric choice or text value (must exactly match list
+item):  22
 
+To make this the default region, run `gcloud config set run/region me-west1`.
+
+This command is equivalent to running `gcloud builds submit --tag [IMAGE] .` and `gcloud run deploy my-fastapi-app --image [IMAGE]`
+
+Allow unauthenticated invocations to [my-fastapi-app] (y/N)?  y
+</code></pre>
 <p>這樣就可以將 FastAPI 應用程式成功佈署到 Google Cloud Run 上了。</p>
 <blockquote>
 <p>現在無須手動將 Docker 映像檔上傳到 Google Container Registry，在執行 gclou deploy 時就會幫忙上傳 cloud storage &amp; Registry 中了，但需要注意的是: <code>記得定期清理 cloud storage</code>(佈署一次一個檔案)，否則會一直收儲存費用唷！</p>
 </blockquote>
-<h4 id="測試是否正常運行"><a href="#測試是否正常運行" class="headerlink" title="測試是否正常運行"></a>測試是否正常運行</h4><p>若佈署成功的話，會在 command 中看到網址，點下去基本上應該會先看到 Unauthorize 的資訊，這是因為 Cloud Run 初期設定會要求要認證才行(應該是符合資安)，因此前往以下圖片的地方開啟，就可以成功訪問網站囉！</p>
-<p><img src="https://nijialin.com/images/2023/gcp/1.png"></p>
+<h4 id="測試是否正常運行">測試是否正常運行</h4>
+<p>若佈署成功的話，會在 command 中看到網址，點下去基本上應該會先看到 Unauthorize 的資訊，這是因為 Cloud Run 初期設定會要求要認證才行(應該是符合資安)，因此前往以下圖片的地方開啟，就可以成功訪問網站囉！</p>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2023/gcp/1.png" alt=""></p>
 <blockquote>
 <p>小知識：稍早測試用 8000 port 都失敗，看起來 Cloud Run 預設都是 8080，因此若自行佈署會失敗的話不仿看看 Port 有沒有設定錯喔！</p>
 </blockquote>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>Google Cloud Run 是一個功能強大的 Severless 平台，可以幫助開發人員快速地佈署和運行容器化應用程式，同時提供高可用性、可靠性和安全性。使用 Google Cloud Run，開發人員可以專注於應用程式的開發和佈署，而不必擔心基礎設施的管理和維護，因此是 Severless 技術的優先選擇之一。</p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Serverless/" rel="tag"><i class="fa fa-tag"></i> Serverless</a>
-              <a href="/tags/GCP/" rel="tag"><i class="fa fa-tag"></i> GCP</a>
-              <a href="/tags/Cloud-Run/" rel="tag"><i class="fa fa-tag"></i> Cloud Run</a>
-              <a href="/tags/ChatGPT/" rel="tag"><i class="fa fa-tag"></i> ChatGPT</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/03/17/nthu-line-tour-2023-qa/" rel="prev" title="清大資工「軟體專案管理」企業參訪">
-      <i class="fa fa-chevron-left"></i> 清大資工「軟體專案管理」企業參訪
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/04/how-cloud-run-continuely-cronjob-background/" rel="next" title="【GCP】如何讓 Cloud Run 持續執行背景程式">
-      【GCP】如何讓 Cloud Run 持續執行背景程式 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-  <script src="https://utteranc.es/client.js"
-          repo="louis70109/louis70109.github.io"
-          issue-term="title"
-          label="💬 Comment ✨"
-          theme="github-light"
-          crossorigin="anonymous"
-          async>
-  </script>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目錄
-        </li>
-        <li class="sidebar-nav-overview">
-          本站概要
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E5%80%91%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8-Severless-%E4%BD%88%E7%BD%B2%E6%88%91%E5%80%91%E7%9A%84%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E5%91%A2%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">為什麼我們需要使用 Severless 佈署我們的應用程式呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%A1%E4%B8%89%E5%AE%B6%E6%AF%94%E8%BC%83"><span class="nav-number">2.1.1.</span> <span class="nav-text">御三家比較</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCP-%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.2.</span> <span class="nav-text">GCP 介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E4%BD%BF%E7%94%A8-Google-Cloud-Run-%E4%BD%9C%E7%82%BA-Severless-%E7%9A%84%E5%84%AA%E5%85%88%E9%81%B8%E6%93%87%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">為什麼要使用 Google Cloud Run 作為 Severless 的優先選擇？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%88%E7%BD%B2%E5%88%B0-Cloud-Run-%E4%B8%8A"><span class="nav-number">2.4.</span> <span class="nav-text">如何佈署到 Cloud Run 上</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-%E5%BB%BA%E7%AB%8B-main-py"><span class="nav-number">2.4.1.</span> <span class="nav-text">0. 建立 main.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B-requirements-txt-%E4%B8%A6%E6%94%BE%E5%85%A5%E4%BB%A5%E4%B8%8B%E5%85%A7%E5%AE%B9"><span class="nav-number">2.4.2.</span> <span class="nav-text">1. 建立 requirements.txt 並放入以下內容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E7%9B%B8%E4%BE%9D%E5%A5%97%E4%BB%B6"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">安裝相依套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E4%B8%80%E4%B8%8B"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">測試一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BB%BA%E7%AB%8B-Dockerfile"><span class="nav-number">2.4.3.</span> <span class="nav-text">2. 建立 Dockerfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BD%88%E7%BD%B2%E5%88%B0-Google-Cloud-Run"><span class="nav-number">2.4.4.</span> <span class="nav-text">5. 佈署到 Google Cloud Run</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-gcloud-command-line"><span class="nav-number">2.4.4.1.</span> <span class="nav-text">安裝 gcloud command line</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gcloud-%E5%9F%BA%E7%A4%8E%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.4.4.2.</span> <span class="nav-text">gcloud 基礎設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%8F%E9%81%8E-gcloud-%E4%BD%88%E7%BD%B2"><span class="nav-number">2.4.4.3.</span> <span class="nav-text">透過 gcloud 佈署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E9%81%8B%E8%A1%8C"><span class="nav-number">2.4.4.4.</span> <span class="nav-text">測試是否正常運行</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
-      src="/uploads/avatar.jpg">
-  <p class="site-author-name" itemprop="name">NiJia Lin</p>
-  <div class="site-description" itemprop="description">You are what you do.</div>
+<h1 id="結論">結論</h1>
+<p>Google Cloud Run 是一個功能強大的 Severless 平台，可以幫助開發人員快速地佈署和運行容器化應用程式，同時提供高可用性、可靠性和安全性。使用 Google Cloud Run，開發人員可以專注於應用程式的開發和佈署，而不必擔心基礎設施的管理和維護，因此是 Severless 技術的優先選擇之一。</p>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">250</span>
-          <span class="site-state-item-name">文章</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">分類</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">345</span>
-        <span class="site-state-item-name">標籤</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
-</div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
-<script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+      <footer class="post-tags"><a href="/tags/GCP/">GCP</a><a href="/tags/Cloud%20Run/">Cloud Run</a><a href="/tags/ChatGPT/">ChatGPT</a><a href="/tags/Serverless/">Serverless</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
 </body>
 </html>

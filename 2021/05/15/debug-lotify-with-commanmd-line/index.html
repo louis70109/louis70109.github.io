@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 近期收到了一個來自 Lotify 的 Pull Request，主要功能是加入 Command Line 的功能，讓用戶在安裝 Lotify 之後即可在終端機上測試，感謝來自熱情的網友幫忙。 原以為 Merge 之後應該要可以用了，於似乎開始安裝要開始使用測試，沒想到遇到了一個錯誤 ModuleNotFoundE">
+  <title>除錯 Python 套件遇到 Command Line 無法使用的問題 | lotify | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2021/05/15/debug-lotify-with-commanmd-line/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2021-05-15T00:59:36">2021-05-15</time> · <a href="/categories/Python/">Python</a></p><h1>除錯 Python 套件遇到 Command Line 無法使用的問題 | lotify</h1></header>
+      <div class="post-body"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img loading="lazy" decoding="async" src="https://click.palletsprojects.com/en/8.0.x/_images/click-logo.png" alt="click command"></p>
+<h1 id="前言">前言</h1>
+<p>近期收到了一個來自 Lotify 的 Pull Request，主要功能是加入 Command Line 的功能，讓用戶在安裝 Lotify 之後即可在終端機上測試，感謝來自熱情的網友幫忙。</p>
+<p>原以為 Merge 之後應該要可以用了，於似乎開始安裝要開始使用測試，沒想到遇到了一個錯誤</p>
+<pre><code>ModuleNotFoundError: No module named &#39;lotifyCli&#39;
+</code></pre>
+<p>於是就開始的抓蟲之旅。✍️</p>
+<h1 id="分析">分析</h1>
+<ul>
+<li>使用套件：<a href="https://github.com/pallets/click">pallets/click</a> 現在有一萬多個星星，Open Source 保證。<ul>
+<li>稍微比對了寫法，大同小異，應該沒問題。</li>
+</ul>
+</li>
+<li>一開始的 lotify/cli.py 檔名叫做 <code>lotifyCli.py</code>，且被放在最外層，通常在 Python 裡 Module not found 都有可能是少了 __init__.py 這類的檔案。</li>
+<li>當時在 setup.py 中設定 <code>entry_points</code> 時用了六個【 ` 】把整個 dict 包起來，網路上有找到相關做法，但不太符合設定檔樣式，要改回去，<a href="https://python-packaging-zh.readthedocs.io/zh_CN/latest/command-line-scripts.html">參考這邊</a>。</li>
+</ul>
+<p>從第二點開始想，一般就我看其他的套件，理論上不會任何 code 放在最外層，通常應該會有個資料夾包裝起來，像是 <code>tests/</code>、<code>utils</code>、<code>models/</code>...之類的，因此想法就先搬進去 <code>lotify/</code> 裡面，也剛好有 init.py 的檔案，處理掉 Module 問題。</p>
+<p>第三點，將它改成以 dict 的方式撰寫，增加可讀性</p>
+<pre><code class="language-Python">entry_points={
+    &#39;console_scripts&#39;: [&#39;lotify=lotify.cli:send_message&#39;],
+}
+</code></pre>
+<ul>
+<li><code>console_scripts</code> 在 entry_points 裡設定的意思是指讓套件在安裝時可以在 Console 下執行</li>
+<li>等號左邊的 lotify：在終端機上的名字</li>
+<li>等號右邊：第一個為<strong>資料夾名稱</strong>(lotify)，<code>cli</code> 為<strong>檔案名稱</strong>，冒號(:)後面則是對應的主要執行函式</li>
+</ul>
+<p>在一切近乎完美的操作(自己講)，重新透過 <code>python setup.py install</code> 的方式安裝，結果遇到了以下的問題！</p>
+<pre><code>Traceback (most recent call last):
+  File &quot;/usr/local/bin/lotify&quot;, line 33, in &lt;module&gt;
+    sys.exit(load_entry_point(&#39;lotify==2.3.2&#39;, &#39;console_scripts&#39;, &#39;lotify&#39;)())
+  File &quot;/usr/local/bin/lotify&quot;, line 25, in importlib_load_entry_point
+    return next(matches).load()
+StopIteration
+</code></pre>
+<p>找到了一些 issue 後，看起來可能是一些快取、舊版本資訊互相影響下的問題，此時只要透過:</p>
+<pre><code class="language-shell">pip uninstall lotify
+pip install lotify
+</code></pre>
+<p>重新安裝之後這個問題就會被解決掉囉！就目前而言我這邊測試起來都沒問題了～</p>
+<h1 id="結論">結論</h1>
+<p>寫下來整理估計是這兩個問題：</p>
+<ul>
+<li>可能是沒有 __init__.py 的問題</li>
+<li>setup.py 裡的 entry_point 還是要照著官網寫法寫</li>
+</ul>
+<p>感謝網友熱情幫忙，送了一個 Pull Request 卸下這個套件的一個大石，讓它可以支援 Command line 的方式了，當然接下來也很歡迎大家持續送 PR 給我 ，增加套件的可用性 😊(也歡迎 test case)，如果覺得本篇不錯的話請幫我的 <a href="https://github.com/louis70109/lotify">Lotify</a> 按個星星支持一下吧！</p>
+</div>
+      <footer class="post-tags"><a href="/tags/LINE%20Notify/">LINE Notify</a><a href="/tags/LINE/">LINE</a><a href="/tags/Python/">Python</a><a href="/tags/Command%20Line/">Command Line</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

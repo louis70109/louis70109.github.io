@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Message API | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Message%20API/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Message API</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-24T20:36:40">2019-09-24</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/">Day10 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (1) - 介紹</a></h2>
+    <div class="excerpt"><h2 id="簡介">簡介</h2>
+<p>LINE 在 2016 年 9 月底發表了 Messaging API 功能，用戶可以透過 Messaging API 將自家的服務內容串聯到 LINE@ 上。</p>
+<p>接著在 2019/04/18 之後 LINE@ 2.0 正式上線，在 5/22 後有升級的選項並會陸續更新，升級完的官方帳號也可以申請專屬 ID、進行帳號認證。</p>
+<p>我認為比前一版本的最大的好處是在<strong>好友無上限</strong>的這部分，以前只能有 50 位好友，若一般開發者的機器人好不容易上線了並開放測試時被限制住，除了再開一隻機器人或是其他方法就超麻煩，現在好友無上限了，就不會有上述的問題了。</p>
+<blockquote>
+<p>若您以前有開發過的機器人到現在還沒升級的話，可以參考 -&gt; <a href="http://at-blog.line.me/tw/archives/lineat_manual_upgrade_02.html">URL</a></p>
+</blockquote>
+<p>這邊需要注意 1 on 1 聊天與 Messaging API 是無法同時使用的，但可以在後台切換看要使用哪種模式與顧客互動。對話記錄也會保存在各自的模式下，若要查看完整的對話記錄的話會建議以固定模式與顧客進行互動哦！</p>
+<h3 id="主要的功能環繞在以下兩點">主要的功能環繞在以下兩點</h3>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/kqf5mo5.png" alt=""></p>
+<ol>
+<li><strong>Push mode:</strong> 主動推播訊息給用戶，2.0 每個機器人都有 500 則免費推播則數，超過則數的話可以參考以下的價目表：</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/7HJySLK.png" alt=""></p>
+<ol start="2">
+<li><strong>Reply mode:</strong> 這個模式是接受使用者的訊息並透過 webhook 打到伺服器上讓伺服器去做對應訊息的處理，重點是它是是免費、免費、免費的！所以若能引導使用者去輸入訊息的話用這個模式是不用錢的哦 🎉</li>
+</ol>
+<p>Message API 支援以下格式</p>
+<ul>
+<li>Text message</li>
+<li>Sticker message</li>
+<li>Image message</li>
+<li>Video message</li>
+<li>Audio message</li>
+<li>Location message</li>
+<li>Imagemap message</li>
+<li>Template message</li>
+<li>Flex message</li>
+</ul>
+<blockquote>
+<p>詳細內容可以參考 <a href="https://developers.line.biz/en/docs/messaging-api/message-types/">LINE doc</a></p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/PLWylFy.png" alt="line sample 1">
+<img loading="lazy" decoding="async" src="https://i.imgur.com/lInGVV0.png" alt="line sample 2"></p>
+<h2 id="回傳格式">回傳格式</h2>
+<p>Message API 回傳格式都是一個陣列的格式，一開始在接的時候都沒注意到一直瘋狂出錯，事實上這樣陣列對 Server 有個好處就是當一次需要送較多訊息時格式會比較統一，只是對於有潔癖的開發者來說每次都要多打<code>[0]</code>會覺得有點髒 🤣</p>
+<pre><code>{
+  &#39;events&#39;: [{
+    &#39;replyToken&#39;: &#39;00000000000000000000000000000000&#39;,
+    &#39;type&#39;: &#39;message&#39;,
+    &#39;timestamp&#39;: 1568983962754,
+    &#39;source&#39;: {
+      &#39;type&#39;: &#39;user&#39;,
+      &#39;userId&#39;: &#39;Udeadbeefdaaaaefdeadbeefdeadbeef&#39;
+    },
+    &#39;message&#39;: {
+      &#39;id&#39;: &#39;100001&#39;,
+      &#39;type&#39;: &#39;text&#39;,
+      &#39;text&#39;: &#39;Hello, world&#39;
+    }
+  }, {
+    &#39;replyToken&#39;: &#39;ffffffffffffffffffffffffffffffff&#39;,
+    &#39;type&#39;: &#39;message&#39;,
+    &#39;timestamp&#39;: 1568983962754,
+    &#39;source&#39;: {
+      &#39;type&#39;: &#39;user&#39;,
+      &#39;userId&#39;: &#39;Udeadbeeaaaaefdeadbeefdeadbeef&#39;
+    },
+    &#39;message&#39;: {
+      &#39;id&#39;: &#39;100002&#39;,
+      &#39;type&#39;: &#39;sticker&#39;,
+      &#39;packageId&#39;: &#39;1&#39;,
+      &#39;stickerId&#39;: &#39;1&#39;
+    }
+  }]
+}
+</code></pre>
+<h2 id="結論">結論</h2>
+<p>以前剛開始接 LINE Message API 的時候都覺得他的文件不太人性，更新到現在文件內容也越來完整，讓開發者在開發的過程中不用再為了找不到文件而放棄了(我以前就是 🤣)，下一篇將會帶來如何申請一隻機器人到如何建立一個 webhook API 到 AWS 上</p>
+<h2 id="參考">參考</h2>
+<p><a href="http://at-blog.line.me/tw/messaging_api_intro">功能介紹】Messaging API</a>
+<a href="https://developers.line.biz/en/docs/messaging-api/message-types/">LINE message template</a></p>
+</div>
+    <a class="read-more" href="/2019/09/24/Day10-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-1-%E4%BB%8B%E7%B4%B9/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

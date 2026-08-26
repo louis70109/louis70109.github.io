@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>LINE SDK | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/LINE%20SDK/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>LINE SDK</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2020-02-08T01:28:42">2020-02-08</time> · <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a></p>
+    <h2><a href="/2020/02/08/2020-Q1-learning/">2020 一、二月的學習紀錄</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://i.imgur.com/0uMmQBV.jpg" alt="learn records"></p>
+<h1 id="前言">前言</h1>
+<p>礙於最近做事有點手忙腳亂，沒有很有效的管理時間，記錄下來讓往後能有個經驗可循並增加自我管理能力。</p>
+<h1 id="實作項目">實作項目</h1>
+<h2 id="docker-amp-docker-compose">Docker &amp; Docker-Compose</h2>
+<p>我記得上次自己弄 docker container 已經是一年多前，當時還結合 Drone CI 來跑(好久了 👀)，對於 Dockerfile 使用方法依稀有點印象，而最近因為看了許多 open source 後對於 Dockerfile 的內容了解度也提升了許多(實在是個不錯的方法 👍)，會這樣子弄的原因是我認為 Serverless 的架構很容易被 AWS 綁架，我認為 API 這類可拆出來的功能應該要包成 container 增加彈性不讓平台限制，被這個想法 trigger 後就來好好練習 Docker 了 🏋️‍♂️。</p>
+<p>這次使用 <a href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a> 做我的練習對象，裡面主要用了 <code>node</code> 以及 <code>mongo</code> 兩個服務，在此同時如果各別起 docker 挺麻煩，因此就需要使用 <code>docker-compose</code> 幫忙啟動，而在這過程中學到了:</p>
+<ul>
+<li>把 Dockerfile 遷移到 docker-compose 上 (<del>如何複製別人的檔案(大誤)</del>)。</li>
+<li>藉由 docker-compose 裡面的 <code>network</code> 連接兩個容器的使用方法。</li>
+<li>Google container-registry 上傳以及 gcloud 過期的 docker 使用方法(<a href="https://cloud.google.com/container-registry/docs/support/deprecation-notices">參考</a>)，同時也修正後可以使用 docker 的原生指令將 container 送上 Google。</li>
+</ul>
+<p>接下來就是趁六月 credit 過期前趕快來玩玩 Google Kubernetes 🚀</p>
+<h2 id="aws-iot-job">AWS IoT Job</h2>
+<p>最近在公司實作 AWS IoT Job 部分的功能(以下稱為 Job)，因為 Job 每次執行收費約 1 塊台幣，之所以會用它是因為在 IoT 執行時不是只會單純發送訊號出來讓後台收訊號做事，而是需要跟後台經過一連串的溝通來達成功能(例如 <code>韌體更新</code>)，當然還有很多更複雜的功能，這邊只列舉一個小部分。</p>
+<p>從這段時間的實作上學到的部分:</p>
+<h3 id="裝置工作列表">裝置工作列表</h3>
+<p>當後台的 Queue 同時塞進很多工作時要如何管理並通知裝置此時的工作有哪些(All Job)以及要做哪件事(Next Job)，實作這功能時不能只考慮到一個裝置，而是考慮到 N 個裝置時要如何過濾並管理狀態機，限制裝置要依照狀態執行避免系統錯亂。</p>
+<h3 id="平台化">平台化</h3>
+<p>之前主要功能都是介接 AWS IoT，而這次是要實作一個類似的功能提供給其他使用者，不能只開一個 API 就想要功能都包好，而是將功能明確劃分，讓使用者可以有彈性的去組合，只是在此時我沒有處理得很好，之後的 Task 需要更注意。</p>
+<h2 id="line-sdk---narrowcast-client-api">LINE SDK - Narrowcast Client API</h2>
+<blockquote>
+<p>參考 Pull Request: <a href="https://github.com/line/line-bot-sdk-python/pull/237">Add narrowcast client api #237</a></p>
+</blockquote>
+<h3 id="工廠模式">工廠模式</h3>
+<p>功能主要是讓開發者可以透過 API 來做分眾的推播，在實作這個 issue 時讓我原本模糊的工廠模式清晰了許多，主要是 SDK 使用了 Python Class 來擔任 Model 的角色，讓進來資料可以經過 model 去轉換成對應的 key-value，所有的資料都分類進去對應的工廠處理完再回傳出來。</p>
+<p>在還沒開始看 code 前只想著要寫什麼邏輯去處理，其實使用 Model 的方法就處理掉大部分資料格式的問題，很多 LINE 文件已經清楚定義的格式只要照著填就解決了，只是在這個 Task 遇到了<code>Python 保留字</code>的問題，而經過各種 google 後只好自己寫邏輯去判斷掉這件事，之後只能繼續看有沒有更好的寫法可以取代掉這個<code>保留字</code>的問題。</p>
+<h3 id="lint">Lint</h3>
+<p>官方 Github 有寫要 Contribute 時需要執行的內容(<a href="https://github.com/line/line-bot-sdk-python#contributing">參考</a>)，lint 則是遵照<code>flake8</code>，而執行<code>tox</code>後會對每個版本的 python 去做測試，但像我電腦只有 3.7 版 tox 就只會針對這個版本做測試。</p>
+<ul>
+<li>在這件事上學到的 <code>tab</code> 與 <code>空白鍵(space)</code> 的差異，<a href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">PEP-08</a> 上也告訴建議使用<code>空白鍵</code>，而 python 3 之後也不允許兩個混用，畢盡 python 是很注重縮排，既然官網都寫了哪有不遵守的道理呢？😃</li>
+</ul>
+<blockquote>
+<p>Lint 也不會無緣無故來刁難開發者 XD</p>
+</blockquote>
+<ul>
+<li>內部函式(Class、Function)都需要再第一行下註解，而會這樣用的因素可能在 python 上並沒有 <code>public</code>、<code>private</code> 的觀念，透過這樣的方法來表示它(Class、Function)是一個內部函式，藉由 Lint 讓開發者可以知道這個功能是內部還外部，只是在 python 只能使用這個 lint 讓大家遵守這規則，如果沒有 CI 要硬上的話其實也管不住，畢竟不像 golang 這類語言會編譯(汗顏)。</li>
+</ul>
+<p>總之使用 lint 的好處就是開發風格可以統一，能夠盡量避免不必要的 programing 麻煩，在寫任何語言都推薦使用各個語言的 lint，雖然一開始會很討厭它，但它真的是在幫助你 😆。</p>
+<h2 id="netflix">Netflix</h2>
+<p>這時間與家人一起訂閱了一年份的會員，而我的初衷就是想把英文學好，而我也花了時間好好的看完一部全英文影集(發英與字幕)，第一次嘗試這樣看全英文，並且邊看邊 Google 翻譯不懂的單字同時口述跟著念一遍增加記憶力，隨著工作量減輕後下班也可以再安排時間繼續看下個影集學了～</p>
+<blockquote>
+<p>然後迷上了<code>愛的迫降</code>這個韓劇，推薦喜歡看愛情片的朋友去看 ❤️</p>
+</blockquote>
+<h2 id="武漢肺炎">武漢肺炎</h2>
+<p>最近剛好因為這傳染病盛行，除了防疫之餘，g0v 也提供 API 讓開發者可以拿去介接，隨著大家各種開發前端 web 以及 chatbot ...的應用後本來在想有個什麼想法可以參與這個全民黑客松，只是我認為用途實在重複性太高，而在大家開發應用時我又剛好在寫 LINE SDK，錯失了第一時間發佈口罩相關的服務建立時間，本來想到 LIFF v2 + LINE Notify，但只是在使用上很容易吵到用戶進而封鎖它(LINE Notify)，因此要考慮好功能再來看會不會有比較好的使用情境。</p>
+<blockquote>
+<p>出入公共場所記得戴口罩，有帶隨身瓶酒精的記得消毒！😷</p>
+</blockquote>
+<h1 id="結論">結論</h1>
+<p>有時候在思考與規劃的過程中如果經驗不夠時真的很難馬上到位，不過任何事情都一樣，若這件事可以輕鬆且又得心應手，代表它可能已經是你熟悉的領域或是過於簡單，就像我一開始處理社群一樣，若是沒有前輩們帶著走的話我跟本無法有效地處理事情，總之凡是起頭難，即早加入即早熟悉各個領域才是王道 😆</p>
+<h1 id="參考">參考</h1>
+<p><a href="https://docs.aws.amazon.com/zh_tw/iot/latest/developerguide/iot-rule-actions.html">AWS IoT 觸發後可以執行的功能</a>
+<a href="https://docs.aws.amazon.com/iot/latest/developerguide/events-jobs.html">Job Events</a>
+<a href="https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces">Tab 與 space 的差異(PEP-08)</a></p>
+</div>
+    <a class="read-more" href="/2020/02/08/2020-Q1-learning/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-29T20:46:24">2019-09-29</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/">Day15 - 串接 LINE Richmenu API</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>之前我在使用時都是直接在 Postman 上直接打 API，本來是打算自己刻 接 Richmenu API 的，但剛剛看到<a href="https://github.com/line/line-bot-sdk-python">Python SDK</a> 很佛心的也提供 Richmenu 相關的 SDK，如此一來就不用自己包一包了。</p>
+<blockquote>
+<p>注意 Richmenu 圖片的方向是 由上到下、由左到右 哦！算位置記得別算錯ＸＤ</p>
+</blockquote>
+<h2 id="實作">實作</h2>
+<h3 id="設定座標">設定座標</h3>
+<p>首先先使用 <code>create_rich_menu(self, rich_menu, timeout=None)</code>告訴 LINE 說你的 Richmenu 的基本設定是什麼，格式區域什麼個別要做什麼對應的事情，</p>
+<p>Creates a rich menu. You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 10 rich menus for one bot.</p>
+<p><a href="https://developers.line.biz/en/reference/messaging-api/#create-rich-menu">https://developers.line.biz/en/reference/messaging-api/#create-rich-menu</a></p>
+<pre><code class="language-python">if usage == &#39;create&#39;:
+    rich_menu_to_create = RichMenu(
+        size=RichMenuSize(width=2500, height=843),
+        selected=False,
+        name=&quot;Nice richmenu&quot;,  # display name
+        chat_bar_text=&quot;我是測試使用&quot;,
+        areas=[RichMenuArea(  # 這邊是陣列的格式，可以動態設定自己要的區域想要有什麼功能
+            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+            action=URIAction(label=&#39;Go to line.me&#39;, uri=&#39;https://line.me&#39;))]
+    )
+    rich_menu_id = self.line_bot_api.create_rich_menu(
+        rich_menu=rich_menu_to_create)
+    print(rich_menu_id)
+    return {&#39;id&#39;: rich_menu_id}, 200
+</code></pre>
+<h2 id="set_rich_menu_imageself-rich_menu_id-content_type-content-timeoutnone">set_rich_menu_image(self, rich_menu_id, content_type, content, timeout=None)</h2>
+<p>上面設定完圖片裡每個座標區間要幹嘛了，接著就可以自己弄圖片或是下載官網提供的<a href="https://developers.line.biz/media/messaging-api/rich-menu/controller-rich-menu-image-e1734c7d.jpg">圖片</a></p>
+<h3 id="mac-用戶的小技巧">MAC 用戶的小技巧</h3>
+<p>這邊教大家一個小技巧，可以點選想使用的照片，在預覽程式裡的選擇工具-&gt;調整大小
+<img loading="lazy" decoding="async" src="https://i.imgur.com/OqsDU20.jpg" alt="">
+接著看到這畫面，把依比例縮放的勾勾取消，然後把長寬調到對應的大小後就完成圖片大小的設定嚕！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/OH1tYUl.png" alt=""></p>
+<p><a href="https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image">https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image</a></p>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/iA2xMJd.png" alt=""></p>
+<pre><code>elif usage == &#39;upload&#39;:
+    file = request.files[&#39;the_file&#39;].read()
+    rich_menu_id = request.form[&#39;richmenu_id&#39;]
+    content_type = &quot;image/png&quot;
+    try:
+        self.line_bot_api.set_rich_menu_image(
+            rich_menu_id, content_type, file)
+    except Exception as e:
+        print(&quot;===Upload Exception===&quot;)
+        raise BadRequest(e)
+    return {&#39;result&#39;: &#39;upload ok&#39;}, 200
+</code></pre>
+<h2 id="set_default_rich_menuself-rich_menu_id-timeoutnone">set_default_rich_menu(self, rich_menu_id, timeout=None)</h2>
+<p>設定完了之後要幹嘛？就是要把他設定<code>default</code>啦！
+不囉唆， show you the code.</p>
+<blockquote>
+<p>Sets the default rich menu.
+<a href="https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu">https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu</a></p>
+</blockquote>
+<pre><code>elif usage == &#39;set&#39;:
+    rich_menu_id = request.form[&#39;richmenu_id&#39;]
+    try:
+        self.line_bot_api.set_default_rich_menu(rich_menu_id)
+    except:
+        raise BadRequest(&quot;Maybe your richmenu id error.&quot;)
+    return {&#39;result&#39;: &#39;set default ok!&#39;}, 200
+</code></pre>
+<h2 id="get_default_rich_menuself-timeoutnone">get_default_rich_menu(self, timeout=None)</h2>
+<p>糟糕，我好像瘋狂建立卻不知道有幾組？用這個就對了！</p>
+<blockquote>
+<p>Gets the ID of the default rich menu set with the Messaging API.
+<a href="https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id">https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id</a></p>
+</blockquote>
+<pre><code>elif usage == &#39;get&#39;:
+    rich_menu_list = self.line_bot_api.get_rich_menu_list()
+    total = []
+    for rich_menu in rich_menu_list:
+        total.append(rich_menu.rich_menu_id)
+    return {&#39;result&#39;: total}, 200
+</code></pre>
+<h2 id="delete_rich_menurich_menu_id">delete_rich_menu(rich_menu_id)</h2>
+<p>不行，我弄的座標什麼全錯怎麼辦？有時候上傳的圖片可能不是自己想的那樣？，透過這個方法來刪掉它</p>
+<blockquote>
+<p>Deletes a rich menu.
+<a href="https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu">https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu</a></p>
+</blockquote>
+<pre><code>elif usage == &#39;delete&#39;:
+    rich_menu_id = request.form[&#39;richmenu_id&#39;]
+    try:
+        self.line_bot_api.delete_rich_menu(rich_menu_id)
+    except:
+        raise BadRequest(&quot;Maybe your richmenu id error.&quot;)
+    return {&#39;result&#39;: f&#39;{rich_menu_id} is delete!&#39;}, 200
+</code></pre>
+<h2 id="結論">結論</h2>
+<p>我都把 <code>raise</code> 打成 <code>rails</code> (大誤)，LINE 幫忙做的 SDK 真的是好用，透過這次練習我也多學了好多不一樣的用法，順便把自己的腦袋也整理一下 😃，程式碼同步在這邊哦 <a href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/richmenu_api_controller.py">URL</a>。</p>
+</div>
+    <a class="read-more" href="/2019/09/29/Day15-%E4%B8%B2%E6%8E%A5-LINE-Richmenu-API/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-27T20:41:31">2019-09-27</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/">Day13 - 試玩 python SDK</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>以前從花落落的文件中找到一個方法，像是使用 push message
+<img loading="lazy" decoding="async" src="https://i.imgur.com/ZZVg7mI.png" alt="">
+我都會笨笨的 call API 的方法去執行功能，殊不知 SDK 早就包好了，然後邊做邊罵自己為什麼要解這些 JSON (拍桌)
+到了現在比較會看文件，才知道原來以前是自己雷自己 (捶心肝)...接下來就試玩幾個我覺得常會用到的 method 好了不廢話了，來簡單介紹一下一些常用的方法 😎</p>
+<h2 id="get_profile">get_profile</h2>
+<p>回傳使用者的個人狀態，可以透過每次的 reply 去拿到使用者的資訊，一般使用的話都話把它存下來，等之後有介接其他服務時方便使用 userId 去判斷使用者。</p>
+<pre><code class="language-python">profile = line_bot_api.get_profile(event[&#39;events&#39;][0][&#39;source&#39;][&#39;userId&#39;])
+
+try:
+    with Database() as db, db.connect() as conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+        cur.execute(
+            f&quot;INSERT INTO users(id, name, picture) VALUES (&#39;{id}&#39;, &#39;{name}&#39;, &#39;{picture}&#39;)&quot;)
+except:
+    pass # 這邊簡單處理相同 id 的問題(id我有設 Private key 哦！)
+state = f&quot;Hello 👉 `{profile.display_name}` 👈&quot;
+line_bot_api.reply_message(token, [
+  TextSendMessage(text=state),
+  ImageSendMessage(original_content_url=profile.picture_url, preview_image_url=profile.picture_url)
+  ])
+</code></pre>
+<p>這邊搭配 <code>ImageSendMessage</code> 來幫忙發送圖片，他主要是透過 original_content_url 以及 preview_image_url 這兩個參數來幫忙轉成圖片</p>
+<ul>
+<li>original 就是讓使用者看到的圖片</li>
+<li>preview 在還沒載入時的樣子</li>
+</ul>
+<h2 id="push_message">push_message</h2>
+<p>既然都取到使用者的 id 了，下一步就是推訊息給使用者啦!</p>
+<p>建立一個 GET 的路由在 /webhook 上，收到 query string 的 msg 的值並找到所有使用者的 id 並逐一推送訊息。</p>
+<pre><code class="language-python">line_bot_api = LineBotApi(os.getenv(&#39;LINE_CHANNEL_TOKEN&#39;))
+handler = WebhookHandler(os.getenv(&#39;LINE_CHANNEL_SECRET_KEY&#39;))
+
+def get(self):
+    msg = request.args.get(&#39;msg&#39;)
+    with Database() as db, db.connect() as conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+        cur.execute(&quot;SELECT * FROM users&quot;)
+        fetch = cur.fetchall()
+    for user in fetch:
+        self.line_bot_api.push_message(
+            user[&#39;id&#39;], TextSendMessage(text=msg))
+    return {&#39;message&#39;: msg}, 200
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/MHfYmlZ.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/x7fgvhY.png" alt=""></p>
+<h2 id="reply-mode">Reply Mode</h2>
+<h3 id="locationsendmessage">LocationSendMessage</h3>
+<p>這邊直接拿 SDK 的範例來用，若是有在做商家功能的機器人可以使用這個方式讓使用者接收到商家訊息～</p>
+<pre><code class="language-python">self.line_bot_api.reply_message(token, LocationSendMessage(
+    title=&#39;my location&#39;,
+    address=&#39;Tokyo&#39;,
+    latitude=35.65910807942215,
+    longitude=139.70372892916203
+))
+</code></pre>
+<h3 id="stickersendmessage">StickerSendMessage</h3>
+<p>這個方法可以搭配使用，讓整個回應看起來跟真實吧！</p>
+<blockquote>
+<p>不知道清單能用什麼可以<a href="https://developers.line.biz/media/messaging-api/sticker_list.pdf">參考</a>，</p>
+</blockquote>
+<pre><code class="language-python">self.line_bot_api.reply_message(token, StickerSendMessage(package_id=&#39;1&#39;,sticker_id=&#39;1&#39;))
+</code></pre>
+<h3 id="button-template">Button Template</h3>
+<pre><code class="language-python">buttons_template_message = TemplateSendMessage(
+    alt_text=&#39;Buttons template&#39;,
+    template=ButtonsTemplate(
+        thumbnail_image_url=f&#39;{picture}.jpg&#39;,
+        title=&#39;Menu&#39;,
+        text=&#39;Please select&#39;,
+        actions=[
+            PostbackAction(
+                label=&#39;postback&#39;,
+                display_text=&#39;postback text&#39;,
+                data=&#39;action=buy&amp;itemid=1&#39;
+            ),
+            MessageAction(
+                label=&#39;message&#39;,
+                text=&#39;message text&#39;
+            ),
+            URIAction(
+                label=&#39;uri&#39;,
+                uri=&#39;http://example.com/&#39;
+            )
+        ]
+    )
+)
+self.line_bot_api.reply_message(token, buttons_template_message)
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/T30NNHt.png" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>簡單玩了幾個 API，大概就這幾個比較常搭配著使用，用過之後才知道其實有好多 API 我都還不是很清楚用法 🤣
+而 LINE 最近更新了他們文件的功能，多了一個<code>Try</code>的按鈕提供使用者可以線上直接測 API，只是像是 push messages 這個就剛好沒有 😓，但至少有很多 API 不用通靈去測試，直接拿著 Token 在網頁上測試嚕！
+<a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">Doc Sample</a>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/xfk13a3.png" alt=""></p>
+<p>Code is <a href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/message_api_controller.py">here</a></p>
+<h2 id="參考">參考</h2>
+<p><a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">LINE develop page</a></p>
+</div>
+    <a class="read-more" href="/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

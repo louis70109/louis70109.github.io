@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Cloud Run | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Cloud%20Run/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Cloud Run</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2024-04-30T18:13:37">2024-04-30</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/">在 Cloud Run 上部署有 Open Data 功能的 LINE Bot | 摘要王, 天氣, 紅外線</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>此為 Cloud Run + Firebase + Gemini 工作坊中的操作文，如果有興趣針對有記憶能力的 LINE Bot 以及整合各方 Open Data 歡迎參考以下的內容</p>
+</div>
+    <a class="read-more" href="/2024/04/30/line-bot-cloudrun-firebase-gemini-workshop-weather/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2024-04-07T14:25:38">2024-04-07</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2024/04/07/handle-cloud-run-traffic-docker-container/">處理 Cloud Run 上的 Error loading ASGI app. Could not import module &quot;main&quot;.</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>這兩天在寫之後工作坊需要用到的範例 <a href="https://github.com/louis70109/linebot-gemini-summarize">linebot-gemini-summarize</a>，結果遇到部屬上去有問題，以下快速筆記這次遇到的一些蠢事，往後需要更細心點才行🤣</p>
+</div>
+    <a class="read-more" href="/2024/04/07/handle-cloud-run-traffic-docker-container/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2024-02-18T16:25:01">2024-02-18</time> · <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/">研討會</a></p>
+    <h2><a href="/2024/02/18/google-devfest-2023-taipei-learn-serverless-from-communities/">【DevFest 2023】Empowering Community-Driven Learning through Serverless Practice</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2023/devfest/1.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>經歷過連續兩週兩場 <a href="https://gdg.community.dev/events/details/google-gdg-taipei-presents-devfest-taipei-2023/">DevFest 2023</a> 的經驗(12/9, 12/16)，真的是把我畢生所學都拿出來榨乾了😆，但也很高興有機會在台中以及台北跟大家分享我在業餘時間透過 Google Cloud 開發 Side Project 的經驗談，以下內容為台北場內容，有興趣的跟著一起往下看吧！</p>
+</div>
+    <a class="read-more" href="/2024/02/18/google-devfest-2023-taipei-learn-serverless-from-communities/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2024-02-13T13:34:01">2024-02-13</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2024/02/13/gcp-cloud-function-gen2-with-line-bot/">如何設定 Cloud Function 2nd gen 來改善截圖爬蟲的效率！</a></h2>
+    <div class="excerpt"><h1 id="背景介紹">背景介紹</h1>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2024/gcp/1.png" alt=""></p>
+<p>過年改寫了我自己的在台北常使用的路上攝影機截圖工具，一開始求方便在每次請求來時會在容器當中開啟 chrome 去截圖，但由於是 MVP 以及沒有放 queue 在前面讓請求排隊，因此這樣的做法就無法提供給別人使用。</p>
+<p>因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。</p>
+</div>
+    <a class="read-more" href="/2024/02/13/gcp-cloud-function-gen2-with-line-bot/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2023-11-13T16:57:13">2023-11-13</time> · <a href="/categories/LINE/">LINE</a></p>
+    <h2><a href="/2023/11/13/line-bot-capture-image-cloud-run/">在 Google Cloud Run 上安裝 Chromium 抓取 CCTV 影像</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>近期因為有玩滑板，而且身處台北很容易下雨，因此需要找到加入了交流社群，其中設定了一些指令可以讓社群機器人可以提供 CCTV 的畫面，但其中因為需要去社群當中打指令對於一個剛加入的人有點害羞，有這些攝影機畫面真的可以幫助看是否要出門(大部分場地都室外)，但身為工程師會想要按個按鍵就出現，因此就有以下文章囉！</p>
+</div>
+    <a class="read-more" href="/2023/11/13/line-bot-capture-image-cloud-run/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2023-06-03T18:44:13">2023-06-03</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2023/06/03/knative-why-you-need/">為什麼需要選用 Knative 來作為服務架設之地？ | Feat. Google Cloud Run</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2023/GAI/cloud.jpeg" alt=""></p>
+<h1 id="為什麼要使用-knativekn">為什麼要使用 Knative(KN)</h1>
+<p>Knative 是一個開源的 Kubernetes 原生 Serverless 平台，它使開發者更容易地建立、佈署和管理應用程式。而 Knative 的好處它提供了統一的方法來佈署和管理基於事件驅動的服務，這使得開發者可以專注於賺寫應用程式，而不必擔心基礎設施的細節。</p>
+</div>
+    <a class="read-more" href="/2023/06/03/knative-why-you-need/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2023-04-05T00:57:02">2023-04-05</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2023/04/05/how-cloud-run-continuely-cronjob-background/">【GCP】如何讓 Cloud Run 持續執行背景程式</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="冷啟動cold-start-amp-cloud-run-如何處理？">冷啟動(Cold start) &amp; Cloud Run 如何處理？</h1>
+<p><a href="https://cloud.google.com/serverless?hl=zh-tw">Serverless 架構</a>的冷啟動（cold start）是指當一個沒有被使用的函式需要被調用時，需要先啟動一個新的容器或虛擬機器來執行該函式，這個啟動的期間被稱為冷啟動時間。</p>
+<p>但我們在寫應用的時候通常都會帶有一些 cronjob 在背景跑(備份、爬蟲...)，但在 Serverless 上都會遇到 Cold Start 的問題，在這種情況下因為資源都會被釋放掉，如果這些 cronjob 是比較重的且 Severless RAM&amp;CPU 又放比較少， cronjob 時邊爬蟲邊異地備份又讀寫資料庫(~~ 誇張了點 ~~)，這情況下可能會因為資源瞬間不夠導致功能異常。</p>
+</div>
+    <a class="read-more" href="/2023/04/05/how-cloud-run-continuely-cronjob-background/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2023-03-19T16:32:23">2023-03-19</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2023/03/19/gcp-why-need-cloudrun-as-serverless/">【GCP】將 FastAPI 佈署上 Cloud Run</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>近年來，隨著雲端計算的普及和發展，越來越多的企業和開發者正在尋找一種更簡單、更高效的方式來佈署和運營應用程式。而 Severless 技術正是一種流行的解決方案。Google Cloud Run 是一個強大的 Severless 平台，可以幫助開發人員快速地佈署和運營。接著，本文將介紹 Google Cloud Run 的優點和如何在其中佈署。</p>
+</div>
+    <a class="read-more" href="/2023/03/19/gcp-why-need-cloudrun-as-serverless/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

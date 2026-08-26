@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Parse Server | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Parse%20Server/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Parse Server</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2022-08-03T00:19:59">2022-08-03</time> · <a href="/categories/%E6%87%89%E7%94%A8/">應用</a></p>
+    <h2><a href="/2022/08/03/parse-server-heroku-note/">如何部署 Parse Server 與 Dashboard 於 Heroku 上使用</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/parse-server/header.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>平常在寫 PoC 時，是否會像筆者一樣很困擾，每個東西都需要一個 DB，都要重新 create table、塞資料，像是每次寫 LINE Bot，一定都會綁用戶資訊(userId, name, email...)，如果範例專案共用的資料能放在一起，是不是就能更快上線呢？透過部署 Parse Server，讓許多的 CRUD 工作都可以省下來，避免許多東西重工的時間。因此這次就來介紹一下 Parse Server 這個開源莊案究竟有多好用吧！</p>
+<blockquote>
+<p>以下都是建立在 Heroku 上，若需要搭建在自家，請參考使用 Dockerfile。</p>
+</blockquote>
+<ul>
+<li>Parse Server Dashboard 部署範例：<a href="https://github.com/louis70109/parse-dashboard-example">連結</a><ul>
+<li>Fork 來自名間版本，目前由我會手動來改 package.json 裡面的版本。</li>
+</ul>
+</li>
+<li><a href="https://parseplatform.org/">官網</a></li>
+<li>Parse Server 專案：<a href="https://github.com/parse-community/parse-server">連結</a></li>
+</ul>
+</div>
+    <a class="read-more" href="/2022/08/03/parse-server-heroku-note/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

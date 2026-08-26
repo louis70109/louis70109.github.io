@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Flex message | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Flex%20message/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Flex message</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2020-04-11T21:10:23">2020-04-11</time> · <a href="/categories/Chatbot/">Chatbot</a></p>
+    <h2><a href="/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/">【LINE API 的小眉角】feat. Flex message, LIFF, Richmenu, Provider</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://i.imgur.com/HHj7c5Kl.jpg" alt="birds"></p>
+<h1 id="前言">前言</h1>
+<p>因為遇到了很多不算坑的坑(<del>說啥呢？</del>)，有些是文件沒有寫而有些可能是我沒有注意到的，但既然都知道了就乾脆記下來吧！</p>
+<h1 id="liff-reply-到底算不算收費？">LIFF reply 到底算不算收費？</h1>
+<blockquote>
+<p><a href="https://developers.line.biz/en/docs/liff/developing-liff-apps/#developing-a-liff-app">LIFF SendMessage api</a></p>
+</blockquote>
+<p>字面上看起來很像 <code>Push Message</code> 的事件，但實際上是走 Flex Message，使用 Message api 的 Reply 功能來幫忙使用者發送條件引發 Bot 行為，並非是透過 Push api 發送讓 Bot 反應，這邊需要多注意喔！</p>
+<pre><code class="language-javascript">liff.sendMessages([
+  {
+    type: &quot;text&quot;,
+    text: &quot;You&#39;ve successfully sent a message! Hooray!&quot;,
+  },
+]);
+</code></pre>
+</div>
+    <a class="read-more" href="/2020/04/11/LINE-Flex-message-LIFF-Richmenu-Provider/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

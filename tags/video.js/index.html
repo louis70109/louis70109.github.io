@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>video.js | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/video.js/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>video.js</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2022-04-16T22:09:31">2022-04-16</time> · <a href="/categories/JavaScript/">JavaScript</a></p>
+    <h2><a href="/2022/04/16/javascript-video-js-subtitle-debug/">處理 video.js 字幕編碼問題 | 使用 blob 放上字幕檔</a></h2>
+    <div class="excerpt"><h1 id="前言">前言</h1>
+<p>因為放在 bucket 上的檔案預設是用 utf-8 上傳，但如果是中文字變成亂碼。因此想說好看一點，在後端上傳前把東西都先用 big5 encode 完後再傳到 bucket，檔案看起來就正常了</p>
+<ul>
+<li>video.js 前端若用 localhost 會拉不到影片<ul>
+<li>至少要用 IP 的方式開啟才能讀到<code>影片</code>跟<code>字幕</code></li>
+</ul>
+</li>
+<li>如果 <code>字幕檔</code> 是抓遠端 bucket，會遇到 CORS 的問題<ul>
+<li>本篇使用 blob 的方式建立一個<code>暫時的網址</code>給字幕使用</li>
+</ul>
+</li>
+</ul>
+</div>
+    <a class="read-more" href="/2022/04/16/javascript-video-js-subtitle-debug/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

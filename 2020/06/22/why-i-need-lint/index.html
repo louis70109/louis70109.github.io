@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 Lint 是靜態程式檢查語法的工具，最早出現於 C 語言，也有人稱為 Code Quality Tools，主要是用來標記程式碼中含有某些可疑、不具結構性或潛在問題的部分，也因只標記緣故，所以只會透過編輯器提醒使用者。之後則汎用於各個語言之中，如 ESSLint、flake8、Rubocop... 從前在改以前寫">
+  <title>我從 Lint 中學到了什麼？ | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2020/06/22/why-i-need-lint/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2020-06-22T00:49:42">2020-06-22</time> · <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a></p><h1>我從 Lint 中學到了什麼？</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://cdn.pixabay.com/photo/2017/08/12/17/14/taiwan-2634743_1280.jpg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>Lint 是靜態程式檢查語法的工具，最早出現於 C 語言，也有人稱為 Code Quality Tools，主要是用來標記程式碼中含有<code>某些可疑</code>、<code>不具結構性</code>或潛在問題的部分，也因只標記緣故，所以只會透過編輯器提醒使用者。之後則汎用於各個語言之中，如 ESSLint、flake8、Rubocop...</p>
+<p>從前在改以前寫程式時都會有幾個問題，『排版好亂』、『這變數(a1)是？』諸如此類的問題，但就在加入社群後認識很多圈內的朋友並與之討論後才體悟到 Lint 的重要性，首先在跟人家解釋程式時從<code>變數</code>、<code>函式</code>名稱時就能讓對方更快速知道用途，透過 Lint 的提醒讓我修正而不用與其他人解釋 a1 a2 個別代表什麼，大大的降低溝通成本。</p>
+<h2 id="優點">優點</h2>
+<ul>
+<li>開發風格統一</li>
+<li>不會有 tab、space 的問題</li>
+<li>後續接手的人心力可以放更多在商業邏輯上</li>
+<li>培養命名習慣，更謹慎地處理</li>
+</ul>
+<h2 id="缺點">缺點</h2>
+<ul>
+<li>容易打擊剛加入開發領域的朋友<ul>
+<li>Ａ：明明邏輯是對的但怎麼紅字一堆？</li>
+</ul>
+</li>
+<li>設定太嚴謹時會為了修問題延誤邏輯開發時間<ul>
+<li>時程很趕但 CI 一直擋住</li>
+</ul>
+</li>
+</ul>
+<h1 id="介紹">介紹</h1>
+<p>以下會介紹三個我使用過的 Lint，並分享使用經驗。</p>
+<h2 id="sonarqube">SonarQube</h2>
+<p>SonarQube 是我在之前的公司時所使用的 Lint，裡面的功能真的很完整，除了一些基本檢查以外，最有印象的就是它會找出<code>淺在風險</code>、<code>Code 品質</code>、<code>花多久時間可以看懂</code>...很多很特別的部分，也許這些功能可能只是參考，但看著數字很淒慘時工程魂就會上身，想要把它數值降低點別出現這麼可怕的數字 😅。</p>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/PDyOvLF.png" alt=""></p>
+<blockquote>
+<p>Azure + Sonar 參考<a href="https://www.facebook.com/DotNetWalker/posts/3277105698995647?__xts__%5B0%5D=68.ARBkAILNJPiUfPxM6Prkqnc5a38h0vuBEmxvcb8WQRW1xbbJnMhddEwi7Lj2OudXHSJ2hrZ4jGtMMKEYzbF7GcdcZ0CoglZWSiexYSjlseEXBnReh6OoE5ZGIhlGTh75wVn5mHQ2B-bkTfatl-vIP-k83-G6yeoXm0ZcboLrq_e0gZqQLLTY0FPsbB_ROKWvYuYBbxY5-Vj2kpvVBU528mFDTCKDGTk5ih16hbuzlrxY0boNZUVuIcaT4zdnHBaAUFTminhF03jkys7pSpDeiBVz_A6z3jjPJChlAI9pZzZTrlmupgRR6yDzzQrjZ2CR6R2kWOZi5Liz7RfO9GkxZz4G6g&__tn__=-R">董老師的影片</a></p>
+</blockquote>
+<p>免費版具有容量限制，若是團隊人多的話我認為值得花錢買的 Lint，讓大家 Commit 的程式碼可以被檢查，而 SonarQube 應該是我目前遇到數一數二真的是在鞭打我 code 的一個凶狠 Lint 工具...</p>
+<h2 id="eslint">ESLint</h2>
+<p>起初我初學 Vue 時，在初始化專案時覺得是工程師就是要 Lint，就直接選 ESLint，且當時對於 config 設定檔一竅不通，因此除了執行時滿滿的錯字以外，也讓我對於寫 code quality 的成就感大大折損，對於 coding 年紀還年輕的朋友可以先養成對於 coding 有興趣後再來使用 Lint 我認為對於整個發展會比較健全(但還是看人)。</p>
+<p>接著過了一陣子後，我開始修改一個 side project - <a href="https://github.com/louis70109/Twitch-Bot">Twitch-Bot</a>，這時期因參加社群一陣子也得知 Bottender 這個使用 Javascript 開發 Chatbot 框架，就依照 <a href="https://bottender.js.org/docs/en/getting-started">Bottender 的初始化</a>方式加上 ESLint，並且搭配 TypeScript 動態檢查所有 code。</p>
+<blockquote>
+<p>可以看<a href="https://github.com/louis70109/Twitch-Bot/pull/16/files">當時的 PR 連結</a>，讓其他人改 code 時也是透過一樣的方式來貢獻，就不會有太多檔案被修改的問題了。</p>
+</blockquote>
+<p>在一開始因為還不熟悉 Javascript 相關開發風格，而我使用很多 pythonic 的方式撰寫 Bot，導致整個專案被狠狠教訓了一遍，不過藉由 Lint 校正的好處是讓我再隔一段時間回來時修改 issue 時不會因為 coding style 不統一而引發的問題，再開發的過程中也會透過小蚯蚓告訴你命名或是哪邊有排版問題，只要遵守 Lint 的規則整份 code 沒有被標記起來就覺得神清氣爽 😆。</p>
+<p>以下節錄我的 VSCode ESLint 相關設定：</p>
+<pre><code class="language-javascript">{
+  // 儲存時 format
+  &quot;editor.formatOnSave&quot;: true,
+
+  // 單引號設定
+  &quot;javascript.preferences.quoteStyle&quot;: &quot;single&quot;,
+  &quot;typescript.preferences.quoteStyle&quot;: &quot;single&quot;,
+
+  // ESLint 設定
+  &quot;eslint.autoFixOnSave&quot;: true,
+  &quot;eslint.enable&quot;: true,
+  &quot;eslint.validate&quot;: [&quot;javascript&quot;, &quot;typescript&quot;],
+  &quot;eslint.format.enable&quot;: true,
+  &quot;editor.codeActionsOnSave&quot;: {
+    &quot;source.fixAll.eslint&quot;: true
+  }
+}
+</code></pre>
+<blockquote>
+<p><a href="https://gist.github.com/louis70109/8ea88b9b26570d521c81922572f8309d">參考我的 Gist</a></p>
+</blockquote>
+<h3 id="bonus---vscode-settings">Bonus - VSCode settings</h3>
+<p>開啟編輯器後的左上角按下<code>喜好設定</code>，英文則是 <code>Performance</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/01XOZHL.png" alt=""></p>
+<p>接著右上角有個<code>轉換檔案的圖案</code>按下去就可以看到 setting.json 囉！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/ut4sH60.png" alt=""></p>
+<h2 id="flake8">Flake8</h2>
+<p>當初會知道怎麼使用 Flake8 的原因是我去貢獻 <a href="https://github.com/line/line-bot-sdk-python">LINE SDK</a>，它們是使用 tox 來跑多版本的檢查(py2.7、3.4~3.7)，並透過 <code>tox.ini</code> 的設定來來制定使用的 Lint 及其相關設定(ignore...)。</p>
+<p>以我前一陣子的寫的 <a href="https://github.com/louis70109/lotify#contributing">Lotify</a> 來說，在每次的上版前都一定要跑 flake8 檢查：</p>
+<pre><code class="language-python">python -m pytest --flake8 tests/
+</code></pre>
+<blockquote>
+<p>上述範例是跑測試時要搭配 flake8 的格式。</p>
+</blockquote>
+<p>透過 flak8 的檢查讓我在 CI 環境時就可以檢查出錯誤，規範貢獻者們的開發風格(包含自己)，如此一來過陣子再回來修改 Lotify 時就可以駕輕就熟 😆，且其他的貢獻者也可以遵守這個規範下去開發。</p>
+<h1 id="結論">結論</h1>
+<p>Lint 是集結各方工程師們的血汗結晶所產生的規則，在這開源的時代跟著大家的規則走能減少許多溝通成本，讓心思可以在(商業、工程)邏輯上。另一部分我則認為是對自我的要求，透過固定的格式再經過 <code>N 週/月</code> 後會來看 code 時不會因為一直因為不統一的 coding style 而導致連自己都看不懂的程式碼窘境，因此適當地遵循也是會對以後開發更有幫助喔！</p>
+<p>每個工具沒有絕對的好壞，我認為適當的遵循是好的，但別一昧的堅持才能開發出好的程式碼。</p>
+</div>
+      <footer class="post-tags"><a href="/tags/Lint/">Lint</a><a href="/tags/Flake8/">Flake8</a><a href="/tags/SonarQube/">SonarQube</a><a href="/tags/ESLint/">ESLint</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

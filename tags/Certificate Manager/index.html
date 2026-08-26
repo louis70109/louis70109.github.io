@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Certificate Manager | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Certificate%20Manager/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Certificate Manager</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-10T21:05:23">2019-10-10</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/">Day26 - Use CDN (1) - 建立 Certificate 與 Domain</a></h2>
+    <div class="excerpt"><h2 id="簡介">簡介</h2>
+<p>繼上一篇 warm-up 機制之後來了解一下如何使用 AWS 的 CDN 服務 - cloudfont，CDN 顧名思義就是要讓使用者可以到最接近的主機上去拉到對應的資料，透過撒點的方式讓主機去挑選離自己近的服務據點，藉此加速服務。</p>
+<p>像我之前部署在 ohio，想想光網路的時間 + Cold start 的時間就已經去了一大半，即便我們有熱開機，服務沒有 Timeout 我該慶幸了，既然如此就不得不認識一下 CDN 服務，而 AWS 的 CDN 服務就是 cloudfont 啦！</p>
+<p>只是說原本的 domain 已經有 SSL 了，但是代理沒有這個東西，所以我們要 ban 出一個 Certificate，那在在建立 cloudfont 以前需要先到 Certificate Manager，接著會用圖片帶大家一步一步做</p>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/vLLfKyr.png" alt=""></p>
+<h2 id="開始之前">開始之前</h2>
+<p>我已經有先在 Route53 註冊了一個 <code>nijialin.com</code> 的 domain，<code>.com</code>大概 10 美金左右，若是有在其他地方註冊域名的話要找一下相關文章把它導進 Route53 哦！</p>
+<h2 id="註冊-certificate">註冊 Certificate</h2>
+<ul>
+<li>先來到 Certificate Manager 頁面，按下左下角的這個</li>
+</ul>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/WVk2YFJ.png" alt=""></p>
+<ul>
+<li>接著就直接按右下角啦，但是要確定是不是 public</li>
+</ul>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/sNxd3LG.png" alt=""></p>
+<ul>
+<li>這裡輸入你在 route53 註冊的 domain，這邊我是輸入 *.nijialin.com</li>
+</ul>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/FXnknbj.png" alt=""></p>
+<ul>
+<li>到第四部之後就會看到申請的 SSL Pending</li>
+</ul>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/WlY5PCf.png" alt=""></p>
+<ul>
+<li>最後回首頁之後就會看到 SSL 簽證正在送簽中
+<img loading="lazy" decoding="async" src="https://i.imgur.com/kRRtvJ5.png" alt=""></li>
+</ul>
+<p>最後就等他完成嚕！將將
+<img loading="lazy" decoding="async" src="https://i.imgur.com/495PjEw.png" alt="">
+接著我們到 API Gateway 找到左邊的 <code>Custom Domain Name</code>，我們要來建立屬於這個 API 的 Domain 了
+<img loading="lazy" decoding="async" src="https://i.imgur.com/BzkvgUR.png" alt="">
+按下藍色的按鈕之後，輸入<code>Domain name</code>以及選擇剛剛註冊的 Certificate 後按下 <code>Save</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/xwBEC5O.png" alt="">
+他就會開始初始化剛剛的設定，這邊大概需要等 15 分鐘左右
+<img loading="lazy" decoding="async" src="https://i.imgur.com/dLMaXrx.png" alt="">
+在此同時我們就去新增專案裡的套件 <a href="https://www.npmjs.com/package/serverless-domain-manager">Domain-Manager</a></p>
+<pre><code class="language-Bash">npm install serverless-domain-manager --save-dev
+</code></pre>
+<p>並且在<code>plugin</code>下加入套件</p>
+<pre><code class="language-yaml">plugins:
+  - serverless-domain-manager
+</code></pre>
+<p>在<code>custom</code>底下加入</p>
+<pre><code class="language-yaml">custom:
+  domainName:
+    default:
+      domainName: line.nijialin.com
+      certificateName: &quot;*.nijialin.com&quot;
+      createRoute53Record: true
+      endpointType: edge
+</code></pre>
+<p>等待前面初始化成功之後部署這個專案<code>sls deploy</code>之後就會看到剛剛註冊的域名啟動囉！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/Pn2TyMD.png" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>在建立 Certificate 那邊倒沒什麼問題，畢竟需要一個 SSL，只是到了建立 domain 這邊遇到了很怪的問題，一般來說使用 serverless 框架來跑的話只要照的文件裡說的 <code>serverless create_domain</code>就會幫忙註冊，而且可以依照自己開發環境去自動設定，在公司的專案中這樣使用是沒問題的，在是在寫這篇文章時卻只能使用以上的方法來替代使用，雖然結果是一樣的，但是用起來實在是很不符合邏輯，google 也沒找到類似的問題，或許這個問題還要多實測幾次才夠...😭</p>
+</div>
+    <a class="read-more" href="/2019/10/10/Day26-Use-CDN-1-%E5%BB%BA%E7%AB%8B-Certificate-%E8%88%87-Domain/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

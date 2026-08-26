@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 本次介紹的專案 act，是一個以 Golang 實作的專案，目標可以讓開發者可以在本地端跑 GitHub Actions，不用每次要測試 CI 就先推一個沒用的 Commit 上去等(如果是生產環境也是浪費資源)，只要在本地跑就可以快速得到相關的回饋，不用再為了測試推一堆沒用的 Commit 上去了 🎉 本次使">
+  <title>在本地端執行 GitHub Actions 跑 CI | Run your GitHub Actions locally | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2021/12/13/github-actions-locally/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2021-12-13T00:13:13">2021-12-13</time> · <a href="/categories/CI-CD/">CI/CD</a></p><h1>在本地端執行 GitHub Actions 跑 CI | Run your GitHub Actions locally</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>本次介紹的專案 <a href="https://github.com/nektos/act">act</a>，是一個以 Golang 實作的專案，目標可以讓開發者可以在本地端跑 GitHub Actions，不用每次要測試 CI 就先推一個沒用的 Commit 上去等(如果是生產環境也是浪費資源)，只要在本地跑就可以快速得到相關的回饋，不用再為了測試推一堆沒用的 Commit 上去了 🎉</p>
+<blockquote>
+<p>本次使用的範例專案：<a href="https://github.com/louis70109/WordsGame">https://github.com/louis70109/WordsGame</a></p>
+</blockquote>
+<h1 id="安裝步驟">安裝步驟</h1>
+<p>因為我是使用 Mac 來操作，因此我使用如下：</p>
+<pre><code>brew install act
+</code></pre>
+<p>如果你是其他作業系統的用戶，<mark><a href="https://github.com/nektos/act#installation">文件上</a></mark>也有詳細寫出如何安裝以及前提</p>
+<ul>
+<li>實作依靠 Docker，因此需要先安裝 Docker engine</li>
+<li>各種套件庫方法安裝(brew, port, choco...)</li>
+<li>透過 Go 安裝(如果本身有 Go 環境)</li>
+<li>Bash script<ul>
+<li><code>curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="介紹">介紹</h1>
+<p>官方的示範影片：</p>
+<p><img loading="lazy" decoding="async" src="https://github.com/nektos/act/wiki/quickstart/act-quickstart-2.gif" alt=""></p>
+<p>先進入你的資料夾中，我以前陣子開發的<a href="https://github.com/louis70109/WordsGame">日文單字專案</a>為例子做說明。</p>
+<ol>
+<li><p>資料夾中有個 <code>.github/workflows/testing.yaml</code>，GitHub Actions 預設會找 <strong>.github/workflows</strong> 底下的 yaml 檔，因此有需要跑的檔案都要放這</p>
+</li>
+<li><p>執行 <code>act</code> 指令，大致樣子如下</p>
+</li>
+</ol>
+<pre><code>➜  WordsGame git:(master) act
+[Python package/build] 🧪  Matrix: map[python-version:3.7]
+[Python package/build] 🚀  Start image=ghcr.io/catthehacker/ubuntu:act-latest
+...
+[Python package/build]   🐳  docker exec cmd=[mkdir -m 0777 -p /var/run/act] user=root workdir=
+...
+[Python package/build] ⭐  Run actions/checkout@v2
+[Python package/build]   ✅  Success - actions/checkout@v2
+[Python package/build] ⭐  Run Set up Python ${{ matrix.python-version }}
+INFO[0003]   ☁  git clone &#39;https://github.com/actions/setup-python&#39; # ref=v2
+...
+[Python package/build]   💬  ::debug::Downloading https://github.com/actions/python-versions/releases/download/3.7.12-116024/python-3.7.12-linux-20.04-x64.tar.gz
+...
+| =========================== short test summary info ============================
+| FAILED tests/test_main.py::TestClient::test_admin_set_styles - testcontainers...
+| FAILED tests/test_main.py::TestClient::test_get_user_list - testcontainers.co...
+| ============== 2 failed, 1 passed, 1 warning in 247.27s (0:04:07) ==============
+[Python package/build]   ❌  Failure - CI
+Error: exit with `FAILURE`: 1
+➜  WordsGame git:(master) ls
+</code></pre>
+<blockquote>
+<p>以上為正確跑一次的大致會有的訊息(節錄其中一段)，當然這邊是失敗收場，後續會在提到</p>
+</blockquote>
+<ol start="3">
+<li>前面有提到 act 是基於 Docker 開發的工具，因此在跑的時候會在 Docker 裡面建立一個 Container 來執行裡面會用到的內容。(可進 Dashboard 看)</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/action/act.png" alt=""></p>
+<h2 id="狀況排除---如果有環境變數還是要-export-oooqqq">狀況排除 - 如果有環境變數還是要 export ooo=qqq</h2>
+<p>因為我在建立此專案時是需要先幫 chatbot 放 Token 測試才可以順利跑，因此在這邊 <code>${}</code> 裡的直就需要在環境變數中 export</p>
+<pre><code>...
+- name: CI
+        env:
+          API_ENV: &#39;testing&#39;
+          DATABASE_URI: postgresql://postgres:postgres@db/postgres
+          LINE_CHANNEL_ACCESS_TOKEN: ${LINE_CHANNEL_ACCESS_TOKEN}
+          LINE_CHANNEL_SECRET: ${LINE_CHANNEL_SECRET}
+...
+</code></pre>
+<h2 id="在另一個-docker-環境中執行-act">在另一個 Docker 環境中執行 act</h2>
+<p>文件中有說明相關的內容(PR <a href="https://github.com/nektos/act/issues/583">#583</a>)，可能你有自架 Docker 在其他機器等等的，可以參考以下的指令：</p>
+<blockquote>
+<p><a href="https://github.com/nektos/act#docker-context-support">附上文件處</a></p>
+</blockquote>
+<pre><code>export DOCKER_HOST=$(docker context inspect --format &#39;{{.Endpoints.docker.Host}}&#39;)
+</code></pre>
+<h2 id="環境特有的環境變數">環境特有的環境變數</h2>
+<p>或許在使用 GitHub Actions(或類似的 CI 服務)，可能會有些全域是需要設定的，可以參考<a href="https://github.com/nektos/act#configuration">文件這邊</a>，把相關內容設定在 <code>./.actrc</code> 或 <code>~/.actrc</code> 中讓本地端測試也可以達到跟線上一樣的功能。</p>
+<h1 id="結論">結論</h1>
+<p>這次剛好是沒事在 GitHub 首頁閒逛時發現的一個好東西，現在按星星 🌟 時已經快兩萬顆星星了，代表社群上大家也是很喜歡這個內容，也很實用，如果說你也有相關需求的話歡迎參考這篇文章做，如果有更多討論也歡迎在下方留言讓我知道喔！🙂</p>
+<style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+</div>
+      <footer class="post-tags"><a href="/tags/GitHub%20Actions/">GitHub Actions</a><a href="/tags/act/">act</a><a href="/tags/CI/">CI</a><a href="/tags/%E6%9C%AC%E5%9C%B0%E7%AB%AF/">本地端</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

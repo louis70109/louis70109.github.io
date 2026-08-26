@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 有時我們在開發一些前端頁面，串接一些平台服務並需要是 https 在瀏覽器上顯示，不過這對一些前端開發者，或是像我這種還沒有 Server 的人來說就很困擾，以下就介紹一下如何在 Mac 本地端使用，最後再使用 vite(Vue) 做範例。">
+  <title>如何在本地端建立 SSL 認證(開發用) | 在 vite config 中引入 | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2022/05/07/how-to-build-ssl-localhost/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2022-05-07T00:10:12">2022-05-07</time> · <a href="/categories/JavaScript/">JavaScript</a></p><h1>如何在本地端建立 SSL 認證(開發用) | 在 vite config 中引入</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>有時我們在開發一些前端頁面，串接一些平台服務並需要是 <code>https</code> 在瀏覽器上顯示，不過這對一些前端開發者，或是像我這種還沒有 Server 的人來說就很困擾，以下就介紹一下如何在 Mac 本地端使用，最後再使用 vite(Vue) 做範例。</p>
+<h1 id="介紹">介紹</h1>
+<blockquote>
+<p>參考來自 <a href="https://web.dev/how-to-use-local-https/">web.dev</a>，可惜當中沒有 Vue 的範例 🧐</p>
+</blockquote>
+<h2 id="安裝-mkcert-於-macos">安裝 mkcert 於 MacOS</h2>
+<pre><code>brew install mkcert
+brew install nss # If Firefox
+</code></pre>
+<h2 id="透過-mkcert-安裝-ca-在電腦上">透過 mkcert 安裝 CA 在電腦上</h2>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/line-api-update-1/3.png" alt=""></p>
+<pre><code>mkcert -install
+</code></pre>
+<h2 id="建立-localhost-的兩把-pem">建立 localhost 的兩把 pem</h2>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/line-api-update-1/4.png" alt=""></p>
+<pre><code>mkcert localhost
+</code></pre>
+<h2 id="透過-mkcert-建立兩個-localhost-pem-key">透過 mkcert 建立兩個 localhost pem key</h2>
+<pre><code>mkdir -p cert &amp;&amp; mkcert -key-file ./cert/key.pem -cert-file ./cert/cert.pem &#39;localhost&#39;
+</code></pre>
+<h2 id="在-viteconfigjs--vueconfigjs-中設定位置">在 <code>vite.config.js</code> || <code>vue.config.js</code> 中設定位置</h2>
+<p>以 vite 或是 vue 的資料夾結構中，只要有標題的 config，就可以在框架載入時放入一些設定，廢話不多說上扣：</p>
+<script src="https://gist.github.com/louis70109/b77b22ece137fbc1945153a9d1767b23.js"></script>
+
+<p>把相關的位置放上之後就會啟動 Server (<code>npm run serve</code>...之類的)， pem 就會被吸進去嚕！ </p>
+<blockquote>
+<p>範例： <code>https://localhost:8080</code></p>
+</blockquote>
+<h1 id="結論">結論</h1>
+<p>以上這算是最近在開發 LIFF 時因為需要 SSL 時找到的做法，雖然後來因為需求可能還是需要其他的解法(heroku, ngrok, 自己養 Server 轉網址...)，但如果串接一些服務時，或是自家後端規定一定要帶著 SSL 才能訪問，不如參考這邊文章吧！希望對各位有幫助😁</p>
+</div>
+      <footer class="post-tags"><a href="/tags/mkcert/">mkcert</a><a href="/tags/https/">https</a><a href="/tags/vue/">vue</a><a href="/tags/vite/">vite</a><a href="/tags/SSL/">SSL</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>LINE Login | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/LINE%20Login/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>LINE Login</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-06T21:01:02">2019-10-06</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/">Day22 - 最常用的搭配 - 使用 Login + Message API 讓使用者在掃描加入好友時就綁定帳號</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>在第 Day 13 Python SDK 試玩的時候使用過 get_profile，當時使用時就是在每次訊息來的時候才去 SQL 儲存使用者資訊，若只是單純想要使用者資訊的話這樣用好像有點多餘 😓，以下就帶各位簡單的實作。</p>
+<h2 id="實作">實作</h2>
+<p>我們要將上篇的前端頁面(line_login_auth.html)改造一下</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;LINE Login&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    $.ajax({
+      url: &quot;https://YOUR_SLS_DOMAIN.us-east-1.amazonaws.com/dev/line/auth&quot;,
+      method: &quot;POST&quot;,
+      success: function(data) {
+        window.location.replace(data.result);
+      }
+    });
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>這邊我將 button 的 onclick 事件以及 button 本身移除掉，目的是要讓使用者一到這個頁面之後就直接透過 AJAX call api</p>
+<p>到了這裡應該有感應到什麼了吧！接著就是把這個 html 檔的 S3 路徑網址使用 QR code 包起來，讓他看起來像是 LINE bot 的 QR code</p>
+<p>到了這邊基本上已經快完成了，參考 LINE 的<a href="https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/?fbclid=IwAR25G73QmKIGm1l7kPNFzDIpMwBKQRQVxPP8ZpPzp3p-FSES2fnWcVCue_c">好友說明</a>或下圖
+<img loading="lazy" decoding="async" src="https://i.imgur.com/fEEzOsy.png" alt=""></p>
+<p>接著到機器人的開發者頁面，並且往下滑會看到自己機器人的 QR code 以及 Bot 的 ID，把他複製下來並製作機器人的加好友網址
+<img loading="lazy" decoding="async" src="https://i.imgur.com/Mn3RG26.png" alt=""></p>
+<p>像是這樣子</p>
+<pre><code>https://line.me/R/@1234
+</code></pre>
+<p>接著到 <code>controller/line_login_controller.py</code>的<code>def get(self)</code>最後一行，原本我們這邊做的是回傳 JSON</p>
+<pre><code class="language-python">if dt:
+			return {&#39;result&#39;: dt}, 200
+</code></pre>
+<p>改用</p>
+<pre><code class="language-python">from flask import redirect
+if dt:
+ 		return redirect(&quot;https://line.me/R/ti/p//@127ojvgz&quot;, code=302)
+</code></pre>
+<p>如此一來在登入驗證完之後就會把使用者導向到加好友的頁面，在手機上若已經加過好友則會直接導到機器人對話窗上，如此一來就可以讓使用者在加入好友的同時也綁定完帳號，在未來使用的時候 api 這邊也比較好控管使用者的權限問題。</p>
+<h2 id="結論">結論</h2>
+<p>像是我自己做的健身記錄機器人，就是以這個方法下去實作，有聽過一些朋友跟我反應這樣的方法多此一舉，但我認為若是有網頁的話也是套用 LINE SSO 來實作，就可以讓兩個入口去統一，在狀態流上就能比較好控制了。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/8fKlsAt.jpg" alt=""></p>
+</div>
+    <a class="read-more" href="/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-05T20:59:50">2019-10-05</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/05/Day21-LINE-Login-%E5%AF%A6%E4%BD%9C/">Day21 - LINE Login 實作</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>現在有規模的平台提供商基本上都會提供 Single Sign On (SSO)的登入機制，藉由他們的平台讓一般小網站可以讓使用者免密碼登入，雖然有很多種 Oauth2 的套件，不過我還是喜歡自己打 🤣，下面就開始嚕！</p>
+<h2 id="實作">實作</h2>
+<p>在<code>views/</code>建立一個<code>line_login_auth.html</code>，填入以下內容，主要是實作一個按鈕並透過 javascript 來互叫 api 並導向到 LINE 頁面</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;LINE Login&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;button class=&quot;auth&quot; onclick=&quot;auth()&quot;&gt;LINE LOGIN&lt;/button&gt;
+  &lt;/body&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function auth() {
+      $.ajax({
+        url: &#39;https://YOUR_SERVERLESS_DOMAIN.amazonaws.com/dev/line/auth&#39;,
+        method: &#39;POST&#39;,
+        success: function(data) {
+          window.location.replace(data.result);
+        },
+      });
+    }
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>接著我們在<code>.env</code>加入 LINE Login 的環境變數並輸入對應的參數</p>
+<pre><code class="language-yaml">LINE_LOGIN_CLIENT_ID=
+LINE_LOGIN_SECRET=
+LINE_LOGIN_URI=https://YOUR_SERVERLESS_DOMAIN.amazonaws.com/dev/line/auth
+</code></pre>
+<p>最後就是我們最重要的部分了，實作 GET a&amp; POST 的 api，這邊我先從 POST 講起，這邊主要是把環境變數組在網址中回傳給前端，這邊需要注意的是<code>state</code>他是在回傳回來的 JWT 需要解碼時所使用的，這邊我簡單打個字串，然而實際上會隨機產個變數，確保解碼的安全。</p>
+<p>GET 則是負責處理從 LINE 回來的參數們，這邊我只用回傳回來的<code>state</code>把<code>id_token</code>解開，拿到裡面的使用者的參數，後續可以參照應用把資訊存下來，放入 session 並告知前端已登入。</p>
+<pre><code class="language-python">from flask import request
+from flask_restful import Resource
+import requests
+import webbrowser
+import os
+import jwt
+import json
+
+
+class LineLoginController(Resource):
+	def get(self):
+		r = requests.post(
+			&quot;https://api.line.me/oauth2/v2.1/token&quot;,
+			data={
+				&quot;grant_type&quot;: &quot;authorization_code&quot;,
+				&quot;code&quot;: request.args.get(&#39;CODE&#39;),
+				&quot;redirect_uri&quot;: os.environ.get(&#39;LINE_LOGIN_URI&#39;),
+				&quot;client_id&quot;: os.environ.get(&#39;LINE_LOGIN_CLIENT_ID&#39;),
+				&quot;client_secret&quot;: os.environ.get(&#39;LINE_LOGIN_SECRET&#39;),
+			}, headers={&quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;})
+		payload = json.loads(r.text)
+		print(payload)
+		token = payload.get(&quot;id_token&quot;)
+		if token is None:
+			return {&#39;result&#39;: payload[&#39;error_description&#39;]}, 400
+
+		state = request.args.get(&#39;state&#39;)
+		token = token.encode()
+		dt = jwt.decode(token, state, None, algorithms=[&#39;HS256&#39;])
+		if dt:
+			return {&#39;result&#39;: dt}, 200
+
+	def post(self):
+		r_uri = os.environ.get(&quot;LINE_LOGIN_URI&quot;)
+		client = os.environ.get(&quot;LINE_LOGIN_CLIENT_ID&quot;)
+		state = &quot;nostate&quot; # it will be random value
+		uri = f&quot;https://access.line.me/oauth2/v2.1/authorize?response_type=code&amp;client_id={client}&amp;redirect_uri={r_uri}&amp;scope=profile%20openid%20email&amp;state={state}&quot;
+		return {&#39;result&#39;: uri}
+</code></pre>
+<p>JWT 解開的參數如下，<code>sub</code>就是 LINE 的唯一值 ID，一般拿到這個就可以知道是來自 LINE 的使用者了。</p>
+<pre><code class="language-json">{
+  &quot;result&quot;: {
+    &quot;iss&quot;: &quot;https://access.line.me&quot;,
+    &quot;sub&quot;: &quot;Ud6ab866a67xxxxxxxxb12b0baffb8ac&quot;,
+    &quot;aud&quot;: &quot;1622939248&quot;,
+    &quot;exp&quot;: 1569925548,
+    &quot;iat&quot;: 1569921948,
+    &quot;amr&quot;: [&quot;linesso&quot;],
+    &quot;name&quot;: &quot;NiJia Lin&quot;,
+    &quot;picture&quot;: &quot;https://profile.line-scdn.net/0hKvTocMuLFFlpFj9HpKdrDlVTGjxxxxxxxxx1YHACMOPRtEHmkWJVIKUyUJNkQWGT0X&quot;,
+    &quot;email&quot;: &quot;loxxxxx09@gmail.com&quot;
+  }
+}
+</code></pre>
+<p>最後別忘了要在<code>api.py</code>加入路由才會被導出去ㄛ</p>
+<pre><code class="language-python">from controller.line_login_controller import LineLoginController
+api.add_resource(LineLoginController, &#39;/line/auth&#39;)
+</code></pre>
+<h2 id="結論">結論</h2>
+<p>在實作的時候不知道為什麼一直不能讓 python 去幫我把用戶導去 LINE 認證的頁面，我記得之前寫 Ruby 可以啊(?)，最後只好讓前端去幫我把使用者導出去，這邊就帶大家做到這嚕！</p>
+</div>
+    <a class="read-more" href="/2019/10/05/Day21-LINE-Login-%E5%AF%A6%E4%BD%9C/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-04T20:59:09">2019-10-04</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/">Day20 - LINE Login 申請與基本頁面</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>上篇介紹了好多了，這邊就不廢話了，直接就帶大家申請一個 LINE Login 的服務。</p>
+<h2 id="實作">實作</h2>
+<p>首先到自己的開發者頁面按<code>+</code>，並選擇最左邊的選項
+<img loading="lazy" decoding="async" src="https://i.imgur.com/c9JI0vX.jpg" alt="">
+接著輸入<code>App name</code>(服務名稱)、<code>App description</code>(服務簡介)，因為我們是實作 API ，所以選擇<code>Use WEB</code>的選項，接著再輸入<code>email</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/AA8NiF8.png" alt="">
+把該填的填完之後按下送出就會看到有一個新的服務嚕！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/RBM1HdJ.jpg" alt="">
+點進去後往下滑，可以看到有個 <code>link to this channel</code> 的選項，這邊選擇一開始建立的那隻機器人，綁定之後就變它的形狀啦(?)
+<img loading="lazy" decoding="async" src="https://i.imgur.com/ES4wcHn.png" alt="">
+接著再往下會看到 Email 的狀態是 Unapplied，然後按下右邊的<code>Submit</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/SHgQYsU.png" alt="">
+會看到這樣子的一個框框，把兩個框框打勾並選擇一張圖片上傳，這部分就算是申請帳號下面的同意服務條款一樣，圖片就上傳自己希望當使用者到你頁面的時候想看到的圖片 🤣，送出之後就會看到狀態改成 <code>Applied</code> 了
+<img loading="lazy" decoding="async" src="https://i.imgur.com/da7zYPg.jpg" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>很多時候實作對我們來說已經不是什麼問題了，重點是在找不到服務要怎麼去申請 😓，這篇也算是記錄一下申請的步驟細節，接下來會實作個簡單的認證頁面以及 API，打完收工嚕！</p>
+</div>
+    <a class="read-more" href="/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-03T20:58:22">2019-10-03</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/">Day19 - LINE LOGIN 介紹</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>LINE 中文版也上線啦 <a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">URL</a>
+去某些網站登入你可能會有像下面這樣
+<img loading="lazy" decoding="async" src="https://i.imgur.com/GNSYfYX.png" alt="">
+或者是你有玩過 LINE Rangers (怎麼感覺我好老)，就會看到他們登入畫面有個登入鈕，按下去按確認後就登入，使用者不用輸入帳號密碼。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/tbOfUET.jpg" alt="">
+這個機制被稱為 SSO (single sign-on)，它是透過 OAuth2 的機制來做認證，因為不儲存密碼除了可以降低儲存第三方網站的風險，以及使用者不需要記憶各種不同的密碼所帶來困擾，像是 Facebook、Google、LINE...都有相關的機制可以串連 SSO 的服務。</p>
+<p>以下會介紹 LINE Login 的流程。</p>
+<h2 id="流程">流程</h2>
+<p>這裡我使用 LINE Login
+<img loading="lazy" decoding="async" src="https://i.imgur.com/jouHzB0.png" alt=""></p>
+<ol>
+<li>服務要引導使用者到 LINE 認證頁面並帶著必填的欄位。</li>
+<li>LINE 會在瀏覽器上打開認證頁面，使用者必須按下同意才會進行認證。</li>
+<li>LINE 會透過設定過的 <code>redirect_uri</code> 還給你一個 <code>authorization code</code> 以及 <code>state</code> 在 Query string 上。</li>
+<li>你的服務需要將 <code>authorization code</code> 打到<code>https://api.line.me/oauth2/v2.1/token</code></li>
+<li>LINE 確認完之後就會送你一個 <code>access token</code> 嚕！<blockquote>
+<p>可以拿透過 <a href="https://developers.line.biz/en/reference/social-api/">social API</a> 去拿到相關資訊</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="結論">結論</h2>
+<p>下一篇再帶著大家申請一個 LINE Login 的服務並建立一個簡單的註冊頁面～</p>
+<h2 id="參考">參考</h2>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83">OAuth wiki</a>
+<a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/">LINE overview</a>
+<a href="https://developers.line.biz/zh-hant/docs/line-login/overview/?fbclid=IwAR2I2VWF8Z1xS5wdSKlkWQiMFJphdjH3Qi_RnoJaCynQUG2GBM-PDiWJEjE">LINE 中文文件</a></p>
+</div>
+    <a class="read-more" href="/2019/10/03/Day19-LINE-LOGIN-%E4%BB%8B%E7%B4%B9/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

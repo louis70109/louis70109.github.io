@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>LINE Notify | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/LINE%20Notify/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>LINE Notify</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2021-05-15T00:59:36">2021-05-15</time> · <a href="/categories/Python/">Python</a></p>
+    <h2><a href="/2021/05/15/debug-lotify-with-commanmd-line/">除錯 Python 套件遇到 Command Line 無法使用的問題 | lotify</a></h2>
+    <div class="excerpt"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img loading="lazy" decoding="async" src="https://click.palletsprojects.com/en/8.0.x/_images/click-logo.png" alt="click command"></p>
+<h1 id="前言">前言</h1>
+<p>近期收到了一個來自 Lotify 的 Pull Request，主要功能是加入 Command Line 的功能，讓用戶在安裝 Lotify 之後即可在終端機上測試，感謝來自熱情的網友幫忙。</p>
+<p>原以為 Merge 之後應該要可以用了，於似乎開始安裝要開始使用測試，沒想到遇到了一個錯誤</p>
+<pre><code>ModuleNotFoundError: No module named &#39;lotifyCli&#39;
+</code></pre>
+<p>於是就開始的抓蟲之旅。✍️</p>
+</div>
+    <a class="read-more" href="/2021/05/15/debug-lotify-with-commanmd-line/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2021-02-17T17:51:55">2021-02-17</time> · <a href="/categories/CI-CD/">CI/CD</a></p>
+    <h2><a href="/2021/02/17/line-notify-in-github-actions/">如何建置與使用 GitHub Actions 市集的 LINE Notify 套件</a></h2>
+    <div class="excerpt"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/line-notify-github-actions/result.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>以前不管在<strong>單元/整合測試</strong>、<strong>部署</strong>或是一些<strong>週期性</strong>的工作，有點經驗的工程師通常會很習慣寫個 Script 去跑相關指令集。而隨著寫的服務越來越多，許多部分也微服務化後，同一個指令集可能會服務到對象也越來越多，因此就開始有了像是 Jenkins、Drone、Travis 以及本篇會介紹 GitHub Actions 這類的 CI 工具，但既然是工程師當然要把指令集內的耦合性盡可能的降到最低，因此就有像是 <a href="https://github.com/marketplace">GitHub Marketplace</a> 的套件市集，讓大家可以在上面選擇不同功能的工具套入於自己的 CI 中，接下來就讓我帶你來了解一下平時會遇到什麼問題，以及如何建立與使用 LINE Notify 於 GitHub Actions 上吧！</p>
+<h1 id="以前如何知道結果？">以前如何知道結果？</h1>
+<ul>
+<li>寫 Script 並用 Linux 的排程(Crontab)在固定時間跑測試案例、爬資料、部署...等狀態</li>
+<li>CI/CD 過了之後自己上網站看 log (沒通知)</li>
+<li>即便寫通知程式在 Script 裡，未來的可用性極低(不好管控金鑰、換程式語言...)</li>
+</ul>
+<h1 id="why-github-actions">Why GitHub Actions?</h1>
+<ul>
+<li>GitHub 自家出的 CI 工具</li>
+<li>專案大多放在 GitHub 上的情況<ul>
+<li>可達到資源 Single Source of Truth</li>
+</ul>
+</li>
+<li>市集(Marketplace)已經有許多工具可以合併使用<ul>
+<li><a href="https://nijialin.com/2021/02/11/how-to-use-github-action/">之前的文章中</a>使用過 Python 自動打包與自動測試的工具</li>
+</ul>
+</li>
+</ul>
+<h1 id="why-line-notify">Why LINE Notify?</h1>
+</div>
+    <a class="read-more" href="/2021/02/17/line-notify-in-github-actions/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2020-03-09T23:18:11">2020-03-09</time> · <a href="/categories/%E6%87%89%E7%94%A8/">應用</a></p>
+    <h2><a href="/2020/03/09/Twitch-Bot-%E5%85%A8%E9%9D%A2%E5%8D%87%E7%B4%9A%EF%BC%81/">Twitch Bot 全面升級！ 增加 LINE Notify 綁定與推播實現 LINE 的三項之力！</a></h2>
+    <div class="excerpt"><img loading="lazy" decoding="async" src="https://i.imgur.com/dOIsi7H.jpg" width="2000">
+
+<blockquote>
+<p>滿滿的三項之力 🏋️‍♂️</p>
+</blockquote>
+<blockquote>
+<p>來幫我的 <a href="https://github.com/louis70109/Twitch-Bot">Twitch Bot</a> 按個星星 ⭐️⭐️</p>
+</blockquote>
+<h1 id="更新功能">更新功能</h1>
+<ul>
+<li>使用 LIFF 來綁定 Notify</li>
+</ul>
+</div>
+    <a class="read-more" href="/2020/03/09/Twitch-Bot-%E5%85%A8%E9%9D%A2%E5%8D%87%E7%B4%9A%EF%BC%81/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-20T15:46:15">2019-09-20</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">Day5 - 做一個與 LINE Notify 連動的服務</a></h2>
+    <div class="excerpt"><h2 id="建立-line-notify-服務">建立 LINE Notify 服務</h2>
+<p>第一步先到 <a href="https://notify-bot.line.me/zh_TW/">LINE Notify</a> 管力登入服務去建立一個服務
+<img loading="lazy" decoding="async" src="https://i.imgur.com/he0csJI.png" alt="">
+接著按下<code>登入服務</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/iZmktaA.png" alt="">
+把該填的填一填，要注意的是 Callback Url 這邊先暫時先打 localhost:5500，等頁面上傳後再回來改 domain
+<img loading="lazy" decoding="async" src="https://i.imgur.com/5zzxTcj.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/VfaWKEs.png" alt=""></p>
+<p>建立完成之後就到剛剛填的信箱去收信點下網址並啟動服務
+<img loading="lazy" decoding="async" src="https://i.imgur.com/jmZSycQ.png" alt="">
+這樣第一步就建立完成嚕！</p>
+<h2 id="動工">動工</h2>
+<p>接著上次的透過上次的專案並使用 flask_restful 來改造成 Restful 格式的專案(後面開發會比較輕鬆)
+因為我們會讓前端呼叫，CORS 設定成＊比較輕鬆，若是有要設定跨域問題的在這邊設定哦 👏
+加入套件到 requirements.txt</p>
+<pre><code>flask==1.0.2
+Flask-RESTful==0.3.6
+Flask-Cors==3.0.6
+requests==2.22.0
+</code></pre>
+<p>透過使用 flask_restful 幫忙轉發並管理路由
+將 api.py 改為以下的 code</p>
+<pre><code class="language-python=">from flask import Flask
+from flask_restful import Api
+from flask_cors import CORS
+from controller.notify_controller import NotifyController
+
+app = Flask(__name__)
+CORS(app, resources={r&quot;*&quot;: {&quot;origins&quot;: &quot;*&quot;, &quot;supports_credentials&quot;: True}})
+api = Api(app)
+
+api.add_resource(NotifyController, &#39;/notify&#39;)
+
+if __name__ == &#39;__main__&#39;:
+    app.run(debug=True)
+</code></pre>
+<p>這邊我使用 Postgresql，並在專案底下建立一個 lib/ 的資料夾，裡頭放著名為 db.py (這裡還是要記得建立 <strong>init</strong>.py 哦！)
+這邊只簡單建立<a href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/"> Context Manager </a>讓連線可以被我呼叫。
+db.py:</p>
+<pre><code class="language-python=">import psycopg2
+import psycopg2.extras
+
+class Database():
+    conns = []
+    def __enter__(self):
+        return self
+
+    def connect(self):
+        conn = psycopg2.connect(
+            database=PG_DB,
+            user=PG_USER,
+            password=PG_PWD,
+            host=PG_HOST,
+            port=PG_PORT
+        )
+        self.conns.append(conn)
+        return conn
+
+    def __exit__(self, type, value, traceback):
+        for conn in self.conns:
+            conn.close()
+        self.conns.clear()
+</code></pre>
+<p>新增一下資料夾名為 controller，建立 <strong>init</strong>.py &amp; notify_controller.py，這邊搭配 with 做資源管理器，
+DB 部分則見黎一個 notify 表，然後一個 token 的欄位。</p>
+<blockquote>
+<p>在這個 class 類別下方法只要輸入 <code>def get/post/put/patch/delete</code> 的函式就可以對應 CRUD 的功能了！</p>
+</blockquote>
+<p>notify_controller.py code is:</p>
+<pre><code class="language-python=">from flask_restful import Resource, reqparse
+import requests
+import json
+from lib.db import Database
+import psycopg2.extras
+
+class NotifyController(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument(&#39;code&#39;, required=True, help=&#39;code can not be blank!&#39;)
+        args = parser.parse_args()
+        code = args[&#39;code&#39;]
+        client = {&#39;grant_type&#39;: &#39;authorization_code&#39;, &#39;code&#39;: code, &#39;redirect_uri&#39;: &#39;YOUR_REDIRECT_URI&#39;,
+                  &#39;client_id&#39;: &#39;YOUR_CLIENT_ID&#39;, &#39;client_secret&#39;: &#39;YOUR_CLIENT_SECRET&#39;}
+        r = requests.post(
+            &#39;https://notify-bot.line.me/oauth/token&#39;, data=client)
+        req = json.loads(r.text)
+        if req[&#39;status&#39;] == 200:
+            token = req[&#39;access_token&#39;]
+            # Here is use PostgreSQL, you can change your love db
+            with Database() as db:
+                with db.connect() as conn:
+                    with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                        cur.execute(
+                            f&quot;INSERT INTO notify(token) VALUES (&#39;{token}&#39;)&quot;)
+            return {&#39;access_token&#39;: req[&#39;access_token&#39;]}, 200
+        else:
+            return {&#39;message&#39;: r.text}, 200
+</code></pre>
+<p>以下這三個要設定成你的當時輸入的字串</p>
+<ul>
+<li>YOUR_REDIRECT_URI</li>
+<li>YOUR_CLIENT_ID</li>
+<li>YOUR_CLIENT_SECRET</li>
+</ul>
+<blockquote>
+<p>若不清楚 Client_id &amp; Client_secret 的話就回到 Notify 頁面並點選剛剛建立的服務就能看到 token 了</p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/T0nJaGE.png" alt=""></p>
+<p>建立一個 views/ 的資料夾，並建立兩個檔案</p>
+<ul>
+<li>notify_index.html<blockquote>
+<p>這邊需要修改 <code>client_id</code> 以及 <code>redirect_uri</code>
+這個檔案主要功能是讓使用者有個可以按按鈕觸發的地方，當然這只是個範例，實際上線可能就會直接 call API 導向 LINE Notify 頁面等等</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-htmlmixed=">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;Link Notify&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;button onclick=&quot;Auth();&quot;&gt;點選這裡連結到LineNotify&lt;/button&gt;
+
+    &lt;script&gt;
+      function Auth() {
+        var URL = &quot;https://notify-bot.line.me/oauth/authorize?&quot;;
+        URL += &quot;response_type=code&quot;;
+        URL += &quot;&amp;client_id=YOUR_CLIENT_ID&quot;;
+        URL += &quot;&amp;redirect_uri=YOUR_REDIRECT_URI&quot;;
+        URL += &quot;&amp;scope=notify&quot;;
+        URL += &quot;&amp;state=nostate&quot;;
+        window.location.href = URL;
+      }
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>notify_confirm.html<blockquote>
+<p>修改 ajax 裡的 url，將網址換成之前部署的網址，若忘了可以在部署一次 <code>sls deploy</code>
+當導回來的時候透過 ajax 來呼叫 serverless api 讓後端發 requests 給<code>https://notify-bot.line.me/oauth/token</code>來獲取<code>access_token</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><em>因為這個路由有 CORS 的問題，若透過瀏覽器來的話會出錯，這邊則是讓後端去處理</em></p>
+<pre><code class="language-htmlmixed=">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;message check&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    verify messate:
+    &lt;div class=&quot;message&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    var urlParams = new URLSearchParams(window.location.search);
+    var notify_code = urlParams.get(&quot;code&quot;);
+    var state = urlParams.get(&quot;state&quot;);
+    $(function() {
+      $.ajax({
+        url: &quot;https://SLS_URI.execute-api.us-east-2.amazonaws.com/dev/notify&quot;,
+        type: &quot;POST&quot;,
+        dataType: &quot;json&quot;,
+        data: { code: notify_code },
+        success: function(response) {
+          console.log(response);
+          $(&quot;.message&quot;).text(response[&quot;access_token&quot;]);
+        },
+        error: function(xhr) {
+          console.log(xhr);
+          alert(&quot;Ajax request 發生錯誤&quot;);
+        }
+      });
+    });
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>接著就是測試程式碼是不是正常的，把這兩個檔案丟到 S3 上面
+<img loading="lazy" decoding="async" src="https://i.imgur.com/SYRxzA1.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/N3olwJd.png" alt=""></p>
+<p>把 object url 複製到 LINE Notify 上的 callback url 欄位，這樣就可以實機測試了 🤣
+<img loading="lazy" decoding="async" src="https://i.imgur.com/i6Y7dK2.png" alt=""></p>
+<p>接著按下 index page 的按鈕應該就會看到連動成功(進資料庫應該也會被 insert 一筆)
+<img loading="lazy" decoding="async" src="https://i.imgur.com/lEP0AmZ.png" alt=""></p>
+<p>到了這邊如果沒問題真的是恭喜你，我踩了好多坑 Orz</p>
+<h2 id="參考">參考</h2>
+<p><a href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/">資源管理器</a>
+<a href="https://github.com/corydolphin/flask-cors">flask CORS</a>
+<a href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#enabling-cors">CORS</a></p>
+</div>
+    <a class="read-more" href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Arrow Function | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Arrow%20Function/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Arrow Function</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2020-06-13T22:12:08">2020-06-13</time> · <a href="/categories/JavaScript/">JavaScript</a></p>
+    <h2><a href="/2020/06/13/learn-javascript-promise/">【Javascript】你知道你常用的 Promise 嗎?</a></h2>
+    <div class="excerpt"><h1 id="前言">前言</h1>
+<p>在寫 Javascript 時一定會看到有套件或是範例有使用到 callback function，在過往的 coding 過程中最擔心的問題就是遇到 Callback Hell(也就是俗稱的波動拳)，最常見的範例為：</p>
+<pre><code>doSomething(function(result) {
+  doSomethingElse(result, function(newResult) {
+    doThirdThing(newResult, function(finalResult) {
+      console.log(&#39;Got the final result: &#39; + finalResult);
+    }, failureCallback);
+  }, failureCallback);
+}, failureCallback);
+</code></pre>
+<blockquote>
+<p>Sample from <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Using_promises">MDN</a></p>
+</blockquote>
+<p>為了降低波動拳的出現機率，因此就就誕生了 <code>Promise</code> 來幫忙處理 Hell world 的問題，至於如何處理就透過接下來就說明並介紹用法。</p>
+</div>
+    <a class="read-more" href="/2020/06/13/learn-javascript-promise/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

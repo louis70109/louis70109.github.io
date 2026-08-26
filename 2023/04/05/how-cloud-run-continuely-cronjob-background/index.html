@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="冷啟動(Cold start) &amp; Cloud Run 如何處理？ Serverless 架構的冷啟動（cold start）是指當一個沒有被使用的函式需要被調用時，需要先啟動一個新的容器或虛擬機器來執行該函式，這個啟動的期間被稱為冷啟動時間。 但我們在寫應用的時候通常都會帶有一些 cronjob 在背景跑(備份、爬蟲">
+  <title>【GCP】如何讓 Cloud Run 持續執行背景程式 | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2023/04/05/how-cloud-run-continuely-cronjob-background/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2023-04-05T00:57:02">2023-04-05</time> · <a href="/categories/GCP/">GCP</a></p><h1>【GCP】如何讓 Cloud Run 持續執行背景程式</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
+<h1 id="冷啟動cold-start-amp-cloud-run-如何處理？">冷啟動(Cold start) &amp; Cloud Run 如何處理？</h1>
+<p><a href="https://cloud.google.com/serverless?hl=zh-tw">Serverless 架構</a>的冷啟動（cold start）是指當一個沒有被使用的函式需要被調用時，需要先啟動一個新的容器或虛擬機器來執行該函式，這個啟動的期間被稱為冷啟動時間。</p>
+<p>但我們在寫應用的時候通常都會帶有一些 cronjob 在背景跑(備份、爬蟲...)，但在 Serverless 上都會遇到 Cold Start 的問題，在這種情況下因為資源都會被釋放掉，如果這些 cronjob 是比較重的且 Severless RAM&amp;CPU 又放比較少， cronjob 時邊爬蟲邊異地備份又讀寫資料庫(~~ 誇張了點 ~~)，這情況下可能會因為資源瞬間不夠導致功能異常。</p>
+<blockquote>
+<p>官方也有提供以下以前不能操作的範例給大家：</p>
+<ul>
+<li>Executing background tasks and other asynchronous processing work after returning responses</li>
+<li>Leveraging monitoring agents like OpenTelemetry that may assume access to CPU in background threads</li>
+<li>Using Go&#39;s Goroutines or Node.js async, Java threads, and Kotlin coroutines</li>
+<li>Moving Spring Boot apps that use built-in scheduling/background functionality</li>
+<li>Listening for Firestore changes to keep an in-memory cache up to date</li>
+</ul>
+</blockquote>
+<p>而一般初期會使用 Serverless 通常就是為了省錢、省管理成本才來使用，遇到了上述情況下通常有可能會另起容器或自身一直 ping，來讓容器可以持續活著，但這樣就不就增加了 request &amp; 容器成本了？</p>
+<h1 id="如何處理與使用它？">如何處理與使用它？</h1>
+<p>在 Cloud Run 上有個 <strong>隨時分配 CPU</strong> 功能(a.k.a CPU is always allocated)可以使用，除了可以在 UI 上設定之外，身為開發者一定要知道如何在部署的時候加上指令才行，請參考以下方式：</p>
+<p>參考<a href="https://cloud.google.com/run/docs/configuring/cpu-allocation#command-line">開發者文件</a>，可以在部署完之後、當下去加上參數<code>--no-cpu-throttling</code>來達到隨時有 CPU 資源的狀態，結果會如下圖所示。</p>
+<blockquote>
+<p>Example: <code>gcloud run deploy YOUR_SERVICE --source . --no-cpu-throttling</code></p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2023/gcp/cpu_allocated.png" alt=""></p>
+<h1 id="花費問題？">花費問題？</h1>
+<p><a href="https://storage.googleapis.com/gweb-cloudblog-publish/images/cloud_run_container.max-1000x1000.jpg"></a></p>
+<p>照<a href="https://cloud.google.com/blog/products/serverless/cloud-run-gets-always-on-cpu-allocation?hl=en">官方文件</a>上所述，在啟動<strong>隨時分配 CPU</strong>的狀態下，費用(charged)比照原本容器都持續活著狀態， CPU 會 -25%、Memory 則會 -20%，看起來應該還挺划算的，因此若有相關需求或許也可以參考看看喔！</p>
+<blockquote>
+<p>但這功能目前已經 Release，文件上可能 out off date，包括指令也無需加上 beta，因此在實際使用時還是要關注一下帳單跟相關說明文件喔！</p>
+</blockquote>
+<h2 id="其他">其他</h2>
+<p><a href="https://storage.googleapis.com/gweb-cloudblog-publish/images/excute_env.png"></a></p>
+<p>如果在專案需求越來越多時，開始有需要處理這些冷啟動的問題，可以參考上圖的地方，選用適合場景的選項，讓專案可以更符合公司的需求。</p>
+<blockquote>
+<p>中文介面步驟: 選到特定容器 &gt; 編輯及部署新的修訂版本 &gt; 執行環境</p>
+</blockquote>
+<h1 id="結論">結論</h1>
+<p>GCP 對於平常有在寫一些小專案是非常方便的，只要把 Dockerfile 寫好之後，後續部署都交給 gcloud 的指令來操作即可，即可部署在 Cloud Run 上(Base on K-Native)，介面上也很方便可以點選許多功能，甚至可以串接 GitHub 來做自動部署，這些都相當方便呢！如果你近期也像我一樣 Heroku 因為收錢在搬家，或許可以考慮到 GCP 上，對於流量不多的小專案來說，這些花費應該算是不多。</p>
+<blockquote>
+<p>若文章中有勘誤，請留言跟我說唷！謝謝大家觀賞～😊</p>
+</blockquote>
+</div>
+      <footer class="post-tags"><a href="/tags/Cold%20Start/">Cold Start</a><a href="/tags/GCP/">GCP</a><a href="/tags/Cloud%20Run/">Cloud Run</a><a href="/tags/Serverless/">Serverless</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

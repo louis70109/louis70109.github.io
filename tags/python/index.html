@@ -1,522 +1,515 @@
-<!DOCTYPE html>
-<html lang="zh-tw">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 8.1.1">
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
-<!-- End Google Tag Manager -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="You are what you do.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="忍者工坊">
-<meta property="og:url" content="https://nijialin.com/tags/python/index.html">
-<meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="You are what you do.">
-<meta property="og:locale" content="zh_TW">
-<meta property="article:author" content="NiJia Lin">
-<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://nijialin.com/tags/python/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : false,
-    lang   : 'zh-tw'
-  };
-</script>
-
-  <title>標籤: python | 忍者工坊</title>
-  
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FYYPR3Z2K3');
-      }
-    </script>
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+  <title>python | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/python/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
 </head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>python</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-27T20:41:31">2019-09-27</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/">Day13 - 試玩 python SDK</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>以前從花落落的文件中找到一個方法，像是使用 push message
+<img loading="lazy" decoding="async" src="https://i.imgur.com/ZZVg7mI.png" alt="">
+我都會笨笨的 call API 的方法去執行功能，殊不知 SDK 早就包好了，然後邊做邊罵自己為什麼要解這些 JSON (拍桌)
+到了現在比較會看文件，才知道原來以前是自己雷自己 (捶心肝)...接下來就試玩幾個我覺得常會用到的 method 好了不廢話了，來簡單介紹一下一些常用的方法 😎</p>
+<h2 id="get_profile">get_profile</h2>
+<p>回傳使用者的個人狀態，可以透過每次的 reply 去拿到使用者的資訊，一般使用的話都話把它存下來，等之後有介接其他服務時方便使用 userId 去判斷使用者。</p>
+<pre><code class="language-python">profile = line_bot_api.get_profile(event[&#39;events&#39;][0][&#39;source&#39;][&#39;userId&#39;])
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+try:
+    with Database() as db, db.connect() as conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+        cur.execute(
+            f&quot;INSERT INTO users(id, name, picture) VALUES (&#39;{id}&#39;, &#39;{name}&#39;, &#39;{picture}&#39;)&quot;)
+except:
+    pass # 這邊簡單處理相同 id 的問題(id我有設 Private key 哦！)
+state = f&quot;Hello 👉 `{profile.display_name}` 👈&quot;
+line_bot_api.reply_message(token, [
+  TextSendMessage(text=state),
+  ImageSendMessage(original_content_url=profile.picture_url, preview_image_url=profile.picture_url)
+  ])
+</code></pre>
+<p>這邊搭配 <code>ImageSendMessage</code> 來幫忙發送圖片，他主要是透過 original_content_url 以及 preview_image_url 這兩個參數來幫忙轉成圖片</p>
+<ul>
+<li>original 就是讓使用者看到的圖片</li>
+<li>preview 在還沒載入時的樣子</li>
+</ul>
+<h2 id="push_message">push_message</h2>
+<p>既然都取到使用者的 id 了，下一步就是推訊息給使用者啦!</p>
+<p>建立一個 GET 的路由在 /webhook 上，收到 query string 的 msg 的值並找到所有使用者的 id 並逐一推送訊息。</p>
+<pre><code class="language-python">line_bot_api = LineBotApi(os.getenv(&#39;LINE_CHANNEL_TOKEN&#39;))
+handler = WebhookHandler(os.getenv(&#39;LINE_CHANNEL_SECRET_KEY&#39;))
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">忍者工坊</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
+def get(self):
+    msg = request.args.get(&#39;msg&#39;)
+    with Database() as db, db.connect() as conn, conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+        cur.execute(&quot;SELECT * FROM users&quot;)
+        fetch = cur.fetchall()
+    for user in fetch:
+        self.line_bot_api.push_message(
+            user[&#39;id&#39;], TextSendMessage(text=msg))
+    return {&#39;message&#39;: msg}, 200
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/MHfYmlZ.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/x7fgvhY.png" alt=""></p>
+<h2 id="reply-mode">Reply Mode</h2>
+<h3 id="locationsendmessage">LocationSendMessage</h3>
+<p>這邊直接拿 SDK 的範例來用，若是有在做商家功能的機器人可以使用這個方式讓使用者接收到商家訊息～</p>
+<pre><code class="language-python">self.line_bot_api.reply_message(token, LocationSendMessage(
+    title=&#39;my location&#39;,
+    address=&#39;Tokyo&#39;,
+    latitude=35.65910807942215,
+    longitude=139.70372892916203
+))
+</code></pre>
+<h3 id="stickersendmessage">StickerSendMessage</h3>
+<p>這個方法可以搭配使用，讓整個回應看起來跟真實吧！</p>
+<blockquote>
+<p>不知道清單能用什麼可以<a href="https://developers.line.biz/media/messaging-api/sticker_list.pdf">參考</a>，</p>
+</blockquote>
+<pre><code class="language-python">self.line_bot_api.reply_message(token, StickerSendMessage(package_id=&#39;1&#39;,sticker_id=&#39;1&#39;))
+</code></pre>
+<h3 id="button-template">Button Template</h3>
+<pre><code class="language-python">buttons_template_message = TemplateSendMessage(
+    alt_text=&#39;Buttons template&#39;,
+    template=ButtonsTemplate(
+        thumbnail_image_url=f&#39;{picture}.jpg&#39;,
+        title=&#39;Menu&#39;,
+        text=&#39;Please select&#39;,
+        actions=[
+            PostbackAction(
+                label=&#39;postback&#39;,
+                display_text=&#39;postback text&#39;,
+                data=&#39;action=buy&amp;itemid=1&#39;
+            ),
+            MessageAction(
+                label=&#39;message&#39;,
+                text=&#39;message text&#39;
+            ),
+            URIAction(
+                label=&#39;uri&#39;,
+                uri=&#39;http://example.com/&#39;
+            )
+        ]
+    )
+)
+self.line_bot_api.reply_message(token, buttons_template_message)
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/T30NNHt.png" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>簡單玩了幾個 API，大概就這幾個比較常搭配著使用，用過之後才知道其實有好多 API 我都還不是很清楚用法 🤣
+而 LINE 最近更新了他們文件的功能，多了一個<code>Try</code>的按鈕提供使用者可以線上直接測 API，只是像是 push messages 這個就剛好沒有 😓，但至少有很多 API 不用通靈去測試，直接拿著 Token 在網頁上測試嚕！
+<a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">Doc Sample</a>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/xfk13a3.png" alt=""></p>
+<p>Code is <a href="https://github.com/louis70109/aws-python-line-api/blob/master/controller/message_api_controller.py">here</a></p>
+<h2 id="參考">參考</h2>
+<p><a href="https://developers.line.biz/en/reference/messaging-api/?fbclid=IwAR3gExZwTJjXUudorqkIo-cHVk9yoONen7hnDlh4okntWyveLBYHXzZWJ00#get-number-of-push-messages">LINE develop page</a></p>
 </div>
+    <a class="read-more" href="/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-21T20:30:27">2019-09-21</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/">Day6 - 建立一個使用 Query string 來幫忙發送的 LINE Notify</a></h2>
+    <div class="excerpt"><p>繼上一篇我們已經可以讓使用者註冊 Notify 並將 token 放入資料庫，接著就帶各位使用 query string 的方式讓你的 Notify 可以送訊息給所有註冊過的 Notify。</p>
+<p>首先我們進入我們已經建立過的 controller/notify_controller.py，會看到 class 下有我們之前建立的 post method，這時我們就在前面加入 get method，並加入以下的 code，讓這個 class 看起來比較有順序(<del>潔癖</del>)</p>
+<pre><code class="language-python=">from flask import request
 
+class NotifyController(Resource):
 
+    def get(self):
+            msg = request.args.get(&#39;msg&#39;)
+            with Database() as db, db.connect() as conn:
+                with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                    cur.execute(
+                        f&quot;SELECT token FROM notify&quot;)
+                    fetch = cur.fetchall()
+            for f in fetch:
+                headers = {
+                    &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;,
+                    &#39;Authorization&#39;: f&quot;Bearer {f[&#39;token&#39;]}&quot;
+                }
+                payload = {&#39;message&#39;: msg}
 
+                r = requests.post(
+                    &#39;https://notify-api.line.me/api/notify&#39;, data=payload, headers=headers)
+            return {&#39;result&#39;: &#39;ok&#39;}, 200
 
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container"></div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
+    def post(self):
+        ...
+</code></pre>
+<p>這次使用的套件比上次多 import 一個 flask 底下的 request (注意沒有 s 哦)，這個主要是讓我們可以抓到網址問號後面接的參數，這邊我設定打 API 的人會打一個 msg 的參數。</p>
+<p>接著就是使用進 DB 撈我們的 token 們，並用一個迴圈來跑</p>
+<p>再來是設定 headers 以及 payload</p>
+<p>headers 的部分參考 Notify 的文件，如下圖
+<img loading="lazy" decoding="async" src="https://i.imgur.com/B4bjvja.png" alt="">
+我們需要設定 Content-Type 以及 Authorization，需要注意的是 Authorization 是使用 Bearer 格式(<a href="https://blog.yorkxin.org/2013/09/30/oauth2-6-bearer-token.html">參考</a>)，他中間是有加<code>空白鍵</code>的，這邊很多朋友都會錯在這裡，千萬要記得檢查這邊！</p>
+<p>接著是要送出去的東西是要用什麼送出，本篇只用 message 做範例，若需要使用到其他的功能，像是圖片、貼圖等等的可參考以下的圖片
+<img loading="lazy" decoding="async" src="https://i.imgur.com/I6617R6.png" alt=""></p>
+<p>接著我們就可以使用<code>sls deploy</code>來部署我們的程式啦</p>
+<p>等等！
+這邊有個需要注意的地方是，照著這次的範例使用的話會需要用 docker 來幫忙跑編譯，因為 psycopg2-binary 這個套件如果不是在 Linux 的環境下會需要透過 docker 幫忙編譯完再丟過去
+這部分需要在<code>serverless.yml</code>下填入參數</p>
+<pre><code>custom:
+  pythonRequirements:
+    dockerizePip: true
+</code></pre>
+<p>如此一來當前環境若不是 Linux 的話他就會使用 docker 來幫忙，記得 docker 要開哦 🙏</p>
+<blockquote>
+<p>當然最簡單的方法就是把它直接抓下來放在專案中，只是這樣就會比較髒一點，可以從這邊抓 -&gt; <a href="https://github.com/jkehler/awslambda-psycopg2">參考</a></p>
+</blockquote>
+<blockquote>
+<p>這邊可以先在環境變數上加上<code>SLS_DEBUG=*</code> 接著在加上 sls deploy 後面加上<code>--verbose</code>可以看到 serverless 到底都在背地裡做了什麼事情 🤣</p>
+</blockquote>
+<p>接著我們就使用 Postman 來幫我們送字串出去，參考下圖，當回傳 ok 就成功了 🎉
+<img loading="lazy" decoding="async" src="https://i.imgur.com/oXlBNeC.png" alt="">
+你的 Notify 應該要回你了～
+<img loading="lazy" decoding="async" src="https://i.imgur.com/nihyJxX.png" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>這邊帶大家做一個簡單的應用，一般來說我覺得放在 query string 讓其他 API 來呼叫的時候帶參數來就可以直接用是很方便的，不用再特地自己寫方法去呼叫 LINE Notify 來幫我們送，反正 AWS Lambda 有一百萬次的請求不怕 🤣</p>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
-</div>
+    <a class="read-more" href="/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-20T15:46:15">2019-09-20</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">Day5 - 做一個與 LINE Notify 連動的服務</a></h2>
+    <div class="excerpt"><h2 id="建立-line-notify-服務">建立 LINE Notify 服務</h2>
+<p>第一步先到 <a href="https://notify-bot.line.me/zh_TW/">LINE Notify</a> 管力登入服務去建立一個服務
+<img loading="lazy" decoding="async" src="https://i.imgur.com/he0csJI.png" alt="">
+接著按下<code>登入服務</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/iZmktaA.png" alt="">
+把該填的填一填，要注意的是 Callback Url 這邊先暫時先打 localhost:5500，等頁面上傳後再回來改 domain
+<img loading="lazy" decoding="async" src="https://i.imgur.com/5zzxTcj.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/VfaWKEs.png" alt=""></p>
+<p>建立完成之後就到剛剛填的信箱去收信點下網址並啟動服務
+<img loading="lazy" decoding="async" src="https://i.imgur.com/jmZSycQ.png" alt="">
+這樣第一步就建立完成嚕！</p>
+<h2 id="動工">動工</h2>
+<p>接著上次的透過上次的專案並使用 flask_restful 來改造成 Restful 格式的專案(後面開發會比較輕鬆)
+因為我們會讓前端呼叫，CORS 設定成＊比較輕鬆，若是有要設定跨域問題的在這邊設定哦 👏
+加入套件到 requirements.txt</p>
+<pre><code>flask==1.0.2
+Flask-RESTful==0.3.6
+Flask-Cors==3.0.6
+requests==2.22.0
+</code></pre>
+<p>透過使用 flask_restful 幫忙轉發並管理路由
+將 api.py 改為以下的 code</p>
+<pre><code class="language-python=">from flask import Flask
+from flask_restful import Api
+from flask_cors import CORS
+from controller.notify_controller import NotifyController
 
-      
-    </div>
-  </div>
+app = Flask(__name__)
+CORS(app, resources={r&quot;*&quot;: {&quot;origins&quot;: &quot;*&quot;, &quot;supports_credentials&quot;: True}})
+api = Api(app)
 
-</div>
-    </header>
+api.add_resource(NotifyController, &#39;/notify&#39;)
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+if __name__ == &#39;__main__&#39;:
+    app.run(debug=True)
+</code></pre>
+<p>這邊我使用 Postgresql，並在專案底下建立一個 lib/ 的資料夾，裡頭放著名為 db.py (這裡還是要記得建立 <strong>init</strong>.py 哦！)
+這邊只簡單建立<a href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/"> Context Manager </a>讓連線可以被我呼叫。
+db.py:</p>
+<pre><code class="language-python=">import psycopg2
+import psycopg2.extras
 
-  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+class Database():
+    conns = []
+    def __enter__(self):
+        return self
 
+    def connect(self):
+        conn = psycopg2.connect(
+            database=PG_DB,
+            user=PG_USER,
+            password=PG_PWD,
+            host=PG_HOST,
+            port=PG_PORT
+        )
+        self.conns.append(conn)
+        return conn
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    def __exit__(self, type, value, traceback):
+        for conn in self.conns:
+            conn.close()
+        self.conns.clear()
+</code></pre>
+<p>新增一下資料夾名為 controller，建立 <strong>init</strong>.py &amp; notify_controller.py，這邊搭配 with 做資源管理器，
+DB 部分則見黎一個 notify 表，然後一個 token 的欄位。</p>
+<blockquote>
+<p>在這個 class 類別下方法只要輸入 <code>def get/post/put/patch/delete</code> 的函式就可以對應 CRUD 的功能了！</p>
+</blockquote>
+<p>notify_controller.py code is:</p>
+<pre><code class="language-python=">from flask_restful import Resource, reqparse
+import requests
+import json
+from lib.db import Database
+import psycopg2.extras
 
-          <div class="content tag">
-            
+class NotifyController(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument(&#39;code&#39;, required=True, help=&#39;code can not be blank!&#39;)
+        args = parser.parse_args()
+        code = args[&#39;code&#39;]
+        client = {&#39;grant_type&#39;: &#39;authorization_code&#39;, &#39;code&#39;: code, &#39;redirect_uri&#39;: &#39;YOUR_REDIRECT_URI&#39;,
+                  &#39;client_id&#39;: &#39;YOUR_CLIENT_ID&#39;, &#39;client_secret&#39;: &#39;YOUR_CLIENT_SECRET&#39;}
+        r = requests.post(
+            &#39;https://notify-bot.line.me/oauth/token&#39;, data=client)
+        req = json.loads(r.text)
+        if req[&#39;status&#39;] == 200:
+            token = req[&#39;access_token&#39;]
+            # Here is use PostgreSQL, you can change your love db
+            with Database() as db:
+                with db.connect() as conn:
+                    with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                        cur.execute(
+                            f&quot;INSERT INTO notify(token) VALUES (&#39;{token}&#39;)&quot;)
+            return {&#39;access_token&#39;: req[&#39;access_token&#39;]}, 200
+        else:
+            return {&#39;message&#39;: r.text}, 200
+</code></pre>
+<p>以下這三個要設定成你的當時輸入的字串</p>
+<ul>
+<li>YOUR_REDIRECT_URI</li>
+<li>YOUR_CLIENT_ID</li>
+<li>YOUR_CLIENT_SECRET</li>
+</ul>
+<blockquote>
+<p>若不清楚 Client_id &amp; Client_secret 的話就回到 Notify 頁面並點選剛剛建立的服務就能看到 token 了</p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/T0nJaGE.png" alt=""></p>
+<p>建立一個 views/ 的資料夾，並建立兩個檔案</p>
+<ul>
+<li>notify_index.html<blockquote>
+<p>這邊需要修改 <code>client_id</code> 以及 <code>redirect_uri</code>
+這個檔案主要功能是讓使用者有個可以按按鈕觸發的地方，當然這只是個範例，實際上線可能就會直接 call API 導向 LINE Notify 頁面等等</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-htmlmixed=">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;Link Notify&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;button onclick=&quot;Auth();&quot;&gt;點選這裡連結到LineNotify&lt;/button&gt;
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">python
-          <small>標籤</small>
-        </h2>
-      </div>
-
-      
-    <div class="collection-year">
-      <span class="collection-header">2019</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-27T12:41:31+00:00"
-              content="2019-09-27">
-          09-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/09/27/Day13-%E8%A9%A6%E7%8E%A9-python-SDK/" itemprop="url">
-            <span itemprop="name">Day13 - 試玩 python SDK</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-21T12:30:27+00:00"
-              content="2019-09-21">
-          09-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/09/21/Day6-%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E4%BD%BF%E7%94%A8-Query-string-%E4%BE%86%E5%B9%AB%E5%BF%99%E7%99%BC%E9%80%81%E7%9A%84-LINE-Notify/" itemprop="url">
-            <span itemprop="name">Day6 - 建立一個使用 Query string 來幫忙發送的 LINE Notify</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-20T07:46:15+00:00"
-              content="2019-09-20">
-          09-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/" itemprop="url">
-            <span itemprop="name">Day5 - 做一個與 LINE Notify 連動的服務</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-17T06:17:01+00:00"
-              content="2019-09-17">
-          09-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20%E4%BB%A5%E5%8F%8A%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/" itemprop="url">
-            <span itemprop="name">Day2 - 安裝並使用 wsgi 以及 flask 建立第一個 Serverless 的專案</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+    &lt;script&gt;
+      function Auth() {
+        var URL = &quot;https://notify-bot.line.me/oauth/authorize?&quot;;
+        URL += &quot;response_type=code&quot;;
+        URL += &quot;&amp;client_id=YOUR_CLIENT_ID&quot;;
+        URL += &quot;&amp;redirect_uri=YOUR_REDIRECT_URI&quot;;
+        URL += &quot;&amp;scope=notify&quot;;
+        URL += &quot;&amp;state=nostate&quot;;
+        window.location.href = URL;
       }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>notify_confirm.html<blockquote>
+<p>修改 ajax 裡的 url，將網址換成之前部署的網址，若忘了可以在部署一次 <code>sls deploy</code>
+當導回來的時候透過 ajax 來呼叫 serverless api 讓後端發 requests 給<code>https://notify-bot.line.me/oauth/token</code>來獲取<code>access_token</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><em>因為這個路由有 CORS 的問題，若透過瀏覽器來的話會出錯，這邊則是讓後端去處理</em></p>
+<pre><code class="language-htmlmixed=">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;message check&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    verify messate:
+    &lt;div class=&quot;message&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    var urlParams = new URLSearchParams(window.location.search);
+    var notify_code = urlParams.get(&quot;code&quot;);
+    var state = urlParams.get(&quot;state&quot;);
+    $(function() {
+      $.ajax({
+        url: &quot;https://SLS_URI.execute-api.us-east-2.amazonaws.com/dev/notify&quot;,
+        type: &quot;POST&quot;,
+        dataType: &quot;json&quot;,
+        data: { code: notify_code },
+        success: function(response) {
+          console.log(response);
+          $(&quot;.message&quot;).text(response[&quot;access_token&quot;]);
+        },
+        error: function(xhr) {
+          console.log(xhr);
+          alert(&quot;Ajax request 發生錯誤&quot;);
+        }
+      });
     });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目錄
-        </li>
-        <li class="sidebar-nav-overview">
-          本站概要
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
-      src="/uploads/avatar.jpg">
-  <p class="site-author-name" itemprop="name">NiJia Lin</p>
-  <div class="site-description" itemprop="description">You are what you do.</div>
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>接著就是測試程式碼是不是正常的，把這兩個檔案丟到 S3 上面
+<img loading="lazy" decoding="async" src="https://i.imgur.com/SYRxzA1.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/N3olwJd.png" alt=""></p>
+<p>把 object url 複製到 LINE Notify 上的 callback url 欄位，這樣就可以實機測試了 🤣
+<img loading="lazy" decoding="async" src="https://i.imgur.com/i6Y7dK2.png" alt=""></p>
+<p>接著按下 index page 的按鈕應該就會看到連動成功(進資料庫應該也會被 insert 一筆)
+<img loading="lazy" decoding="async" src="https://i.imgur.com/lEP0AmZ.png" alt=""></p>
+<p>到了這邊如果沒問題真的是恭喜你，我踩了好多坑 Orz</p>
+<h2 id="參考">參考</h2>
+<p><a href="https://blog.gtwang.org/programming/python-with-context-manager-tutorial/">資源管理器</a>
+<a href="https://github.com/corydolphin/flask-cors">flask CORS</a>
+<a href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#enabling-cors">CORS</a></p>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">250</span>
-          <span class="site-state-item-name">文章</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">分類</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">345</span>
-        <span class="site-state-item-name">標籤</span></a>
-      </div>
-  </nav>
+    <a class="read-more" href="/2019/09/20/Day5-%E5%81%9A%E4%B8%80%E5%80%8B%E8%88%87-LINE-Notify-%E9%80%A3%E5%8B%95%E7%9A%84%E6%9C%8D%E5%8B%99/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-17T14:17:01">2019-09-17</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20%E4%BB%A5%E5%8F%8A%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/">Day2 - 安裝並使用 wsgi 以及 flask 建立第一個 Serverless 的專案</a></h2>
+    <div class="excerpt"><p>透過 npm 全域安裝 serverless 指令</p>
+<pre><code class="language-bash=">npm install serverless -g
+</code></pre>
+<blockquote>
+<p>因為我是用 python3 在 AWS 上實作</p>
+</blockquote>
+<ul>
+<li><code>--template</code>可以選擇你想要的模板 (<a href="https://serverless.com/framework/docs/providers/aws/cli-reference/create/">參考</a>)</li>
+<li><code>name</code> service 的名稱</li>
+<li><code>--path</code> 專案路徑，若找不到資料夾時會自動新增</li>
+</ul>
+<pre><code class="language-bash=">serverless create --template aws-python3 --name aws-wsgi-flask --path aws-wsgi-flask
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/6GZVQNo.png" alt=""></p>
+<h1 id="加入套件">加入套件</h1>
+<p>接著後面會需要使用套件，而 python 這邊會認得 requirements.txt 這個檔案，因此我們需要用 serverless 的 plugin 幫我們處理，讓專案在 deploy 上去之後會透過 requirements.txt 去安裝套件。</p>
+<p>而接下來我們會需要一個介面幫我們處理一些麻煩事，這邊就選用 wsgi 來處理。<a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/362704/">詳細參考</a></p>
+<pre><code class="language-bash=">sls plugin install -n serverless-python-requirements
+sls plugin install -n serverless-wsgi
+</code></pre>
+<p>接著去看 serverless.yml 檔案最後出現下面這樣就成功安裝了。</p>
+<pre><code class="language-yaml=">plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+</code></pre>
+<p>然後新增一個 setup.cfg 並加入以下內容：</p>
+<pre><code class="language-bash=">[install]
+prefix=
+</code></pre>
+<blockquote>
+<p>由於 AWS Lambda 上都會將套件安裝在本地端(Lambda 上)，因此在執行 <code>pip install -t . -r requirements.txt</code> 時會需要 setup.cfg。</p>
+</blockquote>
+<p>接著選用 Flask 框架作我們開發的</p>
+<pre><code class="language-bash=">echo &quot;Flask==1.0.2&quot; &gt; requirements.txt
+pip install -r requirements.txt -—user
+</code></pre>
+<blockquote>
+<p>serverless-python-requirements 同樣也支持 pipenv 哦，如果想完全擋掉的話可以<a href="https://www.npmjs.com/package/serverless-python-requirements#pipenv-support-sparklescakesparkles">參考</a></p>
+</blockquote>
+<h1 id="更改設定檔">更改設定檔</h1>
+<p>置換以下內容至 serverless.yml，讓 WSGI 去處理路由。</p>
+<pre><code class="language-yaml=">service: aws-wsgi-flask
+provider:
+  name: aws
+  runtime: python3.7
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http: ANY /
+      - http: ANY {proxy+}
+custom:
+  wsgi:
+    app: api.app
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+</code></pre>
+<h1 id="測試-wsgi">測試 wsgi</h1>
+<p>因為我們不是單純只用 python 架設，所以要將 handler.py 替換成 api.py，並加入以下內容</p>
+<pre><code class="language-python=">from flask import Flask
+app = Flask(__name__)
+
+@app.route(&quot;/&quot;, methods=[&#39;GET&#39;])
+def handler():
+    return &#39;hello world&#39;
+
+if __name__ == &#39;__main__&#39;:
+    app.run(debug=True)
+</code></pre>
+<p>到這邊基礎設施都弄好了，但總不能部署才測試吧，所以這時候我們就出動</p>
+<pre><code class="language-bash=">serverless wsgi serve
+</code></pre>
+<p>透過 wsgi 去幫忙起一個 local server 供使用者可以測試，而且每次儲存都重新整理一次哦！詳細用法請<a href="https://github.com/logandk/serverless-wsgi">參考</a>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/S4CQJxI.png" alt=""></p>
+<p>接著用 postman 來測試一下
+<img loading="lazy" decoding="async" src="https://i.imgur.com/ci26g4O.png" alt=""></p>
+<p>燈燈，hello world 出來了～</p>
+<p>最後也是最重要的一個步驟『部署』
+只是說部署前需要有 AWS 的 secret key &amp; token</p>
+<h1 id="建立-aws-存取金鑰">建立 AWS 存取金鑰</h1>
+<p>首先要先有個 AWS 帳號(廢話) ，如果沒有綁定信用卡記得去綁定才能繼續，接下來就可以去就可以去建立鑰匙囉！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/JOgIjXQ.png" alt="">
+如上圖，按下紅色框框的部分，接著按箭頭指的按鈕，就會建立一個我們要的金鑰囉！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/A34OlY5.png" alt="">
+如上圖所示，可以下載 key，AWS 不會幫忙保存 Secret key，若這視窗關掉的話 key 就不見了，所以使用者可以自行下載檔案保存，以免哪天要部署的時候找不到 key。
+接著就將這兩個參數加入環境變數中：</p>
+<pre><code class="language-bash=">export AWS_ACCESS_KEY_ID=&lt;your-key-here&gt;
+export AWS_SECRET_ACCESS_KEY=&lt;your-secret-key-here&gt;
+</code></pre>
+<p>或是藉由 serverless 指令來幫忙加入參數：</p>
+<pre><code>serverless config credentials --provider aws --key &lt;your-key-here&gt; --secret &lt;your-secret-key-here&gt;
+</code></pre>
+<blockquote>
+<p>這步驟很重要哦，不然 AWS 不認識你就不給你上傳了 ?</p>
+</blockquote>
+<p>最後就是下 <code>serverlesss deploy</code>進行部署
+<img loading="lazy" decoding="async" src="https://i.imgur.com/MK8Yks7.png" alt=""></p>
+<p>這邊 AWS 幫忙建立一個含有 SSL 的 domain，可以直接對這個網址下</p>
+<pre><code class="language-yaml=">endpoints: ANY - https://4omvn4z7re.execute-api.us-east-1.amazonaws.com/dev
+  ANY - https://4omvn4z7re.execute-api.us-east-1.amazonaws.com/dev/{proxy+}
+</code></pre>
+<p>接著把網址丟到瀏覽器上來試試看
+<img loading="lazy" decoding="async" src="https://i.imgur.com/tptNSd4.png" alt="">
+出現 <code>hello world</code>就成功囉！</p>
+<h1 id="參考">參考</h1>
+<ul>
+<li><a href="https://medium.com/@nijia.lin/%E4%BD%BF%E7%94%A8-serverless-line-message-api-%E5%9C%A8-aws-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-echo-bot-1e3e785a2a01">使用 Serverless &amp; LINE Message API 在 AWS 上打造一個 Echo bot</a></li>
+<li><a href="https://serverless.com/framework/docs/providers/aws/cli-reference/">sls cli 相關參數</a></li>
+<li><a href="https://serverless.com/">Serverless</a></li>
+<li><a href="https://github.com/serverless/serverless">Serverless Github</a></li>
+<li><a href="https://serverless.com/framework/docs/providers/aws/guide/quick-start/">serverless install</a></li>
+<li><a href="https://serverless.com/plugins/serverless-wsgi/">serverless wsgi</a></li>
+<li><a href="https://serverless.com/plugins/serverless-python-requirements/">requirements.txt</a></li>
+</ul>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
-</div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
-<script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+    <a class="read-more" href="/2019/09/17/Day2-%E5%AE%89%E8%A3%9D%E4%B8%A6%E4%BD%BF%E7%94%A8%20wsgi%20%E4%BB%A5%E5%8F%8A%20flask%20%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8B%20Serverless%20%E7%9A%84%E5%B0%88%E6%A1%88/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Cloud Scheduler | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Cloud%20Scheduler/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Cloud Scheduler</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2024-02-13T13:34:01">2024-02-13</time> · <a href="/categories/GCP/">GCP</a></p>
+    <h2><a href="/2024/02/13/gcp-cloud-function-gen2-with-line-bot/">如何設定 Cloud Function 2nd gen 來改善截圖爬蟲的效率！</a></h2>
+    <div class="excerpt"><h1 id="背景介紹">背景介紹</h1>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2024/gcp/1.png" alt=""></p>
+<p>過年改寫了我自己的在台北常使用的路上攝影機截圖工具，一開始求方便在每次請求來時會在容器當中開啟 chrome 去截圖，但由於是 MVP 以及沒有放 queue 在前面讓請求排隊，因此這樣的做法就無法提供給別人使用。</p>
+<p>因此為了可用性，需要把截圖功能透過排程(cronjob)去實作，所以這次就將截圖功能改搬到 Cloud Function 並搭配 Cloud Scheduler 排程抓取。</p>
+</div>
+    <a class="read-more" href="/2024/02/13/gcp-cloud-function-gen2-with-line-bot/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

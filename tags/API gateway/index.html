@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>API gateway | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/API%20gateway/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>API gateway</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-01T20:49:05">2019-10-01</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/">Day17 - 看一下自己寫的東西都去哪了</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>用 Serverless 用得這麼爽，也是時候來看一下他的資源在哪，距離我上次自己手動上傳 python 檔已經是 N 個月之前的事了(遠望)，當時也沒用過什麼<code>Api Gateway</code>相關的服務，以下就帶大家來介紹一下嚕！</p>
+<h2 id="介紹">介紹</h2>
+<h3 id="cloudformation">CloudFormation</h3>
+<p>CloudFormation 是一個 AWS 所提供的 JSON-base 服務，主要是用來讓使用者能夠快速建立 AWS 的服務。</p>
+<blockquote>
+<p>這邊也不用擔心設定的問題，Serverless 再 deploy 的過程中會幫忙 CloudFormation 的 json 檔</p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/mK9lYCD.png" alt="">
+透過 CloudFormation 建立 JSON-based 的 template 你可以快速建立所需要的資源堆疊（stack）。</p>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/GzHh65j.jpg" alt="">
+按下<code>Template</code>後如下圖所示，他會顯示你已經有建立的服務 Map，整個線牽起來看起來就很爽 XD
+<img loading="lazy" decoding="async" src="https://i.imgur.com/bcg1f0a.png" alt=""></p>
+<h3 id="api-gateway">Api Gateway</h3>
+<p>Serverless 建立過程中也會透過 CloudFormation 幫忙建立 Api Gateway，因為我們是用 <code>WSGI</code>，所以只會看到兩個<code>ANY</code>的路由。
+點進去後就可以看到 Client 是怎麼進出的，最右邊是打到 AWS Lambda 上，可以點選上面的字進入 Lambda 所在地。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/GPVXsc9.jpg" alt=""></p>
+<h3 id="lambda">Lambda</h3>
+<p>點選進來之後可以看到 Lambda 接了什麼服務，以我到目前的程式就會有<code>API Gateway</code>、<code>SQS</code>以及預設的<code>CloudWatch</code>(都是透過這個來看 log)
+<img loading="lazy" decoding="async" src="https://i.imgur.com/0MYquqC.png" alt="">
+接著往下會看到之前設定的<code>環境變數</code>以及<code>STAGE</code>，這些都是托<code>Serverless</code>的福免去這些麻煩的設定
+<img loading="lazy" decoding="async" src="https://i.imgur.com/nwKK3xb.png" alt=""></p>
+<h3 id="s3">S3</h3>
+<p>Serverless 在過程中會在 S3 幫忙建立一個 Bucket，並在後面加個 hash key 以免 bucket 重複。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/flZtoFn.png" alt=""></p>
+<h3 id="cloud-watch-log">Cloud Watch Log</h3>
+<p>在開始測試後 AWS 會幫忙在這個地方輸出 Log，
+<img loading="lazy" decoding="async" src="https://i.imgur.com/t3Ki0gi.png" alt=""></p>
+<h3 id="serverless-deploy-紀錄">Serverless deploy 紀錄</h3>
+<h4 id="這邊使用-serverless-deploy---verbose-就可以看到所有部署中的基本資訊了">這邊使用 <code>Serverless deploy --verbose</code> 就可以看到所有部署中的基本資訊了</h4>
+<p>首先因為我們有使用<code>.env</code>，所以在一開始時會先設定環境變數，接著就是把相依套件的東西都放進去，再去啟動 CloudFormation
+<img loading="lazy" decoding="async" src="https://i.imgur.com/yMKZfAQ.png" alt=""></p>
+<hr>
+<p>接著會建立一個 S3 的 Bucket，將程式透過 CloudFormation 處理成 <code>zip</code>的檔案格式並上傳到 S3 上面
+<img loading="lazy" decoding="async" src="https://i.imgur.com/NDh2rU8.png" alt=""></p>
+<hr>
+<p>接著就會部署到 <code>Lambda</code> 以及 <code>Api Gateway</code> 上，並做對應 CloudFormation JSON 檔的設定
+<img loading="lazy" decoding="async" src="https://i.imgur.com/7D4v9qS.png" alt=""></p>
+<hr>
+<p>在最後部署完之後就可以看到所有的基本資訊，物件名稱、部署階段、區域、網域以及 Function 們(因為 Lambda 是 Function-base 的服務)等等的基本資訊都會在此
+<img loading="lazy" decoding="async" src="https://i.imgur.com/wCBixvO.png" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>以目前的架構基本上到這麼基本資訊都顯示出來了，若是有使用像是<code>Route 53</code>、<code>CloudFront</code>等等的服務它就會顯示在這邊了。雖然說 CloudFormation 在設定上已經很方便了，但不得不說 Serverless 真的幫忙做了很多事，讓開發者又更能專注在打 Code 上了～</p>
+<h2 id="參考">參考</h2>
+<p><a href="https://medium.com/@chihsuan/cloudformation-%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%8B-aws-%E8%B3%87%E6%BA%90-d3378b096249">使用 CloudFormation 快速部署 AWS 資源</a></p>
+</div>
+    <a class="read-more" href="/2019/10/01/Day17-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E5%AF%AB%E7%9A%84%E6%9D%B1%E8%A5%BF%E9%83%BD%E5%8E%BB%E5%93%AA%E4%BA%86/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

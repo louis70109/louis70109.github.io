@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>GitHub Actions | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/GitHub%20Actions/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>GitHub Actions</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2021-12-13T00:13:13">2021-12-13</time> · <a href="/categories/CI-CD/">CI/CD</a></p>
+    <h2><a href="/2021/12/13/github-actions-locally/">在本地端執行 GitHub Actions 跑 CI | Run your GitHub Actions locally</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>本次介紹的專案 <a href="https://github.com/nektos/act">act</a>，是一個以 Golang 實作的專案，目標可以讓開發者可以在本地端跑 GitHub Actions，不用每次要測試 CI 就先推一個沒用的 Commit 上去等(如果是生產環境也是浪費資源)，只要在本地跑就可以快速得到相關的回饋，不用再為了測試推一堆沒用的 Commit 上去了 🎉</p>
+<blockquote>
+<p>本次使用的範例專案：<a href="https://github.com/louis70109/WordsGame">https://github.com/louis70109/WordsGame</a></p>
+</blockquote>
+</div>
+    <a class="read-more" href="/2021/12/13/github-actions-locally/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2021-02-17T17:51:55">2021-02-17</time> · <a href="/categories/CI-CD/">CI/CD</a></p>
+    <h2><a href="/2021/02/17/line-notify-in-github-actions/">如何建置與使用 GitHub Actions 市集的 LINE Notify 套件</a></h2>
+    <div class="excerpt"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/line-notify-github-actions/result.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>以前不管在<strong>單元/整合測試</strong>、<strong>部署</strong>或是一些<strong>週期性</strong>的工作，有點經驗的工程師通常會很習慣寫個 Script 去跑相關指令集。而隨著寫的服務越來越多，許多部分也微服務化後，同一個指令集可能會服務到對象也越來越多，因此就開始有了像是 Jenkins、Drone、Travis 以及本篇會介紹 GitHub Actions 這類的 CI 工具，但既然是工程師當然要把指令集內的耦合性盡可能的降到最低，因此就有像是 <a href="https://github.com/marketplace">GitHub Marketplace</a> 的套件市集，讓大家可以在上面選擇不同功能的工具套入於自己的 CI 中，接下來就讓我帶你來了解一下平時會遇到什麼問題，以及如何建立與使用 LINE Notify 於 GitHub Actions 上吧！</p>
+<h1 id="以前如何知道結果？">以前如何知道結果？</h1>
+<ul>
+<li>寫 Script 並用 Linux 的排程(Crontab)在固定時間跑測試案例、爬資料、部署...等狀態</li>
+<li>CI/CD 過了之後自己上網站看 log (沒通知)</li>
+<li>即便寫通知程式在 Script 裡，未來的可用性極低(不好管控金鑰、換程式語言...)</li>
+</ul>
+<h1 id="why-github-actions">Why GitHub Actions?</h1>
+<ul>
+<li>GitHub 自家出的 CI 工具</li>
+<li>專案大多放在 GitHub 上的情況<ul>
+<li>可達到資源 Single Source of Truth</li>
+</ul>
+</li>
+<li>市集(Marketplace)已經有許多工具可以合併使用<ul>
+<li><a href="https://nijialin.com/2021/02/11/how-to-use-github-action/">之前的文章中</a>使用過 Python 自動打包與自動測試的工具</li>
+</ul>
+</li>
+</ul>
+<h1 id="why-line-notify">Why LINE Notify?</h1>
+</div>
+    <a class="read-more" href="/2021/02/17/line-notify-in-github-actions/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

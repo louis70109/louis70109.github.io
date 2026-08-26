@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 從我開始工作時，因為動態語言方便且快速上手，因此我就選擇動態語言作為我吃飯的工具。隨著時間的推進我寫過了 Python、Ruby、JavaScript，由於大多都使用 VScode 撰寫程式，對於環境設定不是很熟捻的我設定相關東西就很困擾，因此大多數都是用 print(Python)、console.log(JS">
+  <title>如何在 PyCharm 幫 Python 除蟲(Debug) | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2021/05/03/how-to-debug-python-by-pycharm-tw/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2021-05-03T00:08:16">2021-05-03</time> · <a href="/categories/Python/">Python</a></p><h1>如何在 PyCharm 幫 Python 除蟲(Debug)</h1></header>
+      <div class="post-body"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言">前言</h1>
+<p>從我開始工作時，因為<strong>動態語言</strong>方便且快速上手，因此我就選擇動態語言作為我吃飯的工具。隨著時間的推進我寫過了 Python、Ruby、JavaScript，由於大多都使用 VScode 撰寫程式，對於環境設定不是很熟捻的我設定相關東西就很困擾，因此大多數都是用 <code>print</code>(Python)、<code>console.log</code>(JS) 或是 <code>puts</code>(Ruby) 直接印在終端機上來除錯腳本或是網站。</p>
+<p>在過去這些日子中最有印象的就是使用 Ruby 的 <code>byebug</code> 套件來幫我除蟲，它是個可以在終端機透過快捷鍵讓你取得想除錯的地方開始進行除錯，對於當時的我來說簡直是福音，也讓我在那段日子中非常的快樂ＸＤ</p>
+<p>由於現在轉戰 Python 之後有了 PyCharm 這個超讚的 IDE，把 VScode 的環境就拿來寫前端跟一些部落格(Markdown)使用。因此接下來就將分享我是如何在 PyCharm 上 debug Python 相關的程式。</p>
+<h1 id="步驟">步驟</h1>
+<ol>
+<li>透過 PyCharm 開啟你的專案並選擇畫面上紅色框框的下拉式選單</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/0.png" alt=""></p>
+<ol start="2">
+<li>開啟後選擇 <code>Edit Configurations</code></li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/1.png" alt=""></p>
+<ol start="3">
+<li>讚著圖上的紅色箭頭部分操作，按下 <code>＋</code> ➡️ 選擇 <code>Python</code> ➡️ 開啟資料夾選擇你想使用的 <code>script</code> 或是 <code>web 入口檔案</code> ➡️ 設定 <code>環境變數</code> (如果地餓話) ➡️ 先 <code>Apply</code> 後 <code>OK</code></li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/2.png" alt=""></p>
+<ol start="4">
+<li>環境變數設定如下，按下 <code>＋</code> 可以增加一欄來填寫參數，把相關欄位的 Key 以及 Value 填上來新增環境變數</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/4.png" alt=""></p>
+<ol start="5">
+<li>上方欄位所寫的名稱將會對應到左方欄位的名稱，它將是執行任務時的辨識名稱</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/3.png" alt=""></p>
+<ol start="6">
+<li>你會看到如下圖範例 - <code>api debug</code>(我的任務名稱)，裡頭將會填寫你剛剛所設定的所以參數以及檔案位置(絕對路徑)</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/6.png" alt=""></p>
+<ol start="7">
+<li>在你想要測試的程式位置數字旁按下滑鼠左鍵，會看到一個紅色的按鈕，它將代表程式的中斷點，最後按下上方的 <code>🐛 圖案的按鈕</code> 來開始<strong>除蟲模式</strong>🎉</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/debug-python/5.png" alt=""></p>
+<ol start="8">
+<li>最後你就可以看到你執行時的所有資訊啦～也許是變數值、函式庫...</li>
+</ol>
+<blockquote>
+<p>如果你是在 debug web API，你需要先透過工具去觸發才會開始執行除錯模式喔！(Postman、curl...)</p>
+</blockquote>
+<h1 id="結論">結論</h1>
+<p>這也是我第一次在動態語言中使用 IDE 來幫我除錯，以前老是以為動態語言就沒辦法除錯(型別定義不清楚)，透過這次使用 PyCharm Debug 也幫助我抓出了一些程式上沒有判斷好的部分，也許哪天又忘了怎麼 Debug 時可以回來看看這一篇... XD</p>
+</div>
+      <footer class="post-tags"><a href="/tags/Python/">Python</a><a href="/tags/Pycharm/">Pycharm</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

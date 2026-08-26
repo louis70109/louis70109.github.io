@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 首先感謝六指淵提供了這麼棒的自動剪輯神器，讓我這剛入門剪輯的新手可以很快速地做一些卡接風格的使用，不過照著步驟把一些卡接內容完成之後，原本的影片是 1920x1080，拉進去會變形(1280x720)，以下若是相關處理步驟，若也有遇到類似的問題可以參考。 我的 Premiere 版本為 2022">
+  <title>【KOLpower】快速剪輯後輸出 XML 變形處理 | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2022/02/27/premiere-kolpower-fast-editing-debug/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2022-02-27T02:31:24">2022-02-27</time> · <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a></p><h1>【KOLpower】快速剪輯後輸出 XML 變形處理</h1></header>
+      <div class="post-body"><h1 id="前言">前言</h1>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/1.png" alt=""></p>
+<p>首先感謝六指淵提供了這麼棒的<a href="https://kolpower.cc/video-editor">自動剪輯神器</a>，讓我這剛入門剪輯的新手可以很快速地做一些卡接風格的使用，不過照著步驟把一些卡接內容完成之後，原本的影片是 1920x1080，拉進去會變形(1280x720)，以下若是相關處理步驟，若也有遇到類似的問題可以參考。</p>
+<ul>
+<li>我的 Premiere 版本為 2022</li>
+</ul>
+<blockquote>
+<p>※必看！使用說明：
+建議先將檔案轉檔成以下格式
+檔案格式：MP4
+(限制)
+檔案上限：200MB 內
+(建議)
+影片長度：30 分鐘內
+(建議)
+限電腦版使用
+如無符合以上條件，操作時或輸出可能會導致影片失真</p>
+</blockquote>
+<h1 id="介紹">介紹</h1>
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/2.png" alt=""></p>
+<ol>
+<li><p>把影片拉進去後把一些要調整卡接的地方弄完後，按下右下角的<code>下載 XML</code>
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/3.png" alt=""></p>
+</li>
+<li><p>下載完後到 Premiere 左上角 <code>File</code> 選擇 <code>Import..</code>
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/4.png" alt=""></p>
+</li>
+<li><p>Import 剛剛下載的 XML 後，會出現兩個檔案，原檔+卡接檔
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/5.png" alt=""></p>
+</li>
+<li><p>引入進來之後發現影片似乎縮小了，有些時候會變大
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/6.png" alt=""></p>
+</li>
+<li><p>找到剛剛拉入 sequence 的檔案(長度較短的版本)，<code>右鍵</code>選擇 <code>Sequence Settings..</code>
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/7.png" alt=""></p>
+</li>
+<li><p>這邊我出現的是 1280 與 720
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/8.png" alt=""></p>
+</li>
+<li><p>因為我習慣使用 1920 與 1080，因此這邊就把大小改成這樣
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/9.png" alt=""></p>
+</li>
+<li><p>按下儲存後會告知你如果改了就不能復原(當然 ok)
+<img loading="lazy" decoding="async" src="https://nijialin.com/images/2022/fast-edit/10.png" alt=""></p>
+</li>
+<li><p>最後就看到結果是我要的大小啦 (撒花)</p>
+</li>
+</ol>
+<h1 id="結論">結論</h1>
+<p>有了這工具之後可以在 <a href="https://kolpower.cc/video-editor">KOLpower</a> 上快速的初剪，再透過引入後加速整體剪輯的速度！有這些工具只能感謝、感謝、再感謝～～好人喝珍奶會有粗吸管～</p>
+<h1 id="參考">參考</h1>
+<ul>
+<li><a href="https://www.notion.so/XML-838912993fdc4b69be87992bac707cc7">若下載 XML 檔，連結影片後，遇到影片變形的問題，請參考此 教學 </a></li>
+</ul>
+</div>
+      <footer class="post-tags"><a href="/tags/Premiere/">Premiere</a><a href="/tags/KOLpower/">KOLpower</a><a href="/tags/XML/">XML</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

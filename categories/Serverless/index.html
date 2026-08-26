@@ -1,568 +1,250 @@
-<!DOCTYPE html>
-<html lang="zh-tw">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 8.1.1">
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PCZH6S3');</script>
-<!-- End Google Tag Manager -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nijialin.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":true,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"SY0XRJ8TKG","apiKey":"3598514b8d34a9c4d1fa895de761cfa2","indexName":"nijia_factor","hits":{"per_page":10},"labels":{"input_placeholder":"搜尋文章 & 內容","hits_empty":"找不到您輸入的關鍵字: ${query}","hits_stats":"找到了 ${hits} 筆結果，花了 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="You are what you do.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="忍者工坊">
-<meta property="og:url" content="https://nijialin.com/categories/Serverless/index.html">
-<meta property="og:site_name" content="忍者工坊">
-<meta property="og:description" content="You are what you do.">
-<meta property="og:locale" content="zh_TW">
-<meta property="article:author" content="NiJia Lin">
-<meta property="article:tag" content="LINE, python, LINE Bot, nijialin, nijia, javascript, chatbot">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://nijialin.com/categories/Serverless/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : false,
-    lang   : 'zh-tw'
-  };
-</script>
-
-  <title>分類: Serverless | 忍者工坊</title>
-  
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FYYPR3Z2K3');
-      }
-    </script>
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="忍者工坊" type="application/atom+xml">
+  <title>Serverless | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/categories/Serverless/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">忍者工坊</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>分類</p><h1>Serverless</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2024-04-04T02:16:57">2024-04-04</time> · <a href="/categories/Serverless/">Serverless</a></p>
+    <h2><a href="/2024/04/04/flyio-quick-deploy-your-service/">如何建立 fly.toml 並快速佈署至 Fly.io</a></h2>
+    <div class="excerpt"><h1 id="介紹">介紹</h1>
+<p>最近因為有些專案需要有 local Volume，但在 Serverless 上要用偏麻煩，除機器上的本身功能以外，還需要另外開 VM 讓 Container 能夠 mount volume，因此需要類似 Heroku、Fly.io 這類的 SaaS 的服務，可以用很少量的費用去使用到 Database/Volume 的功能...</p>
 </div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container"></div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
+    <a class="read-more" href="/2024/04/04/flyio-quick-deploy-your-service/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2024-03-24T13:21:50">2024-03-24</time> · <a href="/categories/Serverless/">Serverless</a></p>
+    <h2><a href="/2024/03/24/flyio-deploy-uptime-kuma/">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2024/kuma/1.png" alt=""></p>
+<h1 id="前言">前言</h1>
+<p>由於近期自己蓋了幾隻 side project，慢慢發現有些服務倒了我自己也不知道，但時間久了其實當下也會忘了要修哪...</p>
+<p>也因公司內有 status page 可以看每個服務狀態，想想這需求我也需要，因此萌生了架 status page 來幫忙確認健康狀態，接下來看看怎麼操作吧</p>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+    <a class="read-more" href="/2024/03/24/flyio-deploy-uptime-kuma/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2020-04-19T02:38:29">2020-04-19</time> · <a href="/categories/Serverless/">Serverless</a></p>
+    <h2><a href="/2020/04/19/AWS-API-Gateway-Authorizer-Serverless/">【AWS】使用 API Gateway Authorizer 做使用者驗證 feat. Serverless</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://i.imgur.com/0QAGPDc.png" alt="API Gateway Lambda authorization workflow"></p>
+<h1 id="前言">前言</h1>
+<p>在 AWS 的 API gateway 上就有一個項目(<code>Authorizer</code>)是支援 Cognito 以及客制認證的方法，好處就是在進我們寫的 API 之前有個可以做<strong>身份確認</strong>的 Lambda Function 幫我們好前處理，而本篇則會介紹如何在 Serverless framework 上設定 API gateway 的 Authorizer 以及成功讓 API 回應，串接 Cognito 做使用部分就留給之後吧！</p>
+<h4 id="👉-本篇的範例全都在-github">👉 本篇的範例全都在 <a href="https://github.com/louis70109/aws-serverless-authorizer">GitHub</a></h4>
 </div>
-
-      
-    </div>
-  </div>
-
+    <a class="read-more" href="/2020/04/19/AWS-API-Gateway-Authorizer-Serverless/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2020-02-16T01:30:03">2020-02-16</time> · <a href="/categories/Serverless/">Serverless</a></p>
+    <h2><a href="/2020/02/16/serverless-cold-start/">Serverless cold start 問題</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://i.imgur.com/gjLODpG.jpg" alt="workload"></p>
+<h1 id="前言">前言</h1>
+<p>之前鐵人賽寫了一篇文章有提到 <a href="https://nijialin.com/2019/10/14/Day30-%E8%80%81%E6%98%AF%E5%9C%A8%E5%90%B9-Serverless%EF%BC%8C%E4%BB%96%E7%9C%9F%E7%9A%84%E6%9C%89%E9%82%A3%E9%BA%BC%E5%A5%BD%EF%BC%9F/">Cold Start 的問題</a>，不過只有粗略介紹，最近看到大家忽然又開始討論這個話題，這次就來好好的搜尋資料介紹一下。</p>
+<p>平常在做 open source 時比較常遇到休眠狀態應該就是 <code>Heroku</code>，而開頭要先澄清一下他是屬於 <code>PaaS</code> 的架構，而 AWS、Google、Azure 裡提供的 <code>Lambda</code>、<code>Cloud Run</code>、<code>Azure Function</code> 這些則屬於 FaaS 架構，而最常討論 <code>Cold start</code> 時最常會在 FaaS 上討論，只是剛好 Heroku 使用起來也是一樣，這次文章就把他一起抓進來討論啦～</p>
+<blockquote>
+<p>有很多各式各樣的服務，SaaS、FaaS、KaaS、IaaS... 等各式各樣的架構，每個都是為了解決某個問題所誕生的，至於好或不好其實就是看使用場景而定，所以大家在選用時要注意一下你使用的場景哦！</p>
+</blockquote>
+<h1 id="為什麼會休眠">為什麼會休眠</h1>
+<p>一般會有休眠機制是因為這些供應商在提供服務都是提供按次計費的方案，讓開發者在用時可以需要才喚醒使用，也就是說這些服務都是 <code>事件驅動</code>(<code>Event-Driven</code>)導向，意指是當前服務若收到訊息後，會呼叫對應的 Function 來處理對應服務所接收到的資料(Queue、Notify ...)，但相對的就是會有<code>休眠</code>讓服務暫停，進而讓較少使用的服務不會因為掛在線上而一直被收費用，而重新啟動這件事就是本篇要提的<code>Cold start</code>。</p>
+<h1 id="cold-start-流程">Cold start 流程</h1>
+<p>在處理資料之後過一段時間若沒有繼續執行，雲端供應商會將模組暫停，此時 function 會處於 inactive 狀態(cold)，而當 function 再度被觸發時(<code>cold start</code>)則會再啟動模組來執行對應 function 來處理事件，在模組與 function 之間的關係可以稱他們為 <code>Function chain</code>。</p>
+<h3 id="休眠狀態喚醒流程">休眠狀態喚醒流程</h3>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/DQoGYns.png" alt="參考"></p>
+<p>以 AWS 為例，在喚醒時會到 S3 去取得檔案，接著找到相關的 Lambda 並載入相關模組套件，然後再執行觸發的事件，整理過後的下:</p>
+<blockquote>
+<p>事件處理 ➡️ 過段時間 ➡️ 暫停 function 模組(休眠) ➡️ 觸發 ➡️ 啟動 function 模組 ➡️ 事件處理...</p>
+</blockquote>
+<p>這整個流程就是俗稱的 <code>cold start</code>，因為在這個過程中會花些時間，所以若是拿來處理 api 相關問題的話就會有第一批請求很久，然後之後的請求卻特別快的狀態，請大家莫急莫慌莫害怕呀！</p>
+<h1 id="平台比較表">平台比較表</h1>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>多少時間後暫停</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS Lambda</td>
+<td>10 minutes</td>
+</tr>
+<tr>
+<td>Google Cloud Functions</td>
+<td><a href="https://mikhail.io/2018/08/serverless-cold-start-war/#gcp">介於 3 minutes 之間 5+ hours 都有</a></td>
+</tr>
+<tr>
+<td>Azure Functions</td>
+<td><a href="https://mikhail.io/2018/08/serverless-cold-start-war/#azure">20 minutes</a></td>
+</tr>
+<tr>
+<td>Heroku</td>
+<td><a href="(https://devcenter.heroku.com/articles/free-dyno-hours#dyno-sleeping)">30 minutes</a></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>前三個為 <code>FaaS</code> 架構，而 Heroku 則為 <code>PaaS</code> 架構喔！</p>
+</blockquote>
+<p>下圖則來自 2019/09 的<a href="https://mikhail.io/serverless/coldstarts/big3/">一篇文章</a>，較深色的部分則為啟動時間。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/yZxWvlL.png" alt="FaaS platform cold start time"></p>
+<h1 id="如何處理或是盡可能避免？">如何處理或是盡可能避免？</h1>
+<p>以我熟悉使用 <a href="https://serverless.com/">serverless framework</a> 部署到 AWS 來說，他們提供了一個 <a href="https://serverless.com/plugins/serverless-plugin-warmup/">warm-up</a> 的套件，可以設定排程時間讓這個 function 固定去戳其他 function，避免他們進入休眠的狀態，雖然這樣子就能達到跟一般服務一樣的常駐狀態，不過相對來說就要注意次數的使用問題，若是流量還小的話沒什麼問題，但若有一定的流量就須注意一下帳單，因為這些在互戳的過程中還是有算進費用的喔！使用上還要多注意才行。</p>
+<p>另一方面要注意相依套件的問題，引用 google <a href="https://cloud.google.com/run/docs/tips#optimizing_performance">文件的其中一段</a>:</p>
+<p>謹慎使用依附元件，如果您使用動態語言搭配相依的程式庫，例如匯入使用 Node.js 的模型，這些模組的載入時間會增加冷啟動期間的延遲時間。您可以透過以下方式縮短啟動延遲時間：</p>
+<ul>
+<li>儘可能減少相依元件的數量和大小以建置精簡的服務。</li>
+<li>只有在必要時才載入不常用的程式碼 (如果您使用的語言支援)。</li>
+<li>使用程式碼載入的最佳化，例如 PHP 的 composer 自動載入器最佳化。</li>
+</ul>
+<blockquote>
+<p>畢竟在載入模組的時候相依套件也是要一起抓進來，若是程式本身太多依賴的話也是會導致 cold start 的時間變長哦！</p>
+</blockquote>
+<p>最後就在幫大家整理一下三大平台的 warm-up 資源：</p>
+<ul>
+<li><a href="https://serverless.com/plugins/serverless-plugin-warmup/">warm-up</a></li>
+<li><a href="https://cloud.google.com/appengine/docs/standard/python/configuring-warmup-requests">Google App Engine warm up</a></li>
+<li><a href="https://www.serverlessnotes.com/docs/scheduling-with-azure-functions">Google Schedule</a></li>
+<li><a href="https://www.serverlessnotes.com/docs/scheduling-with-azure-functions">Scheduling with Azure Functions</a></li>
+</ul>
+<h1 id="結論">結論</h1>
+<p>為什麼要有 cold start 的機制，以供應商的角度來說他們可以提供一定的量讓使用者免費在平台上先建置服務，但若要免費就是服務會被暫時暫停，畢竟現在流量就是錢嗎 💰，像我常用的 Heroku 就會是這樣，而當你流量大的時候就看你要不要搬家，不過一般應該都懶得搬，就會形成所謂的<code>養、套、殺</code>🤣(離題)。</p>
+<p>總而言之，若是需要服務時常活著，就是需要付出點流量的錢 💰，也或許你的作品服務時間可能不用那麼長，只要在服勤時間內長駐活著就可以在省下一些費用，如果有需要的話還是付一些錢給供應商，畢竟人家也幫你保管了服務你說是不是？</p>
+<h1 id="參考">參考</h1>
+<ul>
+<li><a href="https://medium.com/faun/on-the-serverless-cold-start-problem-2fc0797da5cc">On the Serverless cold start problem</a></li>
+<li><a href="https://serverless.com/blog/keep-your-lambdas-warm/#installing-the-warmup-plugin">Lambda Warm-up</a></li>
+<li><a href="https://devcenter.heroku.com/articles/free-dyno-hours">Heroku cold start</a></li>
+<li><a href="https://mikhail.io/2018/08/serverless-cold-start-war/#how-do-languages-compare-">serverless 啟動流程</a></li>
+<li><a href="https://www.nuweba.com/blog/when-are-cold-starts-problem">Function Chain 來源</a></li>
+<li><a href="https://github.com/ahmetb/cloud-run-faq#cold-starts">cloud run cold start</a></li>
+</ul>
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-  <a href="https://github.com/louis70109" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content category">
-            
-
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Serverless
-          <small>分類</small>
-        </h2>
-      </div>
-
-      
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-04T02:16:57+00:00"
-              content="2024-04-04">
-          04-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/04/flyio-quick-deploy-your-service/" itemprop="url">
-            <span itemprop="name">如何建立 fly.toml 並快速佈署至 Fly.io</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-03-24T13:21:50+00:00"
-              content="2024-03-24">
-          03-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/03/24/flyio-deploy-uptime-kuma/" itemprop="url">
-            <span itemprop="name">在 Fly.io 上架設 Uptime Kuma 監控 Side Project</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-18T18:38:29+00:00"
-              content="2020-04-18">
-          04-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/18/AWS-API-Gateway-Authorizer-Serverless/" itemprop="url">
-            <span itemprop="name">【AWS】使用 API Gateway Authorizer 做使用者驗證 feat. Serverless</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-15T17:30:03+00:00"
-              content="2020-02-15">
-          02-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/02/15/serverless-cold-start/" itemprop="url">
-            <span itemprop="name">Serverless cold start 問題</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2019</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-02T05:04:28+00:00"
-              content="2019-11-02">
-          11-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/" itemprop="url">
-            <span itemprop="name">續篇 — serverless + WSGI + flask + chatbot 的開發指南</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-31T08:20:12+00:00"
-              content="2019-10-31">
-          10-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/" itemprop="url">
-            <span itemprop="name">使用 Serverless & LINE Message API 在 AWS 上打造一個 Echo bot</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目錄
-        </li>
-        <li class="sidebar-nav-overview">
-          本站概要
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="NiJia Lin"
-      src="/uploads/avatar.jpg">
-  <p class="site-author-name" itemprop="name">NiJia Lin</p>
-  <div class="site-description" itemprop="description">You are what you do.</div>
+    <a class="read-more" href="/2020/02/16/serverless-cold-start/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-11-02T13:04:28">2019-11-02</time> · <a href="/categories/Serverless/">Serverless</a></p>
+    <h2><a href="/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/">續篇 — serverless + WSGI + flask + chatbot 的開發指南</a></h2>
+    <div class="excerpt"><h1 id="前言">前言</h1>
+<p>如果還不知道 Serverless (以下簡稱 sls )的朋友可以先看我<a href="https://nijialin.com/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">上篇文章</a>，裡頭有介紹 <a href="https://github.com/louis70109/aws-line-echo-bot">Python</a> 以及 <a href="https://github.com/louis70109/aws-ruby-line-echo-bot">Ruby</a> 的範例。
+還沒接觸 Serverless 之前，當開發完一包程式時就將它部署至 Heroku，實在是有夠方便又快速(還是免費的)。不過有個問題是當程式沒在運行時他會睡覺，身為一個免費仔做的小專案這樣是夠的，做為一個貪心的免費仔怎能容許睡覺睡這麼久 🤤！但若是照著我上篇分享的文章做，佈署程式沒問題，但就開發機器人我都要佈署才能測試，這未免也太不人性了 😒。</p>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">250</span>
-          <span class="site-state-item-name">文章</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">分類</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">345</span>
-        <span class="site-state-item-name">標籤</span></a>
-      </div>
-  </nav>
+    <a class="read-more" href="/2019/11/02/serverless-WSGI-flask-chatbot-development-guide/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-31T16:20:12">2019-10-31</time> · <a href="/categories/Serverless/">Serverless</a></p>
+    <h2><a href="/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">使用 Serverless &amp; LINE Message API 在 AWS 上打造一個 Echo bot</a></h2>
+    <div class="excerpt"><h1 id="前言">前言</h1>
+<p>Serverless 架構是一個基於 FaaS(Function as a Service) 實作的一個服務，讓開發者可以更專注在開發功能，將 yml 檔設定好其餘維運的問題都交給 AWS、Google、Azure 這些服務商去處理，只要把信用卡準備好就好(?)，讓開發者在寫完程式之後不用煩惱部署得問題，減少的不少的麻煩事。
+那因為現任公司的服務都是基於 AWS，如此這般我就接觸到 Serverless(以下簡稱 sls) 這個框架啦 (想更深入了解 FaaS 架構可以參考 AWS)
+[2019/07/04 更新]
+若已經暸解的朋友可以參考我的 python 版本:
+<a href="https://github.com/louis70109/aws-line-echo-bot">louis70109/aws-line-echo-bot</a>
+Ruby 的範例版本:
+<a href="https://github.com/louis70109/aws-ruby-line-echo-bot">louis70109/aws-ruby-line-echo-bot</a></p>
+<h1 id="為什麼要-serverless">為什麼要 Serverless</h1>
+<p>[2019/06/29 更新]
+以用一個 Ruby on Rails 寫的機器人為例，在寫完個 webhook function 後，設定路由然後部署，一般主機或是虛擬機就很麻煩，要安裝佈署環境以及一安裝堆相關套件，完了之後設定 Domain 什麼的有夠花時間。但若是使用 heroku 部署就很方便，Login — Create-Deploy 馬上就結束，機器人馬上就上線了，實在是俗又大碗呀～
+但我覺得像是 LINE Message 這種 stateless 的服務，且只要一個 function + route 就能實作的程式最適合 Serverless 了，讓專案可以簡潔有力，只要寫一個 function+yml 設定並打個指令就部署了，而且 domain 還附贈 SSL，將服務交給 AWS 也不需要擔心，整個就是超級方便啊！
+Cold start time 問題，依照我目前使用的結果下來，在 heroku 以及 AWS Lambda 同時睡著的情況下，AWS 起床的回應速度大概 1 秒左右，而 heroku 則大概落在 10~15 秒(參考)。如下圖所示的免費方案，基本上開發階段應該是不至於到 100 萬/月 個請求吧 😆，所以這部分就別擔新大力地給他用下去～ (感謝 petertc 幫忙找這方面的問題 💪)</p>
+<p>AWS Lambda 免費方案
+接下來就讓我介紹如何使用 sls + LINE Message API 建立一個 Echo bot 吧！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/pNCDY4e.png" alt=""></p>
+<h1 id="環境">環境</h1>
+<p>npm 6.9.0
+python 3.7.3
+serverless 1.45.1</p>
+<h1 id="建立-aws-存取金鑰">建立 AWS 存取金鑰</h1>
+<p>首先要先有個 AWS 帳號(廢話) ，如果沒有綁定信用卡記得去綁定才能繼續，接下來就可以去就可以去建立鑰匙囉！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/XHuvbyX.png" alt="">
+如上圖，按下紅色框框的部分，接著按箭頭指的按鈕，就會建立一個我們要的金鑰囉！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/FzRCna0.png" alt="AWS secret & ID key"></p>
+<p>如上圖所示，可以下載 key，AWS 不會幫忙保存 Secret key，若這視窗關掉的話 key 就不見了，所以使用者可以自行下載檔案保存，以免哪天要部署的時候找不到 key。
+接著就將這兩個參數加入環境變數中：</p>
+<pre><code class="language-bash">export AWS_ACCESS_KEY_ID=&lt;your-key-here&gt;
+export AWS_SECRET_ACCESS_KEY=&lt;your-secret-key-here&gt;
+</code></pre>
+<h1 id="serverless-建立與部署">Serverless 建立與部署</h1>
+<p>首先先透過以下指令讓 npm 幫忙安裝 sls 的指令。</p>
+<pre><code class="language-bash">npm install serverless -g
+</code></pre>
+<p>安裝完之後就透過 sls 指令來建立專案嚕！</p>
+<pre><code class="language-bash">serverless create — template aws-python — path aws-line-echo-bot
+</code></pre>
+<blockquote>
+<p>severless 指令可以縮寫成 sls
+template = 想用什麼平台以及語言就在此模板了 (參考)
+path = 檔案名稱</p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/2KNweWB.png" alt="">
+<img loading="lazy" decoding="async" src="https://i.imgur.com/HDonmjF.png" alt=""></p>
+<p>透過 severless 建立專案指令
+依照不同的 template 可能會建立 N 個檔案，但主要還是以下三個檔案</p>
+<pre><code class="language-bash">.gitignore
+handler.py = 主程式的地方
+serverless.yml = 所有設定都在這裡，funtion 參數會對應到指定的路由
+</code></pre>
+<p>在部署前須至 serverless.yml 裡，把 runtime 的 python2.7 改至 3.7，否則會因版本問題導致錯誤。</p>
+<pre><code class="language-bash">serverless deploy # sls deploy
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/18Fnran.png" alt="Serverless 部署畫面"></p>
+<p>接著到 AWS Lambda 以及 S3 就可以看到第一次部署完的程式以及檔案囉！</p>
+<h1 id="加入-line-message-api">加入 LINE Message API</h1>
+<p>既然是寫 python，那一定是要用 line-python-sdk
+照著官方用法應該是要執行以下指令安裝套件</p>
+<pre><code class="language-bash">pip install line-bot-sdk
+</code></pre>
+<p>不過我們是要部署到 AWS 的 Lambda 上，且因為他是無伺服器運算的服務，所以他沒辦法跑 pip 去幫我安裝套件。
+此時就要出動 requirements.txt 來管理相依套件 ，但只有加入它 sls 根本不認識，因此我們需要安裝 pulgin 來讓 sls 認得(requirements.txt)。</p>
+<pre><code class="language-bash">sls plugin install -n serverless-python-requirements
+</code></pre>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/0NFfVi6.png" alt=""></p>
+<hr>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/pS7s8ls.png" alt=""></p>
+<p>安裝指令 &amp; package.json
+如圖，安裝過程中會自動建立 package.json，且會幫忙在 serverless.yml 裡面加入 pulgin，這樣 sls 在部署時就認得 requirements.txt 囉！
+接著將 LINE SDK 加入 requirements.txt， AWS 就會幫忙安裝套件了。</p>
+<pre><code class="language-bash">echo &quot;line-bot-sdk==1.12.1&quot; &gt; requirements.txt
+</code></pre>
+<p>然後新增一個 setup.cfg 並加入以下內容：</p>
+<pre><code class="language-bash">[install]
+prefix=
+</code></pre>
+<p>由於 AWS Lambda 上都會將套件安裝在本地端(Lambda 上)，因此在執行 pip install -t . -r requirements.txt 時會需要 setup.cfg。
+至於詳細原因嘛～還有請各位大大幫小弟解答 🙏
+最後就處理 handler.py 以及 serverless.yml 囉！
+將上述兩個 gist 分別貼到自己的 handler.py &amp; serverless.yml，在 hanlder.py 裡的 CHANNEL KEY &amp; TOKEN 記得換成自己的機器人 👾 哦！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/WVBHxL3.png" alt="佈屬完狀態">
+接著在執行一次 sls deploy，將程式部署上去，如上圖所示，在 endpoints 那行會有一個網址，將那網址放到 LINE Webhook URL 上並 Verify 看看有沒有成功，如下圖所示。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/CQMwc8V.png" alt="">
+最後對著自己的機器人發個話，看他有沒有回應你一模一樣的文字，若成功了就能往下一步應用層繼續開發囉！若失敗了就要檢查一下是不是有哪個步驟做錯了～</p>
+<h1 id="結論">結論</h1>
+<p>因為公司的緣故讓我能夠接觸到這神奇的 Serverless，經過這次的分享加深我對於 FaaS 的架構更加了熟悉，由於我也是初碰，我認為使用上可以把它當作是一個 Docker 的容器或許概念上會比較好理解，後續還有很多的設定檔都還沒詳細研究，最近讓我先研究研究一下再上來分享。</p>
+<blockquote>
+<p>文章中有任何勘誤歡迎指正</p>
+</blockquote>
+<p>如果覺得這篇文章有幫助的話請給我個掌聲鼓勵我一下 👋
+下列是我的這次實作的專案，如果有幫助也來顆星星吧！
+<a href="https://github.com/louis70109/aws-line-echo-bot?source=post_page-----1e3e785a2a01----------------------">louis70109/aws-line-echo-bot</a></p>
+<h1 id="參考">參考</h1>
+<ul>
+<li><a href="https://aws.amazon.com/tw/lambda/pricing/">AWS Lambda 費率問題</a></li>
+<li><a href="https://github.com/serverless/serverless">Serverless GitHub</a></li>
+<li><a href="https://serverless.com/plugins/serverless-python-requirements/">Serverless Python Requirements</a></li>
+<li><a href="https://github.com/line/line-bot-sdk-python">LINE Python SDK</a></li>
+<li><a href="https://aws.amazon.com/cn/blogs/china/iaas-faas-serverless/">FaaS 概念</a></li>
+<li><a href="https://mikhail.io/2018/08/serverless-cold-start-war/">AWS, GCP, Azure cold start time</a></li>
+</ul>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/louis70109" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;louis70109" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:louis70109@gmail.com" title="E-Mail → mailto:louis70109@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.facebook.com/linnijia/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;linnijia&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">NiJia Lin</span>
-</div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
-<script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+    <a class="read-more" href="/2019/10/31/%E4%BD%BF%E7%94%A8-Serverless-Line-Message-API-%E5%9C%A8-AWS-%E4%B8%8A%E6%89%93%E9%80%A0%E4%B8%80%E5%80%8B-Echo-bot/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
 </body>
 </html>

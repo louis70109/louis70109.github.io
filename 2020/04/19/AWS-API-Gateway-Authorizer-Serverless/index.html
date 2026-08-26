@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="前言 在 AWS 的 API gateway 上就有一個項目(Authorizer)是支援 Cognito 以及客制認證的方法，好處就是在進我們寫的 API 之前有個可以做身份確認的 Lambda Function 幫我們好前處理，而本篇則會介紹如何在 Serverless framework 上設定 API gate">
+  <title>【AWS】使用 API Gateway Authorizer 做使用者驗證 feat. Serverless | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/2020/04/19/AWS-API-Gateway-Authorizer-Serverless/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><article class="post">
+      <header><p class="post-meta"><time datetime="2020-04-19T02:38:29">2020-04-19</time> · <a href="/categories/Serverless/">Serverless</a></p><h1>【AWS】使用 API Gateway Authorizer 做使用者驗證 feat. Serverless</h1></header>
+      <div class="post-body"><p><img loading="lazy" decoding="async" src="https://i.imgur.com/0QAGPDc.png" alt="API Gateway Lambda authorization workflow"></p>
+<h1 id="前言">前言</h1>
+<p>在 AWS 的 API gateway 上就有一個項目(<code>Authorizer</code>)是支援 Cognito 以及客制認證的方法，好處就是在進我們寫的 API 之前有個可以做<strong>身份確認</strong>的 Lambda Function 幫我們好前處理，而本篇則會介紹如何在 Serverless framework 上設定 API gateway 的 Authorizer 以及成功讓 API 回應，串接 Cognito 做使用部分就留給之後吧！</p>
+<h4 id="👉-本篇的範例全都在-github">👉 本篇的範例全都在 <a href="https://github.com/louis70109/aws-serverless-authorizer">GitHub</a></h4>
+<h1 id="api-gateway---authorizer">API Gateway - Authorizer</h1>
+<ul>
+<li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">官方文件</a></li>
+</ul>
+<p>擁有 Authorizer 的一個 Serverless 服務會長這樣:</p>
+<blockquote>
+<p>User Request - [Authorizer] - API - Response user</p>
+</blockquote>
+<p>好處除了前言所提到的前處理外，還有如果設定是 <code>Edge</code> 模式 (不是透過 <code>region</code> 從網路層傳) 的話其實在認證完後傳到 API 時速度是很快的。</p>
+<p>以下就開始好好的介紹它 😆</p>
+<h2 id="實際的位置">實際的位置</h2>
+<p>如果在這邊設定覺得不知道在哪邊的話可以參考 - <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/">純手動用法官方教學</a></p>
+<p>中文的話左邊名為<code>授權方</code>，英文則是<code>Authorizer</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/v2vflgw.png" alt="API Gateway Authorizer"></p>
+<h2 id="serverless-實作">Serverless 實作</h2>
+<h3 id="yaml-settings">Yaml settings</h3>
+<p>原始如果串接 python WSGI 的話設定檔應該會長得如下:</p>
+<pre><code class="language-yaml">functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http: ANY /
+      - http: ANY {proxy+}
+</code></pre>
+<p>設定 Authorizer Lambda function，先在跟 <code>api</code> 同層加上 <code>Authorizer</code> Lambda，指定 handler 為 <code>handler 資料夾</code>下的 <code>authorizer.py</code> 的 <code>auth_handler</code> function，並且設定 <code>cors</code> 為 true，避免呼叫 api 時被 AWS 擋下來無法使用。</p>
+<p>接著在把 <code>events</code> 裡的兩個事件加上 <code>authorizer</code> 的 Function，名為 <code>ResourceAuthorizer</code>，改編過後入下:</p>
+<pre><code class="language-yaml">functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+          authorizer: ResourceAuthorizer
+      - http:
+          path: /{proxy+}
+          method: ANY
+          authorizer: ResourceAuthorizer
+  ResourceAuthorizer:
+    handler: handler/authorizer.auth_handler
+    cors: true
+</code></pre>
+<ul>
+<li>這部分參考來自 <a href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#http-endpoints-with-custom-authorizers">Serverless docs</a></li>
+</ul>
+<blockquote>
+<p>只要透過簡單的設定 function 就可以互相溝通是不是很像 docker compose 呀 😏</p>
+</blockquote>
+<h2 id="處理-lambda-function-handler">處理 Lambda function handler</h2>
+<p><a href="https://github.com/awslabs/aws-apigateway-lambda-authorizer-blueprints/blob/master/blueprints/python/api-gateway-authorizer-python.py#L15">參考並複製官方的範例程式</a>會看到我的開頭要從 <code>event</code> 取得 token:</p>
+<pre><code class="language-python">event_token = event.get(&#39;authorizationToken&#39;)
+</code></pre>
+<blockquote>
+<p>🐛🐛 這裡雖然是取 <code>authorizationToken</code>，不過呼叫 api 時 header 是要帶 <code>Authorization</code>，如此一來 Api gateway 才會收到對的值，這邊是需要注意 AWS 比較不一樣的地方！
+<a href="https://github.com/awslabs/aws-apigateway-lambda-authorizer-blueprints/blob/master/blueprints/python/api-gateway-authorizer-python.py#L17">參考支援在這啦 QQ</a></p>
+</blockquote>
+<p>取得 token 後一般就會做身份驗證的部分，以我的例子來說我就是解 JWT 下來做驗證，這邊為了 Demo 就先不處理它。</p>
+<h2 id="產生-auth-policy">產生 Auth Policy</h2>
+<p>官方提供的範例版本是 Node.js[<a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html#api-gateway-lambda-authorizer-request-lambda-function-create">參考資料</a>]，但畢竟我們是用 python 看著 javascript 我怎麼用啊！！</p>
+<p>因此查了一番找到了範例: <a href="https://github.com/awslabs/aws-apigateway-lambda-authorizer-blueprints">aws-apigateway-lambda-authorizer-blueprints</a>，只是說沒有任何文件使用起來只能靠本能了 😭，這邊他很佛心的提供 <code>dotnet</code>、<code>golang</code>、<code>python</code>、<code>java</code>、<code>node.js</code>以及 <code>rust</code> 的範例，基本上常在 Serverless 上跑的語言都有了，就只好放過它一馬了 😇</p>
+<p>基本上從官方的範例終止需要改寫成像<a href="https://github.com/louis70109/aws-serverless-authorizer/blob/master/handler/authorizer.py">我專案這樣</a>只要注意 <code>auth_handler</code> 裡面的內容需要填什麼即可。</p>
+<p>其他需要注意的就如<a href="https://github.com/louis70109/aws-serverless-authorizer/blob/master/handler/authorizer.py#L25">第 25 行的 policy</a>以及 <a href="https://github.com/louis70109/aws-serverless-authorizer/blob/master/handler/authorizer.py#L28">28 行的 build policy</a>所產出的東西需要確認清楚才行:</p>
+<pre><code class="language-python">policy.allowAllMethods()
+
+# Finally, build the policy
+authResponse = policy.build()
+</code></pre>
+<p>而下面的 class code 就可以先忽略不管，因為那些官方是為了產生出 Authorizer 回應狀態 pattern 所使用的 code，即便我們去改也出不了什麼作用:</p>
+<pre><code class="language-python">class HttpVerb:
+    GET = &quot;GET&quot;
+    ...
+
+class AuthPolicy(object):
+    awsAccountId = &quot;&quot;
+    ...
+</code></pre>
+<h2 id="lambda-回應狀態">Lambda 回應狀態</h2>
+<p>Authorizer 認證成功之後 Lambda 會回傳給 API Gateway 的 pattern：</p>
+<pre><code class="language-json">{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Action&quot;: &quot;execute-api:Invoke&quot;,
+      &quot;Effect&quot;: &quot;Allow&quot;,
+      &quot;Resource&quot;: &quot;arn:aws:execute-api:us-east-1:123456789012:ivdtdhp7b5/ESTestInvoke-stage/GET/&quot;
+    }
+  ]
+}
+</code></pre>
+<p>認證失敗回傳的樣子:</p>
+<pre><code class="language-json">{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Action&quot;: &quot;execute-api:Invoke&quot;,
+      &quot;Effect&quot;: &quot;Deny&quot;,
+      &quot;Resource&quot;: &quot;arn:aws:execute-api:us-east-1:123456789012:ivdtdhp7b5/ESTestInvoke-stage/GET/&quot;
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p>這些都會是透過 AuthPolicy 來產生的，直接對 Function return value 是部會作用的。</p>
+</blockquote>
+<h1 id="使用心得-踩坑">使用心得 (踩坑)</h1>
+<ul>
+<li>Header 收的名稱是 <code>Authorization</code>，但程式是收<code>authorizationToken</code>，<a href="">參考</a>。</li>
+<li>只能 raise Exception(&#39;Unauthorized&#39;)，多一字少一字都不行，真的很奇怪，<a href="https://github.com/awslabs/aws-apigateway-lambda-authorizer-blueprints/blob/master/blueprints/python/api-gateway-authorizer-python.py#L29">參考</a>。</li>
+<li>好不容易找到的範例預設是會先 <code>deny</code> 掉使用者，但這在測行為會很困擾，<a href="https://github.com/awslabs/aws-apigateway-lambda-authorizer-blueprints/blob/master/blueprints/python/api-gateway-authorizer-python.py#L52">官方範例 code</a>。</li>
+</ul>
+<h1 id="結論">結論</h1>
+<p>以往都要使用框架(Flask, Django...)裡提供的功能實作 middleware 來做處理，但若使用像 AWS、Google、Azure 他們 Serverless 服務的話不妨使用 Authorizer 來做驗證，除了認證使用者以外還可以藉由這些 Function Service 來降低 API 的負載，讓它們可以更專心地處理後端邏輯的問題。</p>
+<blockquote>
+<p>如果真的很想知道 Authorizer 的行為機制的話可以看看這篇官方文件 - <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/call-api-with-api-gateway-lambda-authorization.html">使用 postman 去測試 authorizer</a></p>
+</blockquote>
+<h1 id="參考">參考</h1>
+<ul>
+<li><p><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-from-example.html">純手動用法官方教學</a></p>
+</li>
+<li><p><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">AWS Authorizer Official Document</a></p>
+</li>
+<li><p><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/call-api-with-api-gateway-lambda-authorization.html">使用 postman 去測試 authorizer</a></p>
+</li>
+<li><p><a href="https://github.com/awslabs/aws-apigateway-lambda-authorizer-blueprints">範例 aws-apigateway-lambda-authorizer-blueprints</a></p>
+</li>
+<li><p><a href="https://serverless.com/framework/docs/providers/aws/events/apigateway#http-endpoints-with-custom-authorizers">Serverless Docs settings</a></p>
+</li>
+</ul>
+</div>
+      <footer class="post-tags"><a href="/tags/AWS/">AWS</a><a href="/tags/Serverless/">Serverless</a><a href="/tags/API%20Gateway/">API Gateway</a><a href="/tags/Authorizer/">Authorizer</a><a href="/tags/Python/">Python</a><a href="/tags/Amazon%20Web%20Service/">Amazon Web Service</a><a href="/tags/JWT/">JWT</a></footer>
+    </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

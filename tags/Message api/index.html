@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>Message api | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/Message%20api/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>Message api</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-06T21:01:02">2019-10-06</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/">Day22 - 最常用的搭配 - 使用 Login + Message API 讓使用者在掃描加入好友時就綁定帳號</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>在第 Day 13 Python SDK 試玩的時候使用過 get_profile，當時使用時就是在每次訊息來的時候才去 SQL 儲存使用者資訊，若只是單純想要使用者資訊的話這樣用好像有點多餘 😓，以下就帶各位簡單的實作。</p>
+<h2 id="實作">實作</h2>
+<p>我們要將上篇的前端頁面(line_login_auth.html)改造一下</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;LINE Login&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    $.ajax({
+      url: &quot;https://YOUR_SLS_DOMAIN.us-east-1.amazonaws.com/dev/line/auth&quot;,
+      method: &quot;POST&quot;,
+      success: function(data) {
+        window.location.replace(data.result);
+      }
+    });
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>這邊我將 button 的 onclick 事件以及 button 本身移除掉，目的是要讓使用者一到這個頁面之後就直接透過 AJAX call api</p>
+<p>到了這裡應該有感應到什麼了吧！接著就是把這個 html 檔的 S3 路徑網址使用 QR code 包起來，讓他看起來像是 LINE bot 的 QR code</p>
+<p>到了這邊基本上已經快完成了，參考 LINE 的<a href="https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/?fbclid=IwAR25G73QmKIGm1l7kPNFzDIpMwBKQRQVxPP8ZpPzp3p-FSES2fnWcVCue_c">好友說明</a>或下圖
+<img loading="lazy" decoding="async" src="https://i.imgur.com/fEEzOsy.png" alt=""></p>
+<p>接著到機器人的開發者頁面，並且往下滑會看到自己機器人的 QR code 以及 Bot 的 ID，把他複製下來並製作機器人的加好友網址
+<img loading="lazy" decoding="async" src="https://i.imgur.com/Mn3RG26.png" alt=""></p>
+<p>像是這樣子</p>
+<pre><code>https://line.me/R/@1234
+</code></pre>
+<p>接著到 <code>controller/line_login_controller.py</code>的<code>def get(self)</code>最後一行，原本我們這邊做的是回傳 JSON</p>
+<pre><code class="language-python">if dt:
+			return {&#39;result&#39;: dt}, 200
+</code></pre>
+<p>改用</p>
+<pre><code class="language-python">from flask import redirect
+if dt:
+ 		return redirect(&quot;https://line.me/R/ti/p//@127ojvgz&quot;, code=302)
+</code></pre>
+<p>如此一來在登入驗證完之後就會把使用者導向到加好友的頁面，在手機上若已經加過好友則會直接導到機器人對話窗上，如此一來就可以讓使用者在加入好友的同時也綁定完帳號，在未來使用的時候 api 這邊也比較好控管使用者的權限問題。</p>
+<h2 id="結論">結論</h2>
+<p>像是我自己做的健身記錄機器人，就是以這個方法下去實作，有聽過一些朋友跟我反應這樣的方法多此一舉，但我認為若是有網頁的話也是套用 LINE SSO 來實作，就可以讓兩個入口去統一，在狀態流上就能比較好控制了。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/8fKlsAt.jpg" alt=""></p>
+</div>
+    <a class="read-more" href="/2019/10/06/Day22-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%90%AD%E9%85%8D-%E4%BD%BF%E7%94%A8-Login-Message-API-%E8%AE%93%E4%BD%BF%E7%94%A8%E8%80%85%E5%9C%A8%E6%8E%83%E6%8F%8F%E5%8A%A0%E5%85%A5%E5%A5%BD%E5%8F%8B%E6%99%82%E5%B0%B1%E7%B6%81%E5%AE%9A%E5%B8%B3%E8%99%9F/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-26T20:39:32">2019-09-26</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/">Day12 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (3) - 應聲蟲實作</a></h2>
+    <div class="excerpt"><h2 id="實作">實作</h2>
+<p>新增兩個 LINE Channel key 至 <code>.env</code></p>
+<pre><code>LINE_CHANNEL_TOKEN=
+LINE_CHANNEL_SECRET_KEY=
+</code></pre>
+<p>接著加入 LINE 的 python SDK 至 requirements.txt</p>
+<pre><code>line-bot-sdk==1.12.1
+</code></pre>
+<p>透過 pip 安裝一下</p>
+<pre><code>pip install -r requirements.txt --user
+</code></pre>
+<p>在 controller/ 底下新增一個 message_api_controller.py 並輸入以下程式</p>
+<pre><code class="language-python">from flask import Flask, request, abort
+from flask_restful import Resource
+import json
+import os
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
+
+
+class LineMessageApiWebhookController(Resource):
+    def post(self):
+        line_bot_api = LineBotApi(os.getenv(&#39;LINE_CHANNEL_TOKEN&#39;))
+        handler = WebhookHandler(os.getenv(&#39;LINE_CHANNEL_SECRET_KEY&#39;))
+
+        # get X-Line-Signature header value
+        signature = request.headers[&#39;X-Line-Signature&#39;]
+
+        body = request.get_data(as_text=True)
+        event = json.loads(body)
+        print(event)
+        try:
+            handler.handle(body, signature)
+        except InvalidSignatureError:
+            print(
+                &quot;Invalid signature. Please check your channel access token/channel secret.&quot;)
+            abort(400)
+
+        token = event[&#39;events&#39;][0][&#39;replyToken&#39;]
+        if token == &quot;00000000000000000000000000000000&quot;:
+            pass
+        else:
+            line_bot_api.reply_message(token, TextSendMessage(
+                text=event[&#39;events&#39;][0][&#39;message&#39;][&#39;text&#39;]))
+        return &#39;OK&#39;
+</code></pre>
+<p>用任何語言都會看到回傳會有 200, &#39;OK&#39;...回傳的成功訊息，在內部系統的部分在處理時要考慮到回傳時間的問題，一般來說如果回傳的時間大於 1 秒的話就有可能失效，或許有些朋友有測試過大於 1 秒也可以，但最好還是於時間內回覆哦！</p>
+<blockquote>
+<p>以下圖片來自 <a href="https://engineering.linecorp.com/zh-hant/blog/line-device-10/">https://engineering.linecorp.com/zh-hant/blog/line-device-10/</a></p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/nrJl2XM.png" alt="https://engineering.linecorp.com/zh-hant/blog/line-device-10/"></p>
+<p>接著在 api.py 加入下面兩段 code，新增一個<code>webhook</code>的路由</p>
+<pre><code class="language-python">from controller.message_api_controller import LineMessageApiWebhookController
+api.add_resource(LineMessageApiWebhookController, &#39;/webhook&#39;)
+</code></pre>
+<p>這邊可以使用<code>sls wsgi serve</code> + <code>ngrok</code>去搭配做測試</p>
+<p>接著就部署啦</p>
+<pre><code>sls deploy
+</code></pre>
+<blockquote>
+<p>現在在接這種第三方的 API 時最好都使用 <code>https</code>，而使用 Serverless 的好處就是 AWS 在部署完之後會送你一個含有 SSL 的網址～</p>
+</blockquote>
+<p>把網址貼到 <code>webhook URL</code> 上並在尾端加上 <code>/webhook</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/uoiU96f.png" alt=""></p>
+<p>測試結果如下
+<img loading="lazy" decoding="async" src="https://i.imgur.com/9wPNuma.png" alt=""></p>
+<h2 id="結論">結論</h2>
+<p>這次整合了以前寫的 <a href="https://github.com/louis70109/aws-line-wsgi-python">Repo</a>，加入了<code>.env</code>讓我在抓下來使用時也更方便，也整合成 Restful 格式讓之後有需要的人在看 code 時可以更容易理解了～</p>
+<p>專案也會持續更新，更多詳情可以 follow 我的專案 <a href="https://github.com/louis70109/aws-python-line-api">aws-python-line-api</a>。</p>
+</div>
+    <a class="read-more" href="/2019/09/26/Day12-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-3-%E6%87%89%E8%81%B2%E8%9F%B2%E5%AF%A6%E4%BD%9C/">繼續閱讀</a>
+  </article><article class="post-card">
+    <p class="post-meta"><time datetime="2019-09-25T20:38:18">2019-09-25</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/">Day11 - LINE 的服務都玩了，怎麼能忘了 Message api (Bot) 呢？ (2) - 申請一步步</a></h2>
+    <div class="excerpt"><h2 id="前言">前言</h2>
+<p>今天會帶大家如何一步一步的建立 Message api 以及需要注意設定的地方。</p>
+<h2 id="實作">實作</h2>
+<ol>
+<li>首先先到 <a href="https://developers.line.biz/zh-hant/">https://developers.line.biz/zh-hant/</a> ，點選右上角的大頭貼並選擇 <code>Add new provider</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/ZDumwCq.jpg" alt=""></li>
+<li>接著在 Provider name 填上自己的想要的名稱
+<img loading="lazy" decoding="async" src="https://i.imgur.com/JrSgcQO.png" alt=""></li>
+<li>再次確認
+<img loading="lazy" decoding="async" src="https://i.imgur.com/D86u1mQ.png" alt=""></li>
+<li>選擇想要使用那種服務，這邊我們就選擇<code>Message API</code>並按下<code>Create Channel</code>
+<img loading="lazy" decoding="async" src="https://i.imgur.com/8WA1uER.png" alt=""></li>
+<li>接著就開始填寫自己的機器人(channel)所需要的資訊嚕！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/VQWPJtn.png" alt=""></li>
+<li>這邊我們需要填寫的內容為
+6.1. 大頭貼(option)
+6.2. 名稱 App name (required)
+6.3. 描述 app description (required)
+6.4. 類別與子類別 Catagory (required)
+6.5. 信箱 Email address (required)
+6.6. 政策網址 Policy URL (option)
+6.7. 服務條款網址 Term of use URL (option)</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="https://i.imgur.com/0Wj570j.png" alt="">
+<img loading="lazy" decoding="async" src="https://i.imgur.com/7TW5dzU.png" alt=""></p>
+<hr>
+<ol start="7">
+<li>當填寫完之後的寫一步最後會需要勾兩個服務說明確認的選項並按下 Create
+<img loading="lazy" decoding="async" src="https://i.imgur.com/VsLYgJK.png" alt=""></li>
+<li>如此一來就看到自己百般折騰建立出來的 Message api 啦
+<img loading="lazy" decoding="async" src="https://i.imgur.com/6tBdbEa.png" alt=""></li>
+<li>滑到最下面，首先掃描 QR code 加入自己機器人的好友讓接下來好測試，接著按下圖篇右手邊的 Set message 進入調整頁面
+<img loading="lazy" decoding="async" src="https://i.imgur.com/wTxU7FM.png" alt=""></li>
+<li>進入之後到下面，將<strong>歡迎訊息</strong> &amp; <strong>自動回應</strong> <code>停用</code>，並將 <strong>Webhook</strong> 打開，讓之後的串接可以透過 Webhook 打到 Serverless 上，若是前兩個回應的選項沒有關的話即使 Webhook 有啟動也會因為優先權問題被擋下來哦！
+<img loading="lazy" decoding="async" src="https://i.imgur.com/gS2k9ZP.png" alt=""></li>
+</ol>
+</div>
+    <a class="read-more" href="/2019/09/25/Day11-LINE-%E7%9A%84%E6%9C%8D%E5%8B%99%E9%83%BD%E7%8E%A9%E4%BA%86%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%83%BD%E5%BF%98%E4%BA%86-Message-api-Bot-%E5%91%A2%EF%BC%9F-2-%E7%94%B3%E8%AB%8B%E4%B8%80%E6%AD%A5%E6%AD%A5/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>
