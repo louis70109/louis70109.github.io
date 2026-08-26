@@ -29,12 +29,12 @@ npm install
 ### 1. 建立新草稿
 
 ```bash
-npm run new -- <slug> "標題"
+npm run new '<slug>'
 ```
 
 - `slug` 會對應檔名 `source/_drafts/<slug>.md`
 - `slug` 不可包含空白或斜線
-- 標題可省略；未提供時會使用 `slug` 作為標題
+- 預設使用 `slug` 作為標題，可在建立後編輯 front matter
 - 指令會建立草稿模板，內容包含：
 
 ```md
@@ -60,12 +60,12 @@ date: YYYY-MM-DD HH:mm:ss +0800
 ### 3. 發布草稿
 
 ```bash
-npm run p -- <slug>
+npm run p '<slug>'
 ```
 
 - 草稿會從 `source/_drafts/<slug>.md` 移到 `source/_posts/<slug>.md`
 - 若同名已發布文章存在，指令不會覆寫，會直接失敗
-- `npm run publish -- <slug>` 也可使用，效果相同
+- `npm run publish '<slug>'` 也可使用，效果相同
 
 ## 測試
 
@@ -87,10 +87,10 @@ npm run build
 
 ## 開發流程
 
-1. 執行 `npm run new -- <slug> "標題"` 建立草稿
+1. 執行 `npm run new '<slug>'` 建立草稿
 2. 在 `source/_drafts/<slug>.md` 撰寫內容
 3. 將圖片放在 `source/images/` 或 `source/uploads/`
-4. 執行 `npm run p -- <slug>` 發布文章
+4. 執行 `npm run p '<slug>'` 發布文章
 5. 執行 `npm test`
 6. 執行 `npm run build`
 7. 確認 `public/` 內容後 push 到 `main`
