@@ -9,7 +9,10 @@
   "scripts": {
     "build": "node scripts/site.mjs",
     "test": "node --test",
-    "d": "git add . && git commit -m 'Publish' && git push"
+    "d": "git add . && git commit -m 'Publish' && git push",
+    "new": "node scripts/content.mjs new",
+    "publish": "node scripts/content.mjs publish",
+    "p": "node scripts/content.mjs publish"
   },
   "dependencies": {
     "less": "^4.4.1",
