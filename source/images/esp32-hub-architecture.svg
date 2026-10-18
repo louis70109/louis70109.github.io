@@ -1,0 +1,43 @@
+<svg viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="架構圖：ESP32-C6 透過 HTTPS 與 MQTTS 連到 Fly.io 上的單一程式，管理頁面用帳密登入">
+  <style>
+    text { font: 13px system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: #1f2430; }
+    .sub { fill: #6a7282; font-size: 12px; }
+    .box { fill: #ffffff; stroke: #8a93a3; stroke-width: 1.4; }
+    .fly { fill: #fff1e8; stroke: #c2410c; stroke-width: 1.6; }
+    .line { stroke: #6a7282; stroke-width: 1.5; fill: none; }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#6a7282"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="760" height="290" fill="#ffffff"/>
+
+  <rect class="box" x="16" y="95" width="150" height="100" rx="10"/>
+  <text x="91" y="132" text-anchor="middle" font-weight="600">ESP32-C6</text>
+  <text class="sub" x="91" y="154" text-anchor="middle">NVS 存 API Key</text>
+  <text class="sub" x="91" y="172" text-anchor="middle">IR 發射 / 接收</text>
+
+  <rect class="fly" x="280" y="14" width="310" height="262" rx="14"/>
+  <text x="435" y="40" text-anchor="middle" font-weight="600">Fly.io · 單一機器</text>
+  <rect class="box" x="298" y="56" width="274" height="62" rx="8"/>
+  <text x="435" y="82" text-anchor="middle">Express</text>
+  <text class="sub" x="435" y="102" text-anchor="middle">REST API + 管理頁面</text>
+  <rect class="box" x="298" y="130" width="274" height="62" rx="8"/>
+  <text x="435" y="156" text-anchor="middle">Aedes</text>
+  <text class="sub" x="435" y="176" text-anchor="middle">MQTT broker（上下線偵測）</text>
+  <rect class="box" x="298" y="204" width="274" height="56" rx="8"/>
+  <text x="435" y="228" text-anchor="middle">SQLite</text>
+  <text class="sub" x="435" y="247" text-anchor="middle">掛在 volume，兩邊共用</text>
+
+  <rect class="box" x="650" y="95" width="94" height="100" rx="10"/>
+  <text x="697" y="140" text-anchor="middle" font-weight="600">管理頁面</text>
+  <text class="sub" x="697" y="162" text-anchor="middle">瀏覽器</text>
+
+  <path class="line" d="M166 128 L296 87" marker-end="url(#ar)"/>
+  <path class="line" d="M166 162 L296 161" marker-end="url(#ar)"/>
+  <path class="line" d="M650 140 L574 92" marker-end="url(#ar)"/>
+  <text class="sub" x="188" y="92" transform="rotate(-18 188 92)">HTTPS · X-API-Key</text>
+  <text class="sub" x="192" y="182">MQTTS 8883</text>
+  <text class="sub" x="596" y="128" transform="rotate(32 596 128)">帳密登入</text>
+</svg>
