@@ -1,3 +1,4 @@
+https://nijialin.com/2026/10/19/esp32-c6-fly-io-device-hub/
 https://nijialin.com/2026/04/13/2026-04-13-openclaw-line-bot-setup-complete/
 https://nijialin.com/2026/04/05/openclaw-troubleshooting-20260405/
 https://nijialin.com/2026/03/01/niseko-experience-20260301/

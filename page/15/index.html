@@ -21,6 +21,26 @@
     </nav>
   </header>
   <main id="content" class="content"><article class="post-card">
+    <p class="post-meta"><time datetime="2021-03-28T22:46:50">2021-03-28</time> · <a href="/categories/Python/">Python</a></p>
+    <h2><a href="/2021/03/28/postgresql-sqlalchemy-prefix-debug/">解決 SQLAlchemy 無法在 Heroku 上連接 PostgreSQL</a></h2>
+    <div class="excerpt"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/heroku.png" alt=""></p>
+<h1 id="tldr">TL;DR</h1>
+<p>Heroku Postgresql 引入時預設 DATABASE_URL 的開頭是 <code>postgres</code>，因 Python ORM - SQLAlchemy 有先天限制問題，需另起一個環境變數並改成 <code>postgresql</code> 才不會遇到：</p>
+<pre><code>sqlalchemy.exc.NoSuchModuleError: Can&#39;t load plugin: sqlalchemy.dialects:postgres
+</code></pre>
+</div>
+    <a class="read-more" href="/2021/03/28/postgresql-sqlalchemy-prefix-debug/">繼續閱讀</a>
+  </article><article class="post-card">
     <p class="post-meta"><time datetime="2021-03-27T21:03:36">2021-03-27</time> · <a href="/categories/JavaScript/">JavaScript</a></p>
     <h2><a href="/2021/03/27/vue3-composition-vite-intro/">簽書會紀錄 | Vue3 | Composition API | Vite</a></h2>
     <div class="excerpt"><style>
@@ -228,26 +248,7 @@
 </ul>
 </div>
     <a class="read-more" href="/2021/02/03/side-project-p-league/">繼續閱讀</a>
-  </article><article class="post-card">
-    <p class="post-meta"><time datetime="2021-01-27T22:46:04">2021-01-27</time> · <a href="/categories/%E9%96%B1%E8%AE%80/">閱讀</a></p>
-    <h2><a href="/2021/01/27/deep-work-reading/">深度工作力 - 讀書心得</a></h2>
-    <div class="excerpt"><style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/deep-work/1.jpeg" alt=""></p>
-<h1 id="前言">前言</h1>
-<p>一直以來也都看過許多人分享(<a href="https://www.evanlin.com/reading-deep-work/">例如</a>)，這本大概是去年十月多那邊買的，因為適逢 TECHPULSE 而被我冷落的書，因此今天就來還書債。</p>
-<p>不管螢幕前的你是為工程師、運動員、或是其他任何職位的工作者，其實都需要大量的專注度才有把法執行好事情(程式、文章、跑戰術...)，那接下來就用些例子來介紹內容。</p>
-</div>
-    <a class="read-more" href="/2021/01/27/deep-work-reading/">繼續閱讀</a>
-  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><span aria-current="page">15</span><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a></nav></main>
+  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><span aria-current="page">15</span><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a><a href="/page/26/">26</a></nav></main>
   <footer>© 2026 NiJia Lin</footer>
   <script src="/assets/main.js" defer></script>
 </body>

@@ -29,6 +29,14 @@
       </button>
     </div>
   </form><article class="post-card">
+    <p class="post-meta"><time datetime="2026-10-19T00:50:00">2026-10-19</time> · <a href="/categories/%E6%8A%80%E8%A1%93/">技術</a></p>
+    <h2><a href="/2026/10/19/esp32-c6-fly-io-device-hub/">ESP32-C6 + Fly.io 裝置管理站實作筆記：註冊碼與自動換 Key</a></h2>
+    <div class="excerpt"><p>這陣子手邊的 ESP32-C6 要做一件聽起來很簡單的事：把紅外線發射的訊號、設備開關機的紀錄，通通丟到雲端存起來，然後打開網頁，一眼看出「這塊板子現在是死是活、設備有沒有在跑」。</p>
+<p>說實話，我一開始的想法是：不就一支 API 嗎？結果越做越發現，真正麻煩的從來不是「收資料」，而是 <strong>怎麼讓一堆板子安安全全地證明自己是誰</strong>。Key 要怎麼塞進板子？外洩了怎麼辦？放在現場沒人管的板子，Key 能不能自己換？</p>
+<p>這篇就是把整個過程記下來：架構怎麼選、Key 的生命週期怎麼設計、部署到 Fly.io 的細節，以及我（和 Claude Code）一路踩到的坑。先講在前面：<strong>伺服器端已經上線、也測過了，但 ESP32 韌體我只寫了範例，還沒有真的編譯、燒進板子</strong>。後面會老實交代。</p>
+</div>
+    <a class="read-more" href="/2026/10/19/esp32-c6-fly-io-device-hub/">繼續閱讀</a>
+  </article><article class="post-card">
     <p class="post-meta"><time datetime="2026-04-13T17:15:00">2026-04-13</time> · <a href="/categories/%E6%8A%80%E8%A1%93/">技術</a></p>
     <h2><a href="/2026/04/13/2026-04-13-openclaw-line-bot-setup-complete/">2010 年老筆電復活！OpenClaw LINE 頻道配對實戰與解密</a></h2>
     <div class="excerpt"><p>這幾天在測試 <a href="https://github.com/openclaw/openclaw">OpenClaw</a> 的 LINE 頻道整合。說實話，我是在這台 MacBook Air 2010（我的老戰友，現在只能拿來當伺服器跑）上面測試的。雖然硬體已經是「古董」級別，但 OpenClaw 的反應速度真的驚豔到我。</p>
@@ -103,15 +111,7 @@
 <p>這次安排了三天的滑雪日，一天一雪場的計畫，也將這次的內容記錄下來，給未來有需要的朋友參考看看喔！</p>
 </div>
     <a class="read-more" href="/2025/03/25/2025-03-snowboarding-at-hokkaido/">繼續閱讀</a>
-  </article><article class="post-card">
-    <p class="post-meta"><time datetime="2024-09-14T13:10:00">2024-09-14</time> · <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a></p>
-    <h2><a href="/2024/09/14/steam-recover-by-backup-windows/">如何復原 Steam 遊戲紀錄檔 | 黑神話悟空</a></h2>
-    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2024/steam-backup/1.png" alt=""></p>
-<h1 id="前言">前言</h1>
-<p>事情是這樣的，由於我跟家人個別有一台 PC，參考了巴哈上面的說法(<a href="https://forum.gamer.com.tw/C.php?bsn=60599&snA=31999">URL</a>)，為了省錢登入同樣的帳號，想說用<strong>離線模式</strong>就可以一起玩，但殊不知...操作上出了點失誤，結果我從 9/9 ~ 9/14 的記錄都消失(被覆蓋)，找了一下網路上的做法，看了檔案路徑中發現 Steam 居然有備份(超感動)，以下介紹一下如何救回來～</p>
-</div>
-    <a class="read-more" href="/2024/09/14/steam-recover-by-backup-windows/">繼續閱讀</a>
-  </article><nav class="pagination" aria-label="分頁"><span aria-current="page">1</span><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a></nav></main>
+  </article><nav class="pagination" aria-label="分頁"><span aria-current="page">1</span><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a><a href="/page/26/">26</a></nav></main>
   <footer>© 2026 NiJia Lin</footer>
   <script src="/assets/main.js" defer></script>
 </body>

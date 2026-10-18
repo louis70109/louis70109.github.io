@@ -21,6 +21,68 @@
     </nav>
   </header>
   <main id="content" class="content"><article class="post-card">
+    <p class="post-meta"><time datetime="2019-10-13T21:08:19">2019-10-13</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
+    <h2><a href="/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">Day29 - LINE API 的使用心得</a></h2>
+    <div class="excerpt"><ul>
+<li><p>Imagemap</p>
+<ul>
+<li>這邊以微股力為範例，這隻機器人會再回應的時候輸出一張圖片讓使用者看到股票的曲線圖，然後圖片下方做三個類似按鈕的圖片在上面，再藉由設定觸發訊息在座標上，當使用者按到的時候就很像再按按鈕，更多使用方法或是 UX 上的問題可以參考 <a href="https://www.facebook.com/uxerlab/">UX 三刀流</a>。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/A0yDTJm.png" alt=""></li>
+</ul>
+</li>
+<li><p>Richmenu</p>
+<ul>
+<li>Richmenu 等於把 imagemap 活生生的塞在下面，讓使用者再進聊天室時就能馬上看到圖片並按下對應的區塊而不用再輸入指令把 Imagemap 叫出來，如此就少了個步驟了，並讓開發者可以有更多的發揮空間呢！</li>
+</ul>
+</li>
+<li><p>設計工具</p>
+<ul>
+<li><a href="https://developers.line.biz/en/services/bot-designer/">Bot designer</a>
+這個工具是桌面版，可以直接抓下來在本地端直接設計，
+<img loading="lazy" decoding="async" src="https://i.imgur.com/dDMSCXu.png" alt="">
+<img loading="lazy" decoding="async" src="https://i.imgur.com/c2pYpFx.png" alt=""></li>
+<li><a href="https://developers.line.biz/console/fx-beta/">FLEX MESSAGE SIMULATOR [β]</a>
+它有提供<a href="https://developers.line.biz/console/fx-beta/">線上工具</a>讓大家可以在線上直接測試樣板或是直接刻自己想要的樣板。<ul>
+<li>使用心得：因為寫 Rails 基本上就是在寫全端了，難免會碰到 CSS，身為一個後端工程師排版，一定要用 flex 這個超級毒品(\吸起來/)，接著過了一段時間後接觸到 LINE bot，且 flex message 也是基於 <a href="https://www.w3.org/TR/css-flexbox-1/">Flexbox</a> 的規格去實作的，所以很多排版上觀念都很像，也就不太會有障礙了 😁。
+且在排版上還有表格告知你什麼 component 要在什麼區塊內才能用，多佛心啊～
+<img loading="lazy" decoding="async" src="https://i.imgur.com/Fowpoyb.png" alt="">
+<img loading="lazy" decoding="async" src="https://i.imgur.com/zELPSA0.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>API 文件</p>
+<ul>
+<li>在最近幾個月的時候 LINE 的文件有改版，讓某些 API 可以在線上就能測了，看起來是滿讚的，若在逛文件時碰巧想測試這些功能的話可以直接把相關參數放進去，在某些時候也是滿方便的。
+<img loading="lazy" decoding="async" src="https://i.imgur.com/CuFdmcH.png" alt=""></li>
+</ul>
+</li>
+<li><p>LIFF (LINE Front-end Framework)</p>
+<ul>
+<li>個人覺得他讓 Bot 的發揮功力又更上一層樓了，以前很多開發者都會覺得在與機器人對談中會有很多東西是不好做的，像是購物車的流程，若使用者在流程中按了上面的按鈕的話可能會發生無法預期的錯誤，且得用其他的服務去儲存操作狀態，在開發上就很麻煩，那 LIFF 就讓這個流程可以簡單許多，且能透過 SDK 在網頁上取得使用者的資訊，讓網站再被使用的同時還可以確認身份。</li>
+</ul>
+</li>
+<li><p>推播 500 則</p>
+<ul>
+<li>在今年 OAuth 2.0 釋出當中推播則數也跟改動了，改成 500 則後其實看到不少的使用者在跳腳怎麼改成這樣，或是另類的變貴收費，只能說 LINE 也是要找方法收點費用呀，不然很多功能爽爽用他們也沒有地方去收費，這部分因為我也是少用，推播功能就都交給 <code>LINE Notify</code> 嚕！</li>
+</ul>
+</li>
+<li><p>客服與機器人的切換</p>
+<ul>
+<li>參考 C.T Lin 大大的文章 <a href="https://ithelp.ithome.com.tw/articles/10220717">Day10</a>，簡單來說 Messager 可以在機器人處理不來的時候將訊息轉丟給設定的那位管理員，讓他來回覆訊息，但 LINE 在機器人上只能透過網頁去切換機器人狀態，抑或是自己設計流程讓機器人在無法處理才通知管理員，這樣的話管理員很容易錯過黃金的第一時間，可能也會因此造成使用者的不便。</li>
+</ul>
+</li>
+<li><p>個人的 mur mur 🤣</p>
+<ul>
+<li>文件實在是太瀑布式了，雖然現在都懂的如何搜尋到相對應的功能，但若一般想開發的使用者在看到這個文件時瘋狂往下滑，結果發現還沒有滑到或是滑過頭，倒是找資料時氣得要死 😓，所以若是文件能夠分個頁籤什麼就更好了～</li>
+</ul>
+</li>
+</ul>
+<h2 id="結論">結論</h2>
+<p>當然整體來說還是很喜歡使用 LINE 這個平台(絕對不是因為熊大 🐻)，東西也不會像一開始在開發時什麼都找不太到，並且功能一直 release，讓服務可以透過不同的整合方法去達成目標，接下來 LINE 應該還會再繼續釋出不同的東西，就請大家拭目以待，或者...來參加<a href="https://www.facebook.com/groups/chatbot.tw"> chatbot 小聚</a>直接問問 LINE 的傳教士如何呢 😁</p>
+</div>
+    <a class="read-more" href="/2019/10/13/Day29-LINE-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">繼續閱讀</a>
+  </article><article class="post-card">
     <p class="post-meta"><time datetime="2019-10-12T21:07:18">2019-10-12</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
     <h2><a href="/2019/10/12/Day28-%E7%94%A8-S3-%E5%B9%AB%E5%BF%99%E8%BD%89%E5%9D%80%E5%88%B0%E5%8E%9F%E6%9C%89%E7%9A%84%E6%9C%8D%E5%8B%99%E4%B8%8A/">Day28 - 用 S3 幫忙轉址到原有的服務上</a></h2>
     <div class="excerpt"><h2 id="前言">前言</h2>
@@ -520,29 +582,7 @@ api.add_resource(LineLoginController, &#39;/line/auth&#39;)
 <p>在實作的時候不知道為什麼一直不能讓 python 去幫我把用戶導去 LINE 認證的頁面，我記得之前寫 Ruby 可以啊(?)，最後只好讓前端去幫我把使用者導出去，這邊就帶大家做到這嚕！</p>
 </div>
     <a class="read-more" href="/2019/10/05/Day21-LINE-Login-%E5%AF%A6%E4%BD%9C/">繼續閱讀</a>
-  </article><article class="post-card">
-    <p class="post-meta"><time datetime="2019-10-04T20:59:09">2019-10-04</time> · <a href="/categories/2019%E9%90%B5%E4%BA%BA%E8%B3%BD/">2019鐵人賽</a></p>
-    <h2><a href="/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/">Day20 - LINE Login 申請與基本頁面</a></h2>
-    <div class="excerpt"><h2 id="前言">前言</h2>
-<p>上篇介紹了好多了，這邊就不廢話了，直接就帶大家申請一個 LINE Login 的服務。</p>
-<h2 id="實作">實作</h2>
-<p>首先到自己的開發者頁面按<code>+</code>，並選擇最左邊的選項
-<img loading="lazy" decoding="async" src="https://i.imgur.com/c9JI0vX.jpg" alt="">
-接著輸入<code>App name</code>(服務名稱)、<code>App description</code>(服務簡介)，因為我們是實作 API ，所以選擇<code>Use WEB</code>的選項，接著再輸入<code>email</code>
-<img loading="lazy" decoding="async" src="https://i.imgur.com/AA8NiF8.png" alt="">
-把該填的填完之後按下送出就會看到有一個新的服務嚕！
-<img loading="lazy" decoding="async" src="https://i.imgur.com/RBM1HdJ.jpg" alt="">
-點進去後往下滑，可以看到有個 <code>link to this channel</code> 的選項，這邊選擇一開始建立的那隻機器人，綁定之後就變它的形狀啦(?)
-<img loading="lazy" decoding="async" src="https://i.imgur.com/ES4wcHn.png" alt="">
-接著再往下會看到 Email 的狀態是 Unapplied，然後按下右邊的<code>Submit</code>
-<img loading="lazy" decoding="async" src="https://i.imgur.com/SHgQYsU.png" alt="">
-會看到這樣子的一個框框，把兩個框框打勾並選擇一張圖片上傳，這部分就算是申請帳號下面的同意服務條款一樣，圖片就上傳自己希望當使用者到你頁面的時候想看到的圖片 🤣，送出之後就會看到狀態改成 <code>Applied</code> 了
-<img loading="lazy" decoding="async" src="https://i.imgur.com/da7zYPg.jpg" alt=""></p>
-<h2 id="結論">結論</h2>
-<p>很多時候實作對我們來說已經不是什麼問題了，重點是在找不到服務要怎麼去申請 😓，這篇也算是記錄一下申請的步驟細節，接下來會實作個簡單的認證頁面以及 API，打完收工嚕！</p>
-</div>
-    <a class="read-more" href="/2019/10/04/Day20-LINE-Login-%E7%94%B3%E8%AB%8B%E8%88%87%E5%9F%BA%E6%9C%AC%E9%A0%81%E9%9D%A2/">繼續閱讀</a>
-  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><span aria-current="page">23</span><a href="/page/24/">24</a><a href="/page/25/">25</a></nav></main>
+  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><span aria-current="page">23</span><a href="/page/24/">24</a><a href="/page/25/">25</a><a href="/page/26/">26</a></nav></main>
   <footer>© 2026 NiJia Lin</footer>
   <script src="/assets/main.js" defer></script>
 </body>

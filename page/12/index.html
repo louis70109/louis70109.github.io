@@ -21,6 +21,18 @@
     </nav>
   </header>
   <main id="content" class="content"><article class="post-card">
+    <p class="post-meta"><time datetime="2021-10-17T23:44:29">2021-10-17</time> · <a href="/categories/Kubernetes/">Kubernetes</a></p>
+    <h2><a href="/2021/10/17/kubernetes-k3d-nodeport-not-create/">【k3d】處理無法開 NodePort 與建立 Cluster 的問題</a></h2>
+    <div class="excerpt"><h1 id="前言">前言</h1>
+<p>這個禮拜複習一下之前使用 k3d 練習 Kubernetes 的相關文章 - <a href="https://nijialin.com/2021/02/19/kubernetes-k3d-learning/">將 Chatbot 丟入一台筆電中的 Kubernetes 叢集海 | k3d | Docker</a>，但很莫名其妙的 k3d 壞掉，建立除了說 agents 找不到之外，建立到一半還會 rollback，以下如果看文的你有遇到類似的問題可以試試看。</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>刪除 k3d 的 Cluster</li>
+<li>NodePort 開啟的寫法更換</li>
+</ul>
+</div>
+    <a class="read-more" href="/2021/10/17/kubernetes-k3d-nodeport-not-create/">繼續閱讀</a>
+  </article><article class="post-card">
     <p class="post-meta"><time datetime="2021-10-03T23:27:01">2021-10-03</time> · <a href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a></p>
     <h2><a href="/2021/10/03/obs-streamlab-youtube-chat/">【OBS】透過 Streamlabs 打造與觀眾互動的聊天室與訂閱資訊 | Youtube</a></h2>
     <div class="excerpt"><style>
@@ -208,25 +220,7 @@
 <p>相信在螢幕前觀看此篇文章得你一定對 LINE 貼圖小舖不陌生(畢竟都要買貼圖跟朋友&quot;交流&quot;)，因為背後的技術與流量其實是需要非常龐大的架構才支撐的下，本次 COSCUP 的 LINE 攤位上就邀請到福岡的前端與 CSI 團隊來分享相關的內容！</p>
 </div>
     <a class="read-more" href="/2021/08/12/coscup-2021-day2-fukuoka/">繼續閱讀</a>
-  </article><article class="post-card">
-    <p class="post-meta"><time datetime="2021-08-06T12:18:28">2021-08-06</time> · <a href="/categories/%E7%A0%94%E8%A8%8E%E6%9C%83/">研討會</a></p>
-    <h2><a href="/2021/08/06/coscup-2021-day2-th-devrel/">【COSCUP Throwback】LINE Thailand Developer Relation 議程分享</a></h2>
-    <div class="excerpt"><style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2021/coscup/th/0-1.png" alt=""></p>
-<h1 id="前言">前言</h1>
-<p>開發者關係與技術推廣(Developer Relations)部門除了台灣之外，在韓國、日本、台灣、泰國、印尼皆都有此部門，除了技術品牌經營外，也會安排許多對外技術活動，本次 COSCUP 活動中邀請到泰國的 - Tee、Tan、Bee 來為我們分享在泰國裡所實踐的內容與經驗分享，對於當天的內容有興趣的朋友，除了繼續觀看本文外也可收看當天的錄影檔(英文版本)：</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/iq0nSph2ZNk?start=820" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    <a class="read-more" href="/2021/08/06/coscup-2021-day2-th-devrel/">繼續閱讀</a>
-  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><span aria-current="page">12</span><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a></nav></main>
+  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><span aria-current="page">12</span><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a><a href="/page/26/">26</a></nav></main>
   <footer>© 2026 NiJia Lin</footer>
   <script src="/assets/main.js" defer></script>
 </body>

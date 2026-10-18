@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="You are what you do.">
+  <title>ESP32 | 忍者工坊</title>
+  <link rel="canonical" href="https://nijialin.com/tags/ESP32/">
+  <link rel="icon" href="/images/favicon-32x32-next.png">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYYPR3Z2K3"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FYYPR3Z2K3');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="/">忍者工坊<small>You are what you do.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+    <nav id="site-nav" aria-label="主要導覽">
+      <a href="/">首頁</a><a href="/archives/">歸檔</a><a href="/tags/">標籤</a><a href="/categories/">分類</a><a href="/search/">搜尋</a><a href="/about/">關於</a>
+    </nav>
+  </header>
+  <main id="content" class="content"><header class="page-heading"><p>標籤</p><h1>ESP32</h1></header><article class="post-card">
+    <p class="post-meta"><time datetime="2026-10-19T00:50:00">2026-10-19</time> · <a href="/categories/%E6%8A%80%E8%A1%93/">技術</a></p>
+    <h2><a href="/2026/10/19/esp32-c6-fly-io-device-hub/">ESP32-C6 + Fly.io 裝置管理站實作筆記：註冊碼與自動換 Key</a></h2>
+    <div class="excerpt"><p>這陣子手邊的 ESP32-C6 要做一件聽起來很簡單的事：把紅外線發射的訊號、設備開關機的紀錄，通通丟到雲端存起來，然後打開網頁，一眼看出「這塊板子現在是死是活、設備有沒有在跑」。</p>
+<p>說實話，我一開始的想法是：不就一支 API 嗎？結果越做越發現，真正麻煩的從來不是「收資料」，而是 <strong>怎麼讓一堆板子安安全全地證明自己是誰</strong>。Key 要怎麼塞進板子？外洩了怎麼辦？放在現場沒人管的板子，Key 能不能自己換？</p>
+<p>這篇就是把整個過程記下來：架構怎麼選、Key 的生命週期怎麼設計、部署到 Fly.io 的細節，以及我（和 Claude Code）一路踩到的坑。先講在前面：<strong>伺服器端已經上線、也測過了，但 ESP32 韌體我只寫了範例，還沒有真的編譯、燒進板子</strong>。後面會老實交代。</p>
+</div>
+    <a class="read-more" href="/2026/10/19/esp32-c6-fly-io-device-hub/">繼續閱讀</a>
+  </article></main>
+  <footer>© 2026 NiJia Lin</footer>
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>

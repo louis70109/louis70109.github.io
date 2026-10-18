@@ -21,6 +21,15 @@
     </nav>
   </header>
   <main id="content" class="content"><article class="post-card">
+    <p class="post-meta"><time datetime="2023-12-23T12:42:18">2023-12-23</time> · <a href="/categories/%E6%97%A5%E8%A8%98/">日記</a></p>
+    <h2><a href="/2023/12/23/nijia-2023-review/">2023  Personal Review</a></h2>
+    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2023/20231222_222229_ninja_cat.jpg" alt=""></p>
+<h1 id="🐔-前言">🐔 前言</h1>
+<p>趁出國跨年之前來整理今年的一些事情，期許 2024 年的自己可以持續跨出舒適圈</p>
+<p>自覺自己是一個很反骨的個性，不喜歡被定義就是<code>怎樣怎樣</code>的人，因此今年對我來說就是一直跨出舒適圈的一年，對我來說非常有趣，但偶爾有時候也是覺得自己到底在幹嘛，把自己搞這麼累 😄 因此也要適度地透過各種方式來平衡自己的身心健康 (<del>花錢就對了</del>)</p>
+</div>
+    <a class="read-more" href="/2023/12/23/nijia-2023-review/">繼續閱讀</a>
+  </article><article class="post-card">
     <p class="post-meta"><time datetime="2023-11-26T22:52:34">2023-11-26</time> · <a href="/categories/GCP/">GCP</a></p>
     <h2><a href="/2023/11/26/gcp-pubsub-python/">【GCP】Pub/Sub Python 實戰紀錄 | DevFest 2023 台中工作坊</a></h2>
     <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/2023/pubsub/OIG.jpeg" alt=""></p>
@@ -97,36 +106,7 @@
 <p>由於年初時到日本滑雪因而接觸板類運動，雖然挫折感很高(又一直摔)，但能夠滑行真的是成就感滿點！而在過程中去小叮噹兩趟延續滑雪的腳感，不過一直處於要抽空找團才能去滑，地點在新竹成本又很高 🥲，在同事 Daniel 的推坑下(<a href="https://medium.com/%E8%A1%9D%E6%B5%AA%E6%BB%91%E6%9D%BF%E4%BA%8C%E4%B8%89%E4%BA%8B">系列文章</a>)，為了培養年底滑雪的一些腳感，跳坑衝浪滑板讓我在日常也可以抽空出來玩玩！</p>
 </div>
     <a class="read-more" href="/2023/10/01/surfing-skateboard-rookie/">繼續閱讀</a>
-  </article><article class="post-card">
-    <p class="post-meta"><time datetime="2023-08-18T12:23:46">2023-08-18</time> · <a href="/categories/LINE/">LINE</a></p>
-    <h2><a href="/2023/08/18/first-time-langchain-line-bot/">新米到上手 LangChain: 藉由 Function Agent 在 LINE Bot 上處理 Calendar 資訊！</a></h2>
-    <div class="excerpt"><p><img loading="lazy" decoding="async" src="https://nijialin.com/images/common.jpeg" alt=""></p>
-<ul>
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="#%E4%BB%8B%E7%B4%B9">介紹</a><ul>
-<li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%81%B8%E6%93%87-google-calender">為什麼選擇 Google Calender?</a><ul>
-<li><a href="#%E5%96%9C%E6%AD%A1%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E9%80%99%E9%82%8A">喜歡程式碼可以看這邊</a></li>
-</ul>
-</li>
-<li><a href="#%E9%81%8E%E5%8E%BB%E6%88%91%E6%80%8E%E9%BA%BC%E4%B8%8B-prompt">過去我怎麼下 prompt？</a></li>
-<li><a href="#%E4%BB%80%E9%BA%BC%E6%98%AF-langchain">什麼是 LangChain？</a></li>
-<li><a href="#langchain-function-agent-%E5%B8%B6%E4%BE%86%E4%BA%86%E4%BB%80%E9%BA%BC%E5%A5%BD%E8%99%95">LangChain Function Agent 帶來了什麼好處？</a></li>
-<li><a href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%9C%A8-line-bot-%E7%94%A8">為什麼要在 LINE Bot 用？</a></li>
-<li><a href="#%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8-youtube-%E4%BB%A5%E5%8F%8A-wikipedia-tool">更新：使用 Youtube 以及 wikipedia Tool</a></li>
-</ul>
-</li>
-<li><a href="#%E7%B5%90%E8%AB%96">結論</a></li>
-<li><a href="#%E6%B4%BB%E5%8B%95%E5%B0%8F%E7%B5%90">活動小結</a></li>
-<li><a href="#%E9%97%9C%E6%96%BCline-%E9%96%8B%E7%99%BC%E7%A4%BE%E7%BE%A4%E8%A8%88%E7%95%AB">關於「LINE 開發社群計畫」</a></li>
-</ul>
-<h1 id="前言">前言</h1>
-<p>平時我們經常需要管理/安排行程和資訊。這篇文章將介紹我是如何透過 Google Calendar 與 LangChain，讓我更快在 LINE Bot 上可以加入個人行事曆。同時，我也將分享有關使用 Google Calendar 的好處，以及如何更有效地利用 LangChain Function Agent 來簡化程式碼開發過程。相信這對於建立 LINE Bot 以及各種相關應用的開發者來說會是一個不錯的範例，讓我們就往下看下去吧！</p>
-<p>Slide: <a href="https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot">https://speakerdeck.com/line_developers_tw/first-time-lanchain-line-bot</a>
-範例程式碼：<a href="https://github.com/louis70109/BookingStep">https://github.com/louis70109/BookingStep</a>
-歡迎試玩 LINE Bot：<a href="https://lin.ee/92O5Od8">https://lin.ee/92O5Od8</a></p>
-</div>
-    <a class="read-more" href="/2023/08/18/first-time-langchain-line-bot/">繼續閱讀</a>
-  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><span aria-current="page">4</span><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a></nav></main>
+  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><span aria-current="page">4</span><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><a href="/page/14/">14</a><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a><a href="/page/26/">26</a></nav></main>
   <footer>© 2026 NiJia Lin</footer>
   <script src="/assets/main.js" defer></script>
 </body>

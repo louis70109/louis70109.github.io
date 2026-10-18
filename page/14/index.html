@@ -21,6 +21,24 @@
     </nav>
   </header>
   <main id="content" class="content"><article class="post-card">
+    <p class="post-meta"><time datetime="2021-05-15T21:44:11">2021-05-15</time> · <a href="/categories/%E6%87%89%E7%94%A8/">應用</a></p>
+    <h2><a href="/2021/05/15/hexo-utterances-comment/">在 Hexo 的 Next 樣板中引入 utterances 的留言區 | GitHub Issue</a></h2>
+    <div class="excerpt"><style>
+  section.compact {
+    font-size: 150%  
+  }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<h1 id="前言">前言</h1>
+<p>早些日子前(也才去年)，我還是使用 Facebook 的留言，因為一般人理論上都已經登入過 Facebook，透過串接 Plugin 馬上就可以讓用戶留言，實在是挺方便。但隨時時間的推演，由於 Hexo 是由 JavaScript 所構成的，且因為相互依賴的套件許多，被迫一定要將 Hexo 升級版本(好像是 3 -&gt; 5)，導致我的留言區直接全毀...</p>
+<p>近期橫空出世(<del>明明是自己孤陋寡聞</del>)了一個 TypeScript 所構成的留言區套件 <a href="https://utteranc.es/">utterances</a>，它是幹嘛得呢？它透過串接 GitHub issue 的方式來完成留言區的功能(需要 GitHub 帳號)，簡單來說如果在文章底下留言的話，他會同步在該 GitHub 專案留下一個 issue 同步留言。</p>
+</div>
+    <a class="read-more" href="/2021/05/15/hexo-utterances-comment/">繼續閱讀</a>
+  </article><article class="post-card">
     <p class="post-meta"><time datetime="2021-05-15T00:59:36">2021-05-15</time> · <a href="/categories/Python/">Python</a></p>
     <h2><a href="/2021/05/15/debug-lotify-with-commanmd-line/">除錯 Python 套件遇到 Command Line 無法使用的問題 | lotify</a></h2>
     <div class="excerpt"><style>
@@ -215,27 +233,7 @@ GitHub-&gt;Heroku: 測試成功即部署
 <p>KKTIX 活動網頁: <a href="https://linegroup.kktix.cc/events/20210319">活動網址</a></p>
 </div>
     <a class="read-more" href="/2021/04/01/line-dev-meetup-14/">繼續閱讀</a>
-  </article><article class="post-card">
-    <p class="post-meta"><time datetime="2021-03-28T22:46:50">2021-03-28</time> · <a href="/categories/Python/">Python</a></p>
-    <h2><a href="/2021/03/28/postgresql-sqlalchemy-prefix-debug/">解決 SQLAlchemy 無法在 Heroku 上連接 PostgreSQL</a></h2>
-    <div class="excerpt"><style>
-  section.compact {
-    font-size: 150%  
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<p><img loading="lazy" decoding="async" src="https://nijialin.com/images/heroku.png" alt=""></p>
-<h1 id="tldr">TL;DR</h1>
-<p>Heroku Postgresql 引入時預設 DATABASE_URL 的開頭是 <code>postgres</code>，因 Python ORM - SQLAlchemy 有先天限制問題，需另起一個環境變數並改成 <code>postgresql</code> 才不會遇到：</p>
-<pre><code>sqlalchemy.exc.NoSuchModuleError: Can&#39;t load plugin: sqlalchemy.dialects:postgres
-</code></pre>
-</div>
-    <a class="read-more" href="/2021/03/28/postgresql-sqlalchemy-prefix-debug/">繼續閱讀</a>
-  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><span aria-current="page">14</span><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a></nav></main>
+  </article><nav class="pagination" aria-label="分頁"><a href="/">1</a><a href="/page/2/">2</a><a href="/page/3/">3</a><a href="/page/4/">4</a><a href="/page/5/">5</a><a href="/page/6/">6</a><a href="/page/7/">7</a><a href="/page/8/">8</a><a href="/page/9/">9</a><a href="/page/10/">10</a><a href="/page/11/">11</a><a href="/page/12/">12</a><a href="/page/13/">13</a><span aria-current="page">14</span><a href="/page/15/">15</a><a href="/page/16/">16</a><a href="/page/17/">17</a><a href="/page/18/">18</a><a href="/page/19/">19</a><a href="/page/20/">20</a><a href="/page/21/">21</a><a href="/page/22/">22</a><a href="/page/23/">23</a><a href="/page/24/">24</a><a href="/page/25/">25</a><a href="/page/26/">26</a></nav></main>
   <footer>© 2026 NiJia Lin</footer>
   <script src="/assets/main.js" defer></script>
 </body>
